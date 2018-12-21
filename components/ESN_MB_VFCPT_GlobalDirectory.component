@@ -1,0 +1,55 @@
+<apex:component controller="ESN_MB_NOP_GlobalDirectory_Cx">
+    <!-- ***************************** -->
+    <!-- Global directory Debut -->
+ 
+     <div id="largeGD"></div>   
+   <div id="backgroundGD"></div>
+        <div class="content-wrapper container-fluid">
+            <ul class="fil-ariane">
+            </ul>
+            
+            <div class="more-functionalities-bloc hidden" style="float:right; margin-left:10px">
+                <a class="findoutmore" href="#?page=global-directory-edit&content=global-directory-edit&mode=light" data-page="global-directory-edit" data-category="global-directory" onclick="createGlobalDirectory(currentBrandId, products[0].ESN_MB_Node_Page__r.Id, fillGlobalDirectoryEdit)">{!$Label.ESN_MB_ModifyMarketingDirectory}</a>
+              </div>
+            
+            <hr />
+            <div class="block-title col-xs-offset-5 col-xs-7">
+                <h1 class="pernodricard">{!$Label.ESN_MB_JamesonGDirectory}</h1>
+                <p>
+                    {!$Label.ESN_MB_WelcomeMarketingDirectory}
+                </p>
+            </div><!--/.block-title-->
+            <div class="clearfix"></div>
+            <hr />
+            <div class="container-global-directory-content">
+                <div class="row media">
+                    <div class="col-left col-xs-5">
+                       <h2 id="globalDirectoryTeamVideoPresentation"></h2>  
+                    </div>
+                    <div class="col-right col-xs-7">
+                        <div class="video">
+                           
+                        </div><!--/.video-->
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-left col-xs-5">
+                        <h2 id="globalDirectoryTeamOrganizationChart"></h2>
+                    </div>
+                    <div class="col-right col-xs-7">
+                        <div id="downloadGD"></div>
+                        <div id="imagesGD"></div>
+                    </div>
+                     
+                </div>
+            </div> <!-- container-global-directory-content -->
+        </div>
+    
+    <!--<script src="https://dl.dropboxusercontent.com/u/51617866/DEV_PR_VAL/globalDirectory.js"></script> 
+     <apex:includeScript value="{!urlfor($Resource.ESN_MB_Theme_Core, '/js/pages/video.js')}"/> 
+      <apex:includeScript value="{!urlfor($Resource.ESN_MB_Theme_Core, '/js/pikachoose/jquery.jcarousel.min.js')}"/>
+	 <apex:includeScript value="{!urlfor($Resource.ESN_MB_Theme_Core, '/js/pikachoose/jquery.pikachoose.js')}"/>
+	 <apex:includeScript value="{!urlfor($Resource.ESN_MB_Theme_Core, '/js/pikachoose/jquery.touchwipe.min.js')}"/>-->
+    <!-- Global directory End -->
+    <!-- ***************************** -->
+</apex:component>

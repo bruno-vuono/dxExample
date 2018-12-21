@@ -1,0 +1,1264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <content>ESN_MB_NOP_Redirect</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>ESN_MB MyBrands : Object to store MyBrands app landing pages and skeleton navigation</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>ESN_MB_Abstract__c</fullName>
+        <defaultValue>&quot;-&quot;</defaultValue>
+        <description>Abstract description for a rubric</description>
+        <externalId>false</externalId>
+        <label>Abstract</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Alcohol_Type__c</fullName>
+        <description>Stores the type of alcohol of the brand (Whisky, Vodka, Champagne...)</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Stores the type of alcohol of the brand (Whisky, Vodka, Champagne...)</inlineHelpText>
+        <label>ESN_MB_Alcohol_Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>White Spirits and Rums</fullName>
+                    <default>false</default>
+                    <label>White Spirits and Rums</label>
+                </value>
+                <value>
+                    <fullName>Scotch Whiskies</fullName>
+                    <default>false</default>
+                    <label>Scotch Whiskies</label>
+                </value>
+                <value>
+                    <fullName>Other Whiskies</fullName>
+                    <default>false</default>
+                    <label>Other Whiskies</label>
+                </value>
+                <value>
+                    <fullName>Cognac and Brandy</fullName>
+                    <default>false</default>
+                    <label>Cognac and Brandy</label>
+                </value>
+                <value>
+                    <fullName>Anis-Based Spirits</fullName>
+                    <default>false</default>
+                    <label>Anis-Based Spirits</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_AvailableByDefault__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Uniquement utilisé pour les rubriques. Valeur TRUE si et seulement si cette rubrique doit être disponible par défaut quand on crée une nouvelle marque</description>
+        <externalId>false</externalId>
+        <label>Available By Default</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_BrandParentId__c</fullName>
+        <externalId>false</externalId>
+        <label>ESN_MB_BrandParentId</label>
+        <length>18</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Brand_Category__c</fullName>
+        <description>Brand Category for MyBrands</description>
+        <externalId>false</externalId>
+        <label>Brand Category</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>TOP14</fullName>
+                    <default>false</default>
+                    <label>TOP14</label>
+                </value>
+                <value>
+                    <fullName>Wines</fullName>
+                    <default>false</default>
+                    <label>Wines</label>
+                </value>
+                <value>
+                    <fullName>Key Local Brands</fullName>
+                    <default>false</default>
+                    <label>Key Local Brands</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard Brand</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Brand</label>
+                </value>
+                <value>
+                    <fullName>Other Brands</fullName>
+                    <default>false</default>
+                    <label>Other Brands</label>
+                </value>
+                <value>
+                    <fullName>LeCercle</fullName>
+                    <default>false</default>
+                    <label>LeCercle</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Brand_Company__c</fullName>
+        <description>The Company the brand belongs to</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The Company the brand belongs to</inlineHelpText>
+        <label>ESN_MB_Brand_Company</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Irish Distillers</fullName>
+                    <default>false</default>
+                    <label>Irish Distillers</label>
+                </value>
+                <value>
+                    <fullName>The Absolut Company</fullName>
+                    <default>false</default>
+                    <label>The Absolut Company</label>
+                </value>
+                <value>
+                    <fullName>Chivas Brothers</fullName>
+                    <default>false</default>
+                    <label>Chivas Brothers</label>
+                </value>
+                <value>
+                    <fullName>Martell Mumm Perrier-Jouët</fullName>
+                    <default>false</default>
+                    <label>Martell Mumm Perrier-Jouët</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard Winemakers</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Winemakers</label>
+                </value>
+                <value>
+                    <fullName>Havana Club International</fullName>
+                    <default>false</default>
+                    <label>Havana Club International</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Brand_DAM_Id__c</fullName>
+        <description>Brand Id for DAM</description>
+        <externalId>false</externalId>
+        <label>Brand DAM Id</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Brand_Initialization__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Check if the brand needs to get all DAM assets or only the last modified (using the batch)</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Check if you need all DAM Assets / Uncheck if you only want the last modified</inlineHelpText>
+        <label>Brand Initialization</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Brand_LastImportAssetsDate__c</fullName>
+        <description>Get the last import date for assets in the brand</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Get the last import date for assets in the brand</inlineHelpText>
+        <label>Brand Last Import Assets Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Brand_Scope__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(  RecordType.Name  == &quot;Brand&quot;,  Name ,   
+IF(  ESN_MB_ParentId__r.RecordType.Name  == &quot;Brand&quot;,  ESN_MB_ParentId__r.Name,   
+IF(  ESN_MB_ParentId__r.ESN_MB_ParentId__r.RecordType.Name  == &quot;Brand&quot;,  ESN_MB_ParentId__r.ESN_MB_ParentId__r.Name, 
+IF(  ESN_MB_ParentId__r.ESN_MB_ParentId__r.ESN_MB_ParentId__r.RecordType.Name  == &quot;Brand&quot;,  ESN_MB_ParentId__r.ESN_MB_ParentId__r.ESN_MB_ParentId__r.Name, 
+
+
+ESN_MB_ParentId__r.ESN_MB_ParentId__r.ESN_MB_ParentId__r.ESN_MB_ParentId__r.Name    )
+)
+
+))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Brand Scope</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_ChatterGroup_Id__c</fullName>
+        <description>Salesforce Id of the chatter public group supporting the brand</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Salesforce Id of the chatter public group supporting the brand</inlineHelpText>
+        <label>Chatter Group Id</label>
+        <length>18</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_CssClassName__c</fullName>
+        <description>Field used for rubrics only. Stores the name of the css class used to display the correct image fir this rubric in the footer menu.</description>
+        <externalId>false</externalId>
+        <label>Css Class Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Default_Brand_Variant_Value__c</fullName>
+        <externalId>false</externalId>
+        <label>Default Brand Variant Value</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Deployment_Status__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>This option will disable brand tile on MyBrands homepage</inlineHelpText>
+        <label>Deployment Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Enable</fullName>
+                    <default>false</default>
+                    <label>Enable</label>
+                </value>
+                <value>
+                    <fullName>Disable</fullName>
+                    <default>false</default>
+                    <label>Disable</label>
+                </value>
+                <value>
+                    <fullName>Work in progress</fullName>
+                    <default>false</default>
+                    <label>Work in progress</label>
+                </value>
+                <value>
+                    <fullName>Archive</fullName>
+                    <default>false</default>
+                    <label>Archive</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_ExtId__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <description>Ext Id used for data migration</description>
+        <externalId>true</externalId>
+        <inlineHelpText>Ext Id used for data migration</inlineHelpText>
+        <label>ESN_MB_ExtId</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_IsMasterbrand__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Only used for record type &quot;Product&quot;.
+Checked if this product is the Masterbrand for its brand.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Only used for record type &quot;Product&quot;.
+Checked if this product is the Masterbrand for its brand.</inlineHelpText>
+        <label>IsMasterbrand</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_NorthPlains_Portal_URL__c</fullName>
+        <description>The URL for Northplains Portal for this Brand</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The URL for Northplains Portal for this Brand</inlineHelpText>
+        <label>NorthPlains Portal URL</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Order__c</fullName>
+        <description>Indicate order apparence in menu or other print loops</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicate order apparence in menu or other print loops</inlineHelpText>
+        <label>Order</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_ParentId__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Field to store NodePage Parent Id</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Set Parent Node Page.</inlineHelpText>
+        <label>Parent Node</label>
+        <referenceTo>ESN_MB_NodePage__c</referenceTo>
+        <relationshipName>Node_Pages</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Redirect__c</fullName>
+        <description>Define the redirect page for navigation</description>
+        <externalId>false</externalId>
+        <inlineHelpText>If page is provided user will be redirected to the specified page</inlineHelpText>
+        <label>Redirect to Page</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Section__c</fullName>
+        <description>Define an type for Asset record</description>
+        <externalId>false</externalId>
+        <label>Section</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Strategy</fullName>
+                    <default>false</default>
+                    <label>Strategy</label>
+                </value>
+                <value>
+                    <fullName>Brand Activations Library</fullName>
+                    <default>false</default>
+                    <label>Brand Activations Library</label>
+                </value>
+                <value>
+                    <fullName>Assets</fullName>
+                    <default>false</default>
+                    <label>Assets</label>
+                </value>
+                <value>
+                    <fullName>Guidelines</fullName>
+                    <default>false</default>
+                    <label>Guidelines</label>
+                </value>
+                <value>
+                    <fullName>History &amp; Education</fullName>
+                    <default>false</default>
+                    <label>History &amp; Education</label>
+                </value>
+                <value>
+                    <fullName>Strategy_LeCercle</fullName>
+                    <default>false</default>
+                    <label>Strategy_LeCercle</label>
+                </value>
+                <value>
+                    <fullName>Global Commercial Agreements</fullName>
+                    <default>false</default>
+                    <label>Global Commercial Agreements</label>
+                </value>
+                <value>
+                    <fullName>Assets &amp; Activations</fullName>
+                    <default>false</default>
+                    <label>Assets &amp; Activations</label>
+                </value>
+                <value>
+                    <fullName>Performance &amp; Monitoring</fullName>
+                    <default>false</default>
+                    <label>Performance &amp; Monitoring</label>
+                </value>
+                <value>
+                    <fullName>Who&apos;s Who &amp; Organization</fullName>
+                    <default>false</default>
+                    <label>Who&apos;s Who &amp; Organization</label>
+                </value>
+                <value>
+                    <fullName>Trainings</fullName>
+                    <default>false</default>
+                    <label>Trainings</label>
+                </value>
+                <value>
+                    <fullName>Belief</fullName>
+                    <default>false</default>
+                    <label>Belief</label>
+                </value>
+                <value>
+                    <fullName>Mythtelling</fullName>
+                    <default>false</default>
+                    <label>Mythtelling</label>
+                </value>
+                <value>
+                    <fullName>Parish</fullName>
+                    <default>false</default>
+                    <label>Parish</label>
+                </value>
+                <value>
+                    <fullName>Set Of Visual Icons</fullName>
+                    <default>false</default>
+                    <label>Set Of Visual Icons</label>
+                </value>
+                <value>
+                    <fullName>Services, Rituals &amp; Experiences</fullName>
+                    <default>false</default>
+                    <label>Services, Rituals &amp; Experiences</label>
+                </value>
+                <value>
+                    <fullName>Temple</fullName>
+                    <default>false</default>
+                    <label>Temple</label>
+                </value>
+                <value>
+                    <fullName>Way Of Life</fullName>
+                    <default>false</default>
+                    <label>Way Of Life</label>
+                </value>
+                <value>
+                    <fullName>News</fullName>
+                    <default>false</default>
+                    <label>News</label>
+                </value>
+                <value>
+                    <fullName>Full Beyond Model</fullName>
+                    <default>false</default>
+                    <label>Full Beyond Model</label>
+                </value>
+                <value>
+                    <fullName>Business Activation Library</fullName>
+                    <default>false</default>
+                    <label>Business Activation Library</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Title__c</fullName>
+        <externalId>false</externalId>
+        <label>ESN_MB_Title</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Url_Facebook_Link__c</fullName>
+        <externalId>false</externalId>
+        <label>url facebook link</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Url_Flickr_Link__c</fullName>
+        <externalId>false</externalId>
+        <label>url flickr link</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Url_GooglePlus_Link__c</fullName>
+        <externalId>false</externalId>
+        <label>url googleplus link</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Url_Instagram_Link__c</fullName>
+        <description>Instagram url of the brand to link on the &quot;Forum&quot; tab of MyBrands with the corresponding logo</description>
+        <externalId>false</externalId>
+        <label>url instagram link</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Url_Pinterest_Link__c</fullName>
+        <description>Pinterest url of the brand to link on the &quot;Forum&quot; tab of MyBrands with the corresponding logo</description>
+        <externalId>false</externalId>
+        <label>url pinterest link</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Url_Twitter_Link__c</fullName>
+        <externalId>false</externalId>
+        <label>url twitter link</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Url_Youtube_Link__c</fullName>
+        <externalId>false</externalId>
+        <label>url youtube link</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_View_Link__c</fullName>
+        <description>Link used to open the record in standard view (Not redirecting to My Brand App)</description>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(&quot;/&quot; + Id + &quot;?nooverride=1&quot;,  Name  ,&quot;_top&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>View Link</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>MyBrands Node Page</label>
+    <listViews>
+        <fullName>ESN_MB_All_Nodes</fullName>
+        <columns>ESN_MB_View_Link__c</columns>
+        <columns>ESN_MB_Brand_Scope__c</columns>
+        <columns>ESN_MB_ParentId__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>ESN_MB_Section__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All Nodes</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>ESN_MB_Brands_View</fullName>
+        <columns>ESN_MB_View_Link__c</columns>
+        <columns>ESN_MB_Deployment_Status__c</columns>
+        <columns>ESN_MB_ChatterGroup_Id__c</columns>
+        <columns>ESN_MB_Brand_Initialization__c</columns>
+        <columns>ESN_MB_Brand_LastImportAssetsDate__c</columns>
+        <columns>ESN_MB_Order__c</columns>
+        <columns>ESN_MB_Brand_DAM_Id__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>ESN_MB_Default_Brand_Variant_Value__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>ESN_MB_NodePage__c.ESN_MB_Brand</value>
+        </filters>
+        <label>Brands</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>ESN_MB_Homepages</fullName>
+        <columns>ESN_MB_View_Link__c</columns>
+        <columns>ESN_MB_Order__c</columns>
+        <columns>RECORDTYPE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>ESN_MB_NodePage__c.ESN_MB_Homepage</value>
+        </filters>
+        <label>Homepages</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>ESN_MB_Products</fullName>
+        <columns>ESN_MB_View_Link__c</columns>
+        <columns>ESN_MB_Order__c</columns>
+        <columns>ESN_MB_Section__c</columns>
+        <columns>ESN_MB_Abstract__c</columns>
+        <columns>ESN_MB_Redirect__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>ESN_MB_Default_Brand_Variant_Value__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>ESN_MB_NodePage__c.ESN_MB_Product</value>
+        </filters>
+        <label>Products</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>ESN_MB_Rubrics</fullName>
+        <columns>ESN_MB_View_Link__c</columns>
+        <columns>ESN_MB_Order__c</columns>
+        <columns>ESN_MB_Section__c</columns>
+        <columns>ESN_MB_Abstract__c</columns>
+        <columns>ESN_MB_Redirect__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>ESN_MB_Default_Brand_Variant_Value__c</columns>
+        <columns>ESN_MB_CssClassName__c</columns>
+        <columns>ESN_MB_AvailableByDefault__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>ESN_MB_NodePage__c.ESN_MB_Rubric</value>
+        </filters>
+        <label>Rubrics</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Jacob_s_Creek_Products</fullName>
+        <columns>ESN_MB_View_Link__c</columns>
+        <columns>ESN_MB_IsMasterbrand__c</columns>
+        <columns>ESN_MB_Order__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>NAME</field>
+            <operation>contains</operation>
+            <value>Jacob</value>
+        </filters>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>ESN_MB_NodePage__c.ESN_MB_Product</value>
+        </filters>
+        <label>Products Jacob&apos;s Creek</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Products_Brancott_Estate</fullName>
+        <columns>ESN_MB_View_Link__c</columns>
+        <columns>ESN_MB_IsMasterbrand__c</columns>
+        <columns>ESN_MB_Order__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>NAME</field>
+            <operation>contains</operation>
+            <value>Brancott</value>
+        </filters>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>ESN_MB_NodePage__c.ESN_MB_Product</value>
+        </filters>
+        <label>Products Brancott Estate</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Products_Chivas</fullName>
+        <columns>ESN_MB_View_Link__c</columns>
+        <columns>ESN_MB_IsMasterbrand__c</columns>
+        <columns>ESN_MB_Order__c</columns>
+        <columns>ESN_MB_Brand_Scope__c</columns>
+        <columns>ESN_MB_Brand_DAM_Id__c</columns>
+        <columns>ESN_MB_Default_Brand_Variant_Value__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>NAME</field>
+            <operation>contains</operation>
+            <value>chivas</value>
+        </filters>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>ESN_MB_NodePage__c.ESN_MB_Product</value>
+        </filters>
+        <label>Products Chivas</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Products_Havana_Club</fullName>
+        <columns>ESN_MB_View_Link__c</columns>
+        <columns>ESN_MB_IsMasterbrand__c</columns>
+        <columns>ESN_MB_Order__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>NAME</field>
+            <operation>contains</operation>
+            <value>Havana</value>
+        </filters>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>ESN_MB_NodePage__c.ESN_MB_Product</value>
+        </filters>
+        <label>Products Havana Club</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Products_Jameson</fullName>
+        <columns>ESN_MB_View_Link__c</columns>
+        <columns>NAME</columns>
+        <columns>ESN_MB_Brand_DAM_Id__c</columns>
+        <columns>ESN_MB_Brand_Scope__c</columns>
+        <columns>ESN_MB_Default_Brand_Variant_Value__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ESN_MB_Brand_Scope__c</field>
+            <operation>contains</operation>
+            <value>jameson</value>
+        </filters>
+        <label>Products Jameson</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Products_Kahlua</fullName>
+        <columns>ESN_MB_View_Link__c</columns>
+        <columns>ESN_MB_IsMasterbrand__c</columns>
+        <columns>ESN_MB_Order__c</columns>
+        <columns>ESN_MB_Default_Brand_Variant_Value__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>NAME</field>
+            <operation>contains</operation>
+            <value>Kahl</value>
+        </filters>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>ESN_MB_NodePage__c.ESN_MB_Product</value>
+        </filters>
+        <label>Products Kahlúa</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Products_Malibu</fullName>
+        <columns>ESN_MB_View_Link__c</columns>
+        <columns>ESN_MB_IsMasterbrand__c</columns>
+        <columns>ESN_MB_Order__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ESN_MB_Brand_Scope__c</field>
+            <operation>contains</operation>
+            <value>Malibu</value>
+        </filters>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>ESN_MB_NodePage__c.ESN_MB_Product</value>
+        </filters>
+        <label>Products Malibu</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Products_Perrier_Jou_t</fullName>
+        <columns>NAME</columns>
+        <columns>ESN_MB_Brand_DAM_Id__c</columns>
+        <columns>ESN_MB_Default_Brand_Variant_Value__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ESN_MB_Brand_Scope__c</field>
+            <operation>contains</operation>
+            <value>Perrier</value>
+        </filters>
+        <label>Products Perrier Jouët</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Products_Royal_Salute</fullName>
+        <columns>ESN_MB_View_Link__c</columns>
+        <columns>ESN_MB_Order__c</columns>
+        <columns>ESN_MB_IsMasterbrand__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>NAME</field>
+            <operation>contains</operation>
+            <value>royal</value>
+        </filters>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>ESN_MB_NodePage__c.ESN_MB_Product</value>
+        </filters>
+        <label>Products Royal Salute</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Products_Stoneleigh</fullName>
+        <columns>NAME</columns>
+        <columns>ESN_MB_View_Link__c</columns>
+        <columns>ESN_MB_Default_Brand_Variant_Value__c</columns>
+        <columns>ESN_MB_IsMasterbrand__c</columns>
+        <columns>ESN_MB_Order__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ESN_MB_Brand_Scope__c</field>
+            <operation>contains</operation>
+            <value>stoneleigh</value>
+        </filters>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>ESN_MB_NodePage__c.ESN_MB_Product</value>
+        </filters>
+        <label>Products Stoneleigh</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Ricard_Products</fullName>
+        <columns>ESN_MB_View_Link__c</columns>
+        <columns>ESN_MB_Brand_Scope__c</columns>
+        <columns>ESN_MB_IsMasterbrand__c</columns>
+        <columns>ESN_MB_Order__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>NAME</field>
+            <operation>contains</operation>
+            <value>Ricard</value>
+        </filters>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>ESN_MB_NodePage__c.ESN_MB_Product</value>
+        </filters>
+        <label>Products Ricard</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <label>PageNode Name</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>MyBrands Node Pages</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>ESN_MB_Brand</fullName>
+        <active>true</active>
+        <description>Define Homepage for a Brand</description>
+        <label>Brand</label>
+        <picklistValues>
+            <picklist>ESN_MB_Brand_Category__c</picklist>
+            <values>
+                <fullName>Pernod Ricard Brand</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TOP14</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wines</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ESN_MB_Deployment_Status__c</picklist>
+            <values>
+                <fullName>Archive</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Disable</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Enable</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Work in progress</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ESN_MB_Section__c</picklist>
+            <values>
+                <fullName>Assets</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brand Activations Library</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Guidelines</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>History %26 Education</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Strategy</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>ESN_MB_Homepage</fullName>
+        <active>true</active>
+        <description>Homepage for MyBrand Application</description>
+        <label>Homepage</label>
+        <picklistValues>
+            <picklist>ESN_MB_Brand_Category__c</picklist>
+            <values>
+                <fullName>Pernod Ricard Brand</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TOP14</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wines</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ESN_MB_Deployment_Status__c</picklist>
+            <values>
+                <fullName>Disable</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Enable</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Work in progress</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ESN_MB_Section__c</picklist>
+            <values>
+                <fullName>Assets</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brand Activations Library</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Guidelines</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>History %26 Education</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Strategy</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>ESN_MB_Product</fullName>
+        <active>true</active>
+        <description>Define Product attribute</description>
+        <label>Product</label>
+        <picklistValues>
+            <picklist>ESN_MB_Brand_Category__c</picklist>
+            <values>
+                <fullName>Pernod Ricard Brand</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TOP14</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wines</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ESN_MB_Deployment_Status__c</picklist>
+            <values>
+                <fullName>Disable</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Enable</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Work in progress</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ESN_MB_Section__c</picklist>
+            <values>
+                <fullName>Assets</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brand Activations Library</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Guidelines</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>History %26 Education</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Strategy</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>ESN_MB_Rubric</fullName>
+        <active>true</active>
+        <description>Define a rubric record</description>
+        <label>Rubric</label>
+        <picklistValues>
+            <picklist>ESN_MB_Brand_Category__c</picklist>
+            <values>
+                <fullName>Pernod Ricard Brand</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TOP14</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wines</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ESN_MB_Deployment_Status__c</picklist>
+            <values>
+                <fullName>Disable</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Enable</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Work in progress</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ESN_MB_Section__c</picklist>
+            <values>
+                <fullName>Assets</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Assets %26 Activations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Belief</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brand Activations Library</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Business Activation Library</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Full Beyond Model</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Global Commercial Agreements</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Guidelines</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>History %26 Education</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mythtelling</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>News</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Parish</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Performance %26 Monitoring</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Services%2C Rituals %26 Experiences</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Set Of Visual Icons</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Strategy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Strategy_LeCercle</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Temple</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trainings</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Way Of Life</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Who%27s Who %26 Organization</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts>
+        <searchResultsAdditionalFields>ESN_MB_Brand_Scope__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>ESN_MB_ParentId__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

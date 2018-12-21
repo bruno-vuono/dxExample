@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>EUR_BE_Share_All_Off_Trade_PRS_Group_Outlet_Type_Read_Only</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>EUR BE Share All Off Trade PRS Group Outlet Type Read Only</label>
+        <sharedTo>
+            <roleAndSubordinates>EUR_BE_Sales_Director_Off_Trade</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>EUR BE PRS Off Trade Group Outlet Type</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>EUR_BE_Share_All_On_Trade_PRS_Group_Outlet_Type_Read_Only</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Share all ON trade group outlet types with On trade users</description>
+        <label>EUR BE Share All On Trade PRS Group Outlet Type Read Only</label>
+        <sharedTo>
+            <roleAndSubordinates>EUR_BE_Sales_Director_Horeca_Belux</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>EUR BE PRS On Trade Group Outlet Type</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>EUR_BE_Share_all_Group_Outlet_Type_RW</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>EUR BE Share all Group Outlet Type Read&amp;Write</label>
+        <sharedTo>
+            <group>EUR_BE_Admin_Group</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>EUR BE PRS On Trade Group Outlet Type,EUR BE PRS Off Trade Group Outlet Type</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>EUR_BG_Share_All_PRS_Group_Outlet_Type_RW</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>EUR BG Share All PRS Group Outlet Type RW</label>
+        <sharedTo>
+            <roleAndSubordinates>EUR_BG</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>EUR BG PRS Off Trade Group Outlet Type</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+</SharingRules>

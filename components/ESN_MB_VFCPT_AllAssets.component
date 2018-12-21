@@ -1,0 +1,78 @@
+<apex:component controller="ESN_MB_NOP_Assets_Cx">
+    <div class="basicuser-button-bloc">
+        <a id="linkMoreAssetsFunct" href="{!$Label.ESN_MB_NPPortalRedirectTokenized}" target="_blank">{!$Label.ESN_MB_DAM_hyperlink_name} <span class="glyphicon glyphicon-chevron-right"></span></a>
+    </div>
+    
+    <!--Fil d'ariane-->
+         <ul class="fil-ariane" id="fil-ariane">
+         </ul>
+         <!--Fil d'ariane-->
+
+    <div id="import-assets-bloc-id" class="more-functionalities-bloc hidden">
+        <a id="linkImportAssetsFunct" href="#">{!$Label.ESN_MB_Assets_Import} <span class="glyphicon glyphicon-chevron-right"></span></a>
+    </div>
+
+    <!-- contenu -->
+    <input type="text" value="Search an asset..." name="search" id="all_assets_search" onfocus="if(this.value=='Search an asset...'){ this.value = ''; this.style.color = '#F5E1A4'; }" onblur="if (this.value == '') {this.value = 'Search an asset...'; this.style.color = '#F5E1A4'; }"/>
+    <div id="resultNumber"><h1>{!$Label.ESN_MB_Results} <span class="title_extends">{}</span></h1></div>
+    <hr />
+    <!-- Filtre select box -->
+    <div id="filter">
+        <div id="sorting">    
+            <p>
+                {!$Label.ESN_MB_SortBy}
+            </p>
+            <div class="dropdown-container">
+                <select id="fileTypeSort" name="dropdown-1">
+                    <option selected="selected">{!$Label.ESN_MB_SortAlpha}</option>
+                    <option>{!$Label.ESN_MB_SortAZ}</option>
+                    <option>{!$Label.ESN_MB_SortZA}</option>
+                </select>
+            </div>
+            <div class="dropdown-container">
+                <select id="lastUpdatedSort" name="dropdown-2">
+                    <option selected="selected">{!$Label.ESN_MB_Last_Update}</option>
+                    <option>{!$Label.ESN_MB_Asc}</option>
+                    <option>{!$Label.ESN_MB_Desc}</option>
+                </select>
+            </div>
+            <div class="dropdown-container">
+                <select id="lastCreatedSort" name="dropdown-3">
+                    <option selected="selected">{!$Label.ESN_MB_Last_Created}</option>
+                    <option>{!$Label.ESN_MB_Asc}</option>
+                    <option>{!$Label.ESN_MB_Desc}</option>
+                </select>
+            </div>
+        </div>
+        <div id="filtering">
+            <p>
+                {!$Label.ESN_MB_Filter}
+            </p>
+            <div class="dropdown-container">
+                <select id="fileTypeFilter" name="dropdown-1">
+                    <option selected="true">{!$Label.ESN_MB_AllFiles}</option>
+                    <option value="Images">{!$Label.ESN_MB_Images}</option>
+                    <option value="Videos">{!$Label.ESN_MB_Videos}</option>
+                    <option value="Documents">{!$Label.ESN_MB_Documents}</option>
+                    <!-- Kevin Gerard 24/10/2014 - The two following values were merged into "Documents" filter above
+                    <option value="Pdfs">{!$Label.ESN_MB_Pdfs}</option>
+                    <option value="Ppts">{!$Label.ESN_MB_Ppts}</option>
+					-->
+                </select>
+            </div>
+        </div>
+    </div>
+    
+    <div class="clearfix"></div>
+    <!--  Les resultats de la recherche -->
+    <div class="result-container">
+        <div id="result" class="row">
+
+        </div> <!-- Fin #result -->
+    </div> <!-- Fin .result-container -->
+    <div id="more-result"> <!-- plus de resultat -->
+        <p>
+            {!$Label.ESN_MB_More_Assets}
+        </p>
+    </div>
+</apex:component>

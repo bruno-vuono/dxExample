@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>EMEA - for mapping Supplier Accounts (EU) to Outlet Accounts (EU)</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>EUR_CRM_Customer_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Customer Code at Wholesaler ERP</label>
+        <length>30</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Customer_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Customer Name at Wholesaler ERP</label>
+        <length>80</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Outlet_Account__c</fullName>
+        <externalId>false</externalId>
+        <label>Outlet Account (EU)</label>
+        <referenceTo>EUR_CRM_Account__c</referenceTo>
+        <relationshipName>Outlet_to_Supplier_Mappings1</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_RU_Supplier_Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>RU Supplier Account (EU)</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>$Source.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>EUR RU Outlet to Supplier Mapping</value>
+            </filterItems>
+            <filterItems>
+                <field>EUR_CRM_Account__c.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>EUR RU Distributor, EUR RU Distribution Center</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>EUR_CRM_Account__c</referenceTo>
+        <relationshipLabel>Outlet to Supplier Mapping (EU) - RU Supplier Account</relationshipLabel>
+        <relationshipName>Outlet_to_Supplier_Mapping_EU</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Supplier_Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Supplier Account (EU)</label>
+        <lookupFilter>
+            <active>true</active>
+            <booleanFilter>(1 OR 3) AND (2)</booleanFilter>
+            <filterItems>
+                <field>$Source.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>EUR AO Outlet to Supplier Mapping,  EUR KE Outlet to Supplier Mapping, EUR MA Outlet to Supplier Mapping, EUR CH Outlet to Supplier Mapping, EUR DK Outlet to Supplier Mapping, EUR RU Outlet to Supplier Mapping, EUR BG Outlet to Supplier Mapping</value>
+            </filterItems>
+            <filterItems>
+                <field>EUR_CRM_Account__c.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>KE Distributor, AO Distributor, EUR MA Distributor, EUR CH C&amp;C and WHS Direct, EUR DK Wholesaler, EUR RU Distribution Center, EUR BG Wholesaler, EUR CH Off-Trade Direct, EUR PT Wholesaler, EUR BE Wholesaler, DE ON Wholesaler</value>
+            </filterItems>
+            <filterItems>
+                <field>$Source.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>EUR PT Outlet to Supplier Mapping, EUR BE Outlet to Supplier Mapping, EUR DE Outlet to Supplier Mapping,</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>EUR_CRM_Account__c</referenceTo>
+        <relationshipLabel>Outlet to Supplier Mapping (EU) (Supplier Account (EU))</relationshipLabel>
+        <relationshipName>Outlet_to_Supplier_Mappings</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Supplier_is_Active__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Supplier is Active</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Supplier_is_primary__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Supplier is primary</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>Outlet to Supplier Mapping (EU)</label>
+    <listViews>
+        <fullName>All_KE_Supplier_Mapping</fullName>
+        <columns>NAME</columns>
+        <columns>OBJECT_ID</columns>
+        <columns>EUR_CRM_Outlet_Account__c</columns>
+        <columns>EUR_CRM_Supplier_Account__c</columns>
+        <columns>EUR_CRM_Supplier_is_Active__c</columns>
+        <columns>CURRENCY_ISO_CODE</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>CREATEDBY_USER.ALIAS</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>UPDATEDBY_USER.ALIAS</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_Outlet_to_Supplier_Mapping__c.EUR_CRM_KE_Outlet_to_Supplier_Mapping</value>
+        </filters>
+        <label>All KE Supplier Mapping</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>EUR_KE</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>BE_Outlet_to_Supplier_Mapping</fullName>
+        <columns>NAME</columns>
+        <columns>OBJECT_ID</columns>
+        <columns>EUR_CRM_Outlet_Account__c</columns>
+        <columns>EUR_CRM_Supplier_Account__c</columns>
+        <columns>EUR_CRM_Supplier_is_Active__c</columns>
+        <columns>CURRENCY_ISO_CODE</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_Outlet_to_Supplier_Mapping__c.EUR_BE_Outlet_to_Supplier_Mapping</value>
+        </filters>
+        <label>BE Outlet to Supplier Mapping</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>EUR_BE</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <nameField>
+        <displayFormat>OSM-{00000000}</displayFormat>
+        <label>Outlet to Supplier Mapping Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Outlet to Supplier Mapping (EU)</pluralLabel>
+    <recordTypes>
+        <fullName>EUR_BE_Outlet_to_Supplier_Mapping</fullName>
+        <active>true</active>
+        <label>EUR BE Outlet to Supplier Mapping</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_BG_Outlet_to_Supplier_Mapping</fullName>
+        <active>true</active>
+        <label>EUR BG Outlet to Supplier Mapping</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_CH_Outlet_to_Supplier_Mapping</fullName>
+        <active>true</active>
+        <label>EUR CH Outlet to Supplier Mapping</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_CRM_AO_Outlet_to_Supplier_Mapping</fullName>
+        <active>true</active>
+        <label>EUR AO Outlet to Supplier Mapping</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_CRM_KE_Outlet_to_Supplier_Mapping</fullName>
+        <active>true</active>
+        <label>EUR KE Outlet to Supplier Mapping</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_DE_Outlet_to_Supplier_Mapping</fullName>
+        <active>true</active>
+        <label>EUR DE Outlet to Supplier Mapping</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_DK_Outlet_to_Supplier_Mapping</fullName>
+        <active>true</active>
+        <description>Record Type for DK Outlet to Supplier Mapping</description>
+        <label>EUR DK Outlet to Supplier Mapping</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_MA_Outlet_to_Supplier_Mapping</fullName>
+        <active>true</active>
+        <label>EUR MA Outlet to Supplier Mapping</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_PT_Outlet_to_Supplier_Mapping</fullName>
+        <active>true</active>
+        <label>EUR PT Outlet to Supplier Mapping</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_RU_Outlet_to_Supplier_Mapping</fullName>
+        <active>true</active>
+        <label>EUR RU Outlet to Supplier Mapping</label>
+    </recordTypes>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

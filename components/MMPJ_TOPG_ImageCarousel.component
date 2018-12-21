@@ -1,0 +1,93 @@
+<apex:component controller="MMPJ_TOPG_ImageCarouselController" allowDML="true" >
+    <apex:attribute id="VisitId" name="VisitId" description="Visit Object" type="Id" assignTo="{!theVisitId}"/>
+    <style>
+        .MMPJCarousel-container{
+            position:relative;
+        }
+        .MMPJCarousel {            
+            float: left;
+            padding-left: 10px;
+            /*
+                border: 1px solid #bababa;
+                border-radius: 10px;
+                background-color: ghostwhite;
+            */
+        }
+        .MMPJCarousel>ul>li{
+            width:100px;
+        }
+        .MMPJCarousel>ul>li>img {
+            width: 100px;
+            height: 100px;
+            max-width:150px;
+            vertical-align:middle;
+            margin: 10px 10px 10px 0;
+            /*border-radius: 5px;*/
+        }
+        
+        .MMPJCarousel-container a.prev, .MMPJCarousel-container a.next {
+            display: block;
+            width: 26px;
+            height: 30px;
+            line-height: 1;            
+            color: ghostwhite;
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+            font-size: 25px;            
+            float: left;
+            /*
+                background-color: #333333;
+                border-radius: 8px;
+            */
+        }
+        .MMPJCarousel-container a.prev {
+            margin: 50px -5px 0 0; text-indent: 7px;
+        }
+        .MMPJCarousel-container a.next {
+            margin: 50px 0 0 -5px; text-indent: 10px;
+        }
+        
+    </style>
+    
+    
+    <apex:form enctype="multipart/form-data">
+        <script type="text/javascript">
+            jQuery(function() {
+                jQuery(".MMPJCarousel").jCarouselLite({
+                    btnNext: ".next",
+                    btnPrev: ".prev",
+                    circular: false
+                });
+            });    
+
+        </script> 
+        
+        <apex:pageMessage title="{!errortitle}" strength="1" severity="error" detail="{!errordetail}" rendered="{!errordetail != NULL}"/>
+        <apex:pageMessage title="Visits" strength="1" severity="warning" detail="Please save the visits before adding images!" rendered="{!theVisitId = null}"></apex:pageMessage>
+        <apex:actionFunction name="UploadPicture" action="{!UploadPicture}"/>
+            
+        <apex:outputPanel id="VisitsImageCarouselPanel" rendered="{!theVisitId != null}">            
+            <div class="MMPJCarousel-container">
+                <a href="#" class="prev"><apex:image value="{!URLFOR($Resource.MMPJ_TOPG_jCarousel,'Carousel_previous.png')}"/></a>
+                <div class="MMPJCarousel">
+                    <ul>
+                        <apex:repeat value="{!listAttachments}" var="attachment">
+                            <li style="width: auto;"><apex:image value="{!URLFOR($Action.Attachment.Download, attachment.id)}" onclick="window.open('{!URLFOR($Action.Attachment.Download, attachment.id)}');" style="cursor:pointer;"/></li>
+                        </apex:repeat>
+                        <li style="width: auto;"><apex:image value="{!URLFOR($Resource.MMPJ_TOPG_jCarousel,'Carousel_addimage.png')}" onclick="document.getElementById('{!$Component.SnapshotInputfile}').click();" style="cursor:pointer;"/></li>
+                    </ul>
+                </div>
+                <a href="#" class="next"><apex:image value="{!URLFOR($Resource.MMPJ_TOPG_jCarousel,'Carousel_next.png')}"/></a>
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div> 
+        </apex:outputPanel>
+        
+
+    <!--        
+    </apex:form>
+    <apex:form id="inputfileform">        
+    -->
+        <apex:inputFile id="SnapshotInputfile" value="{!snapshot_attachment.body}" accept="image/*" filename="{!snapshot_attachment.Name}" onchange="UploadPicture();" style="visibility:hidden;" ></apex:inputFile>    
+    </apex:form>
+</apex:component>

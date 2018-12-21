@@ -1,0 +1,2020 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>PR EUR Data Model</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>EUR_CRM_Account_Name__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Account Name</label>
+        <referenceTo>EUR_CRM_Account__c</referenceTo>
+        <relationshipName>Competitor_Promo_Trackings</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Active__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Active</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Competitor_Product__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>EUR CRM - Lookup to BQS</description>
+        <externalId>false</externalId>
+        <label>Competitor Product</label>
+        <referenceTo>EUR_CRM_Size__c</referenceTo>
+        <relationshipName>Competitor_Promo_Trackings</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_End_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>End Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Impact_to_PR_Brands__c</fullName>
+        <externalId>false</externalId>
+        <label>Impact to PR Brands</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>High</fullName>
+                    <default>false</default>
+                    <label>High</label>
+                </value>
+                <value>
+                    <fullName>Medium</fullName>
+                    <default>false</default>
+                    <label>Medium</label>
+                </value>
+                <value>
+                    <fullName>Low</fullName>
+                    <default>false</default>
+                    <label>Low</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Note__c</fullName>
+        <externalId>false</externalId>
+        <label>Note</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Promotion_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Promotion Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Promotion_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Promotion Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Pallet Campaign</fullName>
+                    <default>false</default>
+                    <label>Pallet Campaign</label>
+                </value>
+                <value>
+                    <fullName>Display Campaign</fullName>
+                    <default>false</default>
+                    <label>Display Campaign</label>
+                </value>
+                <value>
+                    <fullName>Price reduction</fullName>
+                    <default>false</default>
+                    <label>Price reduction</label>
+                </value>
+                <value>
+                    <fullName>Additional Free Goods</fullName>
+                    <default>false</default>
+                    <label>Additional Free Goods</label>
+                </value>
+                <value>
+                    <fullName>Brand activation campaign</fullName>
+                    <default>false</default>
+                    <label>Brand activation campaign</label>
+                </value>
+                <value>
+                    <fullName>Gift on Pack</fullName>
+                    <default>false</default>
+                    <label>Gift on Pack</label>
+                </value>
+                <value>
+                    <fullName>Special Packaging Tin</fullName>
+                    <default>false</default>
+                    <label>Special Packaging Tin</label>
+                </value>
+                <value>
+                    <fullName>Scratch/SMS &amp; Win</fullName>
+                    <default>false</default>
+                    <label>Scratch/SMS &amp; Win</label>
+                </value>
+                <value>
+                    <fullName>Instore Draw</fullName>
+                    <default>false</default>
+                    <label>Instore Draw</label>
+                </value>
+                <value>
+                    <fullName>SMS Campaign</fullName>
+                    <default>false</default>
+                    <label>SMS Campaign</label>
+                </value>
+                <value>
+                    <fullName>Lucky Draw</fullName>
+                    <default>false</default>
+                    <label>Lucky Draw</label>
+                </value>
+                <value>
+                    <fullName>Value add</fullName>
+                    <default>false</default>
+                    <label>Value add</label>
+                </value>
+                <value>
+                    <fullName>Events</fullName>
+                    <default>false</default>
+                    <label>Events</label>
+                </value>
+                <value>
+                    <fullName>Pricing</fullName>
+                    <default>false</default>
+                    <label>Pricing</label>
+                </value>
+                <value>
+                    <fullName>Tastings</fullName>
+                    <default>false</default>
+                    <label>Tastings</label>
+                </value>
+                <value>
+                    <fullName>Scartch cards</fullName>
+                    <default>false</default>
+                    <label>Scartch cards</label>
+                </value>
+                <value>
+                    <fullName>Promotion Girls</fullName>
+                    <default>false</default>
+                    <label>Promotion Girls</label>
+                </value>
+                <value>
+                    <fullName>Combo Deal</fullName>
+                    <default>false</default>
+                    <label>Combo Deal</label>
+                </value>
+                <value>
+                    <fullName>VAP</fullName>
+                    <default>false</default>
+                    <label>VAP</label>
+                </value>
+                <value>
+                    <fullName>Price Discount</fullName>
+                    <default>false</default>
+                    <label>Price Discount</label>
+                </value>
+                <value>
+                    <fullName>Free Goods</fullName>
+                    <default>false</default>
+                    <label>Free Goods</label>
+                </value>
+                <value>
+                    <fullName>Animations</fullName>
+                    <default>false</default>
+                    <label>Animations</label>
+                </value>
+                <value>
+                    <fullName>Sampling</fullName>
+                    <default>false</default>
+                    <label>Sampling</label>
+                </value>
+                <value>
+                    <fullName>Buy &amp; Get</fullName>
+                    <default>false</default>
+                    <label>Buy &amp; Get</label>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                    <label>Other</label>
+                </value>
+                <value>
+                    <fullName>Live promo</fullName>
+                    <default>false</default>
+                    <label>Live promo</label>
+                </value>
+                <value>
+                    <fullName>Tasting/Welcome Drink</fullName>
+                    <default>false</default>
+                    <label>Tasting/Welcome Drink</label>
+                </value>
+                <value>
+                    <fullName>Sponsored Events</fullName>
+                    <default>false</default>
+                    <label>Sponsored Events</label>
+                </value>
+                <value>
+                    <fullName>Combo pack</fullName>
+                    <default>false</default>
+                    <label>Combo pack</label>
+                </value>
+                <value>
+                    <fullName>Second Point of Sales</fullName>
+                    <default>false</default>
+                    <label>Second Point of Sales</label>
+                </value>
+                <value>
+                    <fullName>Island</fullName>
+                    <default>false</default>
+                    <label>Island</label>
+                </value>
+                <value>
+                    <fullName>Gifts Offer</fullName>
+                    <default>false</default>
+                    <label>Gifts Offer</label>
+                </value>
+                <value>
+                    <fullName>Activation</fullName>
+                    <default>false</default>
+                    <label>Activation</label>
+                </value>
+                <value>
+                    <fullName>Tops</fullName>
+                    <default>false</default>
+                    <label>Tops</label>
+                </value>
+                <value>
+                    <fullName>Toast in the bottle</fullName>
+                    <default>false</default>
+                    <label>Toast in the bottle</label>
+                </value>
+                <value>
+                    <fullName>Introduction</fullName>
+                    <default>false</default>
+                    <label>Introduction</label>
+                </value>
+                <value>
+                    <fullName>News</fullName>
+                    <default>false</default>
+                    <label>News</label>
+                </value>
+                <value>
+                    <fullName>Rotation</fullName>
+                    <default>false</default>
+                    <label>Rotation</label>
+                </value>
+                <value>
+                    <fullName>Visibility</fullName>
+                    <default>false</default>
+                    <label>Visibility</label>
+                </value>
+                <value>
+                    <fullName>Tastings / Education</fullName>
+                    <default>false</default>
+                    <label>Tastings / Education</label>
+                </value>
+                <value>
+                    <fullName>Trips</fullName>
+                    <default>false</default>
+                    <label>Trips</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Retail_Selling_Price__c</fullName>
+        <externalId>false</externalId>
+        <label>Retail Selling Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Secondary_Placement__c</fullName>
+        <externalId>false</externalId>
+        <label>Secondary Placement</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Start_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Start Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Sub_Promotion_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Sub Promotion Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>EUR_CRM_Promotion_Type__c</controllingField>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Poster</fullName>
+                    <default>false</default>
+                    <label>Poster</label>
+                </value>
+                <value>
+                    <fullName>Red Tag</fullName>
+                    <default>false</default>
+                    <label>Red Tag</label>
+                </value>
+                <value>
+                    <fullName>Leaflet</fullName>
+                    <default>false</default>
+                    <label>Leaflet</label>
+                </value>
+                <value>
+                    <fullName>Pallet zone</fullName>
+                    <default>false</default>
+                    <label>Pallet zone</label>
+                </value>
+                <value>
+                    <fullName>Gondola end</fullName>
+                    <default>false</default>
+                    <label>Gondola end</label>
+                </value>
+                <value>
+                    <fullName>Cashier desk</fullName>
+                    <default>false</default>
+                    <label>Cashier desk</label>
+                </value>
+                <value>
+                    <fullName>Display</fullName>
+                    <default>false</default>
+                    <label>Display</label>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>Second Point of Sales</controllingFieldValue>
+                <valueName>Pallet zone</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Second Point of Sales</controllingFieldValue>
+                <valueName>Gondola end</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Second Point of Sales</controllingFieldValue>
+                <valueName>Cashier desk</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Second Point of Sales</controllingFieldValue>
+                <valueName>Display</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Price Discount</controllingFieldValue>
+                <valueName>Poster</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Price Discount</controllingFieldValue>
+                <valueName>Red Tag</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Price Discount</controllingFieldValue>
+                <valueName>Leaflet</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Supplier_Competitor__c</fullName>
+        <externalId>false</externalId>
+        <label>Supplier/Competitor</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>true</sorted>
+                <value>
+                    <fullName>Conaxess</fullName>
+                    <default>false</default>
+                    <label>Conaxess</label>
+                </value>
+                <value>
+                    <fullName>Diageo</fullName>
+                    <default>false</default>
+                    <label>Diageo</label>
+                </value>
+                <value>
+                    <fullName>Edrington</fullName>
+                    <default>false</default>
+                    <label>Edrington</label>
+                </value>
+                <value>
+                    <fullName>Hans Just</fullName>
+                    <default>false</default>
+                    <label>Hans Just</label>
+                </value>
+                <value>
+                    <fullName>Hartwa-Trade</fullName>
+                    <default>false</default>
+                    <label>Hartwa-Trade</label>
+                </value>
+                <value>
+                    <fullName>Heinon Tukku</fullName>
+                    <default>false</default>
+                    <label>Heinon Tukku</label>
+                </value>
+                <value>
+                    <fullName>Hela Wine</fullName>
+                    <default>false</default>
+                    <label>Hela Wine</label>
+                </value>
+                <value>
+                    <fullName>Inex</fullName>
+                    <default>false</default>
+                    <label>Inex</label>
+                </value>
+                <value>
+                    <fullName>Just Drinks</fullName>
+                    <default>false</default>
+                    <label>Just Drinks</label>
+                </value>
+                <value>
+                    <fullName>Marie Brizard</fullName>
+                    <default>false</default>
+                    <label>Marie Brizard</label>
+                </value>
+                <value>
+                    <fullName>Möet Hennessy</fullName>
+                    <default>false</default>
+                    <label>Möet Hennessy</label>
+                </value>
+                <value>
+                    <fullName>Others</fullName>
+                    <default>false</default>
+                    <label>Others</label>
+                </value>
+                <value>
+                    <fullName>Sprit &amp; Co.</fullName>
+                    <default>false</default>
+                    <label>Sprit &amp; Co.</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <label>Competitor Promo Tracking (EU)</label>
+    <listViews>
+        <fullName>EUR_BE_CPT</fullName>
+        <columns>NAME</columns>
+        <columns>EUR_CRM_Account_Name__c</columns>
+        <columns>EUR_CRM_Competitor_Product__c</columns>
+        <columns>EUR_CRM_Promotion_Name__c</columns>
+        <columns>EUR_CRM_Promotion_Type__c</columns>
+        <columns>EUR_CRM_Retail_Selling_Price__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_Competitor_Promo_Tracking__c.EUR_BE_Off_Trade_CPT,EUR_CRM_Competitor_Promo_Tracking__c.EUR_BE_On_Trade_CPT</value>
+        </filters>
+        <label>All BE CPT</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>EUR_BE</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>EUR_CRM_BG_All_CompetitorPromoTracking_View</fullName>
+        <booleanFilter>1 or 2</booleanFilter>
+        <columns>NAME</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>EUR_CRM_Account_Name__c</columns>
+        <columns>EUR_CRM_Active__c</columns>
+        <columns>EUR_CRM_Start_Date__c</columns>
+        <columns>EUR_CRM_End_Date__c</columns>
+        <columns>EUR_CRM_Promotion_Name__c</columns>
+        <columns>EUR_CRM_Promotion_Type__c</columns>
+        <columns>EUR_CRM_Sub_Promotion_Type__c</columns>
+        <columns>CURRENCY_ISO_CODE</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_Competitor_Promo_Tracking__c.EUR_BG_On_Trade_CPT</value>
+        </filters>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_Competitor_Promo_Tracking__c.EUR_BG_Off_Trade_CPT</value>
+        </filters>
+        <label>EUR BG All CompetitorPromoTracking View</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>EUR_BG</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>EUR_MA_CPT</fullName>
+        <columns>RECORDTYPE</columns>
+        <columns>NAME</columns>
+        <columns>EUR_CRM_Account_Name__c</columns>
+        <columns>EUR_CRM_Active__c</columns>
+        <columns>EUR_CRM_Competitor_Product__c</columns>
+        <columns>EUR_CRM_End_Date__c</columns>
+        <columns>EUR_CRM_Impact_to_PR_Brands__c</columns>
+        <columns>EUR_CRM_Promotion_Name__c</columns>
+        <columns>EUR_CRM_Promotion_Type__c</columns>
+        <columns>EUR_CRM_Note__c</columns>
+        <columns>EUR_CRM_Start_Date__c</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_Competitor_Promo_Tracking__c.EUR_MA_Off_Trade_CPT,EUR_CRM_Competitor_Promo_Tracking__c.EUR_MA_On_Trade_CPT</value>
+        </filters>
+        <label>EUR MA CPT</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>EUR_MA</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>EUR_ZA_CPT</fullName>
+        <columns>RECORDTYPE</columns>
+        <columns>NAME</columns>
+        <columns>EUR_CRM_Account_Name__c</columns>
+        <columns>EUR_CRM_Active__c</columns>
+        <columns>EUR_CRM_Competitor_Product__c</columns>
+        <columns>EUR_CRM_End_Date__c</columns>
+        <columns>EUR_CRM_Impact_to_PR_Brands__c</columns>
+        <columns>EUR_CRM_Promotion_Name__c</columns>
+        <columns>EUR_CRM_Promotion_Type__c</columns>
+        <columns>EUR_CRM_Note__c</columns>
+        <columns>EUR_CRM_Start_Date__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_Competitor_Promo_Tracking__c.EUR_ZA_Off_Trade_CPT,EUR_CRM_Competitor_Promo_Tracking__c.EUR_ZA_On_Trade_CPT</value>
+        </filters>
+        <label>EUR ZA CPT</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>EUR_ZA</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <nameField>
+        <displayFormat>CPT-{00000000}</displayFormat>
+        <label>CPT Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Competitor Promo Tracking (EU)</pluralLabel>
+    <recordTypes>
+        <fullName>EUR_BE_Off_Trade_CPT</fullName>
+        <active>true</active>
+        <label>EUR BE Off Trade CPT</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Impact_to_PR_Brands__c</picklist>
+            <values>
+                <fullName>High</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medium</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>EUR_CRM_Promotion_Type__c</picklist>
+            <values>
+                <fullName>Activation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Introduction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>News</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rotation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Visibility</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>EUR_CRM_Secondary_Placement__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>EUR_CRM_Sub_Promotion_Type__c</picklist>
+            <values>
+                <fullName>Cashier desk</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Display</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gondola end</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Leaflet</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pallet zone</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Poster</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Red Tag</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>EUR_CRM_Supplier_Competitor__c</picklist>
+            <values>
+                <fullName>Hartwa-Trade</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Heinon Tukku</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inex</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_BE_On_Trade_CPT</fullName>
+        <active>true</active>
+        <label>EUR BE On Trade CPT</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Impact_to_PR_Brands__c</picklist>
+            <values>
+                <fullName>High</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medium</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>EUR_CRM_Promotion_Type__c</picklist>
+            <values>
+                <fullName>Activation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Introduction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>News</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rotation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Visibility</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>EUR_CRM_Secondary_Placement__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>EUR_CRM_Sub_Promotion_Type__c</picklist>
+            <values>
+                <fullName>Cashier desk</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Display</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gondola end</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Leaflet</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pallet zone</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Poster</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Red Tag</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>EUR_CRM_Supplier_Competitor__c</picklist>
+            <values>
+                <fullName>Hartwa-Trade</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Heinon Tukku</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inex</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_BG_Off_Trade_CPT</fullName>
+        <active>true</active>
+        <label>EUR BG Off Trade CPT</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Impact_to_PR_Brands__c</picklist>
+            <values>
+                <fullName>High</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medium</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>EUR_CRM_Promotion_Type__c</picklist>
+            <values>
+                <fullName>Buy %26 Get</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Discount</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sampling</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Second Point of Sales</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VAP</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>EUR_CRM_Secondary_Placement__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>EUR_CRM_Sub_Promotion_Type__c</picklist>
+            <values>
+                <fullName>Cashier desk</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Display</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gondola end</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Leaflet</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pallet zone</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Poster</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Red Tag</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>EUR_CRM_Supplier_Competitor__c</picklist>
+            <values>
+                <fullName>Hartwa-Trade</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Heinon Tukku</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inex</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_BG_On_Trade_CPT</fullName>
+        <active>true</active>
+        <label>EUR BG On Trade CPT</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Impact_to_PR_Brands__c</picklist>
+            <values>
+                <fullName>High</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medium</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>EUR_CRM_Promotion_Type__c</picklist>
+            <values>
+                <fullName>Buy %26 Get</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Combo pack</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Live promo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Discount</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sponsored Events</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tasting%2FWelcome Drink</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>EUR_CRM_Secondary_Placement__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>EUR_CRM_Sub_Promotion_Type__c</picklist>
+            <values>
+                <fullName>Cashier desk</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Display</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gondola end</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Leaflet</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pallet zone</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Poster</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Red Tag</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>EUR_CRM_Supplier_Competitor__c</picklist>
+            <values>
+                <fullName>Hartwa-Trade</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Heinon Tukku</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inex</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_CPT_AO</fullName>
+        <active>true</active>
+        <label>EUR CPT AO</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Promotion_Type__c</picklist>
+            <values>
+                <fullName>Activation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gifts Offer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Island</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price reduction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Scratch%2FSMS %26 Win</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Toast in the bottle</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tops</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VAP</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>EUR_CRM_Secondary_Placement__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_CPT_EE</fullName>
+        <active>true</active>
+        <label>EUR CPT EE</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Promotion_Type__c</picklist>
+            <values>
+                <fullName>Additional Free Goods</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brand activation campaign</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Display Campaign</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pallet Campaign</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price reduction</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>EUR_CRM_Secondary_Placement__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_CPT_KE</fullName>
+        <active>true</active>
+        <label>EUR CPT KE</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Promotion_Type__c</picklist>
+            <values>
+                <fullName>Additional Free Goods</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brand activation campaign</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Display Campaign</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gift on Pack</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Instore Draw</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pallet Campaign</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price reduction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Scratch%2FSMS %26 Win</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Special Packaging Tin</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>EUR_CRM_Secondary_Placement__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_CPT_LT</fullName>
+        <active>true</active>
+        <label>EUR CPT LT</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Promotion_Type__c</picklist>
+            <values>
+                <fullName>Additional Free Goods</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brand activation campaign</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Display Campaign</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pallet Campaign</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price reduction</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>EUR_CRM_Secondary_Placement__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_CPT_LV</fullName>
+        <active>true</active>
+        <label>EUR CPT LV</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Promotion_Type__c</picklist>
+            <values>
+                <fullName>Additional Free Goods</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brand activation campaign</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Display Campaign</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pallet Campaign</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price reduction</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>EUR_CRM_Secondary_Placement__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_DK_OFF_Trade_CPT</fullName>
+        <active>true</active>
+        <description>Record Type for DK Competitor Promo Tracking</description>
+        <label>EUR DK OFF Trade CPT</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Impact_to_PR_Brands__c</picklist>
+            <values>
+                <fullName>High</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medium</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>EUR_CRM_Promotion_Type__c</picklist>
+            <values>
+                <fullName>Buy %26 Get</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Discount</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sampling</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Second Point of Sales</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VAP</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>EUR_CRM_Secondary_Placement__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>EUR_CRM_Supplier_Competitor__c</picklist>
+            <values>
+                <fullName>Conaxess</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Diageo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Edrington</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hans Just</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hela Wine</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Just Drinks</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marie Brizard</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Möet Hennessy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Others</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sprit %26 Co%2E</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_DK_ON_Trade_CPT</fullName>
+        <active>true</active>
+        <description>Record Type for DK ON Trade CPT</description>
+        <label>EUR DK ON Trade CPT</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Impact_to_PR_Brands__c</picklist>
+            <values>
+                <fullName>High</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medium</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>EUR_CRM_Promotion_Type__c</picklist>
+            <values>
+                <fullName>Buy %26 Get</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Combo pack</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Live promo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Discount</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sponsored Events</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tasting%2FWelcome Drink</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>EUR_CRM_Secondary_Placement__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>EUR_CRM_Supplier_Competitor__c</picklist>
+            <values>
+                <fullName>Conaxess</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Diageo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Edrington</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hans Just</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inex</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Just Drinks</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marie Brizard</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Möet Hennessy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Others</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sprit %26 Co%2E</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_MA_Off_Trade_CPT</fullName>
+        <active>true</active>
+        <label>EUR MA Off Trade CPT</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Impact_to_PR_Brands__c</picklist>
+            <values>
+                <fullName>High</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medium</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>EUR_CRM_Promotion_Type__c</picklist>
+            <values>
+                <fullName>Animations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Free Goods</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Discount</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sampling</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tastings</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VAP</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>EUR_CRM_Secondary_Placement__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_MA_On_Trade_CPT</fullName>
+        <active>true</active>
+        <label>EUR MA On Trade CPT</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Impact_to_PR_Brands__c</picklist>
+            <values>
+                <fullName>High</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medium</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>EUR_CRM_Promotion_Type__c</picklist>
+            <values>
+                <fullName>Additional Free Goods</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brand activation campaign</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Display Campaign</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price reduction</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>EUR_CRM_Secondary_Placement__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_NG_Off_Trade_CPT</fullName>
+        <active>true</active>
+        <label>EUR NG Off Trade CPT</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Impact_to_PR_Brands__c</picklist>
+            <values>
+                <fullName>High</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medium</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>EUR_CRM_Promotion_Type__c</picklist>
+            <values>
+                <fullName>Additional Free Goods</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brand activation campaign</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Display Campaign</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gift on Pack</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Instore Draw</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pallet Campaign</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price reduction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Scratch%2FSMS %26 Win</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Special Packaging Tin</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>EUR_CRM_Secondary_Placement__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_NG_On_Trade_CPT</fullName>
+        <active>true</active>
+        <label>EUR NG On Trade CPT</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Impact_to_PR_Brands__c</picklist>
+            <values>
+                <fullName>High</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medium</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>EUR_CRM_Promotion_Type__c</picklist>
+            <values>
+                <fullName>Additional Free Goods</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brand activation campaign</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Display Campaign</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gift on Pack</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Instore Draw</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pallet Campaign</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price reduction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Scratch%2FSMS %26 Win</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Special Packaging Tin</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>EUR_CRM_Secondary_Placement__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_RU_Off_Trade_CPT</fullName>
+        <active>true</active>
+        <label>EUR RU Off Trade CPT</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Impact_to_PR_Brands__c</picklist>
+            <values>
+                <fullName>High</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medium</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>EUR_CRM_Promotion_Type__c</picklist>
+            <values>
+                <fullName>Additional Free Goods</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brand activation campaign</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Display Campaign</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pallet Campaign</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price reduction</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>EUR_CRM_Secondary_Placement__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_RU_On_Trade_CPT</fullName>
+        <active>true</active>
+        <label>EUR RU On Trade CPT</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Impact_to_PR_Brands__c</picklist>
+            <values>
+                <fullName>High</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medium</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>EUR_CRM_Promotion_Type__c</picklist>
+            <values>
+                <fullName>Additional Free Goods</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brand activation campaign</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Display Campaign</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pallet Campaign</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price reduction</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>EUR_CRM_Secondary_Placement__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_ZA_Off_Trade_CPT</fullName>
+        <active>true</active>
+        <label>EUR ZA Off Trade CPT</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Impact_to_PR_Brands__c</picklist>
+            <values>
+                <fullName>High</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medium</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>EUR_CRM_Promotion_Type__c</picklist>
+            <values>
+                <fullName>Combo Deal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lucky Draw</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pricing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SMS Campaign</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Scartch cards</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tastings</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Value add</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>EUR_CRM_Secondary_Placement__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_ZA_On_Trade_CPT</fullName>
+        <active>true</active>
+        <label>EUR ZA On Trade CPT</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Impact_to_PR_Brands__c</picklist>
+            <values>
+                <fullName>High</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medium</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>EUR_CRM_Promotion_Type__c</picklist>
+            <values>
+                <fullName>Combo Deal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Events</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lucky Draw</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pricing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Promotion Girls</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SMS Campaign</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Scartch cards</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tastings</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Value add</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>EUR_CRM_Secondary_Placement__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts>
+        <lookupDialogsAdditionalFields>EUR_CRM_Promotion_Name__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>EUR_CRM_Promotion_Type__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>EUR_CRM_Retail_Selling_Price__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>EUR_CRM_Start_Date__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>EUR_CRM_End_Date__c</lookupDialogsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>Private</sharingModel>
+    <validationRules>
+        <fullName>EUR_CRM_Check_Start_Date_End_Date</fullName>
+        <active>true</active>
+        <description>If Start_Date &lt;&gt; null &amp;&amp; End_Date &lt;&gt; null
+then check End_Date cannot be earlier than Start_Date</description>
+        <errorConditionFormula>AND( NOT( ISBLANK( EUR_CRM_Start_Date__c ) ), NOT( ISBLANK( EUR_CRM_End_Date__c ) ), EUR_CRM_End_Date__c &lt; EUR_CRM_Start_Date__c)</errorConditionFormula>
+        <errorDisplayField>EUR_CRM_End_Date__c</errorDisplayField>
+        <errorMessage>End Date cannot be earlier than Start Date</errorMessage>
+    </validationRules>
+    <visibility>Public</visibility>
+</CustomObject>

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>EUR_CRM_Category__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Category</label>
+        <referenceTo>EUR_CRM_Category__c</referenceTo>
+        <relationshipLabel>Fair Share Comparison Audits (EU)</relationshipLabel>
+        <relationshipName>Fair_Share_Comparison_Audits_EU</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Facings_to_Go__c</fullName>
+        <externalId>false</externalId>
+        <label>Facings to Go</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Merchandising_Compliance__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Merchandising Compliance</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_No_of_PR_Facings__c</fullName>
+        <externalId>false</externalId>
+        <label>No. of PR Facings</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_PR_Actual__c</fullName>
+        <externalId>false</externalId>
+        <label>PR Actual %</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_PR_Target__c</fullName>
+        <externalId>false</externalId>
+        <label>PR Target %</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>EUR_RU_Fair_Share_Audit__c</fullName>
+        <externalId>false</externalId>
+        <label>Fair Share Audit</label>
+        <referenceTo>EUR_CRM_Fair_Share_Audit__c</referenceTo>
+        <relationshipLabel>Fair Share Comparison Audits (EU)</relationshipLabel>
+        <relationshipName>Fair_Share_Comparison_Audits_EU</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <label>Fair Share Comparison Audit (EU)</label>
+    <nameField>
+        <displayFormat>FSCA-{0000000000}</displayFormat>
+        <label>Fair Share Comparison Audit</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Fair Share Comparison Audits (EU)</pluralLabel>
+    <recordTypes>
+        <fullName>EUR_BE_Fair_Share_Comparison_Audit</fullName>
+        <active>true</active>
+        <label>EUR BE Fair Share Comparison Audit</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_RU_Fair_Share_Comparison_Audit</fullName>
+        <active>true</active>
+        <label>EUR RU Fair Share Comparison Audit</label>
+    </recordTypes>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

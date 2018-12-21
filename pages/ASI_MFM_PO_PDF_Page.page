@@ -1,0 +1,211 @@
+<apex:page renderAs="pdf" standardController="ASI_MFM_PO__c" extensions="ASI_MFM_PO_PDF_PageController" 
+standardstylesheets="false" showHeader="false" sidebar="false">
+
+        
+        <head>
+        <style>
+            .htitle{
+                font-weight:bold;   
+            }
+            h3{
+                font-weight:bold;
+            }
+            h1{
+                font-size:35px;     
+            }
+            
+            table {
+                -fs-table-paginate: paginate;
+                padding: 0;
+                margin: 0;
+                border-spacing: 0;
+                border-collapse: collapse;
+            }
+            
+            @page {
+            
+            
+                size: portrait;
+                margin-top: 4.4cm;
+            
+            @PageBreak{
+                page-break:always;
+                page-break-inside:avoid;
+            }   
+                
+                
+            @top-center {
+
+            content: element(header);
+
+            }
+                
+                @bottom-center {
+                content: counter(page) " - " counter(pages);
+                }               
+            }
+            div.header {
+            position: running(header);
+
+            }
+            
+            body{
+                font-family: Arial Unicode MS;
+                font-size: 11px;
+                line-height: 14px;
+            }
+                        
+            tbody {display:table-row-group;
+            }
+            
+            .nobreak{
+                page-break-inside: avoid;
+            }
+            .bold{
+                font-weight: bold;
+                font-family: sans-serif;
+            }
+}           
+
+        </style>
+            <title>Purchase Order PDF</title>
+        </head>
+        
+        <div class="header">
+
+                    <center><apex:image width="35%" height="35%" url="{!URLFOR($Resource.ASI_MFM_TW_Logo)}"/></center>
+                    <center><h2>Purchase Order<br/><br/>採購單</h2></center>
+
+        </div>
+        
+        <body>
+            <table width="100%" cellspacing="0">
+            <tr>
+                <td width="10%" ><b>廠商<br />Supplier</b></td>      
+                <td width="55%" style="border-bottom: 1px solid black;">{!ASI_MFM_PO__c.ASI_MFM_Supplier_Name__r.Name}</td>          
+                <td width="15%"><b>採購單編號<br />P.O.No:</b></td>
+                <td width="20%" style="border-bottom: 1px solid black;">{!ASI_MFM_PO__c.Name}&nbsp;<b class="bold">({!ASI_MFM_PO__c.ASI_MFM_Status__c})</b></td>
+            </tr>
+            </table>
+            <br/>
+            <table width="100%" cellspacing="0">
+            <tr>
+                <td width="10%"><b>地址<br/>Supplier Address:</b></td>
+                <td rowspan="" width="55%" style="border-bottom: 1px solid black;">
+                    <apex:outputText rendered="{!ASI_MFM_PO__c.ASI_MFM_Supplier_Address_Line_1__c != null}">{!ASI_MFM_PO__c.ASI_MFM_Supplier_Address_Line_1__c}<br/></apex:outputText>
+                    <apex:outputText rendered="{!ASI_MFM_PO__c.ASI_MFM_Supplier_Address_Line_2__c != null}">{!ASI_MFM_PO__c.ASI_MFM_Supplier_Address_Line_2__c}<br/></apex:outputText>
+                    <apex:outputText rendered="{!ASI_MFM_PO__c.ASI_MFM_Supplier_Address_Line_3__c != null}">{!ASI_MFM_PO__c.ASI_MFM_Supplier_Address_Line_3__c}<br/></apex:outputText>
+                    {!ASI_MFM_PO__c.ASI_MFM_Supplier_Address_Line_4__c}
+                </td>
+                <td width="15%"><b>日期<br/>Date:</b></td>
+                <td width="20%" style="border-bottom: 1px solid black;">
+                    <apex:outputText value="{0,date,MMM dd , yyyy}">
+                        <apex:param value="{!ASI_MFM_PO__c.ASI_MFM_PO_Raised_Date__c}" />
+                    </apex:outputText>
+                </td>
+            </tr>
+                        
+            </table>
+            <br/>
+            
+            <table width="100%">
+                <tr>
+                    <td width="32%"><b>行銷或業務原提案編號<br />Market / Sales Commitment No.:</b></td>
+                    <td width="68%" style="border-bottom: 1px solid black;">{!Plan.Name}</td>
+                </tr>
+           </table>
+           <br/>
+           <table width="100%">
+                <tr>
+                    <td width="32%"><b>活動內容<br />Activity Description:</b></td>
+                    <td width="68%" style="border-bottom: 1px solid black;">{!Plan.ASI_MFM_Plan_Description__c}</td>
+                </tr>               
+            </table>
+
+            <br/>
+            <table style="border-collapse: collapse;" width="100%" cellspacing="0">
+             <thead>
+                <tr>
+                    <th style="border: solid 1px black;" align="center"><h3>SKU Code</h3></th>
+                    <th style="border: solid 1px black;" align="center"><h3>物品名稱、規格、摘要<br />Description</h3></th>
+                    <th style="border: solid 1px black;" align="center"><h3>單位<br />Unit</h3></th>
+                    <th style="border: solid 1px black;" align="center"><h3>單價<br />Unit Price</h3></th>
+                    <th style="border: solid 1px black;" align="center"><h3>數量<br />Quantity</h3></th>
+                    <th style="border: solid 1px black;" align="center"><h3>未稅金額<br />Pre-Tax Amount</h3></th>
+                </tr>
+            </thead>    
+            <tbody>
+                <apex:repeat value="{!lineItem}" var="line" id="lineRepeat">
+                <tr>
+                    <td width="15%" align="right" style="border: solid 1px black;">{!line.ASI_MFM_SKU_Code__r.ASI_MFM_SKU_Code__c}</td>
+                    <td height="24%" width="36%" align="left" style="border: solid 1px black;">{!line.ASI_MFM_List_Item_Description__c}</td>
+                    <td width="6%" align="right" style="border: solid 1px black;">{!line.ASI_MFM_UOM__c}</td>
+                    <td width="17%" align="right" style="border: solid 1px black;">
+                        <apex:outputText value="{0, number, ###,###,###,###,##0.0000}">
+                            <apex:param value="{!line.ASI_MFM_Unit_Price__c}" />
+                        </apex:outputText>
+                    </td>
+                    <td width="8%" align="right" style="border: solid 1px black;">{!line.ASI_MFM_Quantity__c}</td>
+                    <td width="30%" align="right" style="border: solid 1px black;">
+                        <apex:outputText value="{0, number, ###,###,###,###,##0.00}">
+                            <apex:param value="{!line.ASI_MFM_Amount__c}" />
+                        </apex:outputText>
+                    
+                    </td>   
+                </tr>
+
+                </apex:repeat>
+                <tr>
+                    <td style="border: solid 0px black;"></td>  
+                    <td style="border: solid 0px black;"></td>
+                    <td style="border: solid 0px black;"></td>
+                    <td style="border: solid 0px black;"></td>
+                    <td height="20" style="border: solid 1px black;">Total:</td>
+                    <td align="right" style="border: solid 1px black;">
+                        {!ASI_MFM_PO__c.ASI_MFM_Currency__c}
+                        <apex:outputText value="{0, number, ###,###,###,###,##0.00}">
+                            <apex:param value="{!ASI_MFM_PO__c.ASI_MFM_PO_Amount__c}" />
+                        </apex:outputText></td>
+                </tr>
+            </tbody>
+            </table>
+            <br/>
+            <table class="nobreak" width="100%">
+                <tr>
+                    <td width="40%"><h3>交貨地址<br />Delivery To:</h3></td>
+                    <td width="60%" style="border-bottom: 1px solid black;">{!ASI_MFM_PO__c.ASI_MFM_Delivery_Address_Line_1__c} <apex:outputText rendered="{!ASI_MFM_PO__c.ASI_MFM_Delivery_Address_Line_2__c != null}"><br /> </apex:outputText>
+                    {!ASI_MFM_PO__c.ASI_MFM_Delivery_Address_Line_2__c} <apex:outputText rendered="{!ASI_MFM_PO__c.ASI_MFM_Delivery_Address_Line_3__c != null}"><br /></apex:outputText>
+                        {!ASI_MFM_PO__c.ASI_MFM_Delivery_Address_Line_3__c} <apex:outputText rendered="{!ASI_MFM_PO__c.ASI_MFM_Delivery_Address_Line_4__c != null }"><br /></apex:outputText> {!ASI_MFM_PO__c.ASI_MFM_Delivery_Address_Line_4__c}</td>
+                </tr>
+                <tr>
+                    <td><h3>備注<br />Remarks:</h3></td>
+                    <td style="border-bottom: 1px solid black;">{!ASI_MFM_PO__c.ASI_MFM_Remarks__c}</td>
+                </tr>
+                <tr>
+                    <td><h3>付款方式<br />Payment Terms &amp; Conditions:</h3></td>
+                    <td style="border-bottom: 1px solid black;">{!ASI_MFM_PO__c.ASI_MFM_Payment_Terms__c}</td>
+                </tr>           
+            </table>
+
+            <table class="nobreak" width="100%">
+                <tr>
+                    <td width="18%"><h3>簽發者<br />Requested by:</h3></td>
+                    <td style="border-bottom: 1px solid black;" width="32%">
+                    {!ASI_MFM_PO__c.owner.name} {!text(ASI_MFM_PO__c.ASI_MFM_PO_Raised_Date__c)}
+                    </td>
+                    <td width="18%"><h3>核准<br />Approved by:</h3></td>
+                    <td style="border-bottom: 1px solid black;" width="32%"></td>                   
+                </tr>
+
+            </table>
+            
+            
+            <br />
+            <div style="page-break-inside: avoid;">
+            
+            茲就銷售予台灣保樂力加股份有限公司本筆訂單之產品書立切結：本公司保證絕無仿冒或侵害他人之智慧財產權或違反現行法令規定之情形。若有 涉及上述違法之情事，本公司願無條件負起一切法律責任及相關賠償。<br/><br/>廠商蓋章<br/><br/>______________________
+   
+            </div>
+        </body>
+    
+ </apex:page>

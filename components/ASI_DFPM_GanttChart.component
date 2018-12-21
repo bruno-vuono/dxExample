@@ -1,0 +1,68 @@
+<apex:component id="asi_dfpm_gc" controller="ASI_DFPM_GanttChartController">
+	<apex:attribute name="targetId" description="The ID of project or milestone" type="String" required="true" assignTo="{!myTargetId}" />
+	<apex:attribute name="editable" description="Whether the chart elements are editable" type="String" required="false" />
+	
+	<apex:stylesheet value="{!URLFOR($Resource.ASI_DFPM_Charts_20130131, 'Charts/jquery-ui-1.8.4.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.ASI_DFPM_Charts_20130131, 'Charts/jquery.ganttView.css')}"/>
+	<apex:includeScript value="{!URLFOR($Resource.ASI_DFPM_Charts_20130131, 'Charts/jquery-1.4.4.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.ASI_DFPM_Charts_20130131, 'Charts/date.js')}"/>
+	<apex:includeScript value="{!URLFOR($Resource.ASI_DFPM_Charts_20130131, 'Charts/jquery-ui-1.8.7.custom.min.js')}"/>
+	<apex:includeScript value="{!URLFOR($Resource.ASI_DFPM_Charts_20130131, 'Charts/jquery.ganttView.js')}"/>
+	
+	<apex:variable var="dummyInitVar" value="{!initVar}" />
+	
+	<apex:form id="mainForm">
+		<apex:outputPanel id="wholePanel" layout="block" rendered="{!NOT(hasError)}">
+			<apex:actionFunction name="amp_gc_redirectToDetailPage" action="{!redirectToContentDetailPage}" >
+				<apex:param name="recordId" value="" />
+			</apex:actionFunction>
+			
+			<div id="asi_dfpm_ganttChart{!targetId}"></div>
+			
+			<script type="text/javascript">
+				var asi_dfpm_gc{!targetId} = jQuery.noConflict();
+				
+				asi_dfpm_gc{!targetId}(function () {
+					var editable = {!IF(LOWER(NULLVALUE(editable, '')) == 'true', 'true', 'false')}; // TODO: may allow editing later
+					
+					function createDateFromMillisecondsAccordingUTC(milliseconds) {
+						var tempDate = new Date(milliseconds);
+						return new Date(tempDate.getUTCFullYear(), tempDate.getUTCMonth(), tempDate.getUTCDate());
+					}
+					
+					ASI_DFPM_GanttChartController.queryGanttChartElements(
+						'{!targetId}'
+						, function(result, event) {
+							if (event.status && result && result.length) {
+								for (var i = 0; i < result.length; i++) {
+									var theEle = result[i];
+									theEle.start = createDateFromMillisecondsAccordingUTC(theEle.startDate);
+									theEle.end = createDateFromMillisecondsAccordingUTC(theEle.endDate);
+								}
+								var gcInputData = [{id: 1, name: "", series: result}];
+								asi_dfpm_gc{!targetId}("#asi_dfpm_ganttChart{!targetId}").ganttView({
+									data: gcInputData
+									, slideWidth: 900
+									, mode: 'week'
+									, beginFromSunday: true
+									, behavior: {
+										draggable: editable
+										, resizable: editable
+										, onClick: function (data) {
+											if(data && data.id) {
+												amp_gc_redirectToDetailPage(data.id);
+											}
+										}
+										//, onResize: onResizeFunction
+										//, onDrag: onDragFunction
+									}
+								});
+							}
+						}
+						, { escape: false }
+					);
+				});
+			</script>
+		</apex:outputPanel>
+	</apex:form>
+</apex:component>

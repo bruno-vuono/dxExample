@@ -1,0 +1,41 @@
+<apex:component controller="ESN_MB_NOP_Brand_Cx">
+    
+    <div id='spinner' class='spinner' style="">
+           <div id="logo-waiting-brand-container" >
+           </div>
+     </div>
+    
+	<script>
+ 		
+    	// id de la brand selectionnée dans la homepage récupérée dans l'url
+     	var brandId = getURLParameter('brandId');
+		
+    	// init des valeurs
+    	var imageLogo = "";
+    	var imageUrl = "";	
+    
+    	// liste des brands avec les id
+    	var brandNames = {!BrandNames}; 
+    	// liste des logos des brands avec les id
+    	var brandLogosIds = {!LogosIds};
+    	
+    	for(var i = 0; i < brandNames.length; i++)
+        {
+            // si l'id recupéré de l'url correspond a celui de la ligne du tableau, on récupère l'id du logo de la brand
+            if(brandNames[i].Id == brandId)
+        	{
+           		imageLogo = brandLogosIds[i];
+            }
+        }
+    
+    $("#spinner #logo-waiting-brand-container").append('<div class="logo-wait-screen"></div>');
+    $("#spinner #logo-waiting-brand-container .logo-wait-screen").css('background-image','url("/servlet/servlet.FileDownload?file='+imageLogo+'")');
+    
+    $( document ).ready(function() {
+         $('#spinner').fadeOut("slow");
+	});	
+	   
+    
+    </script>
+
+</apex:component>

@@ -1,0 +1,728 @@
+<apex:page standardController="EUR_CRM_Contract__c"
+	extensions="EUR_CRM_ZA_ContractBuilderController">
+	<apex:variable var="isOutlet"
+		value="{!EUR_CRM_Contract__c.RecordType.Developername == 'EUR_ZA_Outlet_Contract'}" />
+	<apex:variable var="isHeadOffice"
+		value="{!EUR_CRM_Contract__c.RecordType.Developername == 'EUR_ZA_Head_Office_Contract'}" />
+	<apex:variable var="contractStatus"
+		value="{!EUR_CRM_Contract__c.EUR_CRM_Status__c}" />
+	<apex:variable var="contractLumpsum"
+		value="{!mechanicTypeWrapperMap['Contract Lumpsum']}" />
+	<apex:variable var="listing"
+		value="{!mechanicTypeWrapperMap['Listing']}" />
+	<apex:variable var="exclusivity"
+		value="{!mechanicTypeWrapperMap['Exclusivity']}" />
+	<apex:variable var="housePour"
+		value="{!mechanicTypeWrapperMap['House pour']}" />
+    <apex:variable var="rebateStockDeals"
+        value="{!mechanicTypeWrapperMap['Rebate Stock Deals']}" />
+	<apex:variable var="stockDeals"
+		value="{!mechanicTypeWrapperMap['Stock deals']}" />
+	<apex:variable var="events" value="{!mechanicTypeWrapperMap['Events']}" />
+	<apex:variable var="posMaterial"
+		value="{!mechanicTypeWrapperMap['POS material']}" />
+	<apex:variable var="uniforms"
+		value="{!mechanicTypeWrapperMap['Uniforms']}" />
+	<apex:variable var="drinksMenu"
+		value="{!mechanicTypeWrapperMap['Drinks Menu']}" />
+	<apex:variable var="barStyling"
+		value="{!mechanicTypeWrapperMap['Bar Styling']}" />
+	<apex:variable var="trainings"
+		value="{!mechanicTypeWrapperMap['Trainings']}" />
+	<apex:variable var="displays"
+		value="{!mechanicTypeWrapperMap['Displays']}" />
+	<apex:variable var="promotions"
+		value="{!mechanicTypeWrapperMap['Promotions']}" />
+	<apex:variable var="uniqueNum" value="{!0}" />
+
+	<apex:stylesheet value="/sCSS/21.0/sprites/1297816277000/Theme3/default/gc/versioning.css" />
+
+	<apex:stylesheet value="{!URLFOR($Resource.EUR_CRM_jQuery_Lib, '/libs/jquery/css/redmond/jquery-ui-1.10.3.custom.min.css')}" />
+	<apex:stylesheet value="{!URLFOR($Resource.EUR_CRM_jQuery_Lib, '/styles/common.css')}" />
+
+	<link
+		href="{!URLFOR($Resource.EUR_CRM_jQuery_DataTables, 'css/jquery.dataTables.css')}"
+		media="screen" rel="stylesheet" type="text/css" />
+
+	<apex:includeScript value="{!URLFOR($Resource.EUR_CRM_jQuery_Lib, '/libs/jquery/js/jquery-1.9.1.min.js')}" />
+	<apex:includeScript value="{!URLFOR($Resource.EUR_CRM_jQuery_Lib, '/libs/jquery/js/jquery-ui-1.10.3.custom.min.js')}" />
+	<apex:includeScript value="{!URLFOR($Resource.EUR_CRM_jQuery_DataTables, 'js/jquery.dataTables.js')}" />
+
+	<link rel="stylesheet"
+		href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.indigo-pink.min.css" />
+	<link rel="stylesheet"
+		href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+	<script
+		src="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.min.js"></script>
+
+	<apex:stylesheet value="{!URLFOR($Resource.EUR_CRM_ContractSummaryPage_Stylesheet)}" />
+	<script>
+        $ = jQuery.noConflict();
+        var basicDataTableProperties = {
+            "bDestroy":true,
+            "bStateSave":true,
+            "aaSorting": [[1, "asc"]],
+            "bSearch":false,
+            "bFilter" : false,
+            "bLengthChange" : false
+        }; 
+        var colLabel_Brand = "{!$ObjectType.EUR_CRM_Contract_Product_Item__c.fields.EUR_CRM_Brand__c.label}";
+        var colLabel_BrandQuality = "{!$ObjectType.EUR_CRM_Contract_Product_Item__c.fields.EUR_CRM_Brand_Quality__c.label}";
+        var colLabel_BrandQualitySize = "{!$ObjectType.EUR_CRM_Contract_Product_Item__c.fields.EUR_CRM_Brand_Quality_Size__c.label}";    
+        var colLabel_SKU = "{!$ObjectType.EUR_CRM_Contract_Product_Item__c.fields.EUR_CRM_SKU__c.label}"; 
+
+        var pColumns = {'{!listing.mechanicTypeId}':[ 
+                                    {"sTitle":colLabel_BrandQuality}
+                                ],
+                        '{!exclusivity.mechanicTypeId}':[
+                                    {"sTitle": "{!$ObjectType.EUR_CRM_Quality__c.fields.EUR_CRM_Category__c.label}"},
+                                    {"sTitle":colLabel_BrandQuality}
+                                ],
+                        '{!housePour.mechanicTypeId}':[
+                                    {"sTitle": "{!$ObjectType.EUR_CRM_Quality__c.fields.EUR_CRM_Category__c.label}"},
+                                    {"sTitle":colLabel_BrandQuality}
+                                ],
+                        '{!rebateStockDeals.mechanicTypeId}':[
+                                    {"sTitle":colLabel_BrandQuality},
+                                    {"sTitle": "{!$Label.EUR_CRM_VolumeTargets}"},
+                                    {"sTitle": "{!$Label.EUR_CRM_Rebate_Rate}"}
+                                ],
+                        '{!stockDeals.mechanicTypeId}':[ 
+                                    {"sTitle":colLabel_BrandQuality},
+                                    {"sTitle": "{!$Label.EUR_CRM_VolumeTargets}"},
+                                    {"sTitle": "{!$ObjectType.EUR_CRM_Contract_Product_Item__c.fields.EUR_CRM_Unit__c.label}"},
+                                    {"sTitle": "{!$ObjectType.EUR_CRM_Stock_Deal_Mechanic__c.fields.EUR_CRM_Stock_Deal_Name__c.label}"}
+                                ],
+                        '{!events.mechanicTypeId}':[
+                                    {"sTitle": "{!$ObjectType.EUR_CRM_Contract_Activity_Item__c.fields.EUR_CRM_Name__c.label}"},
+                                    {"sTitle":colLabel_Brand},
+                                    {"sTitle": "{!$ObjectType.EUR_CRM_Contract_Activity_Item__c.fields.EUR_CRM_Start_Date__c.label}"},
+                                    {"sTitle": "{!$ObjectType.EUR_CRM_Contract_Activity_Item__c.fields.EUR_CRM_End_Date__c.label}"},
+                                    {"sTitle": "{!$Label.EUR_CRM_Amount}"},
+                                    {"sTitle": "{!$ObjectType.EUR_CRM_Contract_Activity_Item__c.fields.EUR_CRM_Payment_Term__c.label}"}
+                                ],
+                        '{!posMaterial.mechanicTypeId}':[ 
+                                    {"sTitle":colLabel_Brand},
+                                    {"sTitle": "{!$ObjectType.EUR_CRM_Contract_Product_Item__c.fields.EUR_CRM_Description__c.label}"},
+                                    {"sTitle": "{!$Label.EUR_CRM_Amount}"}
+                                ],
+                        '{!uniforms.mechanicTypeId}':[ 
+                                    {"sTitle":colLabel_Brand},
+                                    {"sTitle": "{!$Label.EUR_CRM_Amount}"}
+                                ],
+                        '{!drinksMenu.mechanicTypeId}':[ 
+                                    {"sTitle":colLabel_Brand},
+                                    {"sTitle": "{!$Label.EUR_CRM_Amount}"}
+                                ],
+                        '{!barStyling.mechanicTypeId}':[
+                                    {"sTitle":colLabel_Brand},
+                                    {"sTitle": "{!$ObjectType.EUR_CRM_Contract_Product_Item__c.fields.EUR_CRM_Description__c.label}"},
+                                    {"sTitle": "{!$ObjectType.EUR_CRM_Contract_Activity_Item__c.fields.EUR_CRM_Supplier_PR__c.label}"},
+                                    {"sTitle": "{!$ObjectType.EUR_CRM_Contract_Activity_Item__c.fields.EUR_CRM_Payment_Term__c.label}"},
+                                    {"sTitle": "{!$Label.EUR_CRM_Amount}"}
+                                ],
+                        '{!trainings.mechanicTypeId}':[
+                                    {"sTitle": "{!$ObjectType.EUR_CRM_Contract_Product_Item__c.fields.EUR_CRM_Training_Name__c.label}"},
+                                    {"sTitle": "{!$ObjectType.EUR_CRM_Contract_Product_Item__c.fields.EUR_CRM_No_of_People__c.label}"},                        
+                                    {"sTitle": "{!$Label.EUR_CRM_Amount}"} 
+                                ],
+                        '{!displays.mechanicTypeId}':[
+                                    {"sTitle":colLabel_Brand},
+                                    {"sTitle": "{!$ObjectType.EUR_CRM_Contract_Product_Item__c.fields.EUR_CRM_Description__c.label}"}
+                                ],
+                        '{!promotions.mechanicTypeId}':[
+                                    {"sTitle":colLabel_Brand},
+                                    {"sTitle": "{!$ObjectType.EUR_CRM_Contract_Product_Item__c.fields.EUR_CRM_Description__c.label}"},
+                                    {"sTitle": "{!$Label.EUR_CRM_Amount}"}
+                                ]
+                        };
+
+        if('{!isHeadOffice}' == 'true') {
+            pColumns['{!listing.mechanicTypeId}'].push({
+                "sTitle" : "{!$Label.EUR_CRM_Amount}"
+            });
+            pColumns['{!exclusivity.mechanicTypeId}'].push({
+                "sTitle" : "{!$Label.EUR_CRM_Amount}"
+            });
+            pColumns['{!housePour.mechanicTypeId}'].push({
+                "sTitle" : "{!$Label.EUR_CRM_Amount}"
+            });
+        }
+
+        var vTracker = '{!isOutlet}' == 'true' ? 'eur_crm_view_volume_tracker':'eur_crm_volume_tracker_extended';
+        var buttonConfig = {
+                'Draft':['edit','del','eur_crm_cancel','eur_crm_profit_calculator'],
+            'Submitted':['eur_crm_profit_calculator'],
+             'Approved':['eur_crm_revise','eur_crm_profit_calculator'],
+             'Rejected':['eur_crm_cancel','eur_crm_profit_calculator'],
+            'Cancelled':[], 
+            'Activated':['eur_crm_deactivate_contract','eur_crm_volume_tracker_extended','eur_crm_profit_calculator'],
+          'Deactivated':['del','eur_crm_volume_tracker_extended','eur_crm_profit_calculator']
+        };
+
+        $(document).ready(
+            function(){ 
+                setButtons();
+                setTables();
+             var profitEmpty = {!EUR_CRM_Contract__c.EUR_CRM_Is_this_contract_profitable__c == null};
+             
+            if(!profitEmpty){
+                var profitColor = '{!profitColor}';
+                $($('.rProfit').find('td')[1]).find('span').css('background-color',profitColor);
+                $($('.rProfit').find('td')[1]).find('span').css('padding','5px');
+                $($('.rProfit').find('td')[1]).find('span').css('width','100px');
+                $($('.rProfit').find('td')[1]).find('span').css('font-size','13px'); 
+            }
+            
+            $(".pbSubheader > img").click(function() {
+               $(this).parent().next().slideToggle("slow", "easeInOutQuad");
+            });
+                                
+            }
+        );
+        function disableVolTracking(){
+           var hasValue =  {!listing.hasVolumeValue || exclusivity.hasVolumeValue ||   housePour.hasVolumeValue || stockDeals.hasVolumeValue};
+           if(!hasValue )
+                $('input[name="eur_crm_volume_tracker_extended"]').hide();
+        }
+        /*function disableButtonsForApprovers(){
+            if({!isCurrentUserApprover}){ 
+                $('input[name="eur_crm_revise"]').hide();
+                $('input[name="eur_crm_deactivate_contract"]').hide();
+                $('input[name="eur_crm_cancel"]').hide(); 
+            }
+        }*/
+        
+        function disableDeactivateButton() {
+            if({!!hasDeactivatePermissionSet}){
+                $('input[name="eur_crm_deactivate_contract"]').hide();
+            }
+        }
+        
+        function setButtons(){
+            var cStatus ='{!contractStatus}';
+
+            var buttons = buttonConfig[cStatus];
+            for(var x in buttons){
+                var v = buttons[x];
+                $('input[name="'+v+'"]').show();
+            }
+            if(cStatus == 'Approved'){
+                setApprovedButtons();
+            }
+            disableVolTracking();
+            //disableButtonsForApprovers();
+            disableDeactivateButton();
+        }
+        function setTables(){
+            setGTable('{!listing.mechanicTypeId}'); 
+            setGTable('{!exclusivity.mechanicTypeId}'); 
+            setGTable('{!housePour.mechanicTypeId}');
+            setGTable('{!rebateStockDeals.mechanicTypeId}');
+            setGTable('{!stockDeals.mechanicTypeId}'); 
+            setGTable('{!events.mechanicTypeId}'); 
+            setGTable('{!posMaterial.mechanicTypeId}'); 
+            setGTable('{!uniforms.mechanicTypeId}'); 
+            setGTable('{!drinksMenu.mechanicTypeId}'); 
+            setGTable('{!barStyling.mechanicTypeId}'); 
+            setGTable('{!trainings.mechanicTypeId}');
+            setGTable('{!displays.mechanicTypeId}');
+            setGTable('{!promotions.mechanicTypeId}');
+        }
+        function setGTable(mechId){
+            var cpi_dataTableProperties = basicDataTableProperties;
+            cpi_dataTableProperties["aoColumns"] = pColumns[mechId];
+            var rTableId = '#ContractProductItemTable' + mechId;
+            $(rTableId).dataTable(cpi_dataTableProperties);
+        }
+        function setApprovedButtons(){
+            var uploaded = {!contractObj.EUR_CRM_Contract_Uploaded__c};
+            var hasCustomerApproveDate = !({!ISBLANK(EUR_CRM_Contract__c.EUR_CRM_Customer_Approved_Date__c)});
+            var contractSigned = {!EUR_CRM_Contract__c.EUR_CRM_Contract_Signed__c}; 
+            
+            if(!uploaded){ //not yet uploaded
+                $('input[name="eur_crm_publish_contract"]').show();
+                $('input[name="eur_crm_cancel"]').show();
+            }else if(uploaded && hasCustomerApproveDate && contractSigned){ //
+                $('input[name="eur_crm_activate_contract"]').show();
+            }else if(uploaded){ // attached pdf
+                $('input[name="eur_crm_finalize"]').show();
+            }
+        }
+    </script>
+	<apex:pageMessage summary="{!$Label.EUR_CRM_RequireFinalizeContractButton}"
+		severity="warning" strength="3"
+		rendered="{!IF(AND(
+            NOT(ISBLANK(EUR_CRM_Contract__c.EUR_CRM_Contract_Approved_Date__c)), 
+            NOT(EUR_CRM_Contract__c.EUR_CRM_Active__c), 
+            EUR_CRM_Contract__c.EUR_CRM_Contract_Uploaded__c, 
+            OR(
+                ISBLANK(EUR_CRM_Contract__c.EUR_CRM_Customer_Approved_Date__c), 
+                AND(
+                        NOT(EUR_CRM_Contract__c.EUR_CRM_Contract_Signed__c) 
+                    )
+                )
+            ), true, false)}" />
+
+	<apex:pageMessage summary="{!$Label.EUR_CRM_RequireActivateContractButton}"
+		severity="warning" strength="3"
+		rendered="{!   EUR_CRM_Contract__c.EUR_CRM_Contract_Uploaded__c &&
+                              !EUR_CRM_Contract__c.EUR_CRM_Active__c &&
+                              !ISBLANK(EUR_CRM_Contract__c.EUR_CRM_Customer_Approved_Date__c)&&
+                              EUR_CRM_Contract__c.eur_crm_status__c == 'Approved' &&
+                               ((EUR_CRM_Contract__c.EUR_CRM_Contract_Signed__c )  ) }" />
+
+	<apex:pageMessage summary="{!$Label.EUR_CRM_PleaseAttachContractPDFFile} {!EUR_CRM_Contract__c.RecordType.Developername}_Soft_Copy"
+		severity="warning" strength="3"
+		rendered="{! !EUR_CRM_Contract__c.EUR_CRM_Contract_Uploaded__c &&
+                          EUR_CRM_Contract__c.eur_crm_status__c == 'Approved'}" />
+
+    <apex:outputField rendered="false" value="{!contractObj.EUR_CRM_Country_Code__c}" />
+
+	<br />
+	<div class="bPageTitle ">
+		<div class="ptBreadcrumb">
+			&nbsp;«&nbsp;
+			<apex:outputLink value="/{!LEFT(EUR_CRM_Contract__c.Id,3)}">Back to List: Contracts</apex:outputLink>
+		</div>
+	</div>
+	<apex:detail subject="{!EUR_CRM_Contract__c.id}" relatedList="false" />
+	<apex:pageBlock mode="maindetail"
+		rendered="{!EUR_CRM_Contract__c.EUR_CRM_Contract_Approved_Date__c != null && EUR_CRM_Contract__c.EUR_CRM_Contract_Signed__c}">
+		<apex:pageBlockSection title="{!$Label.EUR_CRM_Contract_Approved_Signed}" columns="2">
+			<apex:pageBlockSectionItem >
+				<apex:outputLabel value="{!$ObjectType.EUR_CRM_Contract__c.fields.EUR_CRM_Contract_Approved_Date__c.label}" />
+				<apex:outputField value="{!EUR_CRM_Contract__c.EUR_CRM_Contract_Approved_Date__c}" />
+			</apex:pageBlockSectionItem>
+			<apex:pageBlockSectionItem >
+				<apex:outputLabel value="{!$ObjectType.EUR_CRM_Contract__c.fields.EUR_CRM_Contract_Signed__c.label}" />
+				<apex:outputField value="{!EUR_CRM_Contract__c.EUR_CRM_Contract_Signed__c}" />
+			</apex:pageBlockSectionItem>
+		</apex:pageBlockSection>
+	</apex:pageBlock>
+	<apex:pageBlock title="{!$ObjectType.EUR_CRM_Contract_Activity_Item__c.labelPlural}">
+		<!-- CONTRACT LUMPSUM #####-->
+		<apex:pageBlockSection title="{!contractLumpsum.mechanicTypeName}"
+			columns="1" rendered="{!isOutlet}">
+			<apex:pageBlockSection columns="2" rendered="true">
+				<apex:outputField value="{!contractLumpsum.contractActivityItem.EUR_CRM_Lumpsum_Value__c}" />
+			</apex:pageBlockSection>
+		</apex:pageBlockSection>
+		<!-- LISTING #####-->
+		<apex:pageBlockSection title="{!listing.mechanicTypeName}" columns="1"
+			rendered="{!listing.hasValue}">
+			<apex:pageBlockSection columns="2" rendered="true">
+				<apex:outputField value="{!listing.contractActivityItem.EUR_CRM_Product_Items_Total__c}"
+					label="{!$Label.EUR_CRM_Total}" rendered="{!isContractHQ}" />
+			</apex:pageBlockSection>
+			<apex:outputPanel layout="block">
+				<table id="ContractProductItemTable{!listing.mechanicTypeId}"
+					class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+					<apex:repeat var="cpi" value="{!listing.contractProductItems}">
+						<apex:variable var="cpiIdUnique"
+							value="{!cpi[listing.productApiName]}{!uniqueNum}" />
+						<tr id="listing_row_{!cpi[listing.productAPIName]}"
+							class="cpiContent">
+							<td class="mdl-data-table__cell--non-numeric"><a
+								href="/{!cpi[listing.productAPIName]}" id="{!cpiIdUnique}"
+								onblur="LookupHoverDetail.getHover('{!cpiIdUnique}').hide();"
+								onfocus="LookupHoverDetail.getHover('{!cpiIdUnique}', '/{!cpi[listing.productApiName]}/m?retURL=%2F{!cpi[listing.productApiName]}&isAjaxRequest=1').show();"
+								onmouseout="LookupHoverDetail.getHover('{!cpiIdUnique}').hide();"
+								onmouseover="LookupHoverDetail.getHover('{!cpiIdUnique}', '/{!cpi[listing.productApiName]}/m?retURL=%2F{!cpi[listing.productApiName]}&isAjaxRequest=1').show();">
+									{!cpi.EUR_CRM_Brand_Quality__r.Name} </a></td>
+							<apex:outputPanel rendered="{!isHeadOffice}">
+								<td class="mdl-data-table__cell--non-numeric"><apex:outputField value="{!cpi.EUR_CRM_Marketing_Amount__c}" /></td>
+							</apex:outputPanel>
+						</tr>
+						<apex:variable var="uniqueNum" value="{!uniqueNum + 1}" />
+					</apex:repeat>
+				</table>
+			</apex:outputPanel>
+		</apex:pageBlockSection>
+		<!-- Exclusivity #####-->
+		<apex:pageBlockSection title="{!exclusivity.mechanicTypeName}"
+			rendered="{!exclusivity.hasValue}" columns="1">
+			<apex:pageBlockSection columns="2">
+				<apex:outputField value="{!exclusivity.contractActivityItem.EUR_CRM_Product_Items_Total__c}"
+					label="{!$Label.EUR_CRM_Total}" rendered="{!isContractHQ}" />
+			</apex:pageBlockSection>
+			<apex:outputPanel layout="block">
+				<table id="ContractProductItemTable{!exclusivity.mechanicTypeId}"
+					class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+					<apex:repeat var="cpi" value="{!exclusivity.contractProductItems}">
+						<apex:variable var="cpiIdUnique"
+							value="{!cpi[exclusivity.productApiName]}{!uniqueNum}" />
+						<tr>
+							<td class="mdl-data-table__cell--non-numeric"><apex:outputField value="{!cpi.EUR_CRM_Brand_Quality__r.EUR_CRM_Category__c}" />
+							</td>
+							<td class="mdl-data-table__cell--non-numeric"><a
+								href="/{!cpi[exclusivity.productAPIName]}" id="{!cpiIdUnique}"
+								onblur="LookupHoverDetail.getHover('{!cpiIdUnique}').hide();"
+								onfocus="LookupHoverDetail.getHover('{!cpiIdUnique}', '/{!cpi[exclusivity.productApiName]}/m?retURL=%2F{!cpi[exclusivity.productApiName]}&isAjaxRequest=1').show();"
+								onmouseout="LookupHoverDetail.getHover('{!cpiIdUnique}').hide();"
+								onmouseover="LookupHoverDetail.getHover('{!cpiIdUnique}', '/{!cpi[exclusivity.productApiName]}/m?retURL=%2F{!cpi[exclusivity.productApiName]}&isAjaxRequest=1').show();">
+									{!cpi.EUR_CRM_Brand_Quality__r.Name} </a></td>
+							<apex:outputPanel rendered="{!isHeadOffice}">
+								<td class="mdl-data-table__cell--non-numeric"><apex:outputField value="{!cpi.EUR_CRM_Marketing_Amount__c}" /></td>
+							</apex:outputPanel>
+						</tr>
+						<apex:variable var="uniqueNum" value="{!uniqueNum + 1}" />
+					</apex:repeat>
+				</table>
+			</apex:outputPanel>
+		</apex:pageBlockSection>
+		<!-- House Pour #####-->
+		<apex:pageBlockSection title="{!housePour.mechanicTypeName}"
+			columns="1" rendered="{!housePour.hasValue}">
+			<apex:pageBlockSection columns="2">
+				<apex:outputField value="{!housePour.contractActivityItem.EUR_CRM_Product_Items_Total__c}"
+					label="{!$Label.EUR_CRM_Total}" rendered="{!isContractHQ}" />
+			</apex:pageBlockSection>
+			<apex:outputPanel layout="block">
+				<table id="ContractProductItemTable{!housePour.mechanicTypeId}"
+					class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+					<apex:repeat var="cpi" value="{!housePour.contractProductItems}">
+						<apex:variable var="cpiIdUnique"
+							value="{!cpi[housePour.productApiName]}{!uniqueNum}" />
+						<tr>
+							<td class="mdl-data-table__cell--non-numeric"><apex:outputField value="{!cpi.EUR_CRM_Brand_Quality__r.EUR_CRM_Category__c}" />
+							</td>
+							<td class="mdl-data-table__cell--non-numeric"><a
+								href="/{!cpi[housePour.productAPIName]}" id="{!cpiIdUnique}"
+								onblur="LookupHoverDetail.getHover('{!cpiIdUnique}').hide();"
+								onfocus="LookupHoverDetail.getHover('{!cpiIdUnique}', '/{!cpi[housePour.productApiName]}/m?retURL=%2F{!cpi[housePour.productApiName]}&isAjaxRequest=1').show();"
+								onmouseout="LookupHoverDetail.getHover('{!cpiIdUnique}').hide();"
+								onmouseover="LookupHoverDetail.getHover('{!cpiIdUnique}', '/{!cpi[housePour.productApiName]}/m?retURL=%2F{!cpi[housePour.productApiName]}&isAjaxRequest=1').show();">
+									{!cpi.EUR_CRM_Brand_Quality__r.Name} </a></td>
+							<apex:outputPanel rendered="{!isHeadOffice}">
+								<td class="mdl-data-table__cell--non-numeric"><apex:outputField value="{!cpi.EUR_CRM_Marketing_Amount__c}" /></td>
+							</apex:outputPanel>
+						</tr>
+						<apex:variable var="uniqueNum" value="{!uniqueNum + 1}" />
+					</apex:repeat>
+				</table>
+			</apex:outputPanel>
+		</apex:pageBlockSection>
+        <!-- REBATE STOCK DEALS #####-->
+         <apex:pageBlockSection title="{!rebateStockDeals.mechanicTypeName}"
+            columns="1" rendered="{!rebateStockDeals.hasValue}">
+            <apex:outputPanel layout="block">
+                <table id="ContractProductItemTable{!rebateStockDeals.mechanicTypeId}"
+                    class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+                    <apex:repeat var="cpi" value="{!rebateStockDeals.contractProductItems}">
+                        <apex:variable var="cpiIdUnique"
+                            value="{!cpi[rebateStockDeals.productApiName]}{!uniqueNum}" />
+                        <tr>
+                            <td class="mdl-data-table__cell--non-numeric"><a
+                                href="/{!cpi[rebateStockDeals.productAPIName]}" id="{!cpiIdUnique}"
+                                onblur="LookupHoverDetail.getHover('{!cpiIdUnique}').hide();"
+                                onfocus="LookupHoverDetail.getHover('{!cpiIdUnique}', '/{!cpi[rebateStockDeals.productApiName]}/m?retURL=%2F{!cpi[rebateStockDeals.productApiName]}&isAjaxRequest=1').show();"
+                                onmouseout="LookupHoverDetail.getHover('{!cpiIdUnique}').hide();"
+                                onmouseover="LookupHoverDetail.getHover('{!cpiIdUnique}', '/{!cpi[rebateStockDeals.productApiName]}/m?retURL=%2F{!cpi[rebateStockDeals.productApiName]}&isAjaxRequest=1').show();">
+                                    {!cpi.EUR_CRM_Brand_Quality__r.Name} </a></td>
+                            <td class="mdl-data-table__cell--non-numeric"><apex:outputField value="{!cpi.EUR_CRM_Quantity__c}" /></td>
+                            <td class="mdl-data-table__cell--non-numeric"><apex:outputField value="{!cpi.EUR_CRM_Discount_Rate__c}" /></td>
+                        </tr>
+                        <apex:variable var="uniqueNum" value="{!uniqueNum + 1}" />
+                    </apex:repeat>
+                </table>
+            </apex:outputPanel>
+        </apex:pageBlockSection>
+		<!-- STOCK DEALS #####-->
+		<apex:pageBlockSection title="{!stockDeals.mechanicTypeName}"
+			columns="1" rendered="{!stockDeals.hasValue}">
+			<apex:pageBlockSection columns="2">
+				<apex:outputField value="{!stockDeals.contractActivityItem.EUR_CRM_Payment_Term__c}" />
+			</apex:pageBlockSection>
+			<apex:outputPanel layout="block">
+				<table id="ContractProductItemTable{!stockDeals.mechanicTypeId}"
+					class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+					<apex:repeat var="cpi" value="{!stockDeals.contractProductItems}">
+						<apex:variable var="cpiIdUnique"
+							value="{!cpi[stockDeals.productApiName]}{!uniqueNum}" />
+						<tr>
+							<td class="mdl-data-table__cell--non-numeric"><a
+								href="/{!cpi[stockDeals.productAPIName]}" id="{!cpiIdUnique}"
+								onblur="LookupHoverDetail.getHover('{!cpiIdUnique}').hide();"
+								onfocus="LookupHoverDetail.getHover('{!cpiIdUnique}', '/{!cpi[stockDeals.productApiName]}/m?retURL=%2F{!cpi[stockDeals.productApiName]}&isAjaxRequest=1').show();"
+								onmouseout="LookupHoverDetail.getHover('{!cpiIdUnique}').hide();"
+								onmouseover="LookupHoverDetail.getHover('{!cpiIdUnique}', '/{!cpi[stockDeals.productApiName]}/m?retURL=%2F{!cpi[stockDeals.productApiName]}&isAjaxRequest=1').show();">
+									{!cpi.EUR_CRM_Brand_Quality__r.Name} </a></td>
+							<td class="mdl-data-table__cell--non-numeric"><apex:outputField value="{!cpi.EUR_CRM_Quantity__c}" /></td>
+							<td class="mdl-data-table__cell--non-numeric"><apex:outputField value="{!cpi.EUR_CRM_Unit__c}" /></td>
+							<td class="mdl-data-table__cell--non-numeric"><apex:outputField value="{!cpi.EUR_CRM_Stock_Deal_Mechanic__r.EUR_CRM_Stock_Deal_Name__c}" /></td>
+						</tr>
+						<apex:variable var="uniqueNum" value="{!uniqueNum + 1}" />
+					</apex:repeat>
+				</table>
+			</apex:outputPanel>
+		</apex:pageBlockSection>
+		<!-- EVENTS #####-->
+		<apex:pageBlockSection title="{!events.mechanicTypeName}" columns="1"
+			rendered="{!events.hasValue}">
+			<apex:pageBlockSection columns="2">
+				<apex:outputText value="ZAR{0, number, ###,##0.00}"
+					label="{!$Label.EUR_CRM_Total}">
+					<apex:param value="{!eventsActivitiesTotal}" />
+				</apex:outputText>
+			</apex:pageBlockSection>
+			<apex:outputPanel layout="block">
+				<table id="ContractProductItemTable{!events.mechanicTypeId}"
+					class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+					<apex:repeat var="cai" value="{!eventsContractActivityItemMap}">
+						<tr>
+							<td class="mdl-data-table__cell--non-numeric"><apex:outputField value="{!eventsContractActivityItemMap[cai].EUR_CRM_Name__c}" /></td>
+							<td class="mdl-data-table__cell--non-numeric"><apex:repeat var="cpi" value="{!events.eventsContractProductItemMap[cai]}">
+									<apex:variable var="cpiIdUnique"
+										value="{!cpi[events.productApiName]}{!uniqueNum}" />
+									<a href="/{!cpi[events.productAPIName]}" id="{!cpiIdUnique}"
+										onblur="LookupHoverDetail.getHover('{!cpiIdUnique}').hide();"
+										onfocus="LookupHoverDetail.getHover('{!cpiIdUnique}', '/{!cpi[events.productApiName]}/m?retURL=%2F{!cpi[events.productApiName]}&isAjaxRequest=1').show();"
+										onmouseout="LookupHoverDetail.getHover('{!cpiIdUnique}').hide();"
+										onmouseover="LookupHoverDetail.getHover('{!cpiIdUnique}', '/{!cpi[events.productApiName]}/m?retURL=%2F{!cpi[events.productApiName]}&isAjaxRequest=1').show();">
+										{!cpi.EUR_CRM_Brand__r.Name} </a>
+									<br />
+									<apex:variable var="uniqueNum" value="{!uniqueNum + 1}" />
+								</apex:repeat></td>
+							<td class="mdl-data-table__cell--non-numeric"><apex:outputField value="{!eventsContractActivityItemMap[cai].EUR_CRM_Start_Date__c}" />
+							</td>
+							<td class="mdl-data-table__cell--non-numeric"><apex:outputField value="{!eventsContractActivityItemMap[cai].EUR_CRM_End_Date__c}" />
+							</td>
+							<td class="mdl-data-table__cell--non-numeric"><apex:repeat var="cpi" value="{!events.eventsContractProductItemMap[cai]}">
+									<apex:outputField value="{!cpi.EUR_CRM_Marketing_Amount__c}" />
+									<br />
+								</apex:repeat></td>
+							<td class="mdl-data-table__cell--non-numeric"><apex:outputField value="{!eventsContractActivityItemMap[cai].EUR_CRM_Payment_Term__c}" /></td>
+						</tr>
+						<!-- <apex:variable var="uniqueNum" value="{!uniqueNum + 1}" /> -->
+					</apex:repeat>
+				</table>
+			</apex:outputPanel>
+		</apex:pageBlockSection>
+		<!-- POS MATERIAL  #####-->
+		<apex:pageBlockSection title="{!posMaterial.mechanicTypeName}"
+			columns="1" rendered="{!posMaterial.hasValue}">
+			<apex:pageBlockSection columns="2">
+				<apex:outputText value="ZAR{0, number, ###,##0.00}"
+					label="{!$Label.EUR_CRM_Total}">
+					<apex:param value="{!posMaterial.marketAmountTotal}" />
+				</apex:outputText>
+			</apex:pageBlockSection>
+			<apex:outputPanel layout="block">
+				<table id="ContractProductItemTable{!posMaterial.mechanicTypeId}"
+					class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+					<apex:repeat var="cpi" value="{!posMaterial.contractProductItems}">
+						<apex:variable var="cpiIdUnique"
+							value="{!cpi[posMaterial.productApiName]}{!uniqueNum}" />
+						<tr>
+							<td class="mdl-data-table__cell--non-numeric"><a
+								href="/{!cpi[posMaterial.productAPIName]}" id="{!cpiIdUnique}"
+								onblur="LookupHoverDetail.getHover('{!cpiIdUnique}').hide();"
+								onfocus="LookupHoverDetail.getHover('{!cpiIdUnique}', '/{!cpi[posMaterial.productApiName]}/m?retURL=%2F{!cpi[posMaterial.productApiName]}&isAjaxRequest=1').show();"
+								onmouseout="LookupHoverDetail.getHover('{!cpiIdUnique}').hide();"
+								onmouseover="LookupHoverDetail.getHover('{!cpiIdUnique}', '/{!cpi[posMaterial.productApiName]}/m?retURL=%2F{!cpi[posMaterial.productApiName]}&isAjaxRequest=1').show();">
+									{!cpi.EUR_CRM_Brand__r.Name} </a></td>
+							<td class="mdl-data-table__cell--non-numeric"><apex:outputField value="{!cpi.EUR_CRM_Description__c}" /></td>
+							<td class="mdl-data-table__cell--non-numeric"><apex:outputField value="{!cpi.EUR_CRM_Marketing_Amount__c}" /></td>
+						</tr>
+						<apex:variable var="uniqueNum" value="{!uniqueNum + 1}" />
+					</apex:repeat>
+				</table>
+			</apex:outputPanel>
+		</apex:pageBlockSection>
+		<!-- Uniforms #####-->
+		<apex:pageBlockSection title="{!uniforms.mechanicTypeName}"
+			columns="1" rendered="{!uniforms.hasValue}">
+			<apex:pageBlockSection columns="2">
+				<apex:outputText value="ZAR{0, number, ###,##0.00}"
+					label="{!$Label.EUR_CRM_Total}">
+					<apex:param value="{!uniforms.marketAmountTotal}" />
+				</apex:outputText>
+			</apex:pageBlockSection>
+			<apex:outputPanel layout="block">
+				<table id="ContractProductItemTable{!uniforms.mechanicTypeId}"
+					class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+					<apex:repeat var="cpi" value="{!uniforms.contractProductItems}">
+						<apex:variable var="cpiIdUnique"
+							value="{!cpi[uniforms.productApiName]}{!uniqueNum}" />
+						<tr>
+							<td class="mdl-data-table__cell--non-numeric"><a
+								href="/{!cpi[uniforms.productAPIName]}" id="{!cpiIdUnique}"
+								onblur="LookupHoverDetail.getHover('{!cpiIdUnique}').hide();"
+								onfocus="LookupHoverDetail.getHover('{!cpiIdUnique}', '/{!cpi[uniforms.productApiName]}/m?retURL=%2F{!cpi[uniforms.productApiName]}&isAjaxRequest=1').show();"
+								onmouseout="LookupHoverDetail.getHover('{!cpiIdUnique}').hide();"
+								onmouseover="LookupHoverDetail.getHover('{!cpiIdUnique}', '/{!cpi[uniforms.productApiName]}/m?retURL=%2F{!cpi[uniforms.productApiName]}&isAjaxRequest=1').show();">
+									{!cpi.EUR_CRM_Brand__r.Name} </a></td>
+							<td class="mdl-data-table__cell--non-numeric"><apex:outputField value="{!cpi.EUR_CRM_Marketing_Amount__c}" /></td>
+						</tr>
+						<apex:variable var="uniqueNum" value="{!uniqueNum + 1}" />
+					</apex:repeat>
+				</table>
+			</apex:outputPanel>
+		</apex:pageBlockSection>
+		<!-- Drinks Menu #####-->
+		<apex:pageBlockSection title="{!drinksMenu.mechanicTypeName}"
+			columns="1" rendered="{!drinksMenu.hasValue}">
+			<apex:pageBlockSection columns="2">
+				<apex:outputField value="{!drinksMenu.contractActivityItem.EUR_CRM_Product_Items_Total__c}"
+					label="{!$Label.EUR_CRM_Total}" />
+			</apex:pageBlockSection>
+			<apex:outputPanel layout="block">
+				<table id="ContractProductItemTable{!drinksMenu.mechanicTypeId}"
+					class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+					<apex:repeat var="cpi" value="{!drinksMenu.contractProductItems}">
+						<apex:variable var="cpiIdUnique"
+							value="{!cpi[drinksMenu.productApiName]}{!uniqueNum}" />
+						<tr>
+							<td class="mdl-data-table__cell--non-numeric"><a
+								href="/{!cpi[drinksMenu.productAPIName]}" id="{!cpiIdUnique}"
+								onblur="LookupHoverDetail.getHover('{!cpiIdUnique}').hide();"
+								onfocus="LookupHoverDetail.getHover('{!cpiIdUnique}', '/{!cpi[drinksMenu.productApiName]}/m?retURL=%2F{!cpi[drinksMenu.productApiName]}&isAjaxRequest=1').show();"
+								onmouseout="LookupHoverDetail.getHover('{!cpiIdUnique}').hide();"
+								onmouseover="LookupHoverDetail.getHover('{!cpiIdUnique}', '/{!cpi[drinksMenu.productApiName]}/m?retURL=%2F{!cpi[drinksMenu.productApiName]}&isAjaxRequest=1').show();">
+									{!cpi.EUR_CRM_Brand__r.Name} </a></td>
+							<td class="mdl-data-table__cell--non-numeric"><apex:outputField value="{!cpi.EUR_CRM_Marketing_Amount__c}" /></td>
+						</tr>
+						<apex:variable var="uniqueNum" value="{!uniqueNum + 1}" />
+					</apex:repeat>
+				</table>
+			</apex:outputPanel>
+		</apex:pageBlockSection>
+		<!-- BAR STYLING #####-->
+		<apex:pageBlockSection title="{!barStyling.mechanicTypeName}"
+			columns="1" rendered="{!barStyling.hasValue}">
+			<apex:pageBlockSection columns="2">
+				<apex:outputField value="{!barStyling.contractActivityItem.EUR_CRM_Product_Items_Total__c}"
+					label="{!$Label.EUR_CRM_Total}" />
+			</apex:pageBlockSection>
+			<apex:outputPanel layout="block">
+				<table id="ContractProductItemTable{!barStyling.mechanicTypeId}"
+					class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+					<apex:repeat var="cpi" value="{!barStyling.contractProductItems}">
+						<apex:variable var="cpiIdUnique"
+							value="{!cpi[barStyling.productApiName]}{!uniqueNum}" />
+						<tr>
+							<td class="mdl-data-table__cell--non-numeric"><a
+								href="/{!cpi[barStyling.productAPIName]}" id="{!cpiIdUnique}"
+								onblur="LookupHoverDetail.getHover('{!cpiIdUnique}').hide();"
+								onfocus="LookupHoverDetail.getHover('{!cpiIdUnique}', '/{!cpi[barStyling.productApiName]}/m?retURL=%2F{!cpi[barStyling.productApiName]}&isAjaxRequest=1').show();"
+								onmouseout="LookupHoverDetail.getHover('{!cpiIdUnique}').hide();"
+								onmouseover="LookupHoverDetail.getHover('{!cpiIdUnique}', '/{!cpi[barStyling.productApiName]}/m?retURL=%2F{!cpi[barStyling.productApiName]}&isAjaxRequest=1').show();">
+									{!cpi.EUR_CRM_Brand__r.Name} </a></td>
+							<td class="mdl-data-table__cell--non-numeric"><apex:outputField value="{!cpi.EUR_CRM_Description__c}" />
+							</td>
+							<td class="mdl-data-table__cell--non-numeric"><apex:outputField value="{!barStyling.contractActivityItem.EUR_CRM_Supplier_PR__c}" />
+							</td>
+							<td class="mdl-data-table__cell--non-numeric"><apex:outputField value="{!barStyling.contractActivityItem.EUR_CRM_Payment_Term__c}" />
+							</td>
+							<td class="mdl-data-table__cell--non-numeric"><apex:outputField value="{!cpi.EUR_CRM_Marketing_Amount__c}" /></td>
+							<apex:variable var="uniqueNum" value="{!uniqueNum + 1}" />
+						</tr>
+					</apex:repeat>
+				</table>
+			</apex:outputPanel>
+		</apex:pageBlockSection>
+		<!-- TRAININGS #####-->
+		<apex:pageBlockSection title="{!trainings.mechanicTypeName}"
+			columns="1" rendered="{!trainings.hasValue}">
+			<apex:pageBlockSection columns="2">
+				<apex:outputField value="{!trainings.contractActivityItem.EUR_CRM_Product_Items_Total__c}"
+					label="{!$Label.EUR_CRM_Total}" />
+			</apex:pageBlockSection>
+			<apex:outputPanel layout="block">
+				<table id="ContractProductItemTable{!trainings.mechanicTypeId}"
+					class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+					<apex:repeat var="cpi" value="{!trainings.contractProductItems}">
+						<apex:variable var="cpiIdUnique"
+							value="{!cpi[trainings.productApiName]}{!uniqueNum}" />
+						<tr>
+							<td class="mdl-data-table__cell--non-numeric"><apex:outputField value="{!cpi.EUR_CRM_Training_Name__c}" /></td>
+							<td class="mdl-data-table__cell--non-numeric"><apex:outputField value="{!cpi.EUR_CRM_No_Of_People__c}" /></td>
+							<td class="mdl-data-table__cell--non-numeric"><apex:outputField value="{!cpi.EUR_CRM_Marketing_Amount__c}" /></td>
+						</tr>
+						<apex:variable var="uniqueNum" value="{!uniqueNum + 1}" />
+					</apex:repeat>
+				</table>
+			</apex:outputPanel>
+		</apex:pageBlockSection>
+		<!-- DISPLAYS #####-->
+		<apex:pageBlockSection title="{!displays.mechanicTypeName}"
+			columns="1" rendered="{!displays.hasValue}">
+			<apex:outputPanel layout="block">
+				<table id="ContractProductItemTable{!displays.mechanicTypeId}"
+					class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+					<apex:repeat var="cpi" value="{!displays.contractProductItems}">
+						<apex:variable var="cpiIdUnique"
+							value="{!cpi[displays.productApiName]}{!uniqueNum}" />
+						<tr>
+							<td class="mdl-data-table__cell--non-numeric"><a
+								href="/{!cpi[displays.productAPIName]}" id="{!cpiIdUnique}"
+								onblur="LookupHoverDetail.getHover('{!cpiIdUnique}').hide();"
+								onfocus="LookupHoverDetail.getHover('{!cpiIdUnique}', '/{!cpi[displays.productApiName]}/m?retURL=%2F{!cpi[displays.productApiName]}&isAjaxRequest=1').show();"
+								onmouseout="LookupHoverDetail.getHover('{!cpiIdUnique}').hide();"
+								onmouseover="LookupHoverDetail.getHover('{!cpiIdUnique}', '/{!cpi[displays.productApiName]}/m?retURL=%2F{!cpi[displays.productApiName]}&isAjaxRequest=1').show();">
+									{!cpi.EUR_CRM_Brand__r.Name} </a></td>
+							<td class="mdl-data-table__cell--non-numeric"><apex:outputField value="{!cpi.EUR_CRM_Description__c}" />
+							</td>
+						</tr>
+						<apex:variable var="uniqueNum" value="{!uniqueNum + 1}" />
+					</apex:repeat>
+				</table>
+			</apex:outputPanel>
+		</apex:pageBlockSection>
+		<!-- PROMOTIONS  #####-->
+		<apex:pageBlockSection title="{!promotions.mechanicTypeName}"
+			columns="1" rendered="{!promotions.hasValue}">
+			<apex:pageBlockSection columns="2">
+				<apex:outputField value="{!promotions.contractActivityItem.EUR_CRM_Product_Items_Total__c}"
+					label="{!$Label.EUR_CRM_Total}" />
+				<apex:outputField value="{!promotions.contractActivityItem.EUR_CRM_Payment_Term__c}" />
+			</apex:pageBlockSection>
+			<apex:outputPanel layout="block">
+				<table id="ContractProductItemTable{!promotions.mechanicTypeId}"
+					class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+					<apex:repeat var="cpi" value="{!promotions.contractProductItems}">
+						<apex:variable var="cpiIdUnique"
+							value="{!cpi[promotions.productApiName]}{!uniqueNum}" />
+						<tr>
+							<td class="mdl-data-table__cell--non-numeric"><a
+								href="/{!cpi[promotions.productAPIName]}" id="{!cpiIdUnique}"
+								onblur="LookupHoverDetail.getHover('{!cpiIdUnique}').hide();"
+								onfocus="LookupHoverDetail.getHover('{!cpiIdUnique}', '/{!cpi[promotions.productApiName]}/m?retURL=%2F{!cpi[promotions.productApiName]}&isAjaxRequest=1').show();"
+								onmouseout="LookupHoverDetail.getHover('{!cpiIdUnique}').hide();"
+								onmouseover="LookupHoverDetail.getHover('{!cpiIdUnique}', '/{!cpi[promotions.productApiName]}/m?retURL=%2F{!cpi[promotions.productApiName]}&isAjaxRequest=1').show();">
+									{!cpi.EUR_CRM_Brand__r.Name} </a></td>
+							<td class="mdl-data-table__cell--non-numeric"><apex:outputField value="{!cpi.EUR_CRM_Description__c}" /></td>
+							<td class="mdl-data-table__cell--non-numeric"><apex:outputField value="{!cpi.EUR_CRM_Marketing_Amount__c}" /></td>
+						</tr>
+						<apex:variable var="uniqueNum" value="{!uniqueNum + 1}" />
+					</apex:repeat>
+				</table>
+			</apex:outputPanel>
+		</apex:pageBlockSection>
+	</apex:pageBlock>
+    <apex:relatedList list="Contract_Sub_Chains_Mappings__r" rendered="{!isContractHQ}"/>
+	<apex:relatedList list="EUR_CRM_Contract_Audits__r" />
+	<apex:relatedList list="ProcessSteps" />
+	<apex:relatedList list="CombinedAttachments" />
+	<script>
+            function twistSection(twisty, sectionId) {
+               var parentDiv = twisty;
+               while (parentDiv.tagName != 'DIV') { parentDiv = parentDiv.parentNode; }
+               var headerId = sectionId || (parentDiv.id.split('_'))[1]; 
+               var div = parentDiv.nextSibling; 
+               var elemWasOn = false; 
+               if (div.style.display != 'none') { 
+                   twisty.className ='showListButton';
+                   twisty.alt = twisty.title = 'Show Section - '+twisty.name;
+                   elemWasOn = true; 
+               } else {
+                   twisty.className = 'hideListButton';
+                   twisty.alt = twisty.title = 'Hide Section - '+twisty.name;
+               }
+               
+               addTwistCookie('Twister', headerId, elemWasOn);
+               return !elemWasOn;
+            }
+    </script>
+</apex:page>

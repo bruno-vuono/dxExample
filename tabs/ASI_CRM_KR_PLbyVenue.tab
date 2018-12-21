@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
+    <frameHeight>1000</frameHeight>
+    <hasSidebar>false</hasSidebar>
+    <label>P&amp;L by Venue</label>
+    <mobileReady>false</mobileReady>
+    <motif>Custom79: Measuring Tape</motif>
+    <url>https://obiee.pernod-ricard-asia.com:8626/analytics/saw.dll?PortalPages&amp;Action=Navigate&amp;PortalPath=%2Fshared%2FPRK%2F_portal%2FFinancial Investment - P%26L by Venue</url>
+    <urlEncodingKey>UTF-8</urlEncodingKey>
+</CustomTab>

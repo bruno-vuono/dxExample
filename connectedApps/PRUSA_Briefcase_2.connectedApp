@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConnectedApp xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contactEmail>piyush.singhal@pernod-ricard.com</contactEmail>
+    <description>Release 2 Pernod Ricard CRM iOS Briefcase Mobile App</description>
+    <label>PRUSA Briefcase 2.0</label>
+    <oauthConfig>
+        <callbackUrl>https://login.salesforce.com/services/oauth2/success</callbackUrl>
+        <consumerKey>3MVG9qQjGkWUbcrFTIsUBxAfZQq5NAUJpxd_YwH5roxMS.VeCkn8SSJmWhO.n1MdHV8fwCf_2Z72yxpkvu4K0</consumerKey>
+        <scopes>Basic</scopes>
+        <scopes>Api</scopes>
+        <scopes>Web</scopes>
+        <scopes>Full</scopes>
+        <scopes>Chatter</scopes>
+        <scopes>CustomApplications</scopes>
+        <scopes>RefreshToken</scopes>
+    </oauthConfig>
+</ConnectedApp>

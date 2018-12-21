@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Join table used by Sales Orders to apply discounts to products</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>EUR_CRM_Brand_Quality_Size__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Brand-Quality-Size (EU)</label>
+        <referenceTo>EUR_CRM_Size__c</referenceTo>
+        <relationshipLabel>Product Discounts (EU)</relationshipLabel>
+        <relationshipName>Product_Discounts_EU</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Discount_Value_Amt_9L_Case__c</fullName>
+        <description>Currency amount per 9L case</description>
+        <externalId>false</externalId>
+        <label>Discount Value Amt (9L Case)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Outlet_Classification__c</fullName>
+        <externalId>false</externalId>
+        <label>Outlet Classification</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Wholesalers</fullName>
+                    <default>false</default>
+                    <label>Wholesalers</label>
+                </value>
+                <value>
+                    <fullName>Counter service</fullName>
+                    <default>false</default>
+                    <label>Counter service</label>
+                </value>
+                <value>
+                    <fullName>Specialist Group</fullName>
+                    <default>false</default>
+                    <label>Specialist Group</label>
+                </value>
+                <value>
+                    <fullName>Specialist Independent</fullName>
+                    <default>false</default>
+                    <label>Specialist Independent</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <label>Product Discount (EU)</label>
+    <nameField>
+        <displayFormat>PD-{0000000000}</displayFormat>
+        <label>Product Discount No.</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Product Discounts (EU)</pluralLabel>
+    <recordTypes>
+        <fullName>EUR_ZA_OFF_Direct_SO_Discount</fullName>
+        <active>true</active>
+        <label>EUR ZA OFF Direct SO Discount</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Outlet_Classification__c</picklist>
+            <values>
+                <fullName>Counter service</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Specialist Group</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Specialist Independent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wholesalers</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts/>
+    <sharingModel>Private</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

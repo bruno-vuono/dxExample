@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>EUR_GB_FS_Promotion_Readonly_Share</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>EUR GB FS Promotion Readonly Share</label>
+        <sharedTo>
+            <roleAndSubordinates>EUR_GB_Field_Sales_Controller</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>GB FS RTM Promotion</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>EUR_GB_Share_All_Promotions</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>EUR GB Share All Promotions</label>
+        <sharedTo>
+            <roleAndSubordinates>EUR_GB</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>GB FS RTM Promotion</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+</SharingRules>

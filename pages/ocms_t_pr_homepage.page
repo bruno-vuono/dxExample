@@ -1,0 +1,183 @@
+<!-- ocms_t_pr_homepage -->
+<apex:page controller="cms.CoreController"  id="t" showHeader="false" sidebar="false" standardStylesheets="false" cache="false">
+    <apex:composition template="{!page_template_reference}">
+
+        <apex:define name="header">
+            <apex:stylesheet value="{!URLFOR($Resource.OCMS_r_PR_orchestraPageSupport, 'css/ocms-reset+support.css')}" />
+            <apex:stylesheet value="{!URLFOR($Resource.OCMS_r_PR_orchestraPageSupport, 'css/prusa.css')}" />
+
+            <!-- scripts at bottom -->
+        </apex:define>
+
+        <apex:define name="body">
+            <div class="pg pgHome">
+                <div class="header">
+                    <div class="topHeader parallel">
+                        <div class = "logoLeft">
+                            <apex:outputText rendered="{!api.page_mode == 'edit'}"><div class="ocmsHint">
+                                <strong>Image</strong> ❧ PRUSA logo
+                            </div></apex:outputText>
+                            <cms:Panel panelname="orgTopLogoLeft" panelcontroller="{!controller}"
+                                 panelwidth="300px" panelheight="34px" panelContentLayouts="Image" panelLimit="1" />
+                        </div>    <!-- .logoLeft -->
+                        <div class="logoCenter">
+                            <apex:outputText rendered="{!api.page_mode == 'edit'}"><div class="ocmsHint">
+                                <strong>Image</strong> ❧ INSITE logo
+                            </div></apex:outputText>
+                            <cms:Panel panelname="orgTopLogoCenter" panelcontroller="{!controller}"
+                                 panelwidth="300px" panelheight="34px" panelContentLayouts="Image" panelLimit="1" />
+                        </div>    <!-- .logoCenter -->
+                        <div class="profileInfo parallel">
+                            <div class="userStatus">
+                                <p class="dayMessage"></p>
+                                <p class="userName"></p>
+                            </div>
+                        </div>    <!-- .profileInfo -->
+                    </div>    <!-- .topHeader -->    
+                    <div class="topNavigation parallel clear">
+                        <div class="searchBox">
+                            <apex:outputText rendered="{!api.page_mode == 'edit'}"><div class="ocmsHint">
+                                <strong>Search Basic Form</strong> ❧ Search box;
+                            </div></apex:outputText>
+                            <cms:Panel panelName="searchBox" panelController="{!controller}"
+                                 panelWidth="300px" panelHeight="34px" panelContentLayouts="SearchBasicForm" panelLimit="1"/>
+                        </div>    <!-- .searchBox -->
+                        <div class="mainNav">
+                            <apex:outputText rendered="{!api.page_mode == 'edit'}"><div class="ocmsHint">
+                                <strong>Class Styled Menu</strong> ❧ Top navigation menu; No sub menus; Select active menu per page<br/>
+                                ❧ Dont enable smart active menu;
+                            </div></apex:outputText>
+                            <cms:Panel panelName="mainNav" panelController="{!controller}"
+                                 panelWidth="300px" panelHeight="34px" panelContentLayouts="ClassStyledMenu" panelLimit="1"/>
+                        </div>    <!-- .mainNav -->
+                        <div class="quickLinks">
+                            <apex:outputText rendered="{!api.page_mode == 'edit'}"><div class="ocmsHint">
+                                <strong>Class Styled Menu</strong> ❧ Quick links menu, add label for each menu item <br/>
+                                ❧ Add Menu Title (Quick Links);
+                            </div></apex:outputText>
+                            <cms:Panel panelName="quickLinks" panelController="{!controller}"
+                                 panelWidth="300px" panelHeight="34px" panelContentLayouts="ClassStyledMenu" panelLimit="1"/>
+                        </div>    <!-- .quickLinks -->
+                    </div>    <!-- .topNavigation -->
+                </div>    <!-- .header -->
+                
+                <div class="alertsBox">
+                    <apex:outputText rendered="{!api.page_mode == 'edit'}"><div class="ocmsHint">
+                        <strong>Text Block</strong> ❧ Alerts title in (&lt;h1&gt;) <br/>
+                        ❧ Add alerts in unordered list using (&lt;ul&gt;&lt;li&gt;);
+                    </div></apex:outputText>
+                    <cms:Panel panelName="alertsBox" panelController="{!controller}"
+                         panelWidth="300px" panelHeight="34px" panelContentLayouts="TextBlock" panelLimit="1"/>
+                </div>    <!-- .alertsBox -->
+                
+                <div class="pageBody parallel clear">
+                    <div class="leftCol">
+                         <div class="homeCarousel">
+                            <apex:outputText rendered="{!api.page_mode == 'edit'}"><div class="ocmsHint">
+                                <strong>Taxonomy Load</strong> ❧ Taxonomy loader to view articles list as carousel<br/>
+                                ❧ Select the default tag (eg. Carousel) <br/>
+                                ❧ Auto Load(Yes), Show View More Link(No), Taxonomy Templates(1 column template), Item Load Count(4);
+                            </div></apex:outputText>
+                            <cms:Panel panelName="homeCarousel" panelController="{!controller}"
+                                 panelWidth="300px" panelHeight="34px" panelLimit="1"/>
+                         </div>    <!-- .homeCarousel -->
+                         <div class="newsBlock parallel">
+                             <div class="companyNews">
+                                 <div class="companyNewsTop parallel">
+                                     <div class="comNewsTitle">
+                                         <apex:outputText rendered="{!api.page_mode == 'edit'}"><div class="ocmsHint">
+                                             <strong>Text Block</strong> ❧ Company News Main title in (&lt;h1&gt;);
+                                         </div></apex:outputText>
+                                         <cms:Panel panelName="comNewsTitle" panelController="{!controller}"
+                                              panelWidth="300px" panelHeight="34px" panelContentLayouts="TextBlock" panelLimit="1"/>
+                                     </div>    <!-- .comNewsTitle -->
+                                     <div class="newsTypeMenu">
+                                         <apex:outputText rendered="{!api.page_mode == 'edit'}"><div class="ocmsHint">
+                                             <strong>Taxonomy</strong> ❧ Taxonomy menu (Company News with <br/>
+                                             topics Latest, Most Viewed, no sub-topics)<br/>
+                                             ❧ Select Tags (eg. Latest)<br/> 
+                                             ❧ Show Top Level(No);
+                                         </div></apex:outputText>
+                                         <cms:Panel panelName="newsTypeMenu" panelController="{!controller}"
+                                              panelWidth="300px" panelHeight="34px" panelLimit="1"/>
+                                     </div>    <!-- .newsTypeMenu -->
+                                 </div>    <!-- .companyNewsTop -->
+                                 <div class="newsTypeList">
+                                     <apex:outputText rendered="{!api.page_mode == 'edit'}"><div class="ocmsHint">
+                                         <strong>Taxonomy Load</strong> ❧ To view articles list<br/>
+                                         ❧ Select the default tag (eg. Latest) <br/>
+                                         ❧ Auto Load(Yes), Show View More Link(No), Taxonomy Templates(1 column template), Item Load Count(4);
+                                     </div></apex:outputText>
+                                     <cms:Panel panelName="newsTypeList" panelController="{!controller}"
+                                          panelWidth="300px" panelHeight="34px" panelLimit="1"/>
+                                 </div>    <!-- .newsTypeList -->
+                             </div>    <!-- .companyNews -->
+                             <div class="rssFeedWrapper">
+                                 <div class="mainTitle">
+                                     <apex:outputText rendered="{!api.page_mode == 'edit'}"><div class="ocmsHint">
+                                         <strong>Text Block</strong> ❧ RSS Feed Main title in (&lt;h1&gt;);
+                                     </div></apex:outputText>
+                                     <cms:Panel panelName="mainTitle" panelController="{!controller}"
+                                          panelWidth="300px" panelHeight="34px" panelContentLayouts="TextBlock" panelLimit="1"/>
+                                 </div>    <!-- .mainTitle -->
+                                 <apex:outputText rendered="{!api.page_mode == 'edit'}"><div class="ocmsHint">
+                                     <strong>RSS Feed</strong> ❧ to get list of industry news;
+                                 </div></apex:outputText>
+                                 <cms:Panel panelName="rssFeedNews" panelController="{!controller}"
+                                      panelWidth="300px" panelHeight="34px" />      
+                             </div> <!-- .rssFeedWrapper -->  
+                         </div>    <!-- .newsBlock -->    
+                     </div>    <!-- .leftCol -->
+                     <div class="rightCol">
+                         <div class="chatter-title">
+                             <apex:outputText rendered="{!api.page_mode == 'edit'}"><div class="ocmsHint">
+                                <strong>Text Block</strong> ❧ Chatter title in (&lt;h1&gt;) <br/>
+                                ❧ Sub-title in (&lt;h2&gt;);
+                             </div></apex:outputText>
+                             <cms:Panel panelName="chatterTitle" panelController="{!controller}"
+                                  panelWidth="300px" panelHeight="34px" panelContentLayouts="TextBlock" panelLimit="1"/>
+                         </div>    <!-- .chatter-title -->
+                         <div class="chatter-imp">
+                             <apex:outputText rendered="{!api.page_mode == 'edit'}"><div class="ocmsHint">
+                                <strong>Text Block</strong> ❧ Title in (&lt;h2&gt;) <br/>
+                                ❧ Intro text in (&lt;p&gt;);
+                             </div></apex:outputText>
+                             <cms:Panel panelName="chatterImp" panelController="{!controller}"
+                                  panelWidth="300px" panelHeight="68px" panelContentLayouts="TextBlock" panelLimit="2"/>
+                         </div>    <!-- .chatter-imp -->
+                         <iframe height="720px" id="theIframe" name="theIframe" src="/apex/c__ocms_pr_homeFeed" width="100%"></iframe>
+                     </div>    <!-- .rightCol -->
+                </div>    <!-- .pageBody -->
+                
+                <div class="footer">
+                    <div class="footerBottom parallel">
+                        <div class="socialBrand">
+                            <apex:outputText rendered="{!api.page_mode == 'edit'}"><div class="ocmsHint">
+                                <strong>Text Block</strong> ❧ Social Brand Title in (&lt;h1&gt;);
+                             </div></apex:outputText>
+                             <cms:Panel panelName="socialTitle" panelController="{!controller}"
+                                  panelWidth="300px" panelHeight="34px" panelContentLayouts="TextBlock" panelLimit="1"/>
+                             <div class="facebookFeeds"></div>
+                        </div>    <!-- .socialBrand -->
+                        <div class="featuredDrink">
+                            <apex:outputText rendered="{!api.page_mode == 'edit'}"><div class="ocmsHint">
+                                <strong>Small Block With Image</strong> ❧ featured drink;
+                             </div></apex:outputText>
+                             <cms:Panel panelName="featuredDrink" panelController="{!controller}"
+                                  panelWidth="300px" panelHeight="34px" panelContentLayouts="SmallBlockWithImage" panelLimit="1"/>
+                        </div>    <!-- .featuredDrink -->
+                    </div>    <!-- .footerBottom -->
+                    <div class="backToTop">Back to Top</div>
+                </div>    <!-- .footer -->
+            </div>    <!-- .pgHome -->
+    
+            <script type="text/javascript" src="{!URLFOR($Resource.OCMS_r_PR_orchestraPageSupport, 'js/jquery.livequery.js')}"></script>
+            <script type="text/javascript" src="{!URLFOR($Resource.OCMS_r_PR_orchestraPageSupport, 'js/jquery.selectBox.min.js')}"></script>
+            <script type="text/javascript" src="{!URLFOR($Resource.OCMS_r_PR_orchestraPageSupport, 'js/ocms-extensions.js')}"></script>
+            <script type="text/javascript" src="{!URLFOR($Resource.OCMS_r_PR_orchestraPageSupport, 'js/ocms-carousel.js')}"></script>
+            <script type="text/javascript" src="{!URLFOR($Resource.OCMS_r_PR_orchestraPageSupport, 'js/prusa.js')}"></script>
+
+        </apex:define>
+    </apex:composition>
+</apex:page>
+<!-- ocms_t_pr_homepage -->

@@ -1,0 +1,268 @@
+<apex:page sidebar="false" docType="html-5.0" applyHtmlTag="false" showHeader="false" standardStyleSheets="false" cache="true" controller="ESN_MB_OverviewCockpit_Cx">
+    <html>
+<head>
+    <meta charset="utf-8"/>
+    
+    <apex:stylesheet value="{!urlfor($Resource.ESN_MB_Theme_Core_OverviewCockpit, '/css/bootstrap.min.css')}"/>  
+    <apex:stylesheet value="{!urlfor($Resource.ESN_MB_Theme_Core_OverviewCockpit, '/css/main.css')}"/>
+    <!--<apex:stylesheet value="https://dl.dropboxusercontent.com/u/51617866/DEV_PR_VAL/Cockpit%20PR/css/main.css"/>-->
+    
+    <apex:includeScript value="{!urlfor($Resource.ESN_MB_Theme_Core_OverviewCockpit, '/js/jquery-1.10.2.min.js')}"/>
+    <apex:includeScript value="{!urlfor($Resource.ESN_MB_Theme_Core_OverviewCockpit, '/js/bootstrap.min.js')}"/>
+    <apex:includeScript value="{!urlfor($Resource.ESN_MB_Theme_Core_OverviewCockpit, '/js/spin.js')}"/>
+    <apex:includeScript value="{!urlfor($Resource.ESN_MB_Theme_Core_OverviewCockpit, '/js/jszip-utils-master/dist/jszip-utils.js')}"/>
+    <apex:includeScript value="{!urlfor($Resource.ESN_MB_Theme_Core_OverviewCockpit, '/js/Stuk-jszip-bf7ec8c/dist/jszip.js')}"/>
+    <apex:includeScript value="{!urlfor($Resource.ESN_MB_Theme_Core_OverviewCockpit, '/js/jquery.cookie.js')}"/>
+    
+    <title>
+        {!$Label.ESN_MB_OverviewCockpit_Title}
+    </title>
+</head>
+<body>
+    
+    <div id="header" role="banner">
+        <header class="container-fluid">
+            <div class="row">
+                <div class="hidden-xs col-sm-2 col-md-2 col-lg-2">      
+                    <img class="img-responsive" alt="Pernod Ricard" src="{!urlfor($Resource.ESN_MB_Theme_Core_OverviewCockpit, '/Images/logo-pernod-ricard.png')}"/>
+
+                </div>
+
+                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8"> 
+                    <div class="page-header">
+                        <h2> {!$Label.ESN_MB_OverviewCockpit_TitleBanner}<small> <br/>  {!$Label.ESN_MB_OverviewCockpit_TitleBannerSmall}</small></h2>
+                    </div>
+                    
+                </div>
+                
+                <div class="hidden-xs col-sm-2 col-md-2 col-lg-2">  
+                    <a href="/apex/ESN_MB_NOP_Homepage"><img class="img-responsive" id="logoPR" alt="Pernod Ricard" src="{!urlfor($Resource.ESN_MB_Theme_Core_OverviewCockpit, '/Images/logo-mybrands.png')}"/></a>
+                </div>
+
+            </div>
+        </header>
+    </div>
+    
+
+
+    <div class="cockpit">
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active" id="DisableMB"><a href="#">{!$Label.ESN_MB_OverviewCockpit_Disable} <span class="glyphicon glyphicon-remove"></span> </a></li>
+                <li role="presentation" id="WIPMB"><a href="#">{!$Label.ESN_MB_OverviewCockpit_WIP} <span class="glyphicon glyphicon-warning-sign"></span></a></li>
+                <li role="presentation" id="EnableMB"><a href="#">{!$Label.ESN_MB_OverviewCockpit_Enable} <span class="glyphicon glyphicon-ok"></span></a></li>
+                <li role="presentation" id="archiveMB"><a href="#">{!$Label.ESN_MB_OverviewCockpit_Archive} <span class="glyphicon glyphicon-book"></span></a></li>
+                <div class="row">
+                    <div class="col-sm-offset-5 col-md-offset-6 col-lg-offset-7">
+                        <button type="button" id="createNewBrandButton" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#createNewBrand">{!$Label.ESN_MB_OverviewCockpit_CreateNewBrand} <span class="glyphicon glyphicon-circle-arrow-up"></span></button>
+                        <button type="button" id="wipButton" class="btn btn-default navbar-btn disabled">{!$Label.ESN_MB_OverviewCockpit_WIP} <span class="glyphicon glyphicon-warning-sign"></span></button>
+                        <button type="button" id="enableButton" class="btn btn-default navbar-btn disabled">{!$Label.ESN_MB_OverviewCockpit_Enable} <span class="glyphicon glyphicon-ok"></span></button>
+                        <button type="button" id="archiveButton" class="btn btn-default navbar-btn disabled">{!$Label.ESN_MB_OverviewCockpit_Archive} <span class="glyphicon glyphicon-book"></span></button>
+                        <!--<a href="#" tabindex="0" class="btn btn-default navbar-btn" id="help" role="button" data-toggle="popover" data-placement="bottom" data-trigger="focus" title="Info" data-content="{!$Label.ESN_MB_OverviewCockpit_HelpText}">{!$Label.ESN_MB_OverviewCockpit_Help} <span class="glyphicon glyphicon-question-sign"></span></a>-->
+                    </div>
+                </div>
+            </ul>
+            
+    </div>
+        
+    <div class="modal fade" id="createNewBrand" tabindex="-1" role="dialog" aria-labelledby="createNewBrandLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">{!$Label.ESN_MB_OverviewCockpit_Close}</span></button>
+                    <h4 class="modal-title" id="createNewBrandLabel">{!$Label.ESN_MB_OverviewCockpit_CreateNewBrand}</h4>
+                </div>
+            <div class="modal-body">
+                <form role="form">
+                    <div class="form-group">
+                        <label for="recipient-name" class="control-label">{!$Label.ESN_MB_OverviewCockpit_BrandName}</label>
+                        <input type="text" class="form-control" id="brandNameModal"/>
+                        <div style="color: red;" id="redTextBrandName" class="hidden">{!$Label.ESN_MB_OverviewCockpit_BrandAlreadyExist}</div>
+                    </div>
+                    <label for="recipient-name" class="control-label">{!$Label.ESN_MB_OverviewCockpit_BrandCategory}</label>
+                        <select id="brandCategory">
+                        </select>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="closeNewBrandModal">{!$Label.ESN_MB_OverviewCockpit_Close}</button>
+                <button type="button" class="btn btn-primary" id="createNewBrandModal" >{!$Label.ESN_MB_OverviewCockpit_CreateYourBrand}</button>
+            </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="contenuDisableMB">
+    <div class="panel panel-info">
+        <div class="panel-heading">{!$Label.ESN_MB_OverviewCockpit_ListDisable}</div>
+        <div class="panel-body">
+        <div class="row">
+            <div class="col-lg-6">
+            <form class="checkArray" id="brandDisable">
+                <div id="other_brands" style="float:left; width: 300px;"></div>
+                <div id="leCercle_brands" style="width: 300px; margin-left:320px;"></div>
+            </form> 
+            </div><!-- /.col-lg-6 -->
+        </div><!-- /.row -->
+        </div>
+        </div>
+    </div>
+        
+    <div class="contenuWipMB hidden">
+        <div class="panel panel-info">
+        <div class="panel-heading">{!$Label.ESN_MB_OverviewCockpit_ListWIP}</div>
+        <div class="panel-body">
+        <div class="row">
+            <div class="col-lg-6">
+            <form class="checkArray" id="brandWIP">
+                <div id="other_brands" style="float:left; width: 300px;"></div>
+                <div id="leCercle_brands" style="width: 300px; margin-left:320px;"></div>
+            </form> 
+            </div><!-- /.col-lg-6 -->
+        </div><!-- /.row -->
+        </div>
+        </div>
+    </div>
+    
+    <div class="contenuEnableMB hidden">
+    <div class="panel panel-info">
+        <div class="panel-heading">{!$Label.ESN_MB_OverviewCockpit_ListEnable}</div>
+        <div class="panel-body">
+        <div class="row">
+            <div class="col-lg-6">
+            <form class="checkArray" id="brandEnable">
+                <div id="other_brands" style="float:left; width: 300px;"></div>
+                <div id="leCercle_brands" style="width: 300px; margin-left:320px;"></div>
+            </form> 
+            </div><!-- /.col-lg-6 -->
+        </div><!-- /.row -->
+        </div>
+        </div>
+    </div>
+        
+    <div class="contenuArchiveMB hidden">
+    <div class="panel panel-info">
+        <div class="panel-heading">{!$Label.ESN_MB_OverviewCockpit_ListArchive}</div>
+        <div class="panel-body">
+        <div class="row">
+            <div class="col-lg-6">
+            <form class="checkArray" id="brandArchive">
+                <div id="other_brands" style="float:left; width: 300px;"></div>
+                <div id="leCercle_brands" style="width: 300px; margin-left:320px;"></div>
+            </form> 
+            </div><!-- /.col-lg-6 -->
+        </div><!-- /.row -->
+        </div>
+        </div>
+    </div>
+ 
+  <div class="moreOption hidden">
+    <div class="panel panel-default">
+        <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2 col-lg-6 col-lg-offset-3">
+             <div id="buttonText" style="margin-bottom: -20px;">
+                 
+                </div>
+                    <p align="center"> <img src="" style="border:1px solid black;width: 205px;" id="imageBrand" /><div id="spinnerImg"></div></p>
+                </div>
+             <div class="panel-group col-sm-6" id="accordion" role="tablist" aria-multiselectable="true" style="margin-left: 25%;">
+                    <div class="panel panel-info" style="overflow: visible;"> 
+                        <div class="panel-heading" role="tab" id="heading1" data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-expanded="true" aria-controls="collapse1" style="cursor: pointer;">
+                            <h4 class="panel-title"><a>{!$Label.ESN_MB_OverviewCockpit_MoreOptions}<span class="glyphicon glyphicon-chevron-down" style="float:right"></span></a></h4>
+                        </div>
+                        <div id="collapse1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading1">
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    
+                                    <label class="col-md-12 control-label" for="filebutton">
+                                        <span id="image_mosaic">{!$Label.ESN_MB_OverviewCockpit_ImageForMosaic}</span>
+                                        <span id="image_leCerclePortfolio">{!$Label.ESN_MB_OverviewCockpit_ImageForLeCerclePortfolio}</span>
+                                    </label>
+                                    <div class="col-md-12"><input id="uploadNewTile" name="filebutton" class="input-file" type="file"/></div>
+                                    
+                                    <label id="leCercleTitle" class="col-md-12 control-label" for="filebutton">{!$Label.ESN_MB_OverviewCockpit_LeCercleTitle}</label>
+                                    <div id="leCercleTitle" class="col-md-12"><input class="input-file" type="text" id="leCercleTitle" /></div>
+                                    
+                                    <label id="leCercleBrandParent" class="col-md-12 control-label" for="filebutton">{!$Label.ESN_MB_OverviewCockpit_LeCercleBrandParent}</label>
+                                    <div id="leCercleBrandParent" class="col-md-12"><select id="brandParent"></select></div>
+                                    
+                                    <label class="col-md-12 control-label" for="filebutton">{!$Label.ESN_MB_OverviewCockpit_ChangeCategory}</label>
+                                    <div class="col-md-12"><select id="moreOptionCategory"></select></div>
+                            
+                                    <label id="categoryType" class="col-md-12 control-label" for="filebutton">{!$Label.ESN_MB_OverviewCockpit_ChangeCategory} Type</label>
+                                    <div id="categoryType" class="col-md-12"><select id="alcoholType"></select></div>
+                            
+                                    <label id="categoryCompany" class="col-md-12 control-label" for="filebutton">{!$Label.ESN_MB_OverviewCockpit_ChangeCategory} Company</label>
+                                    <div id="categoryCompany" class="col-md-12"><select id="brandCompany"></select></div>
+                            
+                                    <label class="col-md-12 control-label" for="filebutton">{!$Label.ESN_MB_OverviewCockpit_NPUrl}</label>
+                                    <div class="col-md-12"><input class="input-file" type="text" id="nPUrl" /></div>
+                        
+                                    <label class="col-md-12 control-label" for="filebutton">{!$Label.ESN_MB_OverviewCockpit_ChatterGroupId}</label>
+                                    <div class="col-md-12"><input class="input-file" type="text" id="chatterGroupId" /></div> 
+                        
+                                    <label class="col-md-12 control-label" for="filebutton">{!$Label.ESN_MB_OverviewCockpit_BrandVariant}</label>
+                                    <div class="col-md-12"><input class="input-file" type="text" id="defaultBrandVariantValue" /></div> 
+                            
+                                    <label class="col-md-12 control-label" for="filebutton">{!$Label.ESN_MB_OverviewCockpit_BrandDAMId}</label>
+                                    <div class="col-md-12"><input class="input-file" type="text" id="brandDAMId" /></div>
+                            
+                                    <label class="col-md-12 control-label" for="filebutton">{!$Label.ESN_MB_OverviewCockpit_CustomOrder}</label>
+                                    <div class="col-md-12"><input class="input-file" type="text" id="customOrder" /></div>
+                                    
+                                    <label class="col-md-12 control-label" for="filebutton">{!$Label.ESN_MB_OverviewCockpit_Font} <a id="resetFont">{!$Label.ESN_MB_OverviewCockpit_ResetFont}</a><div id="spinnerResetFont"></div></label>
+                                    <div class="col-md-12"><input id="uploadNewFont" name="uploadNewFont" class="input-file" type="file" accept=".woff"/><input type="hidden" id="fontFileData"/></div>
+
+                                    <button class="btn btn-success btn-lg col-md-offset-4 col-md-5" type="button" style="margin-top:5px; margin-bottom:5px;" id="submitMoreInfo">{!$Label.ESN_MB_OverviewCockpit_Submit}</button>
+                                </div>
+                           </div>
+                       </div>
+                    </div>
+                 
+                 <div class="panel panel-info" style="overflow: visible;"> 
+                        <div class="panel-heading" role="tab" id="heading2" data-toggle="collapse" data-parent="#accordion" href="#collapse2" aria-expanded="true" aria-controls="collapse2" style="cursor: pointer;">
+                            <h4 class="panel-title"><a>User Manager<span class="glyphicon glyphicon-chevron-down" style="float:right"></span></a></h4>
+                        </div>
+                        <div id="collapse2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading2">
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    
+                                    <label class="col-md-12 control-label" for="filebutton">Go to user manager tool :</label>
+                                    <div class="col-md-12"><a href="{!$Label.ESN_MB_OverviewCockpit_ManagerToolUrl}" target="_blank">Click here to use the permission tool</a></div>
+                                </div>
+                           </div>
+                       </div>
+                    </div>
+                 
+                </div>
+            </div><!-- /.col-lg-6 -->
+        </div><!-- /.row -->
+        </div>
+    </div>
+    
+    
+    
+    <div class="backgroungPR">
+        <img class="img-responsive" alt="Pernod Ricard" src="{!urlfor($Resource.ESN_MB_Theme_Core_OverviewCockpit, '/Images/logo_big.png')}"/>
+    </div>
+    <div id="spinnerStatus">
+        
+    </div>
+<script>
+    Visualforce.remoting.timeout = 120000; // Set timeout at page level
+//Get the datas from SFDC
+    var brandNames = {!BrandNames}; 
+    var brandLogosIds = {!LogosIds}; 
+
+    var defautImage = '{!urlfor($Resource.ESN_MB_Theme_Core_OverviewCockpit, "/Images/unavailable_doc.png")}';
+    var customLabelOverviewCockpit ={goOnMybrands : "{!$Label.ESN_MB_OverviewCockpit_GoOnMyBrands}"};
+    var isCockpitAdministrator = {!isCockpitAdministrator};
+    var leCercle = "{!$Label.ESN_MB_LeCercle}";
+</script>
+    <script src="{!urlfor($Resource.ESN_MB_Theme_Core_OverviewCockpit, '/js/main.js')}"></script>
+    <script src="{!urlfor($Resource.ESN_MB_Theme_Core_OverviewCockpit, '/js/overviewCockpitCore.js')}"></script>
+
+    
+</body>
+</html>
+</apex:page>

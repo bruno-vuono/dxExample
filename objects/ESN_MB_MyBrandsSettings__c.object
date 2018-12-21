@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>Hierarchy</customSettingsType>
+    <description>MyBrands Application Settings</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>ESN_MB_360ActivationPlatfor_Rubric_Id__c</fullName>
+        <description>Stores the id of the Rubric that contains all activations for a brand</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Stores the id of the Rubric that contains all activations for a brand</inlineHelpText>
+        <label>MyBrands 360ActivationPlatform Rubric Id</label>
+        <length>18</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_CRM_Content_Id__c</fullName>
+        <description>Id of the CRM Content</description>
+        <externalId>false</externalId>
+        <label>CRM_Content_Id</label>
+        <length>30</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_ChatterHelpID__c</fullName>
+        <externalId>false</externalId>
+        <label>Chatter Help ID</label>
+        <length>30</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Google_Analytics__c</fullName>
+        <description>Code for google analytics</description>
+        <externalId>false</externalId>
+        <label>Google Analytics</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_MyBrands_Jameson_BackgroundColor__c</fullName>
+        <description>Basic Jameson background Color</description>
+        <externalId>false</externalId>
+        <label>MyBrands Jameson BackgroundColor</label>
+        <length>7</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_MyBrands_Jameson_FontColor__c</fullName>
+        <description>basic Jameson Font color</description>
+        <externalId>false</externalId>
+        <label>MyBrands Jameson FontColor</label>
+        <length>7</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_NP_API_Domain__c</fullName>
+        <description>URL of Northplains Domain</description>
+        <externalId>false</externalId>
+        <label>NP API Domain</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_NP_Password__c</fullName>
+        <description>NorthPlains technical User password</description>
+        <externalId>false</externalId>
+        <label>NP Password</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_NP_URL__c</fullName>
+        <description>URL NorthPlains to redirect users</description>
+        <externalId>false</externalId>
+        <label>NP URL</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_NP_User__c</fullName>
+        <description>NorthPlains technical User</description>
+        <externalId>false</externalId>
+        <label>NP User</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_NewsCover_Rubric_Id__c</fullName>
+        <description>The Id of Rubric NewsCover in this Org</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The Id of Rubric NewsCover in this Org</inlineHelpText>
+        <label>MyBrands NewsCover Rubric Id</label>
+        <length>18</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_POS_URL__c</fullName>
+        <description>URL for POS</description>
+        <externalId>false</externalId>
+        <label>POS URL</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_URL_Bis__c</fullName>
+        <description>The first part of the URL to connect to Bis
+Eg. https://portal.pernod-ricard.com/bis/search/Pages/bisresults.aspx?k=</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The first part of the URL to connect to Bis
+Eg. https://portal.pernod-ricard.com/bis/search/Pages/bisresults.aspx?k=</inlineHelpText>
+        <label>MyBrands URL Bis</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>MyBrands</label>
+    <visibility>Public</visibility>
+</CustomObject>

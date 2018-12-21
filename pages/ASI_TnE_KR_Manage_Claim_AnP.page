@@ -1,0 +1,210 @@
+<apex:page standardController="ASI_TnE_ClaimHeader__c" extensions="ASI_TnE_KR_ClaimHeaderController">
+
+    <style type="text/css">
+            .myClass { width: auto; }
+    </style>
+
+    <apex:form id="pageMainForm"> 
+    
+    <!--  <apex:inputTextarea value="{!dynamicAttributeFieldsPixels}" id="dynamicAttributeFieldsPixels" styleClass="setDynamicPixels" style="display:none;"/>
+    <apex:actionFunction name="passStringToController" action="{!dummyMethod}" rerender="massCreateAndUpdateFinanceEdit">
+        <apex:param name="firstParam" assignTo="{!dynamicAttributeFieldsPixels}" value="" />
+    </apex:actionFunction>-->
+    <script>
+        //alert(screen.width);
+        //jQuery('[id$=inputWidth]').val(screen.width);
+        //passStringWidth();
+        // alert('{!dynamicAttributeFieldsPixels}');
+        /*function loadDynamicAttribute()
+        {
+            var width = screen.width;
+            var scaleCoeff = width/1366;
+        
+            var pixel1 = 80 * scaleCoeff;
+            var pixel2 = 120 * scaleCoeff;
+            var pixel3 = 150 * scaleCoeff;
+            var pixel4 = 60 * scaleCoeff;
+            var pixel5 = 120 * scaleCoeff;
+            var pixel6 = 60 * scaleCoeff;
+            var pixel7 = 30 * scaleCoeff;
+            var pixel8 = 30 * scaleCoeff;
+            var pixel9 = 150 * scaleCoeff;
+            var pixel10 = 150 * scaleCoeff;
+            var pixel11 = 60 * scaleCoeff;
+            var pixel12 = 80 * scaleCoeff;
+
+            var dynamicFields = "ASI_TnE_Receipt_Date__c&req=T&width="+pixel1+"px," + 
+                    "ASI_TnE_Dept_in_Charge__c&req=T&width="+pixel2+"px," + 
+                    "ASI_TnE_BC__c&req=T&width="+pixel3+"px," + 
+                    "ASI_TnE_Branch_code_Channel__c&req=T&width="+pixel4+"px," + 
+                    "ASI_TnE_Class__c&req=T&width="+pixel5+"px," + 
+                    "ASI_TnE_Place__c&req=T&width="+pixel6+"px," + 
+                    "ASI_TnE_Promotion_Code__c&req=T&width="+pixel7+"px," +
+                    "ASI_TnE_Account_Code__c&req=T&width="+pixel8+"px," +
+                    "ASI_TnE_Currency__c&req=T&width="+pixel9+"px," +
+                    "ASI_TnE_Receipt_Amount__c&req=T&width="+pixel10+"px," +
+                    "ASI_TnE_FX_Rate__c&width="+pixel11+"px," +
+                    "ASI_TnE_Details_of_Expense__c&width="+pixel12+"px";
+        
+            $(".setDynamicPixels").val(dynamicFields);
+            passStringToController(dynamicFields);
+            //alert('{!isEditable}');
+        }*/
+    </script> 
+    
+        <apex:pageBlock title=""> 
+            <apex:pageBlockSection title="A&P Claim">
+                	
+                    <apex:outputField value="{!ASI_TnE_ClaimHeader__c.Owner.Name}"/>
+                	<apex:outputField label="Claim Type" value="{!ASI_TnE_ClaimHeader__c.RecordType.Name}"/>
+                	
+                	<apex:outputField value="{!ASI_TnE_ClaimHeader__c.ASI_TnE_KR_Payee__c}"/>
+                	<apex:outputField value="{!ASI_TnE_ClaimHeader__c.ASI_TnE_Date__c}"/>
+                	
+                	<apex:outputField value="{!ASI_TnE_ClaimHeader__c.ASI_TnE_KR_Company__c}"/>
+                	<apex:outputField value="{!ASI_TnE_ClaimHeader__c.ASI_TnE_Status__c}"/>
+                	
+                	<apex:outputField value="{!ASI_TnE_ClaimHeader__c.ASI_TnE_KR_Department__c}"/>
+                	<apex:outputField value="{!ASI_TnE_ClaimHeader__c.ASI_TnE_KR_Credit_Card_No__c}"/>
+                    
+                	<apex:outputField value="{!ASI_TnE_ClaimHeader__c.ASI_TnE_Currency__c}"/> 
+                	<apex:outputField value="{!ASI_TnE_ClaimHeader__c.ASI_TnE_KR_TotalAmount__c}"/>
+                	
+                    <apex:outputField value="{!ASI_TnE_ClaimHeader__c.ASI_TnE_KR_GL_Date__c}"/>
+                	<apex:outputField value="{!ASI_TnE_ClaimHeader__c.Name}"/>
+                	
+            </apex:pageBlockSection>
+            <apex:pageblocksection title="System Information">
+                    <apex:outputField value="{!ASI_TnE_ClaimHeader__c.CreatedByID}"/>
+                    <apex:outputField value="{!ASI_TnE_ClaimHeader__c.CreatedDate}"/>
+                    <apex:outputField value="{!ASI_TnE_ClaimHeader__c.LastModifiedByID}"/>
+                    <apex:outputField value="{!ASI_TnE_ClaimHeader__c.LastModifiedDate}"/>
+            </apex:pageblocksection>
+
+        <apex:outputPanel id="massCreateAndUpdateEdit" rendered="{!isEditable = 1}" >
+            <c:ASI_eForm_KR_MassCreateandUpdate id="massCreateAndUpdateCEdit" sObjectType="ASI_TnE_ClaimDetail__c"
+                fieldToURLParam="ASI_TnE_ClaimHeader__c=>id"
+                displayFields="
+                ASI_TnE_Receipt_Date__c&req=T&width=40px&read=a,
+                ASI_TnE_KR_Receipt_Time__c&req=T&width=40px&read=a,
+                ASI_TnE_KR_Business_Name__c&req=t&width=80px&read=a,
+                ASI_TnE_KR_Business_Address__c&req=T&width=80px&read=a,
+                ASI_TnE_Receipt_Amount__c&req=T&width=80px&read=a,
+                ASI_TnE_KR_Salesman__c&width=60px&text=t,
+                ASI_TnE_Details_of_Expense__c&width=120px,
+                ASI_TnE_KR_Customer__c&width=70px,
+                ASI_TnE_Dept_in_Charge__c&width=80px,
+                ASI_TnE_KR_Sub_Brand__c&width=70px,
+                ASI_TnE_Branch_code_Channel__c&width=70px,
+                ASI_TnE_KR_Promotion_Code__c&width=70px,
+                ASI_TnE_Sales_Year__c&width=70px,
+                ASI_TnE_Sales_Month__c&width=70px,
+                ASI_TnE_KR_Where__c&width=60px,
+                ASI_TnE_Supported_Item__c&width=70px"                  
+                                      
+                whereStatement="ASI_TnE_ClaimHeader__c = '{!$CurrentPage.parameters.id}'"
+                defaultFieldValues="ASI_TnE_Currency__c=KRW,ASI_TnE_FX_Rate__c=1"
+                pageBlockTitle=""
+                includeRecordTypes="ASI_TnE_KR_Claim_Detail"
+                successLink="/{!$CurrentPage.parameters.id}"
+                cancelLink="/{!$CurrentPage.parameters.id}"
+                mode="BOTH"
+                actionColWidth="15px"
+                isDefaultEdit="true"
+				disableDelete="true"
+                disableClone="true"
+                disableAddNew="true"
+                showAllRT="false"
+                firstRowForNew="false"
+                displayPickList=""
+                claimType="AnP"
+                payeeID="{!ASI_TnE_ClaimHeader__c.ASI_TnE_KR_Payee__c}"
+                /> 
+        </apex:outputPanel>
+        <apex:outputPanel id="massCreateAndUpdateLimit" rendered="{!isEditable = 4}" >
+            <c:ASI_eForm_KR_MassCreateandUpdate id="massCreateAndUpdateCLimit" sObjectType="ASI_TnE_ClaimDetail__c"
+                fieldToURLParam="ASI_TnE_ClaimHeader__c=>id"
+                displayFields="
+                ASI_TnE_Receipt_Date__c&req=T&width=40px&read=a,
+                ASI_TnE_KR_Receipt_Time__c&req=T&width=40px&read=a,
+                ASI_TnE_KR_Business_Name__c&req=t&width=80px&read=a,
+                ASI_TnE_KR_Business_Address__c&req=T&width=80px&read=a,
+                ASI_TnE_Receipt_Amount__c&req=T&width=80px&read=a,
+                ASI_TnE_KR_Salesman__c&width=60px&text=t&read=a,
+                ASI_TnE_Details_of_Expense__c&width=120px&read=a,
+                ASI_TnE_KR_Customer__c&req=T&width=70px&read=a,
+                ASI_TnE_Dept_in_Charge__c&req=T&width=80px,
+                ASI_TnE_KR_Sub_Brand__c&req=T&width=70px,
+                ASI_TnE_Branch_code_Channel__c&req=T&width=70px,
+                ASI_TnE_KR_Promotion_Code__c&req=T&width=70px,
+                ASI_TnE_Sales_Year__c&req=T&width=70px&read=a,
+                ASI_TnE_Sales_Month__c&req=T&width=70px&read=a,
+                ASI_TnE_KR_Where__c&width=60px&read=a,
+                ASI_TnE_Supported_Item__c&req=T&width=70px&read=a"                  
+                                      
+                whereStatement="ASI_TnE_ClaimHeader__c = '{!$CurrentPage.parameters.id}'"
+                defaultFieldValues="ASI_TnE_Currency__c=KRW,ASI_TnE_FX_Rate__c=1"
+                pageBlockTitle=""
+                includeRecordTypes="ASI_TnE_KR_Claim_Detail"
+                successLink="/{!$CurrentPage.parameters.id}"
+                cancelLink="/{!$CurrentPage.parameters.id}"
+                mode="BOTH"
+                actionColWidth="15px"
+                isDefaultEdit="true"
+				disableDelete="true"
+                disableClone="true"
+                disableAddNew="true"
+                showAllRT="false"
+                firstRowForNew="false"
+                displayPickList=""
+                claimType="AnP"
+                payeeID="{!ASI_TnE_ClaimHeader__c.ASI_TnE_KR_Payee__c}"
+                /> 
+        </apex:outputPanel>
+        <apex:outputPanel id="massCreateAndUpdateReadOnly" rendered="{!isEditable = 5}">
+            <c:ASI_eForm_KR_MassCreateandUpdate id="massCreateAndUpdateCReadOnly" sObjectType="ASI_TnE_ClaimDetail__c"
+                fieldToURLParam="ASI_TnE_ClaimHeader__c=>id"
+                displayFields="
+                ASI_TnE_Receipt_Date__c&req=T&width=40px&read=a,
+                ASI_TnE_KR_Receipt_Time__c&req=T&width=40px&read=a,
+                ASI_TnE_KR_Business_Name__c&req=t&width=80px&read=a,
+                ASI_TnE_KR_Business_Address__c&req=T&width=80px&read=a,
+                ASI_TnE_Receipt_Amount__c&req=T&width=80px&read=a,
+                ASI_TnE_KR_Salesman__c&width=60px&text=t&read=a,
+                ASI_TnE_Details_of_Expense__c&width=120px&read=a,
+                ASI_TnE_KR_Customer__c&width=70px&read=a,
+                ASI_TnE_Dept_in_Charge__c&width=80px&read=a,
+                ASI_TnE_KR_Sub_Brand__c&width=70px&read=a,
+                ASI_TnE_Branch_code_Channel__c&req=T&width=70px&read=a,
+                ASI_TnE_KR_Promotion_Code__c&width=70px&read=a,
+                ASI_TnE_Sales_Year__c&width=70px&read=a,
+                ASI_TnE_Sales_Month__c&width=70px&read=a,
+                ASI_TnE_KR_Where__c&width=60px&read=a,
+                ASI_TnE_Supported_Item__c&width=70px&read=a"                  
+                                      
+                whereStatement="ASI_TnE_ClaimHeader__c = '{!$CurrentPage.parameters.id}'"
+                defaultFieldValues="ASI_TnE_Currency__c=KRW,ASI_TnE_FX_Rate__c=1"
+                pageBlockTitle=""
+                includeRecordTypes="ASI_TnE_KR_Claim_Detail"
+                successLink="/{!$CurrentPage.parameters.id}"
+                cancelLink="/{!$CurrentPage.parameters.id}"
+                mode="BOTH"
+                actionColWidth="1px"
+                isDefaultEdit="true"
+				disableDelete="true"
+                disableClone="true"
+                disableAddNew="true"
+                showAllRT="false"
+                firstRowForNew="false"
+                displayPickList=""
+                claimType="AnP"
+                payeeID="{!ASI_TnE_ClaimHeader__c.ASI_TnE_KR_Payee__c}"
+                /> 
+            </apex:outputPanel>
+        </apex:pageBlock> 
+    </apex:form>
+    <script>
+        //window.onload = loadDynamicAttribute();
+    </script>
+    
+</apex:page>

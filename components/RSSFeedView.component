@@ -1,0 +1,32 @@
+<apex:component controller="OCMS_RSSFeedTemplateController" allowDml="true" >
+
+<apex:attribute name="content" type="cms__Content__c" description="The panel unique identifier" assignTo="{!content}" />
+<apex:attribute name="properties" type="cms__Attribute__c[]" description="The panel unique identifier" assignTo="{!content_properties}" />
+<apex:attribute name="layout_instance" type="cms__Content_Layout_Instance__c" description="The panel unique identifier" assignTo="{!content_layout_instance}" />
+<apex:attribute name="layout_instance_properties" type="cms__Attribute__c[]" description="The panel unique identifier" assignTo="{!content_layout_instance_properties}" />
+<apex:attribute name="page_content_layout_instance" type="cms__Page_Content_Layout_Instance__c" description="The panel unique identifier" assignTo="{!page_content_layout_instance}" />
+<apex:attribute name="page_content_layout_instance_properties" type="cms__Attribute__c[]" description="The panel unique identifier" assignTo="{!page_content_layout_instance_properties}" />
+    
+    <script type="text/javascript" src="{!URLFOR($Resource.OCMS_r_PR_orchestraPageSupport, 'js/jquery.zrssfeed.min.js')}"></script>
+            
+    <apex:outputText escape="false">
+       <div class="rssFeedBlock {!RandomId}"></div>
+           <script type='text/javascript'>
+               $(document).ready(function () {
+                   var rssFeedLimit = parseInt({!RSSFeedLimit}, 10);
+                   var anchorClose = {!OpenLinksInNewWindow} ? '_blank' : '_self';
+                   $('.rssFeedBlock').rssfeed('{!RSSFeedUrl}', {
+                        limit: rssFeedLimit,
+                        header: false,
+                        dateformat: 'MM/dd',
+                        content: false,
+                        linktarget: anchorClose,
+                        media: false,
+                        ssl: true,
+                        sort: 'date',
+                        sortasc: false
+                   });
+               });               
+          </script>
+   </apex:outputText>
+</apex:component>

@@ -1,0 +1,1964 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>ASI_MFM_AB_Policy_Required__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>AB Policy Required</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ASI_MFM_AllocationMethod__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>if by person, user need to input employee code/amount to allocate the expense
+if by sales/non-sales, user need to input amount to allocate the expense</inlineHelpText>
+        <label>Allocation Method</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>By Person</fullName>
+                    <default>false</default>
+                    <label>By Person</label>
+                </value>
+                <value>
+                    <fullName>Sales/Non-Sales</fullName>
+                    <default>false</default>
+                    <label>Sales/Non-Sales</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>ASI_MFM_Allocation__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>if checked, allocation is mandatory</inlineHelpText>
+        <label>Allocation</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ASI_MFM_BUCode__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF ( RecordType.DeveloperName = &quot;ASI_MFM_CN_Expense_Control_Form&quot; ,  TEXT(ASI_MFM_BU__r.ASI_MFM_L3__c) , &apos;&apos; )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>ETL get value as company code in JDE, eg: 39810</inlineHelpText>
+        <label>BU Code</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_MFM_BU__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>BU</label>
+        <lookupFilter>
+            <active>true</active>
+            <booleanFilter>(1 AND 2) OR 3</booleanFilter>
+            <filterItems>
+                <field>$Source.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>CN Expense Control Form</value>
+            </filterItems>
+            <filterItems>
+                <field>ASI_MFM_BU__c.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>CN BU</value>
+            </filterItems>
+            <filterItems>
+                <field>$Source.RecordTypeId</field>
+                <operation>notEqual</operation>
+                <value>CN Expense Control Form</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>ASI_MFM_BU__c</referenceTo>
+        <relationshipLabel>Expense Control Forms</relationshipLabel>
+        <relationshipName>Expense_Control_Forms</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ASI_MFM_BudgetControlLevel__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>IF by department, validate current department budget.
+IF by expense type, validate department A + B +C total budget, if department A,B,C same value in field &quot;Expense Type&quot;</inlineHelpText>
+        <label>Budget Control Level</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>By Department</fullName>
+                    <default>false</default>
+                    <label>By Department</label>
+                </value>
+                <value>
+                    <fullName>By Expense Type</fullName>
+                    <default>false</default>
+                    <label>By Expense Type</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>ASI_MFM_BudgetControlMethod__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>IF Hard Control = True, CANNOT exceed the remaining budget
+IF Soft Control = False, can exceed the remaining budget
+The value should be same in expense type which &quot;Budget Control Level&quot; is by expense type</inlineHelpText>
+        <label>Budget Control Method</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ASI_MFM_BudgetOwner__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Budget Owner</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Expense_Control_Forms</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ASI_MFM_CIP_Logic__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Apply CIP Logic if True</inlineHelpText>
+        <label>CIP Logic</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ASI_MFM_Department_Category__c</fullName>
+        <externalId>false</externalId>
+        <formula>ASI_MFM_PP_Category__r.ASI_MFM_Department_Attribute__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>ETL get this value as Cost Center</inlineHelpText>
+        <label>Department  Category</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_MFM_Department_Code__c</fullName>
+        <externalId>false</externalId>
+        <formula>ASI_MFM_Sub_Brand__r.ASI_MFM_Sub_brand_Code__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>ETL get this value as Cost Center</inlineHelpText>
+        <label>Department  Code</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_MFM_Department__c</fullName>
+        <externalId>false</externalId>
+        <label>Department</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_MFM_ExpenseType__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>IF field &quot;Budget Control Level&quot; is by Expense Type, the calculation group by logic will use this field</inlineHelpText>
+        <label>Expense Type</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_MFM_JDE_Adjustment_Schedule__c</fullName>
+        <externalId>false</externalId>
+        <label>JDE Adjustment Schedule</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_MFM_Mandatory_Contract_Details__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Mandatory Contract Details</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ASI_MFM_Mark_Up_Value__c</fullName>
+        <externalId>false</externalId>
+        <label>Mark Up Value</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>6</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_MFM_Module__c</fullName>
+        <externalId>false</externalId>
+        <label>Module</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Free Goods</fullName>
+                    <default>false</default>
+                    <label>Free Goods</label>
+                </value>
+                <value>
+                    <fullName>Consumer A&amp;P Payment</fullName>
+                    <default>false</default>
+                    <label>Consumer A&amp;P Payment</label>
+                </value>
+                <value>
+                    <fullName>Trade A&amp;P Payment</fullName>
+                    <default>false</default>
+                    <label>Trade A&amp;P Payment</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>ASI_MFM_Only_Renovation_Furniture__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>If checked, this expense type is active in CAPX form</inlineHelpText>
+        <label>Only Renovation &amp; Furniture</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ASI_MFM_PP_Category__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>PP Category</label>
+        <referenceTo>ASI_MFM_PP_Category__c</referenceTo>
+        <relationshipLabel>Expense Control Forms</relationshipLabel>
+        <relationshipName>Expense_Control_Forms</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ASI_MFM_PercentageAmount__c</fullName>
+        <externalId>false</externalId>
+        <label>Percentage/Amount</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Amount</fullName>
+                    <default>false</default>
+                    <label>Amount</label>
+                </value>
+                <value>
+                    <fullName>Percentage</fullName>
+                    <default>false</default>
+                    <label>Percentage</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>ASI_MFM_Reclassification__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Select specific value for the expense type, user can select the value when do payment</inlineHelpText>
+        <label>Reclassification</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Utilities</fullName>
+                    <default>false</default>
+                    <label>Utilities</label>
+                </value>
+                <value>
+                    <fullName>Maintenance &amp; Repairs</fullName>
+                    <default>false</default>
+                    <label>Maintenance &amp; Repairs</label>
+                </value>
+                <value>
+                    <fullName>Office Supply/Exp-General</fullName>
+                    <default>false</default>
+                    <label>Office Supply/Exp-General</label>
+                </value>
+                <value>
+                    <fullName>Telephone/Teletype/Fax</fullName>
+                    <default>false</default>
+                    <label>Telephone/Teletype/Fax</label>
+                </value>
+                <value>
+                    <fullName>Oth Office Operating Exp</fullName>
+                    <default>false</default>
+                    <label>Oth Office Operating Exp</label>
+                </value>
+                <value>
+                    <fullName>Rental Management Cost</fullName>
+                    <default>false</default>
+                    <label>Rental Management Cost</label>
+                </value>
+                <value>
+                    <fullName>Building Rental</fullName>
+                    <default>false</default>
+                    <label>Building Rental</label>
+                </value>
+                <value>
+                    <fullName>Internal Refer</fullName>
+                    <default>false</default>
+                    <label>Internal Refer</label>
+                </value>
+                <value>
+                    <fullName>External Recruitment</fullName>
+                    <default>false</default>
+                    <label>External Recruitment</label>
+                </value>
+                <value>
+                    <fullName>LTM/MC Meeting</fullName>
+                    <default>false</default>
+                    <label>LTM/MC Meeting</label>
+                </value>
+                <value>
+                    <fullName>Department Meeting</fullName>
+                    <default>false</default>
+                    <label>Department Meeting</label>
+                </value>
+                <value>
+                    <fullName>Regional Meeting</fullName>
+                    <default>false</default>
+                    <label>Regional Meeting</label>
+                </value>
+                <value>
+                    <fullName>Workshop (Cross Function)</fullName>
+                    <default>false</default>
+                    <label>Workshop (Cross Function)</label>
+                </value>
+                <value>
+                    <fullName>BDM Meeting</fullName>
+                    <default>false</default>
+                    <label>BDM Meeting</label>
+                </value>
+                <value>
+                    <fullName>Annual Dinner</fullName>
+                    <default>false</default>
+                    <label>Annual Dinner</label>
+                </value>
+                <value>
+                    <fullName>Team Building</fullName>
+                    <default>false</default>
+                    <label>Team Building</label>
+                </value>
+                <value>
+                    <fullName>Employee Gift</fullName>
+                    <default>false</default>
+                    <label>Employee Gift</label>
+                </value>
+                <value>
+                    <fullName>Award</fullName>
+                    <default>false</default>
+                    <label>Award</label>
+                </value>
+                <value>
+                    <fullName>Health Check</fullName>
+                    <default>false</default>
+                    <label>Health Check</label>
+                </value>
+                <value>
+                    <fullName>Others</fullName>
+                    <default>false</default>
+                    <label>Others</label>
+                </value>
+                <value>
+                    <fullName>Deposit</fullName>
+                    <default>false</default>
+                    <label>Deposit</label>
+                </value>
+                <value>
+                    <fullName>Hunter Fee</fullName>
+                    <default>false</default>
+                    <label>Hunter Fee</label>
+                </value>
+                <value>
+                    <fullName>Service Fee</fullName>
+                    <default>false</default>
+                    <label>Service Fee</label>
+                </value>
+                <value>
+                    <fullName>Advertising Fee</fullName>
+                    <default>false</default>
+                    <label>Advertising Fee</label>
+                </value>
+                <value>
+                    <fullName>Candidate Interview Fee</fullName>
+                    <default>false</default>
+                    <label>Candidate Interview Fee</label>
+                </value>
+                <value>
+                    <fullName>Internal Referral Bonus</fullName>
+                    <default>false</default>
+                    <label>Internal Referral Bonus</label>
+                </value>
+                <value>
+                    <fullName>Taxes and agency fee</fullName>
+                    <default>false</default>
+                    <label>Taxes and agency fee</label>
+                </value>
+                <value>
+                    <fullName>Equipment Rental and other expense</fullName>
+                    <default>false</default>
+                    <label>Equipment Rental and other expense</label>
+                </value>
+                <value>
+                    <fullName>Training Airfare</fullName>
+                    <default>false</default>
+                    <label>Training Airfare</label>
+                </value>
+                <value>
+                    <fullName>Training Meal</fullName>
+                    <default>false</default>
+                    <label>Training Meal</label>
+                </value>
+                <value>
+                    <fullName>Training Hotel</fullName>
+                    <default>false</default>
+                    <label>Training Hotel</label>
+                </value>
+                <value>
+                    <fullName>租车费</fullName>
+                    <default>false</default>
+                    <label>租车费</label>
+                </value>
+                <value>
+                    <fullName>司机工资</fullName>
+                    <default>false</default>
+                    <label>司机工资</label>
+                </value>
+                <value>
+                    <fullName>司机个人报销（包括加班费、加班餐费、手机费、差旅）</fullName>
+                    <default>false</default>
+                    <label>司机个人报销（包括加班费、加班餐费、手机费、差旅）</label>
+                </value>
+                <value>
+                    <fullName>商务车油费</fullName>
+                    <default>false</default>
+                    <label>商务车油费</label>
+                </value>
+                <value>
+                    <fullName>商务车停车费，路桥费及其他</fullName>
+                    <default>false</default>
+                    <label>商务车停车费，路桥费及其他</label>
+                </value>
+                <value>
+                    <fullName>Car Leasing</fullName>
+                    <default>false</default>
+                    <label>Car Leasing</label>
+                </value>
+                <value>
+                    <fullName>Driver Salary</fullName>
+                    <default>false</default>
+                    <label>Driver Salary</label>
+                </value>
+                <value>
+                    <fullName>Driver Expense</fullName>
+                    <default>false</default>
+                    <label>Driver Expense</label>
+                </value>
+                <value>
+                    <fullName>Petrol Fee</fullName>
+                    <default>false</default>
+                    <label>Petrol Fee</label>
+                </value>
+                <value>
+                    <fullName>Toll Fee</fullName>
+                    <default>false</default>
+                    <label>Toll Fee</label>
+                </value>
+                <value>
+                    <fullName>Parking Fee</fullName>
+                    <default>false</default>
+                    <label>Parking Fee</label>
+                </value>
+                <value>
+                    <fullName>Car M&amp;R</fullName>
+                    <default>false</default>
+                    <label>Car M&amp;R</label>
+                </value>
+                <value>
+                    <fullName>Insurance &amp; Others</fullName>
+                    <default>false</default>
+                    <label>Insurance &amp; Others</label>
+                </value>
+                <value>
+                    <fullName>Maintenance &amp; Repairs - 3rd Party</fullName>
+                    <default>false</default>
+                    <label>Maintenance &amp; Repairs - 3rd Party</label>
+                </value>
+                <value>
+                    <fullName>Maintenance &amp; Repairs - Cleaning</fullName>
+                    <default>false</default>
+                    <label>Maintenance &amp; Repairs - Cleaning</label>
+                </value>
+                <value>
+                    <fullName>Maintenance &amp; Repairs - Others</fullName>
+                    <default>false</default>
+                    <label>Maintenance &amp; Repairs - Others</label>
+                </value>
+                <value>
+                    <fullName>Office Supply/Exp - General</fullName>
+                    <default>false</default>
+                    <label>Office Supply/Exp - General</label>
+                </value>
+                <value>
+                    <fullName>Office Supply/Exp - Others</fullName>
+                    <default>false</default>
+                    <label>Office Supply/Exp - Others</label>
+                </value>
+                <value>
+                    <fullName>Equipment Leasing</fullName>
+                    <default>false</default>
+                    <label>Equipment Leasing</label>
+                </value>
+                <value>
+                    <fullName>Equipment Consumables</fullName>
+                    <default>false</default>
+                    <label>Equipment Consumables</label>
+                </value>
+                <value>
+                    <fullName>CNY/Christmas party/Family day/Women&apos;s Day</fullName>
+                    <default>false</default>
+                    <label>CNY/Christmas party/Family day/Women&apos;s Day</label>
+                </value>
+                <value>
+                    <fullName>Team Sports</fullName>
+                    <default>false</default>
+                    <label>Team Sports</label>
+                </value>
+                <value>
+                    <fullName>Born/Sick/Death</fullName>
+                    <default>false</default>
+                    <label>Born/Sick/Death</label>
+                </value>
+                <value>
+                    <fullName>Office Supply/Exp - 办公文具</fullName>
+                    <default>false</default>
+                    <label>Office Supply/Exp - 办公文具</label>
+                </value>
+                <value>
+                    <fullName>Office Supply/Exp - 办公电器</fullName>
+                    <default>false</default>
+                    <label>Office Supply/Exp - 办公电器</label>
+                </value>
+                <value>
+                    <fullName>Office Supply/Exp - 办公食品</fullName>
+                    <default>false</default>
+                    <label>Office Supply/Exp - 办公食品</label>
+                </value>
+                <value>
+                    <fullName>Office Supply/Exp - 办公药品</fullName>
+                    <default>false</default>
+                    <label>Office Supply/Exp - 办公药品</label>
+                </value>
+                <value>
+                    <fullName>Office Supply/Exp - 绿植费</fullName>
+                    <default>false</default>
+                    <label>Office Supply/Exp - 绿植费</label>
+                </value>
+                <value>
+                    <fullName>Office Supply/Exp - 饮用水</fullName>
+                    <default>false</default>
+                    <label>Office Supply/Exp - 饮用水</label>
+                </value>
+                <value>
+                    <fullName>Office Supply/Exp - 办公日常用品</fullName>
+                    <default>false</default>
+                    <label>Office Supply/Exp - 办公日常用品</label>
+                </value>
+                <value>
+                    <fullName>Other Office Supply - 名片&amp;纸品印刷</fullName>
+                    <default>false</default>
+                    <label>Other Office Supply - 名片&amp;纸品印刷</label>
+                </value>
+                <value>
+                    <fullName>Other Office Supply - 报刊杂志订阅</fullName>
+                    <default>false</default>
+                    <label>Other Office Supply - 报刊杂志订阅</label>
+                </value>
+                <value>
+                    <fullName>Other Office Supply - 证照年审费及其他</fullName>
+                    <default>false</default>
+                    <label>Other Office Supply - 证照年审费及其他</label>
+                </value>
+                <value>
+                    <fullName>Staff Activity</fullName>
+                    <default>false</default>
+                    <label>Staff Activity</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ASI_MFM_Rental_Request_Expense__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>if checked, this expense type is active rental request form</inlineHelpText>
+        <label>Rental Request Expense</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ASI_MFM_Sub_Brand__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Sub-Brand</label>
+        <referenceTo>ASI_MFM_Sub_brand__c</referenceTo>
+        <relationshipLabel>Expense Control Forms</relationshipLabel>
+        <relationshipName>Expense_Control_Forms</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ASI_MFM_Subledger_Options__c</fullName>
+        <externalId>false</externalId>
+        <label>Subledger Options</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Venue Rental Cost</fullName>
+                    <default>false</default>
+                    <label>Venue Rental Cost</label>
+                </value>
+                <value>
+                    <fullName>Meal Cost</fullName>
+                    <default>false</default>
+                    <label>Meal Cost</label>
+                </value>
+                <value>
+                    <fullName>Accommodation Cost</fullName>
+                    <default>false</default>
+                    <label>Accommodation Cost</label>
+                </value>
+                <value>
+                    <fullName>MV Cost</fullName>
+                    <default>false</default>
+                    <label>MV Cost</label>
+                </value>
+                <value>
+                    <fullName>绿化费</fullName>
+                    <default>false</default>
+                    <label>绿化费</label>
+                </value>
+                <value>
+                    <fullName>Car Rental Cost</fullName>
+                    <default>false</default>
+                    <label>Car Rental Cost</label>
+                </value>
+                <value>
+                    <fullName>租车费</fullName>
+                    <default>false</default>
+                    <label>租车费</label>
+                </value>
+                <value>
+                    <fullName>司机工资</fullName>
+                    <default>false</default>
+                    <label>司机工资</label>
+                </value>
+                <value>
+                    <fullName>司机个人报销（包括加班费、加班餐费、手机费、差旅）</fullName>
+                    <default>false</default>
+                    <label>司机个人报销（包括加班费、加班餐费、手机费、差旅）</label>
+                </value>
+                <value>
+                    <fullName>商务车油费</fullName>
+                    <default>false</default>
+                    <label>商务车油费</label>
+                </value>
+                <value>
+                    <fullName>商务车停车费, 路桥费及其他 </fullName>
+                    <default>false</default>
+                    <label>商务车停车费, 路桥费及其他 </label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ASI_MFM_Subledger__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>if checked, reclassification is mandatory when do payment</inlineHelpText>
+        <label>Subledger</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ASI_MFM_Tax_Saving_Formula__c</fullName>
+        <externalId>false</externalId>
+        <label>Tax Saving Formula</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_MFM_Tax_Saving_Purpose__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>The backend Program uses this value as key, please do not change.</inlineHelpText>
+        <label>Tax Saving Purpose</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_MFM_is_IIT__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>is IIT</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>Expense Control Form</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>ASI_MFM_ExpenseType__c</columns>
+        <columns>ASI_MFM_Department_Category__c</columns>
+        <columns>ASI_MFM_Sub_Brand__c</columns>
+        <columns>ASI_MFM_Department__c</columns>
+        <columns>ASI_MFM_Department_Code__c</columns>
+        <columns>ASI_MFM_BU__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>ASI_MFM_Rental_Request_Expense__c</columns>
+        <columns>ASI_MFM_BUCode__c</columns>
+        <columns>ASI_MFM_BudgetControlLevel__c</columns>
+        <columns>ASI_MFM_BudgetControlMethod__c</columns>
+        <columns>ASI_MFM_BudgetOwner__c</columns>
+        <columns>ASI_MFM_Allocation__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>ASI_MFM_Expense_Control_Form__c.ASI_MFM_CN_Expense_Control_Form</value>
+        </filters>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>All_qj</fullName>
+        <columns>ASI_MFM_Module__c</columns>
+        <columns>NAME</columns>
+        <columns>ASI_MFM_JDE_Adjustment_Schedule__c</columns>
+        <columns>ASI_MFM_Tax_Saving_Purpose__c</columns>
+        <columns>ASI_MFM_AB_Policy_Required__c</columns>
+        <columns>ASI_MFM_is_IIT__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>ASI_MFM_Expense_Control_Form__c.ASI_MFM_CN_Tax_Saving_Control_Form</value>
+        </filters>
+        <label>All-Tax Saving</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Automobile</fullName>
+        <columns>NAME</columns>
+        <columns>ASI_MFM_ExpenseType__c</columns>
+        <columns>ASI_MFM_Department_Category__c</columns>
+        <columns>ASI_MFM_Sub_Brand__c</columns>
+        <columns>ASI_MFM_Department__c</columns>
+        <columns>ASI_MFM_Department_Code__c</columns>
+        <columns>ASI_MFM_BU__c</columns>
+        <columns>ASI_MFM_Rental_Request_Expense__c</columns>
+        <columns>ASI_MFM_BUCode__c</columns>
+        <columns>ASI_MFM_BudgetControlLevel__c</columns>
+        <columns>ASI_MFM_BudgetControlMethod__c</columns>
+        <columns>ASI_MFM_BudgetOwner__c</columns>
+        <columns>ASI_MFM_Allocation__c</columns>
+        <columns>ASI_MFM_Subledger__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>ASI_MFM_Expense_Control_Form__c.ASI_MFM_CN_Expense_Control_Form</value>
+        </filters>
+        <filters>
+            <field>NAME</field>
+            <operation>contains</operation>
+            <value>Automobile</value>
+        </filters>
+        <label>Structure Cost - Automobile</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>BuildingRental</fullName>
+        <columns>NAME</columns>
+        <columns>ASI_MFM_ExpenseType__c</columns>
+        <columns>ASI_MFM_Department_Category__c</columns>
+        <columns>ASI_MFM_Sub_Brand__c</columns>
+        <columns>ASI_MFM_Department__c</columns>
+        <columns>ASI_MFM_Department_Code__c</columns>
+        <columns>ASI_MFM_BU__c</columns>
+        <columns>ASI_MFM_Rental_Request_Expense__c</columns>
+        <columns>ASI_MFM_Mandatory_Contract_Details__c</columns>
+        <columns>ASI_MFM_BUCode__c</columns>
+        <columns>ASI_MFM_BudgetControlLevel__c</columns>
+        <columns>ASI_MFM_BudgetControlMethod__c</columns>
+        <columns>ASI_MFM_BudgetOwner__c</columns>
+        <columns>ASI_MFM_Allocation__c</columns>
+        <columns>ASI_MFM_Reclassification__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>ASI_MFM_Expense_Control_Form__c.ASI_MFM_CN_Expense_Control_Form</value>
+        </filters>
+        <filters>
+            <field>ASI_MFM_ExpenseType__c</field>
+            <operation>contains</operation>
+            <value>building</value>
+        </filters>
+        <label>Structure Cost - Building Rental</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Furniture</fullName>
+        <columns>NAME</columns>
+        <columns>ASI_MFM_ExpenseType__c</columns>
+        <columns>ASI_MFM_Department_Category__c</columns>
+        <columns>ASI_MFM_Sub_Brand__c</columns>
+        <columns>ASI_MFM_Department__c</columns>
+        <columns>ASI_MFM_Department_Code__c</columns>
+        <columns>ASI_MFM_BU__c</columns>
+        <columns>ASI_MFM_Rental_Request_Expense__c</columns>
+        <columns>ASI_MFM_BUCode__c</columns>
+        <columns>ASI_MFM_BudgetControlLevel__c</columns>
+        <columns>ASI_MFM_BudgetControlMethod__c</columns>
+        <columns>ASI_MFM_BudgetOwner__c</columns>
+        <columns>ASI_MFM_Allocation__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>ASI_MFM_Expense_Control_Form__c.ASI_MFM_CN_Expense_Control_Form</value>
+        </filters>
+        <filters>
+            <field>ASI_MFM_ExpenseType__c</field>
+            <operation>contains</operation>
+            <value>Furniture</value>
+        </filters>
+        <label>Structure Cost - Furniture</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Insurance</fullName>
+        <columns>NAME</columns>
+        <columns>ASI_MFM_ExpenseType__c</columns>
+        <columns>ASI_MFM_BUCode__c</columns>
+        <columns>ASI_MFM_Department_Category__c</columns>
+        <columns>ASI_MFM_Department_Code__c</columns>
+        <columns>ASI_MFM_Sub_Brand__c</columns>
+        <columns>ASI_MFM_Department__c</columns>
+        <columns>ASI_MFM_BU__c</columns>
+        <columns>ASI_MFM_Rental_Request_Expense__c</columns>
+        <columns>ASI_MFM_BudgetControlLevel__c</columns>
+        <columns>ASI_MFM_BudgetControlMethod__c</columns>
+        <columns>ASI_MFM_BudgetOwner__c</columns>
+        <columns>ASI_MFM_Allocation__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>ASI_MFM_Expense_Control_Form__c.ASI_MFM_CN_Expense_Control_Form</value>
+        </filters>
+        <filters>
+            <field>ASI_MFM_ExpenseType__c</field>
+            <operation>contains</operation>
+            <value>Insurance</value>
+        </filters>
+        <label>Structure Cost - Insurance</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Interviewing</fullName>
+        <columns>NAME</columns>
+        <columns>ASI_MFM_ExpenseType__c</columns>
+        <columns>ASI_MFM_Department_Category__c</columns>
+        <columns>ASI_MFM_Sub_Brand__c</columns>
+        <columns>ASI_MFM_Department__c</columns>
+        <columns>ASI_MFM_Department_Code__c</columns>
+        <columns>ASI_MFM_BU__c</columns>
+        <columns>ASI_MFM_Rental_Request_Expense__c</columns>
+        <columns>ASI_MFM_BUCode__c</columns>
+        <columns>ASI_MFM_BudgetControlLevel__c</columns>
+        <columns>ASI_MFM_BudgetControlMethod__c</columns>
+        <columns>ASI_MFM_BudgetOwner__c</columns>
+        <columns>ASI_MFM_Allocation__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>ASI_MFM_Expense_Control_Form__c.ASI_MFM_CN_Expense_Control_Form</value>
+        </filters>
+        <filters>
+            <field>ASI_MFM_ExpenseType__c</field>
+            <operation>contains</operation>
+            <value>Interviewing</value>
+        </filters>
+        <label>Structure Cost - Interviewing</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>MeetingFee</fullName>
+        <columns>NAME</columns>
+        <columns>ASI_MFM_ExpenseType__c</columns>
+        <columns>ASI_MFM_BUCode__c</columns>
+        <columns>ASI_MFM_Department_Category__c</columns>
+        <columns>ASI_MFM_Department_Code__c</columns>
+        <columns>ASI_MFM_Sub_Brand__c</columns>
+        <columns>ASI_MFM_Department__c</columns>
+        <columns>ASI_MFM_Rental_Request_Expense__c</columns>
+        <columns>ASI_MFM_BudgetControlLevel__c</columns>
+        <columns>ASI_MFM_BudgetControlMethod__c</columns>
+        <columns>ASI_MFM_BudgetOwner__c</columns>
+        <columns>ASI_MFM_Allocation__c</columns>
+        <columns>ASI_MFM_Reclassification__c</columns>
+        <columns>ASI_MFM_Subledger__c</columns>
+        <columns>ASI_MFM_Subledger_Options__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>ASI_MFM_Expense_Control_Form__c.ASI_MFM_CN_Expense_Control_Form</value>
+        </filters>
+        <filters>
+            <field>ASI_MFM_ExpenseType__c</field>
+            <operation>contains</operation>
+            <value>Meeting Fee</value>
+        </filters>
+        <label>Structure Cost - Meeting Fee</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>OfficeSupply</fullName>
+        <columns>NAME</columns>
+        <columns>ASI_MFM_ExpenseType__c</columns>
+        <columns>ASI_MFM_Department_Category__c</columns>
+        <columns>ASI_MFM_Sub_Brand__c</columns>
+        <columns>ASI_MFM_Department__c</columns>
+        <columns>ASI_MFM_Department_Code__c</columns>
+        <columns>ASI_MFM_BU__c</columns>
+        <columns>ASI_MFM_Rental_Request_Expense__c</columns>
+        <columns>ASI_MFM_BUCode__c</columns>
+        <columns>ASI_MFM_BudgetControlLevel__c</columns>
+        <columns>ASI_MFM_BudgetControlMethod__c</columns>
+        <columns>ASI_MFM_BudgetOwner__c</columns>
+        <columns>ASI_MFM_Allocation__c</columns>
+        <columns>ASI_MFM_Reclassification__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>ASI_MFM_Expense_Control_Form__c.ASI_MFM_CN_Expense_Control_Form</value>
+        </filters>
+        <filters>
+            <field>ASI_MFM_ExpenseType__c</field>
+            <operation>contains</operation>
+            <value>Office Supply</value>
+        </filters>
+        <label>Structure Cost - Office Supply</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Officeequipment</fullName>
+        <columns>NAME</columns>
+        <columns>ASI_MFM_ExpenseType__c</columns>
+        <columns>ASI_MFM_Department_Category__c</columns>
+        <columns>ASI_MFM_Sub_Brand__c</columns>
+        <columns>ASI_MFM_Department__c</columns>
+        <columns>ASI_MFM_Department_Code__c</columns>
+        <columns>ASI_MFM_BU__c</columns>
+        <columns>ASI_MFM_Rental_Request_Expense__c</columns>
+        <columns>ASI_MFM_BUCode__c</columns>
+        <columns>ASI_MFM_BudgetControlLevel__c</columns>
+        <columns>ASI_MFM_BudgetControlMethod__c</columns>
+        <columns>ASI_MFM_BudgetOwner__c</columns>
+        <columns>ASI_MFM_Allocation__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>ASI_MFM_Expense_Control_Form__c.ASI_MFM_CN_Expense_Control_Form</value>
+        </filters>
+        <filters>
+            <field>ASI_MFM_ExpenseType__c</field>
+            <operation>contains</operation>
+            <value>Office equipment</value>
+        </filters>
+        <label>Structure Cost - Office equipment</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>ProfessionalFee</fullName>
+        <columns>NAME</columns>
+        <columns>ASI_MFM_ExpenseType__c</columns>
+        <columns>ASI_MFM_BUCode__c</columns>
+        <columns>ASI_MFM_Department_Category__c</columns>
+        <columns>ASI_MFM_Department_Code__c</columns>
+        <columns>ASI_MFM_Sub_Brand__c</columns>
+        <columns>ASI_MFM_Department__c</columns>
+        <columns>ASI_MFM_BU__c</columns>
+        <columns>ASI_MFM_Rental_Request_Expense__c</columns>
+        <columns>ASI_MFM_BudgetControlLevel__c</columns>
+        <columns>ASI_MFM_BudgetControlMethod__c</columns>
+        <columns>ASI_MFM_BudgetOwner__c</columns>
+        <columns>ASI_MFM_Allocation__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>ASI_MFM_Expense_Control_Form__c.ASI_MFM_CN_Expense_Control_Form</value>
+        </filters>
+        <filters>
+            <field>ASI_MFM_ExpenseType__c</field>
+            <operation>contains</operation>
+            <value>Professional Fee</value>
+        </filters>
+        <label>Structure Cost - Professional Fee</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Renovation</fullName>
+        <columns>NAME</columns>
+        <columns>ASI_MFM_ExpenseType__c</columns>
+        <columns>ASI_MFM_Department_Category__c</columns>
+        <columns>ASI_MFM_Sub_Brand__c</columns>
+        <columns>ASI_MFM_Department__c</columns>
+        <columns>ASI_MFM_Department_Code__c</columns>
+        <columns>ASI_MFM_BU__c</columns>
+        <columns>ASI_MFM_CIP_Logic__c</columns>
+        <columns>ASI_MFM_Only_Renovation_Furniture__c</columns>
+        <columns>ASI_MFM_BUCode__c</columns>
+        <columns>ASI_MFM_BudgetControlLevel__c</columns>
+        <columns>ASI_MFM_BudgetControlMethod__c</columns>
+        <columns>ASI_MFM_BudgetOwner__c</columns>
+        <columns>ASI_MFM_Allocation__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>ASI_MFM_Expense_Control_Form__c.ASI_MFM_CN_Expense_Control_Form</value>
+        </filters>
+        <filters>
+            <field>ASI_MFM_ExpenseType__c</field>
+            <operation>contains</operation>
+            <value>Renovation</value>
+        </filters>
+        <label>Structure Cost - Renovation</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>StaffRecreation</fullName>
+        <columns>NAME</columns>
+        <columns>ASI_MFM_ExpenseType__c</columns>
+        <columns>ASI_MFM_BUCode__c</columns>
+        <columns>ASI_MFM_Department_Category__c</columns>
+        <columns>ASI_MFM_Department_Code__c</columns>
+        <columns>ASI_MFM_Sub_Brand__c</columns>
+        <columns>ASI_MFM_Department__c</columns>
+        <columns>ASI_MFM_BU__c</columns>
+        <columns>ASI_MFM_Reclassification__c</columns>
+        <columns>ASI_MFM_Rental_Request_Expense__c</columns>
+        <columns>ASI_MFM_BudgetControlLevel__c</columns>
+        <columns>ASI_MFM_BudgetControlMethod__c</columns>
+        <columns>ASI_MFM_BudgetOwner__c</columns>
+        <columns>ASI_MFM_Allocation__c</columns>
+        <columns>ASI_MFM_Subledger__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>ASI_MFM_Expense_Control_Form__c.ASI_MFM_CN_Expense_Control_Form</value>
+        </filters>
+        <filters>
+            <field>ASI_MFM_ExpenseType__c</field>
+            <operation>contains</operation>
+            <value>Staff Recreation</value>
+        </filters>
+        <label>Structure Cost - Staff Recreation</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>StructureCostAuditFee</fullName>
+        <columns>NAME</columns>
+        <columns>ASI_MFM_ExpenseType__c</columns>
+        <columns>ASI_MFM_BUCode__c</columns>
+        <columns>ASI_MFM_Department_Category__c</columns>
+        <columns>ASI_MFM_Department_Code__c</columns>
+        <columns>ASI_MFM_Sub_Brand__c</columns>
+        <columns>ASI_MFM_Department__c</columns>
+        <columns>ASI_MFM_BU__c</columns>
+        <columns>ASI_MFM_Rental_Request_Expense__c</columns>
+        <columns>ASI_MFM_BudgetControlLevel__c</columns>
+        <columns>ASI_MFM_BudgetControlMethod__c</columns>
+        <columns>ASI_MFM_BudgetOwner__c</columns>
+        <columns>ASI_MFM_Allocation__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>ASI_MFM_Expense_Control_Form__c.ASI_MFM_CN_Expense_Control_Form</value>
+        </filters>
+        <filters>
+            <field>ASI_MFM_ExpenseType__c</field>
+            <operation>contains</operation>
+            <value>Audit</value>
+        </filters>
+        <label>Structure Cost - Audit Fee</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Structure_Cost_Utilities</fullName>
+        <columns>NAME</columns>
+        <columns>ASI_MFM_ExpenseType__c</columns>
+        <columns>ASI_MFM_Department_Category__c</columns>
+        <columns>ASI_MFM_Sub_Brand__c</columns>
+        <columns>ASI_MFM_Department__c</columns>
+        <columns>ASI_MFM_Department_Code__c</columns>
+        <columns>ASI_MFM_BU__c</columns>
+        <columns>ASI_MFM_Rental_Request_Expense__c</columns>
+        <columns>ASI_MFM_Mandatory_Contract_Details__c</columns>
+        <columns>ASI_MFM_BUCode__c</columns>
+        <columns>ASI_MFM_BudgetControlLevel__c</columns>
+        <columns>ASI_MFM_BudgetControlMethod__c</columns>
+        <columns>ASI_MFM_BudgetOwner__c</columns>
+        <columns>ASI_MFM_Allocation__c</columns>
+        <columns>ASI_MFM_Reclassification__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>ASI_MFM_Expense_Control_Form__c.ASI_MFM_CN_Expense_Control_Form</value>
+        </filters>
+        <filters>
+            <field>ASI_MFM_ExpenseType__c</field>
+            <operation>contains</operation>
+            <value>utili</value>
+        </filters>
+        <label>Structure Cost - Utilities</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>TrainingAirfareMealH</fullName>
+        <columns>NAME</columns>
+        <columns>ASI_MFM_ExpenseType__c</columns>
+        <columns>ASI_MFM_Sub_Brand__c</columns>
+        <columns>ASI_MFM_BUCode__c</columns>
+        <columns>ASI_MFM_Department_Category__c</columns>
+        <columns>ASI_MFM_Department_Code__c</columns>
+        <columns>ASI_MFM_Department__c</columns>
+        <columns>ASI_MFM_BU__c</columns>
+        <columns>ASI_MFM_Rental_Request_Expense__c</columns>
+        <columns>ASI_MFM_BudgetControlLevel__c</columns>
+        <columns>ASI_MFM_BudgetControlMethod__c</columns>
+        <columns>ASI_MFM_BudgetOwner__c</columns>
+        <columns>ASI_MFM_Allocation__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>ASI_MFM_Expense_Control_Form__c.ASI_MFM_CN_Expense_Control_Form</value>
+        </filters>
+        <filters>
+            <field>ASI_MFM_ExpenseType__c</field>
+            <operation>contains</operation>
+            <value>Airfare</value>
+        </filters>
+        <label>Structure Cost - Training/Airfare/Meal/H</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>TrainingCourse</fullName>
+        <columns>NAME</columns>
+        <columns>ASI_MFM_ExpenseType__c</columns>
+        <columns>ASI_MFM_BUCode__c</columns>
+        <columns>ASI_MFM_Department_Category__c</columns>
+        <columns>ASI_MFM_Department_Code__c</columns>
+        <columns>ASI_MFM_Sub_Brand__c</columns>
+        <columns>ASI_MFM_Department__c</columns>
+        <columns>ASI_MFM_BU__c</columns>
+        <columns>ASI_MFM_Rental_Request_Expense__c</columns>
+        <columns>ASI_MFM_BudgetControlLevel__c</columns>
+        <columns>ASI_MFM_BudgetControlMethod__c</columns>
+        <columns>ASI_MFM_BudgetOwner__c</columns>
+        <columns>ASI_MFM_Allocation__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>ASI_MFM_Expense_Control_Form__c.ASI_MFM_CN_Expense_Control_Form</value>
+        </filters>
+        <filters>
+            <field>ASI_MFM_ExpenseType__c</field>
+            <operation>contains</operation>
+            <value>Training Course</value>
+        </filters>
+        <label>Structure Cost - Training Course</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <label>Expense Type Name</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Expense Control Forms</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>ASI_MFM_CN_Expense_Control_Form</fullName>
+        <active>true</active>
+        <label>CN Expense Control Form</label>
+        <picklistValues>
+            <picklist>ASI_MFM_AllocationMethod__c</picklist>
+            <values>
+                <fullName>By Person</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sales%2FNon-Sales</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ASI_MFM_BudgetControlLevel__c</picklist>
+            <values>
+                <fullName>By Department</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>By Expense Type</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ASI_MFM_PercentageAmount__c</picklist>
+            <values>
+                <fullName>Amount</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Percentage</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ASI_MFM_Reclassification__c</picklist>
+            <values>
+                <fullName>Advertising Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Annual Dinner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Award</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BDM Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Born%2FSick%2FDeath</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Building Rental</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CNY%2FChristmas party%2FFamily day%2FWomen%27s Day</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Candidate Interview Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Car Leasing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Car M%26R</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Department Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Deposit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Driver Expense</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Driver Salary</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Employee Gift</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Equipment Consumables</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Equipment Leasing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Equipment Rental and other expense</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>External Recruitment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Health Check</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hunter Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Insurance %26 Others</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Internal Refer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Internal Referral Bonus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LTM%2FMC Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Maintenance %26 Repairs</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Maintenance %26 Repairs - 3rd Party</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Maintenance %26 Repairs - Cleaning</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Maintenance %26 Repairs - Others</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Office Supply%2FExp - General</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Office Supply%2FExp - Others</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Office Supply%2FExp - 办公文具</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Office Supply%2FExp - 办公日常用品</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Office Supply%2FExp - 办公电器</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Office Supply%2FExp - 办公药品</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Office Supply%2FExp - 办公食品</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Office Supply%2FExp - 绿植费</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Office Supply%2FExp - 饮用水</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Office Supply%2FExp-General</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oth Office Operating Exp</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other Office Supply - 名片%26纸品印刷</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other Office Supply - 报刊杂志订阅</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other Office Supply - 证照年审费及其他</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Others</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Parking Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Petrol Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Regional Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rental Management Cost</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Staff Activity</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Taxes and agency fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Team Building</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Team Sports</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Telephone%2FTeletype%2FFax</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Toll Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Training Airfare</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Training Hotel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Training Meal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Utilities</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Workshop %28Cross Function%29</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ASI_MFM_Subledger_Options__c</picklist>
+            <values>
+                <fullName>Accommodation Cost</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Car Rental Cost</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MV Cost</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Meal Cost</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Venue Rental Cost</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>ASI_MFM_CN_Tax_Saving_Control_Form</fullName>
+        <active>true</active>
+        <label>CN Tax Saving Control Form</label>
+        <picklistValues>
+            <picklist>ASI_MFM_AllocationMethod__c</picklist>
+            <values>
+                <fullName>By Person</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sales%2FNon-Sales</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ASI_MFM_BudgetControlLevel__c</picklist>
+            <values>
+                <fullName>By Department</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>By Expense Type</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ASI_MFM_Module__c</picklist>
+            <values>
+                <fullName>Consumer A%26P Payment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Free Goods</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trade A%26P Payment</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ASI_MFM_PercentageAmount__c</picklist>
+            <values>
+                <fullName>Amount</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Percentage</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ASI_MFM_Reclassification__c</picklist>
+            <values>
+                <fullName>Advertising Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Annual Dinner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Award</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BDM Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Born%2FSick%2FDeath</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Building Rental</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CNY%2FChristmas party%2FFamily day%2FWomen%27s Day</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Candidate Interview Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Car Leasing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Car M%26R</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Department Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Deposit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Driver Expense</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Driver Salary</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Employee Gift</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Equipment Consumables</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Equipment Leasing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Equipment Rental and other expense</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>External Recruitment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Health Check</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hunter Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Insurance %26 Others</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Internal Refer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Internal Referral Bonus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LTM%2FMC Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Maintenance %26 Repairs</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Maintenance %26 Repairs - 3rd Party</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Maintenance %26 Repairs - Cleaning</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Maintenance %26 Repairs - Others</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Office Supply%2FExp - General</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Office Supply%2FExp - Others</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Office Supply%2FExp-General</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oth Office Operating Exp</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Others</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Parking Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Petrol Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Regional Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rental Management Cost</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Taxes and agency fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Team Building</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Team Sports</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Telephone%2FTeletype%2FFax</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Toll Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Training Airfare</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Training Hotel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Training Meal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Utilities</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Workshop %28Cross Function%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>司机个人报销%EF%BC%88包括加班费%E3%80%81加班餐费%E3%80%81手机费%E3%80%81差旅%EF%BC%89</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>司机工资</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>商务车停车费%EF%BC%8C路桥费及其他</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>商务车油费</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>租车费</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ASI_MFM_Subledger_Options__c</picklist>
+            <values>
+                <fullName>Accommodation Cost</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Car Rental Cost</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MV Cost</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Meal Cost</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Venue Rental Cost</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>司机个人报销%EF%BC%88包括加班费%E3%80%81加班餐费%E3%80%81手机费%E3%80%81差旅%EF%BC%89</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>司机工资</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>商务车停车费%2C%C2%A0路桥费及其他%C2%A0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>商务车油费</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>租车费</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>绿化费</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts/>
+    <sharingModel>Private</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

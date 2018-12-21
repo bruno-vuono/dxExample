@@ -1,0 +1,30 @@
+<apex:page showHeader="false">
+<html>
+<head>
+    <title>{!$Label.ESN_MB_AppName}</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <apex:includeScript value="{!urlfor($Resource.ESN_MB_Theme_Core, '/js/jquery-1.11.1.min.js')}"/> 
+    <apex:includeScript value="{!urlfor($Resource.ESN_MB_Theme_Core, '/js/iframeResizer.contentWindow.min.js')}"/> 
+    <LINK href="{!urlfor($Resource.ESN_MB_Theme_Core, '/css/pages/chatterfeed.css')}" rel="stylesheet" type="text/css" /> 
+   </head>
+<body>
+    
+    <chatter:feed entityId="{!$CurrentPage.parameters.Id}" showPublisher="true"></chatter:feed>
+    <apex:includeScript value="{!urlfor($Resource.ESN_MB_Theme_Core, '/js/pages/chatterfeed.js')}"/>
+       <script>
+            //Remove dynmic link to user links
+        	$( ".actorentitylink" ).hover(function() {
+  				$(this).css({ "cursor": "default"});
+                $(this).css({ "text-decoration": "none"});
+                $(this).attr("href", "#")
+			});
+        	$(".chatter-avatar:parent").hover(function() { 
+                $(this).css({ "cursor": "default"});
+                $(this).closest('a').attr("href", "#");
+            });
+        
+        </script>
+</body>
+</html>
+</apex:page>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConnectedApp xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contactEmail>Michael.Joo@pernod-ricard.com</contactEmail>
+    <description>SharePoint integration for PWB intranet.</description>
+    <label>PWB SharePoint WebParts6</label>
+    <oauthConfig>
+        <callbackUrl>oob</callbackUrl>
+        <consumerKey>3MVG9qQjGkWUbcrFTIsUBxAfZQq5NAUJpxd_YHPU79wdqysFdJVNdNdmXAY30_OAPW0TzBiqSF25NSful2NHy</consumerKey>
+        <scopes>Basic</scopes>
+        <scopes>Api</scopes>
+        <scopes>Web</scopes>
+        <scopes>Full</scopes>
+        <scopes>Chatter</scopes>
+        <scopes>CustomApplications</scopes>
+        <scopes>RefreshToken</scopes>
+    </oauthConfig>
+</ConnectedApp>

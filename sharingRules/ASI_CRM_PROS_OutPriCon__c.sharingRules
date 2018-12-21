@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>ASI_CRM_Share_Read_Write_access_to_MY_PROS_Setup</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Share Read Write access to MY PROS Setup</label>
+        <sharedTo>
+            <group>ASI_CRM_MY_PROS_Setup</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>ASI CRM MY Outlet Prioritization</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+</SharingRules>

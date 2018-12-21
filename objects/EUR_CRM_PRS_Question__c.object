@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <content>EUR_CRM_PRSQuestionsPage</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>EUR_CRM_Country_Code__c</fullName>
+        <externalId>false</externalId>
+        <formula>RIGHT(LEFT(RecordType.DeveloperName,6),2)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Country Code</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_External_ID__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <externalId>true</externalId>
+        <label>External ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_PRS_Question_Set__c</fullName>
+        <externalId>false</externalId>
+        <label>PRS Question Set</label>
+        <referenceTo>EUR_CRM_PRS_Question_Set__c</referenceTo>
+        <relationshipLabel>PRS Questions (EU)</relationshipLabel>
+        <relationshipName>EUR_CRM_PRS_Question</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Question_Sequence__c</fullName>
+        <externalId>false</externalId>
+        <label>Question Sequence</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Question_Statement__c</fullName>
+        <externalId>false</externalId>
+        <label>Question Statement</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Question_Statement_in_English__c</fullName>
+        <externalId>false</externalId>
+        <label>Question Statement in English</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Question_Weight__c</fullName>
+        <externalId>false</externalId>
+        <label>Question Weight</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Weight_Has_Changed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Weight Has Changed</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>PRS Question (EU)</label>
+    <listViews>
+        <fullName>EUR_BE_All_PRS_Questions_View</fullName>
+        <booleanFilter>1 OR 2 OR 3</booleanFilter>
+        <columns>NAME</columns>
+        <columns>EUR_CRM_Question_Statement__c</columns>
+        <columns>OBJECT_ID</columns>
+        <columns>EUR_CRM_Country_Code__c</columns>
+        <columns>EUR_CRM_External_ID__c</columns>
+        <columns>EUR_CRM_Weight_Has_Changed__c</columns>
+        <columns>EUR_CRM_PRS_Question_Set__c</columns>
+        <columns>EUR_CRM_Question_Sequence__c</columns>
+        <columns>EUR_CRM_Question_Weight__c</columns>
+        <columns>CURRENCY_ISO_CODE</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_PRS_Question__c.EUR_BE_PRS_Question_Boolean_Input,EUR_CRM_PRS_Question__c.EUR_BE_PRS_Question_Currency_Input</value>
+        </filters>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_PRS_Question__c.EUR_BE_PRS_Question_Number_Input,EUR_CRM_PRS_Question__c.EUR_BE_PRS_Question_Picklist_Input</value>
+        </filters>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_PRS_Question__c.EUR_BE_PRS_Question_Text_Input</value>
+        </filters>
+        <label>EUR BE All PRS Questions View</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>EUR_BE</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>EUR_BG_All_PRS_Questions_View</fullName>
+        <booleanFilter>1 or 2</booleanFilter>
+        <columns>NAME</columns>
+        <columns>EUR_CRM_Question_Statement__c</columns>
+        <columns>OBJECT_ID</columns>
+        <columns>EUR_CRM_Country_Code__c</columns>
+        <columns>EUR_CRM_External_ID__c</columns>
+        <columns>EUR_CRM_Weight_Has_Changed__c</columns>
+        <columns>EUR_CRM_PRS_Question_Set__c</columns>
+        <columns>EUR_CRM_Question_Sequence__c</columns>
+        <columns>EUR_CRM_Question_Weight__c</columns>
+        <columns>CURRENCY_ISO_CODE</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_PRS_Question__c.EUR_BG_PRS_Question_Currency_Input,EUR_CRM_PRS_Question__c.EUR_BG_PRS_Question_Number_Input,EUR_CRM_PRS_Question__c.EUR_BG_PRS_Question_Picklist_Input</value>
+        </filters>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_PRS_Question__c.EUR_BG_PRS_Question_Text_Input,EUR_CRM_PRS_Question__c.EUR_BG_PRS_Question_Boolean_Input</value>
+        </filters>
+        <label>EUR BG All PRS Questions View</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>EUR_BG</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <nameField>
+        <displayFormat>PRS-Q-{0000000000}</displayFormat>
+        <label>PRS Question No.</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>PRS Questions (EU)</pluralLabel>
+    <recordTypes>
+        <fullName>EUR_BE_PRS_Question_Boolean_Input</fullName>
+        <active>true</active>
+        <label>EUR BE PRS Question - Boolean Input</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_BE_PRS_Question_Currency_Input</fullName>
+        <active>true</active>
+        <label>EUR BE PRS Question - Currency Input</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_BE_PRS_Question_Number_Input</fullName>
+        <active>true</active>
+        <label>EUR BE PRS Question - Number Input</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_BE_PRS_Question_Picklist_Input</fullName>
+        <active>true</active>
+        <label>EUR BE PRS Question - Picklist Input</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_BE_PRS_Question_Text_Input</fullName>
+        <active>true</active>
+        <label>EUR BE PRS Question - Text Input</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_BG_PRS_Question_Boolean_Input</fullName>
+        <active>true</active>
+        <label>EUR BG PRS Question - Boolean Input</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_BG_PRS_Question_Currency_Input</fullName>
+        <active>true</active>
+        <label>EUR BG PRS Question - Currency Input</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_BG_PRS_Question_Number_Input</fullName>
+        <active>true</active>
+        <label>EUR BG PRS Question - Number Input</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_BG_PRS_Question_Picklist_Input</fullName>
+        <active>true</active>
+        <label>EUR BG PRS Question - Picklist Input</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_BG_PRS_Question_Text_Input</fullName>
+        <active>true</active>
+        <label>EUR BG PRS Question - Text Input</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_CRM_PRS_Questions</fullName>
+        <active>true</active>
+        <label>PRS Questions</label>
+    </recordTypes>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

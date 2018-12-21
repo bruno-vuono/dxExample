@@ -1,0 +1,62 @@
+<apex:component controller="ESN_MB_NOP_Activation_Cx">
+     <div class="content-wrapper container-fluid">  
+        <div class="btn-close" style="margin-left:30px;">
+            <a data-category="activation" data-page="formulaire-local-activations" href="#?page=page-hp&content=page-hp&mode=full" class="on">
+                <span class="glyphicon glyphicon-remove"></span>
+            </a>
+        </div>
+         <div class="more-functionalities-bloc hidden">
+                <a class="findoutmore" href="#?page=formulaire-local-activations&content=formulaire-local-activations&mode=light" data-page="formulaire-local-activations" data-category="market-activation" onclick="createMarketActivationDraft()">{!$Label.ESN_MB_Upload}</a>
+              </div>
+              <!-- Filtre select box -->
+              <div id="filter">
+                  <form action="#" method="POST">
+                      <p>
+                          {!$Label.ESN_MB_Filter}
+                      </p>
+                      <div class="dropdown-container">
+                          <select id="activationTypeFilter" name="dropdown-1">
+                              <option selected="selected">{!$Label.ESN_MB_AllActivationTypes}</option>
+                          </select>
+                      </div>
+                      <div class="dropdown-container">
+                          <select id="countryFilter" name="dropdown-2">
+                              <option selected="selected">{!$Label.ESN_MB_AllCountries}</option>
+                          </select>
+                      </div>
+                      <div class="dropdown-container">
+                          <select id="targetFilter" name="dropdown-3">
+                              <option selected="selected">{!$Label.ESN_MB_AllTargets}</option>
+                          </select>
+                      </div>
+                      <p style="padding-left:10px;">
+                        {!$Label.ESN_MB_SortBy}
+                      </p>
+                      <div class="dropdown-container">
+                          <select id="marketActivationSort" name="dropdown-4">
+                              <option selected="selected">{!$Label.ESN_MB_MostRecent}</option>
+                              <option>{!$Label.ESN_MB_BestRated}</option>
+                              <option>{!$Label.ESN_MB_MostLiked}</option>
+                              <option>{!$Label.ESN_MB_LessExpensive}</option>
+                          </select>
+                      </div>
+                  </form>
+         </div>              <!--  Les resultats de la recherche --> 
+              <div class="result-container">
+                <div id="result" class="row">
+                    
+                </div> <!-- Fin #result -->
+              </div> <!-- Fin .result-container -->
+              <div id="more-result-market-activations" class="hidden"> <!-- plus de resultat -->
+                <p>
+                  {!$Label.ESN_MB_MoreActivations}
+                </p>
+              </div>
+            </div>
+    <script>
+    
+    </script>
+    <!--<script src="https://dl.dropboxusercontent.com/u/51617866/DEV_PR_VAL/marketActivationList.js"></script>-->
+    <!--<script src="{!urlfor($Resource.ESN_MB_Theme_Core, '/js/pages/marketActivationList.js')}"></script>-->
+
+</apex:component>

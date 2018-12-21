@@ -1,0 +1,916 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSearch>false</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>ASI_CRM_Balance_Amount__c</fullName>
+        <externalId>false</externalId>
+        <formula>(ASI_CRM_VN_Amount__c *  ASI_CRM_VN_Quantity__c) - ASI_CRM_Commit_Amount__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Balance Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_Cal_Balance_Amount__c</fullName>
+        <externalId>false</externalId>
+        <label>Balance Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_Commit_Amount__c</fullName>
+        <externalId>false</externalId>
+        <label>Commit Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_Sub_Brand__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Sub Brand</label>
+        <lookupFilter>
+            <active>true</active>
+            <errorMessage>Please select VN Sub-Brand</errorMessage>
+            <filterItems>
+                <field>ASI_MFM_Sub_brand__c.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>VN Sub-Brand</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>ASI_MFM_Sub_brand__c</referenceTo>
+        <relationshipLabel>Contract Expenditures</relationshipLabel>
+        <relationshipName>Contract_Expenditures</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_Total_Amount__c</fullName>
+        <externalId>false</externalId>
+        <formula>ASI_CRM_VN_Amount__c * ASI_CRM_VN_Quantity__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_VN_Achieved_Target_for_2nd_Pmt__c</fullName>
+        <externalId>false</externalId>
+        <label>Achieved Target % for 2nd Payment</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_VN_Achieved_Target_for_3rd_Pmt__c</fullName>
+        <externalId>false</externalId>
+        <label>Achieved Target % for 3rd Payment</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_VN_Achieved_Target_for_4th_Pmt__c</fullName>
+        <externalId>false</externalId>
+        <label>Achieved Target % for 4th Payment</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_VN_Amount__c</fullName>
+        <externalId>false</externalId>
+        <label>Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_VN_Contract__c</fullName>
+        <externalId>false</externalId>
+        <label>Contract</label>
+        <referenceTo>ASI_CRM_VN_Contract__c</referenceTo>
+        <relationshipLabel>Contract Expenditures</relationshipLabel>
+        <relationshipName>Contract_Expenditures</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_VN_Item__c</fullName>
+        <externalId>false</externalId>
+        <label>Item</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Lump Sum</fullName>
+                    <default>false</default>
+                    <label>Lump Sum</label>
+                </value>
+                <value>
+                    <fullName>PG &amp; Uniform</fullName>
+                    <default>false</default>
+                    <label>PG &amp; Uniform</label>
+                </value>
+                <value>
+                    <fullName>Branding (Signage)</fullName>
+                    <default>false</default>
+                    <label>Branding (Signage)</label>
+                </value>
+                <value>
+                    <fullName>FOC Bottles</fullName>
+                    <default>false</default>
+                    <label>FOC Bottles</label>
+                </value>
+                <value>
+                    <fullName>VIP Rooms</fullName>
+                    <default>false</default>
+                    <label>VIP Rooms</label>
+                </value>
+                <value>
+                    <fullName>Glassware (Including Ice Buckets)</fullName>
+                    <default>false</default>
+                    <label>Glassware (Including Ice Buckets)</label>
+                </value>
+                <value>
+                    <fullName>Drink Menus</fullName>
+                    <default>false</default>
+                    <label>Drink Menus</label>
+                </value>
+                <value>
+                    <fullName>Podium Stands &amp; Glorifiers</fullName>
+                    <default>false</default>
+                    <label>Podium Stands &amp; Glorifiers</label>
+                </value>
+                <value>
+                    <fullName>Display/Listing Fee</fullName>
+                    <default>false</default>
+                    <label>Display/Listing Fee</label>
+                </value>
+                <value>
+                    <fullName>Promotion</fullName>
+                    <default>false</default>
+                    <label>Promotion</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_VN_Payment_Times__c</fullName>
+        <externalId>false</externalId>
+        <label>Payment Times</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>1</fullName>
+                    <default>false</default>
+                    <label>1</label>
+                </value>
+                <value>
+                    <fullName>2</fullName>
+                    <default>false</default>
+                    <label>2</label>
+                </value>
+                <value>
+                    <fullName>3</fullName>
+                    <default>false</default>
+                    <label>3</label>
+                </value>
+                <value>
+                    <fullName>4</fullName>
+                    <default>false</default>
+                    <label>4</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_VN_Quantity__c</fullName>
+        <externalId>false</externalId>
+        <label>Quantity</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_VN_Remark__c</fullName>
+        <externalId>false</externalId>
+        <label>Remark</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_VN_SKU__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>SKU</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>ASI_MFM_SKU_Code__c.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>VN CRM SKU</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>ASI_MFM_SKU_Code__c</referenceTo>
+        <relationshipLabel>Contract Expenditures</relationshipLabel>
+        <relationshipName>Contract_Expenditures</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_VN_Sales_Target__c</fullName>
+        <externalId>false</externalId>
+        <label>Sales Target(Bottle)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_VN_Service_Pack_Threshold__c</fullName>
+        <externalId>false</externalId>
+        <label>Service Pack Threshold</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_VN_Service_Pack__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Service Pack</label>
+        <referenceTo>ASI_CRM_ServicePack__c</referenceTo>
+        <relationshipLabel>Contract Expenditures</relationshipLabel>
+        <relationshipName>Contract_Expenditures</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_VN_Total_Amount__c</fullName>
+        <externalId>false</externalId>
+        <formula>ASI_CRM_VN_Unit_Incentive__c * ASI_CRM_VN_Sales_Target__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total Amount (VND)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_VN_Unit_Incentive__c</fullName>
+        <externalId>false</externalId>
+        <label>Unit Incentive (VND)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>Contract Expenditure</label>
+    <nameField>
+        <displayFormat>VNER-{00000}</displayFormat>
+        <label>Expenditure Reference</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Contract Expenditures</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>ASI_CRM_VN_Activation_Contract_Expenditure</fullName>
+        <active>true</active>
+        <label>ASI CRM VN Activation Contract Expenditure</label>
+        <picklistValues>
+            <picklist>ASI_CRM_VN_Item__c</picklist>
+            <values>
+                <fullName>Branding %28Signage%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Drink Menus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FOC Bottles</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Glassware %28Including Ice Buckets%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Podium Stands %26 Glorifiers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Promotion</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ASI_CRM_VN_Payment_Times__c</picklist>
+            <values>
+                <fullName>1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>ASI_CRM_VN_Activation_Contract_Expenditure_Read_Only</fullName>
+        <active>true</active>
+        <label>ASI CRM VN Activation Contract Expenditure Read Only</label>
+        <picklistValues>
+            <picklist>ASI_CRM_VN_Item__c</picklist>
+            <values>
+                <fullName>Branding %28Signage%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Drink Menus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FOC Bottles</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Glassware %28Including Ice Buckets%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Podium Stands %26 Glorifiers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Promotion</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ASI_CRM_VN_Payment_Times__c</picklist>
+            <values>
+                <fullName>1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>ASI_CRM_VN_Capsule_Agreement_Contract_Expenditure</fullName>
+        <active>true</active>
+        <label>ASI CRM VN Capsule Agreement Contract Expenditure</label>
+        <picklistValues>
+            <picklist>ASI_CRM_VN_Item__c</picklist>
+            <values>
+                <fullName>Branding %28Signage%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Display%2FListing Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Drink Menus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FOC Bottles</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Glassware %28Including Ice Buckets%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lump Sum</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PG %26 Uniform</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Podium Stands %26 Glorifiers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Promotion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VIP Rooms</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ASI_CRM_VN_Payment_Times__c</picklist>
+            <values>
+                <fullName>1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>ASI_CRM_VN_Capsule_Agreement_Contract_Expenditure_Read_Only</fullName>
+        <active>true</active>
+        <label>ASI CRM VN Capsule Agreement Contract Expenditure Read Only</label>
+        <picklistValues>
+            <picklist>ASI_CRM_VN_Item__c</picklist>
+            <values>
+                <fullName>Branding %28Signage%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Display%2FListing Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Drink Menus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FOC Bottles</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Glassware %28Including Ice Buckets%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lump Sum</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PG %26 Uniform</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Podium Stands %26 Glorifiers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Promotion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VIP Rooms</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ASI_CRM_VN_Payment_Times__c</picklist>
+            <values>
+                <fullName>1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>ASI_CRM_VN_Contract_Expenditure</fullName>
+        <active>true</active>
+        <label>ASI CRM VN Contract Expenditure</label>
+        <picklistValues>
+            <picklist>ASI_CRM_VN_Item__c</picklist>
+            <values>
+                <fullName>Branding %28Signage%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Display%2FListing Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Drink Menus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FOC Bottles</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Glassware %28Including Ice Buckets%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lump Sum</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PG %26 Uniform</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Podium Stands %26 Glorifiers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Promotion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VIP Rooms</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ASI_CRM_VN_Payment_Times__c</picklist>
+            <values>
+                <fullName>1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>ASI_CRM_VN_Contract_Expenditure_Read_Only</fullName>
+        <active>true</active>
+        <label>ASI CRM VN Contract Expenditure Read Only</label>
+        <picklistValues>
+            <picklist>ASI_CRM_VN_Item__c</picklist>
+            <values>
+                <fullName>Branding %28Signage%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Display%2FListing Fee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Drink Menus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FOC Bottles</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Glassware %28Including Ice Buckets%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lump Sum</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PG %26 Uniform</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Podium Stands %26 Glorifiers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Promotion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VIP Rooms</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ASI_CRM_VN_Payment_Times__c</picklist>
+            <values>
+                <fullName>1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>ASI_CRM_VN_Invalid_AchievedTarget</fullName>
+        <active>true</active>
+        <errorConditionFormula>ASI_CRM_VN_Achieved_Target_for_2nd_Pmt__c &gt;  ASI_CRM_VN_Achieved_Target_for_3rd_Pmt__c
+||
+ASI_CRM_VN_Achieved_Target_for_2nd_Pmt__c &gt;
+ASI_CRM_VN_Achieved_Target_for_4th_Pmt__c 
+||
+ASI_CRM_VN_Achieved_Target_for_3rd_Pmt__c &gt;
+ASI_CRM_VN_Achieved_Target_for_4th_Pmt__c</errorConditionFormula>
+        <errorMessage>Please input correct achieved target</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>ASI_CRM_VN_Invalid_PaymentTime</fullName>
+        <active>true</active>
+        <errorConditionFormula>ISPICKVAL(ASI_CRM_VN_Payment_Times__c, &apos;4&apos;) &amp;&amp;  
+(ISBLANK(ASI_CRM_VN_Achieved_Target_for_2nd_Pmt__c) ||
+ISBLANK(ASI_CRM_VN_Achieved_Target_for_3rd_Pmt__c) || 
+ISBLANK(ASI_CRM_VN_Achieved_Target_for_4th_Pmt__c))
+||
+ISPICKVAL(ASI_CRM_VN_Payment_Times__c, &apos;3&apos;) &amp;&amp;  
+(ISBLANK(ASI_CRM_VN_Achieved_Target_for_2nd_Pmt__c) ||
+ISBLANK(ASI_CRM_VN_Achieved_Target_for_3rd_Pmt__c))
+||
+ISPICKVAL(ASI_CRM_VN_Payment_Times__c, &apos;2&apos;) &amp;&amp;  ISBLANK(ASI_CRM_VN_Achieved_Target_for_2nd_Pmt__c)</errorConditionFormula>
+        <errorMessage>Please input correct payment times and achieved target</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>ASI_CRM_VN_Mandatory_PaymentTime</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND( 
+ISPICKVAL(ASI_CRM_VN_Payment_Times__c, &apos;&apos;),
+ISPICKVAL(ASI_CRM_VN_Item__c, &apos;Lump Sum&apos;)
+)</errorConditionFormula>
+        <errorDisplayField>ASI_CRM_VN_Payment_Times__c</errorDisplayField>
+        <errorMessage>Payment Times is mandatory when Item is &apos;Lump Sum&apos;</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>ASI_CRM_VN_PaymentTime_CannotBeBlank</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(
+ISPICKVAL(ASI_CRM_VN_Payment_Times__c, &apos;&apos;)
+,
+OR(
+NOT(ISBLANK(ASI_CRM_VN_Achieved_Target_for_2nd_Pmt__c)),
+NOT(ISBLANK(ASI_CRM_VN_Achieved_Target_for_3rd_Pmt__c)),
+NOT(ISBLANK(ASI_CRM_VN_Achieved_Target_for_4th_Pmt__c))
+)
+)</errorConditionFormula>
+        <errorDisplayField>ASI_CRM_VN_Payment_Times__c</errorDisplayField>
+        <errorMessage>Payment Time cannot be blank when Achieved Target % is inputted.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>ASI_CRM_VN_PaymentTime_ShouldBeBlank</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(
+	NOT(ISPICKVAL(ASI_CRM_VN_Item__c, &apos;Lump Sum&apos;)), 
+	NOT(ISPICKVAL(ASI_CRM_VN_Item__c, &apos;Promotion&apos;)), 
+	NOT(ISPICKVAL(ASI_CRM_VN_Payment_Times__c, &apos;&apos;))
+)</errorConditionFormula>
+        <errorDisplayField>ASI_CRM_VN_Payment_Times__c</errorDisplayField>
+        <errorMessage>Payment Time can only be inputted when item is Lump Sum or Promotion.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>ASI_CRM_VN_Qty_Amount_Cannot_Negative</fullName>
+        <active>true</active>
+        <errorConditionFormula>OR(
+ASI_CRM_VN_Amount__c &lt; 0,
+ASI_CRM_VN_Quantity__c &lt; 0
+)</errorConditionFormula>
+        <errorMessage>Quantity and Amount field only can input positive number.</errorMessage>
+    </validationRules>
+    <visibility>Public</visibility>
+    <webLinks>
+        <fullName>ASI_CRM_VN_New_Contract_Expenditure</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>New Contract Expenditure</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <requireRowSelection>false</requireRowSelection>
+        <url>{!REQUIRESCRIPT(&apos;/soap/ajax/29.0/connection.js&apos;)} 
+
+var query = &quot;SELECT Id, DeveloperName FROM RecordType WHERE sObjectType = &apos;ASI_CRM_VN_Contract_Expenditure__c&apos;&quot;;
+
+var recordTypeResult = sforce.connection.query(query);
+var recordTypeList   = recordTypeResult.getArray(&quot;records&quot;);
+var recordTypeMap    = {};
+for(var index in recordTypeList) {
+	recordTypeMap[recordTypeList[index].DeveloperName] = recordTypeList[index].Id;
+}
+var recordTypeId = &apos;&apos;;
+
+var query2 = &quot;SELECT Id FROM RecordType WHERE sObjectType = &apos;ASI_CRM_VN_Contract__c&apos; AND DeveloperName=&apos;ASI_CRM_VN_Contract&apos;&quot;;
+var contractRecordTypeResult = sforce.connection.query(query2);
+var contractRecordTypeList   = contractRecordTypeResult.getArray(&quot;records&quot;);
+var contractRecordTypeId     = contractRecordTypeList[0].Id;
+
+var form = document.createElement(&quot;form&quot;);
+form.setAttribute(&quot;method&quot;, &quot;GET&quot;); 
+form.setAttribute(&quot;action&quot;, &quot;/{!$Label.ASI_CRM_VN_Contract_Expenditure_Prefix}/e&quot;); 
+
+var contractNameField = document.createElement(&quot;input&quot;); 
+contractNameField.setAttribute(&quot;type&quot;, &quot;hidden&quot;);
+contractNameField.setAttribute(&quot;name&quot;, &quot;CF00NL0000003jQ2m&quot;);
+contractNameField.setAttribute(&quot;value&quot;, &apos;{!JSENCODE(ASI_CRM_VN_Contract__c.Name)}&apos;); 
+form.appendChild(contractNameField); 
+
+var contractIdField = document.createElement(&quot;input&quot;); 
+contractIdField.setAttribute(&quot;type&quot;, &quot;hidden&quot;);
+contractIdField.setAttribute(&quot;name&quot;, &quot;CF00NL0000003jQ2m_lkid&quot;);
+contractIdField.setAttribute(&quot;value&quot;, &apos;{!JSENCODE(ASI_CRM_VN_Contract__c.Id)}&apos;); 
+form.appendChild(contractIdField); 
+
+if(contractRecordTypeId.indexOf(&apos;{!JSENCODE(ASI_CRM_VN_Contract__c.RecordTypeId)}&apos;) != -1) {
+	if(&apos;{!ASI_CRM_VN_Contract__c.ASI_CRM_Activation_Support__c}&apos; == &apos;1&apos;) {
+		recordTypeId = recordTypeMap[&apos;ASI_CRM_VN_Activation_Contract_Expenditure&apos;];
+	} else {
+		recordTypeId = recordTypeMap[&apos;ASI_CRM_VN_Contract_Expenditure&apos;];
+	}
+} else {
+	recordTypeId = recordTypeMap[&apos;ASI_CRM_VN_Capsule_Agreement_Contract_Expenditure&apos;];
+}
+
+var recordType = document.createElement(&quot;input&quot;); 
+recordType.setAttribute(&quot;type&quot;, &quot;hidden&quot;); 
+recordType.setAttribute(&quot;name&quot;, &apos;RecordType&apos;); 
+recordType.setAttribute(&quot;value&quot;, recordTypeId); 
+form.appendChild(recordType);
+
+var cancelURL = document.createElement(&quot;input&quot;);
+cancelURL.setAttribute(&quot;type&quot;, &quot;hidden&quot;); 
+cancelURL.setAttribute(&quot;name&quot;, &apos;cancelURL&apos;); 
+cancelURL.setAttribute(&quot;value&quot;, &apos;/{!JSENCODE(ASI_CRM_VN_Contract__c.Id)}&apos;); 
+form.appendChild(cancelURL);
+
+document.body.appendChild(form);
+form.submit();</url>
+    </webLinks>
+</CustomObject>

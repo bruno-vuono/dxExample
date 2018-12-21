@@ -1,0 +1,150 @@
+<apex:component controller="ESN_MB_NOP_Homepage_Cx">
+    <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=9; IE=edge,chrome=1"/>
+        <meta charset="utf-8"/>
+        
+    <title id="titlePage">{!$label.ESN_MB_AppName}</title> 
+        
+    <apex:stylesheet value="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" />
+    <apex:stylesheet value="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700" />
+    <apex:stylesheet value="https://fonts.googleapis.com/css?family=Roboto:300,500,400,700" />
+   
+    <apex:stylesheet value="{!urlfor($Resource.ESN_MB_Theme_Core, '/css/reset.css')}"/>  
+    <apex:stylesheet value="{!urlfor($Resource.ESN_MB_Theme_Core, '/css/bootstrap.min.css')}"/>
+    <apex:stylesheet value="{!urlfor($Resource.ESN_MB_Theme_Core, '/css/jquery.scrollbar.css')}"/>          
+    <apex:stylesheet value="{!urlfor($Resource.ESN_MB_Theme_Core, '/css/jquery-ui.selectmenu.css')}"/>          
+    <apex:stylesheet value="{!urlfor($Resource.ESN_MB_Theme_Core, '/css/main.css')}"/>
+    <apex:stylesheet value="{!urlfor($Resource.ESN_MB_Theme_Core, '/css/responsive.css')}"/>
+    <apex:stylesheet value="{!urlfor($Resource.ESN_MB_Theme_Core, '/css/fonts.css')}"/>
+    <apex:stylesheet value="{!urlfor($Resource.ESN_MB_Theme_Core, '/css/slick/slick.css')}"/>
+    <apex:stylesheet value="{!urlfor($Resource.ESN_MB_Theme_Core,'/css/pages/leCercle-Portfolio.css')}"/>
+    <apex:stylesheet value="{!urlfor($Resource.ESN_MB_Theme_Core,'/js/tinymce/js/tinymce/skins/lightgray/skin.min.css')}"/>
+    <apex:stylesheet value="{!currentBrandCssURL + '/css/themes/brand.css'}" />
+    
+        
+    <!--Style pikachoose-->
+    <apex:stylesheet value="{!urlfor($Resource.ESN_MB_Theme_Core, '/css/pikachoose/pr.css')}"/>
+        
+    <!--Style des pages -->
+    <apex:stylesheet value="{!urlfor($Resource.ESN_MB_Theme_Core, '/css/pages/influencers.css')}"/>
+    <apex:stylesheet value="{!urlfor($Resource.ESN_MB_Theme_Core, '/css/pages/article.css')}"/> 
+    <apex:stylesheet value="{!urlfor($Resource.ESN_MB_Theme_Core, '/css/pages/edit_mode.css')}"/>
+    <apex:stylesheet value="{!urlfor($Resource.ESN_MB_Theme_Core, '/css/pages/forum.css')}"/>
+    <apex:stylesheet value="{!urlfor($Resource.ESN_MB_Theme_Core, '/css/pages/article_local_activation.css')}"/>
+    <apex:stylesheet value="{!urlfor($Resource.ESN_MB_Theme_Core, '/css/pages/accueil_global_activations.css')}"/>
+    <apex:stylesheet value="{!urlfor($Resource.ESN_MB_Theme_Core, '/css/pages/formulaire_global_activations.css')}"/>
+    <apex:stylesheet value="{!urlfor($Resource.ESN_MB_Theme_Core, '/css/pages/formulaires.css')}"/>
+    <apex:stylesheet value="{!urlfor($Resource.ESN_MB_Theme_Core, '/css/pages/formulaire_local_activations.css')}"/>
+    <apex:stylesheet value="{!urlfor($Resource.ESN_MB_Theme_Core, '/css/pages/globalDirectoryEdit.css')}"/>
+  
+    <apex:stylesheet value="{!urlfor($Resource.ESN_MB_Theme_Core, '/css/pages/accueil_global_activations.css')}"/>
+    <apex:stylesheet value="{!urlfor($Resource.ESN_MB_Theme_Core, '/css/pages/accueil_market_activations.css')}"/>  
+    <apex:stylesheet value="{!urlfor($Resource.ESN_MB_Theme_Core, '/css/pages/search.css')}"/>
+    <apex:stylesheet value="{!urlfor($Resource.ESN_MB_Theme_Core, '/css/pages/search_asset.css')}"/> 
+    <apex:stylesheet value="{!urlfor($Resource.ESN_MB_Theme_Core, '/css/pages/related_articles.css')}"/> 
+    <apex:stylesheet value="{!urlfor($Resource.ESN_MB_Theme_Core, '/css/pages/all_assets.css')}"/>  
+    <apex:stylesheet value="{!urlfor($Resource.ESN_MB_Theme_Core, '/css/pages/preview.css')}"/>
+    <apex:stylesheet value="{!urlfor($Resource.ESN_MB_Theme_Core, '/css/pages/preview_pdf.css')}"/>    
+    <apex:stylesheet value="{!urlfor($Resource.ESN_MB_Theme_Core, '/css/pages/global_directory.css')}"/>  
+    <apex:stylesheet value="{!urlfor($Resource.ESN_MB_Theme_Core, '/css/pages/webinars.css')}"/>
+    <apex:stylesheet value="{!urlfor($Resource.ESN_MB_Theme_Core, '/css/pages/help.css')}"/>
+    <apex:includeScript value="{!urlfor($Resource.ESN_MB_Theme_Core, '/js/jquery-1.11.1.min.js')}"/>
+    <apex:includeScript value="{!urlfor($Resource.ESN_MB_Theme_Core, '/js/jquery.cookie.js')}"/>
+    <apex:includeScript value="{!urlfor($Resource.ESN_MB_Theme_Core, '/js/rloader1.5.4_min.js')}"/>
+    <apex:includeScript value="{!urlfor($Resource.ESN_MB_Theme_Core, '/js/jquery-ui.min.js')}"/>
+    <apex:includeScript value="{!urlfor($Resource.ESN_MB_Theme_Core, '/js/bootstrap.min.js')}"/>
+    <apex:stylesheet value="{!urlfor($Resource.ESN_MB_Theme_Core, '/css/jquery-ui.slider.css')}"/>
+    <apex:includeScript value="{!urlfor($Resource.ESN_MB_Theme_Core, '/js/slick/slick.min.js')}"/>
+    <apex:includeScript value="{!urlfor($Resource.ESN_MB_Theme_Core, '/js/jquery.mobile.custom.min.js')}"/>  
+    <apex:includeScript value="{!urlfor($Resource.ESN_MB_Theme_Core, '/js/spin.js')}"/>
+    <apex:includeScript value="{!urlfor($Resource.ESN_MB_Theme_Core, '/js/pages/mybrandscore.js')}"/> 
+    <apex:includeScript value="{!urlfor($Resource.ESN_MB_Theme_Core, '/js/pages/startSpinner.js')}"/> 
+    <apex:includeScript value="{!urlfor($Resource.ESN_MB_Theme_Core, '/js/pages/footerPR.js')}"/>    
+    <apex:includeScript value="{!urlfor($Resource.ESN_MB_Theme_Core, '/js/pages/preview.js')}"/>
+    
+   
+    
+        
+    <!--[if IE]>
+        <LINK href="{!urlfor($Resource.ESN_MB_Theme_Core, '/css/IEcss.css')}" rel="stylesheet" type="text/css" />
+    <![endif]-->
+ 
+	
+       
+   <!-- Inline Style -->    
+    <style>
+       .spinner {
+           position: fixed;
+           top: 50%;
+           left: 50%;
+           width:100%;
+           height:100%;
+           z-index:9990;
+           top:0px;
+           left:0px;
+           background-color: white;
+           opacity:1; 
+           transition: all 1.25s ease-in-out;
+           -moz-transition: all 1.25s ease-in-out;
+           -webkit-transition: all 1.25s ease-in-out;
+       }
+    @keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Firefox */
+@-moz-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Safari and Chrome */
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Opera */
+@-o-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+     
+@keyframes fadeout {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+}
+
+/* Firefox */
+@-moz-keyframes fadeout {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+}
+
+/* Safari and Chrome */
+@-webkit-keyframes fadeout {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadeout {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+}
+
+/* Opera */
+@-o-keyframes fadeout {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+}
+    </style>
+ </head>
+</apex:component>

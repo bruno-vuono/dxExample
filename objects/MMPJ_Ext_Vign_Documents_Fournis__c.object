@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>true</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>MMPJ Extranet Vigneron - used for both Cognac &amp; Champagne</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>MMPJ_Ext_Vign_BlobAccount__c</fullName>
+        <externalId>false</externalId>
+        <label>BlobAccount</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MMPJ_Ext_Vign_BlobContainer__c</fullName>
+        <externalId>false</externalId>
+        <label>BlobContainer</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MMPJ_Ext_Vign_BlobFile__c</fullName>
+        <externalId>false</externalId>
+        <label>BlobFile</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MMPJ_Ext_Vign_Commentaire__c</fullName>
+        <externalId>false</externalId>
+        <label>Commentaire</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>MMPJ_Ext_Vign_Date_de_debut__c</fullName>
+        <externalId>false</externalId>
+        <label>Date de début</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>MMPJ_Ext_Vign_Date_de_fin__c</fullName>
+        <externalId>false</externalId>
+        <label>Date de fin</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>MMPJ_Ext_Vign_Date_de_telechargement__c</fullName>
+        <externalId>false</externalId>
+        <label>Date de téléchargement</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>MMPJ_Ext_Vign_Document__c</fullName>
+        <externalId>false</externalId>
+        <label>Document</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>MMPJ_Ext_Vign_Lien_vers_document__c</fullName>
+        <externalId>false</externalId>
+        <formula>&quot;https://www.mmpjetmoi.fr/attachment/file/&quot;&amp;Id&amp;&quot;/&quot; &amp;  MMPJ_Ext_Vign_Livreur__r.Id</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Lien vers document</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MMPJ_Ext_Vign_Livreur__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Livreur</label>
+        <lookupFilter>
+            <active>false</active>
+            <filterItems>
+                <field>MMPJ_Ext_Vign_Societe__c.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Viticulteur</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>MMPJ_Ext_Vign_Societe__c</referenceTo>
+        <relationshipLabel>Documents fournis</relationshipLabel>
+        <relationshipName>Documents_fournis</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>MMPJ_Ext_Vign_Statut__c</fullName>
+        <externalId>false</externalId>
+        <label>Statut</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>En_attente</fullName>
+                    <default>false</default>
+                    <label>En attente</label>
+                </value>
+                <value>
+                    <fullName>Téléchargé</fullName>
+                    <default>false</default>
+                    <label>Téléchargé</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>MMPJ_Ext_Vign_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Calendrier de Traitement</fullName>
+                    <default>false</default>
+                    <label>Calendrier de Traitement</label>
+                </value>
+                <value>
+                    <fullName>Déclaration de récolte</fullName>
+                    <default>false</default>
+                    <label>Déclaration de récolte</label>
+                </value>
+                <value>
+                    <fullName>Déclaration de fabrication</fullName>
+                    <default>false</default>
+                    <label>Déclaration de fabrication</label>
+                </value>
+                <value>
+                    <fullName>RIB</fullName>
+                    <default>false</default>
+                    <label>RIB</label>
+                </value>
+                <value>
+                    <fullName>KBIS</fullName>
+                    <default>false</default>
+                    <label>KBIS</label>
+                </value>
+                <value>
+                    <fullName>Récépissé ODG</fullName>
+                    <default>false</default>
+                    <label>Récépissé ODG</label>
+                </value>
+                <value>
+                    <fullName>Memento fiscal</fullName>
+                    <default>false</default>
+                    <label>Memento fiscal</label>
+                </value>
+                <value>
+                    <fullName>Questionnaire de surface</fullName>
+                    <default>false</default>
+                    <label>Questionnaire de surface</label>
+                </value>
+                <value>
+                    <fullName>Analyse vendange</fullName>
+                    <default>false</default>
+                    <label>Analyse vendange</label>
+                </value>
+                <value>
+                    <fullName>Brouillon de déclaration de récolte</fullName>
+                    <default>false</default>
+                    <label>Brouillon de déclaration de récolte</label>
+                </value>
+                <value>
+                    <fullName>Autre</fullName>
+                    <default>false</default>
+                    <label>Autre</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <label>Document fournis</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>MMPJ_Ext_Vign_Statut__c</columns>
+        <columns>MMPJ_Ext_Vign_Type__c</columns>
+        <columns>MMPJ_Ext_Vign_Livreur__c</columns>
+        <columns>MMPJ_Ext_Vign_Document__c</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>fr</language>
+        <sharedTo>
+            <group>MMPJ_Ext_Vign_Global_PG_Champagne</group>
+            <group>MMPJ_Ext_Vign_Global_PG_Cognac</group>
+        </sharedTo>
+    </listViews>
+    <nameField>
+        <displayFormat>DOC-{000000}</displayFormat>
+        <label>Numéro document</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Documents fournis</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StaticResource xmlns="http://soap.sforce.com/2006/04/metadata">
+    <cacheControl>Private</cacheControl>
+    <contentType>text/css</contentType>
+    <description>&lt;apex:stylesheet value=&quot;{!URLFOR($Resource.ASI_CRM_TW_PDF_Landscape_CSS)}&quot;/&gt;</description>
+</StaticResource>

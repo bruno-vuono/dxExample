@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <content>MMPJ_TOPG_NewMeeting</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <content>MMPJ_TOPG_NewMeeting</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Used for MMPJ TopGun app</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>true</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>MMPJ_TOPG_BMC__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>MMPJ TOPGUN</description>
+        <externalId>false</externalId>
+        <label>BMC</label>
+        <referenceTo>MMPJ_TOPG_BMC__c</referenceTo>
+        <relationshipName>Meetings1</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>MMPJ_TOPG_Brand__c</fullName>
+        <externalId>false</externalId>
+        <label>MMPJ_TOPG_Brand</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>All brands</fullName>
+                    <default>false</default>
+                    <label>All brands</label>
+                </value>
+                <value>
+                    <fullName>Martell</fullName>
+                    <default>false</default>
+                    <label>Martell</label>
+                </value>
+                <value>
+                    <fullName>Mumm</fullName>
+                    <default>false</default>
+                    <label>Mumm</label>
+                </value>
+                <value>
+                    <fullName>Perrier-Jouët</fullName>
+                    <default>false</default>
+                    <label>Perrier-Jouët</label>
+                </value>
+                <value>
+                    <fullName>Martell &amp; Mumm</fullName>
+                    <default>false</default>
+                    <label>Martell &amp; Mumm</label>
+                </value>
+                <value>
+                    <fullName>Martell &amp; Perrier-Jouët</fullName>
+                    <default>false</default>
+                    <label>Martell &amp; Perrier-Jouët</label>
+                </value>
+                <value>
+                    <fullName>Mumm &amp; Perrier-Jouët</fullName>
+                    <default>false</default>
+                    <label>Mumm &amp; Perrier-Jouët</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>MMPJ_TOPG_Comments__c</fullName>
+        <externalId>false</externalId>
+        <label>Comments</label>
+        <length>32768</length>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>MMPJ_TOPG_Detail_Line_Topic__c</fullName>
+        <externalId>false</externalId>
+        <label>MMPJ_TOPG_Detail_Line_Topic</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Market Performance</fullName>
+                    <default>false</default>
+                    <label>Market Performance</label>
+                </value>
+                <value>
+                    <fullName>Place / Channel</fullName>
+                    <default>false</default>
+                    <label>Place / Channel</label>
+                </value>
+                <value>
+                    <fullName>Price</fullName>
+                    <default>false</default>
+                    <label>Price</label>
+                </value>
+                <value>
+                    <fullName>Product</fullName>
+                    <default>false</default>
+                    <label>Product</label>
+                </value>
+                <value>
+                    <fullName>Promotion / Communication</fullName>
+                    <default>false</default>
+                    <label>Promotion / Communication</label>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                    <label>Other</label>
+                </value>
+                <value>
+                    <fullName>Project</fullName>
+                    <default>false</default>
+                    <label>Project</label>
+                </value>
+                <value>
+                    <fullName>Competition</fullName>
+                    <default>false</default>
+                    <label>Competition</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>MMPJ_TOPG_EndDate__c</fullName>
+        <externalId>false</externalId>
+        <label>End Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>MMPJ_TOPG_Interaction__c</fullName>
+        <description>MMPJ TOPGUN</description>
+        <externalId>false</externalId>
+        <label>Interaction</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Physical interaction</fullName>
+                    <default>false</default>
+                    <label>Physical interaction</label>
+                </value>
+                <value>
+                    <fullName>Call</fullName>
+                    <default>false</default>
+                    <label>Call</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>MMPJ_TOPG_NoAgenda__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>No Agenda</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>MMPJ_TOPG_StartDate__c</fullName>
+        <externalId>false</externalId>
+        <label>Start Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>MMPJ_TOPG_TECH_contact__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>TECH Lookup to use in &quot;MMPJ_TOPG_NewMeeting&quot;</description>
+        <externalId>false</externalId>
+        <label>TECH MMPJ Contact</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipName>MeetingContact</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>MMPJ_TOPG_TECH_user__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>TECH Lookup to use in &quot;MMPJ_TOPG_NewMeeting&quot;</description>
+        <externalId>false</externalId>
+        <label>TECH MMPJ User</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Meetings</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>MMPJ_TOPG_Title__c</fullName>
+        <externalId>false</externalId>
+        <label>Title</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <label>Meeting</label>
+    <nameField>
+        <label>Meeting Title</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Meetings</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+    <webLinks>
+        <fullName>MMPJ_TOPG_New_Interaction</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>New Interaction</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <requireRowSelection>false</requireRowSelection>
+        <url>/apex/MMPJ_TOPG_NewMeeting?BMCID={!MMPJ_TOPG_BMC__c.Id}</url>
+    </webLinks>
+</CustomObject>

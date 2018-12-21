@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DelegateGroup xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Orchestra CMS Delegated Admins</label>
+    <loginAccess>true</loginAccess>
+    <permissionSets>OrchestraCMS Content Full License User</permissionSets>
+    <permissionSets>OrchestraCMS Content Platform User</permissionSets>
+    <permissionSets>Orchestra CMS Delegated Admin</permissionSets>
+    <permissionSets>ocms SiteViewer</permissionSets>
+    <permissionSets>OrchestraCMS</permissionSets>
+    <permissionSets>ocms OrchestraCMS System Administrator InSite</permissionSets>
+    <permissionSets>ocms OrchestraCMS Site Administrator InSite</permissionSets>
+    <permissionSets>ocms OrchestraCMS Content Editors InSite</permissionSets>
+    <permissionSets>ocms OrchestraCMS Publisher InSite</permissionSets>
+    <permissionSets>ocms Stantive user InSite</permissionSets>
+    <profiles>OrchestraCMS Site Admin</profiles>
+    <profiles>OrchestraCMS Editor User</profiles>
+    <profiles>OrchestraCMS Publisher User</profiles>
+    <roles>Orchestra CMS</roles>
+</DelegateGroup>

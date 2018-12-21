@@ -1,0 +1,212 @@
+<apex:page standardcontroller="account" extensions="ASI_CRM_KR_AcctCustomerPage" standardStylesheets="true" tabstyle="account" sidebar="false" showHeader="false">
+
+        <script type="text/javascript">
+            var isClicked = false;
+            function checkDoubleSubmit(obj){
+                if (isClicked) {
+                    return false;
+                }else {
+                    isClicked = true;
+                    obj.className = 'btnDisabled';//only shows the button as disabled.
+                    refreshCurrentTab();
+                    return true;
+                }
+            }
+        </script>
+        
+        
+     <apex:form >
+       <!--- <apex:sectionheader title="Business Account Edit" subtitle="{!if(header.Id==null,'New Off-trade Venue', Account.Name)}"></apex:sectionheader>
+ --->
+        <apex:pageblock mode="mainDetail" id="BusinessAccountEditPB"  >         <!--title="Business Account Detail"----->
+            <apex:pageblockbuttons >
+                <apex:commandbutton action="{!save}" value="Save"  onclick="return checkDoubleSubmit(this)"></apex:commandbutton>
+                
+                <apex:commandbutton action="{!cancel}" value="Cancel"></apex:commandbutton>
+            </apex:pageblockbuttons>
+
+            <apex:pagemessages ></apex:pagemessages>
+            <!---
+            <apex:pageblocksection id="OutletEditPBS">
+                
+                <apex:inputField value="{!Account.Owner.name}"/>   
+                    <apex:inputField value="{!Account.ASI_KOR_Venue_Status__c}"/>
+                <apex:inputField value="{!Account.ASI_KOR_Salesman_Code__c}"/> 
+                
+                
+                
+                <apex:inputField value="{!Account.RecordTypeId}" rendered="{!IF($Profile.Name =='System Administrator', true, false)}"/>
+                     <apex:outputField value="{!Account.RecordTypeId}" rendered="{!IF($Profile.Name =='System Administrator', false, true)}"/>
+                   
+                <apex:inputField value="{!Account.Name}"/>
+                    <apex:inputField value="{!Account.ASI_KOR_Venue_Type__c}"/>
+                <apex:inputField value="{!Account.ASI_KOR_Customer_Code__c}"/>
+                    <apex:inputField value="{!Account.ASI_KOR_Grade__c}"/>
+                <apex:inputField value="{!Account.NameLocal}"/>
+                    <apex:inputField value="{!Account.ASI_KOR_Wholesaler_Channel__c}"/>
+                <apex:inputField value="{!Account.ParentId}"/>
+                    <apex:inputField value="{!Account.ASI_KOR_Venue_Selling_Type__c}"/>
+                <apex:inputField value="{!Account.ASI_KOR_Phone_No_1__c}"/>
+                    <apex:inputField value="{!Account.ASI_KOR_Venue_License_Type__c}"/>
+                <apex:inputField value="{!Account.ASI_KOR_Venue_Phone_2__c}"/>
+                    <apex:inputField value="{!Account.ASI_KOR_Venue_Pillar__c}"/>
+                <apex:inputField value="{!Account.ASI_KOR_Venue_Phone_3__c}"/>
+                    <apex:inputField value="{!Account.ASI_KOR_Venue_Owner_1__c}"/>
+                <apex:inputField value="{!Account.ASI_KOR_Venue_Phone_4__c}"/>
+                    <apex:inputField value="{!Account.ASI_KOR_Venue_Owner_2__c}"/>
+                <apex:inputField value="{!Account.ASI_KOR_Venue_Phone_5__c}"/>
+                    <apex:inputField value="{!Account.ASI_KOR_Contract_Type__c}"/>
+                <apex:inputField value="{!Account.Fax}"/>
+                <br/>
+                <apex:inputField value="{!Account.Website}"/>
+                 <br/>
+                <apex:inputField value="{!Account.ASI_KOR_Venue_Business_License_Number__c}"/>
+
+                <apex:pageblocksectionitem />
+            </apex:pageblocksection>
+            --->
+        <!--------------------------------     Additional Information (Customer)     ----------------------------->   
+        <apex:outputPanel layout="block" styleClass="openInPopup" rendered="{!isOffTrade}">
+            
+                <apex:pageblocksection id="AdditionalFieldsOffTrade" title="Additional Information (Customer)">  
+               
+               <apex:repeat value="{!$ObjectType.ASI_CRM_AccountsAdditionalField__c.FieldSets.ASI_KR_CRM_Off_trade_Venue}" var="f" >
+                        <apex:inputField value="{!accountAdditionalField[f.fieldPath]}" />
+                    </apex:repeat>
+                         <apex:inputField value="{!accountAdditionalField.ASI_CRM_Off_Trade_Customer__c}" />                  
+                
+                </apex:pageblocksection>
+      
+        </apex:outputPanel>
+        
+        <apex:outputPanel layout="block" styleClass="openInPopup" rendered="{!isVenue}">
+       
+                <apex:pageblocksection id="AdditionalFieldsVenu" title="Additional Information (Customer)">  
+               
+               <apex:repeat value="{!$ObjectType.ASI_CRM_AccountsAdditionalField__c.FieldSets.ASI_KR_CRM_Venue}" var="f" >
+                        <apex:outputField value="{!accountAdditionalField[f.fieldPath]}" />
+                    </apex:repeat>
+                                           
+                    <apex:inputField value="{!accountAdditionalField.ASI_CRM_Off_Trade_Customer__c}" />  
+                </apex:pageblocksection>
+        
+        </apex:outputPanel>
+        
+            
+                    
+        <apex:outputPanel layout="block" styleClass="openInPopup" rendered="{!isVenue=isOffTrade}">
+       
+                <apex:pageblocksection id="WholeSalerAccount" title="Additional Information (WholeSaler)">                      
+                    <apex:inputField value="{!accountAdditionalField.ASI_CRM_Off_Trade_Customer__c}" />  
+                </apex:pageblocksection>
+        
+        </apex:outputPanel>
+            
+        <!--------------------------------     Segmentation Info (Actual Case)     ----------------------------->
+            
+         <!------
+        <apex:outputPanel layout="block" styleClass="openInPopup" >
+       
+                <apex:pageblocksection id="SegmentationFieldsVenu_Part1" title="Segmentation Info (Actual Case)">  
+
+                        <apex:inputField value="{!Account.ASI_KOR_Venue_PR_Market_Share__c}"/>   
+                            <apex:inputField value="{!Account.ASI_KOR_Venue_Capacity__c}"/>
+                            
+                        <apex:inputField value="{!Account.ASI_KOR_Venue_PR_Korea_Managed__c}"/> 
+                            <apex:inputField value="{!Account.ASI_KOR_Venue_Number_of_Rooms__c}"/>
+                            
+                        <apex:inputField value="{!Account.ASI_KOR_Venue_Diageo_Managed__c}"/>
+                            <apex:inputField value="{!Account.ASI_KOR_Venue_Incentive_Method__c}"/>
+                            
+                    </apex:pageblocksection>  
+                    
+                    <br/>
+                    
+                    <apex:pageblocksection id="SegmentationFieldsVenu_Part2">
+                                
+                        <apex:inputField value="{!Account.ASI_KOR_Venue_Total_of_Whisky_CAPA__c}"/>
+                            <apex:inputField value="{!Account.ASI_KOR_Venue_Malt_Whisky_CAPA__c}"/>
+                            
+                        <apex:inputField value="{!Account.ASI_KOR_Venue_Whisky_CAPA_Local_12_Brand__c}"/>
+                            <apex:inputField value="{!Account.ASI_KOR_Venue_Whisky_CAPA_Local_17_Brand__c}"/>
+                            
+                        <apex:inputField value="{!Account.ASI_KOR_Venue_Whisky_CAPA_Intl_12_Brand__c}"/>
+                            <apex:inputField value="{!Account.ASI_KOR_Venue_Whisky_CAPA_Intl_17_Brand__c}"/>
+                    </apex:pageblocksection> 
+                    
+                    <br/>
+                    
+                    <apex:pageblocksection id="SegmentationFieldsVenu_Part3">
+                        <apex:inputField value="{!Account.ASI_KOR_Venue_Tot_of_White_Spirits_CAPA__c}"/>
+                            <apex:inputField value="{!Account.ASI_KOR_Venue_Vodka_CAPA__c}"/>
+                            
+                        <apex:inputField value="{!Account.ASI_KOR_Venue_Other_Wine_Spirits_CAPA__c}"/>
+                            <apex:inputField value="{!Account.ASI_KOR_Venue_Champagne_CAPA__c}"/>
+                     
+                     </apex:pageblocksection> 
+                    
+                    <br/>
+                    
+                    <apex:pageblocksection id="SegmentationFieldsVenu_Part4">
+                               
+                        <apex:inputField value="{!Account.ASI_KOR_Venue_Tot_PR_KOR_Whisky_CAPA__c}"/>
+                            <apex:inputField value="{!Account.ASI_KOR_Venue_PRK_Malt_Whisky_CAPA__c}"/>
+                            
+                        <apex:inputField value="{!Account.ASI_KOR_Venue_Whisky_CAPA_PRK_Lcl_12_Brd__c}"/>
+                            <apex:inputField value="{!Account.ASI_KOR_Venue_Whisky_CAPA_PRK_Lcl17Brd__c}"/>
+                            
+                        <apex:inputField value="{!Account.ASI_KOR_Venue_Whisky_CAPA_PRK_Intl12Brd__c}"/>
+                            <apex:inputField value="{!Account.ASI_KOR_Venue_Whisky_CAPA_PRK_Intl17Brd__c}"/>
+                    
+                     </apex:pageblocksection> 
+                    
+                    <br/>
+                    
+                    <apex:pageblocksection id="SegmentationFieldsVenu_Part5">
+                                
+                        <apex:inputField value="{!Account.ASI_KOR_Venue_Tot_PRK_White_Spirits_CAPA__c}"/>
+                            <apex:inputField value="{!Account.ASI_KOR_Venue_PR_Korea_Vodka_CAPA__c}"/>
+                            
+                        <apex:inputField value="{!Account.ASI_KOR_Venue_PRK_Other_Wht_Spirits_CAPA__c}"/>
+                            <apex:inputField value="{!Account.ASI_KOR_Venue_PRK_Champagne_CAPA__c}"/>
+                            
+                        <apex:inputField value="{!Account.ASI_KOR_Venue_Venue_Point__c}"/>
+                            <apex:inputField value="{!Account.ASI_KOR_Venue_Consumer_Profile__c}"/>
+                            
+                        <apex:inputField value="{!Account.ASI_KOR_Venue_Content__c}"/>
+                            <apex:inputField value="{!Account.ASI_KOR_Venue_Popularity__c}"/>
+                        
+                        <br/>
+                        <apex:inputField value="{!Account.ASI_KOR_Venue_Influential_Venue__c}"/>
+
+                </apex:pageblocksection>
+        
+        </apex:outputPanel>
+        
+            
+        <apex:outputPanel layout="block" styleClass="openInPopup" >
+                <apex:pageblocksection id="BusinessInformationFieldsVenu" title="Business Information">  
+
+                        <apex:inputField value="{!Account.ASI_KOR_Venue_Opening_Date__c}"/>   
+                            <apex:inputField value="{!Account.ASI_KOR_Venue_Annual_Contract_Status__c}"/>
+                            
+                </apex:pageblocksection>  
+        </apex:outputPanel>
+        
+            
+        <apex:outputPanel layout="block" styleClass="openInPopup" >
+                <apex:pageblocksection id="AddressInformationFieldsVenu" title="Address Information">  
+
+                        <apex:inputField value="{!Account.ASI_KOR_Postal_Code__c}"/>   
+                            <apex:inputField value="{!Account.ASI_KOR_Addr_Province__c}"/>
+                        <apex:inputField value="{!Account.ASI_KOR_Addr_City__c}"/>   
+                            <apex:inputField value="{!Account.ASI_KOR_Addr_Street__c}"/>
+                        <apex:inputField value="{!Account.ASI_KOR_Wholesaler_Addr_Building__c}"/>   
+                            
+                </apex:pageblocksection>  
+        </apex:outputPanel>
+        ---->
+       
+    </apex:pageblock>            
+    </apex:form>
+</apex:page>

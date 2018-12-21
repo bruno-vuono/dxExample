@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>ASI_CRM_Market_share_with_VN_Admin</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>ASI CRM Market share with VN Admin</label>
+        <sharedTo>
+            <group>ASI_CRM_VN_Admin</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>VN Market</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+</SharingRules>

@@ -1,0 +1,1171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>ASI_CRM_Approved_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Approved Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_Estimated_annual_order_amount__c</fullName>
+        <externalId>false</externalId>
+        <formula>ASI_CRM_Customer__r.ASI_CRM_CN_Estimated_annual_order_amount__c</formula>
+        <label>Estimated Annual Order Amount in CNY</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_Total_Gross_Sales_Impact__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Gross Sales Impact</label>
+        <summarizedField>ASI_CRM_Price_And_Discount_Detail__c.ASI_CRM_CN_Gross_Sales_Impact_RollUp__c</summarizedField>
+        <summaryForeignKey>ASI_CRM_Price_And_Discount_Detail__c.ASI_CRM_Price_And_Discount__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_Total_New_Price__c</fullName>
+        <externalId>false</externalId>
+        <label>Total New Price</label>
+        <summarizedField>ASI_CRM_Price_And_Discount_Detail__c.ASI_CRM_New_Price_BT_with_VAT__c</summarizedField>
+        <summaryForeignKey>ASI_CRM_Price_And_Discount_Detail__c.ASI_CRM_Price_And_Discount__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_Channel__c</fullName>
+        <externalId>false</externalId>
+        <formula>ASI_CRM_Customer__r.ASI_CRM_CN_Channel_CN__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Channel</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_Customer_Region__c</fullName>
+        <externalId>false</externalId>
+        <formula>ASI_CRM_Customer__r.ASI_CRM_CN_Region__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Customer Region</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_Customer__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Customer</label>
+        <referenceTo>ASI_CRM_AccountsAdditionalField__c</referenceTo>
+        <relationshipLabel>Price And Discounts</relationshipLabel>
+        <relationshipName>Price_And_Discounts</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_Effective_From__c</fullName>
+        <externalId>false</externalId>
+        <label>Effective From</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_Effective_To__c</fullName>
+        <defaultValue>DATE(2050,12,31)</defaultValue>
+        <externalId>false</externalId>
+        <label>Effective To</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_External_ID__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <externalId>true</externalId>
+        <label>External ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_IHBR_Price_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>IHBR Price Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Contract Price</fullName>
+                    <default>false</default>
+                    <label>Contract Price</label>
+                </value>
+                <value>
+                    <fullName>Promotion Price</fullName>
+                    <default>false</default>
+                    <label>Promotion Price</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_Item_Master_Reference_Number__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Item Master Reference Number</label>
+        <lookupFilter>
+            <active>true</active>
+            <booleanFilter>(1 AND 2) OR (3 AND 4)</booleanFilter>
+            <filterItems>
+                <field>$Source.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>CN Repacking Price Request, CN Repacking Price Request RO</value>
+            </filterItems>
+            <filterItems>
+                <field>ASI_CN_NPL_Item_Master__c.ASI_CN_NPL_Item_Master_Type__c</field>
+                <operation>equals</operation>
+                <value>Repack</value>
+            </filterItems>
+            <filterItems>
+                <field>$Source.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>CN NPL T1 Price Request, CN NPL T1 Price Request RO</value>
+            </filterItems>
+            <filterItems>
+                <field>ASI_CN_NPL_Item_Master__c.ASI_CN_NPL_Item_Master_Type__c</field>
+                <operation>equals</operation>
+                <value>NPL</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>ASI_CN_NPL_Item_Master__c</referenceTo>
+        <relationshipLabel>Price And Discounts</relationshipLabel>
+        <relationshipName>Price_And_Discounts</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_JDE_Code__c</fullName>
+        <externalId>false</externalId>
+        <formula>ASI_CRM_Customer__r.ASI_CRM_CN_JDE_Code__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>JDE Code</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_NPL_Reference_Number__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>NPL Reference Number</label>
+        <referenceTo>ASI_CN_NPL_NPL_Request__c</referenceTo>
+        <relationshipLabel>Price And Discounts</relationshipLabel>
+        <relationshipName>Price_And_Discounts</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_RTD__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>RTD</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_ReasonForThePriceIsLowerThanT1__c</fullName>
+        <externalId>false</externalId>
+        <label>Reason For The Price Is Lower Than T1:</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_Reason_for_Investment__c</fullName>
+        <externalId>false</externalId>
+        <label>Reason for Investment</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_Remark__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>请使用英语填写价格申请的原因以及目的</inlineHelpText>
+        <label>Remark</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Open</fullName>
+                    <default>false</default>
+                    <label>Open</label>
+                </value>
+                <value>
+                    <fullName>Submitted</fullName>
+                    <default>false</default>
+                    <label>Submitted</label>
+                </value>
+                <value>
+                    <fullName>Pending for BO to PRCSW Pirce</fullName>
+                    <default>false</default>
+                    <label>Pending for BO to PRCSW Pirce</label>
+                </value>
+                <value>
+                    <fullName>Pending for PRCSW to PRC Price</fullName>
+                    <default>false</default>
+                    <label>Pending for PRCSW to PRC Price</label>
+                </value>
+                <value>
+                    <fullName>Pending for T1 Price</fullName>
+                    <default>false</default>
+                    <label>Pending for T1 Price</label>
+                </value>
+                <value>
+                    <fullName>Pending for add to order form</fullName>
+                    <default>false</default>
+                    <label>Pending for add to order form</label>
+                </value>
+                <value>
+                    <fullName>Completed</fullName>
+                    <default>false</default>
+                    <label>Completed</label>
+                </value>
+                <value>
+                    <fullName>Approved</fullName>
+                    <default>false</default>
+                    <label>Approved</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_Sys_Approver_10__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Sys Approver 10</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Price_And_Discounts9</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_Sys_Approver_1__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Sys Approver 1</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Price_And_Discounts</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_Sys_Approver_2__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Sys Approver 2</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Price_And_Discounts1</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_Sys_Approver_3__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Sys Approver 3</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Price_And_Discounts2</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_Sys_Approver_4__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Sys Approver 4</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Price_And_Discounts3</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_Sys_Approver_5__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Sys Approver 5</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Price_And_Discounts4</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_Sys_Approver_6__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Sys Approver 6</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Price_And_Discounts5</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_Sys_Approver_7__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Sys Approver 7</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Price_And_Discounts6</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_Sys_Approver_8__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Sys Approver 8</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Price_And_Discounts7</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_Sys_Approver_9__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Sys Approver 9</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Price_And_Discounts8</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>NPL T1 Price Request</fullName>
+                    <default>false</default>
+                    <label>NPL T1 Price Request</label>
+                </value>
+                <value>
+                    <fullName>Repacking Price Request</fullName>
+                    <default>false</default>
+                    <label>Repacking Price Request</label>
+                </value>
+                <value>
+                    <fullName>T1 Price Adjustment Request</fullName>
+                    <default>false</default>
+                    <label>T1 Price Adjustment Request</label>
+                </value>
+                <value>
+                    <fullName>Customer Price and Discount Request</fullName>
+                    <default>false</default>
+                    <label>Customer Price and Discount Request</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_Volume_Based_Mechanics__c</fullName>
+        <externalId>false</externalId>
+        <label>Volume Based Mechanics</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_Volume_Based__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Volume Based</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>Price And Discount</label>
+    <listViews>
+        <fullName>ASI_CRM_CN_Customer_Pending_for_T1_Price</fullName>
+        <columns>NAME</columns>
+        <columns>ASI_CRM_Item_Master_Reference_Number__c</columns>
+        <columns>ASI_CRM_NPL_Reference_Number__c</columns>
+        <columns>ASI_CRM_Status__c</columns>
+        <columns>ASI_CRM_Effective_From__c</columns>
+        <columns>ASI_CRM_Effective_To__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>ASI_CRM_Price_And_Discount__c.ASI_CRM_CN_Customer_Price_and_Discount_Request_RO</value>
+        </filters>
+        <filters>
+            <field>ASI_CRM_Status__c</field>
+            <operation>equals</operation>
+            <value>Pending for T1 Price,Approved</value>
+        </filters>
+        <label>Customer - Pending for T1 Price</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>ASI_CRM_CN_Pending_for_BO_to_PRCSW_Price</fullName>
+        <columns>NAME</columns>
+        <columns>ASI_CRM_Effective_From__c</columns>
+        <columns>ASI_CRM_Item_Master_Reference_Number__c</columns>
+        <columns>ASI_CRM_NPL_Reference_Number__c</columns>
+        <columns>ASI_CRM_Remark__c</columns>
+        <columns>ASI_CRM_Status__c</columns>
+        <columns>ASI_CRM_Effective_To__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>ASI_CRM_Price_And_Discount__c.ASI_CRM_CN_NPL_T1_Price_Request_RO</value>
+        </filters>
+        <filters>
+            <field>ASI_CRM_Status__c</field>
+            <operation>equals</operation>
+            <value>Pending for BO to PRCSW Pirce</value>
+        </filters>
+        <filters>
+            <field>CREATED_DATE</field>
+            <operation>greaterThan</operation>
+            <value>11/11/2015 12:00 AM</value>
+        </filters>
+        <label>NP 1. Pending for BO to PRCSW Price</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>ASI_CRM_CN_Pending_for_PRCSW_to_PRC_Price</fullName>
+        <columns>NAME</columns>
+        <columns>ASI_CRM_Item_Master_Reference_Number__c</columns>
+        <columns>ASI_CRM_NPL_Reference_Number__c</columns>
+        <columns>ASI_CRM_Remark__c</columns>
+        <columns>ASI_CRM_Status__c</columns>
+        <columns>ASI_CRM_Effective_From__c</columns>
+        <columns>ASI_CRM_Effective_To__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>ASI_CRM_Price_And_Discount__c.ASI_CRM_CN_NPL_T1_Price_Request_RO</value>
+        </filters>
+        <filters>
+            <field>ASI_CRM_Status__c</field>
+            <operation>equals</operation>
+            <value>Pending for PRCSW to PRC Price</value>
+        </filters>
+        <label>NP 2. Pending for PRCSW to PRC Price</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>ASI_CRM_CN_Pending_for_T1_Price</fullName>
+        <columns>NAME</columns>
+        <columns>ASI_CRM_Item_Master_Reference_Number__c</columns>
+        <columns>ASI_CRM_NPL_Reference_Number__c</columns>
+        <columns>ASI_CRM_Remark__c</columns>
+        <columns>ASI_CRM_Status__c</columns>
+        <columns>ASI_CRM_Effective_From__c</columns>
+        <columns>ASI_CRM_Effective_To__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>ASI_CRM_Price_And_Discount__c.ASI_CRM_CN_NPL_T1_Price_Request_RO</value>
+        </filters>
+        <filters>
+            <field>ASI_CRM_Status__c</field>
+            <operation>equals</operation>
+            <value>Pending for T1 Price</value>
+        </filters>
+        <label>NP 3. Pending for T1 Price</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>ASI_CRM_CN_Pending_for_add_to_order_form</fullName>
+        <columns>NAME</columns>
+        <columns>ASI_CRM_Item_Master_Reference_Number__c</columns>
+        <columns>ASI_CRM_Remark__c</columns>
+        <columns>ASI_CRM_NPL_Reference_Number__c</columns>
+        <columns>ASI_CRM_Status__c</columns>
+        <columns>ASI_CRM_Effective_From__c</columns>
+        <columns>ASI_CRM_Effective_To__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>ASI_CRM_Price_And_Discount__c.ASI_CRM_CN_NPL_T1_Price_Request_RO</value>
+        </filters>
+        <filters>
+            <field>ASI_CRM_Status__c</field>
+            <operation>equals</operation>
+            <value>Pending for add to order form</value>
+        </filters>
+        <label>NP 4. Pending for add to order form</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>ASI_CRM_CN_Repacking_Pending_for_T1_Price</fullName>
+        <columns>NAME</columns>
+        <columns>ASI_CRM_Effective_From__c</columns>
+        <columns>ASI_CRM_Effective_To__c</columns>
+        <columns>ASI_CRM_Item_Master_Reference_Number__c</columns>
+        <columns>ASI_CRM_NPL_Reference_Number__c</columns>
+        <columns>ASI_CRM_Remark__c</columns>
+        <columns>ASI_CRM_Status__c</columns>
+        <columns>RECORDTYPE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>ASI_CRM_Price_And_Discount__c.ASI_CRM_CN_Repacking_Price_Request_RO</value>
+        </filters>
+        <filters>
+            <field>ASI_CRM_Status__c</field>
+            <operation>equals</operation>
+            <value>Pending for T1 Price</value>
+        </filters>
+        <label>Repack 1. Pending for T1 Price</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>ASI_CRM_CN_Repacking_Pending_for_add_to_order_form</fullName>
+        <columns>NAME</columns>
+        <columns>ASI_CRM_Effective_From__c</columns>
+        <columns>ASI_CRM_Effective_To__c</columns>
+        <columns>ASI_CRM_Item_Master_Reference_Number__c</columns>
+        <columns>ASI_CRM_NPL_Reference_Number__c</columns>
+        <columns>ASI_CRM_Remark__c</columns>
+        <columns>ASI_CRM_Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>ASI_CRM_Price_And_Discount__c.ASI_CRM_CN_Repacking_Price_Request_RO</value>
+        </filters>
+        <filters>
+            <field>ASI_CRM_Status__c</field>
+            <operation>equals</operation>
+            <value>Pending for add to order form</value>
+        </filters>
+        <label>Repack 2. Pending for Order Form</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>ASI_CRM_CN_T1_Price_Adjust_Pending_T1</fullName>
+        <columns>NAME</columns>
+        <columns>ASI_CRM_Status__c</columns>
+        <columns>ASI_CRM_Effective_From__c</columns>
+        <columns>ASI_CRM_Effective_To__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>ASI_CRM_Price_And_Discount__c.ASI_CRM_CN_T1_Price_Adjustment_Request_RO</value>
+        </filters>
+        <filters>
+            <field>ASI_CRM_Status__c</field>
+            <operation>equals</operation>
+            <value>Pending for T1 Price</value>
+        </filters>
+        <label>T1 Price Adjust - Pending for T1 Price</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Repack_price_All</fullName>
+        <columns>NAME</columns>
+        <columns>ASI_CRM_Effective_From__c</columns>
+        <columns>ASI_CRM_Effective_To__c</columns>
+        <columns>ASI_CRM_Item_Master_Reference_Number__c</columns>
+        <columns>ASI_CRM_NPL_Reference_Number__c</columns>
+        <columns>ASI_CRM_Remark__c</columns>
+        <columns>ASI_CRM_Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>ASI_CRM_Price_And_Discount__c.ASI_CRM_CN_Repacking_Price_Request_RO</value>
+        </filters>
+        <label>Repack price All</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <displayFormat>PC-{0000000}</displayFormat>
+        <label>Price and Discount Request ID</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Price And Discounts</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>ASI_CRM_CN_Customer_Price_and_Discount_Request</fullName>
+        <active>true</active>
+        <label>CN Customer Price and Discount Request</label>
+        <picklistValues>
+            <picklist>ASI_CRM_IHBR_Price_Type__c</picklist>
+            <values>
+                <fullName>Contract Price</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Promotion Price</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ASI_CRM_Status__c</picklist>
+            <values>
+                <fullName>Open</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ASI_CRM_Type__c</picklist>
+            <values>
+                <fullName>Customer Price and Discount Request</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NPL T1 Price Request</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Repacking Price Request</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>T1 Price Adjustment Request</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>ASI_CRM_CN_Customer_Price_and_Discount_Request_RO</fullName>
+        <active>true</active>
+        <label>CN Customer Price and Discount Request RO</label>
+        <picklistValues>
+            <picklist>ASI_CRM_IHBR_Price_Type__c</picklist>
+            <values>
+                <fullName>Contract Price</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Promotion Price</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ASI_CRM_Status__c</picklist>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ASI_CRM_Type__c</picklist>
+            <values>
+                <fullName>Customer Price and Discount Request</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NPL T1 Price Request</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Repacking Price Request</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>T1 Price Adjustment Request</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>ASI_CRM_CN_NPL_T1_Price_Request</fullName>
+        <active>true</active>
+        <label>CN NPL T1 Price Request</label>
+        <picklistValues>
+            <picklist>ASI_CRM_IHBR_Price_Type__c</picklist>
+            <values>
+                <fullName>Contract Price</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Promotion Price</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ASI_CRM_Status__c</picklist>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Open</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Pending for BO to PRCSW Pirce</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending for PRCSW to PRC Price</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending for T1 Price</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending for add to order form</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ASI_CRM_Type__c</picklist>
+            <values>
+                <fullName>Customer Price and Discount Request</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NPL T1 Price Request</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Repacking Price Request</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>T1 Price Adjustment Request</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>ASI_CRM_CN_NPL_T1_Price_Request_RO</fullName>
+        <active>true</active>
+        <label>CN NPL T1 Price Request RO</label>
+        <picklistValues>
+            <picklist>ASI_CRM_IHBR_Price_Type__c</picklist>
+            <values>
+                <fullName>Contract Price</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Promotion Price</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ASI_CRM_Status__c</picklist>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending for BO to PRCSW Pirce</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Pending for PRCSW to PRC Price</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending for T1 Price</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending for add to order form</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ASI_CRM_Type__c</picklist>
+            <values>
+                <fullName>Customer Price and Discount Request</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NPL T1 Price Request</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Repacking Price Request</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>T1 Price Adjustment Request</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>ASI_CRM_CN_Repacking_Price_Request</fullName>
+        <active>true</active>
+        <label>CN Repacking Price Request</label>
+        <picklistValues>
+            <picklist>ASI_CRM_IHBR_Price_Type__c</picklist>
+            <values>
+                <fullName>Contract Price</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Promotion Price</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ASI_CRM_Status__c</picklist>
+            <values>
+                <fullName>Open</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ASI_CRM_Type__c</picklist>
+            <values>
+                <fullName>Customer Price and Discount Request</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NPL T1 Price Request</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Repacking Price Request</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>T1 Price Adjustment Request</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>ASI_CRM_CN_Repacking_Price_Request_RO</fullName>
+        <active>true</active>
+        <label>CN Repacking Price Request RO</label>
+        <picklistValues>
+            <picklist>ASI_CRM_IHBR_Price_Type__c</picklist>
+            <values>
+                <fullName>Contract Price</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Promotion Price</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ASI_CRM_Status__c</picklist>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending for T1 Price</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending for add to order form</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ASI_CRM_Type__c</picklist>
+            <values>
+                <fullName>Customer Price and Discount Request</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NPL T1 Price Request</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Repacking Price Request</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>T1 Price Adjustment Request</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>ASI_CRM_CN_T1_Price_Adjustment_Request</fullName>
+        <active>true</active>
+        <label>CN T1 Price Adjustment Request</label>
+        <picklistValues>
+            <picklist>ASI_CRM_IHBR_Price_Type__c</picklist>
+            <values>
+                <fullName>Contract Price</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Promotion Price</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ASI_CRM_Status__c</picklist>
+            <values>
+                <fullName>Open</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ASI_CRM_Type__c</picklist>
+            <values>
+                <fullName>Customer Price and Discount Request</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NPL T1 Price Request</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Repacking Price Request</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>T1 Price Adjustment Request</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>ASI_CRM_CN_T1_Price_Adjustment_Request_RO</fullName>
+        <active>true</active>
+        <label>CN T1 Price Adjustment Request RO</label>
+        <picklistValues>
+            <picklist>ASI_CRM_IHBR_Price_Type__c</picklist>
+            <values>
+                <fullName>Contract Price</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Promotion Price</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ASI_CRM_Status__c</picklist>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ASI_CRM_Type__c</picklist>
+            <values>
+                <fullName>Customer Price and Discount Request</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NPL T1 Price Request</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Repacking Price Request</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>T1 Price Adjustment Request</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts>
+        <customTabListAdditionalFields>ASI_CRM_Effective_From__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>ASI_CRM_Effective_To__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>ASI_CRM_Status__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>RECORDTYPE</customTabListAdditionalFields>
+        <customTabListAdditionalFields>CREATEDBY_USER</customTabListAdditionalFields>
+        <customTabListAdditionalFields>CREATED_DATE</customTabListAdditionalFields>
+    </searchLayouts>
+    <sharingModel>Private</sharingModel>
+    <validationRules>
+        <fullName>ASI_CRM_CN_Effective_Date_Validation</fullName>
+        <active>true</active>
+        <errorConditionFormula>IF( CONTAINS(RecordType.DeveloperName, &quot;ASI_CRM_CN&quot;) &amp;&amp; RecordType.DeveloperName  &lt;&gt; &quot;ASI_CRM_CN_NPL_T1_Price_Request_RO&quot; &amp;&amp; RecordType.DeveloperName  &lt;&gt; &quot;ASI_CRM_CN_NPL_T1_Price_Request&quot; &amp;&amp; ASI_CRM_Effective_From__c &gt; ASI_CRM_Effective_To__c , TRUE, FALSE )</errorConditionFormula>
+        <errorDisplayField>ASI_CRM_Effective_From__c</errorDisplayField>
+        <errorMessage>Efftective From can&apos;t be greater than Effective To</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>ASI_CRM_CN_Effective_Date_Validation_2</fullName>
+        <active>false</active>
+        <errorConditionFormula>IF( CONTAINS(RecordType.DeveloperName, &quot;ASI_CRM_CN&quot;)  &amp;&amp; RecordType.DeveloperName  &lt;&gt; &quot;ASI_CRM_CN_NPL_T1_Price_Request_RO&quot; &amp;&amp; RecordType.DeveloperName  &lt;&gt; &quot;ASI_CRM_CN_NPL_T1_Price_Request&quot; &amp;&amp; ASI_CRM_Effective_From__c &lt;= TODAY() &amp;&amp; ISPICKVAL( ASI_CRM_Status__c, &quot;Open&quot;), TRUE, FALSE )</errorConditionFormula>
+        <errorDisplayField>ASI_CRM_Effective_From__c</errorDisplayField>
+        <errorMessage>Effective From must be greater than today</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>ASI_CRM_CN_Effective_Date_Validation_3</fullName>
+        <active>true</active>
+        <errorConditionFormula>IF( RecordType.DeveloperName  == &quot;ASI_CRM_CN_NPL_T1_Price_Request_RO&quot; &amp;&amp; RecordType.DeveloperName == &quot;ASI_CRM_CN_NPL_T1_Price_Request&quot; &amp;&amp; ASI_CRM_Effective_From__c &lt; TODAY(), TRUE, FALSE )</errorConditionFormula>
+        <errorDisplayField>ASI_CRM_Effective_From__c</errorDisplayField>
+        <errorMessage>Effective From must be equal or greater than today</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>ASI_CRM_CN_checkReason</fullName>
+        <active>true</active>
+        <errorConditionFormula>NOT(CONTAINS($Profile.Name,&quot;System Admin&quot;))
+&amp;&amp;CONTAINS(RecordType.DeveloperName,&apos;ASI_CRM_CN_Customer_Price_and_Discount_Request&apos;)
+&amp;&amp;CONTAINS(ASI_CRM_Customer__r.RecordType.DeveloperName,&apos;ASI_CRM_Outlet_CN&apos;)
+&amp;&amp;ASI_CRM_CN_Total_Gross_Sales_Impact__c &gt; 0
+&amp;&amp;(ISNULL(ASI_CRM_Reason_for_Investment__c)||ISBLANK(ASI_CRM_Reason_for_Investment__c)||ISNULL(ASI_CRM_ReasonForThePriceIsLowerThanT1__c)||ISBLANK(ASI_CRM_ReasonForThePriceIsLowerThanT1__c))</errorConditionFormula>
+        <errorMessage>Please input “Reason for Investment” and “Reason For The Price Is Lower Than T1:”</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Validation_of_JDE_Code</fullName>
+        <active>true</active>
+        <errorConditionFormula>CONTAINS(RecordType.DeveloperName, &apos;ASI_CRM_CN_Customer_Price_and_Discount_Request&apos;) &amp;&amp; ( ( NOT( ASI_CRM_RTD__c ) &amp;&amp; ISBLANK( ASI_CRM_Customer__r.ASI_CRM_CN_JDE_Code__c ) ) || ( ASI_CRM_RTD__c &amp;&amp; ISBLANK( ASI_CRM_Customer__r.ASI_CRM_CN_JDE_Code_RTD__c ) ) )</errorConditionFormula>
+        <errorMessage>Customer JDE Code can not be NULL</errorMessage>
+    </validationRules>
+    <visibility>Public</visibility>
+</CustomObject>

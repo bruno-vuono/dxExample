@@ -1,0 +1,5 @@
+<apex:page showHeader="false" standardStyleSheets="false" controller="ESN_MB_Dekor_Cx">
+<script>
+    window.location.assign("{!JSENCODE(dekorURL)}");
+</script>
+</apex:page>

@@ -1,0 +1,34 @@
+<!--
+/*********************************************************************************
+ * Name: ASI_CRM_SG_PromotionPlanEnrollCust_Page
+ * Description: Show the enrolled customer list 
+ *
+ * Version History
+ * Date             Developer                Comments
+ * ---------------  --------------------     --------------------------------------------------------------------------------
+ * 2018-04-25       Hugo Cheung			     Created
+ */
+-->
+<apex:page standardController="ASI_CRM_Promotion_Plan__c" extensions="ASI_CRM_SG_PromotionPlanEnrollCust_Ctrl">
+	<!-- Import Library -->
+    <!-- CSS -->
+    <apex:stylesheet value="{!URLFOR($Resource.ASI_CRM_SG_Library, '/styles/main.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.ASI_CRM_SG_Library, '/styles/jquery-ui.min.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.ASI_CRM_SG_Library, '/styles/bootstrap.min.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.ASI_CRM_SG_Library, '/styles/datatables.min.css')}" />
+    <!-- JavaScript -->
+    <apex:includeScript value="{!URLFOR($Resource.ASI_CRM_SG_Library, '/lib/jquery.min.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.ASI_CRM_SG_Library, '/lib/bootstrap.min.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.ASI_CRM_SG_Library, '/lib/datatables.min.js')}" />
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
+    <table width="100%" class="table table-bordered">
+        <apex:repeat var="id" value="{!outletIdNameMap}">
+            <tr>
+                <td>
+                    <a href="/{!id}" target="_blank">{!outletIdNameMap[id]}</a>
+                </td>
+            </tr>
+        </apex:repeat>
+    </table>
+</apex:page>

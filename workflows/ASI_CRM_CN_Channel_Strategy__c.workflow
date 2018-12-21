@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>ASI_CRM_CN_Channel_Strategy_Approved_Email_Alert</fullName>
+        <description>ASI_CRM_CN_Channel_Strategy_Approved_Email_Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <field>ASI_CRM_CN_Submitters_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>ASI_CRM_CN_Email_Templates/ASI_CRM_CN_CSApprovedTemplate</template>
+    </alerts>
+    <alerts>
+        <fullName>ASI_CRM_CN_Channel_Strategy_Rejected_Email_Alert</fullName>
+        <description>ASI_CRM_CN_Channel_Strategy_Rejected_Email_Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <field>ASI_CRM_CN_Submitters_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>ASI_CRM_CN_Email_Templates/ASI_CRM_CN_CSRejectedTemplate</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>ASI_CRM_CN_Set_Status_Draft</fullName>
+        <field>ASI_CRM_CN_Status__c</field>
+        <literalValue>Draft</literalValue>
+        <name>Set Status Draft</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ASI_CRM_CN_Set_Status_Final</fullName>
+        <field>ASI_CRM_CN_Status__c</field>
+        <literalValue>Final</literalValue>
+        <name>Set Status Final</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ASI_CRM_CN_Set_Status_Submitted</fullName>
+        <field>ASI_CRM_CN_Status__c</field>
+        <literalValue>Submitted</literalValue>
+        <name>Set Status Submitted</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ASI_CRM_CN_UpdateSubmitterEmail</fullName>
+        <field>ASI_CRM_CN_Submitters_Email__c</field>
+        <formula>$User.Email</formula>
+        <name>ASI_CRM_CN_UpdateSubmitterEmail</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+</Workflow>

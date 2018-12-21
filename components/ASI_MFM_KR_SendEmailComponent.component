@@ -1,0 +1,36 @@
+<apex:component controller="ASI_MFM_KR_SendEmailController" access="global">
+    <apex:attribute name="PLANID" description="Plan ID" type="id" assignto="{!PLAN_ID}"/>
+    
+    
+    <script>
+    function closeAndRefresh(){
+        console.log('clicked on the button');
+        window.top.location = '/{!$CurrentPage.parameters.id}';
+    }
+    </script>
+    
+    <html> 
+        
+        
+        <div class="bs container-fluid" id="EmailWizard">
+            
+            <apex:commandButton action="{!SendEmail}" value="Notify" ></apex:commandButton>
+            
+            
+            
+            <!---- <button type="button" action="{!SendEmail}"  class="btn btn-info btn-xs" >Notify</button>    --->
+            <!--<apex:commandButton value="Cancel" onComplete="closeAndRefresh();" styleclass="bs btn btn-default btn-xs"/>-->
+            <textarea name="MSG"></textarea>
+        </div>  {!PLAN_FiscalYear}
+    </html>
+    
+    <apex:actionStatus id="actionStatus">
+        <apex:facet name="start">Saving.....
+            <img src="/img/loading.gif"/>
+        </apex:facet>
+    </apex:actionStatus>           
+    
+    
+</apex:component>
+
+<!--------<apex:input type="text"></apex:input>-------------->

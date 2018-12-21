@@ -1,0 +1,571 @@
+<apex:page tabStyle="MMPJ_TOPG_Cockpit__tab" controller="MMPJ_TOPG_CockpitController" id="thePage" docType="HTML-5.0">
+  <script>
+  /*function resizeIframe(iframe) {
+      iframe.height = iframe.contentWindow.document.body.scrollHeight + "px";
+       iframe.width = iframe.contentWindow.document.body.scrollWidth  + "px";
+  }*/
+    </script> 
+
+<!--******* TGS-51 PowerBI *******-->
+        <!--apex:includeScript value="{!$Resource.MMPJ_TOPG_PBIJS}"/> 
+        <apex:form > 
+            <apex:actionFunction name="refreshAccessToken" action="{!refreshAccessToken}"/> 
+        </apex:form>         
+ 
+        <script> 
+            let accessToken = '{!PBIaccess_token}'; 
+            let refreshToken = '{!PBIrefresh_token}'; 
+            let expires_on = '{!PBIexpires_on}'; 
+            let selectedReport = '10b1a1d0-7fdb-462e-8408-2d2703d2068d'; // Report ID
+            window.onload = function() { 
+              
+                let expiresOn = parseInt(expires_on); 
+                let currentTime = Date.now()/1000; 
+                      
+                    if(expiresOn <= currentTime || !accessToken) 
+                    {  
+                        window.location.href = '{!authUrl}'; 
+                    } else if((expiresOn - 2000) <= currentTime) { 
+                        refreshAccessToken(); 
+                    } 
+                    
+                var filter = { 
+                       $schema: "http://powerbi.com/product/schema#basic" 
+                    }; 
+
+                var embedConfiguration = { 
+                  
+                    type: 'report',       
+                    id: selectedReport, 
+                    embedUrl: 'https://app.powerbi.com/reportEmbed', 
+                    settings: {  
+                            filterPaneEnabled: true, 
+                            navContentPaneEnabled: true 
+                        } 
+                }; 
+         
+                powerbi.accessToken = '{!PBIaccess_token}'; 
+                 
+                var element = document.getElementById('reportPrisma'); 
+                 
+                var report = powerbi.embed(element, embedConfiguration); 
+            } 
+
+        </script--> 
+
+<!--******* TGS-51 PowerBI *******-->
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    </head>
+
+    <apex:form id="theForm">
+        <apex:pageMessages id="pgMsg" />
+        <apex:stylesheet value="/sCSS/21.0/sprites/1297816277000/Theme3/default/gc/versioning.css" />
+        <apex:stylesheet value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css" />
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+        <!-- TGS-51 -->
+        <!--script src="https://npmcdn.com/powerbi-client@2.0.0"></script>
+        <script src="https://npmcdn.com/angular-powerbi@1.0.0"></script-->
+        <!--apex:includeScript value="{!$Resource.MMPJ_TOPG_PBIJS}"/--> 
+        <!-- TGS-51 -->
+        <script>
+            var $k = jQuery.noConflict();
+            function drawEffectsChart(chartData, chartTitle, chartYTitle)
+            {
+                if(chartData != '')
+                {
+                    $k('#effectsChart').highcharts(
+                    {
+                        chart: {type: 'waterfall'},
+                        title: {text: chartTitle},
+                        credits: {enabled: false},
+                        xAxis: {type: 'category'},
+                        yAxis: {title: {text: chartYTitle} },
+                        legend: {enabled: false},
+                        tooltip: { pointFormat: '<b>{point.y:,.2f} K€</b>'},
+                        series:
+                        [{
+                            upColor: '#00cc22',
+                            color: '#ff0000',
+                            data:  JSON.parse(chartData),
+                            dataLabels:
+                            {
+                                enabled: true,
+                                formatter: function () {return Highcharts.numberFormat(this.y / 1, 1, ',') ;},
+                                style: {color: '#FFFFFF', fontWeight: 'bold', textShadow: '0px 0px 3px black'}
+                            },
+                            pointPadding: 0
+                        }]
+                    });
+                }
+            }
+            function drawTop10Chart(chartData, year)
+            {
+                if(chartData != '')
+                {
+                    $k('#top10BrandsChart').highcharts(
+                    {
+                        chart: {type: 'column'},
+                        title: {text: 'Top 15 growth international spirits brands'},
+                        yAxis:
+                        {
+                            title:{text: 'incremental volume '+ year +' vs '+(year-1)+', K9Lcs'},
+                        },
+                        credits: {enabled: false},
+                        series: JSON.parse(chartData)
+                    });
+                }
+            }
+            function drawTop5BrandsChart(chartData, chartYTitle, year)
+            {
+                if(chartData != '')
+                {
+                    $k('#top5BrandsChart').highcharts(
+                    {
+                        chart: {type: 'column'},
+                        title: {text: 'Top 5 Brands'},
+                                            xAxis: {categories: ['Vol '+(year-1), 'Vol '+year]},
+                        yAxis:
+                        {
+                            min: 0,
+                            title:{text: chartYTitle},
+                            stackLabels:
+                            {
+                                enabled: true,
+                                style: {fontWeight: 'bold', color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'}
+                            }
+                        },
+                        credits:{enabled: false},
+                        legend:
+                        {
+                            align: 'right',
+                            verticalAlign: 'bottom',
+                            backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+                            borderColor: '#CCC',
+                            borderWidth: 1,
+                            shadow: false
+                        },
+                        tooltip:
+                        {
+                            headerFormat: '<b>{point.x}</b><br/>',
+                            pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}<br/>Market Share: {point.percentage:.2f}%'
+                        },
+                        plotOptions:
+                        {
+                            column:
+                            {
+                                stacking: 'normal',
+                                dataLabels:
+                                {
+                                    enabled: true,
+                                    color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
+                                    style: {textShadow: '0 0 3px black'}
+                                }
+                            }
+                        },
+                        series: JSON.parse(chartData)
+                    });
+                }
+            }
+            function drawPriceBandChart(chartData, chartYTitle, year)
+            {
+                if(chartData != '')
+                {
+                    $k('#priceBandChart').highcharts(
+                    {
+                        chart: {type: 'column'},
+                        title: {text: 'Price band by PR category5'},
+                        xAxis: {categories: ['Vol '+(year-1), 'Vol '+year]},
+                        yAxis:
+                        {
+                            min: 0,
+                            title:{text: chartYTitle},
+                            stackLabels:
+                            {
+                                enabled: true,
+                                style: {fontWeight: 'bold', color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'}
+                            }
+                        },
+                        credits:{enabled: false},
+                        legend:
+                        {
+                            align: 'right',
+                            verticalAlign: 'bottom',
+                            backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+                            borderColor: '#CCC',
+                            borderWidth: 1,
+                            shadow: false
+                        },
+                        tooltip:
+                        {
+                            headerFormat: '<b>{point.x}</b><br/>',
+                            pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}<br/>Market Share: {point.percentage:.2f}%'
+                        },
+                        plotOptions:
+                        {
+                            column:
+                            {
+                                stacking: 'normal',
+                                dataLabels:
+                                {
+                                    enabled: true,
+                                    color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
+                                    style: {textShadow: '0 0 3px black'}
+                                }
+                            }
+                        },
+                        series: JSON.parse(chartData)
+                    });
+                }
+            }
+
+
+            function affichPerfReport() {
+                // find the iFrame on the page and handle the loaded event.
+                var iframe = document.getElementById('ifrPrisma');
+                // Report ID is in URL
+                var perfReportID = '{!MMPJ_perfReportID}';
+                var startURL = "https://embedded.powerbi.com/appTokenReportEmbed?reportId=";
+                iframe.src = startURL.concat(perfReportID);
+                //iframe.src = "https://embedded.powerbi.com/appTokenReportEmbed?reportId=10b1a1d0-7fdb-462e-8408-2d2703d2068d"; 
+                iframe.onload = postActionLoadReport;
+                // post the access token to the iFrame to load the tile
+                function postActionLoadReport() {
+                    accessToken = '{!MMPJ_apptokenPerf}';
+                    //accessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2ZXIiOiIwLjIuMCIsInR5cGUiOiJlbWJlZCIsIndjbiI6InBiZXByaGJpc2hhcmVkcHJvZCIsIndpZCI6IjNiYzU2ODExLTA4NWEtNDdmMC04YTg4LTJiOGZlMWM3ZDE4YSIsInJpZCI6IjEwYjFhMWQwLTdmZGItNDYyZS04NDA4LTJkMjcwM2QyMDY4ZCIsImlzcyI6IlBvd2VyQklTREsiLCJhdWQiOiJodHRwczovL2FuYWx5c2lzLndpbmRvd3MubmV0L3Bvd2VyYmkvYXBpIiwiZXhwIjoxNDkwMTE2NTg1LCJuYmYiOjE0OTAxMTI5ODV9.KYrM6L-_jZrHMHmiIIghAqyEOiMSNQKKp62ONCUPKFE"; 
+                    // construct the push message structure
+                    var m = { action: "loadReport", accessToken: accessToken };
+                    message = JSON.stringify(m);
+                    // push the message
+                    iframe = document.getElementById('ifrPrisma');
+                    iframe.contentWindow.postMessage(message, "*");
+                }
+            }
+
+
+            function affichIwsrReport() {
+                // find the iFrame on the page and handle the loaded event.
+                var iframe = document.getElementById('ifrIwsr');
+                // Report ID is in URL
+                var iwsrReportID = '{!MMPJ_iwsrReportID}';
+                var startURL = "https://embedded.powerbi.com/appTokenReportEmbed?reportId=";
+                iframe.src = startURL.concat(iwsrReportID);
+                //iframe.src = "https://embedded.powerbi.com/appTokenReportEmbed?reportId=fd229f02-6e50-47eb-a955-ad784ba2c703"; 
+                iframe.onload = postActionLoadReport;
+                // post the access token to the iFrame to load the tile
+                function postActionLoadReport() {
+                    accessToken = '{!MMPJ_apptokenIwsr}';
+                    //accessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2ZXIiOiIwLjIuMCIsInR5cGUiOiJlbWJlZCIsIndjbiI6InBiZXByaGJpc2hhcmVkcHJvZCIsIndpZCI6IjNiYzU2ODExLTA4NWEtNDdmMC04YTg4LTJiOGZlMWM3ZDE4YSIsInJpZCI6ImZkMjI5ZjAyLTZlNTAtNDdlYi1hOTU1LWFkNzg0YmEyYzcwMyIsImlzcyI6IlBvd2VyQklTREsiLCJhdWQiOiJodHRwczovL2FuYWx5c2lzLndpbmRvd3MubmV0L3Bvd2VyYmkvYXBpIiwiZXhwIjoxNDkwMTE4NDE5LCJuYmYiOjE0OTAxMTQ4MTl9.dW62A9AuNkNN3CO0vFYcIU2JyfGFfWhs1I9GFknCMJ0"; 
+                    // construct the push message structure
+                    var m = { action: "loadReport", accessToken: accessToken };
+                    message = JSON.stringify(m);
+                    // push the message
+                    iframe = document.getElementById('ifrIwsr');
+                    iframe.contentWindow.postMessage(message, "*");
+                }
+            }
+        </script>
+
+
+        <style type="text/css">
+            #tabClass
+            {
+                text-align: center;
+                vertical-align: middle;
+            }
+            .tabHeader td
+            {
+                background-color: #005b99;
+                color: #ffffff !important;
+            }
+            .tabHeader1 td
+            {
+                background-color: #005b99;
+                color: #ffffff !important;
+            }
+            .tabSubHeader
+            {
+                background-color: #D7ECF3;
+            }
+            .tabSubHeader td
+            {
+                white-space: nowrap;
+            }
+            .tabSubHeaderTd td:first-child
+            {
+                white-space: nowrap;
+                background-color:#ffffff; color:black !important;
+            }
+            .tabRows
+            {
+                background-color: #0084C9;
+                color: #ffffff;
+            }
+            #salesVol
+            {
+                display: table;
+                overflow: hidden;
+                background-color: #0084C9;
+                position: absolute;
+                height: 40Px;
+                width: 100Px;
+                z-index: 9999;
+                right: 30px;
+
+                border-radius: 25Px;
+            }
+            #salesVolContent
+            {
+                font-size: 150%;
+                color: white;
+                text-align: center;
+                display: table-cell;
+                vertical-align: middle;
+            }
+            #thePage\3a theForm\3a pb\3a filtersPBS > div.pbSubsection > table > tbody > tr > td:nth-child(3)
+            {
+                width: 40px;
+                vertical-align: middle;
+            }
+            #thePage\3a theForm\3a pb\3a filtersPBS > div.pbSubsection > table > tbody > tr > td:nth-child(4)
+            {
+                vertical-align: middle;
+            }
+            #tabClass tr:nth-child(4) td
+            {
+                background-color: #005b99 !important;
+                color: #ffffff !important;
+                text-align: center;
+            }
+            #plTable
+            {
+                white-space: nowrap;
+                text-align: center;
+                vertical-align: middle;
+            }
+        </style>
+        <!-- loading box  -->
+        <c:MMPJ_TOPG_LoadingCMP displayMessage="Loading.."/>
+        <apex:actionStatus id="status" onstart="componentLoading('#loadingDialog').dialog('open');" onstop="componentLoading('#loadingDialog').dialog('close');"/>
+
+        <apex:tabPanel id="cockpitTabPanel" switchType="ajax" selectedTab="performanceTab" styleClass="theTabPanel" tabClass="activeTab,theTabPanel" inactiveTabClass="inactiveTab" >
+          <!--  <apex:tab id="performanceTab" label="Performance" styleClass="">
+                <apex:pageBlock id="pb">
+                    <apex:pageBlockSection title="Filters" columns="4" collapsible="true" id="filtersPBS">
+                        <c:MMPJ_TOPG_MultiSelectPicklistCMP id="msBrands" leftLabel="Available Brands" leftOption="{!allBrands}" rightLabel="Selected Brands" rightOption="{!selectedBrands}" size="14" width="150px" showUpDownButtons="false" />
+                        <c:MMPJ_TOPG_MultiSelectPicklistCMP id="msMarkets" leftLabel="Available Markets" leftOption="{!allMarkets}" rightLabel="Selected Markets" rightOption="{!selectedMarkets}" size="14" width="150px" showUpDownButtons="false"/>
+                        <apex:commandButton value="Apply Filters" action="{!applyFilters}" onComplete="
+                                                drawEffectsChart('{!effectChartData}', '{!selectedBrandVFP} {!selectedMarketVFP}', 'Effects on CAAP S/T vs N-1(K€)');
+                                                drawTop10Chart('{!top10BrandsData}', '{!yearVFP -2}');
+                                                drawTop5BrandsChart('{!top5BrandsData}', '{!top5BrandsChartYTitle}', '{!yearVFP -2}');
+                                                drawPriceBandChart('{!priceBandData}', '{!priceBrandsChartYTitle}', '{!yearVFP -2}');
+                                                "
+                                                id="applyFiltersBTN" status="status" reRender="pb, salesVol, pbsVlErr, bisLink, pbsIWSR, pbsIWSRMSG, top5BrandsChartTable, priceBandChartTable, pgMsg"/>
+
+                        <apex:outputLink style="text-decoration: none;" styleClass="btn" value="{!BISUrl}" rendered="{!BISUrl!=null}" id="bisLink" target="_blank">BIS Link</apex:outputLink>
+                    </apex:pageBlockSection>
+                    <apex:pageblocksection title="Sales Volume Details (9 liters boxes)" collapsible="true" columns="1" rendered="{!!showVLSection && showResSections}" id="pbsVlErr">
+                        <apex:pageMessage summary="The couple Brand/Market didn't return any data from Prisma Sales Volume. Please update your filters and try again." severity="info" strength="3"/>
+                    </apex:pageblocksection>
+
+                    <apex:outputPanel layout="block" id="salesVol" style="display: table;overflow: hidden;background-color: #0084C9;position: absolute;height: 40Px;width: 100Px;z-index: 9999;right: 30px;border-radius: 25Px;" rendered="{!showVLSection}">
+                        <div id="salesVolContent"><div>{!currentYearTotal}</div></div>
+                    </apex:outputPanel>
+                    <apex:pageblocksection title="Sales Volume during the current fiscal year (9 liters boxes)" collapsible="false" columns="1" rendered="{!showVLSection}"/>
+                    <apex:pageblocksection title="Sales Volume Details (9 liters boxes)" collapsible="true" columns="1" rendered="{!showVLSection}">
+                        <apex:outputPanel id="myvolTable">
+                            <table id="tabClass" border="0" width="100%">
+                                <tr class="tabHeader">
+                                    <td>{!selectedMarketVFP}</td>
+                                    <td colspan="13">Shipments Synthesis to terminals PR (ex depletions) through {!monthVFP} {!yearVFP}</td>
+                                </tr>
+                                <tr class="tabHeader">
+                                    <td style="background-color:#ffffff; color:black !important; vertical-align: middle;" rowspan="2">Cs 9L</td>
+                                    <td colspan="3">Volumes MTD</td>
+                                    <td colspan="4">Volumes YTD</td>
+                                    <td colspan="3">Volumes Full Year</td>
+                                    <td colspan="3">Volumes Full Year {!yearVFP} – JUN</td>
+                                </tr>
+                                <tr class="tabSubHeader">
+                                     <td>{!yearVFP-1} - {!monthVFP}</td><td>{!yearVFP} - {!monthVFP}</td><td>Var%</td>
+                                     <td>{!yearVFP-1} - {!monthVFP}</td><td>{!yearVFP} - {!monthVFP}</td><td>Var%</td><td>{!yearVFP} – {!monthVFP} – Budget</td>
+                                     <td> {!yearVFP-1} – JUN</td><td>{!yearVFP} – JUN – Budget</td><td>Var% (B n vs B n-1)</td>
+                                     <td>LE OCT</td><td>LE FEB</td><td>LE APR</td>
+                                </tr>
+                                <apex:repeat value="{!myVols}" var="v" id="myVolsTab">
+                                    <tr >
+                                        <td style="background-color: #D7ECF3; text-align: left;">{!v.label}</td>
+                                        <td>{!v.sCol1}</td>
+                                        <td>{!v.sCol2}</td>
+                                        <td>{!IF(v.col3 != null ,v.sCol3, '')} {!IF(v.col3 == null, '-', '%')}</td>
+                                        <td>{!v.sCol4}</td>
+                                        <td>{!v.sCol5}</td>
+                                        <td>{!IF(v.col6 != null ,v.sCol6, '')} {!IF(v.col6 == null, '-', '%')}</td>
+                                        <td>{!v.sCol7}</td>
+                                        <td>{!v.sCol8}</td>
+                                        <td>{!v.sCol9}</td>
+                                        <td>{!IF(v.col10 != null ,v.sCol10, '')} {!IF(v.col10 == null, '-', '%')}</td>
+                                        <td>{!v.sCol11}</td>
+                                        <td>{!v.sCol12}</td>
+                                        <td>{!v.sCol13}</td>
+                                    </tr>
+                                </apex:repeat>
+                            </table>
+                        </apex:outputPanel>
+                        <table><tr><td/></tr></table>
+                    </apex:pageblocksection>
+                    <apex:pageBlockSection title="Sales Volume Details (EUR)" columns="1" collapsible="true" rendered="{!!showPLSection && showResSections}">
+                        <apex:pageMessage summary="The couple Brand/Market didn't return any data from Prisma P&L. Please update your filters and try again." severity="info" strength="3"/>
+                    </apex:pageBlockSection>
+                    <apex:pageBlockSection title="Sales Volume Details (EUR)" columns="1" collapsible="true" rendered="{!showPLSection}">
+                        <apex:outputPanel id="myplTable">
+                            <table class="tabClass" border="0" width="100%" id="plTable">
+                                <tr class="tabHeader">
+                                    <td style="background-color:#ffffff; color:black !important; vertical-align: middle;" rowspan="2">K€ - Constant Rate</td>
+                                    <td colspan="3">{!monthVFP}</td>
+                                    <td colspan="3">Cumul</td>
+                                    <td colspan="2">Distance to Go</td>
+                                    <td colspan="5">Year</td>
+                                </tr>
+                                <tr class="tabSubHeader">
+                                    <td>MTD {!yearVFP-1} </td><td>MTD {!yearVFP}</td><td>A{!RIGHT(TEXT(yearVFP), 2)} vs A{!RIGHT(TEXT(yearVFP-1), 2)}</td>
+                                    <td>YTD {!yearVFP-1}</td><td>YTD {!yearVFP}</td><td>A{!RIGHT(TEXT(yearVFP), 2)} vs A{!RIGHT(TEXT(yearVFP-1), 2)}</td>
+                                    <td>DTG {!RIGHT(TEXT(yearVFP-1), 2)}</td><td>DTG {!RIGHT(TEXT(yearVFP), 2)}</td>
+                                    <td>FY '{!RIGHT(TEXT(yearVFP-1), 2)} - JUN</td>
+                                    <td>FY '{!RIGHT(TEXT(yearVFP), 2)} - JUN - Budget</td>
+                                    <td>FY '{!RIGHT(TEXT(yearVFP), 2)} - JUN - LE</td>
+                                    <td>B{!RIGHT(TEXT(yearVFP), 2)} vs A{!RIGHT(TEXT(yearVFP-1), 2)}</td>
+                                    <td>LE vs B{!RIGHT(TEXT(yearVFP), 2)}</td>
+                                </tr>
+                                <apex:repeat value="{!myVolsPL}" var="pl" id="myVolsPLTab">
+                                    <tr>
+                                        <td style="background-color: #D7ECF3; text-align: left;">{!pl.label}</td>
+                                        <td>{!pl.sCol1}</td>
+                                        <td>{!pl.sCol2}</td>
+                                        <td>{!IF(pl.col12 != null , pl.sCol12,'' )} {!IF(pl.sCol12 == null, '-', '%')}</td>
+                                        <td>{!pl.sCol4}</td>
+                                        <td>{!pl.sCol5}</td>
+                                        <td>{!IF(pl.col13 != null , pl.sCol13,'' )} {!IF(pl.col13 == null, '-', '%')}</td>
+                                        <td>{!IF(pl.col14 != null , pl.sCol14,'' )} {!IF(pl.col14 == null, '-', '%')}</td>
+                                        <td>{!IF(pl.col15 != null , pl.sCol15,'' )} {!IF(pl.col15 == null, '-', '%')}</td>
+                                        <td>{!pl.sCol7}</td>
+                                        <td>{!pl.sCol8}</td>
+                                        <td>{!pl.sCol9}</td>
+                                        <td>{!IF(pl.col17 != null , pl.sCol17,'' )} {!IF(pl.col17 == null, '-', '%')}</td>
+                                        <td>{!IF(pl.col16 != null , pl.sCol16,'' )} {!IF(pl.col16 == null, '-', '%')}</td>
+                                    </tr>
+                                </apex:repeat>
+                            </table>
+                        </apex:outputPanel>
+                    </apex:pageblocksection>
+                    <apex:pageBlockSection title="Effects" columns="1" collapsible="true" rendered="{!!showEffectSection && showResSections}">
+                        <apex:pageMessage summary="The couple Brand/Market didn't return any data from Prisma Effect. Please update your filters and try again." severity="info" strength="3"/>
+                    </apex:pageblocksection>
+                    <apex:pageBlockSection title="Effects" columns="1" collapsible="true" rendered="{!showEffectSection}">
+                        <div id="effectsChart" style="min-width: 310px; max-width: 800px; height: 400px; margin-left: 200px; "></div>
+                    </apex:pageblocksection>
+
+                    <apex:pageBlockSection title="Competition (Million Litres)-Source IWSR" columns="1" collapsible="true" rendered="{!!showIWSRSection && showResSections}" id="pbsIWSRMSG">
+                        <apex:pageMessage summary="The couple Brand/Market didn't return any data from IWSR. Please update your filters and try again." severity="info" strength="3"/>
+                    </apex:pageBlockSection>
+
+                    <apex:pageBlockSection title="Competition (Million Litres)-Source IWSR" columns="1" collapsible="true" rendered="{!showIWSRSection}" id="pbsIWSR">
+                        <div id="top10BrandsChart" style="min-width: 310px; max-width: 800px; height: 400px; margin-left: 200px; margin-bottom: 10px;"></div>
+                        <div style="float: left; clear: none; ">
+                            <div id="top5BrandsChart" style="width: 400px; height: 400px; margin-left: 190px; float: left;"></div>
+                            <div id="priceBandChart" style="width: 400px; height: 400px; margin-left: 20px; float: left;"></div>
+                        </div>
+                        <apex:outputPanel layout="block" style="float: left; clear: none; ">
+                            <apex:outputPanel layout="block" id="top5BrandsChartTable" style="float: right;margin-left: 90px;" rendered="{!showResSections}">
+                                <table>
+                                    <tr>
+                                        <td></td><td style="background-color: #005b99;color: white;text-align: center;">Volume K9LCs</td>
+                                    </tr>
+                                    <tr>
+                                        <td/><td style="background-color: #005b99;color: white;text-align: center;">Taux de croissance annuel moyen 13-14</td>
+                                    </tr>
+                                    <apex:repeat value="{!priceBands}" var="a">
+                                    <apex:outputText value="{!a.name}" />
+                                    <tr>
+                                        <td style="background-color: #D7ECF3;">{!a.name}</td>
+                                        <td style="background-color: white; text-align: center;">
+                                            <apex:outputText value="{!IF(a.data[0] != 0, ROUND(((a.data[1]-a.data[0])/a.data[0])*100, 2) , '')} {!IF(a.data[0] != 0, '%', '_')} " />
+                                        </td>
+                                    </tr>
+                                    </apex:repeat>
+                                </table>
+                            </apex:outputPanel>
+                            <apex:outputPanel layout="block" id="priceBandChartTable"  style="float: right;margin-left: 190px;" rendered="{!showResSections}">
+                                <table>
+                                    <tr>
+                                        <td></td><td style="background-color: #005b99;color: white;text-align: center;">Volume K9LCs</td>
+                                    </tr>
+                                    <tr>
+                                        <td/><td style="background-color: #005b99;color: white;text-align: center;">Taux de croissance annuel moyen 13-14</td>
+                                    </tr>
+                                    <apex:repeat value="{!top5Brands}" var="a">
+                                    <apex:outputText value="{!a.name}" />
+                                    <tr>
+                                        <td style="background-color: #D7ECF3;">{!a.name}</td>
+                                        <td style="background-color: white; text-align: center;">
+                                            <apex:outputText value="{!IF(a.data[0] != 0, ROUND(((a.data[1]-a.data[0])/a.data[0])*100, 2) , '')} {!IF(a.data[0] != 0, '%', '_')} " />
+                                        </td>
+                                    </tr>
+                                    </apex:repeat>
+                                </table>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                    </apex:pageblocksection>
+                </apex:pageBlock>
+            </apex:tab> -->		
+    		
+			<apex:tab id="PerfTab" label="Performance" styleClass=""> 
+            <!--******* TGS-51 PowerBI *******-->
+                <apex:pageBlock >
+                    <div id="reportPrisma" style="height: 100%; width: 100%">
+                        <iframe id="ifrPrisma" width="1800" height="700" onload="affichPerfReport()"></iframe>
+                    </div>
+                </apex:pageBlock>
+            <!--******* TGS-51 PowerBI *******-->
+            </apex:tab>
+            
+            <apex:tab id="IwsrTab" label="IWSR" styleClass=""> 
+            <!--******* TGS-51 PowerBI *******-->
+                <!--c:MMPJ_TOPG_CockPitIwsr IWSRUrl="{!iwsrUrl}"/-->
+                <apex:pageBlock >
+                    <div id="reportIwsr" style="height: 100%; width: 100%">
+                        <iframe id="ifrIwsr" width="1800" height="700" onload="affichIwsrReport()"></iframe>
+                    </div>
+                </apex:pageBlock>
+            <!--******* TGS-51 PowerBI *******-->
+            </apex:tab>
+            
+            <apex:tab id="riskTab" label="Markets Highlight" styleClass=""> 
+                <c:MMPJ_TOPG_CockPitRisk Markets="{!selectedMarkets}"  /><!--TotalBrands="{!allBrands}"-->
+            </apex:tab>
+            
+             <apex:tab id="MarketsRisksActionsTab" label="Markets Risks & Actions" styleClass="">
+                <c:MMPJ_TOPG_CockPitMarketsRisksActions Markets="{!selectedMarkets}" Brands="{!selectedBrands}" />
+            </apex:tab>
+            
+             <apex:tab id="MarketsDecisionsInsights" label="Markets Decisions & Insights" styleClass="">
+                <c:MMPJ_TOPG_MarketsDecisionsInsights Markets="{!selectedMarkets}"/>
+            </apex:tab>
+
+          <!--  <apex:tab id="actionsTab" label="Actions / Insights / Decisions" styleClass="">
+            <div>
+               <apex:iframe src="{!$Page.MMPJ_TOPG_VF01_CockpitActions}?core.apexpages.devmode.url=1&selectedBrands={!defaultSelectedBrand}&selectedMarkets={!defaultSelectedMarket}"  height="818px" width="1300px"/>
+            </div>
+            </apex:tab> -->
+
+            <apex:tab id="interactionsTab" label="Interactions planning" styleClass="">
+                <c:MMPJ_TOPG_CockPitInteractions Markets="{!selectedMarkets}" Brands="{!selectedBrands}" />
+            </apex:tab>
+        </apex:tabPanel>
+    </apex:form>
+</apex:page>

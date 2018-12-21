@@ -1,0 +1,41 @@
+<apex:component >
+    
+     <div class="content-wrapper container-fluid">
+              <ul class="fil-ariane">
+                <li><a href="">{!$Label.ESN_MB_JamesonMB}</a> <span class="divider">&nbsp;</span></li>
+                <li><a href="">{!$Label.ESN_MB_Brand_Cloud_Low}</a> <span class="divider">&nbsp;</span></li>
+                <li><a href="">{!$Label.ESN_MB_Strategy}</a> <span class="divider">&nbsp;</span></li>
+                <li class="fil-ariane-active"><a href="">{!$Label.ESN_MB_Influencers}</a></li>
+              </ul><!--/.fil-ariane-->
+              <div class="content">
+                <article class="text-bloc">
+                  <h1 class="title-text-bloc">{!$Label.ESN_MB_BARTENDERS}</h1>
+                  <p>
+                    {!$Label.ESN_MB_BartendersText}
+                  </p>
+                  <p class="text-find-out-more">
+                    <a href="Dudes.html" data-page="article" data-category="brand-cloud">{!$Label.ESN_MB_FindOutMore} <span class="glyphicon glyphicon-chevron-right"></span></a>
+                  </p>
+                </article>
+                <article class="text-bloc">
+                  <h1 class="title-text-bloc">{!$Label.ESN_MB_Dudes_High}</h1>
+                  <p>
+                    {!$Label.ESN_MB_BartendersText}
+                  </p>
+                  <p class="text-find-out-more">
+                    <a href="Dudes.html" data-page="article" data-category="brand-cloud">{!$Label.ESN_MB_FindOutMore} <span class="glyphicon glyphicon-chevron-right"></span></a>
+                  </p>
+                </article>
+                <article class="text-bloc">
+                  <h1 class="title-text-bloc">{!$Label.ESN_MB_FILM_CREATORS}</h1>
+                  <p>
+                    {!$Label.ESN_MB_BartendersText}
+                  </p>
+                  <p class="text-find-out-more">
+                    <a href="Dudes.html" data-page="article" data-category="brand-cloud">{!$Label.ESN_MB_FindOutMore} <span class="glyphicon glyphicon-chevron-right"></span></a>
+                  </p>
+                </article>
+              </div><!--/.content-->
+              </div><!--/.content-wrapper.container-fluid-->
+    
+</apex:component>

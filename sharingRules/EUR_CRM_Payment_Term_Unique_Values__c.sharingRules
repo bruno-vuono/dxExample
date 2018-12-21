@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>EUR_CRM_DE_Payment_Term_Unique_Value_Roles_and_Sub</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>EUR DE Payment Term Unique Value Roles and Sub</label>
+        <sharedTo>
+            <roleAndSubordinates>EUR_DE</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>EUR DE Payment Term Unique Values</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+</SharingRules>

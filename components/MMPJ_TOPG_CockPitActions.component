@@ -1,0 +1,31 @@
+<apex:component allowDML="true">
+<!-- <apex:pageBlock >
+<apex:pageBlockSection title="Apply Filter" columns="3">
+    <apex:inputField value="{!Raid.MMPJ_TOPG_TechStartDate__c}" required="true" style="align:left;" />
+   <apex:inputField value="{!Raid.MMPJ_TOPG_TechEndDate__c}" required="true" style="align:left;"/>
+   <apex:outputLabel >&nbsp;</apex:outputLabel>   
+
+                <c:MMPJ_TOPG_MultiselectPicklist leftLabel="Brands Available"
+                                 leftOptions="{!AllBrand}"
+                                 rightLabel="Brands  Selected"
+                                 rightOptions="{!SelectedBrand}"
+                                 size="{!SizeMultipicklist}"
+                                 width="150px"/>
+                                 
+ <c:MMPJ_TOPG_MultiselectPicklist leftLabel="Available Markets"
+                                 leftOptions="{!AllMarket}"
+                                 rightLabel="Selected Markets"
+                                 rightOptions="{!SelectedMarket}"
+                                 size="{!SizeMultipicklist}"
+                                 width="150px"/>
+ <table border="0" width="100%"><tr valign="Bottom"><td valign="Bottom">                                               
+<apex:commandButton value="Apply Filters" action="{!applyFilter}" reRender="chartSection,chart"/>
+ </td></tr></table>
+</apex:pageBlockSection>
+</apex:pageBlock>
+<apex:pageBlock >
+<apex:pageBlockSection title="Total of Considered Items" id="chartSection">
+  <analytics:reportChart reportId="{!reportId }"  size="small" ></analytics:reportChart> 
+</apex:pageBlockSection> 
+</apex:pageBlock>-->
+</apex:component>

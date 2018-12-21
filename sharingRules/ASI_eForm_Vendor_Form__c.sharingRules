@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>ASI_eForm_Asia_ShareToAll</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>ASI_eForm_Asia_ShareToAll</label>
+        <sharedTo>
+            <roleAndSubordinates>ASI_PRA</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>HK Vendor Form - New (RO),HK Vendor Form - New,HK Vendor Form - Archived,HK Vendor Form - Revise(RO),HK Vendor Form - Revise</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>ASI_eForm_HK_ShareToAdmin</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>ASI_eForm_HK_ShareToAdmin</label>
+        <sharedTo>
+            <group>ASI_eForm_HK_Vendor_Form_Admin</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>HK Vendor Form - Revise - Step 1,HK Vendor Form - New (RO),HK Vendor Form - New,HK Vendor Form - Archived,HK Vendor Form - Revise(RO),HK Vendor Form - Revise</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>ASI_eForm_HK_ShareToAll_HK</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>ASI_eForm_HK_ShareToAll_HK</label>
+        <sharedTo>
+            <roleAndSubordinates>ASI_HK_CRM</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>HK Vendor Form - New (RO),HK Vendor Form - New,HK Vendor Form - Archived,HK Vendor Form - Revise(RO),HK Vendor Form - Revise</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>ASI_eForm_KR_Approver_Share</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>ASI eForm KR Approver Share</label>
+        <sharedTo>
+            <group>ASI_eForm_KR_Vendor_Form_Approver</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>KR Vendor Form - Approval,KR Vendor Form,KR Vendor Form - Read-Only,KR Vendor Form - Input,KR Vendor Form - Verified</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>ASI_eForm_TR_ShareToAll</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>ASI_eForm_TR_ShareToAll</label>
+        <sharedTo>
+            <roleAndSubordinates>ASI_ATR</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>HK Vendor Form - New (RO),HK Vendor Form - New,HK Vendor Form - Archived,HK Vendor Form - Revise(RO),HK Vendor Form - Revise</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+</SharingRules>

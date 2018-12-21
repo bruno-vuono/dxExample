@@ -1,0 +1,160 @@
+<apex:component controller="ESN_MB_NOP_Activation_Cx">
+    <div class="container-article-activation">
+         
+             <div class="btn-close" style="margin-left:30px;">
+                 <a id="brandActivationView" href="#" class="on">
+                     <span class="glyphicon glyphicon-remove"></span>
+                 </a>
+             </div>
+             <a class="findoutmore hp-link pull-right" href="#?page=formulaire-global-activations&content=formulaire-global-activations&mode=light" data-page="formulaire-global-activations" data-category="global-activation" onclick="modifyGlobalActivation()">Modify Activation</a>
+             <a class="findoutmore hp-link pull-right" href="#?page=accueil-global-activations&content=accueil-global-activations&mode=light" data-page="accueil-global-activations" data-category="global-activation" onclick="archivedGlobalActivation();return false;" id="archieveGA">Archive</a>
+             <a class="findoutmore hp-link pull-right" href="#?page=accueil-global-activations&content=accueil-global-activations&mode=light" data-page="accueil-global-activations" data-category="global-activation" onclick="deleteGlobalActivation();return false;" id="deleteGA">Delete</a>
+ 
+             <ul class="fil-ariane" id="fil-ariane"></ul>   
+ 
+              <hr class="separator" />
+            
+              <header class="row" style="background-image:none;">
+                <h1 class="pernodricard" id="titleGA2"></h1><h1 class="pernodricard" id="draftGA"></h1>
+  
+                <div class="col-xs-5 block-figure">
+                  <figure id="globalActivationMainAsset">
+                   </figure>
+                </div>
+            
+                <div class="block-title col-xs-7">
+                  <!--<p class="yellow-arrow roboto-bold uppercase" id="countryGA"></p>-->
+                    
+                  <!-- Out of the scope for the moment Valentin PLITTA 26/08/2014
+                  <ul class="unstyled tag-list open-sans-regular">
+                     <li><a href="#">Jameson</a></li>
+                    <li><a href="#">Jameson Irish Whiskey</a></li>
+                    <li><a href="#">PR Brasil</a></li>
+                    <li><a href="#">On Trade</a></li>
+                  </ul>
+                  -->
+                  
+                  <!--/.tag-list-->
+                  
+                  <div id="bACreatorDiv" class="media profil"></div><!--/.media.profil-->
+                  <div id="bAInfosDiv" class="media profil"></div>
+                  <div id="bAEditBestPracticesStatus"></div>
+                </div><!--/.block-title-->
+            
+                <div class="clearfix"></div>
+              </header><!--/.row-->
+              
+              <hr class="separator" />
+              
+              <div class="container-global-activation-content">
+                  
+                <div class="col-left col-right col-xs-4" >
+                    <h2> {!$Label.ESN_MB_Details} </h2>
+                      <div id="detailsGA"></div>
+                      <div class="media-block key-contactsGA" id="keyContactsGA"></div>
+                </div>
+              
+                <div class="col-right col-xs-7 col-xs-offset-1">
+                    <div class="text">
+                        <br /><br />
+                        <h2>{!$Label.ESN_MB_BigIdea}</h2>
+                        <p id="bigIdeaGA"></p>
+
+                        <h2>{!$Label.ESN_MB_TheConcept}</h2>
+                        <h3>{!$Label.ESN_MB_WHY}</h3>
+                        <p id="whyGA"></p>
+                        <h3>{!$Label.ESN_MB_WHAT}</h3>
+                        <p id="whatGA"></p>
+                        <h3>{!$Label.ESN_MB_TOWHOM}</h3>
+                        <p id="toWhomGA"></p>
+                        <h3>{!$Label.ESN_MB_HOW}</h3>
+                        <p id="howGA"></p>
+
+                        <h2>{!$Label.ESN_MB_WhatResults}</h2>
+                        <h3><span class="uppercase">{!$Label.ESN_MB_Results_High}</span></h3>
+                        <p id="resultsGA"></p>
+                        <h3><span class="uppercase">{!$Label.ESN_MB_StrategicFit}</span></h3>
+                        <p id="strategicFitGA"></p>
+                        <h3><span class="uppercase">{!$Label.ESN_MB_ExcellenceOfExecution}</span></h3>
+                        <p id="excellenceOfExecutionGA"></p>
+                        <h3><span class="uppercase">{!$Label.ESN_MB_BusinessImpact}</span></h3>
+                        <p id="businessImpactGA"></p>
+                        <h3><span class="uppercase">{!$Label.ESN_MB_ScalabilityAndReplicability}</span></h3>
+                        <p id="scalabilityAndReplicabilityGA"></p>
+
+                        <div id="attachedFilesTitleGA"></div> 
+                        <div class="media-block" id="globalActivationCarousel"></div>
+                        <div id="video-media-GA" class="media-block">
+                            <div class="video"></div>
+                            <div class="download"></div>
+                        </div>
+                        <div id="embeddedVideoViewGATitle"></div>
+                        <div id="embeddedVideoViewGA"></div>
+                        <div id="presentationsGADiv" class="media-block links-list"></div>
+                        <div id="linksGA" class="media-block links-list"></div>
+
+                    </div>
+              
+                    
+                    
+                    
+ 
+              <!--div id="inPracticeGADiv" class="media-block links-list">
+                <h2>In practice</h2>
+                <div class="media block-asset basic">
+                </div>
+                
+                <hr class="separator green basic-separator" />
+                  
+                <div class="media block-asset average">
+                </div>
+                
+                <hr class="separator green average-separator" />
+                  
+                <div class="media block-asset sophisticated">
+                </div>
+                
+                <hr class="separator green sophisticated-separator" />
+              </div-->
+
+              <!--div class="media-block rate">
+                <h2>{!$Label.ESN_MB_LikeFollow}</h2>
+                <div class="btn-rate-block row">
+                  <div class="btn-like col-sm-12 col-md-6">
+                    <button>
+                      <span class="text">
+                        <span class="word-to-change" data-text-like="Like" data-text-unlike="Unlike">Like</span>
+                        <span class="infos roboto-thin">{+20}</span>
+                      </span>
+                    </button>
+                  </div>
+                  <div class="btn-follow col-sm-12 col-md-6">
+                    <button>
+                      <span class="glyphicon glyphicon-star-empty" data-class-star-full="glyphicon glyphicon-star" data-class-star-empty="glyphicon glyphicon-star-empty"></span>
+                      <span class="text" data-text-follow="Follow this activation" data-text-unfollow="Unfollow this activation">Follow this activation</span>
+                    </button>
+                  </div>
+                </div>
+              </div-->
+              <div class="media-block toolkit-used" id="seeAlsoMarketActivationInBA">
+                </div>
+                     <!--h2>
+                            {!$Label.ESN_MB_Chatter}
+                    </h2>
+                    <div id="chat-containerGA">
+                     
+                   </div-->
+                <div class="clearfix"></div>
+              
+                  <div class="toTop" id="toTop">
+                      <!-- <a href="#" class="texgyreadventor">Back to top</a> -->
+                  </div>
+                  </div><!--/.col-right-->
+                  <div class="clearfix"></div>
+                </div><!--/.container-webinars-content-->
+              </div><!--/.container-webinars--> 
+    <script>
+        var coordinator = "{!Coordinator}";
+        var listCoordinators = {!ListCoordinators};
+    </script>
+</apex:component>

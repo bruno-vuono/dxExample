@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConnectedApp xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contactEmail>will.memmott@pernod-ricard.com</contactEmail>
+    <label>OrchestraCMS</label>
+    <oauthConfig>
+        <callbackUrl>https://pernod-ricard--cms.eu1.visual.force.com/apex/SetupSchedule</callbackUrl>
+        <consumerKey>3MVG9qQjGkWUbcrFTIsUBxAfZQuZCRHFggUk978ZNYCk3H3O1k7d6HBsCAazlSzAWZfx6Ddh8YQgVQ6IIBopC</consumerKey>
+        <scopes>Basic</scopes>
+        <scopes>Full</scopes>
+    </oauthConfig>
+</ConnectedApp>

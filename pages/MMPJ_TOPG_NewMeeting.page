@@ -1,0 +1,1450 @@
+<apex:page standardController="MMPJ_TOPG_Meeting__c" extensions="MMPJ_TOPG_NewMeetingController" sidebar="false" tabStyle="MMPJ_TOPG_BMC__c" id="NewMeetingPage">
+    <apex:stylesheet value="/sCSS/21.0/sprites/1297816277000/Theme3/default/gc/versioning.css" />   
+    <script type="text/javascript" src="{!URLFOR($Resource.MMPJ_TOPG_jQuery,'')}" />
+    <style>        
+        .activeTab {
+            background-color: #236FBD;
+            color:white;
+            background-image:none;
+        }
+        .inactiveTab { 
+            background-color: lightgrey;
+            color:black;
+            background-image:none;
+        }
+        .pbSubheader h3 {
+            color:black;
+            margin-left:10px;
+        }
+        .pbSubheader .hideListButton{
+            background: transparent url('/img/alohaSkin/twisty_sprite.png') 0 -11px no-repeat !important;
+        }
+        .pbSubheader .showListButton{
+            background: transparent url('/img/alohaSkin/twisty_sprite.png') 0 0px no-repeat !important;
+        }
+        .btnSend {
+            text-decoration: initial;
+            padding: 4px !important;
+        }
+        .btnSend:hover {
+            color:black;
+            text-decoration: initial;
+        }
+        .BtnSendDisabled{
+            pointer-events: none;
+            background-position: 0 -90px !important;
+            border-color: #c4c4c4 !important;
+            color: #909090 !important;
+        }
+        .custPopup {
+            background-color: #F8F8F8;
+            border-width: 2px;
+            border-style: solid;
+            border-color: #cfeef8;
+            z-index: 9999;
+            left: 50%;
+            position: fixed;
+            width: 700px;
+            margin-left: -350px;
+            margin-top: -250px;
+            top:50%;
+        }
+        .custPopup .bPageBlock {
+            border : 0px;
+        }
+        .popupBackground {
+            background-color: #000000;
+            opacity: 0.15;
+            filter: alpha(opacity = 20);
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 9998;
+        }
+        .PopupTilte{
+            color: #000000;
+            background-color: #cfeef8;
+            padding: 8px;
+            font-weight: bold;
+        }
+        .BtnRight {
+            text-align:right;
+            padding: 10px 0px 0px 0px;
+        }
+        .UPLink {
+            background:url("{!$Resource.MMPJ_TOPG_UPArrow}") no-repeat;
+            color:transparent !important;
+            position: absolute;
+            left: 14px;
+        }
+        .LabelDetail {
+            font-weight: bold;
+            color: #4a4a56 !important;
+            font-size: 91%;
+            text-align: right;
+        }
+        #tblAgendaFields td.agendafields{
+                font-weight:bold;
+                text-align:right;
+        }
+        .ActionLinks, .ActionLinks div{
+                width:66px;
+        }
+        .relatedListSecondColumn{
+                width:300px;
+        }
+        
+        #tblAgendaFields a img{
+            display:none;
+        }
+        #datePicker.datePicker {
+            
+            z-index: 9999;
+        }     
+        
+        .InputTableCell{
+            border: 1px solid #ededed;
+            background-color: #FFF;
+            margin: 0px;
+            padding: 3px;
+        }
+        .InputDisable{
+            background-color: rgb(235, 235, 228);
+            color: rgb(84, 84, 84);
+            pointer-events: none;
+        }
+        .popupWindow{
+            position:absolute;             
+            z-index: 9999;
+            top:15px;
+            left:0;
+            right:0;
+            margin-left:50%;
+            margin-right:50%;                
+        }
+        .DetailWho{
+            display: inline-block;
+            white-space: nowrap;
+        }
+        
+        .tblActionHeader, .tblActionHeader div{
+            width: 70px;
+        }
+        .tblCommentHeader, .tblCommentHeader div{
+            width: 500px;
+        }
+        /*.tblOthersHeader, .tblOthersHeader div{
+            width: 250px;
+        }
+        .tblOthersHeader2, .tblOthersHeader2 div{
+            width: 500px;
+        }
+        .tblHighlightHeader, .tblHighlightHeader div{
+            width: 66px;
+        }*/
+    </style>  
+    <script type="text/javascript" language="javascript">
+        if(jQuery) {
+            jQuery.noConflict();
+        }
+        
+        var oldTab;
+        var newTab;
+        var saveComplete = 0;
+        var CounterOnChange =0;
+        
+        function CheckSave(tabdom,MeetingId){
+            if(MeetingId == '' && newTab == 'Minutes')
+            {
+                alert('if you want to go to Minutes without you complete your agenda please select the checkbox No Agenda');
+                return false;
+            }
+            if(oldTab == 'Attachment' || oldTab == 'Visits')
+            {
+                SetNewTab(newTab);
+                return true;
+            }
+            if(CounterOnChange == 0 )
+            {
+                SetNewTab(newTab);
+                return true;
+            }
+            resetCounter();
+            var confirmation = confirm('If you dont save before navigating, you may loose your data : would you like to save them before moving to the next tab');
+            if(confirmation){
+                
+                if(oldTab == 'Agenda')
+                    SaveAgenda(newTab);
+                else if(oldTab == 'Minutes')
+                    SaveMom(newTab);
+                return false;
+            }  
+            SetNewTab(newTab);
+        }
+        function resetCounter(){
+            CounterOnChange = 0;
+        }
+        function IncreaseCounter(){
+            CounterOnChange++;
+        }
+        jQuery(document.body).on('change', 'input, select' ,function(){IncreaseCounter();});
+    
+    // BTO :Begin => intercepts key presses "Enter" button evenement*/
+   		 function handlerEnter(ev,el)  {             
+	   	if (window.event && window.event.keyCode == 13 || ev.which == 13) {            
+            if ('Project'== el){
+                SaveProjectPop();                
+                }else  if ('Detail'== el){
+                saveDetailPop();                  
+                }            
+            return false;
+	     } else {              
+	          return true;
+	     }
+	 }  
+    
+     function handlerEnterOnField()  {             
+	   	if (window.event && window.event.keyCode == 13 || ev.which == 13) {           
+	          return true;}	    
+	 } 
+    
+    </script>
+    
+    <apex:outputPanel id="BackgroundPopup"> <apex:outputPanel rendered="{!DisplayPopupBackground}" Styleclass="popupBackground"/></apex:outputPanel>
+    <apex:outputPanel id="ErrorPanel">
+        <apex:pagemessage summary="{!ErrorMessage}" severity="Error" strength="3" rendered="{!Error}"> </apex:pagemessage>        
+    </apex:outputPanel>
+    <apex:outputPanel id="SuccessPanel">
+        <apex:pageMessage rendered="{!ShowSaveMessage}" strength="1" severity="confirm" title="Success" detail="{!SuccessMessage}"/>
+    </apex:outputPanel>
+    <apex:actionStatus id="StatusLoading">
+        <apex:facet name="start">
+            <div class="popupBackground">
+                <div class="popupWindow">
+                    <img src="/img/loading.gif" alt="loading.."/>
+                </div>
+            </div>
+        </apex:facet>
+    </apex:actionStatus>
+    <apex:form >
+        <apex:actionFunction name="SetNewTab" action="{!SetNewTabValue}" reRender="MeetingTabPanel,ErrorPanel,SuccessPanel" status="StatusLoading">
+            <apex:param name="newTab"  assignTo="{!newtabTobe}" value=""/>
+        </apex:actionFunction>
+        
+        
+        <apex:actionfunction name="agendaConstructor" action="{!agendaConstructor}" rerender="tabAgenda,ErrorPanel"/>
+        <apex:actionfunction name="MinutesConstructor" action="{!MinutesConstructor}" /><!--rerender="tabMinutes,ErrorPanel"-->
+        <apex:actionfunction name="AttachmentConstructor" action="{!AttachmentConstructor}" rerender="pbMeetingAtt,pbVisitsAtt,pbMinAtt,ErrorPanel"/>
+    </apex:form>
+        <apex:tabPanel id="MeetingTabPanel" switchType="client" selectedTab="{!newTab}" styleClass="theTabPanel" tabClass="activeTab,theTabPanel" inactiveTabClass="inactiveTab" value="{!newTab}">
+            <!--***************************************************-->
+            <!--***************************************************-->
+            <!--*********************AGENDA************************-->
+            <!--***************************************************-->
+            <!--***************************************************-->
+            <apex:tab label="Agenda" name="Agenda" id="tabAgenda" ontableave="oldTab='Agenda';" ontabenter="newTab='Agenda';return CheckSave(this,'{!Meeting.id}');" >
+                <apex:form >
+                <apex:pageBlock id="AgendaForm">
+                            <apex:actionFunction name="SaveAgenda" rerender="" action="{!LeavingAgenda}" reRender="MeetingTabPanel,ErrorPanel,SuccessPanel,chatterBlock" status="StatusLoading" oncomplete="changetab(newTab);">
+                                <apex:param id="thenewtab" name="newTab"  assignTo="{!newtabTobe}" value=""/>
+                            </apex:actionFunction>
+                             <apex:actionFunction name="AutomateFunction" action="{!AutomateFunction}" rerender="AttendeeTable,AttendeePanel" status="StatusLoading"/>
+                             <apex:actionFunction name="showDetailAgendaPop" action="{!DetailAgendapopup}" rerender="BackgroundPopup,DetailAgendapopup" status="StatusLoading"/>
+                             <apex:actionFunction name="closeDetailAgendaPop" action="{!closeAgendapopup}" rerender="BackgroundPopup,DetailAgendapopup" status="StatusLoading"/>
+                             <apex:actionFunction name="selectedTopicAgendaPop" action="{!selectedTopicAgendaPop}" rerender="BackgroundPopup,DetailAgendapopup" status="StatusLoading"/>
+                             <apex:actionFunction name="saveDetailAgendaPop" action="{!SaveDetailAgendaPop}" rerender="BackgroundPopup,DetailAgendapopup,MarketTable,PPPPTable,ProjetTable,CompTable" status="StatusLoading"/>
+                            <script type="text/javascript">
+                                function changetab(newtab){
+                                    if(saveComplete < {!saveComplete}){
+                                        saveComplete = {!saveComplete};
+                                    }
+                                    else{
+                                        //alert("Please check the message");
+                                    }
+                                }
+                            </script>
+                            <!--
+                            <div style="Width:100%;text-align:center;padding:5px;">
+                                <apex:commandButton value="Save"  action="{!UpdateAgenda}" status="StatusLoading" disabled="{!meeting.MMPJ_TOPG_NoAgenda__c}" rerender="AgendaForm,ErrorPanel,chatterBlock,SuccessPanel"/>
+                                <apex:commandButton value="Save & Close" action="{!SaveAndCloseAgenda}" disabled="{!meeting.MMPJ_TOPG_NoAgenda__c}"/>
+                                <apex:commandButton value="Cancel" action="{!Cancel}"/>
+                                <apex:commandButton value="Print PDF" action="{!PrintPDF}" disabled="{!meeting.MMPJ_TOPG_NoAgenda__c}" status="StatusLoading" rerender="AgendaForm,ErrorPanel,SuccessPanel,chatterBlock"/>
+                                <a href="{!EmailAgenda}" class="btnSend {!IF(meeting.MMPJ_TOPG_NoAgenda__c,'BtnSendDisabled','')} btn " > Send</a>
+                            </div>-->
+                            <apex:pageBlockButtons >
+                                <apex:commandButton value="Save"  action="{!UpdateAgenda}" status="StatusLoading" disabled="{!meeting.MMPJ_TOPG_NoAgenda__c}" oncomplete="resetCounter();" rerender="AgendaForm,ErrorPanel,chatterBlock,SuccessPanel,MeetingTabPanel"/>
+                                <apex:commandButton value="Save & Close" action="{!SaveAndCloseAgenda}" disabled="{!meeting.MMPJ_TOPG_NoAgenda__c}"/>
+                                <apex:commandButton value="Cancel" action="{!Cancel}"/>
+                                <apex:commandButton value="Print PDF" action="{!PrintPDF}" disabled="{!meeting.MMPJ_TOPG_NoAgenda__c}" status="StatusLoading" rerender="AgendaForm,ErrorPanel,SuccessPanel,chatterBlock,MeetingTabPanel" oncomplete="resetCounter();"/>
+                                <a href="{!EmailAgenda}" class="btnSend {!IF(meeting.MMPJ_TOPG_NoAgenda__c,'BtnSendDisabled','')} btn " onclick="if({!len(EmailAgenda) < 20})alert('You can\'t send the agenda without having clicked the bouton \'Print PDF\'')"> Send</a>
+                            </apex:pageBlockButtons>
+                            <apex:actionRegion >
+                                <div style="width:100%" >
+                                    <apex:actionFunction name="AgendaChecked" action="{!CheckNoAgenda}" rerender="AgendaForm,MeetingTabPanel,ErrorPanel,chatterBlock" status="StatusLoading" />
+                                    
+                                    <table id="test" width="100%" cellpadding="8" cellspacing="0">
+                                        <tr>
+                                            <td style="font-weight: bold;text-align: right;white-space: nowrap;"><apex:outputLabel value="No Agenda :" for="NoAgenda"/></td><td> <apex:inputcheckbox disabled="{!meeting.id != null}" value="{!meeting.MMPJ_TOPG_NoAgenda__c}"  id="NoAgenda"  onclick="if(confirm('Are you sure you dont want to complete this Agenda ?')){AgendaChecked();return true;}else{return false;}"  /></td>
+                                            <td style="width:100%"></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </apex:actionRegion>
+                            <table id="tblAgendaFields" width="100%" cellpadding="8" cellspacing="0">
+                                <tr>
+                                        <td class="agendafields">Market : </td><td><apex:outputField value="{!Bmc.name}"/></td>
+                                        <td class="agendafields">Meeting Title : </td><td><apex:inputField required="true" value="{!Agenda.Subject}" Onkeypress="if (window.event && window.event.keyCode == 13 || ev.which == 13) return false;" rendered="{!Not(meeting.MMPJ_TOPG_NoAgenda__c)}" /><apex:outputField value="{!Agenda.Subject}" rendered="{!meeting.MMPJ_TOPG_NoAgenda__c}" /></td>
+                                        <td class="agendafields">Interaction : </td><td><apex:inputField required="true" value="{!Meeting.MMPJ_TOPG_Interaction__c}" rendered="{!Not(meeting.MMPJ_TOPG_NoAgenda__c)}"/><apex:outputField value="{!Meeting.MMPJ_TOPG_Interaction__c}" rendered="{!meeting.MMPJ_TOPG_NoAgenda__c}" /></td>
+                                </tr>
+                                <tr>
+                                        
+                                        <td class="agendafields"><apex:outputLabel value="Location : " for="Agenda_Location"/></td><td><apex:inputField id="Agenda_Location"  required="true" value="{!Agenda.Location}" rendered="{!Not(meeting.MMPJ_TOPG_NoAgenda__c)}" Onkeypress="if (window.event && window.event.keyCode == 13 || ev.which == 13) return false;"/><apex:outputField value="{!Agenda.Location}" rendered="{!meeting.MMPJ_TOPG_NoAgenda__c}" /></td>
+                                        <td class="agendafields"><apex:outputLabel value="Meeting Start Date : " for="Agenda_StartDate"/></td><td><apex:inputField id="Agenda_StartDate"  required="true" value="{!Agenda.StartDateTime}" Onkeypress="if (window.event && window.event.keyCode == 13 || ev.which == 13) return false;" rendered="{!Not(meeting.MMPJ_TOPG_NoAgenda__c)}"/><apex:outputField value="{!Agenda.StartDateTime}" rendered="{!meeting.MMPJ_TOPG_NoAgenda__c}" /></td>
+                                        <td class="agendafields"><apex:outputLabel value="Meeting End Date : " for="Agenda_EndDate"/></td><td><apex:inputField id="Agenda_EndDate"  required="true" value="{!Agenda.ENDDateTime}" Onkeypress="if (window.event && window.event.keyCode == 13 || ev.which == 13) return false;" rendered="{!Not(meeting.MMPJ_TOPG_NoAgenda__c)}"/><apex:outputField value="{!Agenda.ENDDateTime}" rendered="{!meeting.MMPJ_TOPG_NoAgenda__c}" /></td>
+                                </tr>                     
+                            </table>
+                            <br/>
+                            <!--*************************************************************************************************************-->
+                            <!--**************************************************Attendees**************************************************-->
+                            <!--*************************************************************************************************************-->
+                             <apex:pageBlockSection columns="1" title="Organizer" collapsible="true">  
+                                 <apex:pageblockTable value="{!ListWrapperClassOwner}" var="Wrapper" id="AttendeesTable">
+                                    <apex:column headerValue="Attend"  styleClass="ActionLinks" headerClass="ActionLinks" rendered="{!Not(Meeting.MMPJ_TOPG_NoAgenda__c)}">
+                                        <apex:inputcheckbox value="{!MoM.MMPJ_TOPG_Assist__c}"  id="Assist"  />
+                                     </apex:column>
+                                   <apex:column HeaderValue="WHO" headerClass="relatedListSecondColumn">
+                                       <apex:outputtext value="{!Wrapper.Name}" style="width: 857px;"/>
+                                         </apex:column>
+                                            <apex:column HeaderValue="Function" style="width: 900px;">
+                                                <apex:outputtext value="{!Wrapper.title}" style="width: 857px;"/>
+                                            </apex:column>
+                                     </apex:pageblockTable>
+                             </apex:pageBlockSection>
+                    		<apex:actionRegion > 
+                                
+                                <script>
+                                    function ChangeFieldInAttendee(selector, rowNum) {
+                                        var Type = selector.value;
+                                        if(Type == 'Contact')
+                                        {
+                                            document.getElementById("contact"+rowNum).style.display='Inline';
+                                            document.getElementById("user"+rowNum).style.display='None';
+                                        }
+                                        else
+                                        {
+                                            document.getElementById("contact"+rowNum).style.display='None';
+                                            document.getElementById("user"+rowNum).style.display='Inline';
+                                        }
+                                    }
+                                    </script>
+                                <apex:pageBlockSection columns="1" title="Attendees" collapsible="true">                                    
+                                    
+                                     <!--BTO= > BeginAgenda detail pop up -->
+                                     <apex:outputPanel id="DetailAgendapopup">
+                                    <apex:outputPanel styleClass="custPopup" layout="block" rendered="{!DisplayAgendaPopupBackground}">
+                                        <div class="PopupTilte">
+                                        <table width ="100%"><tr>
+                                        <td>Agenda Detail</td>                                        
+                                        <td align="right">
+                                       		<apex:image id="closePopupIcon"  style="cursor:pointer;" value="{!$Resource.MMPJ_TOPG_CloseIcon}" onclick="closeDetailAgendaPop();"   height="20" width="20">
+                                       		 </apex:image>
+                                        </td>                                        
+                                        </tr>
+                                        </table>
+                                        </div>
+                                        <apex:pageBlock >
+                                            <table id="tblDetailAgendapopup" width="100%" cellpadding="2" cellspacing="0">
+											<!--BTO : Add picklist "Title" -->
+											  <tr >
+                                                    <td class="LabelDetail" style="width:20%;">
+                                                                Title 
+                                                    </td> 
+                                                    <td style="width:80%;">
+                                                        <apex:inputField Label="Title"  value="{!meeting.MMPJ_TOPG_Detail_Line_Topic__c}" onchange="selectedTopicAgendaPop()" Onkeypress="return handlerEnter(event,'Detail');"/>
+                                                    </td> 
+                                                </tr>	
+                                               <!-- <tr >
+                                                    <td class="LabelDetail" style="width:20%;">
+                                                                Brand 
+                                                    </td> 
+                                                    <td style="width:80%;">
+                                                        <apex:inputField Label="Title"  value="{!meeting.MMPJ_TOPG_Brand__c}" Onkeypress="return handlerEnter(event,'Detail');"/>
+                                                    </td> 
+                                                </tr> -->
+                                                <tr style="display:{!IF(showFileInputname = true ,'table-row' ,'none')}">
+                                                    <td class="LabelDetail" style="width:20%;">
+                                                                Topic  
+                                                    </td> 
+                                                    <td style="width:80%;">
+                                                         <apex:inputText Label="Title"  value="{!TheWrapperAgendDetail.LineItemMeetingMarketPerf.MMPJ_TOPG_FileName__c}"  Onkeypress="return handlerEnter(event,'Detail');"/>
+                                                    </td>
+                                                </tr>
+                                                 <tr style="display:{!IF(showProjectInput = true ,'table-row' ,'none')}">
+                                                    <td class="LabelDetail" style="width:20%;">
+                                                                Project 
+                                                    </td> 
+                                                    <td style="width:80%;">
+                                                         <apex:inputField Label="Title"  value="{!TheWrapperAgendDetail.LineItemMeetingProject.MMPJ_TOPG_Project__c}"  Onkeypress="return handlerEnter(event,'Detail');"/>
+                                                    </td>
+                                                </tr>
+                                                <tr style="display:{!IF(showCompInput = true ,'table-row' ,'none')}"> 
+                                                    <td class="LabelDetail" style="width:20%;">
+                                                                Competitor 
+                                                    </td> 
+                                                    <td style="width:80%;">
+                                                         <apex:inputField Label="Title"  value="{!TheWrapperAgendDetail.LineItemMeetingCompetitor.MMPJ_TOPG_Competitor__c}"  Onkeypress="return handlerEnter(event,'Detail');"/>
+                                                    </td>
+                                                </tr>
+                                                <tr >
+                                                    <td class="LabelDetail" style="width:20%;">
+                                                                Comment
+                                                    </td>
+                                                    <td style="width:80%;">
+														<apex:inputTextarea Label="Comment"  style="width:445px" value="{!TheWrapperAgendDetail.CommentThreeLine}"/>
+                                                    </td>
+                                                </tr>   
+                                            </table>
+                                            <apex:pageBlockButtons location="Bottom" style="text-align: -webkit-left;">
+                                                <apex:commandButton id="idSaveButton" action="{!saveDetailAgendaPop}" value="Save"  status="StatusLoading"/>
+                                                <apex:commandButton action="{!SaveAndNewDetailAgendaPop}" value="Save & New"  status="StatusLoading">                                                  
+                                        		<apex:param value="{!meeting.MMPJ_TOPG_Detail_Line_Topic__c}" name="SetTopicAgendaPopUp" assignTo="{!SetTopicAgendaPopUp}"/>
+                                            </apex:commandButton>
+                                                <apex:commandButton action="{!closeAgendapopup}" value="Cancel"  immediate="true" status="StatusLoading"/>
+                                            </apex:pageBlockButtons>
+                                        </apex:pageBlock>
+                                    </apex:outputPanel>
+                                </apex:outputPanel>
+                                    <!--BTO End Agenda detail Pop up -->
+                                   
+                                    <apex:outputPanel id="AttendeePanel">
+                                        <apex:variable value="{!0}" var="rowNum"/>  
+                                        <apex:pageblockTable value="{!ListWrapperAttendees}" var="Wrapper" id="AttendeesTable">
+                                            <!--BTO-- Ne pas Afficher colonne suppression quand noAgenda, ajouter le bouton moveUpe -->
+                                            <apex:column headerValue="Actions"  styleClass="ActionLinks" headerClass="ActionLinks" rendered="{!Not(Meeting.MMPJ_TOPG_NoAgenda__c)}">
+                                                <apex:commandLink value="UP" styleClass="UPLink" rendered="{!rowNum > 0}" action="{!GoUPAttendeeLine}">
+                                                    <apex:param value="{!rowNum}" name="LineItemCountercounter" assignTo="{!LineItemCounter}" />
+                                                </apex:commandLink>&nbsp;
+                                                <apex:commandLink value="Del" style="color:#015ba7" action="{!DelAttendee}" rerender="AttendeeTable,AttendeePanel" immediate="true">
+                                                    <apex:param value="{!rowNum}" name="rowToRemove" assignTo="{!rowToRemove}"/>
+                                                </apex:commandLink>
+                                                <apex:variable var="rowNum" value="{!rowNum + 1}"/>
+                                            </apex:column>
+                                            <apex:column HeaderValue="Who"  headerClass="relatedListSecondColumn">
+                                                <Apex:selectList id="SelectType" size="1" value="{!Wrapper.SelectValue}" disabled="{!Meeting.MMPJ_TOPG_NoAgenda__c}" onchange="ChangeFieldInAttendee(this, {!rowNum})" >
+                                                    <apex:selectOption itemValue="Contact" itemLabel="Contact" />
+                                                    <apex:selectOption itemValue="User" itemLabel="User"/>
+                                                </apex:selectList>&nbsp;&nbsp;
+                                                <div id="contact{!rowNum}" style="display:{!IF(Wrapper.SelectValue == 'Contact','Inline','none')};">                                                   
+                                                    <apex:outputField value="{!Wrapper.meeting.MMPJ_TOPG_TECH_contact__c}" rendered="{!Meeting.MMPJ_TOPG_NoAgenda__c}"/>
+                                                    <apex:inputfield value="{!Wrapper.meeting.MMPJ_TOPG_TECH_contact__c}" onchange="AutomateFunction()" Onkeypress="if (window.event && window.event.keyCode == 13 || ev.which == 13) return false;" rendered="{!NOT(Meeting.MMPJ_TOPG_NoAgenda__c)}"/>
+                                                </div>
+                                                <div id="user{!rowNum}" style="display:{!IF(Wrapper.SelectValue == 'User','Inline','none')};">                                                    
+                                                    <apex:outputField value="{!Wrapper.meeting.MMPJ_TOPG_TECH_user__c}" rendered="{!Meeting.MMPJ_TOPG_NoAgenda__c}"/>
+                                                    <apex:inputfield value="{!Wrapper.meeting.MMPJ_TOPG_TECH_user__c}" onchange="AutomateFunction()" Onkeypress="if (window.event && window.event.keyCode == 13 || ev.which == 13) return false;" rendered="{!NOT(Meeting.MMPJ_TOPG_NoAgenda__c)}"/>
+                                                </div>
+                                            </apex:column>
+                                            <apex:column HeaderValue="Function" style="width: 900px;">
+                                                <apex:outputtext value="{!Wrapper.Function}" style="width: 857px;"/>
+                                            </apex:column>
+                                        </apex:pageblockTable>
+                                        <div class="BtnRight">
+                                            <apex:commandButton onclick="IncreaseCounter();" value="New Attendees" action="{!addAttendee}" disabled="{!meeting.MMPJ_TOPG_NoAgenda__c}" rerender="AttendeeTable,AttendeePanel" status="StatusLoading" />
+                                        </div>
+                                    </apex:outputPanel>
+                                </apex:pageBlockSection>
+                            </apex:actionRegion>
+                            <!--**************************************************TOPICS*********************************************************-->
+                            <!--**********************************************MARKET PERF**********************************************-->
+                                <apex:actionRegion >
+                                <apex:pageBlockSection columns="1" collapsible="true" title="Market Performance">
+                                    <apex:outputPanel id="MarketPanel">
+                                        <apex:pageBlockTable id="MarketTable" value="{!MapMeetingMarketToinsert}" var="Market">
+                                            <apex:column headerValue="Actions" styleClass="ActionLinks" headerClass="ActionLinks">
+                                                <apex:commandLink value="UP" styleClass="UPLink" action="{!GoUPmarket}" rendered="{!Market > 0}">
+                                                    <apex:param value="{!Market}" name="4P" assignTo="{!UPmarket}"/>
+                                                </apex:commandLink>
+                                                <apex:commandLink value="Del" style="color:#015ba7" action="{!Delmarket}" immediate="true">
+                                                    <apex:param value="{!Market}" name="Market" assignTo="{!UPmarket}"/>
+                                                </apex:commandLink>  
+                                            </apex:column>
+                                            <apex:column headerValue="Topic"  headerClass="relatedListSecondColumn">
+                                                <apex:outputField value="{!MapMeetingMarketToinsert[Market].MMPJ_TOPG_FileName__c}" rendered="{!MapMeetingMarketToinsert[Market].MMPJ_TOPG_FileName__c != 'File or text'}"/>
+                                                <apex:outputLink rendered="{!MapMeetingMarketToinsert[Market].MMPJ_TOPG_FileName__c == 'File or text'}" value="/p/attach/NoteAttach?pid={!MapMeetingMarketToinsert[Market].id}&retURL=%2Fapex%2FMMPJ_TOPG_NewMeeting?ID={!meeting.id} ">Add Document</apex:outputLink>
+                                                 <!--<apex:commandLink rendered="{!MapMeetingMarketToinsert[Market].MMPJ_TOPG_FileName__c == 'File or text'}" value="Add document" action="{!AddMeetingDocument}"/>-->
+                                            </apex:column>
+                                           <!-- <apex:column headerValue="Brand"  headerClass="relatedListSecondColumn">
+                                                <apex:outputField value="{!MapMeetingMarketToinsert[Market].MMPJ_TOPG_Brand__c}"/>     
+                                            </apex:column> -->
+                                            <apex:column headerValue="Comment" >
+                                                <apex:inputtextarea value="{!MapMeetingMarketToinsert[Market].MMPJ_TOPG_Comment__c}" rows="3" cols="135"/>
+                                            </apex:column>
+                                        </apex:pageBlockTable>
+                                        <div Class="BtnRight">
+                                            <apex:commandButton value="Add Comment" disabled="{!meeting.MMPJ_TOPG_NoAgenda__c}" action="{!DetailAgendapopup}" reRender="MarketTable,DetailAgendapopup,BackgroundPopup" onclick="IncreaseCounter();">
+                                            	<apex:param value="Market Performance" name="SetTopicFile" assignTo="{!SetTopicAgendaPopUp}"/>
+                                            </apex:commandButton>
+                                        </div>                                         
+                                    </apex:outputPanel>
+                                </apex:pageBlockSection>
+                                </apex:actionRegion>
+                                <!--**********************************************PPPP**********************************************-->
+                                <apex:actionRegion >
+                                <apex:pageBlockSection columns="1" collapsible="true" title="4P">
+                                    <apex:outputPanel >
+                                        <apex:pageBlockTable id="PPPPTable" value="{!MapMeeting4PToinsert}" var="PPPP" >
+                                            <apex:column headerValue="Actions" styleClass="ActionLinks" headerClass="ActionLinks">
+                                                <apex:commandLink value="UP" styleClass="UPLink" action="{!GoUP4P}" rendered="{!PPPP > 0}" rerender="PPPPTable">
+                                                    <apex:param value="{!PPPP}" name="4P" assignTo="{!UP4P}"/>
+                                                </apex:commandLink>&nbsp;
+                                                <!--<apex:commandLink value="Edit" style="color:#015ba7" action="{!EditPPPPpopup}" rerender="PPPPpopup,BackgroundPopup,PPPPTable">
+                                                    <apex:param value="{!PPPP}" name="4P" assignTo="{!UP4P}"/>
+                                                </apex:commandLink>&nbsp;|&nbsp;-->
+                                                <apex:commandLink value="Del" style="color:#015ba7" action="{!Del4P}" rerender="PPPPTable" immediate="true">
+                                                    <apex:param value="{!PPPP}" name="4P" assignTo="{!UP4P}"/>
+                                                </apex:commandLink>  
+                                            </apex:column>
+                                            <apex:column headerValue="Topic"  headerClass="relatedListSecondColumn">
+                                                <apex:inputField required="false" value="{!MapMeeting4PToinsert[PPPP].MMPJ_TOPG_Topic__c}" />
+                                            </apex:column>
+                                            <apex:column headerValue="Comment">
+                                                <apex:inputtextarea value="{!MapMeeting4PToinsert[PPPP].MMPJ_TOPG_Comment__c}" rows="3" cols="135"/>
+                                            </apex:column>
+                                        </apex:pageBlockTable>
+                                        <div class="BtnRight">
+                                            <apex:commandButton action="{!DetailAgendapopup}" reRender="PPPPTable,DetailAgendapopup,BackgroundPopup" value="Add 4P" disabled="{!meeting.MMPJ_TOPG_NoAgenda__c}" status="StatusLoading" onclick="IncreaseCounter();">
+                                        		<apex:param value="Place / Channel" name="SetTopicPPPP" assignTo="{!SetTopicAgendaPopUp}"/>
+                                            </apex:commandButton>
+                                        </div>
+                                    </apex:outputPanel>
+                                </apex:pageBlockSection>
+                                </apex:actionRegion>
+                                <!--
+                                <apex:outputPanel id="PPPPpopup">
+                                    <apex:outputPanel styleClass="custPopup" layout="block" rendered="{!DisplayPPPPpopup}">
+                                        <div class="PopupTilte">4P</div>
+                                        <apex:pageBlock >
+                                            <apex:pageBlockSection columns="1">
+                                                <apex:inputField value="{!PPPPpopup.MMPJ_TOPG_Topic__c}"/>
+                                                <apex:inputField value="{!PPPPpopup.MMPJ_TOPG_Comment__c}"/>
+                                            </apex:pageBlockSection>
+                                            <apex:pageBlockButtons >
+                                                <apex:commandButton action="{!SavePPPPpopup}" value="OK" reRender="PPPPpopup,BackgroundPopup,PPPPTable" />
+                                                <apex:commandButton action="{!closePPPPpopup}" value="Cancel" reRender="PPPPpopup,BackgroundPopup"/>
+                                            </apex:pageBlockButtons>
+                                        </apex:pageBlock>
+                                    </apex:outputPanel>
+                                </apex:outputPanel>-->
+                                <!--**********************************************Project**********************************************-->
+                                <apex:actionRegion >
+                                <apex:pageBlockSection columns="1" collapsible="true" title="Project / Key Initiatives">
+                                    <apex:outputPanel >
+                                        <apex:pageBlockTable id="ProjetTable" value="{!MapMeetingProjectToinsert}" var="Projet" >
+                                            <apex:column headerValue="Actions" styleClass="ActionLinks" headerClass="ActionLinks">
+                                                <apex:commandLink value="UP" styleClass="UPLink" action="{!GoUPproject}" rendered="{!Projet > 0}" rerender="ProjetTable">
+                                                    <apex:param value="{!Projet}" name="Project" assignTo="{!UPproject}"/>
+                                                </apex:commandLink>&nbsp;  
+                                                <!--<apex:commandLink value="Edit" style="color:#015ba7"  rerender="ProjetTable">
+                                                    <apex:param value="{!Projet}" name="Project" assignTo="{!UPproject}"/>
+                                                </apex:commandLink>&nbsp;|&nbsp; -->
+                                                <apex:commandLink value="Del" style="color:#015ba7" action="{!Delproject}" rerender="ProjetTable" immediate="true">
+                                                    <apex:param value="{!Projet}" name="Project" assignTo="{!UPproject}"/>
+                                                </apex:commandLink>     
+                                            </apex:column>
+                                            <apex:column headerValue="Project"   headerClass="relatedListSecondColumn">
+                                                <apex:inputField required="false" value="{!MapMeetingProjectToinsert[Projet].MMPJ_TOPG_Project__c}"/>
+                                            </apex:column>
+                                            <apex:column headerValue="Comment">
+                                                <apex:inputtextarea value="{!MapMeetingProjectToinsert[Projet].MMPJ_TOPG_Comment__c}" rows="3" cols="135"/>
+                                            </apex:column>
+                                        </apex:pageBlockTable>
+                                        <div class="BtnRight">
+                                            <apex:commandButton action="{!DetailAgendapopup}" reRender="ProjetTable,DetailAgendapopup,BackgroundPopup" disabled="{!meeting.MMPJ_TOPG_NoAgenda__c}" value="Add Project" status="StatusLoading" onclick="IncreaseCounter();">
+                                        		<apex:param value="Project" name="SetTopicProj" assignTo="{!SetTopicAgendaPopUp}"/>
+                                            </apex:commandButton>
+                                        </div>
+                                    </apex:outputPanel>
+                                </apex:pageBlockSection>
+                                </apex:actionRegion>
+                                <!--**********************************************COMPETITOR**********************************************-->
+                                <apex:actionRegion >
+                                <apex:pageBlockSection columns="1" collapsible="true" title="Competitor">
+                                    <apex:outputPanel >
+                                        <apex:pageBlockTable id="CompTable" value="{!MapMeetingCompToinsert}" var="Comp" >
+                                            <apex:column headerValue="Actions" styleClass="ActionLinks" headerClass="ActionLinks">
+                                                 <apex:commandLink value="UP" styleClass="UPLink" action="{!GoUPComp}" rendered="{!Comp> 0}" rerender="CompTable">
+                                                    <apex:param value="{!Comp}" name="Comp" assignTo="{!UPComp}"/>
+                                                </apex:commandLink> &nbsp;  
+                                               <!-- <apex:commandLink value="Edit" style="color:#015ba7"  rerender="ProjetTable">
+                                                    <apex:param value="{!Comp}" name="Comp" assignTo="{!UPComp}"/>
+                                                </apex:commandLink>&nbsp;|&nbsp; --> 
+                                                <apex:commandLink value="Del" style="color:#015ba7" action="{!DelComp}" rerender="CompTable" immediate="true">
+                                                    <apex:param value="{!Comp}" name="Comp" assignTo="{!UPComp}"/>
+                                                </apex:commandLink> 
+                                            </apex:column>
+                                            <apex:column headerValue="Competitor"  headerClass="relatedListSecondColumn">
+                                                <apex:inputField required="false" value="{!MapMeetingCompToinsert[Comp].MMPJ_TOPG_Competitor__c}"/>
+                                            </apex:column>
+                                            <apex:column headerValue="Comment">
+                                                <apex:inputtextarea value="{!MapMeetingCompToinsert[Comp].MMPJ_TOPG_Comment__c}" rows="3" cols="135"/>
+                                            </apex:column>
+                                        </apex:pageBlockTable>
+                                        <div class="BtnRight">
+                                            <apex:commandButton action="{!DetailAgendapopup}" reRender="CompTable,DetailAgendapopup,BackgroundPopup" disabled="{!meeting.MMPJ_TOPG_NoAgenda__c}" value="Add Competitor" status="StatusLoading" onclick="IncreaseCounter();">
+                                        		<apex:param value="Competition" name="SetTopicComp" assignTo="{!SetTopicAgendaPopUp}"/>
+                                            </apex:commandButton>
+                                        </div>
+                                    </apex:outputPanel>
+                                </apex:pageBlockSection>
+                            </apex:actionRegion>
+                            
+                        <!--
+                        <apex:actionRegion >
+                            <script>
+                                function openLoadFile(){
+                                    document.getElementById("{!$Component.MarketMeeting}").click();
+                                }
+                            </script>
+                            <apex:actionFunction name="AddMarketAttachment" action="{!AddMarket}" status="StatusLoading"/>
+                            <apex:inputFile id="MarketMeeting" onchange="AddMarketAttachment()" value="{!FileInput}" filename="{!FileInputname}" style="display:none"/>
+                        </apex:actionRegion>-->
+                </apex:pageBlock>
+                </apex:form>
+            </apex:tab>
+            
+            <!--***************************************************-->
+            <!--***************************************************-->
+            <!--*********************MINUTES***********************-->
+            <!--***************************************************-->
+            <!--***************************************************-->
+            <apex:tab label="Minutes" name="Minutes" id="tabMinutes" ontableave="oldTab='Minutes';" ontabenter="newTab='Minutes';return CheckSave(this,'{!Meeting.id}');">
+                <apex:form id="MinutesForm">
+                    
+                        <apex:actionFunction name="SaveMom" action="{!LeavingMin}" reRender="MeetingTabPanel,ErrorPanel,SuccessPanel" status="StatusLoading" oncomplete="changetab(newTab);">
+                            <apex:param id="theNtab" name="newTab"  assignTo="{!newtabTobe}" value=""/>
+                        </apex:actionFunction>     
+                        <apex:pageBlock ><!--
+                            <div style="Width:100%;text-align:center;padding:5px;">
+                                <apex:commandButton value="Save" action="{!SaveMin}" disabled="{!MomStatusCompleted }" rerender="MinutesForm,ErrorPanel,SuccessPanel" status="StatusLoading"/>
+                                <apex:commandButton value="Save & Close" disabled="{!MomStatusCompleted }" rerender="MinutesForm,ErrorPanel" status="StatusLoading" action="{!SaveAndCloseMin}" />
+                                <apex:commandButton value="Cancel" action="{!Cancel}"/>
+                                <apex:commandButton value="Print PDF" action="{!PrintMomPDFButton}" rerender="MinutesForm,ErrorPanel,SuccessPanel" disabled="{!MomStatusCompleted }" status="StatusLoading"/>
+                                <a href="{!EmailMinute}" class="btn btnSend"> Send</a>
+                            </div>-->
+                            <apex:pageBlockButtons >
+                                <apex:commandButton value="Save" action="{!SaveMin}" disabled="{!MomStatusCompleted }" rerender="MinutesForm,ErrorPanel,SuccessPanel" status="StatusLoading" oncomplete="resetCounter();"/>
+                                <apex:commandButton value="Save & Close" disabled="{!MomStatusCompleted }" rerender="MinutesForm,ErrorPanel" status="StatusLoading" action="{!SaveAndCloseMin}" />
+                                <apex:commandButton value="Cancel" action="{!Cancel}"/>
+                                <apex:commandButton value="Print PDF" action="{!PrintMomPDFButton}" rerender="MinutesForm,ErrorPanel,SuccessPanel" disabled="{!MomStatusCompleted }" status="StatusLoading" oncomplete="resetCounter();"/>
+                                <a href="{!EmailMinute}" class="btn btnSend" onclick="if({!len(EmailMinute) < 20})alert('You can\'t send the minutes without having clicked the bouton \'Print PDF\'')" > Send</a>
+                            </apex:pageBlockButtons>
+                            <apex:pageMessage rendered="{!meeting.Id = null}" strength="3" severity="ERROR" title="Invalid Meeting" detail="Please save the agenda before creating a new minute of meeting!"></apex:pageMessage>
+                            <table id="tblAgendaFields" width="100%" cellpadding="8" cellspacing="0">
+                                <tr>
+                                    <td class="agendafields">Market : </td>
+                                    <td>
+                                        <apex:outputField value="{!Bmc.name}"/>
+                                    </td>
+                                    <td class="agendafields"/>
+                                    <td/>
+                                    <td class="agendafields">Meeting Title : </td>
+                                    <td>
+                                        <apex:outputField value="{!MoM.MMPJ_TOPG_Title__c}" rendered="{!NOT(Meeting.MMPJ_TOPG_NoAgenda__c)}"/>
+                                        <apex:inputField value="{!MoM.MMPJ_TOPG_Title__c}" Onkeypress="if (window.event && window.event.keyCode == 13 || ev.which == 13) return false;" rendered="{!Meeting.MMPJ_TOPG_NoAgenda__c}"/>
+                                    </td>
+                                    <td class="agendafields">
+                                        <apex:outputLabel value="Last modified date : " for="Agenda_StartDate"/>
+                                    </td>
+                                    <td>
+                                        <apex:outputField id="Agenda_StartDate" value="{!Agenda.StartDateTime}"/>
+                                    </td>                                    
+                                    <td class="agendafields"/>
+                                    <td/>
+                                    <td class="agendafields">Created by : </td>
+                                    <td>
+                                        <apex:outputField value="{!MoM.Createdby.name}"/>
+                                    </td>                                
+                                </tr>
+                                <tr>                      
+                                     <td class="agendafields">
+                                        <apex:outputLabel value="Location : " for="Agenda_Location"/>
+                                    </td>
+                                    <td >
+                                        <apex:inputField id="Agenda_Location"  required="false" value="{!MoM.MMPJ_TOPG_Location__c}" Onkeypress="if (window.event && window.event.keyCode == 13 || ev.which == 13) return false;" rendered="{!meeting.MMPJ_TOPG_NoAgenda__c}"/>
+                                    	<apex:outputField value="{!Agenda.Location}" rendered="{!Not(meeting.MMPJ_TOPG_NoAgenda__c)}" />
+                                    </td>
+                                    
+                                    <!-- <td class="agendafields">Status : </td>
+                                    <td>
+                                        <apex:inputField required="false" value="{!MoM.MMPJ_TOPG_Status__c}"/>
+                                    </td> -->
+                                     <td class="agendafields"/>
+                                    <td/>
+                                     <td class="agendafields">Meeting Start Date : </td>
+                                    <td>
+                                        <!--<apex:InputField value="{!MoM.MMPJ_TOG_MinutesDate__c}"/> -->                                       
+                                        <apex:inputField required="false" value="{!MoM.MMPJ_TOPG_Start_Date__c}" Onkeypress="if (window.event && window.event.keyCode == 13 || ev.which == 13) return false;" rendered="{!meeting.MMPJ_TOPG_NoAgenda__c}"/>
+                                        <apex:outputField value="{!Agenda.StartDateTime}" rendered="{!not(Meeting.MMPJ_TOPG_NoAgenda__c)}"/>
+                                    </td>
+                                     <td class="agendafields">
+                                        <apex:outputLabel value="Meeting End Date : " for="Agenda_EndDate" rendered="{!not(Meeting.MMPJ_TOPG_NoAgenda__c)}"/> 
+                                        <apex:outputLabel value="Meeting End Date : " for="NoAgenda_EndDate" rendered="{!Meeting.MMPJ_TOPG_NoAgenda__c}"/>
+                                    </td>
+                                    <td>                                        
+                                        <apex:inputField id="NoAgenda_EndDate" required="false" value="{!MoM.MMPJ_TOPG_End_Date__c}" Onkeypress="if (window.event && window.event.keyCode == 13 || ev.which == 13) return false;" rendered="{!meeting.MMPJ_TOPG_NoAgenda__c}"/>
+                                        <apex:outputField id="Agenda_EndDate" value="{!Agenda.EndDateTime}" rendered="{!not(Meeting.MMPJ_TOPG_NoAgenda__c)}"/>
+                                    </td>     
+                                    <td class="agendafields"/>
+                                    <td/>
+                                    <td class="agendafields">Last Modified by : </td>
+                                    <td>
+                                        <apex:outputField value="{!MoM.LastModifiedby.name}"/>
+                                    </td>
+                                </tr>                                                      
+                            </table>
+                            <apex:actionRegion >
+                                <script>
+                                            function ChangeFieldInDetail(selector) {
+                                                var Type = selector.value;
+                                                if(Type == 'Contact')
+                                                {
+                                                    document.getElementById("WhoCont").style.display='Inline';
+                                                    document.getElementById("WhoUser").style.display='None';
+                                                }
+                                                else
+                                                {
+                                                    document.getElementById("WhoCont").style.display='None';
+                                                    document.getElementById("WhoUser").style.display='Inline';
+                                                }
+                                            }
+                               			 function setTodo(raid) {                                    		
+                                                if(raid.value == 'Action')                                                {
+                                                    document.getElementById("actionTitleId").style.display='table-row';
+                                                    
+                                                }
+                                                else
+                                                {
+                                                   document.getElementById("actionTitleId").style.display='None';
+                                                }
+                                            }
+                                </script>
+                                <apex:actionFunction rerender="BackgroundPopup,Detailpopup" name="CallCancel" immediate="true" action="{!closeDetailPopup}"/>
+                                <!--BTO :Begin => Methods to intercept key presses "Enter" button evenement -->
+                                <apex:actionFunction name="saveDetailPop" action="{!SaveDetailPop}" rerender="BackgroundPopup,Detailpopup,MomPPPP,MomProject,MomComp,MomMarket" status="StatusLoading"/>
+								 <apex:actionFunction name="selectedTopic" action="{!selectedTopic}" rerender="BackgroundPopup,Detailpopup,MomPPPP,MomProject,MomComp,MomMarket" status="StatusLoading"/>
+                                <!--BTO :End => Methods to intercept key presses "Enter" button evenement -->
+                                <apex:outputPanel id="Detailpopup">
+                                    <apex:outputPanel styleClass="custPopup" layout="block" rendered="{!displayDetailPopUp}">
+                                        <div class="PopupTilte">
+                                        <table width ="100%"><tr>
+                                        <td>Minutes Detail</td>
+                                        
+                                        <td align="right">
+                                       		<apex:image id="closePopupIcon"  style="cursor:pointer;" value="{!$Resource.MMPJ_TOPG_CloseIcon}" onclick="CallCancel();"   height="20" width="20">
+                                       		 </apex:image>
+                                        </td>                                        
+                                        </tr>
+                                        </table>
+                                        </div>
+                                        <apex:pageBlock >
+                                            <table id="tblDetailpopup" width="100%" cellpadding="8" cellspacing="0">
+											<!--BTO : Add picklist "Title" -->
+											  <tr >
+                                                    <td class="LabelDetail">
+                                                                Topic 
+                                                    </td>
+                                                    <td style="width:300px;">
+                                                        <apex:inputField Label="Topic"  value="{!DetailPopUp.LineItem.MMPJ_TOPG_Detail_Line_Topic__c}" onchange="selectedTopic()" Onkeypress="return handlerEnter(event,'Detail');"/>
+                                                    </td> 
+                                                </tr>
+												<!--BTO : End Add picklist "Topic" -->
+                                              <!--  <tr style="display:{!IF(DetailPopUp.TopicType = 'PPPP' ,'table-row' ,'none')}">
+                                                    <td class="LabelDetail">
+                                                                File
+                                                    </td>
+                                                    <td>
+                                                        <apex:outputPanel rendered="{!NOT(DetailPopUp.MeetingTopic)}">
+                                                        	<apex:inputField rendered="{!DetailPopUp.TopicType = 'PPPP'}" required="false" Label="File" value="{!DetailPopUp.LineItem.MMPJ_TOPG_TopicPPPP__c}" Onkeypress="return handlerEnter(event,'Detail');"/>
+                                                        </apex:outputPanel>
+                                                        <apex:outputPanel rendered="{!(DetailPopUp.MeetingTopic)}">  
+                                                            <apex:inputText disabled="true" value="{!DetailPopUp.LineItem.MMPJ_TOPG_TopicPPPP__c}" />
+                                                        </apex:outputPanel>
+                                                    </td>
+                                                </tr> -->
+                                                <tr style="display:{!IF(DetailPopUp.TopicType = 'Project' ,'table-row' ,'none')}">
+                                                    <td class="LabelDetail">
+                                                                Related to Project
+                                                    </td>
+                                                    <td>
+                                                        <apex:outputPanel rendered="{!NOT(DetailPopUp.MeetingTopic)}">
+                                                            <apex:inputField required="false" rendered="{!DetailPopUp.TopicType = 'Project'}" Label="Topic" value="{!DetailPopUp.LineItem.MMPJ_TOPG_RelatedProject__c}" Onkeypress="return handlerEnter(event,'Detail');"/>
+                                                        </apex:outputPanel>
+                                                        <apex:outputPanel rendered="{!(DetailPopUp.MeetingTopic)}">
+                                                            <apex:inputText disabled="true" value="{!DetailPopUp.Project}" />
+                                                        </apex:outputPanel>
+                                                    </td>
+                                                </tr>
+												<!--<tr style="display:{!IF(DetailPopUp.TopicType = 'Project' ,'table-row' ,'none')}">
+                                                    <td class="LabelDetail">
+                                                                Related to Product
+                                                    </td>
+                                                    <td>
+                                                        <apex:inputField Label="Related to Product" style="width:245px" value="{!DetailPopUp.LineItem.MMPJ_TOPG_RelatedProduct__c}" Onkeypress="return handlerEnter(event,'Detail');"/>
+                                                    </td>
+                                                </tr> -->
+                                                <tr style="display:{!IF(DetailPopUp.TopicType = 'Competitor' ,'table-row' ,'none')}">
+                                                    <td class="LabelDetail">
+                                                                Related to Competitor
+                                                    </td>
+                                                    <td>
+                                                        <apex:outputPanel rendered="{!NOT(DetailPopUp.MeetingTopic)}">
+                                                            <apex:inputField required="false" rendered="{!DetailPopUp.TopicType = 'Competitor'}" Label="Topic" value="{!DetailPopUp.LineItem.MMPJ_TOPG_Competitor__c}" Onkeypress="return handlerEnter(event,'Detail');"/>
+                                                        </apex:outputPanel>
+                                                        <apex:outputPanel rendered="{!(DetailPopUp.MeetingTopic)}">
+                                                            <apex:inputText disabled="true" value="{!DetailPopUp.Comp}" />
+                                                        </apex:outputPanel>
+                                                    </td>
+                                                </tr>
+                                               <!-- <tr style="display:{!IF(DetailPopUp.LineItem.MMPJ_TOPG_Detail_Line_Topic__c = 'Add document' ,'table-row' ,'none')}">
+                                                    <td class="LabelDetail">
+                                                                File
+                                                    </td>
+                                                    <td>
+                                                        <apex:outputPanel >
+                                                            <apex:inputText disabled="false" value="{!DetailPopUp.LineItem.MMPJ_TOPG_FileName__c}" />
+                                                        </apex:outputPanel>
+                                                    </td>
+                                                </tr> 
+                                                <tr>
+                                                    <td class="LabelDetail">
+                                                                Brand 
+                                                    </td>
+                                                    <td style="width:300px;">
+                                                        <apex:inputField Label="Brand"  value="{!DetailPopUp.LineItem.MMPJ_TOPG_Brand__c}" Onkeypress="return handlerEnter(event,'Detail');"/>
+                                                    </td>                                                   
+                                                </tr> -->
+                                                <!--style="display:{!IF(isRenderedWhoWhen = true ,'table-row' ,'none')}" -->
+                                                <tr>
+                                                    <td class="LabelDetail">
+                                                                RAID 
+                                                    </td>
+                                                    <td style="width:300px;">
+                                                        <apex:inputField Label="RAID"  value="{!DetailPopUp.LineItem.MMPJ_TOPG_RAID__c}" onchange="setTodo(this);" Onkeypress="return handlerEnter(event,'Detail');"/>
+                                                    </td>
+                                                    <td class="LabelDetail" style="width:100px">
+                                                                Highlight 
+                                                    </td>
+                                                    <td>
+                                                        <apex:inputField Label="Highlight" style="margin:0px" value="{!DetailPopUp.LineItem.MMPJ_TOPG_IsHighlight__c}"/>
+                                                    </td>
+                                                </tr>
+                                                <tr id="actionTitleId" style="display:{!IF(DetailPopUp.LineItem.MMPJ_TOPG_RAID__c = 'Action' ,'table-row' ,'none')}">
+                                                    <td class="LabelDetail">
+                                                                Action Title
+                                                    </td>
+                                                    <td style="width:300px;">
+                                                        <apex:inputField Label="Action Title"  value="{!DetailPopUp.LineItem.MMPJ_TOPG_Action_Title__c}"  Onkeypress="return handlerEnter(event,'Detail');"/>
+                                                    </td>                                                   
+                                                </tr>
+                                                <tr>
+                                                    <td class="LabelDetail">
+                                                                Comment
+                                                    </td>
+                                                    <td colspan="3">
+                                                        <apex:inputfield Label="Description" style="width:445px" value="{!DetailPopUp.LineItem.MMPJ_TOPG_Comment__c}"/>
+                                                    </td>
+                                                </tr>                                                
+                                                <tr style="display:{!IF(DetailPopUp.TopicType != 'Project' ,'table-row' ,'none')}">
+                                                    <td class="LabelDetail">
+                                                                Related to Project
+                                                    </td>
+                                                    <td>
+                                                        <apex:inputField Label="Related to Project" rendered="{!DetailPopUp.TopicType != 'Project'}"  required="false" style="width:245px" value="{!DetailPopUp.LineItem.MMPJ_TOPG_RelatedProject__c}" Onkeypress="return handlerEnter(event,'Detail');"/>
+                                                    </td>
+                                                </tr>
+												<!--<tr style="display:{!IF(DetailPopUp.TopicType != 'Project' ,'table-row' ,'none')}">
+                                                    <td class="LabelDetail">
+                                                                Related to Product
+                                                    </td>
+                                                    <td>
+                                                        <apex:inputField Label="Related to Product" style="width:245px" value="{!DetailPopUp.LineItem.MMPJ_TOPG_RelatedProduct__c}" Onkeypress="return handlerEnter(event,'Detail');"/>
+                                                    </td>
+                                                </tr> -->
+                                                <tr>
+                                                    <td class="LabelDetail">  
+                                                                Who
+                                                    </td>
+                                                    <td>
+                                                        <div class="DetailWho">
+                                                            <Apex:selectList id="SelectType" size="1" value="{!DetailPopUp.SelectValue}" onchange="ChangeFieldInDetail(this)" Onkeypress="return handlerEnter(event,'Detail');">
+                                                                <apex:selectOption itemValue="Contact" itemLabel="Contact" />
+                                                                <apex:selectOption itemValue="User" itemLabel="User"/>
+                                                            </apex:selectList>
+                                                            <div id="WhoCont" style="display:{!IF(DetailPopUp.SelectValue == 'Contact','Inline','none')};">
+                                                                <apex:inputfield value="{!DetailPopUp.LineItem.MMPJ_TOPG_WhoC__c}" Onkeypress="return handlerEnter(event,'Detail');"/>
+                                                            </div>
+                                                            <div id="WhoUser" style="display:{!IF(DetailPopUp.SelectValue == 'User','Inline','none')};">
+                                                                <apex:inputfield value="{!DetailPopUp.LineItem.MMPJ_TOPG_WhoU__c}" Onkeypress="return handlerEnter(event,'Detail');"/>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="LabelDetail">
+                                                                When 
+                                                    </td>
+                                                    <td >                                                 
+                                                        <apex:inputField id="idWhen" Label="When" value="{!DetailPopUp.LineItem.MMPJ_TOPG_When__c}" Onkeypress="return handlerEnter(event,'Detail');"/>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <apex:pageBlockButtons location="Bottom" style="text-align: -webkit-left;">
+                                                <apex:commandButton id="idSaveButton" action="{!SaveDetailPop}" value="Save" status="StatusLoading"/>
+                                                <apex:commandButton action="{!SaveAndNewDetailPop}" value="Save & New" status="StatusLoading"/>
+                                                <apex:commandButton action="{!closeDetailPopup}" value="Cancel" rerender="BackgroundPopup,Detailpopup" immediate="true" status="StatusLoading"/>
+                                            </apex:pageBlockButtons>
+                                        </apex:pageBlock>
+                                    </apex:outputPanel>
+                                </apex:outputPanel>
+                            </apex:actionRegion>
+                            <!--*************************************************************************************************************-->
+                            <!--**************************************************Attendees**************************************************-->
+                            <!--*************************************************************************************************************-->
+                               <apex:pageBlockSection columns="1" title="Organizer" collapsible="true">  
+                                 <apex:pageblockTable value="{!ListWrapperClassOwner}" var="Wrapper" id="AttendeesTable">
+                                    <apex:column headerValue="Attend"  styleClass="ActionLinks" headerClass="ActionLinks">
+                                        <apex:inputcheckbox value="{!MoM.MMPJ_TOPG_Assist__c}"  id="Assist"  />
+                                     </apex:column>
+                                   <apex:column HeaderValue="WHO" headerClass="relatedListSecondColumn">
+                                       <apex:outputtext value="{!Wrapper.Name}" style="width: 857px;"/>
+                                         </apex:column>
+                                            <apex:column HeaderValue="Function" style="width: 900px;">
+                                                <apex:outputtext value="{!Wrapper.title}" style="width: 857px;"/>
+                                            </apex:column>
+                                     </apex:pageblockTable>
+                             </apex:pageBlockSection>
+                            <apex:actionRegion >                                
+                                 <script>
+                                        function ChangeFieldInAttendee(selector, rowNum) {
+                                            var Type = selector.value;
+                                            if(Type == 'Contact')
+                                            {
+                                                document.getElementById("contact"+rowNum).style.display='Inline';
+                                                document.getElementById("user"+rowNum).style.display='None';
+                                            }
+                                            else
+                                            {
+                                                document.getElementById("contact"+rowNum).style.display='None';
+                                                document.getElementById("user"+rowNum).style.display='Inline';
+                                            }
+                                        }
+                                    </script>
+                                <apex:pageBlockSection columns="1" title="Attendees" collapsible="true">
+                                   
+                                    <apex:actionFunction name="AutomateFunctionMinutes" action="{!AutomateFunction}" rerender="AttendeeTableMinutes,AttendeePanelMinutes" status="StatusLoading"/>
+                                    <apex:outputPanel id="AttendeePanelMinutes">
+                                        <apex:variable value="{!0}" var="rowNum"/>  
+                                        <apex:pageblockTable value="{!ListWrapperAttendees}" var="Wrapper" id="AttendeeTableMinutes">
+                                            <apex:column headerValue="Actions"  styleClass="ActionLinks" headerClass="ActionLinks">
+                                                <apex:commandLink value="UP" styleClass="UPLink" rendered="{!rowNum > 0}" action="{!GoUPAttendeeLine}">
+                                                    <apex:param value="{!rowNum}" name="LineItemCountercounter" assignTo="{!LineItemCounter}" />
+                                                </apex:commandLink>&nbsp;
+                                                <apex:commandLink value="Del" style="color:#015ba7" action="{!DelAttendee}" rerender="AttendeeTableMinutes,AttendeePanelMinutes" immediate="true" >
+                                                    <apex:param value="{!rowNum}" name="rowToRemove" assignTo="{!rowToRemove}"/>
+                                                </apex:commandLink>
+                                                <apex:variable var="rowNum" value="{!rowNum + 1}"/>
+                                            </apex:column>
+                                            <apex:column HeaderValue="Who"  headerClass="relatedListSecondColumn">
+                                                <Apex:selectList id="SelectType" size="1" value="{!Wrapper.SelectValue}" onchange="ChangeFieldInAttendee(this, {!rowNum})"  >
+                                                    <apex:selectOption itemValue="Contact" itemLabel="Contact" />
+                                                    <apex:selectOption itemValue="User" itemLabel="User"/>
+                                                </apex:selectList>
+                                                <div id="contact{!rowNum}" style="display:{!IF(Wrapper.SelectValue == 'Contact','Inline','none')};">
+                                                    <apex:inputfield value="{!Wrapper.meeting.MMPJ_TOPG_TECH_contact__c}" onchange="AutomateFunctionMinutes()" Onkeypress="if (window.event && window.event.keyCode == 13 || ev.which == 13) return false;"/ >
+                                                </div>
+                                                <div id="user{!rowNum}" style="display:{!IF(Wrapper.SelectValue == 'User','Inline','none')};">
+                                                    <apex:inputfield value="{!Wrapper.meeting.MMPJ_TOPG_TECH_user__c}" onchange="AutomateFunctionMinutes()" Onkeypress="if (window.event && window.event.keyCode == 13 || ev.which == 13) return false;"/>
+                                                </div>
+                                            </apex:column>
+                                            <apex:column HeaderValue="Function" style="width: 900px;">
+                                                <apex:outputtext value="{!Wrapper.Function}" style="width: 857px;"/>
+                                            </apex:column>
+                                        </apex:pageblockTable>
+                                        <div class="BtnRight">
+                                            <apex:commandButton value="New Attendees" disabled="{!Mom.id = null}" action="{!addAttendee}" rerender="AttendeeTableMinutes,AttendeePanelMinutes" status="StatusLoading" onclick="IncreaseCounter();"/>
+                                        </div>
+                                    </apex:outputPanel>
+                                </apex:pageBlockSection>
+                            </apex:actionRegion>
+                            <!--*************************************Market Performance (Onglet Minutes) *************************************-->
+                            <apex:actionRegion >
+                                <apex:pageBlockSection columns="1" title="Market Performance" collapsible="true" >
+                                    <apex:outputPanel id="MomMarket">
+                                        <apex:variable var="MarketCounter" value="{!0}"/>
+                                        <apex:pageBlockTable id="MomMarketTable" value="{!listMOMLineMarket}" var="MomLine">
+                                            <apex:column headerValue="Actions" headerClass="tblActionHeader" width="5%">
+                                                <apex:commandLink value="UP" styleClass="UPLink" rendered="{!MarketCounter > 0}" action="{!GoUPMarketLine}">
+                                                    <apex:param value="{!MarketCounter}" name="LineItemCountercounter" assignTo="{!LineItemCounter}" />
+                                                </apex:commandLink>&nbsp;
+                                                <apex:commandLink value="Edit" style="color:#015ba7" action="{!EditMarketMom}" rerender="Detailpopup,BackgroundPopup" immediate="true" status="StatusLoading">
+                                                    <apex:param value="{!MarketCounter}" name="MomDetail" assignTo="{!LineItemCounter}"/>
+                                                </apex:commandLink> &nbsp;
+                                                <apex:commandLink value="| Del" style="color:#015ba7" action="{!DelMarketLine}" rendered="{!Not(MomLine.MeetingTopic)}" immediate="true">
+                                                    <apex:param value="{!MarketCounter}" name="LineItemCountercounter" assignTo="{!LineItemCounter}" />
+                                                </apex:commandLink>
+                                                <apex:variable var="MarketCounter" value="{!MarketCounter+1}"/>
+                                            </apex:column>
+                                            <!-- TGS-33 -->
+                                           	<apex:column headerValue="Topic"  headerClass="tblOthersHeader" width="10%">
+                                                <apex:outputPanel rendered="{!MomLine.LineItem.MMPJ_TOPG_FileName__c != 'File or text'}"> 
+                                                    <apex:outputField value="{!MomLine.LineItem.MMPJ_TOPG_Detail_Line_Topic__c}" rendered="{!(If(MomLine.LineItem.MMPJ_TOPG_Detail_Line_Topic__c == 'Add document',false,true) && (MomLine.LineItem.MMPJ_TOPG_FileName__c == null)) }"/>
+                                                    <!--apex:outputText value="Add document" rendered="{!(If(MomLine.LineItem.MMPJ_TOPG_Detail_Line_Topic__c == 'Add document',false,true) && (MomLine.LineItem.MMPJ_TOPG_FileName__c == null)) }"/-->
+                                                    <apex:outputField value="{!MomLine.LineItem.MMPJ_TOPG_FileName__c}" /> 
+                                                </apex:outputPanel>                                               
+                                                <apex:outputLink rendered="{!(MomLine.LineItem.MMPJ_TOPG_FileName__c == 'File or text') && (MomLine.LineItem.MMPJ_TOPG_Detail_Line_Topic__c != null)}" value="/p/attach/NoteAttach?pid={!MomLine.LineItem.id}&retURL=%2Fapex%2FMMPJ_TOPG_NewMeeting?ID={!meeting.id}%26TabName=Minutes">Add Document</apex:outputLink> 
+                                                <!-- TGS-48 -->
+                                                <!-- TGS-50 apex:outputText rendered="{!((MomLine.LineItem.MMPJ_TOPG_Detail_Line_Topic__c == 'Add document') && (MomLine.LineItem.MMPJ_TOPG_FileName__c == null))}" value="{!MomLine.LineItem.MMPJ_TOPG_Detail_Line_Topic__c}"></apex:outputText-->
+                                                <apex:outputLink rendered="{!((MomLine.LineItem.MMPJ_TOPG_Detail_Line_Topic__c == 'Add document') && (MomLine.LineItem.MMPJ_TOPG_FileName__c == null))}" value="/p/attach/NoteAttach?pid={!MomLine.LineItem.id}&retURL=%2Fapex%2FMMPJ_TOPG_NewMeeting?ID={!meeting.id}%26TabName=Minutes">Add Document</apex:outputLink>
+                                                <!-- TGS-50 -->
+                                            	<!-- Add document venant de l'agenda -->
+                                                <apex:outputText rendered="{!(((MomLine.LineItem.MMPJ_TOPG_FileName__c == 'File or text')||(MomLine.LineItem.MMPJ_TOPG_FileName__c == null)) && (MomLine.LineItem.MMPJ_TOPG_Detail_Line_Topic__c == null))}" value="Add document"></apex:outputText>
+                                                <!--apex:outputText rendered="{!((MomLine.LineItem.MMPJ_TOPG_FileName__c == 'File or text') && (MomLine.LineItem.MMPJ_TOPG_Detail_Line_Topic__c == null))}" value="Add Document"></apex:outputText>
+                                                <apex:outputText rendered="{!((MomLine.LineItem.MMPJ_TOPG_FileName__c == null) && (MomLine.LineItem.MMPJ_TOPG_Detail_Line_Topic__c == null))}" value="-"></apex:outputText-->
+                                                <!-- TGS-48 -->
+                                                <!--<apex:commandLink rendered="{!MomLine.LineItem.MMPJ_TOPG_FileName__c = 'File or text'}" value="Add document" action="{!AddMeetingDocument}"/>-->
+                                            </apex:column> 	
+                                            <!-- TGS-33 -->
+                                            <apex:column headerValue="Comment" headerClass="tblCommentHeader" width="40%" >
+                                                <apex:outputtext escape="false" value="{!MomLine.CommentThreeLine}" /><!--<c:showComment showComment="{!MomLine.CommentThreeLine}" rendered="{!MomLine.CommentThreeLine != null}" /> -->
+                                            </apex:column>                                           
+                                            <apex:column headerValue="Related to Project" headerClass="tblOthersHeader" width="10%">
+                                               <!-- <apex:outputField value="{!MomLine.LineItem.MMPJ_TOPG_RelatedProject__r.name}" rendered="{!MomLine.LineItem.ID!=null}"/>
+                                                <apex:outputText value="{!MomLine.Project}" rendered="{!MomLine.LineItem.ID ==null}"/> -->
+                                                <apex:outputLink value="/apex/MMPJ_TOPG_NewProject?id={!MomLine.LineItem.MMPJ_TOPG_RelatedProject__r.id}" style="color:#015ba7" target="_blank" rendered="{!MomLine.LineItem.MMPJ_TOPG_RelatedProject__r.id!=null}">{!MomLine.LineItem.MMPJ_TOPG_RelatedProject__r.name}</apex:outputLink>
+                                                <apex:outputLink value="/apex/MMPJ_TOPG_NewProject?id={!MomLine.ProjectId}" style="color:#015ba7" target="_blank" rendered="{!MomLine.LineItem.MMPJ_TOPG_RelatedProject__r.id ==null}">{!MomLine.Project}</apex:outputLink>
+                                            </apex:column>
+                                            <apex:column headerValue="Who" headerClass="tblOthersHeader" width="10%">
+                                                <apex:outputtext value="{!MomLine.Who}" />
+                                            </apex:column>
+                                            <apex:column headerValue="Date" headerClass="tblOthersHeader" width="10%">
+                                                <apex:outputField Label="When" value="{!MomLine.LineItem.MMPJ_TOPG_When__c}"/>
+                                            </apex:column>
+                                            <apex:column headerValue="RAID" headerClass="tblOthersHeader" width="10%">
+                                                <apex:outputField value="{!MomLine.LineItem.MMPJ_TOPG_RAID__c}"/>
+                                            </apex:column>
+                                            <apex:column headerValue="Highlight" style="text-align: center;" headerClass="tblHighlightHeader" width="5%">
+                                                <apex:outputField value="{!MomLine.LineItem.MMPJ_TOPG_IsHighlight__c}"/>
+                                            </apex:column>
+                                        </apex:pageBlockTable>
+                                        <div class="BtnRight">                                          
+                                            <apex:commandButton Value="Add Detail Line" disabled="{!Mom.id = null}" action="{!AddMarketMom}"  rerender="Detailpopup,BackgroundPopup" status="StatusLoading" >
+                                                <apex:param value="Market Performance" name="SetTopicDetail" assignTo="{!SetTopicMinutePopUp}"/>
+                                            </apex:commandButton>
+                                        </div>
+                                    </apex:outputPanel>
+                                </apex:pageBlockSection>
+                            </apex:actionRegion>
+                            <!--*********************************************************4P***********************************************************-->
+                            <apex:actionRegion >
+                                <apex:pageBlockSection columns="1" title="4P" collapsible="true">
+                                    <apex:outputPanel id="MomPPPP">
+                                        <apex:variable var="PPPPCounter" value="{!0}"/>
+                                        <apex:pageBlockTable value="{!listMOMLinePPPP}" var="MomLine">
+                                            <apex:column headerValue="Actions" headerClass="tblActionHeader" width="5%">
+                                                <apex:commandLink value="UP" styleClass="UPLink" rendered="{!PPPPCounter > 0}"  action="{!GoUPPPPPLine}" rerender="MomPPPP">
+                                                    <apex:param value="{!PPPPCounter}" name="LineItemCountercounter" assignTo="{!LineItemCounter}" />
+                                                </apex:commandLink>&nbsp;
+                                                <apex:commandLink value="Edit" style="color:#015ba7" action="{!EditPPPPMom}" rerender="Detailpopup,BackgroundPopup" immediate="true" status="StatusLoading">
+                                                    <apex:param value="{!PPPPCounter}" name="MomDetail" assignTo="{!LineItemCounter}"/>
+                                                  <apex:param value="{!MomLine.LineItem.MMPJ_TOPG_TopicPPPP__c}" name="SetTopicAgendaDetail" assignTo="{!SetTopicMinutePopUp}"/> 
+                                                </apex:commandLink> &nbsp;
+                                                <apex:commandLink value="| Del" style="color:#015ba7" action="{!DelPPPPMom}" rerender="MomPPPP" rendered="{!Not(MomLine.MeetingTopic)}" immediate="true">
+                                                    <apex:param value="{!PPPPCounter}" name="LineItemCountercounter" assignTo="{!LineItemCounter}" />
+                                                </apex:commandLink>
+                                                <apex:variable var="PPPPCounter" value="{!PPPPCounter+1}"/>
+                                            </apex:column>
+                                            <apex:column headerValue="Topic" headerClass="tblOthersHeader" width="10%">
+												<!-- TGS-32 -->
+                                                <!--apex:outputField value="{!MomLine.LineItem.MMPJ_TOPG_Detail_Line_Topic__c}" rendered="{!MomLine.LineItem.MMPJ_TOPG_Detail_Line_Topic__c!=null}"/-->
+												<apex:outputField value="{!MomLine.LineItem.MMPJ_TOPG_Detail_Line_Topic__c}" rendered="{!((MomLine.LineItem.MMPJ_TOPG_Detail_Line_Topic__c!=null)&&(MomLine.LineItem.MMPJ_TOPG_TopicPPPP__c==null))}"/>
+												<!-- TGS-32 -->
+                                                <apex:outputField value="{!MomLine.LineItem.MMPJ_TOPG_TopicPPPP__c}" rendered="{!MomLine.LineItem.MMPJ_TOPG_TopicPPPP__c!=null}"/>
+                                            </apex:column>                                           
+                                            <apex:column headerValue="Comment" headerClass="tblCommentHeader" width="40%">
+                                                <apex:outputtext escape="false" value="{!MomLine.CommentThreeLine}" /> 
+                                            </apex:column>                                          
+                                            <apex:column headerValue="Related to Project" headerClass="tblOthersHeader" width="10%">
+                                              <!--  <apex:outputField value="{!MomLine.LineItem.MMPJ_TOPG_RelatedProject__r.name}" rendered="{!MomLine.LineItem.ID!=null}"/>
+                                                <apex:outputText value="{!MomLine.Project}" rendered="{!MomLine.LineItem.ID ==null}"/> -->
+                                                <apex:outputLink value="/apex/MMPJ_TOPG_NewProject?id={!MomLine.LineItem.MMPJ_TOPG_RelatedProject__r.id}" style="color:#015ba7" target="_blank" rendered="{!MomLine.LineItem.MMPJ_TOPG_RelatedProject__r.id!=null}">{!MomLine.LineItem.MMPJ_TOPG_RelatedProject__r.name}</apex:outputLink>
+                                                <apex:outputLink value="/apex/MMPJ_TOPG_NewProject?id={!MomLine.ProjectId}" style="color:#015ba7" target="_blank" rendered="{!MomLine.LineItem.MMPJ_TOPG_RelatedProject__r.id ==null}">{!MomLine.Project}</apex:outputLink>
+                                            </apex:column>
+                                            <apex:column headerValue="Who" headerClass="tblOthersHeader" width="10%">
+                                                <apex:outputtext value="{!MomLine.Who}" />
+                                            </apex:column>
+                                            <apex:column headerValue="Date" headerClass="tblOthersHeader" width="10%">
+                                                <apex:outputField Label="When" value="{!MomLine.LineItem.MMPJ_TOPG_When__c}"/>
+                                            </apex:column>
+                                            <apex:column headerValue="RAID" headerClass="tblOthersHeader" width="10%">
+                                                <apex:outputField value="{!MomLine.LineItem.MMPJ_TOPG_RAID__c}"/>
+                                            </apex:column>
+                                            <apex:column headerValue="Highlight" style="text-align: center;" headerClass="tblHighlightHeader" width="5%">
+                                                <apex:outputField value="{!MomLine.LineItem.MMPJ_TOPG_IsHighlight__c}"/>
+                                            </apex:column>
+                                        </apex:pageBlockTable>
+                                        <div class="BtnRight">
+                                            <apex:commandButton Value="Add Detail Line" disabled="{!Mom.id = null}" action="{!AddPPPPMom}" rerender="Detailpopup,BackgroundPopup" status="StatusLoading" >
+                                                <apex:param value="Place" name="SetTopic4P" assignTo="{!SetTopicMinutePopUp}"/>
+                                            </apex:commandButton>
+                                        </div>
+                                    </apex:outputPanel>
+                                </apex:pageBlockSection>
+                            </apex:actionRegion>
+                            <!--***********************************************Project / Key Initiatives**********************************************-->
+            
+                            <apex:pageBlockSection columns="1" title="Project / Key Initiatives" collapsible="true">
+                                <apex:actionRegion >
+                                    <apex:outputPanel id="MomProject" >
+                                        <apex:variable var="ProjectCounter" value="{!0}"/>
+                                        <apex:pageBlockTable value="{!listMOMLineProject}" var="MomLine">
+                                            <apex:column headerValue="Actions"  headerClass="tblActionHeader" width="5%">
+                                                <apex:commandLink value="UP" styleClass="UPLink" rendered="{!ProjectCounter> 0}"  action="{!GoUPProjectLine}" rerender="MomProject">
+                                                    <apex:param value="{!ProjectCounter}" name="LineItemCountercounter" assignTo="{!LineItemCounter}" />
+                                                </apex:commandLink>
+                                                <apex:commandLink value="Edit" style="color:#015ba7" action="{!EditProjectMom}" rerender="Detailpopup,BackgroundPopup" immediate="true" status="StatusLoading">
+                                                    <apex:param value="{!ProjectCounter}" name="MomDetail" assignTo="{!LineItemCounter}"/>
+                                                </apex:commandLink> &nbsp;
+                                                <apex:commandLink value="| Del" style="color:#015ba7" action="{!DelProjectMom}" rerender="MomProject" rendered="{!Not(MomLine.MeetingTopic)}" immediate="true">
+                                                    <apex:param value="{!ProjectCounter}" name="LineItemCountercounter" assignTo="{!LineItemCounter}" />
+                                                </apex:commandLink>
+                                                <apex:variable var="ProjectCounter" value="{!ProjectCounter+1}"/>
+                                            </apex:column>
+                                            <apex:column headerValue="Project" headerClass="tblOthersHeader" width="10%">                                                
+                                                <!--<apex:outputField value="{!MomLine.LineItem.MMPJ_TOPG_RelatedProject__r.name}" rendered="{!MomLine.LineItem.ID!=null}"/>
+                                                <apex:outputText value="{!MomLine.Project}" rendered="{!MomLine.LineItem.ID ==null}"/> -->
+                                                <apex:outputLink value="/apex/MMPJ_TOPG_NewProject?id={!MomLine.LineItem.MMPJ_TOPG_RelatedProject__r.id}" style="color:#015ba7" target="_blank" rendered="{!MomLine.LineItem.MMPJ_TOPG_RelatedProject__r.id!=null}">{!MomLine.LineItem.MMPJ_TOPG_RelatedProject__r.name}</apex:outputLink>
+                                                <apex:outputLink value="/apex/MMPJ_TOPG_NewProject?id={!MomLine.ProjectId}" style="color:#015ba7" target="_blank" rendered="{!MomLine.LineItem.MMPJ_TOPG_RelatedProject__r.id ==null}">{!MomLine.Project}</apex:outputLink>
+                                           		
+                                            </apex:column>	                                           
+                                            <apex:column headerValue="Comment" headerClass="tblCommentHeader" width="50%">
+                                                <apex:outputtext escape="false" value="{!MomLine.CommentThreeLine}" />
+                                            </apex:column>
+                                            
+                                              <apex:column headerValue="Who" headerClass="tblOthersHeader" width="10%">
+                                                <apex:outputtext value="{!MomLine.Who}" />
+                                            </apex:column>
+                                            <apex:column headerValue="Date" headerClass="tblOthersHeader" width="10%">
+                                                <apex:outputField Label="When" value="{!MomLine.LineItem.MMPJ_TOPG_When__c}"/>
+                                            </apex:column>
+                                            <apex:column headerValue="RAID" headerClass="tblOthersHeader" width="10%">
+                                                <apex:outputField value="{!MomLine.LineItem.MMPJ_TOPG_RAID__c}"/>
+                                            </apex:column>
+                                            <apex:column headerValue="Highlight" style="text-align: center;" headerClass="tblHighlightHeader" width="5%">
+                                                <apex:outputField value="{!MomLine.LineItem.MMPJ_TOPG_IsHighlight__c}"/>
+                                            </apex:column>
+                                        </apex:pageBlockTable>
+                                        <div class="BtnRight">
+                                            <apex:commandButton Value="Add Detail Line" disabled="{!Mom.id = null}" action="{!AddProjectMom}" rerender="Detailpopup,BackgroundPopup" status="StatusLoading" >
+                                                <apex:param value="Project-Key Initiative" name="SetTopicProj" assignTo="{!SetTopicMinutePopUp}"/>
+                                            </apex:commandButton>
+                                            <apex:commandButton value="New Project" action="{!showProjectPopup}" rerender="BackgroundPopup,tstpopup" status="StatusLoading"/>
+                                        </div>
+                                    </apex:outputPanel>
+                                </apex:actionRegion>
+                                <!--*************************** Project PopUP **************************-->
+                                <apex:actionRegion >
+                                 	<!--BTO :Begin => Methods to intercept key presses "Enter" button evenement -->
+                                		<apex:actionFunction name="SaveProjectPop" action="{!SaveProjectPop}" rerender="BackgroundPopup,tstpopup" status="StatusLoading"/>
+                               		 <!--BTO :End => Methods to intercept key presses "Enter" button evenement -->
+                                    <apex:outputPanel id="tstpopup">
+                                        <apex:outputPanel styleClass="custPopup" layout="block" rendered="{!displayPopUp}">
+                                            <div class="PopupTilte">New Project Creation </div>
+                                            <apex:pageBlock >
+                                                <table id="tblProjectpopup" width="100%" cellpadding="8" cellspacing="0">
+                                                    <tr>
+                                                        <td class="LabelDetail">
+                                                                Project Name
+                                                        </td>
+                                                        <td colspan="3">
+                                                            <apex:inputField style="width:90%" value="{!ProjectPopUp.name}" Onkeypress="return handlerEnter(event,'Project');"/>
+                                                        </td>
+                                                    </tr>
+                                                     
+                                                    <tr>
+                                                        <td class="LabelDetail">
+                                                                Project Owner 
+                                                        </td>
+                                                        <td>
+                                                            <apex:inputField required="false" value="{!ProjectPopUp.MMPJ_TOPG_ProjectOwner__c}" Onkeypress="return handlerEnter(event,'Project');"/>
+                                                        </td>
+                                                        <td class="LabelDetail">
+                                                                Project Type
+                                                        </td>
+                                                        <td>
+                                                            <apex:inputField value="{!ProjectPopUp.MMPJ_TOPG_NewProjectType__c}" Onkeypress="return handlerEnter(event,'Project');"/> 
+															
+                                                        </td>
+                                                    </tr>
+                                                   <!-- <tr>
+                                                        <td class="LabelDetail">
+                                                                Project Topic
+                                                        </td>
+                                                        <td colspan="3">
+                                                            <apex:inputField required="false"  style="width:90%" value="{!ProjectPopUp.MMPJ_TOPG_ProjectTopic__c}" Onkeypress="return handlerEnter(event,'Project');"/>
+                                                        </td>
+                                                    </tr> -->
+													 <!--  <tr>
+                                                        <td class="LabelDetail">
+                                                                Brand
+                                                        </td>
+                                                        <td colspan="3">
+                                                           <c:MMPJ_TOPG_MultiselectPicklist leftLabel="Available Brands"
+                                                                                                 leftOptions="{!AllBrand}"
+                                                                                                 rightLabel="Selected Brands"
+                                                                                                 rightOptions="{!SelectedBrand}"
+                                                                                                 size="4"
+                                                                                                 width="245px"/> 
+															<apex:inputField Label="Brand"  value="{!ProjectPopUp.MMPJ_TOPG_PickListBrand__c}" Onkeypress="return handlerEnter(event,'Project');"/>
+                                                        </td>
+                                                    </tr> -->
+                                                  <!--  <tr>
+                                                        <td class="LabelDetail">
+                                                                Market
+                                                        </td>
+                                                        <td colspan="3">
+                                                            <c:MMPJ_TOPG_MultiselectPicklist leftLabel="Available Markets"
+                                                                                                 leftOptions="{!AllMarket}"
+                                                                                                 rightLabel="Selected Markets"
+                                                                                                 rightOptions="{!SelectedMarket}"
+                                                                                                 size="4"
+                                                                                                 width="245px"/>
+                                                        </td>
+                                                    </tr>       -->                                           
+                                                    <tr>
+                                                        <td class="LabelDetail">
+                                                                Start Date
+                                                        </td>
+                                                        <td>
+                                                            <apex:inputField Label="Start Date" value="{!ProjectPopUp.MMPJ_TOPG_StartDate__c}" Onkeypress="return handlerEnter(event,'Project');"/>
+                                                        </td>
+                                                        <td class="LabelDetail">
+                                                                End Date
+                                                        </td>
+                                                        <td>
+                                                            <apex:inputField Label="End Date" value="{!ProjectPopUp.MMPJ_TOPG_EndDate__c}" Onkeypress="return handlerEnter(event,'Project');"/>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="LabelDetail">
+                                                                Description
+                                                        </td>
+                                                        <td colspan="3">
+                                                            <apex:inputtextarea Label="Description" style="width:90%" value="{!ProjectPopUp.MMPJ_TOPG_Description__c}"/>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <apex:pageBlockButtons location="Bottom" style="text-align: -webkit-left;">
+                                                    <apex:commandButton action="{!SaveProjectPop}" value="Save" rerender="BackgroundPopup,tstpopup,Detailpopup,BackgroundPopup"  status="StatusLoading"/>
+                                                    <apex:commandButton action="{!SaveAndNewProjectPop}" value="Save & New" rerender="BackgroundPopup,tstpopup" status="StatusLoading"/>
+                                                    <apex:commandButton action="{!closeProjectPopup}" value="Cancel" rerender="BackgroundPopup,tstpopup" immediate="true"/>
+                                                </apex:pageBlockButtons>
+                                            </apex:pageBlock>
+                                        </apex:outputPanel>
+                                    </apex:outputPanel>
+                                </apex:actionRegion>
+                            </apex:pageBlockSection>
+            
+                            <!--******************************************************Competitor******************************************************-->
+                            <apex:actionRegion >
+                                <apex:pageBlockSection columns="1" title="Competitor" collapsible="true">
+                                    <apex:outputPanel id="MomComp">
+                                        <apex:variable var="CompCounter" value="{!0}"/>
+                                        <apex:pageBlockTable value="{!listMOMLineCompetitor}" var="MomLine">
+                                            <apex:column headerValue="Actions"  headerClass="tblActionHeader" width="5%">
+                                                <apex:commandLink value="UP" styleClass="UPLink" rendered="{!CompCounter > 0}"  action="{!GoUPCompLine}" rerender="MomComp">
+                                                    <apex:param value="{!CompCounter}" name="LineItemCountercounter" assignTo="{!LineItemCounter}" />
+                                                </apex:commandLink>&nbsp;
+                                                <apex:commandLink value="Edit" style="color:#015ba7" action="{!EditCompMom}" rerender="Detailpopup,BackgroundPopup" immediate="true" status="StatusLoading">
+                                                    <apex:param value="{!CompCounter}" name="MomDetail" assignTo="{!LineItemCounter}"/>
+                                                </apex:commandLink> &nbsp;
+                                                <apex:commandLink value="| Del" style="color:#015ba7" action="{!DelCompMom}" rerender="MomComp" rendered="{!Not(MomLine.MeetingTopic)}" immediate="true">
+                                                    <apex:param value="{!CompCounter}" name="LineItemCountercounter" assignTo="{!LineItemCounter}" />
+                                                </apex:commandLink>
+                                                <apex:variable var="CompCounter" value="{!CompCounter+1}"/>
+                                            </apex:column>
+                                            <apex:column headerValue="Competitor"  headerClass="tblOthersHeader" width="10%">
+                                                <apex:outputText value="{!MomLine.Comp}"/>
+                                            </apex:column>                                            
+                                            <apex:column headerValue="Comment" headerClass="tblCommentHeader" width="40%">
+                                                <apex:outputtext escape="false" value="{!MomLine.CommentThreeLine}" />
+                                            </apex:column>                                           
+                                            <apex:column headerValue="Related to Project" headerClass="tblOthersHeader" width="10%">
+                                              <!--  <apex:outputField value="{!MomLine.LineItem.MMPJ_TOPG_RelatedProject__r.name}" rendered="{!MomLine.LineItem.ID!=null}"/>
+                                                <apex:outputText value="{!MomLine.Project}" rendered="{!MomLine.LineItem.ID ==null}"/> -->
+                                                 <apex:outputLink value="/apex/MMPJ_TOPG_NewProject?id={!MomLine.LineItem.MMPJ_TOPG_RelatedProject__r.id}" style="color:#015ba7" target="_blank" rendered="{!MomLine.LineItem.MMPJ_TOPG_RelatedProject__r.id!=null}">{!MomLine.LineItem.MMPJ_TOPG_RelatedProject__r.name}</apex:outputLink>
+                                                <apex:outputLink value="/apex/MMPJ_TOPG_NewProject?id={!MomLine.ProjectId}" style="color:#015ba7" target="_blank" rendered="{!MomLine.LineItem.MMPJ_TOPG_RelatedProject__r.id ==null}">{!MomLine.Project}</apex:outputLink>
+                                            </apex:column>                                            
+                                             <apex:column headerValue="Who" headerClass="tblOthersHeader" width="10%">
+                                                <apex:outputtext value="{!MomLine.Who}" />
+                                            </apex:column>
+                                            <apex:column headerValue="Date" headerClass="tblOthersHeader" width="10%">
+                                                <apex:outputField Label="When" value="{!MomLine.LineItem.MMPJ_TOPG_When__c}"/>
+                                            </apex:column>
+                                            <apex:column headerValue="RAID" headerClass="tblOthersHeader" width="10%">
+                                                <apex:outputField value="{!MomLine.LineItem.MMPJ_TOPG_RAID__c}"/>
+                                            </apex:column>
+                                            <apex:column headerValue="Highlight" style="text-align: center;" headerClass="tblHighlightHeader" width="5%">
+                                                <apex:outputField value="{!MomLine.LineItem.MMPJ_TOPG_IsHighlight__c}"/>
+                                            </apex:column>
+                                        </apex:pageBlockTable>
+                                        <div class="BtnRight">
+                                            <apex:commandButton Value="Add Detail Line" disabled="{!Mom.id = null}" action="{!AddCompMom}" rerender="Detailpopup,BackgroundPopup" status="StatusLoading" >
+                                                <apex:param value="Competition" name="SetTopicComp" assignTo="{!SetTopicMinutePopUp}"/>
+                                            </apex:commandButton>
+                                        </div>
+                                    </apex:outputPanel>
+                                </apex:pageBlockSection>
+                            </apex:actionRegion>
+                        </apex:pageBlock>
+                    <!--
+                    <apex:actionRegion >
+                        <script>
+                            function openLoadMomFile(){
+                                document.getElementById("{!$Component.MarketMom}").click();
+                            }
+                        </script>
+                        <apex:actionFunction name="AddMomAttachment" action="{!AddMarketMom}"/>
+                        <apex:inputFile id="MarketMom" onchange="AddMomAttachment()" value="{!FileInput}" filename="{!FileInputname}" style="display:none"/>
+                    </apex:actionRegion>-->
+                </apex:form>
+            </apex:tab>
+            <!--**************************************************-->
+            <!--**************************************************-->
+            <!--*********************VISITS***********************-->
+            <!--**************************************************-->
+            <!--**************************************************-->
+            <apex:tab label="Visits" name="Visits" id="tabVisits" ontableave="oldTab='Visits';" ontabenter="newTab='Visits';return CheckSave(this,'{!Meeting.id}');" >
+                <!--<c:MMPJ_TOPG_NewVisit theBMC="{!bmc}" AgendaSubject="{!Agenda.Subject}" AgendaStartDate="{!Agenda.StartDateTime}"></c:MMPJ_TOPG_NewVisit>-->
+                <apex:iframe id="frameVisits" src="{! $Page.MMPJ_TOPG_NewVisit +'?core.apexpages.devmode.url=1&Id=' + Meeting.Id +'&AgendaSubject=' + Agenda.Subject + '&AgendaStartDate=' + agendastartdate}" scrolling="true" rendered="{!NOT(ISBLANK(Meeting.Id))}"/>
+                <apex:pageMessage rendered="{!ISBLANK(Meeting.Id)}" strength="3" severity="ERROR" title="Invalid Meeting" detail="Please save the agenda before creating a new visit!"></apex:pageMessage>
+            </apex:tab>
+            
+            <!--******************************************************-->
+            <!--******************************************************-->
+            <!--*********************ATTACHMENT***********************-->
+            <!--******************************************************-->
+            <!--******************************************************-->
+            <apex:tab label="Doc / Files" name="Attachment" id="tabAttachment" ontableave="oldTab='Attachment';" ontabenter="newTab='Attachment';AttachmentConstructor();return CheckSave(this,'{!Meeting.id}');">
+                <apex:form >
+                <apex:actionFunction action="{!AttachmentConstructor}" name="AttachmentConstructor" rerender="pbMinAtt,pbMeetingAtt,pbVisitsAtt"/>
+                <apex:pageblock title="Official agenda & Minutes" id="pbMinAtt">
+                    <apex:pageBlockTable id="columnField" value="{!MeetingAttachments}" var="attMeeting">
+                            <apex:column headerValue="Actions">
+                                <apex:outputLink value="../servlet/servlet.FileDownload?file={!attMeeting.id}" style="color:#015ba7" target="_blank">View</apex:outputLink>
+                            </apex:column>
+                            <apex:column headerValue="Type">
+                                <apex:outputField value="{!attMeeting.ContentType}"/>
+                            </apex:column>
+                            <apex:column headerValue="Title">
+                                <apex:outputLink value="../{!attMeeting.id}">{!attMeeting.name}</apex:outputLink>
+                            </apex:column>
+                            <apex:column headerValue="Last Modified">
+                                <apex:outputText value="{0,date,dd/MM/yyyy 'at' HH:mm }"> <apex:param value="{!attMeeting.lastmodifieddate}" /> </apex:outputText>                               
+                            </apex:column>
+                            <apex:column headerValue="Created By">
+                                <apex:outputLink value="../{!attMeeting.createdbyid}">{!attMeeting.createdby.name}</apex:outputLink>
+                            </apex:column>
+                    </apex:pageBlockTable>
+                </apex:pageblock>
+                
+                <apex:pageblock title="Meeting Attachment" id="pbMeetingAtt">
+                    <apex:variable value="{!0}" var="WrapNum"/> 
+                    <apex:pageBlockTable value="{!ListChatterMeeting}" var="Wrapper">
+                            <apex:column headerValue="Actions">
+                                <apex:outputLink value="../{!Wrapper.Id}?retURL=%2Fapex%2FMMPJ_TOPG_NewMeeting?ID={!meeting.id}%26TabName=Attachment" style="color:#015ba7" target="_top">Edit</apex:outputLink>&nbsp;|&nbsp;
+                                <apex:outputLink value="{!IF(Wrapper.ischatterDocument,'../' + Wrapper.Id + '?retURL=%2Fapex%2FMMPJ_TOPG_NewMeeting?ID=' + meeting.id + '%26TabName=Attachment' ,'../servlet/servlet.FileDownload?file=' + Wrapper.id)}" style="color:#015ba7" target="_blank">View</apex:outputLink>&nbsp;|&nbsp;
+                                <apex:commandLink value="Del" style="color:#015ba7" action="{!deleteWrapper}" rerender="pbMeetingAtt,ErrorPanel" immediate="true" >
+                                    <apex:param value="{!WrapNum}" name="rowToRemove" assignTo="{!WrapperToDelete}"/>
+                                </apex:commandLink>
+                                <apex:variable value="{!WrapNum + 1}" var="WrapNum"/> 
+                            </apex:column>
+                            <apex:column headerValue="Type">
+                                <apex:outputtext value="{!Wrapper.Type}"/>
+                            </apex:column>
+                            <apex:column headerValue="Title">
+                                <apex:outputLink value="../{!Wrapper.Id}">{!Wrapper.Title}</apex:outputLink>
+                            </apex:column>
+                            <apex:column headerValue="Last Modified">
+                                <apex:outputText value="{0,date,dd/MM/yyyy 'at' HH:mm }"> <apex:param value="{!Wrapper.LastModified}" /> </apex:outputText>                              
+                            </apex:column>
+                            <apex:column headerValue="Created By">
+                                <apex:outputLink value="../{!Wrapper.createdById}">{!Wrapper.CreatedByName}</apex:outputLink>
+                            </apex:column>
+                    </apex:pageBlockTable>
+                    <div Class="BtnRight">
+                        <apex:commandButton value="Add Document" action="{!AddMeetingDocument}" />
+                    </div>
+                </apex:pageblock>
+                <apex:actionFunction name="DelVisit" action="{!DelAtt}" rerender="pbVisitsAtt,ErrorPanel" immediate="true">
+                    <apex:param name="AttIDToDelete"  assignTo="{!AttachmentToDelete }" value=""/>
+                </apex:actionFunction>
+                <apex:pageblock title="Visits Attachment & Pictures" id="pbVisitsAtt">
+                    <apex:pageBlockTable value="{!VisitsAttachments}" var="attVisit">
+                        <apex:column headerValue="Actions">
+                        <apex:outputLink value="../{!attVisit.id}/e?retURL=%2Fapex%2FMMPJ_TOPG_NewMeeting?ID={!meeting.id}%26TabName=Attachment" style="color:#015ba7" target="_top">Edit</apex:outputLink>&nbsp;|&nbsp;
+                            <apex:commandLink value="Del" style="color:#015ba7" onclick="if(confirm('Are you sure want to delete this document?')){DelVisit('{!attVisit.id}');}" >
+                            </apex:commandLink>&nbsp;|&nbsp;
+                            <apex:outputLink value="../servlet/servlet.FileDownload?file={!attVisit.id}" style="color:#015ba7" target="_blank">View</apex:outputLink>
+                        </apex:column>
+                        <apex:column headerValue="Type">
+                            <apex:outputField value="{!attVisit.ContentType}"/>
+                        </apex:column>
+                        <apex:column headerValue="Title">
+                            <apex:outputLink value="../servlet/servlet.FileDownload?file={!attVisit.id}">{!attVisit.name}</apex:outputLink>
+                        </apex:column>
+                        <apex:column headerValue="Last Modified">
+                            <apex:outputField value="{!attVisit.lastmodifieddate}"/>
+                        </apex:column>
+                        <apex:column headerValue="Created By">
+                            <apex:outputLink value="../{!attVisit.createdbyid}">{!attVisit.createdby.name}</apex:outputLink>
+                        </apex:column>
+                    </apex:pageBlockTable>
+                    <div Class="BtnRight">
+                        <apex:commandButton value="Add Document" action="{!AddVisitDocument}" />
+                    </div>
+                </apex:pageblock>
+                </apex:form>
+            </apex:tab>
+        </apex:tabpanel>
+        <br/>
+        
+        <apex:pageBlock id="chatterBlock" >
+            <script type="text/javascript"> 
+                function toggle_visibility(id, theimg) {
+                   var e = document.getElementById(id);            
+                   if(e.style.display != 'none'){
+                      e.style.display = 'none';               
+                      theimg.className = 'showListButton';                
+                   }
+                   else{
+                        theimg.className = 'hideListButton';
+                      e.style.display = 'block';
+                  }
+                }
+                function toggle_visibility2(e) {           
+                   if(e.style.display != 'none')
+                      e.style.display = 'none';
+                   else
+                      e.style.display = 'block';
+                }           
+            </script>
+            <div class="pbSubheader brandTertiaryBgr tertiaryPalette" >
+                <img src="/s.gif" alt="Hide Section - Chatter" class="hideListButton" name="Chatter" onclick="toggle_visibility('divMMPJChatterSection', this);" onkeypress="if (event.keyCode=='13')toggle_visibility('divMMPJChatterSection', this);"  style="cursor:pointer;" tabindex="0" title="Hide Section - Chatter"/>
+                <h3>Chatter</h3>
+            </div>
+            <div id="divMMPJChatterSection" style="padding-left:10px; display: {!IF(Meeting.id != null, 'initial' , 'none')};">                
+              <chatter:feed entityId="{!IF(Meeting.id != null, Meeting.id , BMCID_param)}"  />
+            </div>
+        </apex:pageBlock>
+</apex:page>

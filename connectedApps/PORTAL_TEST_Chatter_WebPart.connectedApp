@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConnectedApp xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contactEmail>anthony.fondeville@pernod-ricard.com</contactEmail>
+    <description>used for portal-test for testing purpose</description>
+    <label>PORTAL_TEST Chatter WebPart</label>
+    <oauthConfig>
+        <callbackUrl>https://portal-test.pernod-ricard.com/_layouts/PernodRicard/SalesForce/oAuthLoginPage.aspx</callbackUrl>
+        <consumerKey>3MVG9qQjGkWUbcrFTIsUBxAfZQuZCRHFggUk9UCBFR2BZrO7LzV23lbWpxKA5Qatn6PEialPE_XVJ02Ki.SnK</consumerKey>
+        <scopes>Basic</scopes>
+        <scopes>Chatter</scopes>
+        <scopes>RefreshToken</scopes>
+    </oauthConfig>
+</ConnectedApp>

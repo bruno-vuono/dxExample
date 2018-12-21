@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>EUR_CRM_Brand_Quality_Size__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Brand-Quality-Size</label>
+        <referenceTo>EUR_CRM_Size__c</referenceTo>
+        <relationshipName>Price_Check_Item_EU</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Listed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>PT is the first country to use this field.</description>
+        <externalId>false</externalId>
+        <label>Listed</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Price_Audit__c</fullName>
+        <externalId>false</externalId>
+        <label>Price Audit</label>
+        <referenceTo>EUR_CRM_Price_Audit__c</referenceTo>
+        <relationshipLabel>Price Audit Item (EU)</relationshipLabel>
+        <relationshipName>Price_Check_Item_EU</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Promotion_Price__c</fullName>
+        <externalId>false</externalId>
+        <label>Promotion Price</label>
+        <precision>12</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Retail_Sales_Price__c</fullName>
+        <externalId>false</externalId>
+        <label>Retail Sales Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Special_Price__c</fullName>
+        <description>PT is the first Country to use this field.</description>
+        <externalId>false</externalId>
+        <label>Special Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Standard_Price__c</fullName>
+        <description>PT is the first country to use this field</description>
+        <externalId>false</externalId>
+        <label>Standard Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <label>Price Audit Item (EU)</label>
+    <nameField>
+        <displayFormat>PAI-{00000000}</displayFormat>
+        <label>Price Audit Item</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Price Audit Item (EU)</pluralLabel>
+    <recordTypes>
+        <fullName>EUR_BE_OFF_Trade_Price_Audit_Item</fullName>
+        <active>true</active>
+        <label>EUR BE OFF Trade Price Audit Item</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_DK_OFF_Trade_Price_Audit_Item</fullName>
+        <active>true</active>
+        <label>EUR DK OFF Trade Price Audit Item</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_PT_OFF_Trade_Price_Audit_Item</fullName>
+        <active>true</active>
+        <label>EUR PT OFF Trade Price Audit Item</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_RU_Off_Trade_Price_Audit_Item</fullName>
+        <active>true</active>
+        <label>EUR RU Off Trade Price Audit Item</label>
+    </recordTypes>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

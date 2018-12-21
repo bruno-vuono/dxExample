@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Used for MMPJ TopGun app</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>MMPJ_TOPG_Adress__c</fullName>
+        <externalId>false</externalId>
+        <formula>MMPJ_TOPG_Street__c &amp; BR()&amp; MMPJ_TOPG_City__c &amp;BR()&amp; MMPJ_TOPG_Country__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Adress</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MMPJ_TOPG_Channel__c</fullName>
+        <externalId>false</externalId>
+        <label>Channel</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>On Trade</fullName>
+                    <default>false</default>
+                    <label>On Trade</label>
+                </value>
+                <value>
+                    <fullName>Off Trade</fullName>
+                    <default>false</default>
+                    <label>Off Trade</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>MMPJ_TOPG_City__c</fullName>
+        <externalId>false</externalId>
+        <label>City</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MMPJ_TOPG_ContactName__c</fullName>
+        <externalId>false</externalId>
+        <label>Outlet Contact Name</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MMPJ_TOPG_Country__c</fullName>
+        <externalId>false</externalId>
+        <label>Country</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MMPJ_TOPG_DescriptionPictures__c</fullName>
+        <externalId>false</externalId>
+        <label>Comment about Outlet</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>MMPJ_TOPG_Email__c</fullName>
+        <externalId>false</externalId>
+        <label>Outlet Email</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MMPJ_TOPG_Market__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>MMPJ TOPGUN</description>
+        <externalId>false</externalId>
+        <label>Market</label>
+        <referenceTo>MMPJ_TOPG_Market__c</referenceTo>
+        <relationshipName>Outlets</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>MMPJ_TOPG_OutletCategory__c</fullName>
+        <externalId>false</externalId>
+        <label>Outlet Image</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>MMPJ_TOPG_Channel__c</controllingField>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Mainstream</fullName>
+                    <default>false</default>
+                    <label>Mainstream</label>
+                </value>
+                <value>
+                    <fullName>Premium</fullName>
+                    <default>false</default>
+                    <label>Premium</label>
+                </value>
+                <value>
+                    <fullName>Leading</fullName>
+                    <default>false</default>
+                    <label>Leading</label>
+                </value>
+                <value>
+                    <fullName>Iconic</fullName>
+                    <default>false</default>
+                    <label>Iconic</label>
+                </value>
+                <value>
+                    <fullName>NA</fullName>
+                    <default>false</default>
+                    <label>NA</label>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>On Trade</controllingFieldValue>
+                <valueName>Mainstream</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>On Trade</controllingFieldValue>
+                <valueName>Premium</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>On Trade</controllingFieldValue>
+                <valueName>Leading</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>On Trade</controllingFieldValue>
+                <valueName>Iconic</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Off Trade</controllingFieldValue>
+                <valueName>NA</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>MMPJ_TOPG_OutletType__c</fullName>
+        <externalId>false</externalId>
+        <label>Outlet Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>MMPJ_TOPG_Channel__c</controllingField>
+            <valueSetDefinition>
+                <sorted>true</sorted>
+                <value>
+                    <fullName>Cash&amp;Carry</fullName>
+                    <default>false</default>
+                    <label>Cash&amp;Carry</label>
+                </value>
+                <value>
+                    <fullName>Convenience</fullName>
+                    <default>false</default>
+                    <label>Convenience</label>
+                </value>
+                <value>
+                    <fullName>Discounters</fullName>
+                    <default>false</default>
+                    <label>Discounters</label>
+                </value>
+                <value>
+                    <fullName>High Energy Bar</fullName>
+                    <default>false</default>
+                    <label>High Energy Bar</label>
+                </value>
+                <value>
+                    <fullName>Hyper / Supermarkets</fullName>
+                    <default>false</default>
+                    <label>Hyper / Supermarkets</label>
+                </value>
+                <value>
+                    <fullName>Liquor Specialists</fullName>
+                    <default>false</default>
+                    <label>Liquor Specialists</label>
+                </value>
+                <value>
+                    <fullName>Low Energy Bar</fullName>
+                    <default>false</default>
+                    <label>Low Energy Bar</label>
+                </value>
+                <value>
+                    <fullName>Night Club</fullName>
+                    <default>false</default>
+                    <label>Night Club</label>
+                </value>
+                <value>
+                    <fullName>On Line</fullName>
+                    <default>false</default>
+                    <label>On Line</label>
+                </value>
+                <value>
+                    <fullName>Restaurant</fullName>
+                    <default>false</default>
+                    <label>Restaurant</label>
+                </value>
+                <value>
+                    <fullName>Traditional Off Trade</fullName>
+                    <default>false</default>
+                    <label>Traditional Off Trade</label>
+                </value>
+                <value>
+                    <fullName>Traditional On Trade (Asia)</fullName>
+                    <default>false</default>
+                    <label>Traditional On Trade (Asia)</label>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>On Trade</controllingFieldValue>
+                <valueName>High Energy Bar</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>On Trade</controllingFieldValue>
+                <valueName>Low Energy Bar</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>On Trade</controllingFieldValue>
+                <valueName>Night Club</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>On Trade</controllingFieldValue>
+                <valueName>Restaurant</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>On Trade</controllingFieldValue>
+                <valueName>Traditional On Trade (Asia)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Off Trade</controllingFieldValue>
+                <valueName>Cash&amp;Carry</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Off Trade</controllingFieldValue>
+                <valueName>Convenience</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Off Trade</controllingFieldValue>
+                <valueName>Discounters</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Off Trade</controllingFieldValue>
+                <valueName>Hyper / Supermarkets</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Off Trade</controllingFieldValue>
+                <valueName>Liquor Specialists</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Off Trade</controllingFieldValue>
+                <valueName>On Line</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Off Trade</controllingFieldValue>
+                <valueName>Traditional Off Trade</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>MMPJ_TOPG_Partner__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>MMPJ TOPGUN</description>
+        <externalId>false</externalId>
+        <label>Partner</label>
+        <referenceTo>MMPJ_TOPG_Partner__c</referenceTo>
+        <relationshipName>Outlets</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>MMPJ_TOPG_PostalCode__c</fullName>
+        <externalId>false</externalId>
+        <label>Postal Code</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MMPJ_TOPG_State__c</fullName>
+        <externalId>false</externalId>
+        <label>State</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MMPJ_TOPG_Street__c</fullName>
+        <externalId>false</externalId>
+        <label>Street</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MMPJ_TOPG_VisitDate__c</fullName>
+        <externalId>false</externalId>
+        <label>Last Visit Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>MMPJ_TOPG_Visitor__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Last MMPJ Visitor</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Outlets</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <label>Outlet</label>
+    <nameField>
+        <label>Outlet Name</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Outlets</pluralLabel>
+    <searchLayouts>
+        <lookupDialogsAdditionalFields>MMPJ_TOPG_Market__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>MMPJ_TOPG_Partner__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>MMPJ_TOPG_Country__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>MMPJ_TOPG_City__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>MMPJ_TOPG_OutletType__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>MMPJ_TOPG_Visitor__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>MMPJ_TOPG_VisitDate__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>MMPJ_TOPG_Market__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>MMPJ_TOPG_Partner__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>MMPJ_TOPG_Country__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>MMPJ_TOPG_City__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>MMPJ_TOPG_OutletType__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>MMPJ_TOPG_Visitor__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>MMPJ_TOPG_VisitDate__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>MMPJ_TOPG_Market__c</searchFilterFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <startsWith>Vowel</startsWith>
+    <visibility>Public</visibility>
+</CustomObject>

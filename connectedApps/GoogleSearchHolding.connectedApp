@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConnectedApp xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contactEmail>laurent.bel@pernod-ricard.com</contactEmail>
+    <description>Google Search Appliance Holding</description>
+    <label>GoogleSearchHolding</label>
+    <oauthConfig>
+        <callbackUrl>rest:callback</callbackUrl>
+        <consumerKey>3MVG9qQjGkWUbcrFTIsUBxAfZQuZCRHFggUk942ERUgYBCkNP5.7gmw45cWAGDOeH4pMV1.8g4QePM4lKHogU</consumerKey>
+        <scopes>Basic</scopes>
+        <scopes>Api</scopes>
+        <scopes>Web</scopes>
+        <scopes>Full</scopes>
+        <scopes>Chatter</scopes>
+        <scopes>CustomApplications</scopes>
+        <scopes>RefreshToken</scopes>
+    </oauthConfig>
+</ConnectedApp>

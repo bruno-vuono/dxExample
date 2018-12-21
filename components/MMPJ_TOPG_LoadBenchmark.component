@@ -1,0 +1,100 @@
+<apex:component controller="MMPJ_TOPG_LoadBenchmarkController" allowDML="true">
+    <apex:attribute name="Visitid" description="The Visit Id" assignTo="{!Visit}" required="true" type="string"/>
+    <apex:pageMessage title="{!errortitle}" strength="1" severity="error" detail="{!errordetail}" rendered="{!errordetail != NULL}"/>
+    
+    <apex:actionFunction name="LoadBenchmark" action="{!LoadStatement}" rerender="BenchmarkTable" status="PicStatus">
+        <apex:param name="BenchmarkBlob"  assignTo="{!BenchmarkBlob}" value=""/>
+    </apex:actionFunction>
+  <!-- date statement--><!--
+  <apex:outputLabel >Statement Date : </apex:outputLabel>
+  <apex:outputText id="StatementDate"   value="{!StatementDate}"/>-->
+    <apex:pageBlock id="tableProd">
+       <!-- <apex:pageBlockTable value="{!ListProductBench}" var="Prod" id="tableProd" title="MMPJ Products" >
+            <apex:column headerValue="Product" value="{!Prod.MMPJ_TOPG_Related_Brand__r.name}" width="33%"/>
+            <apex:column headerValue="Product Type" value="{!Prod.MMPJ_TOPG_AlcoholType__c}" width="33%"/>
+            <apex:column headerValue="Price" value="{!Prod.MMPJ_TOPG_Price__c}" width="33%"/>
+        </apex:pageBlockTable>
+        </apex:pageBlock>
+        <apex:pageBlock title="Main Competitor Products:" >
+        <apex:pageBlockTable value="{!ListCompetitorBench}" var="CompProd" id="tableCompProd" title="Main Competitor Products">
+            <apex:column headerValue="Product" value="{!CompProd.MMPJ_TOPG_Competitor_Brand_Name__c}" width="33%"/>
+            <apex:column headerValue="Product Type" value="{!CompProd.MMPJ_TOPG_AlcoholType__c}" width="33%"/>
+            <apex:column headerValue="Price" value="{!CompProd.MMPJ_TOPG_Price__c}" width="33%"/>
+        </apex:pageBlockTable>-->
+        <div style="padding:5px;" id="BenchmarkButton">
+            <apex:commandButton disabled="{!Len(Visit) <  14}" value="Show Benchmark"  onclick="toggle_visibility('BenchmarkButton');toggle_visibility('tblVisitsMain_Benchmark');return false;" /> <!-- rerender="LoadBencmarkForm,PicsAndBenchmark" action="{!ShowBenchmarkpanel}" immediate="" styleClass="visitbuttonstyle" -->
+        </div>
+        <div id="tblVisitsMain_Benchmark" style="background-color:#eaeaea; display:none;">
+            <apex:outputPanel id="BenchmarkTable">
+                <div style="padding:5px; position:relative">
+                    <apex:commandButton value="Hide Benchmark" styleClass="visitbuttonstyle" onclick="toggle_visibility('BenchmarkButton');toggle_visibility('tblVisitsMain_Benchmark');return false;" />
+                    <apex:commandButton value="Load Statement"  onclick="openLoadFile();return false;" immediate="" styleClass="visitbuttonstyle" />                                            
+                </div>
+                <input type="file" id="Benchmark" style="display:none"/>
+                <apex:pageMessage title="" strength="2" severity="info" detail="No Benchmark is registered, please click on Load Statement to add New Benchmark" rendered="{!mapMarqueTypeAlcoholPrix == NULL}"/>
+                <apex:repeat value="{!mapMarqueTypeAlcoholPrix}" var="MarqueBenchmark" rendered="{!mapMarqueTypeAlcoholPrix != null}">
+                    <table width="100%" cellspacing="0" cellpadding="10" border="0" style="text-align:center;margin-bottom:10px">
+                        <tr>
+                            <td style="width:20%">
+                                {!MarqueBenchmark}
+                            </td>
+                            <apex:repeat value="{!mapBrenchmarkSetMark[MarqueBenchmark]}" var="BrandName"  rendered="{!mapBrenchmarkSetMark != null}">
+                                <td style="background-color:#1f4e79;border: 1px solid #c1d4e9;color: #fff;">
+                                    {!BrandName}
+                                </td>
+                            </apex:repeat>
+                        </tr>
+                        <apex:repeat value="{!mapMarqueTypeAlcoholPrix[MarqueBenchmark]}" var="Typealcool"  rendered="{!mapMarqueTypeAlcoholPrix != null}">
+                            <tr>
+                                <td style="background-color:#bdd7ee;border: 1px solid #c1d4e9;;color: #fff;width:20%">
+                                    {!Typealcool}
+                                </td>
+                                <apex:repeat value="{!mapBrenchmarkSetMark[MarqueBenchmark]}" var="BrandName"  rendered="{!mapBrenchmarkSetMark != null}">
+                                    <td style="border: 1px solid #c1d4e9;">
+                                        {!mapMarqueTypeAlcoholPrix[MarqueBenchmark][Typealcool][BrandName]}
+                                    </td>
+                                </apex:repeat>
+                            </tr>
+                        </apex:repeat>
+                    </table> 
+                </apex:repeat>
+            </apex:outputPanel>
+        </div>
+    </apex:pageBlock>
+    
+    <script>
+        if (window.File && window.FileReader && window.FileList && window.Blob) {
+         // Great success! All the File APIs are supported.
+        } else {
+          alert('The File APIs are not fully supported in this browser.');
+        }
+        function openLoadFile(){
+            //$("#Benchmark").trigger('click');
+            document.getElementById("Benchmark").click();
+        }
+        String.prototype.startsWith = function (str)
+          {
+             return this.indexOf(str) == 0;
+          }
+        function handleFileSelect(evt) {
+            var Benchmark = evt.target.files;
+            var reader = new FileReader();
+            // var benchmarkName =Benchmark[0].name;
+            if(Benchmark[0].name.match('^.*\.(csv|CSV)$'))
+            {
+               reader.onloadend= function(){
+                   var text = reader.result;
+                   console.log(text);
+                   LoadBenchmark(text);
+                };
+                reader.readAsText(Benchmark[0],'ISO-8859-15');
+            }
+            else
+            {
+                alert('The load is aborted because the benchmark file do not respect the predefine format : The file must be a csv file.')
+            }
+            document.getElementById('Benchmark').value = "";
+        }
+      document.getElementById('Benchmark').addEventListener('change', handleFileSelect, false);
+    </script>
+</apex:component>

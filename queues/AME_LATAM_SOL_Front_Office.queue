@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>LATAM - SOL Front Office</name>
+    <queueMembers>
+        <users>
+            <user>andres.bello@pernod-ricard.com</user>
+            <user>bruno.souza@pernod-ricard.com</user>
+            <user>carlos.santander@pernod-ricard.com</user>
+            <user>gabriel.olivera@pernod-ricard.com</user>
+            <user>gonzalo.pivotto@pernod-ricard.com</user>
+            <user>guilherme.muler@pernod-ricard.com</user>
+            <user>javier.fagian@pernod-ricard.com</user>
+            <user>jefferson.gomes@pernod-ricard.com</user>
+            <user>juanalejandro.alvarez@pernod-ricard.com</user>
+            <user>leonardo.fiorio@pernod-ricard.com</user>
+            <user>luigi.lazzari.ext@pernod-ricard.com</user>
+            <user>matias.polero@pernod-ricard.com</user>
+            <user>natalia.simoes@pernod-ricard.com</user>
+            <user>pablodaniel.prediletto@pernod-ricard.com</user>
+            <user>paola.hernandez@pernod-ricard.com</user>
+            <user>plinio.junior.ext@pernod-ricard.com</user>
+            <user>rosana.maclean@pernod-ricard.com</user>
+            <user>santiago.cotto@pernod-ricard.com</user>
+            <user>sebastian.aramburu@pernod-ricard.com</user>
+        </users>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>BMCServiceDesk__Change_Request__c</sobjectType>
+    </queueSobject>
+    <queueSobject>
+        <sobjectType>BMCServiceDesk__Incident__c</sobjectType>
+    </queueSobject>
+    <queueSobject>
+        <sobjectType>BMCServiceDesk__Problem__c</sobjectType>
+    </queueSobject>
+    <queueSobject>
+        <sobjectType>BMCServiceDesk__Task__c</sobjectType>
+    </queueSobject>
+</Queue>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>Packshots &amp; Beauty shots taxonomy for MyBrands</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>ESN_MB_Fourth_Tier__c</fullName>
+        <description>Fourth tier of taxonomy</description>
+        <externalId>false</externalId>
+        <label>Tier 4</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Second_Tier__c</fullName>
+        <description>Second tier of taxonomy</description>
+        <externalId>false</externalId>
+        <label>Tier 2</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Third_Tier__c</fullName>
+        <description>Third tier of taxonomy</description>
+        <externalId>false</externalId>
+        <label>Tier 3</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>MyBrands Ps &amp; Bs taxonomy</label>
+    <visibility>Public</visibility>
+</CustomObject>

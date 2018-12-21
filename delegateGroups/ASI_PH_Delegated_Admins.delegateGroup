@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DelegateGroup xmlns="http://soap.sforce.com/2006/04/metadata">
+    <groups>ASI Brand PH All Brands Users</groups>
+    <groups>ASI TnE PH Approver</groups>
+    <label>ASI PH Delegated Admins</label>
+    <loginAccess>true</loginAccess>
+    <permissionSets>ASI Brand Generic CRM User</permissionSets>
+    <profiles>ASI PH SF Standard User</profiles>
+    <roles>ASI PH</roles>
+</DelegateGroup>

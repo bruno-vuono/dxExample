@@ -1,0 +1,412 @@
+<apex:page sidebar="false" doctype="html-5.0" applyhtmltag="false" showheader="false" standardstylesheets="false" controller="ESN_MB_NOP_Homepage_Cx" cache="true">
+
+
+    <html class="no-js" xmlns="http://www.w3.org/1999/xhtml">
+    <script>
+     //Establish the connection for Mybrands to access NP assets
+     var userRequest = new XMLHttpRequest();
+     var url = "https://api-brandcloud.pernod-ricard.com/servlet/rest/auth/";
+     //var url = "https://pernodricard.northplains.com/servlet/rest/auth/";
+     var paramsString = {"username":"{!$Label.ESN_MB_UsernameNP}","password":"{!$Label.ESN_MB_PasswordNP}"};
+     var params = JSON.stringify(paramsString);
+
+     userRequest.open("POST", url, true);
+     userRequest.setRequestHeader("Content-type", "application/json");
+     userRequest.withCredentials = true;
+
+     userRequest.send(params);
+     // End of connection
+
+     var currentCategory = '{!CurrentCategory}';
+
+     var category = [];
+    </script>
+    <apex:repeat value="{!categorylist}" var="cat">
+        <script>
+
+            category.push('{!cat}');
+        </script>
+    </apex:repeat>
+
+    <!-- Header component contains all the css files -->
+    <c:ESN_MB_VFCPT_Header id="header" rendered="true"></c:ESN_MB_VFCPT_Header>
+    <!--Style Brand-->
+    <!--apex:stylesheet value="{!currentBrandCssURL + '/css/themes/brand.css'}" /-->
+    <body class="ie-transparency hp-brand hp-brand-header-color" data-added-body-class="hp-brand-header-color">
+
+        <div id="large"></div>
+        <div id="background"></div>
+
+        <!-- Waiting screen -->
+        <c:ESN_MB_VFCPT_WaitScreen id="Wait-Screen" rendered="true"></c:ESN_MB_VFCPT_WaitScreen>
+
+        <!-- Header wrapper component contains the top menu -->
+        <c:ESN_MB_VFCPT_HeaderWrapper id="header-wrapper" rendered="true"></c:ESN_MB_VFCPT_HeaderWrapper>
+
+        <!-- Start Main Wrapper -->
+        <div id="main-wrapper" class="container-fluid">
+
+            <!-- Menu Lat component contains all the lateral menu -->
+            <c:ESN_MB_VFCPT_MenuLat id="menu-lat" rendered="true"></c:ESN_MB_VFCPT_MenuLat>
+
+            <!-- Loading splashscreen -->
+            <div id="splash">
+                <!-- <div id="btn-close" class="splash-close">
+                  {!$Label.ESN_MB_Close}<div class="picto-close"></div>
+                </div> -->
+            </div>
+
+            <!-- Main content -->
+            <div id="main-content">
+
+                <!-- Brand Home SCREEN -->
+                <section class="page-hp page page-hidden page-current" data-body-home="hp-brand-header-color">
+                    <c:ESN_MB_VFCPT_BrandHome id="brand-home" rendered="true"></c:ESN_MB_VFCPT_BrandHome>
+                </section><!--/.page-hp hp-brand-->
+                <!-- Article SCREEN -->
+                <section class="page-hidden article page">
+                    <c:ESN_MB_VFCPT_Article id="Article" rendered="true"></c:ESN_MB_VFCPT_Article>
+                </section>
+
+                <section class="page-hidden influencers page">
+                    <c:ESN_MB_VFCPT_Rubric ></c:ESN_MB_VFCPT_Rubric>
+                </section>
+
+                <!-- Forum SCREEN -->
+                <section class="page-hidden forum page">
+                    <c:ESN_MB_VFCPT_Forum id="Forum" rendered="true"></c:ESN_MB_VFCPT_Forum>
+                </section>
+
+                <!-- All Assets SCREEN -->
+                <section class="page-hidden all_assets page">
+                    <c:ESN_MB_VFCPT_AllAssets ></c:ESN_MB_VFCPT_AllAssets>
+                </section>
+
+                <!-- Edit Article SCREEN -->
+                <section class="formulaire page-hidden edit_mode new_mode page">
+                    <c:ESN_MB_VFCPT_EditMode ></c:ESN_MB_VFCPT_EditMode>
+                </section>
+
+                <!-- Market Activation List SCREEN -->
+                <section class="accueil-market-activations page-hidden page">
+                    <c:ESN_MB_VFCPT_MarketActivationList ></c:ESN_MB_VFCPT_MarketActivationList>
+                </section>
+                <!-- Market Activation List SCREEN End -->
+                <!-- Market Activation View SCREEN -->
+                <section class="article-local-activation page page-hidden">
+                    <c:ESN_MB_VFCPT_MarketActivationView ></c:ESN_MB_VFCPT_MarketActivationView>
+                </section>
+                <!-- Market Activation View SCREEN End -->
+                <!-- Market Activation Edit SCREEN -->
+                <section class="formulaire formulaire-local-activations page-hidden page">
+                    <c:ESN_MB_VFCPT_MarketActivationEdit ></c:ESN_MB_VFCPT_MarketActivationEdit>
+                </section>
+                <!-- Market Activation Edit SCREEN End -->
+                <!-- Global Activation List SCREEN -->
+                <section class="accueil-global-activations page-hidden page">
+                    <c:ESN_MB_VFCPT_GlobalActivationList ></c:ESN_MB_VFCPT_GlobalActivationList>
+                </section>
+                <!-- Global Activation List SCREEN End -->
+                <!-- Global Activation View SCREEN -->
+                <section class="article-global-activation page page-hidden">
+                    <c:ESN_MB_VFCPT_GlobalActivationView ></c:ESN_MB_VFCPT_GlobalActivationView>
+                </section>
+                <!-- Global Activation View SCREEN End -->
+                <!-- Global Activation Edit SCREEN -->
+                <section class="formulaire formulaire-global-activations page-hidden page">
+                    <c:ESN_MB_VFCPT_GlobalActivationEdit ></c:ESN_MB_VFCPT_GlobalActivationEdit>
+                </section>
+                <!-- Global Activation Edit SCREEN End -->
+                <!-- Global Directory SCREEN -->
+                <section class="page-hidden global-directory page">
+                    <c:ESN_MB_VFCPT_GlobalDirectory ></c:ESN_MB_VFCPT_GlobalDirectory>
+                </section>
+                <!-- Global Directory SCREEN End -->
+                <!-- Global Directory Edit SCREEN -->
+                <section class="formulaire global-directory-edit page-hidden page">
+                    <c:ESN_MB_VFCPT_GlobalDirectoryEdit ></c:ESN_MB_VFCPT_GlobalDirectoryEdit>
+                </section>
+                <!-- Global Directory Edit SCREEN End -->
+                <!-- Webinars SCREEN -->
+                <section class="page-hidden webinars page">
+                    <c:ESN_MB_VFCPT_Webinars ></c:ESN_MB_VFCPT_Webinars>
+                </section>
+                <!-- Webinars SCREEN End -->
+                <!-- Help SCREEN -->
+                <section class="webinars-help help page-hidden  page">
+                    <c:ESN_MB_VFCPT_HelpScreen ></c:ESN_MB_VFCPT_HelpScreen>
+                </section>
+                <!-- Help SCREEN End -->
+                <!-- LeCercle Portfolio SCREEN -->
+                <section class="leCercle-Portfolio page-hidden page">
+                    <c:ESN_MB_VFCPT_LeCerclePortfolio ></c:ESN_MB_VFCPT_LeCerclePortfolio>
+                </section>
+
+            </div><!--/#main-content-->
+            <div class="mask"></div>
+        </div>
+
+        <!-- Footer Wrapper contains all the mega menu -->
+        <c:ESN_MB_VFCPT_FooterWrapper id="footer-wrapper" rendered="true"></c:ESN_MB_VFCPT_FooterWrapper>
+
+        <!--Modal du bloc edit Best Practices Status-->
+        <c:ESN_MB_VFCPT_BestPracticesEdit id="editBestPractices" />
+
+        <!--Modal du bloc search-->
+        <c:ESN_MB_VFCPT_Search id="search" rendered="true"></c:ESN_MB_VFCPT_Search>
+
+        <!--Modal du bloc related articles-->
+        <c:ESN_MB_VFCPT_RelatedArticles id="related-articles" rendered="true"></c:ESN_MB_VFCPT_RelatedArticles>
+
+        <!--Modal du bloc search asset-->
+        <c:ESN_MB_VFCPT_SearchAsset id="search-assets" rendered="true"></c:ESN_MB_VFCPT_SearchAsset>
+
+        <!-- Used by TinyMCE for the input image -->
+        <iframe id="form_target" name="form_target" style="display:none"></iframe>
+
+        <form id="my_form" action="/upload/" target="form_target" method="post" enctype="multipart/form-data"
+              style="width:0px;height:0;overflow:hidden">
+            <input name="image" type="file" id="tinyMCEuploadImage" />
+        </form>
+        <script>
+    Visualforce.remoting.timeout = 120000; // Set timeout at page level
+
+    $('.myBrands-logo').attr('href','/apex/ESN_MB_NOP_Homepage');
+   //Get the datas from SFDC
+    var brandNames = {!BrandNames};
+    var splashScreens = {!SplashScreens};
+    var newsCoverRubricId = "{!NewsCoverRubricID}";
+    var rubrics = {!RubricList};
+    var productsLogos = {!ListProductLogosIds};
+    var products = {!ListProduct};
+    var nbBrandProducts = products.length;
+    var isBasicUser = {!isBasicUser};
+    var isBroadCasterUser = {!isBroadCasterUser};
+    var background = "{!background}";
+    var portfolioBackground = "{!portfolioBackground}";
+
+    var currentBrandId = brandId;
+    var npPortalUrl = '{!NorthPlainsPortalUrl}';
+    window.resourceURI="{!urlfor($Resource.ESN_MB_Theme_Core)}";
+    window.resourceJameson="{!urlfor($Resource.ESN_MB_Theme_Jameson)}";
+    window.resourceBrand="{!currentBrandCssURL}";
+    window.MyBrandsSettingsNPUrl="{!$Setup.ESN_MB_MyBrandsSettings__c.ESN_MB_NP_API_Domain__c}";
+    window.UserGuideURL = "{!urlfor($Resource.ESN_MB_UserGuide)}";
+    window.pdfWorkerURL = "{!urlfor($Resource.ESN_MB_Theme_Core, '/js/pdf.worker.js')}";
+    window.chatterHelpID="{!$Setup.ESN_MB_MyBrandsSettings__c.ESN_MB_ChatterHelpID__c}";
+    var productIdRouting;
+
+    //if(background !== 'noBackground'){
+
+    //}
+    // Home BG
+    // $('.hp-brand #main-wrapper .page-hp').css("background",'url(/servlet/servlet.FileDownload?file='+background + ') no-repeat 50% 100%');
+    $('.hp-brand #main-wrapper .page-hp').css("background",'url(/servlet/servlet.FileDownload?file='+background + ') no-repeat fixed center');
+    // #main-wrapper Section BG
+    // $('#main-wrapper').css("background",'url(/servlet/servlet.FileDownload?file='+background + ') repeat fixed center');
+
+    var leCercle = "{!$Label.ESN_MB_LeCercle}";
+
+    if (currentCategory == leCercle && brandName == leCercle) {
+        $('.hp-brand #main-wrapper .page-hp').css("background",'url(/servlet/servlet.FileDownload?file='+background + ') no-repeat center 64px');
+    } else {
+        $('.hp-brand #main-wrapper .page-hp').css("background",'url(/servlet/servlet.FileDownload?file='+background + ') no-repeat fixed center');
+    }
+
+    //var brandName = "{!BrandName}";
+    var brandCategory = "{!BrandCategory}";
+
+    if(brandCategory != leCercle) {
+        $('#main-wrapper').css('background-image','url('+window.resourceURI+'/images/bg-section-default.png)');
+    } else {
+        $('body').style('font-family', 'Georgia, sans-serif', 'important');
+    }
+
+    var customLabel ={Download : "{!$Label.ESN_MB_Download_Link}",
+                      Error : "{!$Label.ESN_MB_ErrorMessage}",
+                      BestPracticesEditButton : "{!$Label.ESN_MB_BP_EditButtonLabel}",
+                      KeyContact : "{!$Label.ESN_MB_KeyContacts}",
+                      PickDate : "{!$Label.ESN_MB_PickDates}",
+                      SelectBusinessPriority : "{!$Label.ESN_MB_SelectBusinessPriority}",
+                      SelectAffiliate : "{!$Label.ESN_MB_SelectAffiliate}",
+                      BusinessPriority : "{!$Label.ESN_MB_BusinessPriority}",
+                      Affiliate : "{!$Label.ESN_MB_Affiliate}",
+                      SelectMM : "{!$Label.ESN_MB_SelectMarketMaturity}",
+                      SelectBM : "{!$Label.ESN_MB_SelectBrandMaturity}",
+                      SelectProduct : "{!$Label.ESN_MB_SelectProduct}",
+                      SelectMarket : "{!$Label.ESN_MB_Select_Market}",
+                      SelectBudget : "{!$Label.ESN_MB_SelectBudget}",
+                      SelectLegal : "{!$Label.ESN_MB_Select_LegalConstraints}",
+                      Why : "{!$Label.ESN_MB_WhyAnswer}",
+                      ToWhom : "{!$Label.ESN_MB_ToWhomAnswer}",
+                      What : "{!$Label.ESN_MB_WhatAnswer}",
+                      How : "{!$Label.ESN_MB_HowAnswer}",
+                      Kpis : "{!$Label.ESN_MB_KpisAnswers}",
+                      BigIdea : "{!$Label.ESN_MB_BigIdeaAnswers}",
+                      StrategicFit : "{!$Label.ESN_MB_StrategicFitAnswers}",
+                      ExcellenceOfExecution : "{!$Label.ESN_MB_ExcellenceOfExecutionAnswers}",
+                      BusinessImpact : "{!$Label.ESN_MB_BusinessImpactAnswers}",
+                      ScalabilityAndReplicability : "{!$Label.ESN_MB_ScalabilityAndReplicabilityAnswers}",
+                      ActivationName : "{!$Label.ESN_MB_ActivationName}",
+                      FindOutMore : "{!$Label.ESN_MB_FindOutMore}",
+                      Vide : "{!$Label.ESN_MB_Vide}",
+                      EmbeddedVideo : "{!$Label.ESN_MB_Embedded_Video}",
+                      Remove : "{!$Label.ESN_MB_Remove}",
+                      MainAsset : "{!$Label.ESN_MB_Main_Asset}",
+                      SeeAlso : "{!$Label.ESN_MB_SeeAlso}",
+                      PreviewLink : "{!$Label.ESN_MB_Preview_Link}",
+                      Illustrations : "{!$Label.ESN_MB_Illustrations}",
+                      Links : "{!$Label.ESN_MB_Links}",
+                      Media : "{!$Label.ESN_MB_Media}",
+                      SelectArticle : "{!$Label.ESN_MB_Select_Article}",
+                      DeselecteArticle : "{!$Label.ESN_MB_Deselect_Article}",
+                      SelectToolkit : "{!$Label.ESN_MB_Select_Toolkit}",
+                      DeselectToolkit : "{!$Label.ESN_MB_Deselect_Toolkit}",
+                      SelectKeyContact : "{!$Label.ESN_MB_Select_KeyContact}",
+                      DeselectKeyContact : "{!$Label.ESN_MB_Deselect_KeyContact}",
+                      SelectAsset : "{!$Label.ESN_MB_Select_Asset}",
+                      DeselectAsset : "{!$Label.ESN_MB_Deselect_Asset}",
+                      SizeText : "{!$Label.ESN_MB_SizeText}",
+                      FileType : "{!$Label.ESN_MB_FileType}",
+                      AllMT : "{!$Label.ESN_MB_AllMarketTypes}",
+                      AllCountries : "{!$Label.ESN_MB_AllCountries}",
+                      AllAudiences : "{!$Label.ESN_MB_AllAudiences}",
+                      GoToArticle : "{!$Label.ESN_MB_Go_Article}",
+                      GoToActivation : "{!$Label.ESN_MB_Go_Activation}",
+                      GoToWebinar : "{!$Label.ESN_MB_Go_Webinar}",
+                      AllActivationTypes : "{!$Label.ESN_MB_AllActivationTypes}",
+                      AllTargets : "{!$Label.ESN_MB_AllTargets}",
+                      NPPortalRedirectTokenized : "{!$Label.ESN_MB_NPPortalRedirectTokenized}",
+                      NPRedirectUrlDashboard : "{!$Label.ESN_MB_NPRedirectUrlDashboard}",
+                      NPRedirectUrlItem : "{!$Label.ESN_MB_NPRedirectUrlItem}",
+                      Close : "{!$Label.ESN_MB_Close}",
+                      Assets : "{!$Label.ESN_MB_Assets}",
+                      Forum : "{!$Label.ESN_MB_Forum}",
+                      Webinars :"{!$Label.ESN_MB_Webinars}",
+                      MarketingD :"{!$Label.ESN_MB_MarketingDirectory}",
+                      imageFilter : "{!$Label.ESN_MB_Images}",
+                      videoFilter : "{!$Label.ESN_MB_Videos}",
+                      AttachedFiles : "{!$Label.ESN_MB_AttachedFiles}",
+                      documentsFilter : "{!$Label.ESN_MB_Documents}",
+                      pdfFilter : "{!$Label.ESN_MB_Pdfs}",
+                      pptFilter : "{!$Label.ESN_MB_Ppts}",
+                      defaultFilter : "{!$Label.ESN_MB_AllFiles}",
+                      defaultFileTypeSort : "{!$Label.ESN_MB_SortAlpha}",
+                      defaultLastUpdatedSort : "{!$Label.ESN_MB_Last_Update}",
+                      defaultLastCreatedSort : "{!$Label.ESN_MB_Last_Created}",
+                      productName : "{!$Label.ESN_MB_Product}",
+                      marketMaturity : "{!$Label.ESN_MB_MarketMaturity}",
+                      brandMaturity : "{!$Label.ESN_MB_BrandMaturity}",
+                      activationType : "{!$Label.ESN_MB_ActivationType}",
+                      pros : "{!$Label.ESN_MB_ProsOnly}",
+                      target : "{!$Label.ESN_MB_Target}",
+                      budget : "{!$Label.ESN_MB_Budget}",
+                      legal : "{!$Label.ESN_MB_LegalConstraints}",
+                      dates : "{!$Label.ESN_MB_Date}",
+                      to :  "{!$Label.ESN_MB_To}",
+                      draftArticle : "{!$Label.ESN_MB_DraftMode}",
+                      archieveArticle : "{!$Label.ESN_MB_ArchivedMode}",
+                      MostRecentSort : "{!$Label.ESN_MB_MostRecent}",
+                      FindOutMore : "{!$Label.ESN_MB_FindOutMore}",
+                      Documents : "{!$Label.ESN_MB_DocumentsTitle}",
+                      discoverMore : "{!$Label.ESN_MB_Discover_More}",
+                      brandCloud : "{!$Label.ESN_MB_Brand_Cloud}",
+                      AlertClosing : "{!$Label.ESN_MB_AlertClosing}",
+                      endingDate : "{!$Label.ESN_MB_EndingDate}",
+                      startingDate : "{!$Label.ESN_MB_StartingDate}",
+                      goToTheDAM : "{!$Label.ESN_MB_GoToTheDAM}",
+                      page : "{!$Label.ESN_MB_Page}",
+                      presentationMyBrands : "{!$Label.ESN_MB_PresentationMybrands}",
+                      TOP14 : "{!$Label.ESN_MB_TOP14}",
+                      wineMenu :  "{!$Label.ESN_MB_WineMenu}",
+                      messageErrorUpload :"{!$Label.ESN_MB_ErrorUpload}",
+                      marketingDirectory : "{!$Label.ESN_MB_JamesonMarketing}",
+                      teamVideoPresentation : "{!$Label.ESN_MB_TeamVideoPresentation}",
+                      teamOrganizationChart : "{!$Label.ESN_MB_TeamOrganizationChart}",
+                      createdDate : "{!$Label.ESN_MB_CreatedDate}",
+                      lastModifiedDate : "{!$Label.ESN_MB_LastModifiedDate}",
+                      relatedMarketActivation : "{!$Label.ESN_MB_RelatedMA}",
+                      noResultMessage : "{!$Label.ESN_MB_NoResult}",
+                      noResultSectionMessage : "{!$Label.ESN_MB_NoResultSection}",
+                      downloadSimple : "{!$Label.ESN_MB_Download}",
+                      relatedAssetsArticle : "{!$Label.ESN_MB_RelatedAssetsArticle}",
+                      openInDAM : "{!$Label.ESN_MB_OpenInDAM}",
+                      selectOwner : "{!$Label.ESN_MB_SelectOwner}",
+                      DeselectOwner : "{!$Label.ESN_MB_DeslectOwner}",
+                      LeCercleActivation : "{!$Label.ESN_MB_LeCercleActivation}",
+                      LeCercleBisData : "{!$Label.ESN_MB_LeCercleBisData}"
+                     };
+
+    var MyBrandsSettingsCRMContentID="{!$Setup.ESN_MB_MyBrandsSettings__c.ESN_MB_CRM_Content_Id__c}";
+
+    var forcetkClient= new forcetk.Client();
+    forcetkClient.setSessionToken('{!$Api.Session_ID}');
+    forcetkClient.proxyUrl = null;
+    forcetkClient.instanceUrl = '';
+
+    //Call the methods that use these datas
+    retrieveBrandNames();
+    retrieveSplashScreens();
+    retrieveProductsImages();
+    retrieveProducts();
+
+     tinymce.init({
+        plugins: [
+            "link paste image"
+        ],
+        selector: "textarea:not([id='comment']):not([id='previousComment'])",
+        toolbar1: "bold italic underline | strikethrough | undo redo | link image | alignleft aligncenter alignright alignjustify | removeformat ",
+        menubar: false,
+        toolbar_items_size: 'medium',
+        statusbar : true,
+          formats: {
+                removeformat : [
+                    {selector : 'h1,h2,h3,h4,h5,h6,pre',
+                                block : 'p', remove : 'all', split : true, expand : false, block_expand : true, deep : true},
+                    {selector : 'address,article,b,big,blockquote,center,cite,code,date,dd,del,dfn,dl,dt,em,embed,font,footer,' +
+                                'header,hgroup,i,ins,kbd,link,menu,nav,object,param,q,s,samp,script,' +
+                                'section,small,strike,strong,style,sub,sup,time,tt,u,var',
+                                remove : 'all', split : true, expand : false, block_expand : true, deep : true},
+                    {selector : 'span', attributes : ['style','class'], remove : 'empty', split : true, expand : false, deep : true}, // colored text
+                    {selector : 'table', attributes : ['cellpadding','cellspacing','border'], split : false, expand : false, deep : true},
+                    {selector : '*', attributes : ['style','color','bgcolor','title','lang'], split : false, expand : false, deep : true}
+                ]
+            },
+        file_browser_callback: function(field_name, url, type, win) {
+            currentFieldName = field_name;
+            if(type=='image') $('#my_form input').click();
+        }
+    });
+
+     // KG 04/11/2014
+     // Fixes the position of the hamburger menu content on load of the page
+     // which sometimes displayed randomly.
+     // The following code must remain in this page, it does not work in external js files.
+     $(document).ready(function() {
+         $('#container-menu-lat').css('margin-top','0px!important');
+     });
+
+        </script>
+
+        <apex:includescript value="{!urlfor($Resource.ESN_MB_Theme_Core, '/js/pages/influencers.js')}" />
+        <apex:includescript value="{!urlfor($Resource.ESN_MB_Theme_Core, '/js/pages/search_global.js')}" />
+        <apex:includescript value="{!urlfor($Resource.ESN_MB_Theme_Core, '/js/scrollbar/jquery.scrollbar.min.js')}" />
+        <apex:includescript value="{!urlfor($Resource.ESN_MB_Theme_Core, '/js/modernizr.js')}" />
+        <apex:includescript value="{!urlfor($Resource.ESN_MB_Theme_Core, '/js/jquery-ui.min.js')}" />
+        <apex:includescript value="{!urlfor($Resource.ESN_MB_Theme_Core, '/js/jquery.dnd_page_scroll.js')}" />
+        <apex:includescript value="{!urlfor($Resource.ESN_MB_Theme_Core, '/js/bowser.js')}" />
+        <apex:includescript value="{!urlfor($Resource.ESN_MB_Theme_Core, '/js/volumecontrol.js')}" />
+        <apex:includescript value="{!urlfor($Resource.ESN_MB_Theme_Core, '/js/retina.js')}" />
+        <apex:includescript value="{!urlfor($Resource.ESN_MB_Theme_Core, '/js/pages/main.js')}" />
+        <apex:includescript value="{!urlfor($Resource.ESN_MB_Theme_Core, '/js/tinymce/js/tinymce/tinymce.min.js')}" />
+        <apex:includescript value="{!urlfor($Resource.ESN_MB_Theme_Core, '/js/tinymce/js/tinymce/plugins/link/plugin.min.js')}" />
+        <apex:includescript value="{!urlfor($Resource.ESN_MB_Theme_Core, '/js/pages/forcetk.js')}" />
+        <apex:includescript value="/soap/ajax/20.0/connection.js" />
+        <apex:includescript value="{!urlfor($Resource.ESN_MB_Theme_Core, '/js/pages/breadcrumb.js')}" />
+
+        <script src="{!urlfor($Resource.ESN_MB_Theme_Core, '/js/pages/routing.js')}"></script>
+
+    </body>
+</html>
+
+</apex:page>

@@ -1,0 +1,16 @@
+<!---------------------------------------------
+ * Name:ASI_CRM_SG_PromotionLetter_Page
+ * Description: Page for printing promotion letter
+ *
+ * Version History
+ * Date             Developer               Comments
+ * ---------------  --------------------    --------------------------------------------------------------------------------
+ * 04/04/2018       Hugo Cheung             Created
+---------------------------------------------->
+<apex:page controller="ASI_CRM_SG_PromotionLetter_Ctrl" renderAs="pdf">
+    <c:ASI_CRM_SG_PromotionLetterPDF_Com promotionIdAttr="{!promotionId}" 
+        customerIdAttr="{!customerId}" 
+        contactNameAttr="{!contactName}" 
+        contactDesignationAttr="{!contactDesignation}" 
+        contactNumberAttr="{!contactNumber}" />
+</apex:page>

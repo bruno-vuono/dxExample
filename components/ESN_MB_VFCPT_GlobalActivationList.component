@@ -1,0 +1,35 @@
+<apex:component controller="ESN_MB_NOP_Activation_Cx">
+              <div class="content-wrapper container-fluid">
+                <div class="btn-close" style="margin-left:30px;">
+                    <a data-category="activation" data-page="formulaire-global-activations" href="#?page=page-hp&content=page-hp&mode=full" class="on">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </a>
+                </div>
+              <div id="uploadGAbutton" class="more-functionalities-bloc hidden"></div>
+              <ul class="fil-ariane" id="fil-ariane">
+              </ul>
+              <!--  Les resultats de la recherche -->
+              <div class="result-container">
+                <div id="result" class="row">
+                    <div id="result">
+                        
+                    </div>
+                  
+                </div> <!-- Fin #result -->
+              </div> <!-- Fin .result-container -->
+              <div id="more-result-global-activations" class="hidden"> <!-- plus de resultat -->
+                <p>
+                  {!$Label.ESN_MB_MoreActivations}
+                </p>
+              </div>
+            </div>
+            
+    <script>
+        if (brandName == 'Pernod Ricard') {
+            $('#uploadGAbutton').append('<a class="findoutmore" href="#?page=formulaire-global-activations&content=formulaire-global-activations&mode=light" data-page="formulaire-global-activations" data-category="brand-cloud" onclick="createGlobalActivationDraft()">{!$Label.ESN_MB_UploadBusinessActivation}</a>');
+        } else {
+            $('#uploadGAbutton').append('<a class="findoutmore" href="#?page=formulaire-global-activations&content=formulaire-global-activations&mode=light" data-page="formulaire-global-activations" data-category="brand-cloud" onclick="createGlobalActivationDraft()">{!$Label.ESN_MB_UploadABrandActivation}</a>');
+        }
+    </script>
+    
+</apex:component>

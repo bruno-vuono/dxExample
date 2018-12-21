@@ -1,0 +1,3 @@
+<apex:page standardController="ASI_DFPM_Promotional_Project__c">
+	<c:ASI_DFPM_GanttChart targetId="{!ASI_DFPM_Promotional_Project__c.Id}" />
+</apex:page>

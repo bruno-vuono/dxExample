@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StaticResource xmlns="http://soap.sforce.com/2006/04/metadata">
+    <cacheControl>Private</cacheControl>
+    <contentType>application/zip</contentType>
+    <description>MarkerClustererPlus for Google Maps V3
+@version 2.0.15 [October 18, 2012]
+@author Gary Little
+@fileoverview
+The library creates and manages per-zoom-level clusters for large amounts of markers.</description>
+</StaticResource>

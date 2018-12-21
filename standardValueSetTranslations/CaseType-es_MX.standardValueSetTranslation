@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Account Alteration ARG</masterLabel>
+        <translation><!-- Account Alteration ARG --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Account Alteration URU</masterLabel>
+        <translation><!-- Account Alteration URU --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Alteração - Cadastro de cliente</masterLabel>
+        <translation><!-- Alteração - Cadastro de cliente --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Balance Inquiry</masterLabel>
+        <translation><!-- Balance Inquiry --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Bill Reprint - Email</masterLabel>
+        <translation><!-- Bill Reprint - Email --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Bill Reprint - Paper</masterLabel>
+        <translation><!-- Bill Reprint - Paper --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Billing Dispute</masterLabel>
+        <translation><!-- Billing Dispute --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Billing Issue</masterLabel>
+        <translation><!-- Billing Issue --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Cadastro de clientes</masterLabel>
+        <translation><!-- Cadastro de clientes --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Cancelamento de contrato</masterLabel>
+        <translation><!-- Cancelamento de contrato --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Connection Issue</masterLabel>
+        <translation><!-- Connection Issue --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Credits and Collections</masterLabel>
+        <translation>Creditos y Cobranzas</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Documentation</masterLabel>
+        <translation><!-- Documentation --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Inadimplência</masterLabel>
+        <translation><!-- Inadimplência --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Installation</masterLabel>
+        <translation><!-- Installation --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Justificativa de inadimplência</masterLabel>
+        <translation><!-- Justificativa de inadimplência --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Legal</masterLabel>
+        <translation>Legales</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Logistics</masterLabel>
+        <translation>Logisticos</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Overdue to attorneys</masterLabel>
+        <translation><!-- Overdue to attorneys --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Pergunta</masterLabel>
+        <translation><!-- Pergunta --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Problema</masterLabel>
+        <translation><!-- Problema --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Proposta de pagamento</masterLabel>
+        <translation><!-- Proposta de pagamento --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Proposta não realizada</masterLabel>
+        <translation><!-- Proposta não realizada --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Question</masterLabel>
+        <translation><!-- Question --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Request Feature</masterLabel>
+        <translation><!-- Request Feature --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Solicitação de recurso</masterLabel>
+        <translation><!-- Solicitação de recurso --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Statistical</masterLabel>
+        <translation>Estadisticos</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Technical Issue</masterLabel>
+        <translation><!-- Technical Issue --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Technical Issue - Advanced</masterLabel>
+        <translation><!-- Technical Issue - Advanced --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Usage</masterLabel>
+        <translation><!-- Usage --></translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

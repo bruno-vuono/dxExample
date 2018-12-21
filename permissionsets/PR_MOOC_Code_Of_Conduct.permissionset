@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>SSO access to the MOOC Code of Business Conduct</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>PR MOOC Code Of Conduct</label>
+</PermissionSet>

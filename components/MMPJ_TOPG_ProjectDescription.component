@@ -1,0 +1,209 @@
+<apex:component controller="MMPJ_TOPG_ProjectDescriptionController" allowDML="true">
+ <apex:attribute name="theProject" description="The project object" type="MMPJ_TOPG_Project__c" assignTo="{!project}"/>
+    <head>
+        <style>
+            .headerRowDescription{
+                text-align:center;
+                background-color: #e0e3e5;
+                color:black;
+            }
+            tr.headerRowDescription th{
+            color:black;
+            }
+            .BtnRight {
+                text-align:right;
+                padding: 10px 0px 0px 0px;
+            }
+            .Custom62Tab .tertiaryPalette, .individualPalette .Custom62Block .tertiaryPalette, .layoutEdit .individualPalette .Custom62Block .tertiaryPalette{
+            background-color: #1793E2;
+            }
+            .fieldnameStyle{
+                color: #000;
+                font-weight: bold;
+                text-align:right;
+                display:block;
+                white-space: nowrap;
+            }
+            .ActionLinks{
+                    width:60px;
+            }
+            .relatedListSecondColumn{
+                    width:300px;
+            }   
+        </style>
+    </head>
+    <script type="text/javascript">
+    function rerenderMessage() {
+    var projectId ="{!project.id}";
+        if (Boolean(projectId)){
+        document.getElementById("messageDiv").style.display=""; 
+        }
+        else {
+        document.getElementById("messageDiv").style.display="none"; 
+        }
+    }
+</script>  
+    <apex:actionStatus id="StatusLoading">
+        <apex:facet name="start">
+            <div class="popupBackground">
+                <div class="popupWindow">
+                    <img src="/img/loading.gif" alt="loading.."/>
+                </div>
+            </div>
+        </apex:facet>
+    </apex:actionStatus>
+    <apex:form >   
+        <apex:actionFunction name="SaveDescription" rerender="" action="{!LeavingDescription}" reRender="PBDescription" oncomplete="changetab(newTab,{!saveComp});" status="StatusLoading">
+        </apex:actionFunction>
+        <apex:pageBlock id="PBDescription">
+             <apex:pagemessages />
+             <apex:outputPanel id="SuccessPanel">
+            <apex:pageMessage rendered="{!ShowSaveMessage}" strength="1" severity="confirm" title="Success" detail="The Project has been saved successfully!"/>
+        </apex:outputPanel>
+            <apex:pageBlockButtons location="Top" >
+                <apex:commandButton value="Save" action="{!SaveProject}" status="StatusLoading" rerender="PBDescription" oncomplete="resetCounter();"/>
+                <apex:commandButton value="Save & Close" action="{!SaveProjectAndClose}" status="StatusLoading"/>
+                <apex:commandButton value="Cancel" action="{!cancel}"/>
+                <!--<apex:commandButton value="Print PDF" action="{!PrintPDF}" rerender="PBDescription" style="target:_blank" status="StatusLoading"/>-->
+            </apex:pageBlockButtons>
+            
+                <div style="display:none;" id="messageDiv">    
+                <apex:pageMessage strength="1" severity="Info" id="warningMsg" 
+                title="Warning" detail="Be careful you are changing Project Type and/or Project Topic. For this Project you might have automaticly created Milestones. This change doesn't affect the existing Milestone."/>
+                </div>
+           <apex:pageBlockSection columns="1" title="Informations" collapsible="true">
+            <apex:pageBlockSection columns="2">
+                <apex:inputField required="false" value="{!Project.name}" />
+                <apex:inputField value="{!Project.MMPJ_TOPG_StartDate__c}" />
+                <apex:inputField required="false" value="{!Project.MMPJ_TOPG_NewProjectType__c}"/>
+                <apex:inputField value="{!Project.MMPJ_TOPG_EndDate__c}"/>
+               <!-- <apex:inputField value="{!Project.MMPJ_TOPG_ProjectTopic__c}"  onchange="rerenderMessage();"/> -->
+                <!--<apex:inputField value="{!Project.MMPJ_TOPG_ForecastBudget__c}"/> -->
+                <apex:inputField required="false" value="{!Project.MMPJ_TOPG_ProjectOwner__c}"  />
+               <!-- <apex:inputField value="{!Project.MMPJ_TOPG_Actuals__c}"/> -->                       
+                
+            </apex:pageBlockSection>   
+              <apex:pageBlockSection columns="1">
+                  <table id="tblAgendaFields" width="100%" cellpadding="8" cellspacing="0">
+                                <tr width="100%">                                  
+                                    <td class="agendafields" with="20%"/>                                                 
+                                    <td with="80%" Style="text-Align : center;">                                     
+                     				 <apex:inputTextarea richText="false" value="{!Project.MMPJ_TOPG_Description__c}" rows="5" cols="100"/>              
+                                    </td>                                
+                                </tr>                                       
+                            </table>
+              </apex:pageBlockSection> 	
+                
+            </apex:pageBlockSection>
+            
+           <!-- <apex:pageBlockSection columns="1" title="Scope " collapsible="true">
+            
+            <apex:actionFunction name="MultiPickListChanged" action="{!setDefaultProducts}" reRender="ProductPB" />
+                <table width="100%" border="0">
+                    <tr>
+                        <td colspan="3">
+                            <table>
+                                <tr>
+                                    <td>
+                                        
+                                        <c:MMPJ_TOPG_Desc_MultiselectPicklist leftLabel="Available Brands"
+                                                         leftOptions="{!AllBrand}"
+                                                         rightLabel="Selected Brands"
+                                                         rightOptions="{!SelectedBrand}"
+                                                         size="{!SizeMultipicklist}"
+                                                         width="150px"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td colspan="3">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <apex:pageBlockSection columns="1" id="ProductPB">
+                                        <c:MMPJ_TOPG_MultiselectPicklist leftLabel="Quality Product Available"
+                                                         leftOptions="{!AllProduct}"
+                                                         rightLabel="Quality Product Selected"
+                                                         rightOptions="{!SelectedProduct}"
+                                                         size="{!SizeMultipicklist}"
+                                                         width="150px" />
+                                       </apex:pageBlockSection>
+                                    </td>
+                                </tr>
+                            </table>                                  
+                        </td>
+                        <td colspan="3">
+                            <table>
+                                <tr>
+                                    <td> 
+                                        <c:MMPJ_TOPG_MultiselectPicklist leftLabel="Available Markets"
+                                                         leftOptions="{!AllMarket}"
+                                                         rightLabel="Selected Markets"
+                                                         rightOptions="{!SelectedMarket}"
+                                                         size="{!SizeMultipicklist}"
+                                                         width="150px"/>
+                                    </td>
+                                </tr>
+                            </table>                                    
+                        </td>
+                    </tr>
+                </table>
+            </apex:pageBlockSection> -->
+              <apex:actionRegion >
+                <apex:pageBlockSection columns="1" title="Project Team Members" collapsible="true">
+                    <script>                    
+                        
+                        function ChangeFieldInProjectTeam(selector, rowNum) {
+                            var Type = selector.value;
+                            if(Type == 'Contact')
+                            {
+                                document.getElementById("contact"+rowNum).style.display='Inline';
+                                document.getElementById("user"+rowNum).style.display='None';
+                            }
+                            else
+                            {
+                                document.getElementById("contact"+rowNum).style.display='None';
+                                document.getElementById("user"+rowNum).style.display='Inline';
+                            }
+                        }
+                    </script>
+                    <apex:actionFunction name="AutomateFunction" action="{!AutomateFunction}" rerender="ProjectTeamTable,ProjectTeamPanel" status="StatusLoading"/>
+                    <apex:outputPanel id="ProjectTeamPanel">
+                        <apex:variable value="{!0}" var="rowNum"/>  
+                        <apex:pageblockTable value="{!ListWrapperProjectTeam }" var="Wrapper" id="ProjectTeamTable" styleclass="headerRowDescription">
+                            <apex:column headerValue="Action"  styleClass="ActionLinks" headerClass="ActionLinks">
+                                <apex:commandLink value="Delete" style="color:#015ba7" action="{!DelProjectTeam}" rerender="ProjectTeamTable,ProjectTeamPanel" immediate="true" >
+                                    <apex:param value="{!rowNum}" name="rowToRemove" assignTo="{!rowToRemove}"/>
+                                </apex:commandLink>
+                                <apex:variable var="rowNum" value="{!rowNum + 1}"/>
+                            </apex:column>
+                            <apex:column HeaderValue="Who" headerClass="relatedListSecondColumn">
+                                <Apex:selectList id="SelectType" size="1" value="{!Wrapper.SelectValue}" onchange="ChangeFieldInProjectTeam(this, {!rowNum})" >
+                                    <apex:selectOption itemValue="Contact" itemLabel="Contact" />
+                                    <apex:selectOption itemValue="User" itemLabel="User"/>
+                                </apex:selectList>
+                                <div id="contact{!rowNum}" style="display:{!IF(Wrapper.SelectValue == 'Contact'  ,'Inline','none')};">
+                                    <apex:inputfield value="{!Wrapper.ProjectTeam.MMPJ_TOPG_Contact__c}" onchange="AutomateFunction()"/>
+                                </div>
+                                <div id="user{!rowNum}" style="display:{!IF(Wrapper.SelectValue == 'User','Inline','none')};">
+                                    <apex:inputfield value="{!Wrapper.ProjectTeam.MMPJ_TOPG_User__c}" onchange="AutomateFunction()"/>
+                                </div>
+                            </apex:column>
+                            <apex:column HeaderValue="Function" style="width: 900px;text-align:left;">
+                                <apex:outputtext value="{!Wrapper.ProjectTeam.MMPJ_TOPG_Title__c}" style="width: 857px;"/>
+                            </apex:column>
+                        </apex:pageblockTable>
+                        <div class="BtnRight">
+                            <apex:commandButton value="Add Members" action="{!addProjectTeam}" rerender="ProjectTeamPanel" status="StatusLoading"/>
+                        </div>
+                    </apex:outputPanel>
+                </apex:pageBlockSection> 
+            </apex:actionRegion>
+        </apex:pageBlock>
+    </apex:form>
+    <!--<apex:pageBlock >
+        <apex:pageBlockSection collapsible="true" title="Chatter">
+            <chatter:feed entityId="{!Project.id}"  rendered="{! Project.Id != null }"/>
+        </apex:pageBlockSection>
+    </apex:pageBlock> -->
+</apex:component>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DelegateGroup xmlns="http://soap.sforce.com/2006/04/metadata">
+    <groups>EUR RU Admin Group</groups>
+    <groups>EUR RU OFF Trade O/P Share Group</groups>
+    <groups>EUR RU OFF Trade Share Group</groups>
+    <groups>EUR RU ON Trade O/P Share Group</groups>
+    <groups>EUR RU ON Trade Share Group</groups>
+    <label>EUR RU Delegated Admins</label>
+    <loginAccess>true</loginAccess>
+    <permissionSets>PR MOOC Crisis Management</permissionSets>
+    <permissionSets>PR ESN</permissionSets>
+    <permissionSets>PR SSO</permissionSets>
+    <permissionSets>PR ESN Platform</permissionSets>
+    <permissionSets>PR MOOC</permissionSets>
+    <permissionSets>PR DAM Portal</permissionSets>
+    <permissionSets>PR MOOC Code Of Conduct</permissionSets>
+    <permissionSets>PR MOOC Martell</permissionSets>
+    <permissionSets>EUR RU All Accounts Admin</permissionSets>
+    <permissionSets>EUR RU CISLink Admin</permissionSets>
+    <permissionSets>EUR RU Central Objectives (EU) Admin</permissionSets>
+    <permissionSets>EUR RU Distributor Management Admin</permissionSets>
+    <permissionSets>EUR RU Fair Share Admin</permissionSets>
+    <permissionSets>EUR RU OFF Trade O/P Admin</permissionSets>
+    <permissionSets>EUR RU OFF Trade Survey Admin</permissionSets>
+    <permissionSets>EUR RU ON Trade O/P Admin</permissionSets>
+    <permissionSets>EUR RU ON Trade Survey Admin</permissionSets>
+    <permissionSets>EUR RU O/P Admin</permissionSets>
+    <permissionSets>EUR RU PROS Admin</permissionSets>
+    <permissionSets>EUR RU Price Monitoring Admin</permissionSets>
+    <permissionSets>EUR RU Products Admin</permissionSets>
+    <permissionSets>EUR RU Reports Permissions - Field Managers</permissionSets>
+    <permissionSets>EUR RU Reports Permissions - MKT / TMKT</permissionSets>
+    <permissionSets>EUR RU Tab Visibility</permissionSets>
+    <permissionSets>EUR RU Tab Visibility - Area Sales Manager OFF Trade</permissionSets>
+    <permissionSets>EUR RU Tab Visibility - Area Sales Manager ON Trade</permissionSets>
+    <permissionSets>EUR RU Tab Visibility - City Manager</permissionSets>
+    <permissionSets>EUR RU Tab Visibility - KAM OFF Trade</permissionSets>
+    <permissionSets>EUR RU Tab Visibility - KAM ON Trade</permissionSets>
+    <permissionSets>EUR RU Tab Visibility - Regional Sales Manager OFF Trade</permissionSets>
+    <permissionSets>EUR RU Tab Visibility - Regional Sales Manager ON Trade</permissionSets>
+    <permissionSets>EUR RU Taxonomy &amp; Templates Admin</permissionSets>
+    <permissionSets>EUR RU Territory Admin</permissionSets>
+    <permissionSets>PR MOOC MPJ Academy</permissionSets>
+    <permissionSets>PR MOOC Internal Control</permissionSets>
+    <profiles>EUR RU Affiliate Admin</profiles>
+    <profiles>EUR RU OFF Trade User</profiles>
+    <profiles>EUR RU ON Trade User</profiles>
+    <profiles>EUR RU Standard User</profiles>
+    <roles>EUR RU</roles>
+</DelegateGroup>

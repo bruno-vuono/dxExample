@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>ASI_MFM_JP_A_and_P_Actual_Sharing_Rule</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>ASI MFM JP A and P Actual Sharing Rule</label>
+        <sharedTo>
+            <role>ASI_JP</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>A and P Actual</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>ASI_MFM_JP_A_and_P_Actual_Sharing_to_power_user</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>ASI MFM JP A and P Actual Sharing to power user</description>
+        <label>ASI MFM JP A and P Actual Sharing to power user</label>
+        <sharedTo>
+            <group>ASI_MFM_JP_Power_User</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>A and P Actual</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+</SharingRules>

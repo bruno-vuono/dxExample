@@ -1,0 +1,234 @@
+<apex:page controller="MMPJ_TOPG_VF03_ToDoPDFcontroller" showHeader="false" sidebar="false"  applyBodyTag="false" renderas="PDF">
+    <head>
+        <style >
+            @page 
+            {
+                margin-top: 5cm;
+                margin-left: 0.3cm;
+                margin-right: 0.3cm;
+                margin-bottom: 2cm;
+                padding-left : 0px;  
+                @top-center {
+                    content: element(header);
+                }         
+            }
+            body {
+                font-family: Calibri;
+
+            }
+            .PDFTitle {
+                text-align: center;
+                font-size: 17px;
+                margin-bottom: 27px;
+            }
+            .tg  {
+                border-collapse:collapse;
+                border-spacing:0;
+                margin:0px auto;
+                table-layout: fixed; 
+            }
+            .tg1 {
+                border-collapse:collapse;
+                border-spacing:0;
+                margin:0px auto; 
+
+            }
+            .LeftCellTg1{
+                background: #5E88AD;
+                color: #fff;
+                border: 1px solid #fff;
+                width: 30%;
+                height: 31px;
+            }
+
+            .middleCellTg1 {
+                border-width: 1px 0px 1px 0px;
+                border-style: solid;
+                border-color: #5E88AD;
+                word-wrap: break-word;
+            }
+            .rightCellTg1{
+                border-width: 1px 1px 1px 0px;
+                border-style: solid;
+                border-color: #5E88AD;
+                width: 30%;
+                height: 31px;
+                word-wrap: break-word;
+            }
+            .HeaderTg{
+                background: #002950;;
+                color: #fff;
+                height: 31px;
+            }
+            .CellTg{
+                border: 1px solid #002950;;
+                height: 31px;
+                word-wrap: break-word;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="header" style="position: running(header);">
+            <div style="margin-bottom:35px;background: url({!$Resource.MMPJ_TOPG_LogoPDFheader}) no-repeat;background-position: center;width: 110%;height:100px;"/>
+        </div>
+        <div class="PDFTitle" style="">
+            <span style="border-bottom: 1px solid #000 !Important;padding-bottom: 9px;">Project Descriptions</span>
+        </div>
+        <table  border="0" width="100%" cellspacing="0" cellpadding="5" style="Padding-bottom:15px;">
+            <tr>
+                <td class="LeftCellTg1">Project Name :</td>
+                <td class="CellTg">
+                    <apex:outputField value="{!Project.name}" />
+                </td>
+                <td class="LeftCellTg1">Start Date :</td>
+                <td class="CellTg">
+                    <apex:outputField value="{!Project.MMPJ_TOPG_StartDate__c}" />
+                </td>
+            </tr>
+            <tr>
+                <td class="LeftCellTg1"> Project Type :</td>
+                <td class="CellTg">
+                    <apex:outputField value="{!Project.MMPJ_TOPG_ProjectType__c}"/>
+                </td>
+                <td class="LeftCellTg1"> End Date :</td>
+                <td class="CellTg">
+                    <apex:outputField value="{!Project.MMPJ_TOPG_EndDate__c}"/>
+                </td>
+            </tr>     
+            <tr>
+                <td class="LeftCellTg1">Project Topic :</td> 
+                <td class="CellTg">
+                    <apex:outputField value="{!Project.MMPJ_TOPG_ProjectTopic__c}"  />
+                </td>
+                <td class="LeftCellTg1">Forecast Budget :</td>
+                <td class="CellTg">
+                    <apex:outputField value="{!Project.MMPJ_TOPG_ForecastBudget__c}"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="LeftCellTg1">Project Owner :</td>
+                <td class="CellTg">
+                    <apex:outputField value="{!Project.MMPJ_TOPG_ProjectOwner__c}"  />
+                </td>
+                <td class="LeftCellTg1">Actuals :</td>
+                <td class="CellTg">
+                    <apex:outputField value="{!Project.MMPJ_TOPG_Actuals__c}"/>
+                </td> 
+            </tr>
+            <tr>     
+                <th/>     
+                <td/>   
+            </tr>
+            <tr>     
+                <td class="LeftCellTg1" colspan="4">Description :</td>         
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <apex:outputField value="{!Project.MMPJ_TOPG_Description__c}"/>
+                </td>
+            </tr>
+        </table>
+        <div style="page-break-inside: avoid;">
+            <div class="PDFTitle">
+                <span style="border-bottom: 1px solid #000 !Important;padding-bottom: 9px;">Project Milestones</span>
+            </div>
+            <div class="PDFTitle" style="">
+                <span style="border-bottom: 1px solid #000 !Important;padding-bottom: 9px;">Project Name : {!Project.name}</span>
+            </div>
+            <table width="100%" cellspacing="0" cellpadding="5" style="Padding-bottom:15px;">
+                <tr class="HeaderTg">
+                    <th align="center">Title</th>
+                    <th align="center">Description</th>
+                    <th align="center">RACI</th>
+                    <th align="center">Date</th>
+                    <th align="center">Remaining Time</th>
+                    <th align="center">Status</th>
+                    <th align="center">Flag</th>
+                </tr>
+                <apex:repeat value="{!listMilesStonesToShow}" var="Milestone">
+                    <tr >
+                        <td class="CellTg">
+                            <apex:outputField value="{!Milestone.MMPJ_TOPG_MilestoneTitle__c}"/>
+                        </td>   
+                        <td class="CellTg">
+                            <apex:outputField value=" {!Milestone.MMPJ_TOPG_DeliverableDescription__c}"/>
+                        </td>
+                        <td class="CellTg">
+                            <apex:outputText value="R: {!Milestone.MMPJ_TOPG_R__c}" rendered="{!AND(Milestone.MMPJ_TOPG_R__c != null,Milestone.MMPJ_TOPG_R__c != '')}"/> 
+                            <apex:outputText value="A: {!Milestone.MMPJ_TOPG_A__c}" rendered="{!AND(Milestone.MMPJ_TOPG_A__c != null,Milestone.MMPJ_TOPG_A__c != '')}"/> 
+                            <apex:outputText value="C: {!Milestone.MMPJ_TOPG_C__c}" rendered="{!AND(Milestone.MMPJ_TOPG_C__c != null,Milestone.MMPJ_TOPG_C__c != '')}"/> 
+                            <apex:outputText value="I: {!Milestone.MMPJ_TOPG_I__c}" rendered="{!AND(Milestone.MMPJ_TOPG_I__c != null,Milestone.MMPJ_TOPG_I__c != '')}"/> 
+                        </td>
+                        <td class="CellTg" align="center">
+                            <apex:outputField value="{!Milestone.MMPJ_TOPG_Date__c}"/>
+                        </td>
+                        <td class="CellTg">
+                            <apex:outputtext value="{!Milestone.MMPJ_TOPG_RemainingTime__c}  days left"/>
+                        </td>
+                        <td class="CellTg">
+                            <apex:outputField value="{!Milestone.MMPJ_TOPG_MMPJ_Status__c}"/>
+                        </td>
+                        <td class="CellTg" align="center">
+                            <apex:image value="{!IF((Milestone.MMPJ_TOPG_Flag__c=="GreenFlag"), URLFOR($Resource.MMPJ_TOPG_GreenFlag),
+                                IF ((Milestone.MMPJ_TOPG_Flag__c=="RedFlag"), URLFOR($Resource.MMPJ_TOPG_RedFlag),
+                                IF ((Milestone.MMPJ_TOPG_Flag__c=="Greyflag"), URLFOR($Resource.MMPJ_TOPG_YellowFlag),'')))}" width="20" height="20"/>
+                        </td>
+                    </tr>   
+                </apex:repeat>
+            </table>
+        </div>
+        <div style="page-break-inside: avoid;">
+            <div class="PDFTitle">
+                <span style="border-bottom: 1px solid #000 !Important;padding-bottom: 9px;">Project To Do</span>
+            </div>
+            <div class="PDFTitle" style="">
+                <span style="border-bottom: 1px solid #000 !Important;padding-bottom: 9px;">Project Name : {!Project.name}</span>
+            </div>
+            <table width="100%" cellspacing="0" cellpadding="5" style="Padding-bottom:15px;">
+                <tr class="HeaderTg">
+                    <th align="center">Title</th>
+                    <th align="center">Responsible</th>
+                    <th align="center">RAID</th>
+                    <th align="center">Highlight</th>
+                    <th align="center">Expected Date</th>
+                    <th align="center">Status</th>
+                    <th align="center">Desc.</th>
+                    <th align="center">Flag.</th>
+                </tr>
+                <apex:repeat value="{!listTodos}" var="todo">
+                    <tr >
+                        <td class="CellTg">
+                            <apex:outputField value="{!todo.MMPJ_TOPG_Title__c}"/>
+                        </td>   
+                        <td class="CellTg">
+                            <apex:outputField value=" {!todo.MMPJ_TOPG_Contact__c}" rendered="{!todo.MMPJ_TOPG_Contact__c!=null}"/>
+                            <apex:outputField value="{!todo.MMPJ_TOPG_User__c}"  rendered="{!todo.MMPJ_TOPG_User__c!=null}"/>
+                        </td>
+                        <td class="CellTg">
+                            <apex:outputField value="{!todo.MMPJ_TOPG_RAID__c}"/>
+                        </td>
+                        <td class="CellTg" align="center">
+                            <apex:outputField value="{!todo.MMPJ_TOPG_Highlight__c}"/>
+                        </td>
+                        <td class="CellTg">
+                            <apex:outputField value="{!todo.MMPJ_TOPG_ExpectedDate__c}"/>
+                        </td>
+                        <td class="CellTg">
+                            <apex:outputField value="{!todo.MMPJ_TOPG_Status__c}"/>
+                        </td>
+                        <td class="CellTg" align="center">
+                            <apex:outputField value="{!todo.MMPJ_TOPG_Desc__c}"/>
+                        </td>
+                        <td class="CellTg" align="center"> 
+                            <apex:image alt="{!todo.MMPJ_TOPG_Flag__c}" width="25px" height="25px" value="{!URLFOR($Resource.MMPJ_TOPG_Smileys, 'done_smiley.png')}" rendered="{!todo.MMPJ_TOPG_Status__c == 'Done'}" />
+                            <apex:image alt="Late" width="25px" height="25px" value="{!URLFOR($Resource.MMPJ_TOPG_Smileys, 'late_smiley.png')}" rendered="{!todo.MMPJ_TOPG_Status__c == 'Late'}" />
+                            <apex:image alt="On Going" width="25px" height="25px" value="{!URLFOR($Resource.MMPJ_TOPG_Smileys, 'ongoing_smiley.png')}" rendered="{!todo.MMPJ_TOPG_Status__c == 'On Going'}" />
+                            <apex:image alt="Planned" width="25px" height="25px" value="{!URLFOR($Resource.MMPJ_TOPG_Smileys, 'planned_smiley.png')}" rendered="{!todo.MMPJ_TOPG_Status__c == 'Planned'}" /> 
+                        </td>
+                    </tr>   
+                </apex:repeat>
+            </table>
+        </div>
+    </body>
+</apex:page>

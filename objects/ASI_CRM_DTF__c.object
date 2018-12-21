@@ -1,0 +1,809 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>CN - Digital Initiatives Application Form</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>ASI_CRM_CN_3rd_parties__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Recommendation for agencies / 3rd parties</inlineHelpText>
+        <label>Recommendation for agencies/3rd parties</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_Annual_Maintenance_RMB__c</fullName>
+        <externalId>false</externalId>
+        <label>Annual Maintenance(RMB)</label>
+        <precision>12</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_App__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>User needs to check one in this section</description>
+        <externalId>false</externalId>
+        <label>App</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_Application_Date__c</fullName>
+        <defaultValue>TODAY()</defaultValue>
+        <description>Default value is creation date</description>
+        <externalId>false</externalId>
+        <label>Application Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_ConsumerOtherContent__c</fullName>
+        <externalId>false</externalId>
+        <label>-</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_ConsumerOther__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Other</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_Consumer__c</fullName>
+        <externalId>false</externalId>
+        <label>Consumer</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_CustomerOtherContent__c</fullName>
+        <externalId>false</externalId>
+        <label>-</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_CustomerOther__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Other</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_Customer__c</fullName>
+        <externalId>false</externalId>
+        <label>Customer</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_Data_Capture_Mechanism__c</fullName>
+        <externalId>false</externalId>
+        <label>Data Capture Mechanism</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_Data_Collection__c</fullName>
+        <externalId>false</externalId>
+        <label>Data Collection</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>digital</fullName>
+                    <default>false</default>
+                    <label>digital</label>
+                </value>
+                <value>
+                    <fullName>manual</fullName>
+                    <default>false</default>
+                    <label>manual</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_Department__c</fullName>
+        <description>create by department from profile cannot change</description>
+        <externalId>false</externalId>
+        <formula>CreatedBy.Department</formula>
+        <label>Department</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_Developer_Supplier_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Developer：Supplier Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_Duration_Detail__c</fullName>
+        <externalId>false</externalId>
+        <label>Duration Detail</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_E_commerce__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>User needs to check one in this section</description>
+        <externalId>false</externalId>
+        <label>E-commerce</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_Elements_of_backgroundContext__c</fullName>
+        <externalId>false</externalId>
+        <label>Elements of background/Context</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_EmployeeOtherContent__c</fullName>
+        <externalId>false</externalId>
+        <label>-</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_EmployeeOther__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Other</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_Estimated_Investment_RMB__c</fullName>
+        <externalId>false</externalId>
+        <label>Estimated Investment(RMB)</label>
+        <precision>12</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_Function_Informed__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Suggested function(s) to be involved / informed</inlineHelpText>
+        <label>Function(s) to be involved/informed</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_Gaming__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>User needs to check one in this section</description>
+        <externalId>false</externalId>
+        <label>Gaming</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_IT_Technical_advice__c</fullName>
+        <externalId>false</externalId>
+        <label>IT Technical advice</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_Idea_Description__c</fullName>
+        <externalId>false</externalId>
+        <label>Idea Description</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_Improve_Awareness_Affinity__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Improve Awareness/Affinity</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_Improve_Customer_Service__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Improve Customer Service</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_Improve_Employee_Service__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Improve Employee Service</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_Improve_Online_Sales__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Improve Online Sales</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_Improve_eCRM_Loyalty__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Improve eCRM/Loyalty</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_Integrate_Leverage__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Any known existing initiatives with opportunity to integrate/leverage?</inlineHelpText>
+        <label>Existing initiatives to Intergrate</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_Internal_Employee__c</fullName>
+        <externalId>false</externalId>
+        <label>Internal Employee</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_Legal_advice__c</fullName>
+        <externalId>false</externalId>
+        <label>Legal advice</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_Maintenance_Supplier_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Maintenance: Supplier Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_Measurements__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>How will you measure success</inlineHelpText>
+        <label>Success Measurements KPI</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_ObjectivesAchievements__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>What are the project&apos;s objectives and expected achievements?</inlineHelpText>
+        <label>Objectives and Expected Achievements</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_Optimize_Workflow__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Optimize Workflow</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_Other_Remarks__c</fullName>
+        <externalId>false</externalId>
+        <label>Other Remarks</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_Other__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>User needs to check one in this section</description>
+        <externalId>false</externalId>
+        <label>Other</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_Overall_comment__c</fullName>
+        <externalId>false</externalId>
+        <label>Overall comment</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_Planned_Launch_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Planned Launch Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_Project_Duration__c</fullName>
+        <externalId>false</externalId>
+        <label>Project Duration</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>One off</fullName>
+                    <default>false</default>
+                    <label>One off</label>
+                </value>
+                <value>
+                    <fullName>On-going</fullName>
+                    <default>false</default>
+                    <label>On-going</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_Project_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Project Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_Project_Target_Stakeholder__c</fullName>
+        <externalId>false</externalId>
+        <label>Project Target Stakeholder</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Consumer</fullName>
+                    <default>false</default>
+                    <label>Consumer</label>
+                </value>
+                <value>
+                    <fullName>Customer</fullName>
+                    <default>false</default>
+                    <label>Customer</label>
+                </value>
+                <value>
+                    <fullName>Internal Employee</fullName>
+                    <default>false</default>
+                    <label>Internal Employee</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_QR_code__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>User needs to check one in this section</description>
+        <externalId>false</externalId>
+        <label>QR code</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_Require_Support__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Do you require any one on one support with this application?</inlineHelpText>
+        <label>Require Support or Not</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_Search__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>User needs to check one in this section</description>
+        <externalId>false</externalId>
+        <label>Search</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Draft</fullName>
+                    <default>false</default>
+                    <label>Draft</label>
+                </value>
+                <value>
+                    <fullName>Submitted</fullName>
+                    <default>false</default>
+                    <label>Submitted</label>
+                </value>
+                <value>
+                    <fullName>Approved</fullName>
+                    <default>false</default>
+                    <label>Approved</label>
+                </value>
+                <value>
+                    <fullName>Pending for Decision</fullName>
+                    <default>false</default>
+                    <label>Pending for Decision</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_SysApprover1__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Sys Approver 1</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>DTF_SysApprover1</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_SysApprover2__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Sys Approver 2</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>DTF_SysApprover2</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_SysApprover3__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Sys Approver 3</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>DTF_SysApprover3</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_SysApprover4__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Sys Approver 4</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>DTF_SysApprover4</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_Title__c</fullName>
+        <description>create by title from profile cannot change</description>
+        <externalId>false</externalId>
+        <formula>CreatedBy.Title</formula>
+        <label>Title</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_Website__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>User needs to check one in this section</description>
+        <externalId>false</externalId>
+        <label>Website</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_Wechat__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>User needs to check one in this section</description>
+        <externalId>false</externalId>
+        <label>Wechat</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_Weibo__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Weibo</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_autoApprove__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Check is approve or not</description>
+        <externalId>false</externalId>
+        <label>Auto Approve</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>Digital Initiatives Form</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>ASI_CRM_CN_Project_Name__c</columns>
+        <columns>ASI_CRM_CN_Application_Date__c</columns>
+        <columns>ASI_CRM_CN_Status__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <displayFormat>DTF-{00000000}</displayFormat>
+        <label>Form ID</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Digital Initiatives Forms</pluralLabel>
+    <recordTypes>
+        <fullName>ASI_CRM_CN_DTF_ReadOnly</fullName>
+        <active>true</active>
+        <label>CRM CN DTF Read Only</label>
+        <picklistValues>
+            <picklist>ASI_CRM_CN_Data_Collection__c</picklist>
+            <values>
+                <fullName>digital</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>manual</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ASI_CRM_CN_Project_Duration__c</picklist>
+            <values>
+                <fullName>On-going</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>One off</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ASI_CRM_CN_Project_Target_Stakeholder__c</picklist>
+            <values>
+                <fullName>Consumer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Internal Employee</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ASI_CRM_CN_Status__c</picklist>
+            <values>
+                <fullName>Pending for Decision</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>ASI_CRM_CN_DTF_Standard</fullName>
+        <active>true</active>
+        <label>CRM CN DTF Standard</label>
+        <picklistValues>
+            <picklist>ASI_CRM_CN_Data_Collection__c</picklist>
+            <values>
+                <fullName>digital</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>manual</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ASI_CRM_CN_Project_Duration__c</picklist>
+            <values>
+                <fullName>On-going</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>One off</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ASI_CRM_CN_Project_Target_Stakeholder__c</picklist>
+            <values>
+                <fullName>Consumer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Internal Employee</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ASI_CRM_CN_Status__c</picklist>
+            <values>
+                <fullName>Draft</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts/>
+    <sharingModel>Private</sharingModel>
+    <validationRules>
+        <fullName>ASI_CRM_CN_checkContent</fullName>
+        <active>true</active>
+        <errorConditionFormula>ASI_CRM_CN_ConsumerOther__c&amp;&amp;ASI_CRM_CN_ConsumerOtherContent__c==&apos;&apos; || ASI_CRM_CN_CustomerOther__c&amp;&amp;ASI_CRM_CN_CustomerOtherContent__c==&apos;&apos; || ASI_CRM_CN_EmployeeOther__c&amp;&amp;ASI_CRM_CN_EmployeeOtherContent__c==&apos;&apos;</errorConditionFormula>
+        <errorMessage>Needs to input the content</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>ASI_CRM_CN_checkPlatform</fullName>
+        <active>true</active>
+        <description>Check Project Platform Selection</description>
+        <errorConditionFormula>RecordType.DeveloperName == &apos;ASI_CRM_CN_DTF_Standard&apos;&amp;&amp;NOT(ASI_CRM_CN_Website__c)&amp;&amp;NOT(ASI_CRM_CN_App__c)&amp;&amp;NOT(ASI_CRM_CN_Wechat__c)&amp;&amp;NOT(ASI_CRM_CN_Gaming__c)&amp;&amp;NOT(ASI_CRM_CN_Other__c)&amp;&amp;NOT(ASI_CRM_CN_Weibo__c)&amp;&amp;NOT(ASI_CRM_CN_E_commerce__c)&amp;&amp;NOT(ASI_CRM_CN_Search__c)&amp;&amp;NOT(ASI_CRM_CN_QR_code__c)</errorConditionFormula>
+        <errorMessage>User needs to check one in Project Platform Selection</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>ASI_CRM_CN_checkPurpose</fullName>
+        <active>false</active>
+        <description>Check Project Target Stakeholder and Purpose Section</description>
+        <errorConditionFormula>ASI_CRM_CN_Consumer__c==&apos;&apos;&amp;&amp;NOT(ASI_CRM_CN_Improve_Awareness_Affinity__c)&amp;&amp;NOT(ASI_CRM_CN_Improve_Online_Sales__c)&amp;&amp;NOT(ASI_CRM_CN_Improve_eCRM_Loyalty__c)&amp;&amp;NOT(ASI_CRM_CN_ConsumerOther__c)&amp;&amp;ASI_CRM_CN_Customer__c==&apos;&apos;&amp;&amp;NOT(ASI_CRM_CN_Improve_Customer_Service__c)&amp;&amp;NOT(ASI_CRM_CN_CustomerOther__c)&amp;&amp;ASI_CRM_CN_Internal_Employee__c==&apos;&apos;&amp;&amp;NOT(ASI_CRM_CN_Improve_Employee_Service__c)&amp;&amp;NOT(ASI_CRM_CN_Optimize_Workflow__c)&amp;&amp;NOT(ASI_CRM_CN_EmployeeOther__c)</errorConditionFormula>
+        <errorDisplayField>ASI_CRM_CN_ConsumerOtherContent__c</errorDisplayField>
+        <errorMessage>User needs to check one in Project Target Stakeholder and Purpose</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>ASI_CRM_CN_checkPurpose2</fullName>
+        <active>true</active>
+        <description>Check Project Target Stakeholder and Purpose Section</description>
+        <errorConditionFormula>OR((ISPICKVAL( ASI_CRM_CN_Project_Target_Stakeholder__c, &apos;Consumer&apos;) &amp;&amp; ASI_CRM_CN_Consumer__c == &apos;&apos;) &amp;&amp; (( NOT(ASI_CRM_CN_Improve_Awareness_Affinity__c) &amp;&amp; NOT(ASI_CRM_CN_Improve_Online_Sales__c) &amp;&amp; NOT(ASI_CRM_CN_Improve_eCRM_Loyalty__c) &amp;&amp; NOT(ASI_CRM_CN_ConsumerOther__c) &amp;&amp; ISBLANK(TEXT(ASI_CRM_CN_Data_Collection__c))) || ( ASI_CRM_CN_Improve_Customer_Service__c || ASI_CRM_CN_Improve_Employee_Service__c || ASI_CRM_CN_Optimize_Workflow__c ) || (( ASI_CRM_CN_Improve_Awareness_Affinity__c || ASI_CRM_CN_Improve_Online_Sales__c || ASI_CRM_CN_Improve_eCRM_Loyalty__c || NOT(ISBLANK(TEXT(ASI_CRM_CN_Data_Collection__c))) ) &amp;&amp; ASI_CRM_CN_ConsumerOther__c )), 
+
+
+(ISPICKVAL( ASI_CRM_CN_Project_Target_Stakeholder__c, &apos;Customer&apos;) &amp;&amp; ASI_CRM_CN_Customer__c == &apos;&apos;) &amp;&amp; (( NOT(ASI_CRM_CN_Improve_Customer_Service__c) &amp;&amp; NOT(ASI_CRM_CN_ConsumerOther__c)) || ( ASI_CRM_CN_Improve_Awareness_Affinity__c || ASI_CRM_CN_Improve_Online_Sales__c || ASI_CRM_CN_Improve_eCRM_Loyalty__c || ASI_CRM_CN_Improve_Employee_Service__c || ASI_CRM_CN_Optimize_Workflow__c || NOT(ISBLANK(TEXT(ASI_CRM_CN_Data_Collection__c))) ) || ( ASI_CRM_CN_Improve_Customer_Service__c &amp;&amp; ASI_CRM_CN_ConsumerOther__c )), 
+
+
+(ISPICKVAL( ASI_CRM_CN_Project_Target_Stakeholder__c, &apos;Internal Employee&apos;) &amp;&amp; ASI_CRM_CN_Internal_Employee__c == &apos;&apos;) &amp;&amp; (( NOT(ASI_CRM_CN_Improve_Employee_Service__c) &amp;&amp; NOT(ASI_CRM_CN_Optimize_Workflow__c) &amp;&amp; NOT(ASI_CRM_CN_ConsumerOther__c)) || ( ASI_CRM_CN_Improve_Awareness_Affinity__c || ASI_CRM_CN_Improve_Online_Sales__c || ASI_CRM_CN_Improve_eCRM_Loyalty__c || ASI_CRM_CN_Improve_Customer_Service__c || NOT(ISBLANK(TEXT(ASI_CRM_CN_Data_Collection__c)))) || (( ASI_CRM_CN_Improve_Employee_Service__c || ASI_CRM_CN_Optimize_Workflow__c ) &amp;&amp; ASI_CRM_CN_ConsumerOther__c )))</errorConditionFormula>
+        <errorDisplayField>ASI_CRM_CN_Project_Target_Stakeholder__c</errorDisplayField>
+        <errorMessage>User needs to check the corresponding Project Purpose or Other</errorMessage>
+    </validationRules>
+    <visibility>Public</visibility>
+</CustomObject>

@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Used for MMPJ TopGun app (Old BMC label  renamed to maket)</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>true</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>MMPJ_TOPG_BISFolder__c</fullName>
+        <externalId>false</externalId>
+        <label>BIS Folder</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>MMPJ_TOPG_BISLink__c</fullName>
+        <externalId>false</externalId>
+        <formula>HYPERLINK($Label.MMPJ_TOPG_BISURL &amp; MMPJ_TOPG_BISFolder__c, &quot;BIS URL&quot; ,&quot;_blank&quot;)</formula>
+        <label>BIS Link</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MMPJ_TOPG_BMCOwner__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Market KPOC</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>BMCs</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>MMPJ_TOPG_MarketTypeMarketType__c</fullName>
+        <externalId>false</externalId>
+        <label>Market Type</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Classic Market</fullName>
+                    <default>false</default>
+                    <label>Classic Market</label>
+                </value>
+                <value>
+                    <fullName>Lead Market</fullName>
+                    <default>false</default>
+                    <label>Lead Market</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>MMPJ_TOPG_The_Brand__c</fullName>
+        <externalId>false</externalId>
+        <label>Brand</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>All brands</fullName>
+                    <default>true</default>
+                    <label>All brands</label>
+                </value>
+                <value>
+                    <fullName>Martell</fullName>
+                    <default>false</default>
+                    <label>Martell</label>
+                </value>
+                <value>
+                    <fullName>Mumm</fullName>
+                    <default>false</default>
+                    <label>Mumm</label>
+                </value>
+                <value>
+                    <fullName>Perrier-Jouët</fullName>
+                    <default>false</default>
+                    <label>Perrier-Jouët</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <label>Market</label>
+    <listViews>
+        <fullName>MMPJ_TOPG_All_BMC</fullName>
+        <columns>NAME</columns>
+        <columns>MMPJ_TOPG_MarketTypeMarketType__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <label>Market Name</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Markets</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>MMPJ_TOPG_MarketTypeMarketType__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>MMPJ_TOPG_BMCOwner__c</customTabListAdditionalFields>
+        <listViewButtons>MMPJ_TOPG_NewBrand</listViewButtons>
+        <listViewButtons>MMPJ_TOPG_NewMarket</listViewButtons>
+        <searchResultsAdditionalFields>MMPJ_TOPG_BMCOwner__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>MMPJ_TOPG_MarketTypeMarketType__c</searchResultsAdditionalFields>
+        <searchResultsCustomButtons>MMPJ_TOPG_NewBrand</searchResultsCustomButtons>
+        <searchResultsCustomButtons>MMPJ_TOPG_NewMarket</searchResultsCustomButtons>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+    <webLinks>
+        <fullName>BIS</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>BIS</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>if({!ISBLANK(MMPJ_TOPG_BMC__c.MMPJ_TOPG_BISFolder__c)})
+alert(&apos;The selected BMC has no BIS folder mapped. Please contact your admin&apos;);
+else
+window.open(&apos;https://portal.pernod-ricard.com/bis/BIS/{!MMPJ_TOPG_BMC__c.MMPJ_TOPG_BISFolder__c}&apos;, &apos;_blank&apos;);</url>
+    </webLinks>
+    <webLinks>
+        <fullName>MMPJ_TOPG_NewBrand</fullName>
+        <availability>online</availability>
+        <description>MMPJ TOPGUn</description>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>New Brand</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <requireRowSelection>false</requireRowSelection>
+        <url>{!URLFOR($Action.MMPJ_TOPG_Brand__c.New,null ,null, true)}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>MMPJ_TOPG_NewMarket</fullName>
+        <availability>online</availability>
+        <description>MMPJ TOPGUN</description>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>New Market</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>{!URLFOR($Action.MMPJ_TOPG_Market__c.New,null ,null, true)}</url>
+    </webLinks>
+</CustomObject>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>ASI_CRM_SG_All_Record_Type_Share</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>ASI CRM SG All Record Type Share</label>
+        <sharedTo>
+            <group>ASI_CRM_SG_All_Record_Types_Share</group>
+        </sharedTo>
+        <booleanFilter>1 OR 2 OR 3 OR 4 OR 5 OR 6</booleanFilter>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>SG Contract Margin Credit Note,SG Contract Margin Credit Note (Read Only)</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>SG Contract Margin Debit Note,SG Contract Margin Debit Note (Read Only)</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>SG Prompt Payment Credit Note,SG Prompt Payment Credit Note (Read Only)</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>SG Prompt Payment Debit Note (Read Only),SG Prompt Payment Debit Note</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>SG Back Rebate Credit Note,SG Back Rebate Credit Note (Read Only)</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>SG Back Rebate Debit Note,SG Back Rebate Debit Note (Read Only)</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>ASI_CRM_SG_Finance_Verify_Share</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>ASI CRM SG Finance Verify Share</label>
+        <sharedTo>
+            <group>ASI_CRM_SG_Finance_Verify_Share</group>
+        </sharedTo>
+        <booleanFilter>1 OR 2 OR 3 OR 4 OR 5 OR 6</booleanFilter>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>SG Contract Margin Credit Note,SG Contract Margin Credit Note (Read Only)</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>SG Contract Margin Debit Note,SG Contract Margin Debit Note (Read Only)</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>SG Prompt Payment Credit Note,SG Prompt Payment Credit Note (Read Only)</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>SG Prompt Payment Debit Note (Read Only),SG Prompt Payment Debit Note</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>SG Back Rebate Credit Note,SG Back Rebate Credit Note (Read Only)</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>SG Back Rebate Debit Note,SG Back Rebate Debit Note (Read Only)</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>ASI_CRM_SG_Prompt_Payment_Sales_Team_Share</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>ASI CRM SG Prompt Payment Sales Team Share</label>
+        <sharedTo>
+            <group>ASI_CRM_SG_Prompt_Payment_Sales_Team</group>
+        </sharedTo>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>SG Prompt Payment Credit Note,SG Prompt Payment Credit Note (Read Only)</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>SG Prompt Payment Debit Note (Read Only),SG Prompt Payment Debit Note</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>ASI_CRM_SG_Prompt_Payment_Share</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>ASI CRM SG Prompt Payment Share</label>
+        <sharedTo>
+            <group>ASI_CRM_SG_Prompt_Payment_Admin</group>
+        </sharedTo>
+        <booleanFilter>1 OR 2 OR 3 or 4</booleanFilter>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>SG Prompt Payment Credit Note,SG Prompt Payment Credit Note (Read Only)</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>SG Prompt Payment Debit Note (Read Only),SG Prompt Payment Debit Note</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>SG Manual Credit Note,SG Manual Credit Note Read Only</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>SG Manual Debit Note,SG Manual Debit Note Read Only</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+</SharingRules>

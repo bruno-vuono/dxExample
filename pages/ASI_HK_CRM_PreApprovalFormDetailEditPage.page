@@ -1,0 +1,305 @@
+<apex:page standardController="ASI_HK_CRM_Pre_Approval_Form_Item__c" extensions="ASI_HK_CRM_PreApprovalFormDetailEditCON"
+    recordSetVar="pafItems" sidebar="false">
+    <apex:stylesheet value="{!URLFOR($Resource.ASI_HK_CRM_Common, '/ASI_HK_CRM_Common/css/common.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.ASI_HK_CRM_PreApprovalFormDetailEdit, '/ASI_HK_CRM_PreApprovalFormDetailEdit/libs/jquery/css/redmond/jquery-ui-1.10.3.custom.min.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.ASI_HK_CRM_PreApprovalFormDetailEdit, '/ASI_HK_CRM_PreApprovalFormDetailEdit/styles/common.css')}" />
+    <apex:includeScript value="{!URLFOR($Resource.ASI_HK_CRM_PreApprovalFormDetailEdit, '/ASI_HK_CRM_PreApprovalFormDetailEdit/libs/jquery/js/jquery-1.9.1.min.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.ASI_HK_CRM_PreApprovalFormDetailEdit, '/ASI_HK_CRM_PreApprovalFormDetailEdit/libs/jquery/js/jquery-ui-1.10.3.custom.min.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.ASI_HK_CRM_PreApprovalFormDetailEdit, '/ASI_HK_CRM_PreApprovalFormDetailEdit/libs/DataTables/jquery.dataTables.min.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.ASI_HK_CRM_Common, '/ASI_HK_CRM_Common/scripts/CurrencyUtil.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.ASI_HK_CRM_PreApprovalFormDetailEdit, '/ASI_HK_CRM_PreApprovalFormDetailEdit/scripts/common.js')}" />
+    
+    <style>
+        #dialogBG {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 10000;
+            background: rgb(255, 255, 255) transparent;
+            background-color: rgba(255, 255, 255, 0.85);
+            background-image: url({!URLFOR($Resource.ASI_HK_CRM_Common, '/ASI_HK_CRM_Common/img/bg_loading.png')});
+            background-repeat: repeat;
+            filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#D8FFFFFF, endColorstr=#D8FFFFFF);
+            -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#D8FFFFFF, endColorstr=#D8FFFFFF)";
+            display: none;
+        }
+        #loadingDiv {
+            position: relative;
+            top: 48%;
+            left: 45%;
+            vertical-align: middle;
+            display: block;
+        }
+        #loadingImg {
+            display: inline;
+            float: left;
+            height: 14px;
+            width: 14px;
+        }
+        #loadingText {
+            display: inline;
+            color: #666;
+            font-weight: bold;
+            margin-left: 6px;
+            font-size: 1em;
+        }
+        .notAllowClick {
+            pointer-events: none;
+        }
+    </style>
+    <div id="dialogBG">
+        <div id="loadingDiv">
+            <img id="loadingImg" src="/img/loading.gif" title="Please Wait..."/>
+            <span id="loadingText">Loading...</span>
+        </div>
+    </div>
+    <!--
+    <apex:pageBlock title="{!$ObjectType.ASI_HK_CRM_Pre_Approval_Form__c.Label}" rendered="{!Not(allowEdit)}"> 
+    <apex:pageBlock title="{!$ObjectType.ASI_HK_CRM_Pre_Approval_Form__c.Label}" > 
+        <apex:pageMessages />
+        <apex:outputLink value="/{!BLANKVALUE(headerId, 'home/home.jsp')}">Return</apex:outputLink>
+    </apex:pageBlock>
+    -->
+    <!-- <apex:outputPanel style="min-width:1150px" rendered="{!allowEdit}"> -->
+    <apex:outputPanel style="min-width:1150px">
+        <div id="pageTitle"><apex:outputText value="{!pageTitle}"/></div>
+        <div id="page-btn-div">
+            <div id="page-btn-inner-div">
+                <apex:outputPanel rendered="{!allowEdit}" >
+                <input type="button" name="saveAll" class="sf-page-btn" value="Save" onclick="saveAll()" />
+                <input type="button" name="quickSave" class="sf-page-btn" value="Quick Save" onclick="saveAll(true)" />
+                </apex:outputPanel>
+                <input type="button" name="cancel" class="sf-page-btn" value="Cancel" onclick="cancelAll()" />
+            </div>
+        </div>
+
+        <div id="tabs-detail"> 
+            <ul>
+                <li><a href="#tab-per-product">Target Volume and Price</a></li>
+                <li><a href="#tab-lineitem">Mechanic Details</a></li>
+                <li><a href="#tab-per-mechanic">Conditions of Payments</a></li>
+            </ul>
+            <div id="tab-per-product">
+                <apex:pageBlock title="Target Volume and Price" id="page-block-paf-quantity">
+                    <table id="paf-item-per-product-table" class="sf-table">
+                        <thead> 
+                            <tr>
+                                <th class="sf-th">&nbsp;</th>
+                                <th class="sf-th">Pricing Item</th>
+                                <th class="sf-th">{!$ObjectType.ASI_HK_CRM_Pre_Approval_Form_Item__c.Fields.ASI_HK_CRM_Target_Volume_Qty__c.Label}</th>
+                                <th class="sf-th">{!$ObjectType.ASI_HK_CRM_Pre_Approval_Form_Item__c.Fields.ASI_HK_CRM_Price__c.Label}</th>
+                                <th class="sf-th">Reference Price</th>
+                                <th class="sf-th">{!$ObjectType.ASI_HK_CRM_Pre_Approval_Form_Item__c.Fields.ASI_HK_CRM_Pouring__c.Label}</th>
+                            </tr>
+                        </thead>
+                        <tbody id="paf-item-table-body-per-product">
+                            <tr class="def-row data-row">
+                                <td class="sf-td"><a class="paf-item-remove-btn non-link-btn">Remove</a></td>
+                                <td class="sf-td"></td>
+                                <td class="sf-td"><input type="text" name="quantity" maxlength="18" size="20" /></td>
+                                <td class="sf-td"><input type="text" name="price" maxlength="19" size="20" /></td>
+                                <td class="sf-td"><output type="text" name="referencePrice" /></td>
+                                <td class="sf-td"><input type="checkbox" name="pouring" /></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </apex:pageBlock>
+                
+                <apex:pageBlock title="Product List" id="page-block-product-list">
+                    <div id="product-list-div">
+                        <div id="product-filter-div" class="pd-search-div">
+                            <label>Pricing Item</label>
+                            <input type="text" id="pd-search-sku" class="pd-search-sku" name="sSKU" maxlength="255" size="30" />
+                            <label>{!$ObjectType.ASI_MFM_SKU_Code__c.Fields.ASI_MFM_Sub_brand__c.Label}</label>
+                            <select id="pd-search-sb" class="pd-search-sb">
+                                <option value=""></option>
+                                <apex:repeat value="{!sbSearchOptions}" var="sb" id="sb-search-repeat">
+                                <option value="{!sb[0]}">{!sb[1]}</option>
+                                </apex:repeat>
+                            </select>
+                            <label>{!$ObjectType.ASI_MFM_Sub_brand__c.Fields.ASI_MFM_Sub_brand_Code__c.Label}</label>
+                            <input type="text" id="pd-search-sbcode" class="pd-search-sku" name="sSBCode" maxlength="3" size="8" />
+                            <label>Std. Bottle Size (Cl)</label>
+                            <input type="text" id="pd-search-skusize" class="pd-search-sku" name="sSKUSize" maxlength="3" size="8" />
+                            <input type="button" id="pd-search-reset" value="Reset" />
+                               <div class="pd-search-sb-type-div">
+                                   <label>Quick Search:  </label>
+                                   <input type="button" class="pd-search-sb-type" name="absolut" value="Absolut" />
+                                   <input type="button" class="pd-search-sb-type" name="martell" value="Martell" />
+                                   <input type="button" class="pd-search-sb-type" name="chivas" value="Chivas" />
+                                   <input type="button" class="pd-search-sb-type" name="glenlivet" value="The Glenlivet" />
+                                   <input type="button" class="pd-search-sb-type" name="wine" value="Wine" />
+                                   <input type="button" class="pd-search-sb-type" name="champagne" value="Champagne" />
+                               </div>
+                        </div>
+                        <table id="product-table" class="sf-table">
+                            <thead>
+                                <tr>
+                                    <th class="sf-th">Action</th>
+                                    <th class="sf-th">{!$ObjectType.ASI_MFM_SKU_Code__c.Fields.ASI_MFM_Sub_brand__c.Label}</th> <!--20160411, edited by Leo-->
+                                    <th class="sf-th">Pricing Item</th> <!--20160411, edited by Leo-->
+                                    <th class="sf-th">{!$ObjectType.ASI_MFM_SKU_Code__c.Fields.ASI_HK_CRM_Std_Bottle_Size__c.Label}</th> <!--20160411, edited by Leo-->
+                                    <th class="sf-th">{!$ObjectType.ASI_MFM_SKU_Code__c.Fields.ASI_HK_CRM_Base_Price__c.Label}</th>
+                                    <th class="sf-th">Reference Price</th>
+                                    
+                                    
+                                   <!-- <th class="sf-th" rendered="False">Sku Code</th>
+                                    <th class="sf-th">Bottle Size</th>
+									-->
+                                </tr>
+                            </thead>
+                            <tbody id="product-table-body">
+                            </tbody>
+                        </table>
+                    </div>
+                </apex:pageBlock>
+            </div>
+            <div id="tab-lineitem">
+                <apex:pageBlock title="Mechanic Details" id="page-block-paf-lineitem">
+                    <table id="paf-item-lineitem-table" class="sf-table">
+                        <thead>
+                            <tr>
+                                <th class="sf-th">Action</th>
+                                <th class="sf-th">Item</th>
+                                <th class="sf-th">{!$ObjectType.ASI_HK_CRM_Pre_Approval_Form_Item__c.Fields.ASI_HK_CRM_Mechanic__c.Label}</th>
+                                <th class="sf-th">{!$ObjectType.ASI_HK_CRM_Pre_Approval_Form_Item__c.Fields.ASI_HK_CRM_Target_Volume_Qty__c.Label}</th>
+                                <th class="sf-th">{!$ObjectType.ASI_HK_CRM_Pre_Approval_Form_Item__c.Fields.ASI_HK_CRM_Price__c.Label}</th>
+                                <th class="sf-th">Options</th>
+                                <th class="sf-th">{!$ObjectType.ASI_MFM_Sub_brand__c.Fields.ASI_HK_CRM_Benchmark__c.Label}</th>
+                                <th class="sf-th">Investment Value</th>
+                            </tr>
+                        </thead>
+                        <tbody id="paf-item-table-body-lineitem">
+                            <tr class="def-row data-row">
+                                <td class="sf-td"><a class="paf-item-remove-btn non-link-btn">Remove</a></td>
+                                <td class="sf-td"></td>
+                                <td class="sf-td"></td>
+                                <td class="sf-td"><input type="text" name="quantity" maxlength="18" size="18" disabled="disabled" /></td>
+                                <td class="sf-td"><input type="text" name="price" maxlength="19" size="20" disabled="disabled" /></td>
+                                <td class="sf-td"></td>
+                                <td class="sf-td"></td>
+                                <td class="sf-td invest-val"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </apex:pageBlock>
+                
+                <apex:pageBlock title="Added Products" id="page-block-product-list-selected">
+                    <div id="product-list-div">
+                        <table id="product-table-selected" class="sf-table">
+                            <thead>
+                                <tr>
+                                    <th class="sf-th">Action</th>
+                                    <th class="sf-th">Item</th>
+                                    <th class="sf-th">{!$ObjectType.ASI_MFM_SKU_Code__c.Fields.ASI_MFM_Sub_brand__c.Label}</th>
+                                   <!-- <th class="sf-th">{!$ObjectType.ASI_MFM_SKU_Code__c.Fields.ASI_HK_CRM_Base_Price__c.Label}</th>!-->
+                                    <th class="sf-th">{!$ObjectType.ASI_HK_CRM_Pre_Approval_Form_Item__c.Fields.ASI_HK_CRM_Mechanic__c.Label}</th>
+                                </tr>
+                            </thead>
+                            <tbody id="product-table-selected-body">
+                            </tbody>
+                        </table>
+                    </div>
+                </apex:pageBlock>
+            </div>
+            <div id="tab-per-mechanic">
+                <apex:pageBlock title="Conditions of Payments" id="page-block-paf-per-mechanic">
+                    <table id="paf-item-per-mechanic-table" class="sf-table">
+                        <thead>
+                            <tr>
+                                <th class="sf-th">{!$ObjectType.ASI_HK_CRM_Pre_Approval_Form_Item__c.Fields.ASI_HK_CRM_Mechanic__c.Label}</th>
+                                <th class="sf-th">{!$ObjectType.ASI_HK_CRM_Pre_Approval_Form_Item__c.Fields.ASI_HK_CRM_Conditions_for_Payment__c.Label}</th>
+                            </tr>
+                        </thead>
+                        <tbody id="paf-item-table-body-per-mechanic">
+                            <tr class="def-row data-row">
+                                <td class="sf-td"></td>
+                                <td class="sf-td"><textarea style="width: 350px; height: 100px;" name="paymentCondition" maxlength="32768" /></td>   
+                                
+                            </tr>
+                        </tbody>
+                    </table>
+                </apex:pageBlock>
+            </div>
+        </div>
+        <div id="page-btn-div">
+            <div id="page-btn-inner-div">
+                <apex:outputPanel rendered="{!allowEdit}" >
+                <input type="button" name="saveAll" class="sf-page-btn" value="Save" onclick="saveAll()" />
+                <input type="button" name="quickSave" class="sf-page-btn" value="Quick Save" onclick="saveAll(true)" />
+                </apex:outputPanel>
+                <input type="button" name="cancel" class="sf-page-btn" value="Cancel" onclick="cancelAll()" />
+            </div>
+        </div>
+        <script type="text/javascript">
+        $('#tabs-detail').tabs();
+        </script>
+        
+    </apex:outputPanel>
+    <div id="hidden-info-div">
+        <select id="mechanic-select" class="mechanic-select">
+            <option value="null">---None---</option>
+            <apex:repeat value="{!mechanicOptions}" var="mechanicOption" id="mechanic-repeat">
+            <option value='{!mechanicOption[0]}'>{!mechanicOption[1]}</option> 
+            </apex:repeat>
+        </select>
+        <div id="mechanic-option-foc" class="mechanic-option-foc">
+            <div class="buy-free-box">
+                <span class="buy-free-line">
+                    <label>{!$ObjectType.ASI_HK_CRM_Pre_Approval_Form_Item__c.Fields.ASI_HK_CRM_FOC_Buy_Bottle_Option_1__c.Label}</label>
+                    <input type="text" name="buy" maxlength="18" size="10" />
+                    <label>{!$ObjectType.ASI_HK_CRM_Pre_Approval_Form_Item__c.Fields.ASI_HK_CRM_FOC_Free_Bottle_Option_1__c.Label}</label>
+                    <input type="text" name="free" maxlength="18" size="10" />
+                    <span class="buy-free-line-amt"></span>
+                    <a class="foc-del-btn non-link-btn">Del</a>
+                </span>
+            </div>
+            <a class="foc-add-btn non-link-btn">+More</a>
+        </div>
+        
+        <div id="mechanic-option-variable" class="mechanic-option-variable">
+            <label>{!$ObjectType.ASI_HK_CRM_Pre_Approval_Form_Item__c.Fields.ASI_HK_CRM_Rebate_Disc_Percent__c.Label}</label>
+            <input type="text" name="percentage" maxlength="19" size="10" />
+            <label>OR</label>
+            <input type="text" name="amount" maxlength="19" size="10" />
+            <label>HKD per bottle</label>
+        </div>
+        <div id="mechanic-option-fixed" class="mechanic-option-fixed">
+            <label>{!$ObjectType.ASI_HK_CRM_Pre_Approval_Form_Item__c.Fields.ASI_HK_CRM_Fixed_Amount__c.Label}</label>
+            <input type="text" name="amount" maxlength="19" size="20" />
+        </div>
+
+        <script type="text/javascript">
+            function getMechanic() {
+                var allMechanics = [];
+                <apex:repeat value="{!mechanicOptions}" var="mechanicOption">
+                allMechanics["{!JSENCODE(mechanicOption[0])}"] = {
+                    id: "{!JSENCODE(mechanicOption[0])}"
+                    , label: "{!JSENCODE(mechanicOption[1])}"    
+                    , baseType: "{!JSENCODE(mechanicOption[2])}"
+                };
+                </apex:repeat>
+                return allMechanics;
+            }
+            
+            $(document).ready(function() {
+                initPAFPage({
+                    headerId: '{!headerId}'
+                    , custId: '{!custId}'
+                    , mType: {
+                        foc: '{!MTYPE_FOC}'
+                        , foc_bulk: '{!MTYPE_FOC_BULK}'
+                        , variable: '{!MTYPE_VARIABLE}'
+                        , fixed: '{!MTYPE_FIXED}'
+                    }
+                    , allMechanics: getMechanic()
+                    , notAllowEdit: '{!Not(allowEdit)}'
+                });
+            });
+        </script>
+         
+    </div>
+
+</apex:page>

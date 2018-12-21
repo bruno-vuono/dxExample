@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>For CN CRM Use</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>ASI_CRM_Approval_Limit__c</fullName>
+        <externalId>false</externalId>
+        <label>Approval Limit</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_End_of_Dynamic_Route__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>End of Dynamic Route</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_Manager_ID__c</fullName>
+        <externalId>false</externalId>
+        <formula>ASI_CRM_User__r.ManagerId</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Manager ID</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Contract</fullName>
+                    <default>false</default>
+                    <label>Contract</label>
+                </value>
+                <value>
+                    <fullName>Payment</fullName>
+                    <default>false</default>
+                    <label>Payment</label>
+                </value>
+                <value>
+                    <fullName>IOM</fullName>
+                    <default>false</default>
+                    <label>IOM</label>
+                </value>
+                <value>
+                    <fullName>WS T1</fullName>
+                    <default>false</default>
+                    <label>WS T1</label>
+                </value>
+                <value>
+                    <fullName>WS T2</fullName>
+                    <default>false</default>
+                    <label>WS T2</label>
+                </value>
+                <value>
+                    <fullName>Channel Strategy</fullName>
+                    <default>false</default>
+                    <label>Channel Strategy</label>
+                </value>
+                <value>
+                    <fullName>WS Evaluation</fullName>
+                    <default>false</default>
+                    <label>WS Evaluation</label>
+                </value>
+                <value>
+                    <fullName>Last Payment</fullName>
+                    <default>false</default>
+                    <label>Last Payment</label>
+                </value>
+                <value>
+                    <fullName>PR Direct</fullName>
+                    <default>false</default>
+                    <label>PR Direct</label>
+                </value>
+                <value>
+                    <fullName>AB General</fullName>
+                    <default>false</default>
+                    <label>AB General</label>
+                </value>
+                <value>
+                    <fullName>Sales Order - IHBR</fullName>
+                    <default>false</default>
+                    <label>Sales Order - IHBR</label>
+                </value>
+                <value>
+                    <fullName>Sales Order - HQ</fullName>
+                    <default>false</default>
+                    <label>Sales Order - HQ</label>
+                </value>
+                <value>
+                    <fullName>Price - Customer Price (IHBR)</fullName>
+                    <default>false</default>
+                    <label>Price - Customer Price (IHBR)</label>
+                </value>
+                <value>
+                    <fullName>Cancel WS T1</fullName>
+                    <default>false</default>
+                    <label>Cancel WS T1</label>
+                </value>
+                <value>
+                    <fullName>Cancel WS T2</fullName>
+                    <default>false</default>
+                    <label>Cancel WS T2</label>
+                </value>
+                <value>
+                    <fullName>Free Goods Request</fullName>
+                    <default>false</default>
+                    <label>Free Goods Request</label>
+                </value>
+                <value>
+                    <fullName>POSM</fullName>
+                    <default>false</default>
+                    <label>POSM</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_User__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>User</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>ASI_CRM_Dynamic_Approval_Routes</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <label>ASI CRM Dynamic Approval Route</label>
+    <listViews>
+        <fullName>ASI_CRM_CN_CRM_Dynamic_Approval_Routes_P</fullName>
+        <columns>NAME</columns>
+        <columns>ASI_CRM_Approval_Limit__c</columns>
+        <columns>ASI_CRM_End_of_Dynamic_Route__c</columns>
+        <columns>ASI_CRM_Type__c</columns>
+        <columns>ASI_CRM_User__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>ASI_CRM_Dynamic_Approval_Route__c.ASI_CRM_CN_Dynamic_Approval_Route</value>
+        </filters>
+        <filters>
+            <field>ASI_CRM_Type__c</field>
+            <operation>equals</operation>
+            <value>Contract</value>
+        </filters>
+        <label>CN CRM Dynamic Approval Routes PO</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>ASI_CN</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CN_CRM_Dynamic_AB_policy</fullName>
+        <columns>NAME</columns>
+        <columns>ASI_CRM_Approval_Limit__c</columns>
+        <columns>ASI_CRM_End_of_Dynamic_Route__c</columns>
+        <columns>ASI_CRM_Type__c</columns>
+        <columns>ASI_CRM_User__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>ASI_CRM_Dynamic_Approval_Route__c.ASI_CRM_CN_Dynamic_Approval_Route</value>
+        </filters>
+        <filters>
+            <field>ASI_CRM_Type__c</field>
+            <operation>equals</operation>
+            <value>AB General</value>
+        </filters>
+        <label>CN CRM Dynamic - AB policy</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>ASI_CN</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CN_CRM_Dynamic_Approval_Routes_Payment1</fullName>
+        <columns>NAME</columns>
+        <columns>ASI_CRM_Approval_Limit__c</columns>
+        <columns>ASI_CRM_End_of_Dynamic_Route__c</columns>
+        <columns>ASI_CRM_Type__c</columns>
+        <columns>ASI_CRM_User__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>ASI_CRM_Dynamic_Approval_Route__c.ASI_CRM_CN_Dynamic_Approval_Route</value>
+        </filters>
+        <filters>
+            <field>ASI_CRM_Type__c</field>
+            <operation>equals</operation>
+            <value>Payment,Last Payment</value>
+        </filters>
+        <label>CN CRM Dynamic Approval Routes Payment</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>ASI_CN</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CN_CRM_Dynamic_Approval_Routes_T2</fullName>
+        <columns>NAME</columns>
+        <columns>ASI_CRM_Approval_Limit__c</columns>
+        <columns>ASI_CRM_End_of_Dynamic_Route__c</columns>
+        <columns>ASI_CRM_Type__c</columns>
+        <columns>ASI_CRM_User__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>ASI_CRM_Dynamic_Approval_Route__c.ASI_CRM_CN_Dynamic_Approval_Route</value>
+        </filters>
+        <filters>
+            <field>ASI_CRM_Type__c</field>
+            <operation>equals</operation>
+            <value>WS T2</value>
+        </filters>
+        <label>CN CRM Dynamic Approval Routes_T2</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>ASI_CN</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CN_CRM_Dynamic_Free_Goods</fullName>
+        <columns>NAME</columns>
+        <columns>ASI_CRM_Approval_Limit__c</columns>
+        <columns>ASI_CRM_End_of_Dynamic_Route__c</columns>
+        <columns>ASI_CRM_Type__c</columns>
+        <columns>ASI_CRM_User__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>ASI_CRM_Dynamic_Approval_Route__c.ASI_CRM_CN_Dynamic_Approval_Route</value>
+        </filters>
+        <filters>
+            <field>ASI_CRM_Type__c</field>
+            <operation>equals</operation>
+            <value>Free Goods Request</value>
+        </filters>
+        <label>CN CRM Dynamic - Free Goods</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>ASI_CN</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CN_CRM_Dynamic_POSM</fullName>
+        <columns>NAME</columns>
+        <columns>ASI_CRM_Approval_Limit__c</columns>
+        <columns>ASI_CRM_End_of_Dynamic_Route__c</columns>
+        <columns>ASI_CRM_Type__c</columns>
+        <columns>ASI_CRM_User__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>ASI_CRM_Dynamic_Approval_Route__c.ASI_CRM_CN_Dynamic_Approval_Route</value>
+        </filters>
+        <filters>
+            <field>ASI_CRM_Type__c</field>
+            <operation>equals</operation>
+            <value>POSM</value>
+        </filters>
+        <label>CN CRM Dynamic - POSM</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>ASI_CN</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <nameField>
+        <displayFormat>DAR{000000}</displayFormat>
+        <label>ASI CRM Dynamic Approval Route Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>ASI CRM Dynamic Approval Routes</pluralLabel>
+    <recordTypes>
+        <fullName>ASI_CRM_CN_Dynamic_Approval_Route</fullName>
+        <active>true</active>
+        <label>CN Dynamic Approval Route</label>
+        <picklistValues>
+            <picklist>ASI_CRM_Type__c</picklist>
+            <values>
+                <fullName>AB General</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cancel WS T1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cancel WS T2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Channel Strategy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Contract</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Free Goods Request</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IOM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Last Payment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>POSM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PR Direct</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Payment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price - Customer Price %28IHBR%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sales Order - HQ</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sales Order - IHBR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WS Evaluation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WS T1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WS T2</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts>
+        <customTabListAdditionalFields>ASI_CRM_Type__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>ASI_CRM_User__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>ASI_CRM_Approval_Limit__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>ASI_CRM_End_of_Dynamic_Route__c</customTabListAdditionalFields>
+    </searchLayouts>
+    <sharingModel>Private</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

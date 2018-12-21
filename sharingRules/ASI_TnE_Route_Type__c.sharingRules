@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>ASI_TnE_HK_Share_Route_Type_to_IT_Users</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>ASI TnE HK Share Route Type to IT Users</label>
+        <sharedTo>
+            <group>ASI_TnE_HK_IT_Users</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>ASI TnE HK Route Type</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>ASI_TnE_ID_Share_Route_Type_to_IT_Users</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>ASI TnE ID Share Route Type to IT Users</label>
+        <sharedTo>
+            <group>ASI_TnE_ID_IT_Users</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>ASI TnE ID Route Type</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>ASI_TnE_KH_Share_Route_Type_to_IT_Users</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>ASI TnE KH Share Route Type to IT Users</label>
+        <sharedTo>
+            <group>ASI_TnE_KH_IT_Users</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>ASI TnE KH Route Type</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>ASI_TnE_MY_Share_Route_Type_to_IT_Users</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>ASI TnE MY Share Route Type to IT Users</label>
+        <sharedTo>
+            <group>ASI_TnE_MY_IT_Users</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>ASI TnE MY Route Type</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>ASI_TnE_PH_Share_Route_Type_to_IT_Users</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>ASI TnE PH Share Route Type to IT Users</label>
+        <sharedTo>
+            <group>ASI_TnE_PH_IT_Users</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>ASI TnE PH Route Type</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>ASI_TnE_SG_Share_Route_Type_to_IT_Users</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>ASI TnE SG Share Route Type to IT Users</label>
+        <sharedTo>
+            <group>ASI_TnE_SG_IT_Users</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>ASI TnE SG Route Type</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>ASI_TnE_TH_Share_Route_Type_to_IT_Users</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>ASI TnE TH Share Route Type to IT Users</label>
+        <sharedTo>
+            <group>ASI_TnE_TH_IT_Users</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>ASI TnE TH Route Type</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>ASI_TnE_TW_Share_Route_Type_to_IT_Users</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>ASI TnE TW Share Route Type to IT Users</label>
+        <sharedTo>
+            <group>ASI_TnE_TW_IT_Users</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>ASI TnE TW Route Type</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+</SharingRules>

@@ -1,0 +1,444 @@
+<apex:page controller="MMPJ_TOPG_MinutesPDFcontroller" showHeader="false" sidebar="false"  applyBodyTag="false" renderas="PDF">
+    <head>
+        <style >
+            @page 
+            {
+                margin-top: 5cm;
+                margin-left: 0.3cm;
+                margin-right: 0.3cm;
+                margin-bottom: 2cm;
+                padding-left : 0px;  
+                @top-center {
+                    content: element(header);
+                }         
+            }
+            .PDFTitle {
+                text-align: center;
+                font-size: 17px;
+                margin-bottom: 27px;
+            }
+            .tg  {
+                border-collapse:collapse;
+                border-spacing:0;
+                margin:0px auto;
+                table-layout: fixed; 
+            }
+            .tg1 {
+                border-collapse:collapse;
+                border-spacing:0;
+                margin:0px auto; 
+
+            }
+            .LeftCellTg1{
+                background: #5E88AD;
+                color: #fff;
+                border: 1px solid #5E88AD;
+                width: 24%;
+                height: 20px;
+               font-size: 13px;
+            }
+
+            .middleCellTg1 {
+                border-width: 1px 0px 1px 0px;
+                border-style: solid;
+                border-color: #5E88AD;
+            	white-space: normal;
+               font-size: 15px;
+            }
+            .rightCellTg1{
+                border-width: 1px 1px 1px 0px;
+                border-style: solid;
+                border-color: #5E88AD;
+                width: 45%;
+                height: 25px;
+                white-space: nowrap;
+                font-size: 15px;
+            }
+            .HeaderTg{
+                background: #5E88AD;
+                color: #fff;
+                height: 25px;
+           	    white-space: nowrap;
+            	font-size: 13px;
+            }
+            .CellTg{
+                border: 1px solid #5E88AD;
+                height: 25px;
+            	font-size: 15px;
+            	white-space: normal;
+            }
+            .tg1 tr:last-child {
+                border-bottom: 1px solid #5E88AD;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header" style="position: running(header);">
+            <div style="margin-bottom:35px;background: url({!$Resource.MMPJ_TOPG_LogoPDFheader}) no-repeat;background-position: center;width: 100%;height:100px;"/>
+            <div class="PDFTitle" style="">
+                <span style="border-bottom: 1px solid #000 !Important;padding-bottom: 9px;">MEETING MINUTES</span>
+            </div>
+        </div>
+        <table class="tg1" width = "100%" cellpadding="5"  style="border-bottom: 1px solid #5E88AD;">
+            <tr>
+                <td class="LeftCellTg1">MEETING TITLE / ORGANIZER </td>
+                <td class="middleCellTg1">{!Minute.MMPJ_TOPG_Title__c}</td> 
+                <td class="rightCellTg1"><apex:outputText value="{!theOrganizer}"/></td>                
+            </tr>
+            <tr>
+                <td class="LeftCellTg1">BEGIN &amp; END DATE TIME</td>
+                <td class="middleCellTg1">                  
+                    <apex:outputField value="{!Minute.MMPJ_TOPG_Start_Date__c}" rendered="{!meeting.MMPJ_TOPG_NoAgenda__c}"/>
+                     <apex:outputField value="{!Agenda.StartDateTime}" rendered="{!Not(meeting.MMPJ_TOPG_NoAgenda__c)}"/>
+                    
+                  <!--  <apex:outputText value="{0,date,dd/MM/yyyy  'at' HH:mm}" rendered="{!meeting.MMPJ_TOPG_NoAgenda__c}">
+                        <apex:param value="{!Minute.MMPJ_TOPG_Start_Date__c}" />
+                    </apex:outputText>
+                    <apex:outputText value="{0,date,dd/MM/yyyy 'at' HH:mm}" rendered="{!Not(meeting.MMPJ_TOPG_NoAgenda__c)}">
+                        <apex:param value="{!Agenda.StartDateTime}" />
+                    </apex:outputText> -->
+                    
+                </td>
+                <td class="rightCellTg1">
+                     <apex:outputField value="{!Minute.MMPJ_TOPG_End_Date__c}" rendered="{!meeting.MMPJ_TOPG_NoAgenda__c}"/>
+                     <apex:outputField value="{!Agenda.EndDateTime}" rendered="{!Not(meeting.MMPJ_TOPG_NoAgenda__c)}"/>
+                    
+                  <!--   <apex:outputText value="{0,date,dd/MM/yyyy  'at' HH:mm}" rendered="{!meeting.MMPJ_TOPG_NoAgenda__c}">
+                        <apex:param value="{!Minute.MMPJ_TOPG_End_Date__c}"/>
+                    </apex:outputText>
+                    <apex:outputText value="{0,date,dd/MM/yyyy  'at' HH:mm}" rendered="{!Not(meeting.MMPJ_TOPG_NoAgenda__c)}">
+                        <apex:param value="{!Agenda.EndDateTime}"/>
+                    </apex:outputText> -->
+                </td>
+            </tr>
+            <!--  <tr>
+                <td class="LeftCellTg1"/>
+                <td class="middleCellTg1"/>
+                <td class="rightCellTg1"/>
+            </tr> -->
+            <tr>
+                <td class="LeftCellTg1">LOCATION / MARKET</td>
+                <!-- <td class="middleCellTg1">{!Agenda.Location}</td> -->
+                <td class="middleCellTg1">
+                    <apex:outputField value="{!Minute.MMPJ_TOPG_Location__c}" rendered="{!meeting.MMPJ_TOPG_NoAgenda__c}" />
+				    <apex:outputField value="{!Agenda.Location}" rendered="{!Not(meeting.MMPJ_TOPG_NoAgenda__c)}" />
+                </td>
+                <td class="rightCellTg1" >{!Meeting.MMPJ_TOPG_BMC__r.name}</td>
+
+            </tr>
+            <tr>
+                <apex:variable var="cnt" value="{!0}" /> 
+                <!--   <apex:repeat value="{!listInviteesContacts}" var="ct" rendered="{!listInviteesContacts.size > 0 }">
+                    <tr>    
+                        <td class="LeftCellTg1" style="border-bottom: none;border-top: none;">
+                            <apex:outputText value="{!IF(cnt = 0,"Attendees / Function","")}"/>
+                        </td>
+                        <td class="middleCellTg1" style="{!IF(cnt == 0,"","border-top: 1px solid #fff !important")};border-bottom: 1px solid #5E88AD;">{!ct.Name}</td>
+                        <td class="rightCellTg1" style="{!IF(cnt == 0,"","border-top: 1px solid #fff !important")};border-bottom: 1px solid #5E88AD;">{!ct.title}</td>
+                    </tr>
+                    <apex:variable var="cnt" value="{!cnt+1}"/>
+                </apex:repeat> -->
+                <apex:repeat value="{!ListInvitees}" var="inv" rendered="{!ListInvitees!=null }"> 
+                    <tr >        
+                        <td class="LeftCellTg1" style="border-bottom: none;border-top: none;">
+                            <apex:outputText value="{!IF(cnt = 0,"ATTENDEES / FUNCTION","")}"/>
+                        </td>
+                        <td cellspacing="0" class="middleCellTg1" style="{!IF(cnt == 0,"","border-top: 1px solid #fff !important")};border-bottom: 1px solid #5E88AD;">{!inv.Name}</td>
+                        <td cellspacing="0" class="rightCellTg1" style="{!IF(cnt == 0,"","border-top: 1px solid #fff !important")};border-bottom: 1px solid #5E88AD;">{!inv.title}</td>
+                    </tr>
+                    <apex:variable var="cnt" value="{!cnt+1}"/>
+                </apex:repeat>
+            </tr> 
+        </table>
+        <br/>
+		<!-- ********************** -->
+		<!-- ***** Highlights ***** -->
+		<!-- ********************** -->
+        <!--apex:outputPanel rendered="{!listMOMHighLight.size > 0}"-->
+		<apex:outputPanel rendered="{!displayHighlights='display with header'}">
+			<div style="page-break-inside: avoid;" >
+				<div style="font-weight: bold;font-size: 16px;margin: 6px 6px 6px 0px;">Highlights :</div>
+				<table class="tg" width = "100%" cellpadding="5"  style="page-break-inside: avoid;">
+					<tr>
+						<th class="HeaderTg" style="width:60%;border-left: 1px solid #5E88AD;border-right: 1px solid #fff;">COMMENT</th>
+						<th class="HeaderTg" style="width:25%;">WHO</th>
+						<th class="HeaderTg" style="width:15%; border-left: 1px solid #fff;border-right: 1px solid #5E88AD;">WHEN</th>
+					</tr>
+					<apex:repeat value="{!listMOMHighLight}" var="high">
+						<tr>
+							<td class="CellTg" style="width:60%;">              
+								<apex:outputtext escape="false" value="{!high.comment}"  />
+							</td>
+							<td class="CellTg" style="width:25%;vertical-align: top;">
+								{!high.name}    							
+							</td>
+							    <td class="CellTg" style="width:15%;vertical-align: top;">                             
+							    <apex:outputText value="{0,date,dd/MM/yyyy}">
+									<apex:param value="{!high.whenHighlight}" />
+								</apex:outputText>
+							</td>
+						</tr>
+					</apex:repeat>
+				</table>
+			</div> 
+        </apex:outputPanel>
+		<apex:outputPanel rendered="{!displayHighlights='display with no header'}">
+			<div style="page-break-inside: avoid;" >
+				<div style="font-weight: bold;font-size: 16px;margin: 6px 6px 6px 0px;">Highlights :</div>
+				<table class="tg" width = "100%" cellpadding="5"  style="page-break-inside: avoid;">
+					<apex:repeat value="{!listMOMHighLight}" var="high">
+						<tr>
+							<td class="CellTg" style="width:60%;">              
+								<apex:outputtext escape="false" value="{!high.comment}"  />
+							</td>
+							<td class="CellTg" style="width:25%;vertical-align: top;">
+								{!high.name}    							
+							</td>
+							    <td class="CellTg" style="width:15%;vertical-align: top;">                             
+							    <apex:outputText value="{0,date,dd/MM/yyyy}">
+									<apex:param value="{!high.whenHighlight}" />
+								</apex:outputText>
+							</td>
+						</tr>
+					</apex:repeat>
+				</table>
+			</div> 
+        </apex:outputPanel>
+        <br/>
+		<!-- ****************************** -->
+		<!-- ***** Market Performance ***** -->
+		<!-- ****************************** -->
+        <apex:outputPanel rendered="{!displayLineMarket='display with header'}">
+			<div style="page-break-inside: avoid;">
+				<div style="font-weight: bold;font-size: 16px;margin: 6px 6px 6px 0px;">Market Performance :</div>
+				<table class="tg" width = "100%" cellpadding="5" style="page-break-inside: avoid;">
+					<tr>
+						<th class="HeaderTg" style="width:60%;border-left: 1px solid #5E88AD;border-right: 1px solid #fff;">COMMENT</th>                    
+						<!--<th class="HeaderTg" style="width:20%;">RAID</th> -->
+						<th class="HeaderTg" style="width:25%;">WHO</th>                   
+						<th class="HeaderTg" style="width:15%; border-left: 1px solid #fff;border-right: 1px solid #5E88AD;">WHEN</th>
+					</tr>
+					<apex:repeat value="{!listMOMLineMarket}" var="mom" rendered="{!listMOMLineMarket.size > 0}">
+						<tr>
+							<td class="CellTg" style="width:60%;vertical-align: top;" >
+							    <div style="display:{!IF(mom.MMPJ_TOPG_Action_Title__c != null ,'table-row' ,'none')}">
+									<!--apex:outputText style="padding-left:15px;" value="Action title : {!mom.MMPJ_TOPG_Action_Title__c}"/-->
+									<apex:outputText value="{!mom.MMPJ_TOPG_Action_Title__c}"/>									
+							    </div> 
+							    <!-- TGS-47 -->
+                                <apex:outputtext escape="false" value="{!mom.MMPJ_TOPG_Comment__c}"/>
+                                <!-- TGS-47 -->
+							</td>                        
+							<td class="CellTg" style="width:25%;vertical-align: top;">{!IF(mom.MMPJ_TOPG_WhoC__c ==null ,mom.MMPJ_TOPG_WhoU__r.name ,mom.MMPJ_TOPG_WhoC__r.name)}</td>
+							<td class="CellTg" style="width:15%;vertical-align: top;">
+								<apex:outputText value="{0,date,dd/MM/yyyy}">
+									<apex:param value="{!mom.MMPJ_TOPG_When__c}" />
+								</apex:outputText>
+							</td>
+						</tr>
+					</apex:repeat>
+				</table>
+			</div>
+        </apex:outputPanel>
+		<apex:outputPanel rendered="{!displayLineMarket='display with no header'}">
+			<div style="page-break-inside: avoid;">
+				<div style="font-weight: bold;font-size: 16px;margin: 6px 6px 6px 0px;">Market Performance :</div>
+				<table class="tg" width = "100%" cellpadding="5" style="page-break-inside: avoid;">
+					<apex:repeat value="{!listMOMLineMarket}" var="mom" rendered="{!listMOMLineMarket.size > 0}">
+						<tr>
+							<td class="CellTg" style="width:60%;vertical-align: top;" >
+							    <div style="display:{!IF(mom.MMPJ_TOPG_Action_Title__c != null ,'table-row' ,'none')}">
+								    <!--apex:outputText style="padding-left:15px;" value="Action title : {!mom.MMPJ_TOPG_Action_Title__c}"/-->
+									<apex:outputText value="{!mom.MMPJ_TOPG_Action_Title__c}"/>									
+							    </div>  
+							    <!-- TGS-47 -->
+							    <apex:outputtext escape="false" value="{!mom.MMPJ_TOPG_Comment__c}"/>
+                                <!-- TGS-47 -->
+							</td>                        
+							<td class="CellTg" style="width:25%;vertical-align: top;">{!IF(mom.MMPJ_TOPG_WhoC__c ==null ,mom.MMPJ_TOPG_WhoU__r.name ,mom.MMPJ_TOPG_WhoC__r.name)}</td>
+							<td class="CellTg" style="width:15%;vertical-align: top;">
+								<apex:outputText value="{0,date,dd/MM/yyyy}">
+									<apex:param value="{!mom.MMPJ_TOPG_When__c}" />
+								</apex:outputText>
+							</td>
+						</tr>
+					</apex:repeat>
+				</table>
+			</div>
+        </apex:outputPanel>
+		<!-- ************** -->
+		<!-- ***** 4P ***** -->
+		<!-- ************** -->
+        <!--apex:outputPanel rendered="{!listMOMLinePPPP.size > 0}"-->
+		<apex:outputPanel rendered="{!displayLinePPPP='display with header'}">
+			<div style="page-break-inside: avoid;">
+				<div style="font-weight: bold;font-size: 16px;margin: 6px 6px 6px 0px;">4P :</div>
+				<table class="tg" width = "100%" cellpadding="5" style="page-break-inside: avoid;">
+					<tr>
+					    <th class="HeaderTg" style="width:60%;border-left: 1px solid #5E88AD;border-right: 1px solid #fff;">COMMENT</th>   
+						<!-- <th class="HeaderTg" style="width:20%;">RAID</th> -->
+						<th class="HeaderTg" style="width:25%;">WHO</th>
+						<th class="HeaderTg" style="width:15%; border-left: 1px solid #fff;border-right: 1px solid #5E88AD;">WHEN</th>
+					</tr>
+					<apex:repeat value="{!listMOMLinePPPP}" var="mom" rendered="{!listMOMLinePPPP.size > 0}">
+						<tr>
+							<td class="CellTg" style="width:60%;vertical-align: top;" >
+							    <div style="display:{!IF(mom.MMPJ_TOPG_Action_Title__c != null ,'table-row' ,'none')}">
+								    <!--apex:outputText style="padding-left:15px;" value="Action title : {!mom.MMPJ_TOPG_Action_Title__c}"/-->   
+									<apex:outputText value="{!mom.MMPJ_TOPG_Action_Title__c}"/>									
+							    </div>  
+							    <apex:outputtext escape="false" value="{!mom.MMPJ_TOPG_Comment__c}"  />
+							</td>
+							<td class="CellTg" style="width:25%;vertical-align: top;">{!IF(mom.MMPJ_TOPG_WhoC__c ==null ,mom.MMPJ_TOPG_WhoU__r.name ,mom.MMPJ_TOPG_WhoC__r.name)}</td>
+							<td class="CellTg" style="width:15%;vertical-align: top;">
+								<apex:outputText value="{0,date,dd/MM/yyyy}">
+									<apex:param value="{!mom.MMPJ_TOPG_When__c}" />
+								</apex:outputText>
+							</td>
+						</tr>
+					</apex:repeat>
+				</table>
+			</div>
+		</apex:outputPanel>
+		<apex:outputPanel rendered="{!displayLinePPPP='display with no header'}">
+			<div style="page-break-inside: avoid;">
+				<div style="font-weight: bold;font-size: 16px;margin: 6px 6px 6px 0px;">4P :</div>
+				<table class="tg" width = "100%" cellpadding="5" style="page-break-inside: avoid;">
+					<apex:repeat value="{!listMOMLinePPPP}" var="mom" rendered="{!listMOMLinePPPP.size > 0}">
+						<tr>
+							<td class="CellTg" style="width:60%;vertical-align: top;" >
+							    <div style="display:{!IF(mom.MMPJ_TOPG_Action_Title__c != null ,'table-row' ,'none')}">
+								    <!--apex:outputText style="padding-left:15px;" value="Action title : {!mom.MMPJ_TOPG_Action_Title__c}"/--> 
+									<apex:outputText value="{!mom.MMPJ_TOPG_Action_Title__c}"/>									
+							    </div>  
+							    <apex:outputtext escape="false" value="{!mom.MMPJ_TOPG_Comment__c}"  />
+							</td>
+							<td class="CellTg" style="width:25%;vertical-align: top;">{!IF(mom.MMPJ_TOPG_WhoC__c ==null ,mom.MMPJ_TOPG_WhoU__r.name ,mom.MMPJ_TOPG_WhoC__r.name)}</td>
+							<td class="CellTg" style="width:15%;vertical-align: top;">
+								<apex:outputText value="{0,date,dd/MM/yyyy}">
+									<apex:param value="{!mom.MMPJ_TOPG_When__c}" />
+								</apex:outputText>
+							</td>
+						</tr>
+					</apex:repeat>
+				</table>
+			</div>
+		</apex:outputPanel>
+		<!-- ************************************* -->
+		<!-- ***** Project / Key Initiatives ***** -->
+		<!-- ************************************* -->
+        <!--apex:outputPanel rendered="{!listMOMLineProject.size > 0}"-->
+		<apex:outputPanel rendered="{!displayLineProject='display with header'}">
+        <div style="page-break-inside: avoid;" >
+            <div style="font-weight: bold;font-size: 16px;margin: 6px 6px 6px 0px;">Project / Key Initiatives :</div>
+            <table class="tg" width = "100%" cellpadding="5">
+                <tr>
+                    <th class="HeaderTg" style="width:60%;border-left: 1px solid #5E88AD;border-right: 1px solid #fff;">COMMENT</th>   
+                    <th class="HeaderTg" style="width:25%;">WHO</th>
+                    <th class="HeaderTg" style="width:15%; border-left: 1px solid #fff;border-right: 1px solid #5E88AD;">WHEN</th>                  
+                </tr>
+                <apex:repeat value="{!listMOMLineProject}" var="mom" rendered="{!listMOMLineProject.size > 0}">
+                    <tr>
+                        <td class="CellTg" style="width:60%;vertical-align: top;" >
+                            <div style="display:{!IF(mom.MMPJ_TOPG_Action_Title__c != null ,'table-row' ,'none')}">
+                                <!--apex:outputText style="padding-left:15px;" value="Action title : {!mom.MMPJ_TOPG_Action_Title__c}"/-->
+								<apex:outputText value="{!mom.MMPJ_TOPG_Action_Title__c}"/>								
+                            </div>  
+                            <apex:outputtext escape="false" value="{!mom.MMPJ_TOPG_Comment__c}"  />
+                        </td>
+                        <td class="CellTg" style="width:25%;vertical-align: top;">{!IF(mom.MMPJ_TOPG_WhoC__c ==null ,mom.MMPJ_TOPG_WhoU__r.name ,mom.MMPJ_TOPG_WhoC__r.name)}</td>
+                        <td class="CellTg" style="width:15%;vertical-align: top;">
+                            <apex:outputText value="{0,date,dd/MM/yyyy}">
+                                <apex:param value="{!mom.MMPJ_TOPG_When__c}" />
+                            </apex:outputText>
+                        </td>
+                    </tr>
+                </apex:repeat>
+            </table>
+        </div>
+        </apex:outputPanel>
+		<apex:outputPanel rendered="{!displayLineProject='display with no header'}">
+        <div style="page-break-inside: avoid;" >
+            <div style="font-weight: bold;font-size: 16px;margin: 6px 6px 6px 0px;">Project / Key Initiatives :</div>
+            <table class="tg" width = "100%" cellpadding="5">
+                <apex:repeat value="{!listMOMLineProject}" var="mom" rendered="{!listMOMLineProject.size > 0}">
+                    <tr>
+                        <td class="CellTg" style="width:60%;vertical-align: top;" >
+                            <div style="display:{!IF(mom.MMPJ_TOPG_Action_Title__c != null ,'table-row' ,'none')}">
+                                <!--apex:outputText style="padding-left:15px;" value="Action title : {!mom.MMPJ_TOPG_Action_Title__c}"/-->  
+								<apex:outputText value="{!mom.MMPJ_TOPG_Action_Title__c}"/>
+                            </div>  
+                            <apex:outputtext escape="false" value="{!mom.MMPJ_TOPG_Comment__c}"  />
+                        </td>
+                        <td class="CellTg" style="width:25%;vertical-align: top;">{!IF(mom.MMPJ_TOPG_WhoC__c ==null ,mom.MMPJ_TOPG_WhoU__r.name ,mom.MMPJ_TOPG_WhoC__r.name)}</td>
+                        <td class="CellTg" style="width:15%;vertical-align: top;">
+                            <apex:outputText value="{0,date,dd/MM/yyyy}">
+                                <apex:param value="{!mom.MMPJ_TOPG_When__c}" />
+                            </apex:outputText>
+                        </td>
+                    </tr>
+                </apex:repeat>
+            </table>
+        </div>
+        </apex:outputPanel>
+		<!-- ********************** -->
+		<!-- ***** Competitor ***** -->
+		<!-- ********************** -->
+        <!--apex:outputPanel rendered="{!listMOMLineCompetitor.size > 0}"-->
+		<apex:outputPanel rendered="{!displayLineCompetitor='display with header'}">
+			<div style="page-break-inside: avoid;">
+				<div style="font-weight: bold;font-size: 16px;margin: 6px 6px 6px 0px;">Competitor :</div>
+				<table class="tg" width = "100%" cellpadding="5" >
+					<tr>
+						<th class="HeaderTg" style="width:60%;border-left: 1px solid #5E88AD;border-right: 1px solid #fff;">COMMENT</th>   
+						<th class="HeaderTg" style="width:25%;">WHO</th>
+						<th class="HeaderTg" style="width:15%;border-left: 1px solid #fff;border-right: 1px solid #5E88AD;">WHEN</th>                  
+					</tr>
+					<apex:repeat value="{!listMOMLineCompetitor}" var="mom" rendered="{!listMOMLineCompetitor.size > 0}">
+						<tr >
+						<!--style="display:{!IF(mom.MMPJ_TOPG_IsHighlight__c = false ,'table-row' ,'none')}"> -->
+							<td class="CellTg" style="width:60%;vertical-align: top;" >
+							    <div style="display:{!IF(mom.MMPJ_TOPG_Action_Title__c != null ,'table-row' ,'none')}">
+								    <!--apex:outputText style="padding-left:15px;" value="Action title : {!mom.MMPJ_TOPG_Action_Title__c}"/--> 
+									<apex:outputText value="{!mom.MMPJ_TOPG_Action_Title__c}"/>									
+							    </div>  
+							    <apex:outputtext escape="false" value="{!mom.MMPJ_TOPG_Comment__c}"  />
+							</td>
+							<td class="CellTg" style="width:25%;vertical-align: top;">{!IF(mom.MMPJ_TOPG_WhoC__c ==null ,mom.MMPJ_TOPG_WhoU__r.name ,mom.MMPJ_TOPG_WhoC__r.name)}</td>
+							<td class="CellTg" style="width:15%;vertical-align: top;">
+								<apex:outputText value="{0,date,dd/MM/yyyy}">
+									<apex:param value="{!mom.MMPJ_TOPG_When__c}" />
+								</apex:outputText>
+							</td>
+						</tr>
+					</apex:repeat>
+				</table>
+			</div>
+		</apex:outputPanel>
+		<apex:outputPanel rendered="{!displayLineCompetitor='display with no header'}">
+			<div style="page-break-inside: avoid;">
+				<div style="font-weight: bold;font-size: 16px;margin: 6px 6px 6px 0px;">Competitor :</div>
+				<table class="tg" width = "100%" cellpadding="5" >
+					<apex:repeat value="{!listMOMLineCompetitor}" var="mom" rendered="{!listMOMLineCompetitor.size > 0}">
+						<tr >
+						<!--style="display:{!IF(mom.MMPJ_TOPG_IsHighlight__c = false ,'table-row' ,'none')}"> -->
+							<td class="CellTg" style="width:60%;vertical-align: top;" >
+							    <div style="display:{!IF(mom.MMPJ_TOPG_Action_Title__c != null ,'table-row' ,'none')}">
+								    <!--apex:outputText style="padding-left:15px;" value="Action title : {!mom.MMPJ_TOPG_Action_Title__c}"/-->
+									<apex:outputText value="{!mom.MMPJ_TOPG_Action_Title__c}"/>									
+							    </div>  
+							    <apex:outputtext escape="false" value="{!mom.MMPJ_TOPG_Comment__c}"  />
+							</td>
+							<td class="CellTg" style="width:25%;vertical-align: top;">{!IF(mom.MMPJ_TOPG_WhoC__c ==null ,mom.MMPJ_TOPG_WhoU__r.name ,mom.MMPJ_TOPG_WhoC__r.name)}</td>
+							<td class="CellTg" style="width:15%;vertical-align: top;">
+								<apex:outputText value="{0,date,dd/MM/yyyy}">
+									<apex:param value="{!mom.MMPJ_TOPG_When__c}" />
+								</apex:outputText>
+							</td>
+						</tr>
+					</apex:repeat>
+				</table>
+			</div>
+		</apex:outputPanel>
+    </body>
+</apex:page>

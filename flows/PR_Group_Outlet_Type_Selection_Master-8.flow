@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Master flow up to CH</description>
+    <label>PR Group Outlet Type Selection Master</label>
+    <processType>Flow</processType>
+</Flow>

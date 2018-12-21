@@ -1,0 +1,116 @@
+<apex:page controller="MMPJ_TOPG_ProjectDescriptionPDFCtrl"  showHeader="false" sidebar="false"  applyBodyTag="false" renderas="PDF">
+   <head>
+        <style >
+            @page 
+            {
+                margin-top: 5cm;
+                margin-left: 2cm;
+                margin-right: 2cm;
+                margin-bottom: 2cm;
+                padding-left : 0px;  
+                @top-center {
+                    content: element(header);
+                }         
+            }
+            body {
+                font-family: Calibri;
+                
+            }
+            .PDFTitle {
+                text-align: center;
+                font-size: 17px;
+                margin-bottom: 27px;
+            }
+            .tg  {
+                border-collapse:collapse;
+                border-spacing:0;
+                margin:0px auto;
+                table-layout: fixed; 
+            }
+            .tg1 {
+                border-collapse:collapse;
+                border-spacing:0;
+                margin:0px auto; 
+                
+            }
+            .LeftCellTg1{
+                background: #5E88AD;
+                color: #fff;
+                border: 1px solid #fff;
+                width: 30%;
+                height: 31px;
+            }
+           
+            .middleCellTg1 {
+                border-width: 1px 0px 1px 0px;
+                border-style: solid;
+                border-color: #5E88AD;
+                word-wrap: break-word;
+            }
+            .rightCellTg1{
+                border-width: 1px 1px 1px 0px;
+                border-style: solid;
+                border-color: #5E88AD;
+                width: 30%;
+                height: 31px;
+                word-wrap: break-word;
+            }
+            .HeaderTg{
+                background: #002950;;
+                color: #fff;
+                height: 31px;
+            }
+            .CellTg{
+                border: 1px solid #002950;;
+                height: 31px;
+                word-wrap: break-word;
+            }
+            
+        </style>
+    </head>
+    <body>
+     <div class="header" style="position: running(header);">
+        <div style="margin-bottom:35px;background: url({!$Resource.MMPJ_TOPG_LogoPDFheader}) no-repeat;background-position: center;width: 100%;height:100px;"></div>
+        <div class="PDFTitle" style=""><span style="border-bottom: 1px solid #000 !Important;padding-bottom: 9px;">Project Descriptions</span></div>
+    </div>
+    <!--<div class="PDFTitle" style=""><span style="border-bottom: 1px solid #000 !Important;padding-bottom: 9px;">Project Name : {!Project.name}</span></div>-->
+   <table  border="0" width="100%">
+    <tr>
+        <td class="LeftCellTg1">Project Name :</td>
+        <td class="CellTg"><apex:outputField value="{!Project.name}" /></td>
+        <td class="LeftCellTg1">Start Date :</td>
+        <td class="CellTg"><apex:outputField value="{!Project.MMPJ_TOPG_StartDate__c}" /></td>
+    </tr>
+    <tr>
+        <td class="LeftCellTg1"> Project Type :</td>
+        <td class="CellTg"><apex:outputField value="{!Project.MMPJ_TOPG_ProjectType__c}"/></td>
+        <td class="LeftCellTg1"> End Date :</td>
+        <td class="CellTg"><apex:outputField value="{!Project.MMPJ_TOPG_EndDate__c}"/></td>
+    </tr>     
+    <tr>
+          <td class="LeftCellTg1">Project Topic :</td> 
+        <td class="CellTg"><apex:outputField value="{!Project.MMPJ_TOPG_ProjectTopic__c}"  /></td>
+        <td class="LeftCellTg1">Forecast Budget :</td>
+        <td class="CellTg"><apex:outputField value="{!Project.MMPJ_TOPG_ForecastBudget__c}"/></td>
+    </tr>
+    <tr>
+        <td class="LeftCellTg1">Project Owner :</td>
+        <td class="CellTg"><apex:outputField value="{!Project.MMPJ_TOPG_ProjectOwner__c}"  /></td>
+        <td class="LeftCellTg1">Actuals :</td>
+        <td class="CellTg"><apex:outputField value="{!Project.MMPJ_TOPG_Actuals__c}"/></td> 
+    </tr>
+    <tr>     
+            <th></th>     
+            <td></td>   
+    </tr>
+    <tr>     
+         <td class="LeftCellTg1" colspan="4">Description :</td>         
+    </tr>
+    <tr>
+        <td colspan="4">
+        <apex:outputField value="{!Project.MMPJ_TOPG_Description__c}"/>
+        </td>
+    </tr>
+ </table>
+ </body>
+</apex:page>

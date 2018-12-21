@@ -1,0 +1,3 @@
+<apex:page id="ASI_KOR_Sales_Order_Request__c">
+    <apex:enhancedList type="ASI_KOR_Sales_Order_Request__c" height="800" rowsPerPage="25" id="SOTBCNList"/>
+</apex:page>

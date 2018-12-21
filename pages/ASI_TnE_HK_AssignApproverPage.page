@@ -1,0 +1,12 @@
+<!--
+*********************************************************************************
+ * Name: ASI_TnE_HK_AssignApproverPage
+ * Description: VF Page for reassigning T&E approver
+ *
+ * Version History
+ * Date             Developer               Comments
+ * ---------------  --------------------    --------------------------------------------------------------------------------
+ * 11/05/2017       Hugo Cheung             Created      
+-->
+<apex:page controller="ASI_TnE_HK_AssignApproverCtrl" action="{!reassignApprover}">
+</apex:page>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConnectedApp xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contactEmail>Laurent.bel@pernod-ricard.com</contactEmail>
+    <description>Allow SharePoint 2013 Search Engine to Search into Chatter data</description>
+    <label>SharePointSearchHolding</label>
+    <oauthConfig>
+        <callbackUrl>oob</callbackUrl>
+        <consumerKey>3MVG9qQjGkWUbcrFTIsUBxAfZQq5NAUJpxd_Yr4azjrqZy1IF2OoJ5mIe8mrSX.OP2Iim9usZYqZLtfg8tNkJ</consumerKey>
+        <scopes>Basic</scopes>
+        <scopes>Api</scopes>
+        <scopes>Web</scopes>
+        <scopes>Full</scopes>
+        <scopes>Chatter</scopes>
+        <scopes>CustomApplications</scopes>
+        <scopes>RefreshToken</scopes>
+    </oauthConfig>
+</ConnectedApp>

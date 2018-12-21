@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>Hierarchy</customSettingsType>
+    <description>Custom Settings for CRM CN report buttons</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>ASI_CRM_CN_Cap_collection_Report_ID__c</fullName>
+        <externalId>false</externalId>
+        <label>Outlet Cap collection Report ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_Fixed_Cost_Acmount_Checking__c</fullName>
+        <description>ACI_CRM_Fixed_Cost_Amount_Checking</description>
+        <externalId>false</externalId>
+        <label>Fixed Cost Acmount Checking</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_Last_Year_Payment_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Last Year Payment Code</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_Monthly_Offtake_Report_ID__c</fullName>
+        <externalId>false</externalId>
+        <label>Outlet Monthly Offtake Report ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_Outlet_Daily_Offtake_ReportID__c</fullName>
+        <externalId>false</externalId>
+        <label>Outlet Daily Offtake Report ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_Outlet_Intake_Report_ID__c</fullName>
+        <externalId>false</externalId>
+        <label>Outlet Intake Report ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_POS_Data_Report_ID__c</fullName>
+        <externalId>false</externalId>
+        <label>POS Data Report ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_PRCCityOfficialReportID__c</fullName>
+        <externalId>false</externalId>
+        <label>PRC City Official Report ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_Volume_Summary_Report2_ID__c</fullName>
+        <externalId>false</externalId>
+        <label>Outlet Volume Summary Report2 ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_Volume_Summary_Report_ID__c</fullName>
+        <externalId>false</externalId>
+        <label>Outlet Volume Summary Report ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_WS_Buyin_Report_ID__c</fullName>
+        <externalId>false</externalId>
+        <label>WS Buyin Report ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_WS_Depletion_Details_ReportID__c</fullName>
+        <externalId>false</externalId>
+        <label>WS Depletion Details Report ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_WS_Inventory_Report_ID__c</fullName>
+        <externalId>false</externalId>
+        <label>WS Inventory Report ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_WS_Scan_Rate_Report_ID__c</fullName>
+        <externalId>false</externalId>
+        <label>WS Scan Rate Report ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_PRC_Guidance__c</fullName>
+        <externalId>false</externalId>
+        <label>PRC Guidance</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_System_Debug_Email__c</fullName>
+        <externalId>false</externalId>
+        <label>System Debug Email</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_System_Debug__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>System Debug</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_Total_Amount_Checking__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Amount Checking</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_FOC_CN_Request_Status_ID__c</fullName>
+        <externalId>false</externalId>
+        <label>FOC Request Status ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>ASI CRM CN Setting</label>
+    <visibility>Public</visibility>
+</CustomObject>

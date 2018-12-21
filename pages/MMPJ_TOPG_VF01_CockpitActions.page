@@ -1,0 +1,108 @@
+<apex:page showHeader="false" sidebar="false" controller="MMPJ_TOPG_CockPitActionsController">
+<apex:stylesheet value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<style>
+.pbSubheader {
+background-color: #0084c9;
+}
+a.analyticsCordaChart {
+     pointer-events: none;
+     cursor: default;
+   }
+.data2Col{
+text-align:center !important;
+}
+td.dataCol.first.last {
+width: 150px;
+text-align: -webkit-left ;
+vertical-align: inherit;
+}   
+</style>
+ <!-- loading box -->
+<c:MMPJ_TOPG_LoadingCMP displayMessage="Loading.."/>
+<apex:actionStatus id="status" onstart="componentLoading('#loadingDialog').dialog('open');" onstop="componentLoading('#loadingDialog').dialog('close');"/>
+<apex:form >
+<script type="text/javascript">
+function openChart(chartName){
+    var ReportMap = JSON.parse('{!JsonMap}');
+    var ReportId = ReportMap[chartName];
+    var url = '/'+ReportId;
+    window.top.open(url);
+  //window.parent.location.replace(url);
+}
+
+</script>
+   <apex:pageBlock >
+<apex:pageBlockSection title="Apply Filter" columns="3">
+    <apex:inputField value="{!Raid.MMPJ_TOPG_TechStartDate__c}" required="true" style="width:100px;"/>
+   <apex:inputField value="{!Raid.MMPJ_TOPG_TechEndDate__c}" required="true" style="width:100px;"/>
+   <apex:outputLabel >&nbsp;</apex:outputLabel>
+</apex:pageBlockSection>
+<apex:pageBlockSection columns="3">
+                <c:MMPJ_TOPG_MultiselectPicklist leftLabel="Available Brands"
+                                 leftOptions="{!AllBrands}"
+                                 rightLabel="Selected Brands"
+                                 rightOptions="{!SelectedBrands}"
+                                 size="{!SizeMultipicklist}"
+                                 width="150px"/>
+
+ <c:MMPJ_TOPG_MultiselectPicklist leftLabel="Available Markets"
+                                 leftOptions="{!AllMarkets}"
+                                 rightLabel="Selected Markets"
+                                 rightOptions="{!SelectedMarkets}"
+                                 size="{!SizeMultipicklist}"
+                                 width="150px"/>
+<apex:commandButton value="Apply Filters" action="{!applyFilter}" reRender="chartSection1,chartSection2,chartSection3" status="status"/>
+</apex:pageBlockSection>
+</apex:pageBlock>
+<apex:pageBlock >
+<apex:pageBlockSection title="Total of Considered Items" columns="1" id="chartSection">
+<apex:pageBlock title="RAID Charts" rendered="true"><!-- {!ShowGraph} -->
+  <table border="0">
+  <tr align="center">
+  <td align ="center">
+  <!--00O25000000Mfd5-->
+  <apex:pageBlockSection columns="1" id="chartSection1" >
+  <apex:commandButton onclick="openChart('MMPJ_TOPG_RaidStatusPie');return false;" value="Open Report"/>
+  <!--<apex:outputLink onclick="openChart('MMPJ_TOPG_RaidStatusPie');"  target="_blank">
+  Open Report
+</apex:outputLink>-->
+ <analytics:reportChart developerName="MMPJ_TOPG_RaidStatusPie"
+                         showRefreshButton="false"
+                         size="small"
+                         filter="{!theFilter}" >
+ </analytics:reportChart>
+ </apex:pageBlockSection>
+ </td>
+ <td align ="center"><!--00O25000000MgFE-->
+ <apex:pageBlockSection columns="1" id="chartSection2">
+ <apex:commandButton onclick="openChart('MMPJ_TOPG_RaidStatusInBars');return false;" value="Open Report"/>
+<!--<apex:outputLink onclick="openChart('MMPJ_TOPG_RaidStatusInBars');" target="_blank">
+    Open Report
+ </apex:outputLink>-->
+ <analytics:reportChart developerName="MMPJ_TOPG_RaidStatusInBars"
+                         showRefreshButton="false"
+                         size="small"
+                         filter="{!theFilter}" >
+ </analytics:reportChart>
+  </apex:pageBlockSection>
+ </td>
+ <td align ="center"><!--00O25000000MgbU-->
+ <apex:pageBlockSection columns="1" id="chartSection3">
+<!--<apex:outputLink onclick="openChart('MMPJ_TOPG_RaidTypes');"  target="_blank">-->
+<apex:commandButton onclick="openChart('MMPJ_TOPG_RaidTypes');return false;" value="Open Report"/>
+
+ <!--</apex:outputLink>-->
+<analytics:reportChart developerName="MMPJ_TOPG_RaidTypes"
+                         showRefreshButton="false"
+                         size="small"
+                         filter="{!theFilter}">
+ </analytics:reportChart>
+ </apex:pageBlockSection>
+ </td></tr></table>
+</apex:pageBlock>
+</apex:pageBlockSection>
+</apex:pageBlock>
+</apex:form>
+</apex:page>

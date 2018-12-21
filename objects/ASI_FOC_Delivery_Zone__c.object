@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>ASI_FOC_City_From__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>City From</label>
+        <referenceTo>ASI_CRM_City__c</referenceTo>
+        <relationshipLabel>Delivery Zones</relationshipLabel>
+        <relationshipName>Delivery_Zones</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ASI_FOC_City_To__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>City To</label>
+        <referenceTo>ASI_CRM_City__c</referenceTo>
+        <relationshipLabel>Delivery Zones (City To)</relationshipLabel>
+        <relationshipName>Delivery_Zones1</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ASI_FOC_Delivery_lead_time_Days__c</fullName>
+        <externalId>false</externalId>
+        <label>Delivery lead-time (Days)</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_FOC_Distance_km__c</fullName>
+        <externalId>false</externalId>
+        <label>Distance (km)</label>
+        <precision>12</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>Delivery Zone</label>
+    <nameField>
+        <label>Delivery Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Delivery Zones</pluralLabel>
+    <recordTypes>
+        <fullName>ASI_FOC_CN_Delivery_Zone</fullName>
+        <active>true</active>
+        <label>CN Delivery Zone</label>
+    </recordTypes>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>ASI_FOC_Delivery_Lead_Time_Check</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND( CONTAINS( RecordType.DeveloperName, &apos;ASI_FOC_CN&apos;) , ASI_FOC_Delivery_lead_time_Days__c &lt; 0 )</errorConditionFormula>
+        <errorDisplayField>ASI_FOC_Delivery_lead_time_Days__c</errorDisplayField>
+        <errorMessage>Delivery lead-time (Days) has to be positive</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>ASI_FOC_Distance_Check</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND( CONTAINS( RecordType.DeveloperName, &apos;ASI_FOC_CN&apos;) ,  ASI_FOC_Distance_km__c &lt; 0 )</errorConditionFormula>
+        <errorDisplayField>ASI_FOC_Distance_km__c</errorDisplayField>
+        <errorMessage>Distance (km) has to be positive</errorMessage>
+    </validationRules>
+    <visibility>Public</visibility>
+</CustomObject>

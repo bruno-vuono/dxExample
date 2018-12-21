@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>ASI_CRM_KR_PVA_Share_to_Read_User</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>ASI CRM KR PVA Share to Read User</label>
+        <sharedTo>
+            <group>ASI_CRM_KR_PVA_Read_User</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>ASI CRM KR PVA</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>ASI_CRM_KR_PVA_Shared_To_Edit_User</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>ASI CRM KR PVA Shared To Edit User</label>
+        <sharedTo>
+            <group>ASI_CRM_KR_PVA_Edit_User</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>ASI CRM KR PVA</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+</SharingRules>

@@ -1,0 +1,129 @@
+<!-- ocms_t_pr_faqview -->
+<apex:page controller="cms.CoreController"  id="t" showHeader="false" sidebar="false" standardStylesheets="false" cache="false">
+    <apex:composition template="{!page_template_reference}">
+
+        <apex:define name="header">
+            <apex:stylesheet value="{!URLFOR($Resource.OCMS_r_PR_orchestraPageSupport, 'css/ocms-reset+support.css')}" />
+            <apex:stylesheet value="{!URLFOR($Resource.OCMS_r_PR_orchestraPageSupport, 'css/prusa.css')}" />
+
+            <!-- scripts at bottom -->
+        </apex:define>
+
+        <apex:define name="body">
+            <div class="pg pgFAQView">
+                <div class="header">
+                    <div class="topHeader parallel">
+                        <div class = "logoLeft">
+                            <apex:outputText rendered="{!api.page_mode == 'edit'}"><div class="ocmsHint">
+                                <strong>Image</strong> ❧ PRUSA logo
+                            </div></apex:outputText>
+                            <cms:Panel panelname="orgTopLogoLeft" panelcontroller="{!controller}"
+                                 panelwidth="300px" panelheight="34px" panelContentLayouts="Image" panelLimit="1" />
+                        </div>    <!-- .logoLeft -->
+                        <div class="logoCenter">
+                            <apex:outputText rendered="{!api.page_mode == 'edit'}"><div class="ocmsHint">
+                                <strong>Image</strong> ❧ INSITE logo
+                            </div></apex:outputText>
+                            <cms:Panel panelname="orgTopLogoCenter" panelcontroller="{!controller}"
+                                 panelwidth="300px" panelheight="34px" panelContentLayouts="Image" panelLimit="1" />
+                        </div>    <!-- .logoCenter -->
+                        <div class="profileInfo parallel">
+                            <div class="userStatus">
+                                <p class="dayMessage"></p>
+                                <p class="userName"></p>
+                            </div>
+                        </div>    <!-- .profileInfo -->
+                    </div>    <!-- .topHeader -->
+                    <div class="topNavigation parallel clear">
+                        <div class="searchBox">
+                            <apex:outputText rendered="{!api.page_mode == 'edit'}"><div class="ocmsHint">
+                                <strong>Search Basic Form</strong> ❧ Search box;
+                            </div></apex:outputText>
+                            <cms:Panel panelName="searchBox" panelController="{!controller}"
+                                 panelWidth="300px" panelHeight="34px" panelContentLayouts="SearchBasicForm" panelLimit="1"/>
+                        </div>    <!-- .searchBox -->
+                        <div class="mainNav">
+                            <apex:outputText rendered="{!api.page_mode == 'edit'}"><div class="ocmsHint">
+                                <strong>Class Styled Menu</strong> ❧ Top navigation menu; No sub menus, Select active menu per page<br/>
+                                ❧ Dont enable smart active menu;
+                            </div></apex:outputText>
+                            <cms:Panel panelName="mainNav" panelController="{!controller}"
+                                 panelWidth="300px" panelHeight="34px" panelContentLayouts="ClassStyledMenu" panelLimit="1"/>
+                        </div>    <!-- .mainNav -->
+                        <div class="quickLinks">
+                            <apex:outputText rendered="{!api.page_mode == 'edit'}"><div class="ocmsHint">
+                                <strong>Class Styled Menu</strong> ❧ Quick links menu, add label for each menu item <br/>
+                                ❧ Add Menu Title (Quick Links);
+                            </div></apex:outputText>
+                            <cms:Panel panelName="quickLinks" panelController="{!controller}"
+                                 panelWidth="300px" panelHeight="34px" panelContentLayouts="ClassStyledMenu" panelLimit="1"/>
+                        </div>    <!-- .quickLinks -->
+                    </div>    <!-- .topNavigation -->
+                </div>    <!-- .header -->
+                
+                <div class="pageBody parallel clear">
+                    <div class="leftNav">
+                        <apex:outputText rendered="{!api.page_mode == 'edit'}"><div class="ocmsHint">
+                            <strong>Class Styled Menu</strong> ❧ Left navigation menu, Select active menu per page<br/>
+                                ❧ Dont enable smart active menu;
+                        </div></apex:outputText>
+                        <cms:Panel panelName="leftNav" panelController="{!controller}"
+                             panelWidth="300px" panelHeight="34px" panelContentLayouts="ClassStyledMenu" panelLimit="1"/>
+                        <apex:outputText rendered="{!api.page_mode == 'edit'}"><div class="ocmsHint">
+                            <strong>Taxonomy</strong> ❧ Taxonomy menu (Content name must be same as level-1 taxonomy menu item);
+                        </div></apex:outputText>
+                        <cms:Panel panelName="taxonomyMenu" panelController="{!controller}"
+                             panelWidth="300px" panelHeight="102px" panelLimit="3"/>
+                     </div>    <!-- .leftNav -->
+                     <div class="centerCol">
+                         <div class="titleHeader">
+                             <apex:outputText rendered="{!api.page_mode == 'edit'}"><div class="ocmsHint">
+                                <strong>Text Block</strong> ❧ Title in (&lt;h1&gt;) or (&lt;h2&gt;);
+                             </div></apex:outputText>
+                             <cms:Panel panelName="titleHeader" panelController="{!controller}"
+                                  panelWidth="300px" panelHeight="34px" panelLimit="1" panelContentLayouts="TextBlock"/>
+                         </div> <!-- .titleHeader -->
+                         
+                         <apex:outputText rendered="{!api.page_mode == 'edit'}"><div class="ocmsHint">
+                            <strong>Utility - Content View</strong> ❧ Article detail view;
+                         </div></apex:outputText>
+                         <cms:Panel panelName="contentView" panelController="{!controller}"
+                              panelWidth="300px" panelHeight="34px" panelLimit="1"/>   
+                     </div>    <!-- .centerCol -->
+                     <div class="rightRail">
+                         <div class="contactBtn">
+                             <apex:outputText rendered="{!api.page_mode == 'edit'}"><div class="ocmsHint">
+                                <strong>Text Block</strong> ❧ link for contact button (if required);
+                            </div></apex:outputText>
+                            <cms:Panel panelName="contactBtn" panelController="{!controller}"
+                                 panelWidth="300px" panelHeight="34px" panelContentLayouts="TextBlock" panelLimit="1"/> 
+                         </div>
+                         <div class="relatedLinks">
+                            <apex:outputText rendered="{!api.page_mode == 'edit'}"><div class="ocmsHint">
+                                <strong>Text Block</strong> ❧ Title in (&lt;h1&gt;);
+                            </div></apex:outputText>
+                            <cms:Panel panelName="title1" panelController="{!controller}"
+                                 panelWidth="300px" panelHeight="34px" panelContentLayouts="TextBlock" panelLimit="1"/> 
+                             <apex:outputText rendered="{!api.page_mode == 'edit'}"><div class="ocmsHint">
+                                 <strong>Text Block</strong> ❧ related links (if required);
+                             </div></apex:outputText>
+                             <cms:Panel panelName="genericBlock" panelController="{!controller}"
+                                  panelWidth="300px" panelHeight="34px" panelContentLayouts="TextBlock" panelLimit="1"/>
+                         </div>    <!--  .relatedLinks -->        
+                     </div>    <!-- .rightRail -->
+                </div>    <!-- .pageBody -->
+          
+                <div class="footer">
+                    <div class="backToTop">Back to Top</div>
+                </div>    <!-- .footer -->
+            </div>    <!-- .pgArticle -->
+
+            <script type="text/javascript" src="{!URLFOR($Resource.OCMS_r_PR_orchestraPageSupport, 'js/jquery.livequery.js')}"></script>
+            <script type="text/javascript" src="{!URLFOR($Resource.OCMS_r_PR_orchestraPageSupport, 'js/ocms-extensions.js')}"></script>
+            <script type="text/javascript" src="{!URLFOR($Resource.OCMS_r_PR_orchestraPageSupport, 'js/ocms-carousel.js')}"></script>
+            <script type="text/javascript" src="{!URLFOR($Resource.OCMS_r_PR_orchestraPageSupport, 'js/prusa.js')}"></script>
+
+        </apex:define>
+    </apex:composition>
+</apex:page>
+<!-- ocms_t_pr_faqview -->

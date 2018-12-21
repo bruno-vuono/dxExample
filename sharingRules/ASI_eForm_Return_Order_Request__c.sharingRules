@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>ASI_eForm_KR_Factory_Users_Share</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>ASI eForm KR Factory Users Share</label>
+        <sharedTo>
+            <group>ASI_eForm_KR_Factory_Users</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>KR Return Order,KR Return Order RO,KR Return Order Input</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ASI_eForm_Reason__c</field>
+            <operation>equals</operation>
+            <value>R42 품질 이슈 - 소비자 클레임</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>ASI_eForm_KR_TMKT_Director_Share</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>ASI eForm KR TMKT Director Share</label>
+        <sharedTo>
+            <group>ASI_eForm_KR_TMKT_Director</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>KR Return Order,KR Return Order RO,KR Return Order Input</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ASI_eForm_Reason__c</field>
+            <operation>equals</operation>
+            <value>&quot;R48 제품 교환 (각종 프로모션 : NPD, 7 packs, In-packs, DC PM, etc.)&quot;,R51 기타 (구체적으로 사유를 명시해주세요),R43 품질 이슈 - 제품 리콜,&quot;R46 제품 반품 및 교환 (거래선 이탈, 도매장 재고 불균형)&quot;,R47 제품 교환 (PRK 재고 부족으로 인한 도매장간 재고 이동),R50 구형 재고</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+</SharingRules>

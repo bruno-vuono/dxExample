@@ -1,0 +1,123 @@
+<apex:page standardController="MMPJ_TOPG_Meeting__c" showHeader="false" sidebar="false" >
+    <script type="text/javascript" src="{!URLFOR($Resource.MMPJ_TOPG_jQuery,'')}" />
+    <script type="text/javascript" src="{!URLFOR($Resource.MMPJ_TOPG_jCarousel,'jquery.jcarousellite.min.js')}" />
+    <style>        
+        .activeTab {
+            background-color: #236FBD;
+            color:white;
+            background-image:none;
+        }
+        .inactiveTab { 
+            background-color: lightgrey;
+            color:black;
+            background-image:none;
+        }
+        .pbSubheader{
+            background-color:#CFEEF8!important;
+            
+        }
+        .bPageBlock{
+            border-color: #CFEEF8!important;
+        }
+        .pbSubheader h3 {
+            color:black;
+            margin-left:10px;
+        }
+        .pbSubheader .hideListButton{
+            background: transparent url('/img/alohaSkin/twisty_sprite.png') 0 -11px no-repeat !important;
+        }
+        .pbSubheader .showListButton{
+            background: transparent url('/img/alohaSkin/twisty_sprite.png') 0 0px no-repeat !important;
+        }
+        .btnSend {
+            text-decoration: initial;
+            padding: 4px !important;
+        }
+        .btnSend:hover {
+            color:black;
+            text-decoration: initial;
+        }
+        .custPopup {
+            background-color: #F8F8F8;
+            border-width: 2px;
+            border-style: solid;
+            border-color: #cfeef8;
+            z-index: 9999;
+            left: 50%;
+            position: fixed;
+            width: 760px;
+            margin-left: -380px;
+            margin-top: -250px;
+            top:50%;
+        }
+        .popupWindow{
+            position:absolute;             
+            z-index:101;
+            top:50px;
+            left:0;
+            right:0;
+            margin-left:auto;
+            margin-right:auto;                
+        }
+        .custPopup .bPageBlock {
+            border : 0px;
+        }
+        .popupBackground{
+            position:fixed; 
+            top:0px; 
+            left:0px; 
+            width:100%; 
+            bottom:0px; 
+            z-index:100; 
+            background-color: 
+            #000000; 
+            opacity: 0.15; 
+            filter: alpha(opacity = 20);
+        }
+        .PopupTilte{
+            color: #000000;
+            background-color: #cfeef8;
+            padding: 8px;
+            font-weight: bold;
+        }
+        .BtnRight {
+            text-align:right;
+            padding: 10px 0px 0px 0px;
+        }
+        .UPLink {
+            background:url("{!$Resource.MMPJ_TOPG_UPArrow}") no-repeat;
+            color:transparent !important;
+            position: absolute;
+            left: 14px;
+        }
+        .DetailWho {
+            position: absolute;
+            left: 109px;
+            bottom: 98px;
+        }
+        .LabelDetail {
+            position: relative;
+            left: 8%;
+            font-weight: bold;
+            color: #4a4a56;
+            font-size: 91%;
+        }
+        #datePicker.datePicker {
+            position:fixed;
+            z-index: 9999;
+        }
+    </style> 
+    <script type="text/javascript" language="javascript">
+        if(jQuery) {
+            jQuery.noConflict();
+        }
+    </script>
+    <apex:pageMessage rendered="{!MMPJ_TOPG_Meeting__c.Id = null}" strength="3" severity="ERROR" title="Invalid Meeting" detail="Please save the agenda before creating a new visit!"></apex:pageMessage>
+    <apex:outputText value="{!MMPJ_TOPG_Meeting__c.MMPJ_TOPG_BMC__c}" rendered="false"></apex:outputText>
+    <apex:outputText value="{!MMPJ_TOPG_Meeting__c.MMPJ_TOPG_BMC__r.Name}" rendered="false"></apex:outputText>
+    <!--BTO : Delete market in bmc -->
+    <!--<apex:outputText value="{!MMPJ_TOPG_Meeting__c.MMPJ_TOPG_BMC__r.MMPJ_TOPG_Market__c}" rendered="false"></apex:outputText> -->   
+    <apex:outputPanel rendered="{!MMPJ_TOPG_Meeting__c.Id <> null}">
+        <c:MMPJ_TOPG_NewVisit theMeeting="{!MMPJ_TOPG_Meeting__c}" AgendaSubject="{!$CurrentPage.parameters.AgendaSubject}" AgendaStartDate="{!$CurrentPage.parameters.AgendaStartDate}" />
+    </apex:outputPanel>
+</apex:page>

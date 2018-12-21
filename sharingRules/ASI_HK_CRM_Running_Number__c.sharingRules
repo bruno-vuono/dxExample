@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>ASI_CN_User</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>CN User</label>
+        <sharedTo>
+            <roleAndSubordinates>ASI_CN</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>CN Running Number</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>ASI_CRM_TH_Users</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>TH CRM Users</label>
+        <sharedTo>
+            <roleAndSubordinates>ASI_TH_CRM</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>TH CRM Running Number</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+</SharingRules>

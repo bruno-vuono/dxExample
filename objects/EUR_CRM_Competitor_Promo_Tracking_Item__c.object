@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSearch>false</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>EUR_CRM_Brand_Quality_Size__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Brand-Quality-Size</label>
+        <referenceTo>EUR_CRM_Size__c</referenceTo>
+        <relationshipLabel>Competitor Promo Tracking Items (EU)</relationshipLabel>
+        <relationshipName>Competitor_Promo_Tracking_Items_EU</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Brand_Quality__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Brand-Quality</label>
+        <referenceTo>EUR_CRM_Quality__c</referenceTo>
+        <relationshipLabel>Competitor Promo Tracking Items (EU)</relationshipLabel>
+        <relationshipName>Competitor_Promo_Tracking_Items_EU</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Brand__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Brand</label>
+        <referenceTo>EUR_CRM_Brand__c</referenceTo>
+        <relationshipLabel>Competitor Promo Tracking Items (EU)</relationshipLabel>
+        <relationshipName>Competitor_Promo_Tracking_Items_EU</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Competitor_Promo_Tracking__c</fullName>
+        <externalId>false</externalId>
+        <label>Competitor Promo Tracking</label>
+        <referenceTo>EUR_CRM_Competitor_Promo_Tracking__c</referenceTo>
+        <relationshipLabel>Competitor Promo Tracking Items (EU)</relationshipLabel>
+        <relationshipName>Competitor_Promo_Tracking_Items</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Retail_Sales_Price__c</fullName>
+        <externalId>false</externalId>
+        <label>Retail Sales Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <label>Competitor Promo Tracking Item (EU)</label>
+    <nameField>
+        <displayFormat>CPTI-{0000000000}</displayFormat>
+        <label>Competitor Promo Tracking Item</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Competitor Promo Tracking Items (EU)</pluralLabel>
+    <recordTypes>
+        <fullName>EUR_BE_Off_Trade_CPT_Item</fullName>
+        <active>true</active>
+        <label>EUR BE Off Trade CPT Item</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_BE_On_Trade_CPT_Item</fullName>
+        <active>true</active>
+        <label>EUR BE On Trade CPT Item</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_BG_Off_Trade_CPT_Item</fullName>
+        <active>true</active>
+        <label>EUR BG Off Trade CPT Item</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_BG_On_Trade_CPT_Item</fullName>
+        <active>true</active>
+        <label>EUR BG On Trade CPT Item</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_DK_Off_Trade_CPT_Item</fullName>
+        <active>true</active>
+        <label>EUR DK Off Trade CPT Item</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_DK_On_Trade_CPT_Item</fullName>
+        <active>true</active>
+        <label>EUR DK On Trade CPT Item</label>
+    </recordTypes>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

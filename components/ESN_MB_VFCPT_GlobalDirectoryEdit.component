@@ -1,0 +1,53 @@
+<apex:component >
+   <!--<apex:stylesheet value="https://dl.dropboxusercontent.com/u/51617866/DEV_PR_VAL/globalDirectoryEdit.css"/>-->
+    <div class="content-wrapper container-fluid">
+              <div class="btn-close">
+                  <a href="#" data-category="market-activation" data-cat-name="market-activation" data-page="accueil-market-activations" onclick="window.history.back();return false;" >
+                      {!$Label.ESN_MB_Close}<div class="picto-close"></div>
+                  </a>
+              </div>
+              <div class="container-margin">
+                <div class="central-container">
+                  <form action="" id="form_local_activation"  method="POST">
+                    <h2 class="title-no-margin">{!$Label.ESN_MB_MarketingDirectoryEdit}</h2>
+                    <hr />
+
+                    <h2>{!$Label.ESN_MB_Videos}</h2>
+                    <hr />
+                    <fieldset>
+                      <label for="video" class="label-icon label-icon-video">{!$Label.ESN_MB_AddOneVideo}</label>
+                      <ul id="globalDirectoryVideoUl"></ul> 
+                      <div class="upload-btn-container">
+                            <div id="globalDirectoryVideo" class="preview">
+                                <a data-page="globalDirectory" data-category="brand-cloud" data-target="#modal-searchAsset" href="/apex/ESN_MB_NOP_SearchAsset" data-toggle="modal">
+                                    <div class="file-upload btn btn-upload">
+                                        <span>{!$Label.ESN_MB_Add_Video}</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </fieldset>
+                      
+                    <h2>{!$Label.ESN_MB_OrganizationChart}</h2>
+                    <hr />
+                    <fieldset>
+                      <label for="picture" class="label-icon-no-margin label-icon-pdf">{!$Label.ESN_MB_AddOnePdf}</label>
+                      <ul id="globalDirectoryPDFUl"></ul>
+                      <div class="upload-btn-container">
+                        <div id="globalDirectoryPDF" class="preview">
+                            <a data-page="globalDirectory" data-category="brand-cloud" data-target="#modal-searchAsset" href="/apex/ESN_MB_NOP_SearchAsset" data-toggle="modal">
+                                <div class="file-upload btn btn-upload">
+                                    <span>{!$Label.ESN_MB_UploadPDF}</span>
+                                </div>
+                            </a>
+                        </div>
+                      </div>
+                    </fieldset>
+
+                     <input type="submit" value="Upload" onclick="window.history.back();return false;"/>
+ 
+                  </form>
+                </div> <!-- central-container -->
+              </div><!--/.container-margin-->
+            </div>
+</apex:component>

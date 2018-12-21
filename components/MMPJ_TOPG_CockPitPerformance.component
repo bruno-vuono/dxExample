@@ -1,0 +1,4 @@
+<apex:component >
+    <apex:pageBlock >
+    </apex:pageBlock>
+</apex:component>

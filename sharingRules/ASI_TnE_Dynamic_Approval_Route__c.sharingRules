@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>ASI_TnE_JP_MKT_Share</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>TnE JP MKT Share</label>
+        <sharedTo>
+            <group>ASI_JP_TnE_Supports_By_MKT_Team_Admin</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>JP Dynamic Approval Route</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+</SharingRules>

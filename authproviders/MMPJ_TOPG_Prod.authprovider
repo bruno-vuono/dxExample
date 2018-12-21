@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AuthProvider xmlns="http://soap.sforce.com/2006/04/metadata">
+    <authorizeUrl>https://pernodricard.sharepoint.com/sites/TopGun/_layouts/15/OauthAuthorize.aspx</authorizeUrl>
+    <consumerKey>9c89e407-8e16-4080-91ab-7235413ea589</consumerKey>
+    <consumerSecret>9s8uQEfro/Wm8AShp26cOh0VmWWREVIX4DeOSO5keSs4VcLgurGrNL/ywbADzbl9</consumerSecret>
+    <friendlyName>MMPJ TopGun Prod</friendlyName>
+    <iconUrl>https://test.salesforce.com/icons/microsoft-grey.png</iconUrl>
+    <includeOrgIdInIdentifier>false</includeOrgIdInIdentifier>
+    <providerType>MicrosoftACS</providerType>
+    <sendAccessTokenInHeader>false</sendAccessTokenInHeader>
+    <sendClientCredentialsInHeader>false</sendClientCredentialsInHeader>
+    <tokenUrl>https://accounts.accesscontrol.windows.net/pernodricard.onmicrosoft.com/tokens/OAuth/2?resource=00000003-0000-0ff1-ce00-000000000000/pernodricard.sharepoint.com@pernodricard.onmicrosoft.com</tokenUrl>
+</AuthProvider>

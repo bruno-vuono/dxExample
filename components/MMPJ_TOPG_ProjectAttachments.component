@@ -1,0 +1,87 @@
+<apex:component controller="MMPJ_TOPG_LoadAttachmentsController" allowDML="true">
+    <apex:attribute name="theProject" description="The project object" type="MMPJ_TOPG_Project__c" assignTo="{!project}"/>  
+    <apex:actionStatus id="StatusLoading">
+        <apex:facet name="start">
+            <div class="popupBackground">
+                <div class="popupWindow">
+                    <img src="/img/loading.gif" alt="loading.."/>
+                </div>
+            </div>
+        </apex:facet>
+    </apex:actionStatus>  
+    <apex:form >
+        <apex:actionFunction name="UpdateProject" action="{!UpdateProject}" reRender=""/>
+        <script type="text/javascript">
+        if('{!$CurrentPage.parameters.attchmenttype}' == 'pm' || '{!$CurrentPage.parameters.attchmenttype}' == 'del' ){
+            if('{!ProjectSaved}' == 'false')
+                UpdateProject();
+
+        }
+        </script>
+        <apex:pageBlock title="Deliverables" id="PbDeliverables">    
+            <apex:pageMessages />
+            <table width="100%" border="0" align="right">
+                <tr>
+                    <td align ="right">
+                        <apex:commandButton value="ADD DOCUMENT" action="{!addAttachmentDeliverables}" />
+                    </td>
+                </tr>
+            </table>
+            <apex:pageBlockTable value="{!listDeliverablesAttach}" var="att" id="ProjectManagTable">
+                <apex:column headerValue="Action">
+                    <apex:outputLink value="/{!att.id}" style="color:#015ba7">Edit</apex:outputLink>
+                     &nbsp;
+                    <apex:outputLink value="../servlet/servlet.FileDownload?file={!att.id}" style="color:#015ba7" target="_blank">View</apex:outputLink>
+                     &nbsp;
+                    <apex:commandLink value=" Del "  style="color:#015ba7" action="{!deleteAttachment}" immediate="true" status="StatusLoading" rerender="ProjectManagTable,PbDeliverables">
+                        <apex:param value="{!att.id}" name="rowToRemove" assignTo="{!attachmentId}"/>
+                    </apex:commandLink>
+                </apex:column>
+                <apex:column headerValue="Type">
+                    <apex:outputField value="{!att.ContentType}"/>
+                </apex:column>
+                <apex:column headerValue="Title">
+                    <apex:outputLink value="/{!att.Id}">{!att.Name}</apex:outputLink>
+                </apex:column>
+                <apex:column headerValue="Last Modified">
+                    <apex:outputField value="{!att.lastModifiedDate}"/>
+                </apex:column>
+                <apex:column headerValue="Created By">
+                    <apex:outputLink value="{!att.createdBy.id}">{!att.createdBy.name}</apex:outputLink>
+                </apex:column>        
+            </apex:pageBlockTable>
+        </apex:pageblock>
+        <apex:pageblock title="Project Management" id="PbProjectManagement">
+            <table width="100%" border="0" align="right">
+                <tr>
+                    <td align ="right">
+                        <apex:commandButton value="ADD DOCUMENT" action="{!addAttachmentProjectManag}" />
+                    </td>
+                </tr>
+            </table>
+            <apex:variable value="{!0}" var="WrapNum"/>
+            <apex:pageBlockTable value="{!ListChatterProject}" var="Wrapper" id="DeliverableTable">
+                <apex:column headerValue="Action">
+                    <apex:outputLink value="../{!Wrapper.Id}?retURL=%2Fapex%2FMMPJ_TOPG_NewMeeting?ID={!project.id}%26TabName=Attachements" style="color:#015ba7" target="_top">Edit</apex:outputLink>&nbsp;|&nbsp;
+                    <apex:outputLink value="{!IF(Wrapper.ischatterDocument,'../' + Wrapper.Id + '?retURL=%2Fapex%2FMMPJ_TOPG_NewMeeting?ID=' + project.id + '%26TabName=Attachements' ,'../servlet/servlet.FileDownload?file=' + Wrapper.id)}" style="color:#015ba7" target="_blank">View</apex:outputLink>&nbsp;|&nbsp;
+                    <apex:commandLink value="Del" style="color:#015ba7" action="{!deleteWrapper}" rerender="PbProjectManagement" immediate="true" status="StatusLoading">
+                        <apex:param value="{!WrapNum}" name="rowToRemove" assignTo="{!WrapperToDelete}"/>
+                    </apex:commandLink>
+                    <apex:variable value="{!WrapNum + 1}" var="WrapNum"/>
+                </apex:column>
+                <apex:column headerValue="Type">
+                    <apex:outputtext value="{!Wrapper.Type}"/>
+                </apex:column>
+                <apex:column headerValue="Title">
+                    <apex:outputLink value="/{!Wrapper.Id}">{!Wrapper.Title}</apex:outputLink>
+                </apex:column>
+                <apex:column headerValue="Last Modified">
+                    <apex:outputtext value="{!Wrapper.LastModified}"/>
+                </apex:column>
+                <apex:column headerValue="Created By">
+                    <apex:outputLink value="{!Wrapper.createdById}">{!Wrapper.CreatedByName}</apex:outputLink>
+                </apex:column>        
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+    </apex:form>
+</apex:component>

@@ -1,0 +1,357 @@
+<apex:component controller="ArticleEditController"  allowDml="true">
+<apex:attribute name="disabled" type="Boolean" description="The panel unique identifier" assignTo="{!layout_disabled}" />
+<apex:attribute name="content" type="cms__Content__c" description="The panel unique identifier" assignTo="{!content}" />
+<apex:attribute name="properties" type="cms__Attribute__c[]" description="The panel unique identifier" assignTo="{!content_properties}" />
+<apex:attribute name="layout_instance" type="cms__Content_Layout_Instance__c" description="The panel unique identifier" assignTo="{!content_layout_instance}" />
+<apex:attribute name="layout_instance_properties" type="cms__Attribute__c[]" description="The panel unique identifier" assignTo="{!content_layout_instance_properties}" />
+
+
+<!-- <cms:CmsScripts debug="false" /> -->
+<apex:outputPanel layout="block" style="padding: 5px;">
+
+    <script type="text/javascript" language="javascript">
+            
+       function removeNL(s){ 
+            return s.replace(/[\n\r\t]/g,'');
+       }
+                
+       function saveLookAndFeel(cb) {
+            var attributes = new Array();  
+            attributes.push({"name":"ImageId", "value":$('#ImageIdInput').val(), "type":"Text"}); 
+            attributes.push({"name":"LargeImageId", "value":$('#LargeImageIdInput').val(), "type":"Text"}); 
+            attributes.push({"name":"Headline", "value":removeNL($('#Headline').val()), "type":"Text"}); 
+            attributes.push({"name":"HTMLContent", "value":removeNL(CKEDITOR.instances.HTMLContent.getData()), "type":"Text"});
+            attributes.push({"name":"SummaryContent", "value":removeNL($('#SummaryContent').val()), "type":"Text"});
+            attributes.push({"name":"SubContent", "value":removeNL(CKEDITOR.instances.SubContent.getData()), "type":"Text"});
+            attributes.push({"name":"HighlightsContent", "value":removeNL(CKEDITOR.instances.HighlightsContent.getData()), "type":"Text"});
+            attributes.push({"name":"AltImageText", "value":$('#AltImageText').val(), "type":"Text"});
+            attributes.push({"name":"TitleImageText", "value":$('#TitleImageText').val(), "type":"Text"});
+            var data = {};
+            data.priority_weight = $('#priorityWeight').val();
+            data.priority_duration=  $('#priorityDuration').val();
+            data.content_id="{!content.Id}";
+            data.content_type="{!content.cms__Content_Type__r.cms__Name__c}";
+            data.parent_id=null;
+            data.start_date = $('#StartDate').val();
+            data.end_date   = $('#Expiry').val();
+            data.access_level =$('#accessLevel').val();
+                      
+            $.ocms.saveContent(data,
+                               attributes,
+                               "{!JSENCODE(Content.cms__Site_Name__c)}",
+                               cb,
+                               '{!token}',
+                               false
+                            ); 
+       }
+                
+       function saveLookAndFeelClose(cb) {
+            if(saveLookAndFeel(cb)) 
+                closeTab('{!JSENCODE(tab)}');
+       }
+      
+       $(document).ready(function(){
+            var buttons = $('div.ui-button');
+            buttons.removeClass('btn');
+            buttons.hover(
+                    function() {
+                        $(this).addClass('ui-state-hover');
+                    },
+                    function() {
+                        $(this).removeClass('ui-state-hover');
+                    }
+                );
+                buttons.mousedown(function(){
+                    $(this).addClass('ui-state-active');
+                }
+                ).mouseup(function(){
+                    $(this).removeClass('ui-state-active');
+                }
+            );
+         
+            $('#generate-text').click(function(){
+                var htmldata=$('<span>' +removeNL(CKEDITOR.instances.HTMLContent.getData()) + '</span>').text();
+                
+                if(htmldata !=null && htmldata !=''){
+                    if (htmldata.length > 150) {
+                        htmldata = htmldata.substring(0,150);
+                    }
+                    $('#SummaryContent').val(htmldata);
+                    
+                    var nChars = 150 - htmldata.length;
+                    $("#charCount").text(nChars);
+                    if (nChars < 0) {
+                        $("#charCount").text(0);
+                    }   
+                }
+            });
+            
+            var theBindings = {
+                
+                "ActionMenu-Publish": function(actionBar, action){
+                    return validatePublishAction();
+                },
+                "ActionMenu-SendForApproval": function(actionBar, action){
+                    return validatePublishAction();
+                }
+                
+            };
+            ce.content_editor('registerBindings', theBindings);
+            
+            $(document).data('sname', '{!SiteName}');
+            $(document).data('namespace', '{!Namespace}');
+            $(document).data('tooltipImage', '{!URLFOR($Resource.cms__CmsImages,'/inline_help.png')}');
+            $(function() {
+                
+                if(!{!published}) {
+                    CKEDITOR.replace('HTMLContent',
+                    {
+                        enterMode : CKEDITOR.ENTER_BR
+                    });
+                    
+                }
+                CKEDITOR.config.bodyClass = 'fullArticle';
+                
+                if(!{!published}) {
+                    CKEDITOR.replace('SubContent',
+                    {
+                        enterMode : CKEDITOR.ENTER_BR
+                    });
+                    
+                }
+                CKEDITOR.config.bodyClass = 'SubArticleContent';
+                
+                if(!{!published}) {
+                    CKEDITOR.replace('HighlightsContent',
+                    {
+                        enterMode : CKEDITOR.ENTER_BR
+                    });
+                    
+                }
+                CKEDITOR.config.bodyClass = 'ArticleHighlights';
+            });
+        
+            $("#SummaryContent").keyup(function () {
+                var sSummary = $(this).val();
+                var nChars = 150 - sSummary.length;
+                $("#charCount").text(nChars);
+          
+                if (nChars < 0) {
+                    $(this).val(sSummary.substr(0, 150)).scrollTop($(this)[0].scrollHeight);
+                    $("#charCount").text(0);
+                }               
+                
+            }).keyup();
+            
+            $("#SummaryContent").bind('paste', function(e) {
+          
+                setTimeout(function() {
+                var sSummary = $('#SummaryContent').val();
+                var nChars = 150 - sSummary.length;
+                $("#charCount").text(nChars);
+                if (nChars < 0) {
+                    $(this).val(sSummary.substr(0, 150)).scrollTop($(this)[0].scrollHeight);
+                    $("#charCount").text(0);
+                }               
+              
+                }, 0);
+            });
+        
+       });
+      
+       var validatePublishAction = function(){
+            
+            var sMessage='The following fields, marked with an <span style="color">*</span> need to be selected or populated before the article can be saved';
+            var missingFields='';
+            var success=true;
+            
+            if($('#Headline').val()==null || $('#Headline').val() ==''){
+                missingFields += ' :Headline ';
+                success= false;
+            }
+           
+            var body=CKEDITOR.instances.HTMLContent.getData();
+           
+            body = body.trim();
+            if(body==null || body =='' || body=='<br />'){
+                missingFields += ' :Body';
+                success= false;
+            }
+            if($('#SummaryContent').val()==null || $('#SummaryContent').val()==''){
+                missingFields += ' :Summary';
+                success= false;
+            }
+
+            if(success==false)
+                $('#messagePane').ocmsShowErrorPopup({
+                    type: 'error'
+                    ,message:sMessage +missingFields
+                    ,width: 400
+                    ,showMask:false
+                });
+            return success; 
+        }
+    </script>
+    
+    
+        <div id="messagePane"></div>
+        <table cellpadding="10" cellspacing="0" border="0" > 
+            <tr>
+                <td style="vertical-align: top;width:50px;">Title of Article<span style="color:red">*</span></td>
+                <td>
+                    <apex:outputText escape="false" rendered="{!layout_disabled}">
+                        <textarea  rows="2" cols="70" id="Headline" name="Headline" disabled="disabled"><apex:outputText value="{!Headline}" /></textarea>
+                    </apex:outputText> 
+                    <apex:outputText escape="false" rendered="{!!layout_disabled}">
+                        <textarea class="validatearticleinput" rows ="2" cols="70" id="Headline" name="Headline"><apex:outputText value="{!Headline}" /></textarea>
+                    </apex:outputText>                                      
+                </td>
+            </tr>
+        </table>
+    
+        <div style="font-size: 14px; font-weight: bold;padding-top:10px;padding-bottom:5px;">Article Details</div>
+        <table cellpadding="10" cellspacing="0" border="0" > 
+            <tr>
+                <td style="vertical-align: top;">Introductory Text<span style="color:red">*</span></td>
+                <td>
+                    <apex:outputText escape="false" rendered="{!!layout_disabled}">
+                        <textarea  class="validatearticleinput" name="HTMLContent" id="HTMLContent" ><apex:outputText value="{!HTMLContent}" /></textarea>
+                    </apex:outputText>
+                    <apex:outputPanel id="o1" layout="block" rendered="{!layout_disabled}" style="padding: 5px; border: 1px solid #DEDEDE;">
+                        <apex:outputText escape="false" value="{!HTMLContent}" id="DocumentContentView" />
+                    </apex:outputPanel>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;">Sub Text </td>
+                <td>
+                    <apex:outputText escape="false" rendered="{!!layout_disabled}">
+                        <textarea  class="validatearticleinput" name="SubContent" id="SubContent" ><apex:outputText value="{!SubContent}" /></textarea>
+                    </apex:outputText>
+                    <apex:outputPanel id="o3" layout="block" rendered="{!layout_disabled}" style="padding: 5px; border: 1px solid #DEDEDE;">
+                        <apex:outputText escape="false" value="{!SubContent}" id="DocumentSubContentView" />
+                    </apex:outputPanel>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;">Highlights Text (if required)</td>
+                <td>
+                    <apex:outputText escape="false" rendered="{!!layout_disabled}">
+                        <textarea  class="validatearticleinput" name="HighlightsContent" id="HighlightsContent" ><apex:outputText value="{!HighlightsContent}" /></textarea>
+                    </apex:outputText>
+                    <apex:outputPanel id="o4" layout="block" rendered="{!layout_disabled}" style="padding: 5px; border: 1px solid #DEDEDE;">
+                        <apex:outputText escape="false" value="{!HighlightsContent}" id="DocumentHighlightsContentView" />
+                    </apex:outputPanel>
+                </td>
+            </tr>
+        </table>
+        
+        <div style="font-size: 14px; font-weight: bold;padding-top:10px;padding-bottom:5px;">Article Summary</div>
+        <table cellpadding="10" cellspacing="0" border="0">
+            <tr>
+                <td style="vertical-align: top;width:50px;">Text<span style="color: red">*</span></td>
+                <td>    
+                    <apex:outputText escape="false" rendered="{!!layout_disabled}">
+                        <textarea name="SummaryContent" id="SummaryContent" rows="5" cols="65" ><apex:outputText value="{!SummaryContent}" /></textarea>
+                        <br/>(<span id="charCount" style="color: red">150</span> characters remaining)
+                        <span><br/>Summary text is limited to 150 characters.</span><br/>
+                        <span>Enter two carriage returns to create a paragraph break</span>
+                    </apex:outputText>
+                    <apex:outputPanel id="o2" layout="block" rendered="{!layout_disabled}" style="padding: 5px; border: 1px solid #DEDEDE;">
+                        <apex:outputText escape="false" value="{!SummaryContent}" id="DocumentContentViewSummary" />
+                    </apex:outputPanel>
+                </td>
+                <apex:outputText escape="false" rendered="{!!layout_disabled}">
+                    <td style="vertical-align:top;magin-top:10px;"><div class ="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button"><span id="generate-text" class="ui-button-text">Generate Text</span></div>  </td>
+                </apex:outputText>
+            </tr>
+        </table>
+           
+        <div style="font-size: 14px; font-weight: bold;padding-top:10px;padding-bottom:5px;">Images</div>
+        <table>
+            <tr>
+                <td style="vertical-align: top;">Small Image (used in summary lists)</td>
+                <td>
+                    <input type="hidden" name="ImageIdInput" id="ImageIdInput" value="{!ImageId}" />
+                    <cms:ImageSelector sname="{!content.cms__Site_Name__c}" cPassThroughId="ImageIdInput" cImage="{!ImageId}" type="Image" disabled="{!layout_disabled}" DialogId="imageInput1" />
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;">Large Image (used with article detail)</td>
+                <td>
+                    <input type="hidden" name="LargeImageIdInput" id="LargeImageIdInput" value="{!LargeImageId}" />
+                    <cms:ImageSelector sname="{!content.cms__Site_Name__c}" cPassThroughId="LargeImageIdInput" cImage="{!LargeImageId}" type="Image" disabled="{!layout_disabled}" DialogId="imageInput2" />
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top;">Image Accessibility</td>
+                <td>
+                    <span>Alternative Text</span><br/>
+                    <apex:outputText escape="false" rendered="{!layout_disabled}" >
+                        <input type="text" value="{!AltImageText}" name="AltImageText" id="AltImageText" size="60" disabled="disabled" />
+                    </apex:outputText>
+                    <apex:outputText escape="false" rendered="{!!layout_disabled}" >
+                        <input type="text" value="{!AltImageText}" name="AltImageText" id="AltImageText" size="60" />
+                    </apex:outputText>
+                    <br/><span> Word that describes image that will be read by screen-reading software. </span><br/><br/>
+                    <span>Title Text</span><br/>
+                    <apex:outputText escape="false" rendered="{!layout_disabled}" >
+                        <input type="text" value="{!TitleImageText}" name="TitleImageText" id="TitleImageText" size="60" disabled="disabled" />
+                    </apex:outputText>
+                    <apex:outputText escape="false" rendered="{!!layout_disabled}" >
+                        <input type="text" value="{!TitleImageText}" name="TitleImageText" id="TitleImageText" size="60" />
+                    </apex:outputText>
+                    <br/><span> Text that appears when the mouse pointer hovers over the image.</span><br/><br/>
+                </td>       
+            </tr>
+        </table>
+  
+        <table cellpadding="10" cellspacing="0" border="0"> 
+                <apex:outputPanel rendered="{!IF(showAccessLevel ==true, true, false)}">
+                    <tr>
+                        <td style="padding-top:5px;">Visibility</td>
+                      
+                        <td style="font-size: 12px;">
+                            <input type="hidden" id="accessLevel" value="{!accessLevel}" />
+                            <cms:AccessLevelSelector disable="{!layout_disabled}" cPassthroughId="accessLevel" level="{!accessLevel}" sname="{!content.cms__Site_Name__c}" token="{!token}"  />
+                        </td>
+                    </tr>
+                </apex:outputPanel>
+                <tr>
+                    <td style="padding-top:5px;" >Priority</td>
+                    <td style="font-size: 12px;">
+                        <input type="hidden" id="priorityWeight" name="priorityWeight" value="{!priorityWeight}" />
+                        <input type="hidden" id="priorityDuration" name="priorityDuration" value="{!priorityDuration}" />
+                        <div class="prioritySelector"></div>
+                        <script type="text/javascript" language="javascript">   
+                            $(document).ready(function(){
+                                $('.prioritySelector').priority_selector({
+                                    weight_field:   $('#priorityWeight'),
+                                    duration_field: $('#priorityDuration'),
+                                    end_date:       '{!content.cms__Priority_End_Date__c}',
+                                    widget_id:      'priority_selector',
+                                    disabled:       {!layout_disabled},
+                                    sname: '{!content.cms__Site_Name__c}',
+                                    token: '{!token}'
+                                });                             
+                            }); 
+                        </script>   
+                    </td>
+                </tr>   
+                <tr>
+                    <td>Expiry Date</td>
+                    <td>
+                        <inputHidden  id="Expiry"  value="{!Expiry}" />
+                        <cms:DateTimeSelector cPassthroughId="Expiry" cName="Expiry" cDisable="false"  cDateTime="{!Expiry}" cShowDateLabel="false" cType="datetime" />
+                    </td>         
+                </tr>
+                <tr>
+                    <td>Publish Date<span style="color:red">*</span></td>
+                    <td>
+                        <input type="hidden" id="StartDate" name="StartDate" value="{!StartDate}" />
+                        <cms:DateTimeSelector cPassthroughId="StartDate" cName="StartDate"  cDateTime="{!StartDate}"  cDisable="{!layout_disabled}" cShowDateLabel="false" cType="datetime"/>
+                    </td>
+                </tr>     
+        </table>  
+    </apex:outputPanel>
+</apex:component>

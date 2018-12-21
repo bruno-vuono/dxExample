@@ -1,0 +1,295 @@
+<apex:component controller="MMPJ_TOPG_NewVisitController" allowDML="true" >
+    <style>
+        .fieldnameStyle{
+            color: #294967;
+            font-weight: bold;
+            text-align:right;
+            display:block;
+        }
+        #tblNewVisit td{
+            white-space: nowrap;            
+        }
+        .visitbuttonstyle{
+            width: 100px;
+        }
+        
+    </style>
+    <script type="text/javascript"> 
+        function toggle_visibility(id) {
+           var e = document.getElementById(id);
+           if(e.style.display != 'none')
+              e.style.display = 'none';
+           else
+              e.style.display = 'block';
+        }
+        function toggle_visibility2(e) {           
+           if(e.style.display != 'none')
+              e.style.display = 'none';
+           else
+              e.style.display = 'block';
+        }
+    </script>
+    <apex:attribute name="theMeeting" description="The Meeting" assignTo="{!Meeting}" required="true" type="MMPJ_TOPG_Meeting__c"/>
+    <apex:attribute name="AgendaSubject" description="The Agenda Subject" required="true" type="string"/>
+    <apex:attribute name="AgendaStartDate" description="The Agenda Start Date" required="true" type="string"/>
+    
+    <div id="Visits">
+        
+            
+            <apex:pageBlock >
+                <!--
+                <apex:pageBlockButtons location="top">
+                    <apex:commandButton value="SAVE" action="{!SaveVisit}" style="Width:100px" />
+                    <apex:commandButton value="CANCEL" action="{!Cancel}" style="Width:100px" />
+                </apex:pageBlockButtons>
+                -->
+                <table id="tableVisitHeader" width="100%" cellspacing="0" cellpadding="2" border="0">
+                    <tr>
+                        <td ><b>Market : </b></td><td><apex:outputField value="{!Meeting.MMPJ_TOPG_BMC__r.Name}"/></td>
+                        <td ><b>Meeting : </b></td><td><apex:outputText value="{!AgendaSubject}"/></td>
+                        <td ><b>Date : </b></td><td><apex:outputText value="{!AgendaStartDate}"/></td>
+                    </tr>
+                </table>
+
+                <!--Table Visit-->
+                <div >
+                    <div class="pbSubheader brandTertiaryBgr tertiaryPalette" >
+                        <img src="/s.gif" alt="Hide Section - VISIT" class="hideListButton" id="img_j_id0:j_id36:j_id37:VisitsForm:j_id42:j_id49" name="VISIT" onclick="toggle_visibility('tblVisitsMain');" onkeypress="if (event.keyCode=='13')toggle_visibility('tblVisitsMain');"  style="cursor:pointer;" tabindex="0" title="Hide Section - VISIT"/>
+                        <h3>VISIT</h3>
+                    </div>
+                    <table id="tblVisitsMain" width="100%" cellpadding="10">
+                        <tr>
+                            <td style="width: 500px; text-align:center; vertical-align:top;">
+                                <apex:form id="VisitsForm" enctype="multipart/form-data">
+                                    <!-- ------------------------------------------------------------------------------------ -->
+                                    <!-- Visit Selection Table -->
+                                    <!-- ------------------------------------------------------------------------------------ -->
+                                    <apex:actionFunction name="ShowPicsCom" reRender="Benchmark_Tbl,LoadBencmarkForm,PicsAndBenchmark" status="PicStatus">
+                                        <apex:param value="" name="SelectedRadioId" assignTo="{!SelectedRadioId}"/>
+                                    </apex:actionFunction>
+                                    <apex:outputpanel id="VisitsTb" >
+                                        <apex:variable value="{!0}" var="rowNumVisits"/> 
+                                        <apex:pageBlockTable value="{!ListVisits}" var="visit">
+                                            <apex:column headerValue="Actions" style="white-space:nowrap;">
+                                                <apex:commandLink value="Del" style="color:#015ba7" action="{!DelVisit}"  rerender="Benchmark_Tbl,VisitsTb,LoadBencmarkForm,PicsAndBenchmark" immediate="true" >
+                                                    <apex:param value="{!visit.Id}" name="rowToRemove" assignTo="{!delVisitId}"/>
+                                                </apex:commandLink>
+                                             &nbsp;|&nbsp;
+                                                <apex:commandLink value="Edit" style="color:#015ba7" action="{!EditVisit}" rerender="VisitsTb,Visitpopup" immediate="true" >
+                                                    <apex:param value="{!visit.Id}" name="rowToEdit" assignTo="{!editVisitId}"/>
+                                                </apex:commandLink>
+                                            </apex:column>
+                                            <apex:column HeaderValue="Outlet">
+                                                <apex:outputtext value="{!visit.MMPJ_TOPG_Outlet__r.Name}"/>
+                                            </apex:column>
+                                            <apex:column HeaderValue="Date">
+                                                <apex:outputtext value="{!visit.MMPJ_TOPG_StatementDate__c}"/>
+                                            </apex:column>
+                                            <apex:column HeaderValue="Detail">                                                    
+                                                <input type="radio" name="DetailVisit" onclick="ShowPicsCom('{!visit.Id}');" value="{!visit.Id}"/> <!-- onchange="document.getElementById('{!$Component.selectedRadio}').value = this.value;"  />-->
+                                            </apex:column>
+                                        </apex:pageBlockTable>
+                                        <!--<apex:inputHidden id="selectedRadio" value="{!SelectedRadioId}"/>-->
+                                        <script type="text/javascript">
+                                            function setCheckedValue(radioObj, newValue) {
+                                                if(!radioObj)
+                                                    return;
+                                                var radioLength = radioObj.length;
+                                                if(radioLength == undefined) {
+                                                    radioObj.checked = (radioObj.value == newValue.toString());
+                                                    return;
+                                                }
+                                                for(var i = 0; i < radioLength; i++) {
+                                                        radioObj[i].checked = false;
+                                                        if(radioObj[i].value == newValue.toString()) {
+                                                            radioObj[i].checked = true;
+                                                        }
+                                                }
+                                            }
+                                            var radioObj = document.getElementsByName("DetailVisit");
+                                            if('{!SelectedRadioId}' != '')
+                                                setCheckedValue(radioObj,'{!SelectedRadioId}');                                                                                
+                                        </script>
+                                        <div style="text-align:right; padding:5px">                 
+                                            <apex:commandButton Value="Add Visit" action="{!ShowVisitPopup}" rerender="Visitpopup" immediate="true" styleClass="visitbuttonstyle" />
+                                        </div>
+                                    </apex:outputpanel> 
+                                    
+                                    <!-- ------------------------------------------------------------------------------------ -->
+                                    <!-- Add Visit --> 
+                                    <!-- ------------------------------------------------------------------------------------ -->
+                                    <apex:actionFunction rerender="Visitpopup" name="CallCancel" immediate="true" action="{!hideVisitPopup}"/>
+                                    <apex:outputPanel id="Visitpopup" style="text-align:initial;">
+                                        <apex:outputPanel styleClass="popupBackground" layout="block" rendered="{!displayVisitPopUp}"/>
+                                        <apex:outputPanel styleClass="popupWindow" style="width:760px;" layout="block" rendered="{!displayVisitPopUp}">
+                                            <div class="PopupTilte">
+                                            <table width ="100%"><tr>
+                                            <td>{!IF(NewOutlet,'New Outlet','New Visit')}</td>
+                                            <td align="right">
+                                               <apex:image id="closePopupIcon"  style="cursor:pointer;" value="{!$Resource.MMPJ_TOPG_CloseIcon}" onclick="CallCancel();"   height="20" width="20"/>                                               
+                                            </td>
+                                        </tr>
+                                        </table>
+                                            
+                                            </div>                            
+                                            <apex:pageBlock >
+                                                <apex:pageMessages ></apex:pageMessages>
+                                                <!-- ------------------------------------------------------------------------------------ -->
+                                                <!-- New Visit --> 
+                                                <!-- ------------------------------------------------------------------------------------ -->
+                                                <apex:outputPanel rendered="{!NOT(NewOutlet)}" style="text-align:left;">
+                                                    <table id="tblNewVisit" width="100%" colspan="0" cellpadding="3">
+                                                        
+                                                        <tr>
+                                                            <td><label class="fieldnameStyle">{!$ObjectType.MMPJ_TOPG_Visit__c.fields.MMPJ_TOPG_Outlet__c.label} :</label></td>
+                                                            <td>
+                                                                <apex:actionRegion >
+                                                                    <apex:actionFunction action="{!AutomatePartnerFunction}" name="AutomatePartnerFunc" reRender="panelOutletInfo1,panelOutletInfo2,panelOutletInfo3"/>
+                                                                    <div style="display:none;">
+                                                                        <!--MCH apex:inputField required="true" id="theMarket" value="{!visitPopup.MMPJ_TOPG_Market__c}" /-->
+																		<apex:inputField id="theMarket" value="{!visitPopup.MMPJ_TOPG_Market__c}" />
+                                                                    </div>
+                                                                    <apex:inputField required="true" id="theOutlet" value="{!visitPopup.MMPJ_TOPG_Outlet__c}" onchange="AutomatePartnerFunc();" />
+                                                                </apex:actionRegion>
+                                                            </td>
+                                                            <td>   
+                                                                <apex:commandButton value="New Outlet" action="{!NewOultetPopup}" reRender="Visitpopup" immediate="true" />
+                                                            </td>
+                                                            <td><label class="fieldnameStyle">{!$ObjectType.MMPJ_TOPG_Visit__c.fields.MMPJ_TOPG_StatementDate__c.label} :</label></td>
+                                                            <td><apex:inputField required="true" value="{!visitPopup.MMPJ_TOPG_StatementDate__c}"/></td>
+                                                        </tr>
+                                                        
+                                                        <tr>                                                        
+                                                            <td><label class="fieldnameStyle">{!$ObjectType.MMPJ_TOPG_Visit__c.fields.MMPJ_TOPG_Partner__c.label} :</label></td>
+                                                            <td colspan="2">
+                                                                <apex:outputPanel id="panelOutletInfo1">
+                                                                    <apex:inputtext disabled="true" label="Partner" value="{!visitPopup.MMPJ_TOPG_Outlet__r.MMPJ_TOPG_Partner__r.Name}" />
+                                                                </apex:outputPanel>
+                                                            </td>                                                                    
+                                                            <td><label class="fieldnameStyle">{!$ObjectType.MMPJ_TOPG_Visit__c.fields.MMPJ_TOPG_MMPJVisitor__c.label} :</label></td>
+                                                            <td><apex:inputField value="{!visitPopup.MMPJ_TOPG_MMPJVisitor__c}"/></td>
+                                                        </tr>                                                        
+                                                        <tr>
+                                                            <td><label class="fieldnameStyle">Address :</label></td>
+                                                            <td colspan="2">
+                                                                <div style="min-height:20px;color: rgb(84, 84, 84); background-color:rgb(235, 235, 228); padding: 1px 0px;color: rgb(84, 84, 84); border:1px solid #A9A9A9;">
+                                                                    <apex:outputPanel id="panelOutletInfo2">
+                                                                        <apex:outputText value="{!visitPopup.MMPJ_TOPG_Outlet__r.MMPJ_TOPG_Adress__c}" escape="false" style="min-height: "/>
+                                                                    </apex:outputPanel>
+                                                                </div>
+                                                            </td>
+                                                            <td><label class="fieldnameStyle">{!$ObjectType.MMPJ_TOPG_Visit__c.fields.MMPJ_TOPG_Bench_Currency__c.label} :</label></td>
+                                                            <td><apex:inputField value="{!visitPopup.MMPJ_TOPG_Bench_Currency__c}"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><label class="fieldnameStyle">{!$ObjectType.MMPJ_TOPG_Visit__c.fields.MMPJ_TOPG_OutletContact__c.label} :</label></td>
+                                                            <td colspan="2">
+                                                                <apex:outputPanel id="panelOutletInfo3">
+                                                                    <input type="text" disabled="disabled" value="{!visitPopup.MMPJ_TOPG_Outlet__r.MMPJ_TOPG_ContactName__c} , {!visitPopup.MMPJ_TOPG_Outlet__r.MMPJ_TOPG_Email__c }" />
+                                                                </apex:outputPanel>
+                                                            </td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                    </table> 
+                                                </apex:outputPanel>
+                                                <!-- ------------------------------------------------------------------------------------ -->
+                                                <!-- New Outlet--> 
+                                                <!-- ------------------------------------------------------------------------------------ -->
+                                                <apex:pageBlockSection columns="2" rendered="{!NewOutlet}">
+                                                    <apex:inputField value="{!outletPopup.Name}" required="true" />                                    
+                                                    <apex:inputField value="{!outletPopup.MMPJ_TOPG_VisitDate__c}" required="true" />
+                                                    <!--MCH apex:inputField label="Distribution Partner" value="{!outletPopup.MMPJ_TOPG_Partner__c}" required="true"/-->
+													<apex:outputLabel value="    "/>
+													<apex:inputField value="{!outletPopup.MMPJ_TOPG_Visitor__c}"/>
+                                                    <apex:inputField value="{!outletPopup.MMPJ_TOPG_Street__c}"  />
+                                                    <apex:inputField value="{!outletPopup.MMPJ_TOPG_Channel__c}"  />                                    
+                                                    <apex:inputField value="{!outletPopup.MMPJ_TOPG_City__c}"  />
+                                                    <apex:inputField value="{!outletPopup.MMPJ_TOPG_OutletCategory__c}" />
+                                                    <apex:inputField value="{!outletPopup.MMPJ_TOPG_PostalCode__c}"  />
+                                                    <apex:inputField value="{!outletPopup.MMPJ_TOPG_OutletType__c}"/>
+                                                    <apex:inputField value="{!outletPopup.MMPJ_TOPG_State__c}" />
+                                                    <apex:inputTextarea id="areaMMPJ_TOPG_DescriptionPictures" value="{!outletPopup.MMPJ_TOPG_DescriptionPictures__c}" richText="false" style="position:absolute; width:225px; height:100px;" html-maxlength="32768"/>
+                                                    <apex:inputField value="{!outletPopup.MMPJ_TOPG_Country__c}" />  
+                                                    <apex:pageBlockSectionitem />
+                                                    <apex:inputField value="{!outletPopup.MMPJ_TOPG_ContactName__c}" />  
+                                                    <apex:pageBlockSectionitem />
+                                                    <apex:inputField value="{!outletPopup.MMPJ_TOPG_Email__c}" />  
+                                                    <!-- <apex:inputField value="{!outletPopup.MMPJ_TOPG_DescriptionPictures__c}"  /> -->
+                                                </apex:pageBlockSection>
+                                                <apex:pageBlockButtons location="Bottom" style="text-align: -webkit-left;">
+                                                    <apex:commandButton value="Save" status="width:100px" action="{!SaveVisit}" reRender="Benchmark_Tbl,Visitpopup,VisitsTb,LoadBencmarkForm,PicsAndBenchmark" rendered="{!NOT(NewOutlet)}"/>
+                                                    <apex:commandButton value="Save & New" status="width:100px" action="{!SaveNewVisit}" reRender="Visitpopup,VisitsTb,LoadBencmarkForm,PicsAndBenchmark" rendered="{!NOT(NewOutlet)}"/>
+                                                    <apex:commandButton value="Cancel" action="{!hideVisitPopup}" status="width:100px" reRender="Visitpopup" rendered="{!NOT(NewOutlet)}" immediate="true"/>        
+                                                    
+                                                    <apex:commandButton value="Save" status="width:100px" action="{!SaveOutlet}"  reRender="Visitpopup" rendered="{!NewOutlet}"/>
+                                                    <apex:commandButton value="Save & New" status="width:100px" action="{!SaveNewOutlet}" reRender="Visitpopup"  rendered="{!NewOutlet}"/>
+                                                    <apex:commandButton value="Cancel" action="{!hideOutletPopup}" status="width:100px" reRender="Visitpopup" rendered="{!NewOutlet}" immediate="true"/>
+
+                                                </apex:pageBlockButtons>
+                                            </apex:pageBlock>
+                                        </apex:outputPanel>
+                                    </apex:outputPanel>
+                                    <!-- End Add Visit -->
+                                </apex:form>
+                            </td>
+                            <td style="vertical-align:top;">
+                                    <apex:outputPanel id="PicsAndBenchmark">    
+                                    <apex:pageMessages ></apex:pageMessages>     
+                                                       
+                                    <div id="tblVisitsMain_Pictures" style="background-color:#eaeaea; display:block; padding:10px; position:relative;">                                                                     
+                                        <apex:actionStatus id="PicStatus">
+                                            <apex:facet name="start">
+                                                <div class="popupBackground">
+                                                    <div style="position:absolute; top:50%; left:50%; z-index:9999">
+                                                        <img src="/img/loading.gif" alt="loading.."/>  Loading...
+                                                    </div>
+                                                </div>
+                                            </apex:facet>
+                                        </apex:actionStatus>
+                                        <div style="font-weight:bold;">Pictures Gallery:</div>                                                                                                                                
+                                            <div style="background-color:white; min-height:120px; padding-left:100px;">
+                                                <c:MMPJ_TOPG_ImageCarousel id="MMPJ_TOPG_ImageCarousel1" VisitId="{!PicsComVisit.Id}" />
+                                                <div class="clear"></div>
+                                            </div>
+                                            <apex:form >
+                                                <apex:inputHidden id="Visits_HiddenRichText" value="{!PicsComVisit.MMPJ_TOPG_Comments__c}" />                                      
+                                                                      
+                                                <div style="font-weight:bold;">Comments:</div>                                                   
+                                                    
+                                                <apex:inputTextarea id="visitcommentinput" styleClass="ckeditor" value="{!PicsComVisit.MMPJ_TOPG_Comments__c}" richText="false" onchange="document.getElementById('{!$Component.Visits_HiddenRichText}').value = this.value;" style="width:100%; min-height:100px;"  html-maxlength="32768">
+                                                    <apex:actionSupport event="onblur" action="{!saveComment}" rerender="Benchmark_Tbl,LoadBencmarkForm,PicsAndBenchmark" status="PicStatus"/>
+                                                </apex:inputTextarea>                                  
+                                                
+                                            </apex:form>                                         
+                                    </div>
+                                    
+                                  
+                    <!--  <apex:form >
+                        <c:MMPJ_TOPG_LoadBenchmark Visitid="{!PicsComVisit.Id}" />
+                    </apex:form>
+                    
+                    <apex:commandButton value="Back" rerender="LoadBencmarkForm,PicsAndBenchmark"  action="{!HideBenchmarkPanel}"  />
+                    <apex:pageBlockTable value="{!ListProductBench}" var="Prod" id="tableProd">
+                        <apex:column headerValue="Product" value="{!Prod.Product}"/>
+                        <apex:column headerValue="Price" value="{!Prod.Price}"/>
+                    </apex:pageBlockTable>
+                    <div style="padding:5px; position:relative">
+                        <apex:commandButton value="Back" styleClass="visitbuttonstyle" onclick="toggle_visibility('tblVisitsMain_Pictures');toggle_visibility('tblVisitsMain_Benchmark');return false;" />
+                        <apex:commandButton value="Load Statement" rerender="LoadBencmarkForm,PicsAndBenchmark" action="{!HideBenchmarkpanel}" immediate="" styleClass="visitbuttonstyle" style="float:right;" />                                            
+                    </div>
+                    
+                </div>-->
+                                </apex:outputPanel> 
+                            </td>
+                        </tr>
+                    </table>                    
+                </div>
+                <apex:outputPanel id="Benchmark_Tbl">
+                    <apex:form id="LoadBencmarkForm">
+                        <c:MMPJ_TOPG_LoadBenchmark Visitid="{!PicsComVisit.Id}" />
+                    </apex:form>
+                </apex:outputPanel>
+            </apex:pageBlock>
+    </div>
+</apex:component>

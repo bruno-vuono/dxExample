@@ -1,0 +1,182 @@
+<apex:component controller="ESN_MB_NOP_Activation_Cx">
+   <apex:includeScript value="{!urlfor($Resource.ESN_MB_Theme_Core, '/js/iframeResizer.min.js')}"/> 
+    <div class="container-article-activation">
+
+              <div class="btn-close" style="margin-left:30px;">
+                <a data-cat-name="market-activation" data-category="market-activation" data-page="accueil-market-activations" href="#?page=accueil-market-activations&amp;content=market-activation&amp;mode=light" class="on">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </a>
+               </div>
+                <a class="findoutmore hp-link pull-right" href="#?page=formulaire-local-activations&content=formulaire-local-activations&mode=light" data-page="formulaire-local-activations" data-category="market-activation" onclick="modifyMarketActivation()">Modify Activation</a>
+                <a class="findoutmore hp-link pull-right" href="#?page=accueil-market-activations&content=accueil-market-activations&mode=light" data-page="accueil-market-activations" data-category="market-activation" onclick="archivedMarketActivation();return false;" id="archieveMA">Archive</a>
+                <a class="findoutmore hp-link pull-right" href="#?page=accueil-market-activations&content=accueil-market-activations&mode=light" data-page="accueil-market-activations" data-category="market-activation" onclick="deleteMarketActivation();return false;" id="deleteMA">Delete</a>
+
+              <ul class="fil-ariane" id="fil-ariane"></ul>              
+              <hr class="separator" />
+            
+              <h1 id="titleMA2"></h1><h1 id="draftMA"></h1>
+              <header class="row" style="background-image:none;margin-bottom:20px;">
+                <p class="uppercase" id="countryMA"></p>
+                <div class="col-xs-5 block-figure">
+                  <figure id="marketActivationMainAsset">
+                   </figure>
+                </div>
+            
+                <div class="block-title col-xs-7">                    
+                  <!-- Out of the scope for the moment Valentin PLITTA 26/08/2014
+                  <ul class="unstyled tag-list open-sans-regular">
+                     <li><a href="#">Jameson</a></li>
+                    <li><a href="#">Jameson Irish Whiskey</a></li>
+                    <li><a href="#">PR Brasil</a></li>
+                    <li><a href="#">On Trade</a></li>
+                  </ul>
+                  -->
+                  
+                  <!--/.tag-list-->
+                  
+                  <div id="mACreatorDiv" class="media profil"></div>
+                  <div id="mAInfosDiv" class="media profil"></div>
+                  <div id="mAEditBestPracticesStatus"></div>
+                </div><!--/.block-title-->
+      
+                <div class="clearfix"></div>
+              </header><!--/.row-->
+              
+              <hr class="separator" />
+               
+              <div class="container-local-activation-content" >
+                  <div class="col-left col-right col-xs-4">
+                    <h2> {!$Label.ESN_MB_Details} </h2>
+                      <div id="detailsMA"></div>
+                  </div>              
+                <div class="col-right col-xs-7 col-xs-offset-1">
+                  <div class="text">
+                    <br /><br />
+                    <h2>{!$Label.ESN_MB_BigIdea}</h2>
+                    <p id="bigIdeaMA"></p>
+                    
+                    <h2>{!$Label.ESN_MB_TheConcept}</h2>
+                    <h3>{!$Label.ESN_MB_WHY}</h3>
+                    <p id="whyMA"></p>
+                    <h3>{!$Label.ESN_MB_WHAT}</h3>
+                    <p id="whatMA"></p>
+                    <h3>{!$Label.ESN_MB_TOWHOM}</h3>
+                    <p id="toWhomMA"></p>
+                    <h3>{!$Label.ESN_MB_HOW}</h3>
+                    <p id="howMA"></p>
+
+                    <h2>{!$Label.ESN_MB_WhatResults}</h2>
+                    <h3><span class="uppercase">{!$Label.ESN_MB_Results_High}</span></h3>
+                    <p id="resultsMA"></p>
+                    <h3><span class="uppercase">{!$Label.ESN_MB_StrategicFit}</span></h3>
+                    <p id="strategicFitMA"></p>
+                    <h3><span class="uppercase">{!$Label.ESN_MB_ExcellenceOfExecution}</span></h3>
+                    <p id="excellenceOfExecutionMA"></p>
+                    <h3><span class="uppercase">{!$Label.ESN_MB_BusinessImpact}</span></h3>
+                    <p id="businessImpactMA"></p>
+                    <h3><span class="uppercase">{!$Label.ESN_MB_ScalabilityAndReplicability}</span></h3>
+                    <p id="scalabilityAndReplicabilityMA"></p>
+
+                    <div id="attachedFilesTitleMA"></div> 
+                    <div class="media-block" id="marketActivationCarousel"></div>
+                    <div class="media-block">
+                        <div class="video"></div>
+                        <div class="download" id="videoDownload"></div>
+                    </div>
+                    <div id="embeddedVideoViewMATitle"></div>
+                    <div id="embeddedVideoViewMA"></div>
+                    <div class="media-block links-list"></div>
+                  </div>
+              
+              
+                    <!--h2>
+                       {!$Label.ESN_MB_Feedbacks}
+                    </h2> 
+                  <div class="media-block rate">
+                  <form id="form-rate" method="POST" action="#">
+                      <div id="rating-block" class="hidden">
+                      <table class="table open-sans-light text-center" data-class-star-full="glyphicon glyphicon-star" data-class-star-empty="glyphicon glyphicon-star-empty">
+                        <tbody>
+                          <tr class="uppercase roboto-bold">
+                            <th class="col-xs-5"></th>
+                            <th class="col-xs-4 text-center">click to rate</th>
+                            <th class="col-xs-3 text-center average">average</th>
+                          </tr>
+                          <tr class="green1">
+                            <td class="col-xs-5 text-left criteria"><span class="text">{!$Label.ESN_MB_Criteria1}</span></td>
+                            <td class="col-xs-4">
+                              <ul class="unstyled star-list" crit-pos="0">
+                              </ul>
+                            </td>
+                            <td id="avg-rating-1" class="col-xs-3 average">
+                            </td>
+                          </tr>
+                          <tr class="green2">
+                            <td class="col-xs-5 text-left criteria"><span class="text">{!$Label.ESN_MB_Criteria2}</span></td>
+                            <td class="col-xs-4">
+                              <ul class="unstyled star-list" crit-pos="1">
+                              </ul>
+                            </td>
+                            <td id="avg-rating-2" class="col-xs-3 average">
+                            </td>
+                          </tr>
+                          <tr class="green1">
+                            <td class="col-xs-5 text-left criteria"><span class="text">{!$Label.ESN_MB_Criteria3}</span></td>
+                            <td class="col-xs-4">
+                              <ul class="unstyled star-list" crit-pos="2">
+                              </ul>
+                            </td>
+                            <td id="avg-rating-3" class="col-xs-3 average">
+                            </td>
+                          </tr>
+                          <tr class="green2">
+                            <td class="col-xs-5 text-left criteria"><span class="text">{!$Label.ESN_MB_Criteria4}</span></td>
+                            <td class="col-xs-4">
+                              <ul class="unstyled star-list" crit-pos="3">
+                              </ul>
+                            </td>
+                            <td id="avg-rating-4" class="col-xs-3 average">
+                            </td>
+                          </tr>
+                          <tr class="green1">
+                            <td class="col-xs-5 text-left criteria"><span class="text">{!$Label.ESN_MB_Criteria5}</span></td>
+                            <td class="col-xs-4">
+                              <ul class="unstyled star-list" crit-pos="4">
+                              </ul>
+                            </td>
+                            <td id="avg-rating-5" class="col-xs-3 average">
+                            </td>
+                          </tr>
+                          
+                        </tbody>
+                      </table>
+                      </div>
+                    </form>
+                  </div-->
+                <div class="media-block toolkit-used" id="seeAlsoActivation">
+                </div><!--/.media-block .see-also-->
+                
+                <div class="media-block key-contacts" id="keyContactsMA">
+                </div><!--/.media-block .see-also-->
+                    
+                    <!--h2>
+                            {!$Label.ESN_MB_Chatter}
+                    </h2>
+                    <div id="chat-containerMA" class="col-xs-5"> 
+                    </div-->
+                    
+                    <div class="clearfix"></div>
+              
+                      <div class="toTop" id="toTop">
+                          <!-- <a href="#" class="texgyreadventor">Back to top</a> -->
+                      </div>
+                 </div><!--/.col-right-->
+                 <!--<div class="clearfix"></div>-->
+                </div><!--/.container-webinars-content-->
+              </div><!--/.container-webinars--> 
+    <script>
+        var coordinator = "{!Coordinator}";
+        var listCoordinators = {!ListCoordinators};
+    </script>
+
+</apex:component>

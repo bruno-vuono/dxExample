@@ -1,0 +1,340 @@
+<apex:component controller="ESN_MB_NOP_Homepage_Cx">
+          <div class="content-wrapper container-fluid">
+            <ul class="fil-ariane" id="fil-ariane"></ul>
+            <div class="btn-close" style="margin-left:30px;">
+                <a href="#?page=page-hp&content=page-hp&mode=full" class="on">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </a>
+            </div>
+            <br /><hr class="separator" /><br />
+              <div id="chat-container" class="col-xs-5">
+                <p class="title" id="title_forum">{!$Label.ESN_MB_Chatter} <span class="divider">&nbsp;</span> <span class="title-sub"> {!$Label.ESN_MB_GlobalGroup}</span></p>
+              </div>             
+              <div class="data-container col-xs-7">
+                <p class="title" id="title_forum">WEBINARS</p>
+                <div id="right-column">
+                  <div class="large-block">
+                      <!--SCH 02/10 uncomment below to restor the clickable panel-->
+                    <!--<a href="#?page=webinars&content=webinars&mode=light"><div id="forum_webinars_link" alt="webinars" class="img-responsive"></div></a>-->
+                      
+                      <!--
+                      <a href="#?page=webinars&content=webinars&mode=light"><div id="forum_webinars_link" alt="webinars" class="img-responsive"></div></a>
+                      <div class="image-subtitle">
+                          <p><a  href="#?page=webinars&content=webinars&mode=light" data-category="forum" data-cat-name="forum" data-page="webinars" class="on webinars_link" onclick=""> {!$Label.ESN_MB_Webinars}</a>
+                          <a  href="#?page=webinars&content=webinars&mode=light" data-category="forum" data-cat-name="forum" data-page="webinars" class="on" onclick=""><span class="glyphicon glyphicon-chevron-right"></span></a></p>
+                      </div>
+                      -->
+                      
+                      <div class="container-webinars-content clearfix">
+                          <div class="video"></div>
+                          <div id="messageChangeOrder" style="display: none;">
+                            <h4>
+                                {!$Label.ESN_MB_Webinar_Choose_Order}
+                            </h4>
+                          </div>
+                          <hr class="separator" />
+                          <div class="col-xs-12 webinars-episodes-container"><ul class="webinars-episodes"></ul></div>
+                      </div>
+                      
+                  </div>
+                  <div class="row">
+                       <div class="col-sm-12 col-md-6 little-block">
+                        <div class="sub-block go-to-global-directory">
+                            <!--SCH 02/10 uncomment below to restor the clickable panel-->
+                         <!--<a href="#?page=global-directory&content=global-directory&mode=light"><div class="global-directory-menu-picture img-responsive" ></div></a>-->
+                            <a href="#?page=global-directory&content=global-directory&mode=light"><div class="global-directory-menu-picture img-responsive" ></div></a> 
+                            <div class="image-subtitle">
+                            <p><a  href="#?page=global-directory&content=global-directory&mode=light" data-category="forum" data-cat-name="forum" data-page="global-directory" class="on directory_link" onclick=""> {!$Label.ESN_MB_Directory}</a>
+                            <a  href="#?page=global-directory&content=global-directory&mode=light" data-category="forum" data-cat-name="forum" data-page="global-directory" class="on" onclick=""><span class="glyphicon glyphicon-chevron-right"></span></a></p>
+                          </div>
+                        </div>
+                      </div>
+                       <div class="col-sm-12 col-md-6 little-block">
+                        <div class="sub-block">
+                          <p class="title" id="title_social"><span class="brand_name"></span> <span class="divider">&nbsp;</span> <span class="title-sub">{!$Label.ESN_MB_SocialDirectory}</span></p>
+                          <ul class="social-network">
+                            <!--<li class="facebook" >
+                                <a href="#" target="_blank" ><img src="{!urlfor($Resource.ESN_MB_Theme_Core, '/images/Forum/facebook.png')}" alt="facebook"/></a>
+                            </li>
+                            <li class="twitter" >
+                                <a href="#" target="_blank" ><img src="{!urlfor($Resource.ESN_MB_Theme_Core, '/images/Forum/twitter.png')}" alt="twitter"/></a>
+                            </li>
+                            <li class="googleplus" >
+                                <a href="#" target="_blank" ><img src="{!urlfor($Resource.ESN_MB_Theme_Core, '/images/Forum/googleplus.png')}" alt="google plus"/></a>
+                            </li>
+                            <li class="youhttps://pernod-ricard--holsb2dev.cs14.my.salesforce.com/_ui/common/apex/debug/ApexCSIPage#tube" >
+                                <a href="#" target="_blank" ><img src="{!urlfor($Resource.ESN_MB_Theme_Core, '/images/Forum/youtube.png')}" alt="youtube"/></a>
+                            </li>
+                            <li class="flickr" >
+                                <a href="#" target="_blank" ><img src="{!urlfor($Resource.ESN_MB_Theme_Core, '/images/Forum/flickr.png')}" alt="flickr"/></a>
+                            </li>-->
+                          </ul>
+                        </div>
+                      </div>
+                  </div>
+                </div> <!-- Right column --> 
+              </div>
+            </div>
+    
+            <script>
+                /* KG 28/10/14 - On n'affiche pas les liens sans url pour tout le monde donc savoir si broadcaster est inutile
+                var isBroadCasterUser = false;
+                ESN_MB_NOP_Homepage_Cx.isBroadCasterUser(
+                    function(result, event){
+                        if(result){
+                            isBroadCasterUser = true;
+                        }
+                    }
+                );
+                */    
+                var brandName = "{!brandName}";
+                brandName = brandName.replace(/_/g," ");
+    
+                // on retire les '_' des des brands pour les noms composés 
+                $('.forum .content-wrapper #title_forum .title-sub').prepend(brandName);
+                $('.forum .webinars_link').prepend("{!$Label.ESN_MB_GoTo} " + brandName);
+                $('.forum .directory_link').prepend("{!$Label.ESN_MB_GoTo} " + brandName);
+                $('.forum .content-wrapper #title_social .brand_name').prepend(brandName);
+
+    
+                // gestion des url des social links 
+                function retrieveBrandSocialLinks()
+                {
+                    var url_facebook = "";
+                    var url_twitter = "";
+                    var url_googleplus = "";
+                    var url_youtube = "";
+                    var url_flickr = "";
+                    var url_instagram = "";
+                    var url_pinterest = "";
+                    
+                    ESN_MB_NOP_Homepage_Cx.retrieveBrandSocialLinks('{!brandId}',
+                    function(result, event)
+                    {
+                        var displayedLinks = 0;
+                        url_facebook = result.ESN_MB_Url_Facebook_Link__c;
+                        url_twitter = result.ESN_MB_Url_Twitter_Link__c;
+                        url_googleplus = result.ESN_MB_Url_GooglePlus_Link__c;
+                        url_youtube = result.ESN_MB_Url_Youtube_Link__c;
+                        url_flickr = result.ESN_MB_Url_Flickr_Link__c;
+                        url_instagram = result.ESN_MB_Url_Instagram_Link__c;
+                        url_pinterest = result.ESN_MB_Url_Pinterest_Link__c;
+                        
+                        /* ALN 23/10/2014 - On n'affiche pas les liens sans url pour tout le monde ========================================
+                        
+                        //If the user is a broadcaster, always add the logos
+                        if(isBroadCasterUser) {
+                            if(url_facebook == "" || url_facebook === undefined){
+                                $('ul.social-network').append('<li class="facebook" >'
+                                                                +'<a href="#" class="forum-picto-facebook" >&nbsp;</a>'
+                                                                +'</li>');
+                                displayedLinks++;
+                            }else{
+                                $('ul.social-network').append('<li class="facebook" >'
+                                                                +'<a href="'+ url_facebook +'" target="_blank" class="forum-picto-facebook" >&nbsp;</a>'
+                                                                +'</li>'); 
+                                displayedLinks++;
+                            }
+                            if(url_twitter == "" || url_twitter === undefined){
+                                $('ul.social-network').append('<li class="twitter" >'
+                                                                +'<a href="#" class="forum-picto-twitter" >&nbsp;</a>'
+                                                                +'</li>'); 
+                                displayedLinks++;
+                            }else{
+                                $('ul.social-network').append('<li class="twitter" >'
+                                                                +'<a href="'+ url_twitter +'" target="_blank" class="forum-picto-twitter" >&nbsp;</a>'
+                                                                +'</li>'); 
+                                displayedLinks++;
+                            }
+                            if(url_googleplus == "" || url_googleplus === undefined){
+                                $('ul.social-network').append('<li class="googleplus" >'
+                                                                +'<a href="#" class="forum-picto-googleplus" >&nbsp;</a>'
+                                                                +'</li>'); 
+                                displayedLinks++;
+                            }else{
+                                $('ul.social-network').append('<li class="googleplus" >'
+                                                                +'<a href="'+ url_googleplus +'" target="_blank" class="forum-picto-googleplus" >&nbsp;</a>'
+                                                                +'</li>'); 
+                                displayedLinks++;
+                            }
+                            if(url_youtube == "" || url_youtube === undefined){
+                                $('ul.social-network').append('<li class="youtube" >'
+                                                                +'<a href="#" class="forum-picto-youtube" >&nbsp;</a>'
+                                                                +'</li>'); 
+                                displayedLinks++;
+                            }else{
+                                $('ul.social-network').append('<li class="youtube" >'
+                                                                +'<a href="'+ url_youtube +'" target="_blank" class="forum-picto-youtube" >&nbsp;</a>'
+                                                                +'</li>'); 
+                                displayedLinks++;
+                            }
+                            if(url_flickr == "" || url_flickr === undefined){
+                                $('ul.social-network').append('<li class="flickr" >'
+                                                                +'<a href="#" class="forum-picto-flickr" >&nbsp;</a>'
+                                                                +'</li>'); 
+                                displayedLinks++;
+                            }else{
+                                $('ul.social-network').append('<li class="flickr" >'
+                                                                +'<a href="'+ url_flickr +'" target="_blank" class="forum-picto-flickr" >&nbsp;</a>'
+                                                                +'</li>'); 
+                                displayedLinks++;
+                            }
+                            if(url_instagram == "" || url_instagram === undefined){
+                                $('ul.social-network').append('<li class="instagram" >'
+                                                                +'<a href="#" class="forum-picto-instagram" >&nbsp;</a>'
+                                                                +'</li>'); 
+                                displayedLinks++;
+                            }else{
+                                $('ul.social-network').append('<li class="instagram" >'
+                                                                +'<a href="'+ url_instagram +'" target="_blank" class="forum-picto-instagram" >&nbsp;</a>'
+                                                                +'</li>'); 
+                                displayedLinks++;
+                            }
+                            if(url_pinterest == "" || url_pinterest === undefined){
+                                $('ul.social-network').append('<li class="pinterest" >'
+                                                                +'<a href="#" class="forum-picto-pinterest" >&nbsp;</a>'
+                                                                +'</li>'); 
+                                displayedLinks++;
+                            }else{
+                                $('ul.social-network').append('<li class="pinterest" >'
+                                                                +'<a href="'+ url_pinterest +'" target="_blank" class="forum-picto-pinterest" >&nbsp;</a>'
+                                                                +'</li>'); 
+                                displayedLinks++;
+                            }
+                        //Else don't add the empty urls logos
+                        }else {
+                        */
+                            if(url_facebook != "" && url_facebook != undefined){
+                                $('ul.social-network').append('<li class="facebook" >'
+                                                                +'<a href="'+ url_facebook +'" target="_blank" class="forum-picto-facebook" >&nbsp;</a>'
+                                                                +'</li>'); 
+                                displayedLinks++;
+                            }
+                            if(url_twitter != "" && url_twitter != undefined){
+                                $('ul.social-network').append('<li class="twitter" >'
+                                                                +'<a href="'+ url_twitter +'" target="_blank" class="forum-picto-twitter" >&nbsp;</a>'
+                                                                +'</li>'); 
+                                displayedLinks++;
+                            }
+                            if(url_googleplus != "" && url_googleplus != undefined){
+                                $('ul.social-network').append('<li class="googleplus" >'
+                                                                +'<a href="'+ url_googleplus +'" target="_blank" class="forum-picto-googleplus" >&nbsp;</a>'
+                                                                +'</li>'); 
+                                displayedLinks++;
+                            }
+                            if(url_youtube != "" && url_youtube != undefined){
+                                $('ul.social-network').append('<li class="youtube" >'
+                                                                +'<a href="'+ url_youtube +'" target="_blank" class="forum-picto-youtube" >&nbsp;</a>'
+                                                                +'</li>'); 
+                                displayedLinks++;
+                            }
+                            if(url_flickr != "" && url_flickr != undefined){
+                                $('ul.social-network').append('<li class="flickr" >'
+                                                                +'<a href="'+ url_flickr +'" target="_blank" class="forum-picto-flickr" >&nbsp;</a>'
+                                                                +'</li>'); 
+                                displayedLinks++;
+                            }
+                            if(url_instagram != "" && url_instagram != undefined){
+                                $('ul.social-network').append('<li class="instagram" >'
+                                                                +'<a href="'+ url_instagram +'" target="_blank" class="forum-picto-instagram" >&nbsp;</a>'
+                                                                +'</li>'); 
+                                displayedLinks++;
+                            }
+                            if(url_pinterest != "" && url_pinterest != undefined){
+                                $('ul.social-network').append('<li class="pinterest" >'
+                                                                +'<a href="'+ url_pinterest +'" target="_blank" class="forum-picto-pinterest" >&nbsp;</a>'
+                                                                +'</li>'); 
+                                displayedLinks++;
+                            }
+                        // }
+                        
+                        /*                     
+                           HERE ALEXIS MUST TREAT THE DISPLAYING DEPENDING ON THE NUMBER OF LINKS DISPLAYED
+                           THIS NUMBER IS AVAILABLE IN THE VARIABLE "displayedLinks" THAT IS INCREMENTED DURING
+                           THE APPENDING ABOVE !
+                        */
+                        
+                        
+                        
+                        
+                    });
+                }   
+                retrieveBrandSocialLinks();
+                
+(function($) {    
+  if ($.fn.style) {
+    return;
+  }
+
+  // Escape regex chars with \
+  var escape = function(text) {
+    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+  };
+
+  // For those who need them (< IE 9), add support for CSS functions
+  var isStyleFuncSupported = !!CSSStyleDeclaration.prototype.getPropertyValue;
+  if (!isStyleFuncSupported) {
+    CSSStyleDeclaration.prototype.getPropertyValue = function(a) {
+      return this.getAttribute(a);
+    };
+    CSSStyleDeclaration.prototype.setProperty = function(styleName, value, priority) {
+      this.setAttribute(styleName, value);
+      var priority = typeof priority != 'undefined' ? priority : '';
+      if (priority != '') {
+        // Add priority manually
+        var rule = new RegExp(escape(styleName) + '\\s*:\\s*' + escape(value) +
+            '(\\s*;)?', 'gmi');
+        this.cssText =
+            this.cssText.replace(rule, styleName + ': ' + value + ' !' + priority + ';');
+      }
+    };
+    CSSStyleDeclaration.prototype.removeProperty = function(a) {
+      return this.removeAttribute(a);
+    };
+    CSSStyleDeclaration.prototype.getPropertyPriority = function(styleName) {
+      var rule = new RegExp(escape(styleName) + '\\s*:\\s*[^\\s]*\\s*!important(\\s*;)?',
+          'gmi');
+      return rule.test(this.cssText) ? 'important' : '';
+    }
+  }
+
+  // The style function
+  $.fn.style = function(styleName, value, priority) {
+    // DOM node
+    var node = this.get(0);
+    // Ensure we have a DOM node
+    if (typeof node == 'undefined') {
+      return this;
+    }
+    // CSSStyleDeclaration
+    var style = this.get(0).style;
+    // Getter/Setter
+    if (typeof styleName != 'undefined') {
+      if (typeof value != 'undefined') {
+        // Set style property
+        priority = typeof priority != 'undefined' ? priority : '';
+        style.setProperty(styleName, value, priority);
+        return this;
+      } else {
+        // Get style property
+        return style.getPropertyValue(styleName);
+      }
+    } else {
+      // Get CSSStyleDeclaration
+      return style;
+    }
+  };
+})(jQuery);
+                
+                if (currentCategory == 'LeCercle') {
+                    $('.data-container').hide();
+                    $('hr.separator').hide();
+                    $('.forum #chat-container').style('max-width', '100%', 'important');
+                    $('.forum #chat-container').style('width', '100%', 'important');
+                    //$('#chat-container').addClass('col-xs-12');
+                } else {
+                    $('.data-container').show();                
+                    //$('#chat-container').addClass('col-xs-5');
+                }
+            </script>
+</apex:component>

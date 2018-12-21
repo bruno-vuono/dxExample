@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConnectedApp xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contactEmail>service@laputatec.com</contactEmail>
+    <label>Pernod_Ricard_Sales_Mobile_ASI_KOR</label>
+    <oauthConfig>
+        <callbackUrl>https://login.salesforce.com/services/oauth2/success</callbackUrl>
+        <consumerKey>3MVG9qQjGkWUbcrFTIsUBxAfZQq5NAUJpxd_YiKViL8WDEmDB5_chThhwZC3CEcLDcsve.PVBuKaFZokPcd3u</consumerKey>
+        <scopes>Basic</scopes>
+        <scopes>Api</scopes>
+        <scopes>Web</scopes>
+        <scopes>Chatter</scopes>
+    </oauthConfig>
+</ConnectedApp>

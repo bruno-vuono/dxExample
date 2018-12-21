@@ -1,0 +1,230 @@
+<apex:page controller="ESN_VFC29_ChatterTV" tabStyle="ESN_ChatterTV__tab">
+<!-- Modification du 22nov2013 sur l'appex:page -->
+<!-- apex:page docType="html-5.0" showHeader="false" applyBodyTag="false" applyHtmlTag="false" cache="true" controller="ESN_VFC29_ChatterTV" tabStyle="ESN_ChatterTV__tab" -->
+<!-- Fin d'ajout -->
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <!-- Ajout du 22nov2013 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+        <!-- Fin d'ajout -->
+
+
+        
+        <link rel="stylesheet" href="{!URLFOR($Resource.JQuery_UI,'/jquery-ui-1.10.3/themes/base/jquery-ui.css')}" />
+        <link rel="stylesheet" href="{!URLFOR($Resource.ChatterTV_Resources,'/style/style_VFP29.css')}" />
+        
+        <script type="text/javascript" src="{!URLFOR($Resource.JQuery_UI,'/jquery-ui-1.10.3/jquery-1.9.1.js')}" />
+        <script type="text/javascript" src="{!URLFOR($Resource.JQuery_UI,'/jquery-ui-1.10.3/ui/jquery-ui.js')}" />
+        
+        <!-- Salesforce1 -->
+        <apex:includeScript value="/canvas/sdk/js/publisher.js" />
+        
+        <script>
+            var $ = jQuery.noConflict();
+            $(function() {
+                $( "#tabs" ).tabs().addClass( "ui-tabs-vertical ui-helper-clearfix" );
+                $( "#tabs li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-left" );            
+                $( "#tabs" ).tabs( "option", "active", parseInt("{paramOpenTab}") );                
+            });
+        </script>
+    </head>
+    <body>        
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', '{!ga_tokens}']);
+          _gaq.push(['_setDomainName', 'visual.force.com']);
+          _gaq.push(['_trackPageview']);
+        
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+<!-- FTR (09/10/2014): IE8 is no more supported -->
+<div class="chatterTVapp">        
+        <!-- FTR: Lien ajouté sur le Logo pour permettre de ré-afficher la liste de toutes les vidéos -->
+        <apex:outputLink title="Chatter TV" value="/apex/ESN_VFP29_ChatterTV?core.apexpages.devmode.url=1" styleClass="backlink"><img src="{!URLFOR($Resource.ChatterTV_Resources, '/img/Chatter_TV_Logo.PNG')}" class="chatterTV-logo" /></apex:outputLink>
+        <apex:outputLink title="Back to Chatter TV" value="/apex/ESN_VFP29_ChatterTV?core.apexpages.devmode.url=1" styleClass="backlink" rendered="{!paramCateg!=null||paramTags!=null}"> « Back to Video TV</apex:outputLink>
+
+        <table>
+            <tr>
+                <!-- FTR 27/11/2013 : Fix alignement vertical centré par défaut -->
+                <td style="vertical-align: top;">
+                    <div id="tabs" class="gallery">
+                        <ul>
+                            <li><a class="gallery-cat" href="#tabs-all" style="display: none">All Categories</a></li>
+                            <apex:repeat value="{!videoCategories_set}" var="cat" rendered="{!paramCateg==null&&paramTags==null}">
+                            <li><a class="gallery-cat" href="#tabs-{!cat2CatWithoutSpaces_map[cat]}">{!cat}</a></li>
+                            </apex:repeat>
+                        </ul>
+                        <div id="tabs-all" class="gallery-list">
+                            <apex:repeat value="{!categorie2listVideos_map['All']}" var="video">
+                                <table class="gallery-list-video">
+                                    <tr>
+                                        <td>
+                                            <apex:image styleClass="gallery-list-video-usrPhoto" url="{!ownerId2Owner_map[video.OwnerId].SmallPhotoUrl}"/>
+                                        </td>
+                                        <td>
+                                            <table>
+                                                <tr>
+                                                    <td class="gallery-list-video-usrName">
+                                                        <apex:outputLink value="/{!video.OwnerId}">{!ownerId2Owner_map[video.OwnerId].Name}</apex:outputLink>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <table>                                                    
+                                                            <tr>
+                                                                <td class="gallery-list-video-thumbnail">
+                                                                    <a href="/apex/ESN_VFP28_VideoDisplay?id={!video.Id}&core.apexpages.devmode.url=1">
+                                                                        <apex:outputText value="{!video.ESN_VideoThumbnail__c}" escape="false" styleClass="gallery-list-video-thumbnail-img"/>     
+                                                                        <img class="gallery-list-video-thumbnail-play" src="{!URLFOR($Resource.ChatterTV_Resources, '/img/PlayButton.png')}"/>            
+                                                                    </a>
+                                                                </td>
+                                                                <td>
+                                                                    <table class="gallery-list-video-prop">
+                                                                        <tr>
+                                                                            <td>
+                                                                                <a class="gallery-list-video-prop-title" href="/apex/ESN_VFP28_VideoDisplay?id={!video.Id}&core.apexpages.devmode.url=1">{!video.Name}</a>
+                                                                                 - <span class="gallery-list-video-prop-views">{!video.ESN_ViewsCount__c} views</span>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <div class="gallery-list-video-prop-descr">
+                                                                                    {!video.ESN_SmallDescription__c}
+                                                                                </div>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <!-- chatter:follow entityId="{!video.Id}"/ -->
+                                                                                <apex:outputText value="{0,date,d' 'MMMM' 'yyyy}" styleClass="gallery-list-video-prop-date">
+                                                                                    <apex:param value="{!video.ESN_PublishedDate__c}" /> 
+                                                                                </apex:outputText>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </apex:repeat>
+                        </div>
+                        <apex:repeat value="{!videoCategories_set}" var="cat">
+                            <div id="tabs-{!cat2CatWithoutSpaces_map[cat]}" class="gallery-list">
+                                <apex:repeat value="{!categorie2listVideos_map[cat]}" var="video">
+                                    <table class="gallery-list-video">
+                                        <tr>
+                                            <td>
+                                                <apex:image styleClass="gallery-list-video-usrPhoto" url="{!ownerId2Owner_map[video.OwnerId].SmallPhotoUrl}"/>
+                                            </td>
+                                            <td>
+                                                <table>
+                                                    <tr>
+                                                        <td class="gallery-list-video-usrName">
+                                                            <apex:outputLink value="/{!video.OwnerId}">{!ownerId2Owner_map[video.OwnerId].Name}</apex:outputLink> 
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <table>                                                    
+                                                                <tr>
+                                                                    <td class="gallery-list-video-thumbnail">
+                                                                        <a href="/apex/ESN_VFP28_VideoDisplay?id={!video.Id}&core.apexpages.devmode.url=1">
+                                                                            <apex:outputText value="{!video.ESN_VideoThumbnail__c}" escape="false" styleClass="gallery-list-video-thumbnail-img"/>     
+                                                                            <img class="gallery-list-video-thumbnail-play" src="{!URLFOR($Resource.ChatterTV_Resources, '/img/PlayButton.png')}"/>            
+                                                                        </a>
+                                                                    </td>
+                                                                    <td>
+                                                                        <table class="gallery-list-video-prop">
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <a class="gallery-list-video-prop-title" href="/apex/ESN_VFP28_VideoDisplay?id={!video.Id}&core.apexpages.devmode.url=1">{!video.Name}</a>
+                                                                                     - <span class="gallery-list-video-prop-views">{!video.ESN_ViewsCount__c} views</span>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <div class="gallery-list-video-prop-descr">
+                                                                                        {!video.ESN_SmallDescription__c}
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <!-- chatter:follow entityId="{!video.Id}"/ -->
+                                                                                    <apex:outputText value="{0,date,d' 'MMMM' 'yyyy}" styleClass="gallery-list-video-prop-date">
+                                                                                        <!-- FTR 17/01/2014 apex:param value="{!video.CreatedDate}" /--> 
+                                                                                        <apex:param value="{!video.ESN_PublishedDate__c}" />                                                                                        
+                                                                                    </apex:outputText>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </apex:repeat>
+                            </div>
+                        </apex:repeat>
+                    </div>
+                </td>
+                <td>
+                    <div class="gallery-menu">
+                        <div class="gallery-menu-popular">
+                            <div class="gallery-menu-popular-title"> Most Popular Video </div>
+                            <table>
+                                <apex:repeat value="{!topFiveVideos_lst}" var="video">                
+                                    <tr>
+                                        <td class="gallery-menu-video">
+                                            <a class="gallery-menu-video-title" href="/apex/ESN_VFP28_VideoDisplay?id={!video.Id}&core.apexpages.devmode.url=1">{!video.Name}</a>
+                                            <br/>
+                                            <span class="gallery-menu-video-views">{!video.ESN_ViewsCount__c} views</span>
+                                            <br/>
+                                            <a class="gallery-menu-video-watch" href="/apex/ESN_VFP28_VideoDisplay?id={!video.Id}&core.apexpages.devmode.url=1"> <img class="gallery-menu-submit-contact-img" src="{!URLFOR($Resource.ChatterTV_Resources, '/img/add.png')}"/>  watch video</a>
+                                        </td>
+                                    </tr>
+                                </apex:repeat>
+                            </table>
+                        </div>
+                        <div class="gallery-menu-submit">
+                            <div class="gallery-menu-submit-title"> Submit a video </div>
+                            <div class="gallery-menu-submit-content"> If you would like to share your video, feel free to contact us </div>
+                            <div class="gallery-menu-submit-contact">
+                                <a class="gallery-menu-submit-contact-mailto" href="mailto:{!videoAdmin}"> 
+                                    <img class="gallery-menu-submit-contact-img" src="{!URLFOR($Resource.ChatterTV_Resources, '/img/email.png')}"/> Contact 
+                                </a>
+                            </div>
+                        </div>              
+                    </div>
+                </td>
+            </tr>
+        </table>
+</div>
+<script>
+if (!jQuery.support.leadingWhitespace){
+       $('.chatterTVapp').css('display','none')
+    }
+
+</script>
+<!--[if lt IE 9]>
+<div class="error-msg">
+<br/><b>Chatter TV</b> could not be viewed into your navigator.
+<br/>Please, download Google Chrome or any up-to-date browser to experiment it.
+</div>
+<![endif]-->        
+    </body>
+</apex:page>

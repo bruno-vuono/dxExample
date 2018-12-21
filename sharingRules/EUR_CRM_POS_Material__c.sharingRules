@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>EUR_BG_Share_All_POS_Materials</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Share to Role and Subordinates: EUR BG &gt; Read Only</description>
+        <label>EUR BG Share All POS Materials</label>
+        <sharedTo>
+            <roleAndSubordinates>EUR_BG</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>EUR BG POS Material</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>EUR_BG_Share_All_POS_Materials_RW</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Share ALL to Group: EUR BG Product Hierarchy Admins &gt; Read/Write</description>
+        <label>EUR BG Share All POS Materials RW</label>
+        <sharedTo>
+            <group>EUR_BG_Product_Hierarchy_Admins</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>EUR BG POS Material</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>EUR_RU_Share_All_POS_Materials</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>EUR RU Share All POS Materials</label>
+        <sharedTo>
+            <roleAndSubordinates>EUR_RU</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>EUR RU POS Material</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>EUR_RU_Share_All_POS_Materials_RW</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>EUR RU Share All POS Materials RW</label>
+        <sharedTo>
+            <group>EUR_RU_Admin_Group</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>EUR RU POS Material</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>EUR_RU_Share_RW_to_Role_EUR_RU</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>EUR RU Share RW to Role EUR RU</label>
+        <sharedTo>
+            <role>EUR_RU</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>EUR RU POS Material</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>EUR_ZA_Share_RW_to_SSA_Admin</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Share All POSM Read Write to SSA Admin</description>
+        <label>EUR ZA Share RW to SSA Admin</label>
+        <sharedTo>
+            <role>EUR_SSA</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>EUR ZA POS Material</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>EUR_ZA_Share_R_to_All_ZA</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Share All POSM Read Only to all ZA</description>
+        <label>EUR ZA Share R to All ZA</label>
+        <sharedTo>
+            <roleAndSubordinates>EUR_ZA</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>EUR ZA POS Material</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+</SharingRules>

@@ -1,0 +1,4701 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <content>ESN_MB_ACT_Redirect</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>ESN_MB MyBrands : Object to store Brand and Market Activations for MyBrands app</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableFeeds>true</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Current_Brand_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(ESN_MB_Product__r.ESN_MB_ParentId__c != null,
+ESN_MB_Product__r.ESN_MB_ParentId__r.Name,
+ESN_MB_Product__r.Name)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Current Brand Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Activation_Scope__c</fullName>
+        <description>Describe scope of activations. This is a key value used to redirect in adequat  MyBrands page</description>
+        <externalId>false</externalId>
+        <formula>IF( RecordType.Name ==&quot;Market Activation&quot;, &quot;local&quot;, &quot;global&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Activation Scope</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Activation_Type__c</fullName>
+        <description>Define the type of the activation</description>
+        <externalId>false</externalId>
+        <label>Activation Type</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>360 Activation Platforms</fullName>
+                    <default>true</default>
+                    <label>360 Activation Platforms</label>
+                </value>
+                <value>
+                    <fullName>Communication / Media</fullName>
+                    <default>false</default>
+                    <label>Communication / Media</label>
+                </value>
+                <value>
+                    <fullName>On-Trade</fullName>
+                    <default>false</default>
+                    <label>On-Trade</label>
+                </value>
+                <value>
+                    <fullName>Off-Trade</fullName>
+                    <default>false</default>
+                    <label>Off-Trade</label>
+                </value>
+                <value>
+                    <fullName>CRM</fullName>
+                    <default>false</default>
+                    <label>CRM</label>
+                </value>
+                <value>
+                    <fullName>Public Relations</fullName>
+                    <default>false</default>
+                    <label>Public Relations</label>
+                </value>
+                <value>
+                    <fullName>Events And Sponsorships</fullName>
+                    <default>false</default>
+                    <label>Events And Sponsorships</label>
+                </value>
+                <value>
+                    <fullName>Travel Retail</fullName>
+                    <default>false</default>
+                    <label>Travel Retail</label>
+                </value>
+                <value>
+                    <fullName>Digital</fullName>
+                    <default>false</default>
+                    <label>Digital</label>
+                </value>
+                <value>
+                    <fullName>Luxury</fullName>
+                    <default>false</default>
+                    <label>Luxury</label>
+                </value>
+                <value>
+                    <fullName>Influencer Activations</fullName>
+                    <default>false</default>
+                    <label>Influencer Activations</label>
+                </value>
+                <value>
+                    <fullName>Environment</fullName>
+                    <default>false</default>
+                    <label>Environment</label>
+                </value>
+                <value>
+                    <fullName>Communities &amp; Partner</fullName>
+                    <default>false</default>
+                    <label>Communities &amp; Partner</label>
+                </value>
+                <value>
+                    <fullName>Responsible Consumption</fullName>
+                    <default>false</default>
+                    <label>Responsible Consumption</label>
+                </value>
+                <value>
+                    <fullName>Responsib&apos; All Day</fullName>
+                    <default>false</default>
+                    <label>Responsib&apos; All Day</label>
+                </value>
+                <value>
+                    <fullName>HR</fullName>
+                    <default>false</default>
+                    <label>HR</label>
+                </value>
+                <value>
+                    <fullName>Communication</fullName>
+                    <default>false</default>
+                    <label>Communication</label>
+                </value>
+                <value>
+                    <fullName>Operations</fullName>
+                    <default>false</default>
+                    <label>Operations</label>
+                </value>
+                <value>
+                    <fullName>IT</fullName>
+                    <default>false</default>
+                    <label>IT</label>
+                </value>
+                <value>
+                    <fullName>Human Resources</fullName>
+                    <default>false</default>
+                    <label>Human Resources</label>
+                </value>
+                <value>
+                    <fullName>Legal</fullName>
+                    <default>false</default>
+                    <label>Legal</label>
+                </value>
+                <value>
+                    <fullName>Public Affairs &amp; CSR</fullName>
+                    <default>false</default>
+                    <label>Public Affairs &amp; CSR</label>
+                </value>
+                <value>
+                    <fullName>Finance</fullName>
+                    <default>false</default>
+                    <label>Finance</label>
+                </value>
+                <value>
+                    <fullName>Global Business Development</fullName>
+                    <default>false</default>
+                    <label>Global Business Development</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>8</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Affiliate__c</fullName>
+        <description>Affiliate for Activation</description>
+        <externalId>false</externalId>
+        <label>Affiliate</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>true</sorted>
+                <value>
+                    <fullName>Chivas Brothers Limited</fullName>
+                    <default>false</default>
+                    <label>Chivas Brothers Limited</label>
+                </value>
+                <value>
+                    <fullName>Corby</fullName>
+                    <default>false</default>
+                    <label>Corby</label>
+                </value>
+                <value>
+                    <fullName>Havana Club International</fullName>
+                    <default>false</default>
+                    <label>Havana Club International</label>
+                </value>
+                <value>
+                    <fullName>House of Tequila</fullName>
+                    <default>false</default>
+                    <label>House of Tequila</label>
+                </value>
+                <value>
+                    <fullName>Irish Distillers</fullName>
+                    <default>false</default>
+                    <label>Irish Distillers</label>
+                </value>
+                <value>
+                    <fullName>Jan Becher</fullName>
+                    <default>false</default>
+                    <label>Jan Becher</label>
+                </value>
+                <value>
+                    <fullName>Martell Mumm Perrier-Jouët</fullName>
+                    <default>false</default>
+                    <label>Martell Mumm Perrier-Jouët</label>
+                </value>
+                <value>
+                    <fullName>Other Pernod Ricard Americas Markets</fullName>
+                    <default>false</default>
+                    <label>Other Pernod Ricard Americas Markets</label>
+                </value>
+                <value>
+                    <fullName>Other Pernod Ricard Asia Markets</fullName>
+                    <default>false</default>
+                    <label>Other Pernod Ricard Asia Markets</label>
+                </value>
+                <value>
+                    <fullName>Other Pernod Ricard EMEA Markets</fullName>
+                    <default>false</default>
+                    <label>Other Pernod Ricard EMEA Markets</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard Americas Regional Holding</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Americas Regional Holding</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard Americas Travel Retail</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Americas Travel Retail</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard Andes</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Andes</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard Angola</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Angola</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard Argentina</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Argentina</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard Asia Regional Holding</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Asia Regional Holding</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard Asia Travel Retail</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Asia Travel Retail</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard Austria</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Austria</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard Baltics States (inc. Pernod Ricard Estonia/Lithuania/Latvia)</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Baltics States (inc. Pernod Ricard Estonia/Lithuania/Latvia)</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard Belgium</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Belgium</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard Brasil</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Brasil</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard Bulgaria</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Bulgaria</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard China</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard China</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard Colombia</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Colombia</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard Denmark</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Denmark</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard Deutschland</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Deutschland</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard EMEA Regional Holding</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard EMEA Regional Holding</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard Finland</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Finland</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard Ghana</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Ghana</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard Gulf</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Gulf</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard Headquarters</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Headquarters</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard Hellas</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Hellas</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard Hong-Kong</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Hong-Kong</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard Hungary</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Hungary</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard India</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard India</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard Indonesia</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Indonesia</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard Italy</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Italy</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard Japan</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Japan</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard Kazakhstan</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Kazakhstan</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard Kenya</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Kenya</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard Korea</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Korea</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard Lanka</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Lanka</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard Malaysia</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Malaysia</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard Maroc</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Maroc</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard MENA</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard MENA</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard Mexico</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Mexico</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard Minsk</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Minsk</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard Netherlands</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Netherlands</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard Nigeria</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Nigeria</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard Norway</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Norway</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard Philippines</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Philippines</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard Portugal</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Portugal</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard Romania</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Romania</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard Rouss</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Rouss</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard Serbia</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Serbia</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard Singapore</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Singapore</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard Slovakia</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Slovakia</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard Slovenia (inc. Pernod Ricard Croatia / Bosnia)</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Slovenia (inc. Pernod Ricard Croatia / Bosnia)</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard South Africa</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard South Africa</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard Spain</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Spain</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard Sweden</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Sweden</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard Swiss</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Swiss</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard Taiwan</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Taiwan</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard Thailand</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Thailand</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard Travel Retail</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Travel Retail</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard Turkey</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Turkey</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard UK</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard UK</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard Ukraine</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Ukraine</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard Uruguay</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Uruguay</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard USA</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard USA</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard Vietnam</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Vietnam</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard Winemakers</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Winemakers</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard Wyborowa</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Wyborowa</label>
+                </value>
+                <value>
+                    <fullName>Ricard &amp; Pernod</fullName>
+                    <default>false</default>
+                    <label>Ricard &amp; Pernod</label>
+                </value>
+                <value>
+                    <fullName>The Absolut Company</fullName>
+                    <default>false</default>
+                    <label>The Absolut Company</label>
+                </value>
+                <value>
+                    <fullName>Yerevan Brandy Company (inc. Pernod Ricard Armenia)</fullName>
+                    <default>false</default>
+                    <label>Yerevan Brandy Company (inc. Pernod Ricard Armenia)</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_AlsoInMasterBrand__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>If this field is checked, then this activation will appear in both its product and the masterbrand</description>
+        <externalId>false</externalId>
+        <inlineHelpText>If this field is checked, then this activation will appear in both its product and the masterbrand</inlineHelpText>
+        <label>AlsoInMasterBrand</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Audience__c</fullName>
+        <description>Define target audience for an activation</description>
+        <externalId>false</externalId>
+        <label>Target2</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Crusaders / Influencers</fullName>
+                    <default>false</default>
+                    <label>Crusaders / Influencers</label>
+                </value>
+                <value>
+                    <fullName>Strategic Targets</fullName>
+                    <default>false</default>
+                    <label>Strategic Targets</label>
+                </value>
+                <value>
+                    <fullName>Consumption Pool</fullName>
+                    <default>false</default>
+                    <label>Consumption Pool</label>
+                </value>
+                <value>
+                    <fullName>Specific Tribe</fullName>
+                    <default>false</default>
+                    <label>Specific Tribe</label>
+                </value>
+                <value>
+                    <fullName>Trade / Customer</fullName>
+                    <default>false</default>
+                    <label>Trade / Customer</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_AvgCrit1__c</fullName>
+        <description>Average rating for Criteria 1 for the Activation</description>
+        <externalId>false</externalId>
+        <formula>IF( ESN_MB_CountCrit1__c != 0, ESN_MB_SumCrit1__c / ESN_MB_CountCrit1__c , 0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Average rating for Criteria 1 for the Activation</inlineHelpText>
+        <label>AvgCrit1</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_AvgCrit2__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( ESN_MB_CountCrit2__c != 0, ESN_MB_SumCrit2__c / ESN_MB_CountCrit2__c , 0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>AvgCrit2</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_AvgCrit3__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( ESN_MB_CountCrit3__c != 0, ESN_MB_SumCrit3__c / ESN_MB_CountCrit3__c , 0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>AvgCrit3</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_AvgCrit4__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( ESN_MB_CountCrit4__c != 0, ESN_MB_SumCrit4__c / ESN_MB_CountCrit4__c , 0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>AvgCrit4</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_AvgCrit5__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( ESN_MB_CountCrit5__c != 0, ESN_MB_SumCrit5__c / ESN_MB_CountCrit5__c , 0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>AvgCrit5</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Best_Practices_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Best Practices Status</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>None</fullName>
+                    <default>false</default>
+                    <label>None</label>
+                </value>
+                <value>
+                    <fullName>Candidate</fullName>
+                    <default>false</default>
+                    <label>Candidate</label>
+                </value>
+                <value>
+                    <fullName>Nominee</fullName>
+                    <default>false</default>
+                    <label>Nominee</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_BigIdea__c</fullName>
+        <externalId>false</externalId>
+        <label>BigIdea</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_BrandId__c</fullName>
+        <description>Field used to store the brand record id. Used for redirection page to MyBrand App</description>
+        <externalId>false</externalId>
+        <formula>ESN_MB_Product__r.ESN_MB_ParentId__r.Id</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>BrandId</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Brand_Scope_Text__c</fullName>
+        <description>Stores the Name of the Brand</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Stores the Name of the Brand</inlineHelpText>
+        <label>Brand Scope Text</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Budget__c</fullName>
+        <description>Budget per Activation</description>
+        <externalId>false</externalId>
+        <label>Budget</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>01. &lt; 20K€</fullName>
+                    <default>false</default>
+                    <label>01. &lt; 20K€</label>
+                </value>
+                <value>
+                    <fullName>02. 20k€ - 50k€</fullName>
+                    <default>false</default>
+                    <label>02. 20k€ - 50k€</label>
+                </value>
+                <value>
+                    <fullName>03. 50k€ - 100k€</fullName>
+                    <default>false</default>
+                    <label>03. 50k€ - 100k€</label>
+                </value>
+                <value>
+                    <fullName>04. 100k€ - 200k€</fullName>
+                    <default>false</default>
+                    <label>04. 100k€ - 200k€</label>
+                </value>
+                <value>
+                    <fullName>05. &gt; 200K€</fullName>
+                    <default>false</default>
+                    <label>05. &gt; 200K€</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_BusinessImpact__c</fullName>
+        <description>Results versus KPIs, ROI, Impact on sales, advocacy, image.</description>
+        <externalId>false</externalId>
+        <label>BusinessImpact</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_BusinessPriority__c</fullName>
+        <description>Business Priority list for Activation</description>
+        <externalId>false</externalId>
+        <label>BusinessPriority</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>true</sorted>
+                <value>
+                    <fullName>Digital Acceleration</fullName>
+                    <default>false</default>
+                    <label>Digital Acceleration</label>
+                </value>
+                <value>
+                    <fullName>Innovation</fullName>
+                    <default>false</default>
+                    <label>Innovation</label>
+                </value>
+                <value>
+                    <fullName>Operational Excellence</fullName>
+                    <default>false</default>
+                    <label>Operational Excellence</label>
+                </value>
+                <value>
+                    <fullName>Portfolio Management</fullName>
+                    <default>false</default>
+                    <label>Portfolio Management</label>
+                </value>
+                <value>
+                    <fullName>Premiumisation And Luxury</fullName>
+                    <default>false</default>
+                    <label>Premiumisation And Luxury</label>
+                </value>
+                <value>
+                    <fullName>Route To Market / Consumer</fullName>
+                    <default>false</default>
+                    <label>Route To Market / Consumer</label>
+                </value>
+                <value>
+                    <fullName>Sustainability &amp; Responsibility</fullName>
+                    <default>false</default>
+                    <label>Sustainability &amp; Responsibility</label>
+                </value>
+                <value>
+                    <fullName>Talent Development</fullName>
+                    <default>false</default>
+                    <label>Talent Development</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Coordinator__c</fullName>
+        <description>MyBrands - List coordinator for Best Practices</description>
+        <externalId>false</externalId>
+        <label>Coordinator</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>MarketCoordinator</fullName>
+                    <default>false</default>
+                    <label>MarketCoordinator</label>
+                </value>
+                <value>
+                    <fullName>RegionCoordinator</fullName>
+                    <default>false</default>
+                    <label>RegionCoordinator</label>
+                </value>
+                <value>
+                    <fullName>ExpertCommittee</fullName>
+                    <default>false</default>
+                    <label>ExpertCommittee</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_CountCrit1__c</fullName>
+        <description>The count of criteria 1</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The count of criteria 1</inlineHelpText>
+        <label>CountCrit1</label>
+        <summaryFilterItems>
+            <field>ESN_MB_User_Interaction__c.ESN_MB_Rating_Criteria_1__c</field>
+            <operation>notEqual</operation>
+            <value>0</value>
+        </summaryFilterItems>
+        <summaryForeignKey>ESN_MB_User_Interaction__c.ESN_MB_Activation__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_CountCrit2__c</fullName>
+        <description>The count of criteria 2</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The count of criteria 2</inlineHelpText>
+        <label>CountCrit2</label>
+        <summaryFilterItems>
+            <field>ESN_MB_User_Interaction__c.ESN_MB_Rating_Criteria_2__c</field>
+            <operation>notEqual</operation>
+            <value>0</value>
+        </summaryFilterItems>
+        <summaryForeignKey>ESN_MB_User_Interaction__c.ESN_MB_Activation__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_CountCrit3__c</fullName>
+        <description>The count of criteria 3</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The count of criteria 3</inlineHelpText>
+        <label>CountCrit3</label>
+        <summaryFilterItems>
+            <field>ESN_MB_User_Interaction__c.ESN_MB_Rating_Criteria_3__c</field>
+            <operation>notEqual</operation>
+            <value>0</value>
+        </summaryFilterItems>
+        <summaryForeignKey>ESN_MB_User_Interaction__c.ESN_MB_Activation__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_CountCrit4__c</fullName>
+        <description>The count of criteria 4</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The count of criteria 4</inlineHelpText>
+        <label>CountCrit4</label>
+        <summaryFilterItems>
+            <field>ESN_MB_User_Interaction__c.ESN_MB_Rating_Criteria_4__c</field>
+            <operation>notEqual</operation>
+            <value>0</value>
+        </summaryFilterItems>
+        <summaryForeignKey>ESN_MB_User_Interaction__c.ESN_MB_Activation__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_CountCrit5__c</fullName>
+        <description>The count of criteria 5</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The count of criteria 5</inlineHelpText>
+        <label>CountCrit5</label>
+        <summaryFilterItems>
+            <field>ESN_MB_User_Interaction__c.ESN_MB_Rating_Criteria_5__c</field>
+            <operation>notEqual</operation>
+            <value>0</value>
+        </summaryFilterItems>
+        <summaryForeignKey>ESN_MB_User_Interaction__c.ESN_MB_Activation__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Embedded_Video__c</fullName>
+        <description>Field to store the HTML snippet of external video (Youtube, Vimeo, ...)</description>
+        <externalId>false</externalId>
+        <label>Embedded Video</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_EndingDate__c</fullName>
+        <description>Ending Date of an activation</description>
+        <externalId>false</externalId>
+        <label>EndingDate</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_ExcellenceOfExecution__c</fullName>
+        <description>Differentiation from competitors, creativity in the approach, relevant use of touchpoints.</description>
+        <externalId>false</externalId>
+        <label>ExcellenceOfExecution</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_ExtId__c</fullName>
+        <description>Ext Id used for data migration</description>
+        <externalId>true</externalId>
+        <inlineHelpText>Ext Id used for data migration</inlineHelpText>
+        <label>ESN_MB_ExtId</label>
+        <length>18</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_How__c</fullName>
+        <description>Provide Execution details for activation</description>
+        <externalId>false</externalId>
+        <label>How</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_LeCercle__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>ESN_MB_LeCercle</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Legal_Constraints__c</fullName>
+        <description>Legal Constraints for the Activation</description>
+        <externalId>false</externalId>
+        <label>Legal Constraints</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>100 % Dark</fullName>
+                    <default>false</default>
+                    <label>100 % Dark</label>
+                </value>
+                <value>
+                    <fullName>Highly restricted</fullName>
+                    <default>false</default>
+                    <label>Highly restricted</label>
+                </value>
+                <value>
+                    <fullName>Light restrictions</fullName>
+                    <default>false</default>
+                    <label>Light restrictions</label>
+                </value>
+                <value>
+                    <fullName>No restriction</fullName>
+                    <default>true</default>
+                    <label>No restriction</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_MainActivationId__c</fullName>
+        <description>Id of the main activation, if the activation is in Draft mode, it will contain the id of the published activation</description>
+        <externalId>false</externalId>
+        <label>MainActivationId</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_MarketType__c</fullName>
+        <description>Market activation types</description>
+        <externalId>false</externalId>
+        <label>MarketType</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Classic</fullName>
+                    <default>false</default>
+                    <label>Classic</label>
+                </value>
+                <value>
+                    <fullName>Lead</fullName>
+                    <default>false</default>
+                    <label>Lead</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Market__c</fullName>
+        <description>Market concerned by the Activation</description>
+        <externalId>false</externalId>
+        <label>Market</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>true</sorted>
+                <value>
+                    <fullName>Albania</fullName>
+                    <default>false</default>
+                    <label>Albania</label>
+                </value>
+                <value>
+                    <fullName>Algeria</fullName>
+                    <default>false</default>
+                    <label>Algeria</label>
+                </value>
+                <value>
+                    <fullName>Andorra</fullName>
+                    <default>false</default>
+                    <label>Andorra</label>
+                </value>
+                <value>
+                    <fullName>Argentina</fullName>
+                    <default>false</default>
+                    <label>Argentina</label>
+                </value>
+                <value>
+                    <fullName>Armenia</fullName>
+                    <default>false</default>
+                    <label>Armenia</label>
+                </value>
+                <value>
+                    <fullName>Aruba</fullName>
+                    <default>false</default>
+                    <label>Aruba</label>
+                </value>
+                <value>
+                    <fullName>Australia</fullName>
+                    <default>false</default>
+                    <label>Australia</label>
+                </value>
+                <value>
+                    <fullName>Austria</fullName>
+                    <default>false</default>
+                    <label>Austria</label>
+                </value>
+                <value>
+                    <fullName>Azerbaijan</fullName>
+                    <default>false</default>
+                    <label>Azerbaijan</label>
+                </value>
+                <value>
+                    <fullName>Balkans</fullName>
+                    <default>false</default>
+                    <label>Balkans</label>
+                </value>
+                <value>
+                    <fullName>Belarus</fullName>
+                    <default>false</default>
+                    <label>Belarus</label>
+                </value>
+                <value>
+                    <fullName>Belgium</fullName>
+                    <default>false</default>
+                    <label>Belgium</label>
+                </value>
+                <value>
+                    <fullName>Bolivia</fullName>
+                    <default>false</default>
+                    <label>Bolivia</label>
+                </value>
+                <value>
+                    <fullName>Bosnia</fullName>
+                    <default>false</default>
+                    <label>Bosnia</label>
+                </value>
+                <value>
+                    <fullName>Brazil</fullName>
+                    <default>false</default>
+                    <label>Brazil</label>
+                </value>
+                <value>
+                    <fullName>Bulgaria</fullName>
+                    <default>false</default>
+                    <label>Bulgaria</label>
+                </value>
+                <value>
+                    <fullName>Cambodia</fullName>
+                    <default>false</default>
+                    <label>Cambodia</label>
+                </value>
+                <value>
+                    <fullName>Canada</fullName>
+                    <default>false</default>
+                    <label>Canada</label>
+                </value>
+                <value>
+                    <fullName>Caribbean</fullName>
+                    <default>false</default>
+                    <label>Caribbean</label>
+                </value>
+                <value>
+                    <fullName>Caribbean Cesam</fullName>
+                    <default>false</default>
+                    <label>Caribbean Cesam</label>
+                </value>
+                <value>
+                    <fullName>Chile</fullName>
+                    <default>false</default>
+                    <label>Chile</label>
+                </value>
+                <value>
+                    <fullName>China</fullName>
+                    <default>false</default>
+                    <label>China</label>
+                </value>
+                <value>
+                    <fullName>Coa Rica</fullName>
+                    <default>false</default>
+                    <label>Coa Rica</label>
+                </value>
+                <value>
+                    <fullName>Colombia</fullName>
+                    <default>false</default>
+                    <label>Colombia</label>
+                </value>
+                <value>
+                    <fullName>Croatia</fullName>
+                    <default>false</default>
+                    <label>Croatia</label>
+                </value>
+                <value>
+                    <fullName>Cuba</fullName>
+                    <default>false</default>
+                    <label>Cuba</label>
+                </value>
+                <value>
+                    <fullName>Cyprus</fullName>
+                    <default>false</default>
+                    <label>Cyprus</label>
+                </value>
+                <value>
+                    <fullName>Czech Republic</fullName>
+                    <default>false</default>
+                    <label>Czech Republic</label>
+                </value>
+                <value>
+                    <fullName>Denmark</fullName>
+                    <default>false</default>
+                    <label>Denmark</label>
+                </value>
+                <value>
+                    <fullName>Dominican Republic</fullName>
+                    <default>false</default>
+                    <label>Dominican Republic</label>
+                </value>
+                <value>
+                    <fullName>East Africa</fullName>
+                    <default>false</default>
+                    <label>East Africa</label>
+                </value>
+                <value>
+                    <fullName>Ecuador</fullName>
+                    <default>false</default>
+                    <label>Ecuador</label>
+                </value>
+                <value>
+                    <fullName>Egypt</fullName>
+                    <default>false</default>
+                    <label>Egypt</label>
+                </value>
+                <value>
+                    <fullName>Estonia</fullName>
+                    <default>false</default>
+                    <label>Estonia</label>
+                </value>
+                <value>
+                    <fullName>Finland</fullName>
+                    <default>false</default>
+                    <label>Finland</label>
+                </value>
+                <value>
+                    <fullName>France</fullName>
+                    <default>false</default>
+                    <label>France</label>
+                </value>
+                <value>
+                    <fullName>French Polynesia</fullName>
+                    <default>false</default>
+                    <label>French Polynesia</label>
+                </value>
+                <value>
+                    <fullName>Georgia</fullName>
+                    <default>false</default>
+                    <label>Georgia</label>
+                </value>
+                <value>
+                    <fullName>Germany</fullName>
+                    <default>false</default>
+                    <label>Germany</label>
+                </value>
+                <value>
+                    <fullName>Greece</fullName>
+                    <default>false</default>
+                    <label>Greece</label>
+                </value>
+                <value>
+                    <fullName>Guatemala</fullName>
+                    <default>false</default>
+                    <label>Guatemala</label>
+                </value>
+                <value>
+                    <fullName>Honduras</fullName>
+                    <default>false</default>
+                    <label>Honduras</label>
+                </value>
+                <value>
+                    <fullName>Hong Kong</fullName>
+                    <default>false</default>
+                    <label>Hong Kong</label>
+                </value>
+                <value>
+                    <fullName>Hungary</fullName>
+                    <default>false</default>
+                    <label>Hungary</label>
+                </value>
+                <value>
+                    <fullName>Iceland</fullName>
+                    <default>false</default>
+                    <label>Iceland</label>
+                </value>
+                <value>
+                    <fullName>India</fullName>
+                    <default>false</default>
+                    <label>India</label>
+                </value>
+                <value>
+                    <fullName>Indonesia</fullName>
+                    <default>false</default>
+                    <label>Indonesia</label>
+                </value>
+                <value>
+                    <fullName>Ireland</fullName>
+                    <default>false</default>
+                    <label>Ireland</label>
+                </value>
+                <value>
+                    <fullName>Israel</fullName>
+                    <default>false</default>
+                    <label>Israel</label>
+                </value>
+                <value>
+                    <fullName>Italy</fullName>
+                    <default>false</default>
+                    <label>Italy</label>
+                </value>
+                <value>
+                    <fullName>Japan</fullName>
+                    <default>false</default>
+                    <label>Japan</label>
+                </value>
+                <value>
+                    <fullName>Jordan</fullName>
+                    <default>false</default>
+                    <label>Jordan</label>
+                </value>
+                <value>
+                    <fullName>Kazakhstan</fullName>
+                    <default>false</default>
+                    <label>Kazakhstan</label>
+                </value>
+                <value>
+                    <fullName>Korea</fullName>
+                    <default>false</default>
+                    <label>Korea</label>
+                </value>
+                <value>
+                    <fullName>Kyrgystan</fullName>
+                    <default>false</default>
+                    <label>Kyrgystan</label>
+                </value>
+                <value>
+                    <fullName>Laos</fullName>
+                    <default>false</default>
+                    <label>Laos</label>
+                </value>
+                <value>
+                    <fullName>Latvia</fullName>
+                    <default>false</default>
+                    <label>Latvia</label>
+                </value>
+                <value>
+                    <fullName>Lebanon</fullName>
+                    <default>false</default>
+                    <label>Lebanon</label>
+                </value>
+                <value>
+                    <fullName>Lithuania</fullName>
+                    <default>false</default>
+                    <label>Lithuania</label>
+                </value>
+                <value>
+                    <fullName>Luxembourg</fullName>
+                    <default>false</default>
+                    <label>Luxembourg</label>
+                </value>
+                <value>
+                    <fullName>Macau</fullName>
+                    <default>false</default>
+                    <label>Macau</label>
+                </value>
+                <value>
+                    <fullName>Macedonia</fullName>
+                    <default>false</default>
+                    <label>Macedonia</label>
+                </value>
+                <value>
+                    <fullName>Malaysia</fullName>
+                    <default>false</default>
+                    <label>Malaysia</label>
+                </value>
+                <value>
+                    <fullName>Maldives</fullName>
+                    <default>false</default>
+                    <label>Maldives</label>
+                </value>
+                <value>
+                    <fullName>Malta</fullName>
+                    <default>false</default>
+                    <label>Malta</label>
+                </value>
+                <value>
+                    <fullName>Mexico</fullName>
+                    <default>false</default>
+                    <label>Mexico</label>
+                </value>
+                <value>
+                    <fullName>Middle East</fullName>
+                    <default>false</default>
+                    <label>Middle East</label>
+                </value>
+                <value>
+                    <fullName>Moldavia</fullName>
+                    <default>false</default>
+                    <label>Moldavia</label>
+                </value>
+                <value>
+                    <fullName>Mongolia</fullName>
+                    <default>false</default>
+                    <label>Mongolia</label>
+                </value>
+                <value>
+                    <fullName>Montenegro</fullName>
+                    <default>false</default>
+                    <label>Montenegro</label>
+                </value>
+                <value>
+                    <fullName>Morocco</fullName>
+                    <default>false</default>
+                    <label>Morocco</label>
+                </value>
+                <value>
+                    <fullName>Myanmar</fullName>
+                    <default>false</default>
+                    <label>Myanmar</label>
+                </value>
+                <value>
+                    <fullName>Netherlands</fullName>
+                    <default>false</default>
+                    <label>Netherlands</label>
+                </value>
+                <value>
+                    <fullName>New Caledonia</fullName>
+                    <default>false</default>
+                    <label>New Caledonia</label>
+                </value>
+                <value>
+                    <fullName>New Zealand</fullName>
+                    <default>false</default>
+                    <label>New Zealand</label>
+                </value>
+                <value>
+                    <fullName>North Africa</fullName>
+                    <default>false</default>
+                    <label>North Africa</label>
+                </value>
+                <value>
+                    <fullName>Norway</fullName>
+                    <default>false</default>
+                    <label>Norway</label>
+                </value>
+                <value>
+                    <fullName>Other Africa and Middle East</fullName>
+                    <default>false</default>
+                    <label>Other Africa and Middle East</label>
+                </value>
+                <value>
+                    <fullName>Other Asia</fullName>
+                    <default>false</default>
+                    <label>Other Asia</label>
+                </value>
+                <value>
+                    <fullName>Other Australia and Oceania</fullName>
+                    <default>false</default>
+                    <label>Other Australia and Oceania</label>
+                </value>
+                <value>
+                    <fullName>Other Central and South America</fullName>
+                    <default>false</default>
+                    <label>Other Central and South America</label>
+                </value>
+                <value>
+                    <fullName>Other Europe</fullName>
+                    <default>false</default>
+                    <label>Other Europe</label>
+                </value>
+                <value>
+                    <fullName>Other North America</fullName>
+                    <default>false</default>
+                    <label>Other North America</label>
+                </value>
+                <value>
+                    <fullName>Other Scandinavia</fullName>
+                    <default>false</default>
+                    <label>Other Scandinavia</label>
+                </value>
+                <value>
+                    <fullName>Other South Asia</fullName>
+                    <default>false</default>
+                    <label>Other South Asia</label>
+                </value>
+                <value>
+                    <fullName>Panama</fullName>
+                    <default>false</default>
+                    <label>Panama</label>
+                </value>
+                <value>
+                    <fullName>Paraguay</fullName>
+                    <default>false</default>
+                    <label>Paraguay</label>
+                </value>
+                <value>
+                    <fullName>Persian Gulf</fullName>
+                    <default>false</default>
+                    <label>Persian Gulf</label>
+                </value>
+                <value>
+                    <fullName>Peru</fullName>
+                    <default>false</default>
+                    <label>Peru</label>
+                </value>
+                <value>
+                    <fullName>Philippines</fullName>
+                    <default>false</default>
+                    <label>Philippines</label>
+                </value>
+                <value>
+                    <fullName>Poland</fullName>
+                    <default>false</default>
+                    <label>Poland</label>
+                </value>
+                <value>
+                    <fullName>Portugal</fullName>
+                    <default>false</default>
+                    <label>Portugal</label>
+                </value>
+                <value>
+                    <fullName>Puerto Rico</fullName>
+                    <default>false</default>
+                    <label>Puerto Rico</label>
+                </value>
+                <value>
+                    <fullName>Romania</fullName>
+                    <default>false</default>
+                    <label>Romania</label>
+                </value>
+                <value>
+                    <fullName>Russia</fullName>
+                    <default>false</default>
+                    <label>Russia</label>
+                </value>
+                <value>
+                    <fullName>Serbia</fullName>
+                    <default>false</default>
+                    <label>Serbia</label>
+                </value>
+                <value>
+                    <fullName>Singapore</fullName>
+                    <default>false</default>
+                    <label>Singapore</label>
+                </value>
+                <value>
+                    <fullName>Slovakia</fullName>
+                    <default>false</default>
+                    <label>Slovakia</label>
+                </value>
+                <value>
+                    <fullName>Slovenia</fullName>
+                    <default>false</default>
+                    <label>Slovenia</label>
+                </value>
+                <value>
+                    <fullName>Southern Africa</fullName>
+                    <default>false</default>
+                    <label>Southern Africa</label>
+                </value>
+                <value>
+                    <fullName>Spain</fullName>
+                    <default>false</default>
+                    <label>Spain</label>
+                </value>
+                <value>
+                    <fullName>Sri lanka</fullName>
+                    <default>false</default>
+                    <label>Sri lanka</label>
+                </value>
+                <value>
+                    <fullName>Sweden</fullName>
+                    <default>false</default>
+                    <label>Sweden</label>
+                </value>
+                <value>
+                    <fullName>Switzerland</fullName>
+                    <default>false</default>
+                    <label>Switzerland</label>
+                </value>
+                <value>
+                    <fullName>Taiwan</fullName>
+                    <default>false</default>
+                    <label>Taiwan</label>
+                </value>
+                <value>
+                    <fullName>Tajikistan</fullName>
+                    <default>false</default>
+                    <label>Tajikistan</label>
+                </value>
+                <value>
+                    <fullName>Thailand</fullName>
+                    <default>false</default>
+                    <label>Thailand</label>
+                </value>
+                <value>
+                    <fullName>Tunisia</fullName>
+                    <default>false</default>
+                    <label>Tunisia</label>
+                </value>
+                <value>
+                    <fullName>Turkey</fullName>
+                    <default>false</default>
+                    <label>Turkey</label>
+                </value>
+                <value>
+                    <fullName>Turkmenistan</fullName>
+                    <default>false</default>
+                    <label>Turkmenistan</label>
+                </value>
+                <value>
+                    <fullName>UK</fullName>
+                    <default>false</default>
+                    <label>UK</label>
+                </value>
+                <value>
+                    <fullName>Ukraine</fullName>
+                    <default>false</default>
+                    <label>Ukraine</label>
+                </value>
+                <value>
+                    <fullName>United Arab Emirates</fullName>
+                    <default>false</default>
+                    <label>United Arab Emirates</label>
+                </value>
+                <value>
+                    <fullName>Uruguay</fullName>
+                    <default>false</default>
+                    <label>Uruguay</label>
+                </value>
+                <value>
+                    <fullName>USA</fullName>
+                    <default>false</default>
+                    <label>USA</label>
+                </value>
+                <value>
+                    <fullName>US Virgin Islands</fullName>
+                    <default>false</default>
+                    <label>US Virgin Islands</label>
+                </value>
+                <value>
+                    <fullName>Uzbekistan</fullName>
+                    <default>false</default>
+                    <label>Uzbekistan</label>
+                </value>
+                <value>
+                    <fullName>Venezuela</fullName>
+                    <default>false</default>
+                    <label>Venezuela</label>
+                </value>
+                <value>
+                    <fullName>Vietnam</fullName>
+                    <default>false</default>
+                    <label>Vietnam</label>
+                </value>
+                <value>
+                    <fullName>West Africa</fullName>
+                    <default>false</default>
+                    <label>West Africa</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Maturity_Stage__c</fullName>
+        <description>Define maturity stage of an activation</description>
+        <externalId>false</externalId>
+        <label>Brand Maturity</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Nascent</fullName>
+                    <default>false</default>
+                    <label>Nascent</label>
+                </value>
+                <value>
+                    <fullName>Growing</fullName>
+                    <default>false</default>
+                    <label>Growing</label>
+                </value>
+                <value>
+                    <fullName>Mature</fullName>
+                    <default>false</default>
+                    <label>Mature</label>
+                </value>
+                <value>
+                    <fullName>Declining</fullName>
+                    <default>false</default>
+                    <label>Declining</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_PROS__c</fullName>
+        <description>Define pros for an activation</description>
+        <externalId>false</externalId>
+        <label>PROS</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Low Energy Bar - Iconic</fullName>
+                    <default>false</default>
+                    <label>Low Energy Bar - Iconic</label>
+                </value>
+                <value>
+                    <fullName>Low Energy Bar – Leading</fullName>
+                    <default>false</default>
+                    <label>Low Energy Bar – Leading</label>
+                </value>
+                <value>
+                    <fullName>Low Energy Bar – Premium</fullName>
+                    <default>false</default>
+                    <label>Low Energy Bar – Premium</label>
+                </value>
+                <value>
+                    <fullName>Low Energy Bar – Mainstream</fullName>
+                    <default>false</default>
+                    <label>Low Energy Bar – Mainstream</label>
+                </value>
+                <value>
+                    <fullName>High Energy Bar – Iconic</fullName>
+                    <default>false</default>
+                    <label>High Energy Bar – Iconic</label>
+                </value>
+                <value>
+                    <fullName>High Energy Bar – Leading</fullName>
+                    <default>false</default>
+                    <label>High Energy Bar – Leading</label>
+                </value>
+                <value>
+                    <fullName>High Energy Bar – Premium</fullName>
+                    <default>false</default>
+                    <label>High Energy Bar – Premium</label>
+                </value>
+                <value>
+                    <fullName>High Energy Bar – Mainstream</fullName>
+                    <default>false</default>
+                    <label>High Energy Bar – Mainstream</label>
+                </value>
+                <value>
+                    <fullName>Night Club – Iconic</fullName>
+                    <default>false</default>
+                    <label>Night Club – Iconic</label>
+                </value>
+                <value>
+                    <fullName>Night Club – Leading</fullName>
+                    <default>false</default>
+                    <label>Night Club – Leading</label>
+                </value>
+                <value>
+                    <fullName>Night Club – Premium</fullName>
+                    <default>false</default>
+                    <label>Night Club – Premium</label>
+                </value>
+                <value>
+                    <fullName>Night Club – Mainstream</fullName>
+                    <default>false</default>
+                    <label>Night Club – Mainstream</label>
+                </value>
+                <value>
+                    <fullName>Restaurant – Iconic</fullName>
+                    <default>false</default>
+                    <label>Restaurant – Iconic</label>
+                </value>
+                <value>
+                    <fullName>Restaurant – Leading</fullName>
+                    <default>false</default>
+                    <label>Restaurant – Leading</label>
+                </value>
+                <value>
+                    <fullName>Restaurant – Premium</fullName>
+                    <default>false</default>
+                    <label>Restaurant – Premium</label>
+                </value>
+                <value>
+                    <fullName>Restaurant – Mainstream</fullName>
+                    <default>false</default>
+                    <label>Restaurant – Mainstream</label>
+                </value>
+                <value>
+                    <fullName>TOT And Club (Asia) – Iconic</fullName>
+                    <default>false</default>
+                    <label>TOT And Club (Asia) – Iconic</label>
+                </value>
+                <value>
+                    <fullName>TOT And Club (Asia) – Leading</fullName>
+                    <default>false</default>
+                    <label>TOT And Club (Asia) – Leading</label>
+                </value>
+                <value>
+                    <fullName>TOT And Club (Asia) – Premium</fullName>
+                    <default>false</default>
+                    <label>TOT And Club (Asia) – Premium</label>
+                </value>
+                <value>
+                    <fullName>TOT And Club (Asia) – Mainstream</fullName>
+                    <default>false</default>
+                    <label>TOT And Club (Asia) – Mainstream</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Parent_Activation__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The Global Activation that has been used as a model to make this Market Activation</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The Global Activation that has been used as a model to make this Market Activation</inlineHelpText>
+        <label>Parent Activation</label>
+        <referenceTo>ESN_MB_Activation__c</referenceTo>
+        <relationshipLabel>Associated Activations</relationshipLabel>
+        <relationshipName>Adapted_Market_Activations</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Product__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Lookup to a Product in NodePage records</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Select a product in Node pages record</inlineHelpText>
+        <label>Product</label>
+        <referenceTo>ESN_MB_NodePage__c</referenceTo>
+        <relationshipName>Activations</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_RatingAvg__c</fullName>
+        <description>Total average rating based on all user rating for this activation</description>
+        <externalId>false</externalId>
+        <formula>( ESN_MB_AvgCrit1__c + ESN_MB_AvgCrit2__c + ESN_MB_AvgCrit3__c + ESN_MB_AvgCrit4__c + ESN_MB_AvgCrit5__c) / 5</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Total average rating based on all user rating for this activation</inlineHelpText>
+        <label>RatingAvg</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Region__c</fullName>
+        <description>MyBrands Best Practices: region list</description>
+        <externalId>false</externalId>
+        <label>Region</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>true</sorted>
+                <value>
+                    <fullName>Pernod Ricard Americas</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Americas</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard Asia</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard Asia</label>
+                </value>
+                <value>
+                    <fullName>Pernod Ricard EMEA</fullName>
+                    <default>false</default>
+                    <label>Pernod Ricard EMEA</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Results__c</fullName>
+        <description>Average attendance per activation</description>
+        <externalId>false</externalId>
+        <label>Results</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_ScalabilityAndReplicability__c</fullName>
+        <description>Best practice reproduction or potential, attractiveness at small and large scale.</description>
+        <externalId>false</externalId>
+        <label>ScalabilityAndReplicability</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_SearchActivationType__c</fullName>
+        <externalId>false</externalId>
+        <label>SearchActivationType</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_SearchBudget__c</fullName>
+        <externalId>false</externalId>
+        <label>SearchBudget</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_SearchLegalConstraints__c</fullName>
+        <externalId>false</externalId>
+        <label>SearchLegalConstraints</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_SearchMarket__c</fullName>
+        <externalId>false</externalId>
+        <label>SearchMarket</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_SearchMaturity__c</fullName>
+        <externalId>false</externalId>
+        <label>SearchMaturity</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_SearchPROS__c</fullName>
+        <externalId>false</externalId>
+        <label>SearchPROS</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_SearchStatus__c</fullName>
+        <externalId>false</externalId>
+        <label>SearchStatus</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_SearchTarget__c</fullName>
+        <externalId>false</externalId>
+        <label>SearchTarget</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Stage__c</fullName>
+        <description>Define stage of Articles, Draft, published, archived</description>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Draft</fullName>
+                    <default>false</default>
+                    <label>Draft</label>
+                </value>
+                <value>
+                    <fullName>Published</fullName>
+                    <default>false</default>
+                    <label>Published</label>
+                </value>
+                <value>
+                    <fullName>Archived</fullName>
+                    <default>false</default>
+                    <label>Archived</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_StartingDate__c</fullName>
+        <description>Starting Date of an activation</description>
+        <externalId>false</externalId>
+        <label>StartingDate</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Step1_Comment__c</fullName>
+        <description>MyBrands Best Practices: Market Coordinator comment</description>
+        <externalId>false</externalId>
+        <label>Step1 Comment</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Step1_ModifedBy__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>MyBrands Best Practices: Market Coordinator user</description>
+        <externalId>false</externalId>
+        <label>Step1 ModifedBy</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>MyBrands_Activations</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Step1_ModifedDate__c</fullName>
+        <description>MyBrands Best Practices: Market Coordinator modified date</description>
+        <externalId>false</externalId>
+        <label>Step1 ModifiedDate</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Step2_Comment__c</fullName>
+        <description>MyBrands Best Practices: Region Coordinator comment</description>
+        <externalId>false</externalId>
+        <label>Step2 Comment</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Step2_ModifedBy__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>MyBrands Best Practices: Region Coordinator user</description>
+        <externalId>false</externalId>
+        <label>Step2 ModifedBy</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>MyBrands_Activations1</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Step2_ModifedDate__c</fullName>
+        <description>MyBrands Best Practices: Region Coordinator modified date</description>
+        <externalId>false</externalId>
+        <label>Step2 ModifedDate</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_StrategicFit__c</fullName>
+        <description>Fit with group strategy and battlegrounds. Brand positioning and targeting.</description>
+        <externalId>false</externalId>
+        <label>StrategicFit</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_SumCrit1__c</fullName>
+        <description>Sum of Criteria 1 rating</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Sum of Criteria 1 rating</inlineHelpText>
+        <label>SumCrit1</label>
+        <summarizedField>ESN_MB_User_Interaction__c.ESN_MB_Rating_Criteria_1__c</summarizedField>
+        <summaryForeignKey>ESN_MB_User_Interaction__c.ESN_MB_Activation__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_SumCrit2__c</fullName>
+        <description>Sum of Criteria 2 rating</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Sum of Criteria 2 rating</inlineHelpText>
+        <label>SumCrit2</label>
+        <summarizedField>ESN_MB_User_Interaction__c.ESN_MB_Rating_Criteria_2__c</summarizedField>
+        <summaryForeignKey>ESN_MB_User_Interaction__c.ESN_MB_Activation__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_SumCrit3__c</fullName>
+        <description>Sum of Criteria 3 rating</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Sum of Criteria 3 rating</inlineHelpText>
+        <label>SumCrit3</label>
+        <summarizedField>ESN_MB_User_Interaction__c.ESN_MB_Rating_Criteria_3__c</summarizedField>
+        <summaryForeignKey>ESN_MB_User_Interaction__c.ESN_MB_Activation__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_SumCrit4__c</fullName>
+        <description>Sum of Criteria 4 rating</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Sum of Criteria 4 rating</inlineHelpText>
+        <label>SumCrit4</label>
+        <summarizedField>ESN_MB_User_Interaction__c.ESN_MB_Rating_Criteria_4__c</summarizedField>
+        <summaryForeignKey>ESN_MB_User_Interaction__c.ESN_MB_Activation__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_SumCrit5__c</fullName>
+        <description>Sum of Criteria 5 rating</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Sum of Criteria 5 rating</inlineHelpText>
+        <label>SumCrit5</label>
+        <summarizedField>ESN_MB_User_Interaction__c.ESN_MB_Rating_Criteria_5__c</summarizedField>
+        <summaryForeignKey>ESN_MB_User_Interaction__c.ESN_MB_Activation__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Target__c</fullName>
+        <externalId>false</externalId>
+        <label>Target</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Crusaders / Influencers</fullName>
+                    <default>false</default>
+                    <label>Crusaders / Influencers</label>
+                </value>
+                <value>
+                    <fullName>Strategic Targets</fullName>
+                    <default>false</default>
+                    <label>Strategic Targets</label>
+                </value>
+                <value>
+                    <fullName>Consumption Pool</fullName>
+                    <default>false</default>
+                    <label>Consumption Pool</label>
+                </value>
+                <value>
+                    <fullName>Specific Tribe</fullName>
+                    <default>false</default>
+                    <label>Specific Tribe</label>
+                </value>
+                <value>
+                    <fullName>Trade / Customer</fullName>
+                    <default>false</default>
+                    <label>Trade / Customer</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_ToWhom__c</fullName>
+        <description>Describe the person to whom this is intended</description>
+        <externalId>false</externalId>
+        <label>To Whom</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_TotalFollow__c</fullName>
+        <description>The number of users who follow this activation</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The number of users who follow this activation</inlineHelpText>
+        <label>TotalFollow</label>
+        <summaryFilterItems>
+            <field>ESN_MB_User_Interaction__c.ESN_MB_Follow__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </summaryFilterItems>
+        <summaryForeignKey>ESN_MB_User_Interaction__c.ESN_MB_Activation__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_TotalLike__c</fullName>
+        <description>The number of users who liked this activation</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The number of users who liked this activation</inlineHelpText>
+        <label>TotalLike</label>
+        <summaryFilterItems>
+            <field>ESN_MB_User_Interaction__c.ESN_MB_Like__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </summaryFilterItems>
+        <summaryForeignKey>ESN_MB_User_Interaction__c.ESN_MB_Activation__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_View_Link__c</fullName>
+        <description>Link used to open the record in standard view (Not redirecting to My Brand App)</description>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(&quot;/&quot; + Id + &quot;?nooverride=1&quot;, Name ,&quot;_top&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>View Link</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_What__c</fullName>
+        <description>Describe the idea of the activation</description>
+        <externalId>false</externalId>
+        <label>What</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Why__c</fullName>
+        <description>What was the objective for this activation and why</description>
+        <externalId>false</externalId>
+        <label>Why</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <label>MyBrands Activation</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>ESN_MB_View_Link__c</columns>
+        <columns>NAME</columns>
+        <columns>ESN_MB_Activation_Type__c</columns>
+        <columns>ESN_MB_Brand_Scope_Text__c</columns>
+        <columns>ESN_MB_Embedded_Video__c</columns>
+        <columns>ESN_MB_How__c</columns>
+        <columns>ESN_MB_Market__c</columns>
+        <columns>ESN_MB_MarketType__c</columns>
+        <columns>ESN_MB_Product__c</columns>
+        <columns>ESN_MB_Results__c</columns>
+        <columns>ESN_MB_Stage__c</columns>
+        <columns>ESN_MB_Target__c</columns>
+        <columns>ESN_MB_ToWhom__c</columns>
+        <columns>ESN_MB_What__c</columns>
+        <columns>ESN_MB_Why__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>ESN_MB_Brand_Activations</fullName>
+        <columns>OBJECT_ID</columns>
+        <columns>ESN_MB_View_Link__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>ESN_MB_Activation_Type__c</columns>
+        <columns>ESN_MB_Budget__c</columns>
+        <columns>ESN_MB_Product__c</columns>
+        <columns>ESN_MB_Maturity_Stage__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>ESN_MB_Activation__c.ESN_MB_Brand_Activation</value>
+        </filters>
+        <label>Brand Activations</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>ESN_MB_Market_Activations</fullName>
+        <columns>ESN_MB_View_Link__c</columns>
+        <columns>ESN_MB_Stage__c</columns>
+        <columns>ESN_MB_MarketType__c</columns>
+        <columns>ESN_MB_Market__c</columns>
+        <columns>ESN_MB_Budget__c</columns>
+        <columns>ESN_MB_Product__c</columns>
+        <columns>ESN_MB_Maturity_Stage__c</columns>
+        <columns>ESN_MB_Activation_Type__c</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>ESN_MB_Activation__c.ESN_MB_Market_Activation</value>
+        </filters>
+        <label>Market Activations</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <label>Activation Name</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>MyBrands Activations</pluralLabel>
+    <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>ESN_MB_Brand_Activation</fullName>
+        <active>true</active>
+        <description>Brand Activation</description>
+        <label>Brand Activation</label>
+        <picklistValues>
+            <picklist>ESN_MB_Activation_Type__c</picklist>
+            <values>
+                <fullName>360 Activation Platforms</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CRM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Communication</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Communication %2F Media</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Events And Sponsorships</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Global Business Development</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Human Resources</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Influencer Activations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Legal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Luxury</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Off-Trade</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On-Trade</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Operations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public Affairs %26 CSR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public Relations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Travel Retail</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ESN_MB_Audience__c</picklist>
+            <values>
+                <fullName>Consumption Pool</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Crusaders %2F Influencers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Specific Tribe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Strategic Targets</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trade %2F Customer</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ESN_MB_Budget__c</picklist>
+            <values>
+                <fullName>01%2E %3C 20K%E2%82%AC</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>02%2E 20k%E2%82%AC - 50k%E2%82%AC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>03%2E 50k%E2%82%AC - 100k%E2%82%AC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>04%2E 100k%E2%82%AC - 200k%E2%82%AC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>05%2E %3E 200K%E2%82%AC</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ESN_MB_Legal_Constraints__c</picklist>
+            <values>
+                <fullName>100 %25 Dark</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Highly restricted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Light restrictions</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No restriction</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ESN_MB_MarketType__c</picklist>
+            <values>
+                <fullName>Classic</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Lead</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ESN_MB_Market__c</picklist>
+            <values>
+                <fullName>Albania</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Andorra</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Argentina</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Armenia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Aruba</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Australia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Austria</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Azerbaijan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Balkans</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Belarus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Belgium</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bolivia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bosnia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brazil</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bulgaria</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cambodia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Canada</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Caribbean</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Caribbean Cesam</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chile</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>China</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Coa Rica</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Colombia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Croatia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cuba</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cyprus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Czech Republic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Denmark</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dominican Republic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>East Africa</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ecuador</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Estonia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>France</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>French Polynesia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Georgia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Germany</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Greece</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Guatemala</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Honduras</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hong Kong</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hungary</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Iceland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>India</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Indonesia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ireland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Italy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Japan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kazakhstan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Korea</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kyrgystan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Laos</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Latvia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lithuania</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Luxembourg</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Macau</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Macedonia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Malaysia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Maldives</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Malta</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mexico</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Middle East</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Moldavia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mongolia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Montenegro</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Myanmar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Netherlands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Caledonia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Zealand</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>North Africa</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Norway</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other Africa and Middle East</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other Asia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other Australia and Oceania</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other Central and South America</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other Europe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other North America</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other Scandinavia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other South Asia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Panama</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Paraguay</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Persian Gulf</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Peru</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Philippines</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Poland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Portugal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Puerto Rico</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Romania</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Russia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Serbia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Singapore</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Slovakia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Slovenia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Southern Africa</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spain</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sri lanka</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sweden</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Switzerland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Taiwan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tajikistan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Thailand</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Turkmenistan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>US Virgin Islands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>USA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ukraine</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>United Arab Emirates</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Uruguay</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Uzbekistan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Venezuela</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vietnam</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>West Africa</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ESN_MB_Maturity_Stage__c</picklist>
+            <values>
+                <fullName>Declining</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Growing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mature</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nascent</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ESN_MB_PROS__c</picklist>
+            <values>
+                <fullName>High Energy Bar %E2%80%93 Iconic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>High Energy Bar %E2%80%93 Leading</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>High Energy Bar %E2%80%93 Mainstream</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>High Energy Bar %E2%80%93 Premium</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low Energy Bar %E2%80%93 Leading</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low Energy Bar %E2%80%93 Mainstream</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low Energy Bar %E2%80%93 Premium</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low Energy Bar - Iconic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Night Club %E2%80%93 Iconic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Night Club %E2%80%93 Leading</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Night Club %E2%80%93 Mainstream</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Night Club %E2%80%93 Premium</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Restaurant %E2%80%93 Iconic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Restaurant %E2%80%93 Leading</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Restaurant %E2%80%93 Mainstream</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Restaurant %E2%80%93 Premium</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TOT And Club %28Asia%29 %E2%80%93 Iconic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TOT And Club %28Asia%29 %E2%80%93 Leading</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TOT And Club %28Asia%29 %E2%80%93 Mainstream</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TOT And Club %28Asia%29 %E2%80%93 Premium</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ESN_MB_Stage__c</picklist>
+            <values>
+                <fullName>Archived</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Draft</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Published</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ESN_MB_Target__c</picklist>
+            <values>
+                <fullName>Consumption Pool</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Crusaders %2F Influencers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Specific Tribe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Strategic Targets</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trade %2F Customer</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>ESN_MB_Global_Directory</fullName>
+        <active>true</active>
+        <description>Global Directory</description>
+        <label>Global Directory</label>
+        <picklistValues>
+            <picklist>ESN_MB_Activation_Type__c</picklist>
+            <values>
+                <fullName>360 Activation Platforms</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>CRM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Communication %2F Media</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Events And Sponsorships</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Luxury</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Off-Trade</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On-Trade</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public Relations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Travel Retail</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ESN_MB_Audience__c</picklist>
+            <values>
+                <fullName>Consumption Pool</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Crusaders %2F Influencers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Specific Tribe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Strategic Targets</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trade %2F Customer</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ESN_MB_Budget__c</picklist>
+            <values>
+                <fullName>01%2E %3C 20K%E2%82%AC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>02%2E 20k%E2%82%AC - 50k%E2%82%AC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>03%2E 50k%E2%82%AC - 100k%E2%82%AC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>04%2E 100k%E2%82%AC - 200k%E2%82%AC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>05%2E %3E 200K%E2%82%AC</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ESN_MB_Legal_Constraints__c</picklist>
+            <values>
+                <fullName>100 %25 Dark</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Highly restricted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Light restrictions</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No restriction</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ESN_MB_MarketType__c</picklist>
+            <values>
+                <fullName>Classic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lead</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ESN_MB_Market__c</picklist>
+            <values>
+                <fullName>Albania</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Andorra</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Argentina</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Armenia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Aruba</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Australia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Austria</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Azerbaijan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Balkans</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Belarus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Belgium</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bolivia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bosnia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brazil</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bulgaria</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cambodia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Canada</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Caribbean</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Caribbean Cesam</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chile</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>China</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Coa Rica</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Colombia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Croatia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cuba</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cyprus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Czech Republic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Denmark</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dominican Republic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>East Africa</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ecuador</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Estonia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>France</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>French Polynesia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Georgia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Germany</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Greece</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Guatemala</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Honduras</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hong Kong</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hungary</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Iceland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>India</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Indonesia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ireland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Italy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Japan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kazakhstan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Korea</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kyrgystan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Laos</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Latvia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lithuania</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Luxembourg</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Macau</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Macedonia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Malaysia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Maldives</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Malta</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mexico</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Middle East</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Moldavia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mongolia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Montenegro</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Myanmar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Netherlands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Caledonia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Zealand</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>North Africa</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Norway</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other Africa and Middle East</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other Asia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other Australia and Oceania</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other Central and South America</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other Europe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other North America</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other Scandinavia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other South Asia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Panama</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Paraguay</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Persian Gulf</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Peru</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Philippines</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Poland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Portugal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Puerto Rico</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Romania</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Russia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Serbia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Singapore</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Slovakia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Slovenia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Southern Africa</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spain</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sri lanka</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sweden</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Switzerland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Taiwan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tajikistan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Thailand</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Turkmenistan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>US Virgin Islands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>USA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ukraine</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>United Arab Emirates</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Uruguay</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Uzbekistan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Venezuela</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vietnam</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>West Africa</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ESN_MB_Maturity_Stage__c</picklist>
+            <values>
+                <fullName>Declining</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Growing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mature</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nascent</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ESN_MB_PROS__c</picklist>
+            <values>
+                <fullName>High Energy Bar %E2%80%93 Iconic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>High Energy Bar %E2%80%93 Leading</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>High Energy Bar %E2%80%93 Mainstream</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>High Energy Bar %E2%80%93 Premium</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low Energy Bar %E2%80%93 Leading</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low Energy Bar %E2%80%93 Mainstream</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low Energy Bar %E2%80%93 Premium</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low Energy Bar - Iconic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Night Club %E2%80%93 Iconic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Night Club %E2%80%93 Leading</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Night Club %E2%80%93 Mainstream</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Night Club %E2%80%93 Premium</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Restaurant %E2%80%93 Iconic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Restaurant %E2%80%93 Leading</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Restaurant %E2%80%93 Mainstream</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Restaurant %E2%80%93 Premium</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TOT And Club %28Asia%29 %E2%80%93 Iconic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TOT And Club %28Asia%29 %E2%80%93 Leading</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TOT And Club %28Asia%29 %E2%80%93 Mainstream</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TOT And Club %28Asia%29 %E2%80%93 Premium</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ESN_MB_Stage__c</picklist>
+            <values>
+                <fullName>Archived</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Draft</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Published</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ESN_MB_Target__c</picklist>
+            <values>
+                <fullName>Consumption Pool</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Crusaders %2F Influencers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Specific Tribe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Strategic Targets</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trade %2F Customer</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>ESN_MB_Market_Activation</fullName>
+        <active>true</active>
+        <description>Market Activation</description>
+        <label>Market Activation</label>
+        <picklistValues>
+            <picklist>ESN_MB_Activation_Type__c</picklist>
+            <values>
+                <fullName>360 Activation Platforms</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CRM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Influencer Activations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public Relations</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ESN_MB_Audience__c</picklist>
+            <values>
+                <fullName>Consumption Pool</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Crusaders %2F Influencers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Specific Tribe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Strategic Targets</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trade %2F Customer</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ESN_MB_Budget__c</picklist>
+            <values>
+                <fullName>01%2E %3C 20K%E2%82%AC</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>02%2E 20k%E2%82%AC - 50k%E2%82%AC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>03%2E 50k%E2%82%AC - 100k%E2%82%AC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>04%2E 100k%E2%82%AC - 200k%E2%82%AC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>05%2E %3E 200K%E2%82%AC</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ESN_MB_Legal_Constraints__c</picklist>
+            <values>
+                <fullName>100 %25 Dark</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Highly restricted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Light restrictions</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No restriction</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ESN_MB_MarketType__c</picklist>
+            <values>
+                <fullName>Classic</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Lead</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ESN_MB_Market__c</picklist>
+            <values>
+                <fullName>Albania</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Andorra</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Argentina</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Armenia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Aruba</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Australia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Austria</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Azerbaijan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Balkans</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Belarus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Belgium</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bolivia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bosnia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brazil</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bulgaria</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cambodia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Canada</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Caribbean</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Caribbean Cesam</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chile</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>China</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Coa Rica</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Colombia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Croatia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cuba</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cyprus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Czech Republic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Denmark</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dominican Republic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>East Africa</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ecuador</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Estonia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>France</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>French Polynesia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Georgia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Germany</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Greece</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Guatemala</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Honduras</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hong Kong</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hungary</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Iceland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>India</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Indonesia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ireland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Italy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Japan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kazakhstan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Korea</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kyrgystan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Laos</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Latvia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lithuania</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Luxembourg</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Macau</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Macedonia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Malaysia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Maldives</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Malta</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mexico</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Middle East</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Moldavia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mongolia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Montenegro</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Myanmar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Netherlands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Caledonia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Zealand</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>North Africa</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Norway</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other Africa and Middle East</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other Asia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other Australia and Oceania</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other Central and South America</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other Europe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other North America</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other Scandinavia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other South Asia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Panama</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Paraguay</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Persian Gulf</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Peru</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Philippines</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Poland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Portugal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Puerto Rico</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Romania</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Russia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Serbia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Singapore</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Slovakia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Slovenia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Southern Africa</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spain</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sri lanka</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sweden</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Switzerland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Taiwan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tajikistan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Thailand</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Turkmenistan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>US Virgin Islands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>USA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ukraine</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>United Arab Emirates</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Uruguay</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Uzbekistan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Venezuela</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vietnam</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>West Africa</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ESN_MB_Maturity_Stage__c</picklist>
+            <values>
+                <fullName>Declining</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Growing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mature</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nascent</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ESN_MB_PROS__c</picklist>
+            <values>
+                <fullName>High Energy Bar %E2%80%93 Iconic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>High Energy Bar %E2%80%93 Leading</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>High Energy Bar %E2%80%93 Mainstream</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>High Energy Bar %E2%80%93 Premium</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low Energy Bar %E2%80%93 Leading</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low Energy Bar %E2%80%93 Mainstream</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low Energy Bar %E2%80%93 Premium</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low Energy Bar - Iconic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Night Club %E2%80%93 Iconic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Night Club %E2%80%93 Leading</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Night Club %E2%80%93 Mainstream</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Night Club %E2%80%93 Premium</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Restaurant %E2%80%93 Iconic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Restaurant %E2%80%93 Leading</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Restaurant %E2%80%93 Mainstream</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Restaurant %E2%80%93 Premium</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TOT And Club %28Asia%29 %E2%80%93 Iconic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TOT And Club %28Asia%29 %E2%80%93 Leading</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TOT And Club %28Asia%29 %E2%80%93 Mainstream</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TOT And Club %28Asia%29 %E2%80%93 Premium</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ESN_MB_Stage__c</picklist>
+            <values>
+                <fullName>Archived</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Draft</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Published</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ESN_MB_Target__c</picklist>
+            <values>
+                <fullName>Consumption Pool</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Crusaders %2F Influencers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Specific Tribe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Strategic Targets</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trade %2F Customer</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts>
+        <searchResultsAdditionalFields>ESN_MB_View_Link__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>ESN_MB_Stage__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>OWNER.ALIAS</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CREATEDBY_USER.ALIAS</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

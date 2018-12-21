@@ -1,0 +1,163 @@
+<apex:component controller="MMPJ_TOPG_CockPitInteractionController" allowDML="true">
+<!--
+<apex:attribute name="TheSelectedDate" assignTo="{!SelectedDate}" description="Selected Date" type="Date" />
+-->
+
+<apex:attribute name="Brands" assignTo="{!listBrands}" description="Selected Brands" type="SelectOption[]" />
+<apex:attribute name="Markets" assignTo="{!listMarkets}" description="Selected Markets" type="SelectOption[]" />   
+ <apex:attribute name="TotalBrands" description="All Brands" type="SelectOption[]" />
+    <style>
+        .tblWeekCalendar{
+            width: 100%;
+        }
+        .tblWeekCalendar td{
+            text-align: center;
+        }
+        .monthheader{
+            background-color: #1f4e79;
+            color: white;
+            font-weight: bold;
+            padding:5px;
+            border-right: 1px white solid;
+        }
+        .weekheader{
+            background-color: #9dc3e6;
+            color: white;
+            font-weight: bold;
+            padding:5px;
+        }
+        .visitheader{
+            background-color: #ffc000;
+            -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;
+            color:white;
+            display: block;
+            padding: 3px;
+            margin: 3px;
+        }
+        .callheader{
+            background-color: #00b0f0;
+            -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;
+            color:white;
+            display: block;
+            padding: 3px;
+            margin: 3px;        
+        }
+        .interactionheader{
+            background-color: #33cc33;
+            -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;
+            color:white;
+            display: block;
+            padding: 3px;
+            margin: 3px;        
+        }        
+        .itemEventHover{
+            background-color: #ffc300;
+            -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;
+            padding: 5px;
+            border: 1px solid darkblue;
+        }
+        .callheader, .interactionheader, .visitheader{
+            width:95px;
+        }
+   td.dataCol.first.last {
+            text-align: -webkit-left ;
+            vertical-align: inherit;
+            } 
+    </style>
+    <script type="text/javascript">
+        function showEventHoverMessage(theElem){
+            //theElem.childNodes
+            var parts = theElem.id.split('_');
+            document.getElementById('div_' + parts[parts.length-1]).style.display = 'block';
+        }
+        function hideEventHoverMessage(theElem){
+            var parts = theElem.id.split('_');
+            document.getElementById('div_' + parts[parts.length-1]).style.display = 'none';
+        }
+    </script>
+    <apex:pageBlock >
+        <!--<apex:pageMessage strength="1" severity="warning" title="Please select at least 1 Brand and 1 Market" rendered="{! OR(selectedBrands.size <= 0, selectedMarkets.size <= 0)}"></apex:pageMessage>-->
+        <apex:pageBlockSection title="Filters" columns="6" collapsible="true" id="filtersPBS">
+             <apex:outputLabel ></apex:outputLabel>             
+            <apex:inputField label="Focus Date :" value="{!filterRAID.MMPJ_TOPG_Tech_FocusDate__c}" required="true"/>
+            <apex:outputLabel ></apex:outputLabel>
+             <apex:outputLabel ></apex:outputLabel>
+             <apex:outputLabel ></apex:outputLabel>
+        </apex:pageBlockSection>
+       <!-- <apex:pageBlockSection columns="3">    
+            <c:MMPJ_TOPG_MultiSelectPicklistCMP id="msBrands" leftLabel="Available Brands" leftOption="{!allBrands}" rightLabel="Selected Brands" rightOption="{!selectedBrands}" size="14" width="150px" showUpDownButtons="false" />
+            <c:MMPJ_TOPG_MultiSelectPicklistCMP id="msMarkets" leftLabel="Available Markets" leftOption="{!allMarkets}" rightLabel="Selected Markets" rightOption="{!selectedMarkets}" size="14" width="150px" showUpDownButtons="false"/>
+            <apex:commandButton value="Apply Filters" action="{!Apply_Filter}" status="status" reRender="InteractionResult,msgblock"/>
+        </apex:pageBlockSection>-->        
+         <table align="center">    
+        <tr width="100%"></tr>
+        <tr width="100%"></tr>
+       	<tr width="100%"></tr>
+  		<tr width="100%">      
+            <td ><c:MMPJ_TOPG_MultiselectPicklist leftLabel="Available Markets" leftOptions="{!AllMarkets}" rightLabel="Selected Markets" rightOptions="{!selectedMarkets}" size="14"  width="200px"/> </td>
+            <td > <br/><br/><br/><br/><br/><br/><br/><br/>
+                 <span>&nbsp;&nbsp;&nbsp;</span>
+               <apex:commandButton value="Apply Filters" action="{!Apply_Filter}" status="status" reRender="InteractionResult,msgblock"/>
+    		 </td>  
+         </tr>
+ 	</table>
+    </apex:pageBlock>
+    
+    <apex:outputPanel id="msgblock">
+    <apex:pageBlock title=""  rendered="{! mapIsEmpty && actionDone}">
+         <apex:pageMessage summary="This Market didn't return any data from Interactions Data. Please update your filters and try again." severity="info" strength="3"/>
+    </apex:pageBlock>
+    </apex:outputPanel>
+     
+    <apex:outputPanel id="InteractionResult">
+        <table class="tblWeekCalendar" cellspacing="0">
+            <tr>
+                <apex:repeat value="{!mapCalendarBeforeKeys}" var="monthitem">
+                    <td class="monthheader" colspan="{!mapCalendarBefore[monthitem]}">{!monthnames[monthitem]}</td>
+                </apex:repeat>
+            </tr>
+            <tr>
+                <apex:repeat value="{!listCalendarBefore}" var="weekitem">
+                    <td class="weekheader" colspan="2">W{!weekitem.week} </td>
+                </apex:repeat>
+            </tr> 
+            <tr>
+                <apex:repeat value="{!listCalendarBefore}" var="weekitem">
+                    <td colspan="2" valign="top">
+                        <apex:repeat value="{!mapWeek_Items[weekitem.week]}" var="eventitem">
+                            <a id="a_{!eventitem.itemId}" onmouseover="showEventHoverMessage(this);" onmouseout="hideEventHoverMessage(this);" class="{!IF(eventitem.eventname = 'V', 'visitheader', IF(eventitem.eventname = 'C','callheader','interactionheader'))}" href="javascript:void(0);" onclick = "window.open('{!eventitem.link}');">{!eventitem.eventname}</a>
+                            <div  style="position:relative;">
+                                <div id="div_{!eventitem.itemId}" class="itemEventHover" style="display:none; position:absolute;">{!eventitem.hovermessage}</div>                            
+                            </div>
+                        </apex:repeat>
+                    </td>
+                </apex:repeat>
+            </tr>
+        </table>       
+        <br/><br/>
+        <table class="tblWeekCalendar"  cellspacing="0">
+            <tr>
+                <apex:repeat value="{!mapCalendarAfterKeys}" var="monthitem">
+                    <td class="monthheader" colspan="{!mapCalendarAfter[monthitem]}">{!monthnames[monthitem]}</td>
+                </apex:repeat>
+            </tr>
+            <tr>
+                <apex:repeat value="{!listCalendarAfter}" var="weekitem">
+                    <td class="weekheader" colspan="2">W{!weekitem.week}</td>
+                </apex:repeat>
+            </tr>    
+            <tr>
+                <apex:repeat value="{!listCalendarAfter}" var="weekitem">
+                    <td colspan="2" valign="top">
+                        <apex:repeat value="{!mapWeek_Items[weekitem.week]}" var="eventitem">
+                            <a id="a_{!eventitem.itemId}" onmouseover="showEventHoverMessage(this);" onmouseout="hideEventHoverMessage(this);" class="{!IF(eventitem.eventname = 'V', 'visitheader', IF(eventitem.eventname = 'C','callheader','interactionheader'))}" href="javascript:void(0);" onclick = "window.open('{!eventitem.link}');">{!eventitem.eventname}</a>
+                            <div  style="position:relative;">
+                                <div id="div_{!eventitem.itemId}" class="itemEventHover" style="display:none; position:absolute;">{!eventitem.hovermessage}</div>                            
+                            </div>
+                        </apex:repeat>
+                    </td>
+                </apex:repeat>
+            </tr> 
+        </table>    
+    </apex:outputPanel>
+</apex:component>

@@ -1,0 +1,80 @@
+<apex:component controller="ESN_MB_NOP_Article_Cx">
+       <div class="btn-close" style="margin-right: 10px; margin-top: 95px;">
+           <a id="articleView" href="#" class="on">
+               <span class="glyphicon glyphicon-remove"></span>
+           </a>
+       </div>
+       <div class="content-wrapper container-fluid">
+         <a class="findoutmore hp-link pull-right hidden" href="#"  onclick="updateArticleToStageArchive();return false;" id="archieveArticle">Archive</a>
+         <div id="article-draft-label" class="block-asset pull-right"></div>
+         <!--Fil d'ariane-->
+         <ul class="fil-ariane" id="fil-ariane">
+         </ul>
+         <!--Fil d'ariane-->
+         <hr class="separator" />
+
+         <!-- {!$Label.ESN_MB_Modify_Article} -->
+         <!-- <a id="btn-modify" class="pull-right hidden" href="#"><span class="glyphicon glyphicon-pencil"></span></a> -->
+         <p class="text-right">
+            <a id="btn-modify" href="#" class="hp-link">Edit</a>
+         </p>
+         <section role="main" class="col-left col-xs-12 col-sm-12 col-sm-offset-1">
+             <h1 class="col-left title-text-bloc" id="articleTitle"></h1>
+        </section>
+
+         <section class="col-left col-xs-12 col-sm-3 col-sm-offset-1" role="complementary">
+             <!--Display assets for this article-->
+            <div id="asset-list">
+
+            </div> <!-- End #asset-list -->
+
+         </section><!--/.col-left-->
+
+         <section class="col-right col-xs-12 col-sm-7 col-sm-offset-1" role="main">
+                <!-- ALN 29-08-2014 - Ajout label draft mode -->
+
+                <!-- fin ALN 29-08-2014 -->
+             <div id="articleCreatorDiv" class="media profil"></div>
+             <div id="articleInfosDiv" class="media profil"></div>
+
+             <!--/.media.profil--
+
+             <!-- ALN 07/10/14 Commenter bouton go down
+                <div class="toDown" id="toDown" ><a href="#" class="texgyreadventor">{!$Label.ESN_MB_GoDown}</a></div>
+                <hr class="separator" />
+             -->
+             <div class="resume" id="articleAbstract"></div><!--/.resume-->
+             <div class="text" id="articleTopText" style="text-align: justify;"></div><!--/.text-->
+
+            <div class="block-related" id="mediaArticle">
+
+
+
+             </div>
+
+              <div id="image-asset-gallery" class="gallery-photo" >
+                <div class="clearfix"></div>
+              </div><!--/.gallery-photo-->
+
+             <div id="article-media" class="media-block">
+                 <div id="video-asset-display" class="video" >
+
+                 </div><!--/.video-->
+
+                 <div class="download">
+
+                 </div><!--/.download-->
+             </div><!--/.media-block-->
+
+              <div class="text" id="articleBotText" style="text-align: justify;"></div><!--/.text-->
+             <div id="embeddedVideo"></div>
+             <div class="block-related see-also" id="seeAlsoArticle">
+
+              </div><!--/.block-related.see-also-->
+              <div class="clearfix"></div>
+             <!-- <div class="toTop" id="toTop"><a href="#" class="texgyreadventor">{!$Label.ESN_MB_BackToTop}</a></div> -->
+             <div class="clearfix"></div>
+            </section><!--/.col-right-->
+
+       </div>
+</apex:component>

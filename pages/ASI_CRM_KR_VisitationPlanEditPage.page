@@ -1,0 +1,1687 @@
+<apex:page standardController="ASI_KOR_Visitation_Plan_Detail__c" recordSetVar="vPlans" extensions="ASI_CRM_KR_VisitationPlanEditController"  docType="html-5.0" action="{!pageLoad}" title="Visitation Planner" showHeader="true" sidebar="false" showChat="false">
+    <head>
+        <meta charset="utf-8"/> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <apex:stylesheet value="{!URLFOR($Resource.ASI_JS_JqueryUI_V1_11_4, 'jquery-ui-1.11.4.custom/jquery-ui.css')}" />
+        <apex:stylesheet value="{!URLFOR($Resource.ASI_KR_AddOn_CSS, 'build.css')}" />
+        <apex:stylesheet value="{!URLFOR($Resource.ASI_JS_Bootstrap_V3_3_5, 'dist/css/bootstrap.min.css')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.ASI_JS_FixedColumns_V3_2_1, 'FixedColumns-3.2.1/css/fixedColumns.dataTables.min.css')}" />
+        <apex:stylesheet value="{!URLFOR($Resource.ASI_JS_FixedColumns_V3_2_1, 'FixedColumns-3.2.1/css/fixedColumns.bootstrap.min.css')}" />
+        <apex:stylesheet value="{!URLFOR($Resource.ASI_JS_Datatable_V1_10_7, 'DataTables-1.10.7/media/css/jquery.dataTables.min.css')}" />
+        <apex:stylesheet value="{!URLFOR($Resource.ASI_KR_CalendarLibrary, 'fullcalendar-2.6.0/fullcalendar.css')}" />
+        <apex:stylesheet value="{!URLFOR($Resource.ASI_JS_AddOn_CSS_V3_3_2, '/bower_components/Font-Awesome/css/font-awesome.css')}" />
+        <apex:includeScript value="{!URLFOR($Resource.ASI_JS_JQuery_V1_9_1, 'js/jquery.min.js')}" />  
+        <apex:includeScript value="{!URLFOR($Resource.ASI_JS_JQuery_V1_9_1, 'js/jquery-ui.min.js')}" /> 
+        <apex:includeScript value="{!URLFOR($Resource.ASI_JS_DataTables_V1_10_11, 'DataTables-1.10.11/media/js/jquery.dataTables.min.js')}" />
+        <apex:includeScript value="{!URLFOR($Resource.ASI_JS_Bootstrap_V3_3_6, '/ASI_JS_Bootstrap_V3_3_6/dist_less/js/bootstrap.min.js')}"/>        
+        <apex:includeScript value="{!URLFOR($Resource.ASI_KR_CalendarLibrary, 'fullcalendar-2.6.0/lib/moment.min.js')}" />
+        <apex:includeScript value="{!URLFOR($Resource.ASI_KR_CalendarLibrary, 'fullcalendar-2.6.0/fullcalendar.js')}" />
+        <apex:includeScript value="{!URLFOR($Resource.ASI_KR_CalendarLibrary, 'fullcalendar-2.6.0/fullcalendar.min.js')}" /> 
+        <apex:includeScript value="{!URLFOR($Resource.ASI_JS_FixedColumns_V3_2_1, 'FixedColumns-3.2.1/js/dataTables.fixedColumns.min.js')}" />
+        <script type='text/javascript'>
+        
+        var visitEvents=[]; // new and existing events
+        var holidaysList=[]; // KR CRM holidays day number
+        var weeeklist=[];
+        
+        var AccountObjectlist=[]; // KR Venue list
+        var CancelPlansList =[];
+        var tablehtml='';
+        var OwnerId,CustomerMap,accounttable,KRConfigForm,defYear,defMonth;
+        var defDate = '1';
+        var firstdateofmonth,Confirmed;
+        var chart,IsOffTradeUser;
+        var NumberOfDay;//Number of day in this month 
+        var headerId;// Header Id 
+        //RecordType
+        var HolidayTypeName,VenueTypeName,WholesalerTypeName, VenueRequiredTotal,WSRequiredTotal;
+        var startcolloum=8,OffTradeCallNO=0;
+        var SaveType='';
+        var AccResult=[],DeleteList=[];
+        
+        var ColorObject;
+        
+        $(window).resize(function() { //detect if user change size of window  // console.log(document.getElementById('loadingpart').style.width);
+            resizePage();
+        });
+        
+        
+        function resizePage(){
+            document.getElementById('loadingpart').style.width=window.innerWidth+'px';//checkWidth(); //resize table
+            //resize calendar 
+            var className=$('#calendar').attr('class');
+            if( window.innerWidth<1000 ){ //console.log('Enter!! 1000'+window.innerWidth);
+                $('#calendar').removeClass('col-xs-6');
+                $('#calendar').removeClass('col-md-6');
+                $('#calendar').removeClass('col-xs-8');
+                $('#calendar').removeClass('col-md-8');
+            }
+            
+            if(window.innerWidth>1004){ //console.log('Enter!! ');
+                if (className.toLowerCase().indexOf("col-md-6") < 0 && Confirmed!='true'){
+                    $('#calendar').addClass('col-xs-6');
+                    $('#calendar').addClass('col-md-6');
+                }
+                if (className.toLowerCase().indexOf("col-md-8") < 0 && Confirmed=='true'){
+                    $('#calendar').addClass('col-xs-8');
+                    $('#calendar').addClass('col-md-8');
+                }
+            }//if(window.innerWidth<1020)   alert('change'+$('#AccountTableDiv').width());//alert('change'+$(window).width()); 
+        }
+        
+        function initKRCalendarPage(config) {
+            if (config) {
+                
+                $('[data-toggle="tooltip"]').tooltip(); 
+                if(isTouchDevice()){
+                    document.getElementById('loadingpart').style.width=$('#AccountTableDiv').width()+'px'; //console.log(document.getElementById('loadingpart').style.width); //document.getElementById("mydiv").setAttribute("style","width:"+$(window).width()+"px");
+                }
+                OffTradeCallNO=config.OffTradeCallNO;
+             
+                IsOffTradeUser=config.IsOffTradeUser;
+                defYear = config.defYear;
+                defMonth = config.defMonth;
+                OwnerId=config.OwnerId;
+                Confirmed=config.Confirmed;
+                resizePage();
+                HolidayTypeName=config.HolidayTypeName;
+                headerId=config.headerId;
+                NumberOfDay= config.NumberOfDay;
+                firstdateofmonth=config.firstdateofmonth;
+                //initialize Color
+                RetrieveColor();// alert($(window).width());  //($(window).width());
+                
+                //initialize calendar 
+                findHolidays();
+                
+                retrieveVisitationPlanDetail();
+                retrieveAccount();
+                if(Confirmed=='true'){
+                    $('#SavebtnDiv, #QuickSavebtnDiv,  #CFLMbtnDiv, #AccountTableDiv , #ConfirmbtnDiv,#ResetbtnDiv ').hide();
+                    $('#calendar').addClass('col-xs-8');
+                    $('#calendar').addClass('col-md-8');
+                    $('#calendar').removeClass('col-xs-6');
+                    $('#calendar').removeClass('col-md-6 ');
+                }else{
+                    $('#CancelPlansbtnDiv').hide();
+                }
+                $('#AccName, #VenueCode,#VenueName').keyup( function() {
+                    setAutoFilterAction();
+                } );  
+            }
+        }      
+        
+        
+        function checkWidth() {//console.log(document.getElementsByClassName('.dataTables_wrapper').style);
+            var windowsize = window.innerWidth;//$j(window).width();
+            
+            var changesize = windowsize *0.1;
+            var wrapper_size = (windowsize - changesize) ; //console.log('change: '+wrapper_size);
+            
+            if(wrapper_size<1500){
+                $(".dataTables_wrapper").css("width",wrapper_size+"px");
+            }
+            
+        }
+        
+        $(document).ready(function() { 
+             $('.CancelReasonfield').on("change keyup paste", function(){
+                if( $(this).val() ) {
+                      document.getElementById('CancelReasonError').innerHTML='';
+                }
+            });
+             
+            initKRCalendarPage({
+                KRConfigForm : "ASI_CRM_KR_VisitationPlanEditPage",
+                defYear : "{!vistationYear}",
+                defMonth :"{!vistationMonth}",
+                headerId:'{!visitationHeaderId}',
+                OwnerId:"{!visitationHeader.OwnerId}",
+                NumberOfDay:'{!NumberOfDay}',
+                firstdateofmonth:'{!FirstDateOfMonthStr}',
+                HolidayTypeName:'{!Holiday_RecordType_DeveloperName}',
+                Confirmed: '{!visitationHeader.ASI_KOR_Confirmed__c}',
+                OffTradeCallNO: '{!OffTradeCall}',
+                IsOffTradeUser: '{!IsOffTradeUser}'
+            });    
+        });
+        
+        function retrieveAccount() {
+            var whereClause = '';// OwnerId   console.log('OwnerId Now '+OwnerId);
+            Visualforce.remoting.Manager.invokeAction(
+                '{!$RemoteAction.ASI_CRM_KR_VisitationPlanEditController.findAccount}',whereClause, OwnerId 
+                , callbackAccount
+                , {escape: true}
+            );    
+        }
+        
+        //Find in 2D Array List
+        function findIn2dArray(arr_2d, val){
+            var indexArr = $.map(arr_2d, function(arr, i) {
+                if($.inArray(val, arr) != -1) {
+                    return 1;
+                }
+                return -1;
+            });
+            return indexArr.indexOf(1);
+        }
+        
+        //Get Color From custom setting
+        function RetrieveColor(){
+            ColorObject= new Object();
+            var $mapParentChildren = jQuery.parseJSON('{!JSENCODE(ColorListJSON)}');
+            for(var i=0;i<$mapParentChildren.length;i++){  
+                ColorObject[$mapParentChildren[i].Name]=$mapParentChildren[i].ASI_CRM_Color__c;
+            }
+        }
+         
+         
+         
+        //onclick check all checkbox 
+        function CheckAll(that){// console.log(document.getElementById('loadingpart').style.display);
+            document.getElementById('loadingpart').style.display='';
+            //Clear informtion
+            clearalert();
+            SystemInfo('alert-info','AccountMeg','<i class="fa fa-refresh fa-spin"></i>','Working in progress now. Please wait . Thank you....');//console.log(that);
+            setTimeout(function(){ CheckAllProcess(that); }, 50);
+        }
+        
+        
+        
+        function CheckAllProcess(that){
+            var checkboxList=[];
+            var OrderNumber=that.getAttribute('order');  //console.log(OrderNumber);
+            
+            var coun=0;
+            //Get Current Page's Account ID 
+            $(".AccountCls").each(function() {  //Get Account Id List
+                var Listkey=String($(this).attr( "accid" ))+String(OrderNumber);
+                if(checkboxList.indexOf(Listkey)==-1){// holidaysList.indexOf(j)!=-1
+                    checkboxList.push(Listkey);
+                }
+                //checkboxList.push(String($(this).attr( "accid" ))+String(OrderNumber));            //console.log(String($(this).attr( "accid" )));
+            });  
+            
+            
+            for (var i = 0; i < checkboxList.length; i++) {
+                var IsNewEvent=true;// console.log($('#'+checkboxList[i]).is(':checked'));
+                if(that.checked){//true 
+                    if($('#'+checkboxList[i]).is(':checked')){
+                        IsNewEvent=false;
+                    }
+                    $('#'+checkboxList[i]).prop("checked",true);
+                }else{//false
+                    $('#'+checkboxList[i]).prop("checked",false);
+                }
+                //update calandar events
+                if(IsNewEvent){
+                    InsertNewEvent(checkboxList[i]);
+                }
+                
+            }//End of For loop
+            CalendarRender();//render full  Calendar
+            clearalert();
+            document.getElementById('loadingpart').style.display='none';
+        }
+        
+         
+        
+        function InsertNewEvent(checkboxId){
+            
+            clearalert();
+            var NewDateCssColour=ColorObject['NewEventColor'];//'#5bc0de';// #5bc0de FF00FF  5bc0de
+            var NewDateCsstextColor=ColorObject['NewEventTextColor'];//'#000000';
+            var checkedValue = document.getElementById(checkboxId);//console.log(checkedValue);  //console.log($('#'+checkboxId));
+            //insert new date time 
+            var newdate=new Date(defYear,defMonth-1,Number(checkedValue.getAttribute('day')),0,0,0,0);
+            
+            if(checkedValue.checked){ 
+                //addEvent renderEvent
+                $('#calendar').fullCalendar('renderEvent', addCalanderEvent(checkboxId,checkedValue.getAttribute('accountid'), formatDate(newdate), formatDate(nextday(newdate)),checkedValue.getAttribute('name'), NewDateCssColour, NewDateCsstextColor, false,'NewDate',checkedValue.getAttribute('RT-name')), true);  // UpdatePlannedField(checkedValue.getAttribute('accountid'),'add');
+                CalculateSummaryTable(checkedValue.getAttribute('RT-name'),'add',checkedValue.getAttribute('accountid'));
+                CalculateAccountTable(checkedValue.getAttribute('accountid'),'add');
+            }else{
+                //For delete Event action 
+                if(checkedValue.getAttribute('eventId')!='null'){ // The Event exist in DatabBase
+                    $('#calendar').fullCalendar('removeEvents', checkedValue.getAttribute('eventId')); 
+                    DeleteList.push(checkedValue.getAttribute('eventId'));
+                    checkedValue.setAttribute('eventId','null');
+                }else{ 
+                    //The Event is new created 
+                    $('#calendar').fullCalendar('removeEvents', checkboxId);
+                }
+                
+                CalculateSummaryTable(checkedValue.getAttribute('RT-name'),'subtract',checkedValue.getAttribute('accountid'));
+                CalculateAccountTable(checkedValue.getAttribute('accountid'),'subtract');
+            }
+        }
+        
+        
+          function CalculateSummaryTable(recordtype,action,accid){
+            var OffVenuePlannedElement=document.getElementById("planPt_OffVenue");
+            var OffVenuePlanNumber=Number(OffVenuePlannedElement.innerHTML);
+            var VenuePlannedElement=document.getElementById("planPt_Venue");
+            var VenuePlanNumber=Number(VenuePlannedElement.innerHTML);
+            var WSPlannedElement=document.getElementById("planPt_WS");
+            var WSPlanNumber=Number(WSPlannedElement.innerHTML);
+            
+            if(recordtype=='ASI_KOR_Wholesaler'){
+                if(action=='add'){
+                    WSPlanNumber++;
+                    WSPlannedElement.innerHTML=WSPlanNumber;
+                }else{
+                    WSPlanNumber--;
+                    WSPlannedElement.innerHTML=WSPlanNumber;
+                }     
+            }
+            
+            if(recordtype=='ASI_KOR_Venue'){
+                if(typeof CustomerMap[accid] !='undefined'){
+                    if(CustomerMap[accid]){
+                        if(action=='add'){
+                            OffVenuePlanNumber++;
+                            OffVenuePlannedElement.innerHTML=OffVenuePlanNumber;
+                        }else{
+                            OffVenuePlanNumber--;
+                            OffVenuePlannedElement.innerHTML=OffVenuePlanNumber;
+                        }     
+                    }else{
+                        if(action=='add'){
+                            VenuePlanNumber++;
+                            VenuePlannedElement.innerHTML=VenuePlanNumber;
+                        }else{
+                            VenuePlanNumber--;
+                            VenuePlannedElement.innerHTML=VenuePlanNumber;
+                        }      
+                    }
+                }else{
+                    if(action=='add'){
+                        VenuePlanNumber++;
+                        VenuePlannedElement.innerHTML=VenuePlanNumber;
+                    }else{
+                        VenuePlanNumber--;
+                        VenuePlannedElement.innerHTML=VenuePlanNumber;
+                    }      
+                }         
+            }
+            
+            //update summarytable
+            summarytableupdate(WSPlanNumber,OffVenuePlanNumber,VenuePlanNumber); //redrawcharts(WSPlanNumber,VenuePlanNumber,WSRequiredTotal,VenueRequiredTotal);
+        }
+        
+        function CalculateAccountTable(accountid,action){
+            //construct id
+            var PlanNumber=document.getElementById(accountid+'_Planed').innerHTML;
+            if(action=='add'){
+                PlanNumber++
+            }else{
+                PlanNumber--;
+            }
+            //change Plan number
+            document.getElementById(accountid+'_Planed').innerHTML=PlanNumber;
+            //change balance number = Required number - Plan Number                      //document.getElementById(accountid+'_Required').innerHTML        console.log(typeof document.getElementById(accountid+'_Required'));
+            if(document.getElementById(accountid+'_Required') !=null ){
+                document.getElementById(accountid+'_balance').innerHTML=Number(document.getElementById(accountid+'_Required').innerHTML)-PlanNumber;  //console.log(document.getElementById(accountid+'_Planed').innerHTML);
+            }
+            
+        }
+        
+        
+        //update number in  summary table 
+        
+        function summarytableinnerHTML(TarTable){ //summarytableinnerHTML(TargetTable.WSRequiredTotal,TargetTable.WSPlannedTotal,TargetTable.VenueRequiredTotal,TargetTable.VenuePlannedTotal);  //function summarytableinnerHTML(WSRequired,WSPlanned,VenueRequired,VenuePlanned){
+            var totalRequired=Number(TarTable.WSRequiredTotal)+Number(TarTable.OffVenueRequiredTotal)+Number(TarTable.VenueRequiredTotal);
+            document.getElementById("reqPt_WS").innerHTML=TarTable.WSRequiredTotal;
+            document.getElementById("reqPt_Venue").innerHTML=TarTable.VenueRequiredTotal;
+            document.getElementById("reqPt_OffVenue").innerHTML=TarTable.OffVenueRequiredTotal;
+            document.getElementById("reqPt_Total").innerHTML=totalRequired;
+            summarytableupdate(TarTable.WSPlannedTotal,TarTable.OffVenuePlannedTotal,TarTable.VenuePlannedTotal);
+        }
+        
+        
+        function summarytableupdate(WSPlanned,OffVenuePlanned,VenuePlanned){ // dynamic update summary table
+            var totalPlanned=Number(WSPlanned)+Number(OffVenuePlanned)+Number(VenuePlanned);
+            document.getElementById("planPt_WS").innerHTML=WSPlanned;
+            document.getElementById("planPt_Venue").innerHTML=VenuePlanned;
+            document.getElementById("planPt_OffVenue").innerHTML=OffVenuePlanned;
+            document.getElementById("planPt_Total").innerHTML=totalPlanned;//var WSRequired=document.getElementById("reqPt_WS").innerHTML; //var VenueRequired=document.getElementById("reqPt_Venue").innerHTML;//var OffVenueRequired=document.getElementById("reqPt_OffVenue").innerHTML;//var totalRequired=document.getElementById("reqPt_Total").innerHTML;
+            document.getElementById("balancePt_WS").innerHTML=Progresshtml(document.getElementById("reqPt_WS").innerHTML,WSPlanned);
+            document.getElementById("balancePt_Venue").innerHTML=Progresshtml(document.getElementById("reqPt_Venue").innerHTML,VenuePlanned);
+            document.getElementById("balancePt_OffVenue").innerHTML=Progresshtml(document.getElementById("reqPt_OffVenue").innerHTML,OffVenuePlanned);
+            document.getElementById("balancePt_Total").innerHTML=Progresshtml(document.getElementById("reqPt_Total").innerHTML,totalPlanned);
+        }
+        
+        //Show event progress info
+        function Progresshtml(Required,Planned){
+            var ProgressBars;
+            var percent=0;
+            var msg=''
+            if(Required<=Planned && Required!=0){
+                ProgressBars='progress-bar-success';
+                percent=100;
+            }else{
+                ProgressBars='progress-bar-info';
+                if(Required!=0){
+                    percent=(Planned/Required)*100;
+                }else{
+                    percent=0;
+                }
+            }
+            var balance = Required-Planned;
+            msg=String(Planned)+'/'+String(Required); //msg='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+String(Planned)+'/'+String(Required)+'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+            var Progresshtml='<div  style="padding-left: 0.5em; padding-right: 0.5em; padding-top: 0.2em; "  ><div class="progress" ><div class="progress-bar '+ProgressBars+'" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="color: black; width:'+percent+'%"><div style="text-align: center;padding-left: 1em; padding-right: 1em; ">'+msg+'</div></div></div> </div>'
+            
+            return  Progresshtml;
+        }
+        
+       
+       
+       
+        //****************create account table including checkbox*********************************
+        function callbackAccount(result, event){
+            
+            if (event.status) {
+                if (result) {
+                    //Calculate working date 
+                    var NoWorkingDate=NumberOfDay- holidaysList.length;//console.log( OffTradeCallNO + ' NoWorkingDate: '+NoWorkingDate);
+                    
+                    //caculate total Wholesaler and Venue number
+                    var WSRequiredTotal=0,VenueRequiredTotal=0, WSPlannedTotal=0,VenuePlannedTotal=0;
+                    var TargetTable = {WSPlannedTotal:0,OffVenuePlannedTotal:0,VenuePlannedTotal:0,WSRequiredTotal: 0,OffVenueRequiredTotal : 0,VenueRequiredTotal :  0 };
+                    
+                    //Start drawing table header
+                    tablehtml='<thead><tr><th rowspan="2" >Venue Code</th><th rowspan="2" >Name</th><th rowspan="2" >Channel</th><th rowspan="2" >Address</th><th rowspan="2" >Type</th><th rowspan="2" >Grade</th><th class="TableRequiredColumn" rowspan="2" >Required</th><th class="TablePlannedColumn"   rowspan="2">Planned</th><th rowspan="2" class="TableBalanceColumn"  >Balance</th>';
+                    for(var k=0;k<weeeklist.length;k++){
+                        var temp=k+1;
+                        tablehtml+='  <th colspan='+weeeklist[k].length+' style="text-align:center; border: 1px solid #CCC;border-radius: 5px; ">Week'+temp+'</th>';
+                    }
+                    
+                    tablehtml+='</tr><tr>';
+                    
+                    for (var j = 1; j <=NumberOfDay; j++) {//change holiday text color
+                        if(holidaysList.indexOf(j)!=-1 ){
+                            tablehtml+='<th style="color: #ff9999;"'   
+                        }else{
+                            tablehtml+='<th';
+                        }
+                        //change weeken background color
+                        var tempdate=new Date(defYear,defMonth-1,j,0,0,0,0);
+                        if(Number(findIn2dArray(weeeklist,j))%2==0){
+                            tablehtml+=' class="bg-info" ';
+                        }else{
+                            tablehtml+=' class="bg-success" ';    
+                        }
+                        //check all checkbox
+                        tablehtml+='> '+j+'<br/> <input type="checkbox" order='+j+' onclick="CheckAll(this);" /> </th>';
+                    }
+                    tablehtml+='</tr></thead><tbody> ';
+                    CustomerMap=new Array();
+                    //End of table head 
+                    
+                    for (var i = 0; i < result.length; i++) {
+                        if(typeof CustomerMap[result[i].Acc.Id] =='undefined'){
+                            if(typeof result[i].Acc.ASI_CRM_Accounts_Additional_Fields__r !='undefined'){
+                             CustomerMap[result[i].Acc.Id]= result[i].Acc.ASI_CRM_Accounts_Additional_Fields__r[0].ASI_CRM_Off_Trade_Customer__c;
+                            }                           
+                        }
+                    }
+                     
+                    for (var i = 0; i < result.length; i++) {
+                       
+                        tablehtml+='<tr class ="AccountCls" accid='+result[i].Acc.Id+' accname="'+result[i].Acc.Name+'"><td  onclick="repeatweek(this);"  accid='+result[i].Acc.Id+' accname="'+result[i].Acc.Name+'" >';
+                        
+                        if(typeof result[i].Acc.ASI_KOR_Customer_Code__c !== 'undefined' ){
+                            tablehtml+=result[i].Acc.ASI_KOR_Customer_Code__c;
+                        }                        
+                        tablehtml+='</td><td  onclick="repeatweek(this);"  accid='+result[i].Acc.Id+' accname="'+result[i].Acc.Name+'"  >'+result[i].Acc.Name+'</td><td  onclick="repeatweek(this);"  accid='+result[i].Acc.Id+' accname="'+result[i].Acc.Name+'" >';
+                        
+                        if(typeof result[i].Acc.ASI_KOR_Venue_Pillar__c !== 'undefined'){
+                            tablehtml+=result[i].Acc.ASI_KOR_Venue_Pillar__c;
+                        }
+                        tablehtml+='</td><td>';
+                        if(typeof result[i].Acc.ASI_KOR_Address__c !== 'undefined'){
+                            tablehtml+=result[i].Acc.ASI_KOR_Address__c;
+                        }
+                        tablehtml+='</td><td>';
+                        //check current event
+                        TargetTable.WSPlannedTotal=0;
+                        TargetTable.VenuePlannedTotal=0;
+                        TargetTable.OffVenuePlannedTotal=0;
+                        //check account Record Type
+                        
+                        if(result[i].Acc.RecordType.DeveloperName=='ASI_KOR_Wholesaler'){ //caculate total Wholesaler number    //WSRequiredTotal=WSRequiredTotal+result[i].RequiredNum;
+                           
+                            TargetTable.WSRequiredTotal=TargetTable.WSRequiredTotal+result[i].RequiredNum;
+                            if(typeof result[i].Acc.ASI_CRM_Accounts_Additional_Fields__r !== 'undefined'){
+                                if(result[i].Acc.ASI_CRM_Accounts_Additional_Fields__r[0].ASI_CRM_Off_Trade_Customer__c){
+                                    tablehtml+='Off ';
+                                } tablehtml+='Wholesaler'; 
+                                
+                            }else{
+                                tablehtml+='Wholesaler'; 
+                            }
+                            
+                        } 
+                       
+                        if(result[i].Acc.RecordType.DeveloperName=='ASI_KOR_Venue'){ //VenueRequiredTotal=VenueRequiredTotal+result[i].RequiredNum;
+                            if(typeof result[i].Acc.ASI_CRM_Accounts_Additional_Fields__r !== 'undefined'){
+                                
+                                if(result[i].Acc.ASI_CRM_Accounts_Additional_Fields__r[0].ASI_CRM_Off_Trade_Customer__c){
+                                    TargetTable.OffVenueRequiredTotal=TargetTable.OffVenueRequiredTotal+result[i].RequiredNum;
+                                    tablehtml+='Off ';
+                                }else{
+                                    TargetTable.VenueRequiredTotal=TargetTable.VenueRequiredTotal+result[i].RequiredNum;
+                                    
+                                }
+                                tablehtml+='Venue';
+                            }else{
+                                TargetTable.VenueRequiredTotal=TargetTable.VenueRequiredTotal+result[i].RequiredNum;
+                                tablehtml+='Venue';
+                            }
+                          
+                            
+                        }
+                        
+                        var eventdaylist=[];
+                        var totalPlannedNum=0;
+                        
+                        //Store Event Id 
+                        var eventIdMap= new Object();
+                        
+                        for(var k=0;k<visitEvents.length;k++){
+                            if(visitEvents[k].type.substring(0, 10)==='PlanDetail' && visitEvents[k].accid==result[i].Acc.Id && visitEvents[k].type !='PlanDetail-Cancelled'){// (visitEvents[k].type=='PlanDetail' || visitEvents[k].type=='PlanDetail-Planned')
+                                var tempdate = new Date(visitEvents[k].start);
+                                var numday = tempdate.getDate();
+                                if(eventdaylist.indexOf(numday)==-1){
+                                    eventdaylist.push(numday);
+                                    eventIdMap[numday]=visitEvents[k].id;
+                                }
+                                //calculate total Planned Numeber
+                                totalPlannedNum++;
+                            }
+                            
+                            if(visitEvents[k].DeveloperName=='ASI_KOR_Wholesaler'){
+                                TargetTable.WSPlannedTotal++;
+                            }
+                            
+                            if(visitEvents[k].DeveloperName=='ASI_KOR_Venue'){  //if(visitEvents[k].DeveloperName=='ASI_KR_Off_trade_Venue'){//   TargetTable.OffVenuePlannedTotal++;// }// console.log(CustomerMap[visitEvents[k].accid]);//CustomerMap
+                                if(typeof CustomerMap[visitEvents[k].accid] !='undefined'){
+                                    if(CustomerMap[visitEvents[k].accid]){
+                                        TargetTable.OffVenuePlannedTotal++;
+                                    }else{
+                                        TargetTable.VenuePlannedTotal++;
+                                    }
+                                }else{
+                                    TargetTable.VenuePlannedTotal++;
+                                }
+                            }
+                        }//End check current event  
+                        
+                        var balance=result[i].RequiredNum-totalPlannedNum;
+                        //construct id
+                        var RequiredId=result[i].Acc.Id+'_Required';
+                        var planedId=result[i].Acc.Id+'_Planed';
+                        var balanceId=result[i].Acc.Id+'_balance';
+                        
+                        tablehtml+='</td><td>';
+                        if(typeof result[i].Acc.ASI_KOR_Grade__c !== 'undefined'){
+                            tablehtml+=result[i].Acc.ASI_KOR_Grade__c;
+                        }
+                        tablehtml+='</td>';
+                        
+                        tablehtml+='<td class="TableRequiredColumn" id='+RequiredId+'>'+result[i].RequiredNum+'</td><td class="TablePlannedColumn"  id='+planedId+'>'+totalPlannedNum+'</td><td class="TableBalanceColumn"  id='+balanceId+'>'+balance+'</td>';
+                        
+                        for (var j = 1; j <=NumberOfDay; j++) {
+                            var keyid=result[i].Acc.Id+j;  //construct id: Account id +number(1-31)
+                            var tdid='td'+j;
+                            tablehtml+='<td class='+tdid+' ><input type="checkbox" id='+keyid+' day='+j+' value='+j+' name="'+result[i].Acc.Name+'" RT-name='+result[i].Acc.RecordType.DeveloperName+'  accountid='+result[i].Acc.Id+'  onclick="InsertNewEvent(this.id);CalendarRender();" ' ;
+                            if(eventdaylist.indexOf(j)!=-1){
+                                tablehtml+='eventId='+eventIdMap[j]+' checked ></td>';
+                            }else{
+                                tablehtml+=' eventId=null ></td>';
+                            }
+                        }
+                        tablehtml+='</tr>';
+                        
+                    }//End For Loop
+                    
+                    //update  summary table 
+                    if(IsOffTradeUser==='true'){//OffTradeCallNO>0){
+                        // Off trade user 
+                        TargetTable.VenueRequiredTotal=0;
+                        TargetTable.OffVenueRequiredTotal=NoWorkingDate*OffTradeCallNO;
+                        TargetTable.WSRequiredTotal=0;
+                        document.getElementById('ASI_KOR_VF_ACCOUNT_WS').innerHTML='Off WS';
+                        $('.VenueColumn').hide();
+                       $('.WSColumn').hide();
+                        $('.OffVenueColumn').hide();
+                    }else{
+                        $('.OffVenueColumn').hide();// console.log('no');
+                    }
+                    
+                    
+                    summarytableinnerHTML(TargetTable);//summarytableinnerHTML(TargetTable.WSRequiredTotal,TargetTable.WSPlannedTotal,TargetTable.VenueRequiredTotal,TargetTable.VenuePlannedTotal);//  drawhighcharts(WSRequiredTotal,WSPlannedTotal,VenueRequiredTotal,VenuePlannedTotal);
+                    tablehtml+='</tbody>';
+                    drawtable(tablehtml);
+                    
+                }
+            }
+            
+        }// End : callbackAccount function
+        
+      
+        function repeatweek(e){ //show repeat week acc-id  accname
+            document.getElementById('AccountName').innerHTML = e.getAttribute('accname'); 
+            document.getElementById('AccountNameId').innerHTML = e.getAttribute('accid');
+            $('#repeatevent').modal('show');
+        }
+        
+        function findHolidays(){
+            var colourcss=ColorObject['holidayColor']; 
+            var textColorcss=ColorObject['holidayTextColor'];
+            var tempdate=new Date(firstdateofmonth);
+            weeeklist=[];
+            var templist=[];
+            for (var i = 0; i <NumberOfDay; i++) {// array will start 0
+                //Sunday and Sat  put in 'holidaysList'
+                if((tempdate.getDay()==6|| tempdate.getDay()==0)&& holidaysList.indexOf(tempdate.getDate())==-1){   //Weekend  console.log(formatDate(tempdate)+' || '+tempdate.getDate()+' || '+tempdate.getDay());  
+                    holidaysList.push(tempdate.getDate());
+                }
+                if(tempdate.getDay()!=0){    // JavaScript getDay() Method: The getDay() method returns the day of the week (from 0 to 6) for the specified date. Note: Sunday is 0, Monday is 1, and so on.
+                    templist.push(tempdate.getDate());
+                }else{//Sunday
+                    if(i == 0){
+                        templist.push(tempdate.getDate());
+                    }else{
+                        weeeklist.push(templist);
+                        templist=[];
+                        templist.push(tempdate.getDate());
+                    }
+                }
+                if(tempdate.getDay()==0 || tempdate.getDay()==6){ //iF this day is Weekend create events:  
+                    visitEvents.push(addCalanderEvent( String(tempdate),'Holidays',formatDate(tempdate),  formatDate(nextday(tempdate)),'Weekend', colourcss, textColorcss, false,'Weekend','Weekend_Holidays'));
+                }
+                
+                //Last day of this month 
+                if(i==(NumberOfDay-1)){
+                    weeeklist.push(templist);
+                }
+                tempdate=nextday(tempdate);
+            }
+            
+            //Holiday :  Get data from class 
+            var $mapParentChildren = jQuery.parseJSON('{!JSENCODE(HolidaylineJSON)}');
+            
+            for(var i=0;i<$mapParentChildren.length;i++){  
+                var tempstart  = new Date ($mapParentChildren[i].ASI_CRM_Date_From__c);
+                var tempEnd  = new Date ($mapParentChildren[i].ASI_CRM_Date_To__c);
+                var diff=tempEnd.getDate()-tempstart.getDate();
+                var temp;
+                for(var j=0;(j<diff || j==0);j++){
+                    if(j==0){
+                        temp=tempstart.getDate();
+                    }
+                    if(holidaysList.indexOf(temp)==-1 && (tempstart.getMonth()+1)==defMonth ){
+                        holidaysList.push(temp);
+                    }
+                    temp++;
+                }
+                visitEvents.push(addCalanderEvent( $mapParentChildren[i].Id,'Holidays',formatDate(tempstart),  formatDate(tempEnd),  $mapParentChildren[i].Name, colourcss, textColorcss, false,'Holidays',$mapParentChildren[i].RecordType.DeveloperName));
+            }
+        }
+        
+        function retrieveVisitationPlanDetail(){// retrieve Visitation Plan Detail from class 
+            var colourcss,textColorcss;
+            var $mapParentChildren = jQuery.parseJSON('{!JSENCODE(DetailLineJSON)}');
+            var PlanType='';            
+            for(var i=0;i<$mapParentChildren.length;i++){
+                
+                PlanType=$mapParentChildren[i].ASI_KOR_Status__c;
+                if($mapParentChildren[i].ASI_KOR_Status__c=='Achieved'){
+                    colourcss=ColorObject['FinishedPlanColor'];
+                    textColorcss=ColorObject['FinishedPlanTextColor'];
+                    PlanType='PlanDetail';
+                }else if($mapParentChildren[i].ASI_KOR_Status__c=='Cancelled'){
+                    colourcss=ColorObject['CancelledPlanColor'];
+                    textColorcss=ColorObject['CancelledPlanTextColor'];
+                    PlanType='PlanDetail-Cancelled';
+                }else if($mapParentChildren[i].ASI_KOR_Status__c=='Planned'){
+                    colourcss=ColorObject['PlannedPlanColor'];
+                    textColorcss=ColorObject['PlannedPlanTextColor'];
+                    PlanType='PlanDetail-Planned';
+                }else{
+                    colourcss=ColorObject['NewEventColor'];
+                    textColorcss=ColorObject['NewEventTextColor'];
+                    PlanType='PlanDetail';
+                }
+                var tempstart  = new Date ($mapParentChildren[i].ASI_KOR_Visit_Date__c);//console.log($mapParentChildren[i].ASI_KOR_Wholesaler__c);
+                
+                //console.log('Test ---> '+$mapParentChildren[i].ASI_KOR_Wholesaler__r.Name);
+                var WholesalerName='';
+                var WholesalerRecordType='';
+                if(typeof $mapParentChildren[i].ASI_KOR_Wholesaler__r !='undefined' ){//if($mapParentChildren[i].ASI_KOR_Wholesaler__c != null){
+                    WholesalerName=$mapParentChildren[i].ASI_KOR_Wholesaler__r.Name;
+                    WholesalerRecordType=$mapParentChildren[i].ASI_KOR_Wholesaler__r.RecordType.DeveloperName;
+                  
+                }
+                
+                visitEvents.push(addCalanderEvent($mapParentChildren[i].Id,$mapParentChildren[i].ASI_KOR_Wholesaler__c,formatDate(tempstart),formatDate(nextday(tempstart)),WholesalerName,colourcss,textColorcss,false,PlanType,WholesalerRecordType));
+               
+            }
+           
+            DrawCalendar();
+            CalendarRender();//CalendareventRender();
+        }
+        
+        function DrawCalendar(){//var pageLoadDate = new Date(defYear + '-' + defMonth +'-' + defDate + 'T12:00:00');
+          
+            var initLoadDate = defYear + '-' + (defMonth<10?'0'+defMonth:defMonth)+'-' + (defDate<10?'0'+defDate:defDate)+'T12:00:00'; //console.log(defYear + '-' + (defMonth<10?'0'+defMonth:defMonth)+'-' + (defDate<10?'0'+defDate:defDate)+'T12:00:00');   //console.log(pageLoadDate);
+            $('#calendar').fullCalendar({ 
+                theme: false,    //Onclick issue if changed to true
+                defaultDate: moment(initLoadDate),   //set the visitation header month and year
+                header: {
+                    left: ''
+                    , center: 'title'
+                    , right: ''
+                },eventOrder: 'priority'
+                , weekMode: 'fixed',
+                editable: true,
+                eventLimit: true,
+                events:visitEvents,
+                dayClick: function(date, jsEvent, view) {
+                    if(Confirmed=='true'){
+                        clearalert();
+                        var tempdate=new Date(date); // get click event month
+                        if((tempdate.getMonth()+1)==defMonth){
+                            var tempday=Date();
+                            var tday=new Date(tempday);
+                            if(CancelPlansList.indexOf(date.format())==-1){
+                                if(formatDate(tday)==date.format()){ // save today's orignal color 
+                                    localStorage.setItem("todaybackground", $(this).css("background-color"));
+                                }
+                                CancelPlansList.push(date.format());
+                                $(this).css('background-color',ColorObject['CancelledPlanColor']);  // change the day's background color
+                            }else{
+                                if(formatDate(tday)==date.format()){// if click day is today change to orignal color
+                                    $(this).css('background-color', localStorage.getItem("todaybackground"));
+                                }else{
+                                    $(this).css('background-color', 'white');
+                                }
+                                CancelPlansList.splice( CancelPlansList.indexOf(date.format()), 1 );
+                            }
+                        }
+                    }
+                },eventClick: function(event) {
+                    if(event.type==='Weekend'){
+                        return false;
+                    }
+                    if (event.url) { // open new TaB
+                        window.open(event.url);
+                        return false;
+                    }
+                },
+                eventRender: function (event, element, view) { 
+                    //event render function 
+                    element.attr('title', event.tip);
+                    if(event.type=='PlanDetail-Planned' || event.type=='PlanDetail-Cancelled'){
+                        element.css('border-color', '#000000');
+                    }
+                    $(element).each(function () { 
+                        $(this).attr('date-num', event.start.format('YYYY-MM-DD')); 
+                    });
+                }
+            });
+        }
+        
+        function CalendarRender(){ // Render Calendar to calculate total event number
+            var eventarray = $('#calendar').fullCalendar('clientEvents');
+            var DayEventlist=[];
+            for(var i = 0; i <NumberOfDay; i++){
+                DayEventlist.push(0);
+            }
+            for(var i=0;i<eventarray.length;i++){
+                if(eventarray[i].type!='Holidays' && eventarray[i].type!='Weekend'&& eventarray[i].type!='PlanDetail-Cancelled' ){
+                    var temp=new Date(eventarray[i].start);
+                    DayEventlist[temp.getDate()-1]++;
+                }
+            }//end for loop
+            
+            var tempdate=new Date(firstdateofmonth);
+            for (var i = 0; i <NumberOfDay; i++) {
+                var dateNum = formatDate(tempdate);// console.log(dateNum);
+                var dayEl = $('.fc-day[data-date="' + dateNum + '"]');
+                var eventCount = DayEventlist[i];
+                if(eventCount){
+                    var html='';
+                    var divid=dateNum+'Day_div';
+                    $('#'+divid).remove();
+                    html= '<div id='+divid+'><span class="event-count"><i>        #Calls:' +eventCount +'</i> </span></div>';
+                    dayEl.append(html);
+                }else{
+                    var divid=dateNum+'Day_div';
+                    $('#'+divid).remove();
+                }
+                tempdate=nextday(tempdate);
+            }
+            
+            
+        }//end of Function : CalendarRender
+        
+        
+        function columnvisibility(colnum){ //Handle table column visibility
+            var column = accounttable.column( colnum );  // Get the column API object
+            column.visible( ! column.visible() ); // Toggle the visibility console.log(column.visible());
+            return column.visible();
+        }  
+        
+        function buttonAction(){ 
+            $('a.toggle-vis').on( 'click', function (e) {
+                e.preventDefault();
+                var tempflag;
+                if($(this).attr('data-type')=='Week'){
+                    var tempcol=Number($(this).attr('data-week'))-1;
+                    for(var i=0;i<weeeklist[tempcol].length;i++){
+                        var col=startcolloum+weeeklist[tempcol][i];
+                        tempflag=columnvisibility(col);
+                    }
+                }else{
+                    tempflag=columnvisibility(Number($(this).attr('data-week')));
+                }
+                if(!tempflag){
+                    $(this).addClass('changecss');
+                }
+                else{
+                    $(this).removeClass('changecss');
+                }
+            } );    
+            
+            
+            $('#showAll').on('click',function(e){
+                e.preventDefault();
+                var columNum = 0; 
+                accounttable.columns().every( function (index ) {
+                    accounttable.column(columNum).visible(true);
+                    columNum++;
+                });
+                $('#tc1,#tc2').removeClass('changecss');
+            });
+        }                  
+        
+        function Repeatfunction(){
+            clearalert();// alertMeg AccountMeg
+            document.getElementById('loadingpart').style.display='';
+            SystemInfo('alert-info','AccountMeg','<i class="fa fa-refresh fa-spin"></i>','Working in progress now. Please wait . Thank you....');
+            setTimeout(function(){ RepeatProcess(); }, 50);
+        }
+        
+        
+        function RepeatProcess(){
+            var RepeatDayList=[];
+            var accountid=document.getElementById("AccountNameId");//start Get Account Id 
+            //Get Repeat Day
+            $(".RepeatDay").each(function(){ 
+                if($(this).is(':checked')){
+                    RepeatDayList.push(Number($(this).attr("order-Number")));
+                }
+            });           
+            var tempdate=new Date(firstdateofmonth);
+            for (var i = 1; i <=NumberOfDay; i++) {
+                if(RepeatDayList.indexOf(tempdate.getDay())!=-1){//need to repeat
+                    var checkboxId=String(accountid.innerHTML)+String(i);// console.log(document.getElementById(checkboxId));
+                    if(document.getElementById(checkboxId)!= null && !document.getElementById(checkboxId).checked){//Only False need to check   
+                        document.getElementById(checkboxId).checked=true;
+                        InsertNewEvent(checkboxId);
+                    }
+                }
+                tempdate=nextday(tempdate);
+            }
+            //End--
+            $(".RepeatDay").each(function(){ 
+                $(this).prop( "checked", false );
+            });
+            CalendarRender();
+            clearalert();
+            document.getElementById('loadingpart').style.display='none';
+        }
+        
+        
+        function drawtable(tablehtml){
+            // Disable ordering on the column with checkbox
+            var tempcolumnDefs=[];
+            var targetsvar;
+            
+            var temp = new Object();
+            temp.targets= 0;
+            temp.width=  "1%";
+            tempcolumnDefs.push(temp);
+            
+            var temp = new Object();
+            temp.targets= 1;
+            temp.width=  "1%";
+            tempcolumnDefs.push(temp);
+            
+            var temp = new Object();
+            temp.targets= 2;
+            temp.width=  "1%";
+            tempcolumnDefs.push(temp);
+            
+            var temp = new Object();
+            temp.targets= 3;
+            temp.width=  "1%";
+            tempcolumnDefs.push(temp);
+            
+            var temp = new Object();
+            temp.targets= 4;
+            temp.width=  "1%";
+            tempcolumnDefs.push(temp);
+            
+            for (var i = 8; i >=4; i--) {
+                var temp = new Object();
+                temp.targets=i;
+                temp.width=  "1%";
+                tempcolumnDefs.push(temp);                
+            }
+            targetsvar=8;
+            /*
+            if(OffTradeCallNO>0){
+                tempcolumnDefs.push({targets: 5,width:"1%"});
+                for (var i = 8; i >=6; i--) {
+                    var temp = new Object();
+                    temp.targets=i;
+                    temp.width=  "1%";
+                    tempcolumnDefs.push(temp);                
+                }
+                targetsvar=8;
+            }else{
+            }
+            */
+            for (var i = 1; i <=NumberOfDay; i++) { // { "orderable": false, "targets": 10 }, { "orderable": false, "targets": 11 }
+                var temp = new Object();
+                temp.orderable=false;
+                temp.targets=targetsvar+i;
+                temp.className= "center";
+                temp.width=  "1%";
+                tempcolumnDefs.push(temp);
+            }
+            
+            //Datatable
+            var table = $('#krtable');
+            table.append(tablehtml);
+            accounttable=table.DataTable( {
+                "bDestroy":true,
+                "bAutoWidth":false,
+                responsive: true,
+                order: [],
+                columnDefs: tempcolumnDefs,
+                fixedColumns:   {
+                    leftColumns: 6 //9
+                },
+                "sScrollY": "300px",
+                "sScrollX": "300px",
+                "sScrollXInner": "130%",
+                "bScrollCollapse": true,
+                "bPaginate": false,
+                "iDisplayLength":20, 
+                "dom": '<<t>ip>',
+                "initComplete": function(settings, json) {
+                    buttonAction();
+                }
+            } );
+            if(weeeklist.length<5){
+                $('#WeekFiveDiv').hide();
+            }
+            if(weeeklist.length<6){
+                $('#WeekSixDiv').hide();
+            }
+            
+            if(IsOffTradeUser==='true'){//if(OffTradeCallNO>0){
+                columnvisibility(6);
+                columnvisibility(8);
+            }//console.log(window.innerWidth+'  || '+ window.innerHeight);
+            checkWidth();
+        }
+        
+        function setAutoFilterAction(){
+            var AccountNamevar = $('#AccName').val();
+            var VenueCodevar  = $('#VenueCode').val();
+            var VenueNamevar = $('#VenueName').val();
+            accounttable.column(0).search( AccountNamevar).column(1).search( VenueCodevar ).column(3).search( VenueNamevar ).draw();                
+        }
+        //Clear message in div
+        function clearalert(){
+            $('#alertMeg').html(''); 
+            $('#AccountMeg').html('');
+        }
+        
+        //redirect page with provided URL id
+        function redirect(urlid){//
+            window.location.href='/'+urlid;
+        }
+        
+        function htmlEncode( input ) {
+            var e = document.createElement('div');
+            e.innerHTML = input;
+            return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+        };// End htmlEncode function
+        
+        
+        function formatDate(date) { //Format JavaScript Date to yyyy-mm-dd
+            var d = new Date(date),month = '' + (d.getMonth() + 1),day = '' + d.getDate(),year = d.getFullYear();
+            if (month.length < 2) month = '0' + month;
+            if (day.length < 2) day = '0' + day;
+            return [year, month, day].join('-');
+        }
+        
+        function nextday(Inputdate){ //retrieve next date
+            var dd = Inputdate.getDate()+ 1;
+            var mm = Inputdate.getMonth() ;
+            var yy = Inputdate.getFullYear();
+            var returndate=new Date(yy,mm,dd, 0,0,0,0);
+            return returndate;
+        }
+        
+        //Show infomation for user when updating/ deleting records
+        function SystemInfo(divtype,divid,icondiv,message){
+            //document.getElementById('loadingpart').style.display='';
+            var inhtml='<div class="alert '+divtype+'  fade in ">'+icondiv+'  '+message+'</div>';
+            $('#'+divid).html(inhtml);
+        }
+        
+        
+        function addCalanderEvent(id,accid, start, end, title, colour, textColor, editable,type,DeveloperName)
+        {
+            
+            var renderingtype='';
+            var urllink='';
+            var prio=2;
+            if(type=='Holidays' || type=='Weekend'){
+                prio=1;//  renderingtype='background';
+            }
+            //console.log(type);
+            if(type=='NewDate' || type=='PlanDetail'){
+                urllink='/'+accid;
+            }else{
+                urllink='/'+id;
+            }
+            // tip:title:  For Mouseover event
+            var eventObject = { accid:accid,title: title,start: start,end: end, id: id, color: colour, textColor: textColor,  editable:  editable, rendering: renderingtype, type:type,  DeveloperName:DeveloperName, tip:title,   url:urllink, priority:prio};
+            
+            return eventObject;
+        }
+        
+        function ToggleCalendar(){
+            clearalert();
+            $("#calendarPaneldiv").toggle();
+            $('#calendar').fullCalendar( 'refetchEvents' );
+        }
+        
+        function SaveProcess (SaveRecordType){
+            clearalert();
+            document.getElementById('loadingpart').style.display='';
+            SystemInfo('alert-info','alertMeg','<i class="fa fa-refresh fa-spin"></i>','Working in progress now. Please wait . Thank you....');
+            setTimeout(function(){ SaveRecords(SaveRecordType); }, 100);
+        }
+        
+        function SaveRecords(SaveRecordType){
+            SaveType=SaveRecordType;
+            
+            //Get Current events 
+            var array = $('#calendar').fullCalendar('clientEvents');// console.log(array);
+            var PlanList=[];
+            
+            $.each( array, function( key, value ) {  //
+                if(value.type!='Holidays'){ // PlanDetail  console.log( value ); console.log(value.type);
+                    if(value.type=='NewDate'){ 
+                        var item = $("#calendar").fullCalendar('clientEvents',value.id);
+                        item[0].type = 'PlanDetail';
+                        $('#calendar').fullCalendar('updateEvent',item[0]); //value.type='PlanDetail';
+                        var tempplan = new ASI_KOR_Visitation_Plan_Detail__c(); //New insert 
+                        tempplan.ASI_KOR_Activity_Type__c='Regular Visit';// tempplan.ASI_KOR_Status__c='Planned'; 
+                        tempplan.ASI_KOR_Wholesaler__c = value.accid;
+                        tempplan.ASI_KOR_Visitation_Plan__c=headerId;
+                        tempplan.ASI_KOR_Visit_Date__c=new Date(value.start["_d"] ).getTime();
+                        PlanList.push(tempplan);
+                    }
+                    
+                    if(value.type!='PlanDetail-Cancelled' && value.type!='Weekend' && SaveRecordType=='Confirm'){
+                        var item = $("#calendar").fullCalendar('clientEvents',value.id);
+                        item[0].type ='PlanDetail-Planned';
+                        item[0].color =ColorObject['PlannedPlanColor'];
+                        item[0].textColor =ColorObject['PlannedPlanTextColor'];
+                        $('#calendar').fullCalendar('updateEvent',item[0]);
+                    }// Confirm Case
+                    
+                }
+            });
+            
+            
+            NormalSave(PlanList);
+            
+        }// End of function SaveRecords
+        
+        function NormalSave(PlanList){
+            var ReqPtTotal=document.getElementById("reqPt_Total").innerHTML;
+            Visualforce.remoting.Manager.invokeAction(
+                '{!$RemoteAction.ASI_CRM_KR_VisitationPlanEditController.updatePlan}',PlanList ,DeleteList,headerId,SaveType,ReqPtTotal
+                , showResult
+                , {buffer: false,escape: true}
+            );  
+            
+        }
+        
+        //Set after 'countdown' Second(s), refresh the page
+        function settime(countdown,result) { 
+            if (countdown == 1) { 
+                reloadPage();
+            } else { 
+                countdown--; 
+                SystemInfo('alert-success','alertMeg','<i class="fa fa-check"></i>',result+'  <i class="fa fa-refresh fa-spin"></i>  The Page will refresh after '+countdown+' Second(s). ');
+            } 
+            setTimeout(function() { 
+                settime(countdown,result) 
+            },1000) 
+        } 
+        
+        
+        function showResult(result, event){// Show System information 
+            if (event.status) {
+                if (result) {
+                    if(result.substring(0, 12)==='Save Success'){
+                        if(SaveType=='Save'){
+                            SystemInfo('alert-success','alertMeg','<i class="fa fa-check"></i>',result+' Redirecting Page...');
+                            window.onload = window.setTimeout(redirect(headerId),3000);
+                        }else{
+                            if(SaveType=='Confirm'){
+                                settime(4,String(result));//setTimeout(function(){ reloadPage();}, 3000);// 
+                                //$('#CancelPlansbtnDiv').show();
+                                //$('#ConfirmbtnDiv').hide();
+                            }else{
+                                //console.log(SaveType);
+                                SystemInfo('alert-success','alertMeg','<i class="fa fa-check"></i>',result);
+                                CalendarRender();
+                            }
+                        }
+                        DeleteList=[];
+                    }else{
+                        SystemInfo('alert-danger','alertMeg','<i class="fa fa-times"></i>',result);
+                    }
+                }else{
+                    SystemInfo('alert-danger','alertMeg','<i class="fa fa-times"></i>',event);
+                }
+            }
+            document.getElementById('loadingpart').style.display='none';
+        }// end of Function : showResult
+        
+        
+        function ResetModal(){// Reset function display modal 
+            clearalert();
+            $('#modalTitle').html('Reset Visitation Plan'); //
+            $('#modalBody').html('<strong>Reset all events in this month, process?</strong>');
+            $('#modalbuttonContent').html('Process');
+            $('#modalbutton').attr('onclick','ResetProcess();');
+            $('#ConfirmPart').modal('show');
+        }
+        
+        function ResetProcess(){ // onclick Reset modal button
+            SystemInfo('alert-info','alertMeg','<i class="fa fa-refresh fa-spin"></i>','Working in progress now. Please wait . Thank you....');
+            SaveType='Confirm';
+            Visualforce.remoting.Manager.invokeAction(
+                '{!$RemoteAction.ASI_CRM_KR_VisitationPlanEditController.ResetProcess}',headerId
+                , showResult
+                , {escape: true}
+            );
+        }
+        
+        //click: show cancel modal
+        function CancelModal(){
+            clearalert();
+            if(CancelPlansList.length>0){
+                $('#CancelPlans').modal('show');
+            }else{
+                $('#modalTitle').html('Cancel Selected Plans'); //$('#CancelPlansFail').modal('show'); 
+                $('#modalBody').html('<strong>Please select One day to Cancel!</strong>');
+                $('#modalbutton').hide();
+                $('#ConfirmPart').modal('show');
+            }
+            
+        }
+        
+        function ConfirmModal(){ //clear message and show modal 
+            clearalert();
+            $('#modalTitle').html('Confirm Visitation Plan'); //
+            $('#modalBody').html('<strong>Confirm all events in this month, process?</strong>');
+            $('#modalbuttonContent').html('Process');
+            $('#modalbutton').attr('onclick','ConfirmProcess();');
+            $('#ConfirmPart').modal('show');
+        }
+        
+        function ConfirmProcess(){
+            //SaveRecords('Confirm');
+            clearalert();
+            document.getElementById('loadingpart').style.display='';
+            SystemInfo('alert-info','alertMeg','<i class="fa fa-refresh fa-spin"></i>','Working in progress now. Please wait . Thank you....');
+            setTimeout(function(){ SaveRecords('Confirm'); }, 100);
+            
+            $('#SavebtnDiv, #QuickSavebtnDiv,  #CFLMbtnDiv, #AccountTableDiv,#ResetbtnDiv,#ConfirmbtnDiv ,#BackDIV').hide();
+        }
+        
+        
+        // Copy from Last Month
+        function CopyLastMonth(){//clear message and show modal 
+            clearalert();
+            $('#modalTitle').html('Copy From Last Month'); //
+            $('#modalBody').html('<strong>We will copy all events from <br/>last month to this month, process?</strong>');
+            $('#modalbuttonContent').html('Process');
+            $('#modalbutton').attr('onclick','GetLastMonthPlanDetail();');
+            $('#ConfirmPart').modal('show');
+        }
+        
+        
+        function GetLastMonthPlanDetail(){
+            document.getElementById('loadingpart').style.display=''; 
+            SystemInfo('alert-info','alertMeg','<i class="fa fa-refresh fa-spin"></i>','We are copying all events from last month to this month now. Please wait . Thank you....');
+            var monthMap = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            var Statement=' WHERE ASI_KOR_Visitation_Plan__r.OwnerId = \''+OwnerId+ '\' ';
+            if(defMonth==1){
+                var yy= Number(defYear)-1;
+                Statement+=' and  ASI_KOR_Visitation_Plan__r.ASI_KOR_Month__c = \''+monthMap[11]+ '\'  and ASI_KOR_Visitation_Plan__r.ASI_KOR_Year__c = \''+yy+'\' ';
+            }else{
+                Statement+=' and  ASI_KOR_Visitation_Plan__r.ASI_KOR_Month__c = \''+monthMap[defMonth-2]+ '\'  and ASI_KOR_Visitation_Plan__r.ASI_KOR_Year__c = \''+defYear+'\' ';
+            }            
+            Visualforce.remoting.Manager.invokeAction(
+                '{!$RemoteAction.ASI_CRM_KR_VisitationPlanEditController.findVisitationPlanDetail}',Statement
+                , callbackVisitationPlanDetail
+                , {escape: true}
+            );      
+        } 
+        
+        function  callbackVisitationPlanDetail(result, event){ // From GetLastMonthPlanDetail function
+            if (event.status) {
+                if (result) {
+                    
+                    for (var i = 0; i < result.length; i++) {
+                        var tempdate= new Date('1'+ result[i].startStr);
+                        
+                        if(NumberOfDay>=tempdate.getDate() && typeof result[i].VisitationDetail.ASI_KOR_Wholesaler__c !== 'undefined' ){
+                            var  chkboxId=String(result[i].VisitationDetail.ASI_KOR_Wholesaler__c)+String(tempdate.getDate());
+                            if(!$("#" + chkboxId).is(':checked')){
+                                $("#" + chkboxId).prop('checked', true);
+                                
+                                InsertNewEvent(chkboxId);
+                            }
+                        }
+                    }//End of For Loop 
+                    //Show information 
+                    
+                    if(result.length==0){
+                        SystemInfo('alert-info','alertMeg','<i class="fa fa-check"></i>','No Events in last Month.');
+                    }else{
+                        SystemInfo('alert-success','alertMeg','<i class="fa fa-check"></i>','Copy Success! <br/> This is a kindly reminder: Please remind to save records. Thank you!');
+                    }
+                    CalendarRender();//render full  Calendar
+                }else{
+                    SystemInfo('alert-danger','alertMeg','<i class="fa fa-check"></i>',event);
+                }
+            }else{
+                SystemInfo('alert-danger','alertMeg','<i class="fa fa-check"></i>',event.message);
+            }
+            document.getElementById('loadingpart').style.display='none';
+        }
+        
+       
+        //Cancel all days records
+        function CancelRecords(){
+            
+            //Get Cancel Type
+            var SelectE = document.getElementById("CancelType");
+            var CanTypeStr= SelectE.options[SelectE.selectedIndex].value;
+            //Get Cancel Reason
+            var CanReason= document.getElementById('CancelReason').value;
+            
+            if(!CanReason){ //Check is null
+                document.getElementById('CancelReasonError').innerHTML='<p style="color: red;">Please Input Cancel Reason.</p>';
+            }else{
+                $('#CancelPlans').modal('hide');
+                clearalert();
+                SystemInfo('alert-info','alertMeg','<i class="fa fa-refresh fa-spin"></i>','Working in progress now. Please wait . Thank you....');
+                
+                //Update List to Calendar
+                var UpdateCalendarList=[];
+                //update List 
+                var PlanList=[];
+                
+                //Get all events from fullCalendar
+                var array = $('#calendar').fullCalendar('clientEvents');
+                $.each( array, function( key, value ) {
+                    if(value.type!='Holidays' && value.type!='NewDate' && value.type!='Weekend'){ 
+                        
+                        // If this date exist in 'CancelPlansList'
+                        if(CancelPlansList.indexOf(formatDate(value.start["_d"]))!=-1){ 
+                            //remove current event
+                            $('#calendar').fullCalendar('removeEvents', value.id);
+                            var tempdate=new Date(formatDate(value.start["_d"]) );
+                            // update to 'Cancel Plan' to calendar
+                            
+                            UpdateCalendarList.push(addCalanderEvent(value.id,value.accid, formatDate(tempdate), formatDate(nextday(tempdate)), value.title, ColorObject['CancelledPlanColor'], ColorObject['CancelledPlanTextColor'], value.editable,'PlanDetail-Cancelled',value.DeveloperName));
+                            
+                            //Add to Updated List to Databse
+                            var tempplan = new ASI_KOR_Visitation_Plan_Detail__c();
+                            tempplan.Id=value.id;
+                            tempplan.ASI_KOR_Status__c='Cancelled';
+                            tempplan.ASI_CRM_KR_Cancel_Type__c=CanTypeStr;
+                            tempplan.ASI_KOR_Cancellation_Reason__c=CanReason;
+                            PlanList.push(tempplan);
+                        }
+                    }
+                });//end of constructing update List
+                
+                //update List in Calendar
+                $('#calendar').fullCalendar('addEventSource', UpdateCalendarList);
+                
+                //remove reason
+                document.getElementById('CancelReason').value='';
+                
+                //Clear  background-color
+                $.each( CancelPlansList, function( key, value ) {
+                    var dateNum = formatDate(value);
+                    var dayEl = $('.fc-day[data-date="' + dateNum + '"]');//console.log(dayEl.css( "background-color" ));
+                    dayEl.css('background-color', 'white');
+                });  
+                //Clear CancelPlansList 
+                CancelPlansList=[];
+                
+                if(PlanList.length>0){
+                    var dl=[];
+                    //update records
+                    var ReqPtTotal=document.getElementById("reqPt_Total").innerHTML;
+                    Visualforce.remoting.Manager.invokeAction(
+                        '{!$RemoteAction.ASI_CRM_KR_VisitationPlanEditController.updatePlan}',PlanList ,dl,headerId,'CancelRecords',ReqPtTotal
+                        , showResult
+                        , {escape: true}
+                    );  
+                }else{
+                    $('#modalTitle').html('Cancel Selected Plans'); //$('#CancelPlansFail').modal('show'); 
+                    $('#modalBody').html('<strong>Please select One day with events to Cancel, thank you!</strong>');
+                    $('#modalbutton').hide();
+                    $('#ConfirmPart').modal('show');
+                }
+                
+            }
+                       
+            
+        }// end of function : CancelRecords
+        
+        function ASI_KOR_Visitation_Plan_Detail__c(){ }//please don't delete this function
+        function isTouchDevice(){
+            return typeof window.ontouchstart !== 'undefined';
+        }
+        
+        </script>
+        <style>
+            /* Ensure that the demo table scrolls    //1700px;  */
+            th, td { white-space: nowrap; }
+            div.dataTables_wrapper {
+            width: 1500px;
+            margin: 0 auto;
+            float:left;
+            }
+            
+            h3{
+            color: white !important ;
+            }
+            
+            .SearchpartHeaderCss {
+            padding: 3px 5px;
+            border-bottom: 1px solid transparent;
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+            font-size: 16px;
+            color: white  ;
+            }
+            
+            .SearchpartCss {
+            padding-right: 3px !important;
+            padding-left: 3px !important;
+            }
+            
+            .InputBS{
+             padding: 0.3em 0.4em;
+            line-height: 0.9;
+            color: #555;
+            background-color: #fff;
+            background-image: none;
+            border: 1px solid #ccc;
+            border-radius: 0.5em;
+            }
+            
+            .boldFont{
+            font-weight:bold;
+            }
+            
+            .fc-event-inner {padding:3px;}
+            .fc-day-number{font-weight:bold;}
+            .changecss{
+            background-color: #d0e4fe ;
+            color: #C0C0C0 !important;
+            }    
+            
+            h2{/*font-family: ProximaNovaLight !important;*/
+            font-size: 32px !important;
+            line-height: 115% !important;
+            }
+            
+            .pointTH{
+            border: 1px solid black !important;
+            padding: 5px !important;
+            font-weight:bold !important ; 
+            text-align: center !important;
+            }
+            
+            #loadingpart {
+            display: block;
+            position: absolute;
+            top: -30;
+            left: 0;
+            z-index: 100;
+            //width: 100vw;
+            height: 100vh;
+            background-color: rgba(192, 192, 192, 0.5);
+            background-image: url("/img/loading.gif");
+            background-repeat: no-repeat;
+            background-position: 5%;
+            }
+            
+        </style>
+        
+    </head>
+    
+    <body class="bs"> 
+        <apex:form >
+            
+            <apex:outputPanel id="calPanel">
+                <div class="bs row" style="margin:0;">
+                    <div class="bs col-xs-12"> 
+                        
+                        <div class="bs container-fluid" style="margin:0;">
+                            <apex:actionFunction name="reloadPage" action="{!pageLoad}" />
+                            
+                          <!----  <div class="bs row panel-primary" > ---->
+                                <apex:outputPanel styleclass="bs panel-primary" > 
+                                <div class="bs panel-heading div-size" style=" background:#2e6da4 ">
+                                    <!--<h3 class="bs panel-title">Visitation Plan Tony Feb</h3>          data-toggle="collapse" href="#calendarPaneldiv"   --> 
+                                    <a onclick="ToggleCalendar();"><h3 class="bs panel-title" >Visitation Plan Calendar</h3></a>
+                                </div> 
+                                
+                                <div id="alertMeg"></div>
+                                
+                                <div class="bs panel-body"> 
+                                    <div id="calendarPaneldiv" class="collapse in">
+                                        <div class='bs wrapper ' id='bs toolbar' ><!---- text-center------> 
+                                            <!---- Save Button ------> 
+                                            <div class="bs btn-group " role="group" id="SavebtnDiv">
+                                                <button type="button" class="btn btn-default" onclick="SaveProcess('Save');">Save</button>
+                                            </div>&nbsp;
+                                            <div class="bs btn-group " role="group" id="QuickSavebtnDiv">
+                                                <button type="button" class="btn btn-default" onclick="SaveProcess('QuickSave');">Quick Save</button>
+                                            </div>&nbsp;
+                                            <div class="bs btn-group " role="group" id="CancelPlansbtnDiv">
+                                                <button type="button" data-toggle="tooltip"  title="Click the day and Cancel Plans." data-placement="bottom"   class="btn btn-warning " onclick="CancelModal();" >Cancel Plans</button>
+                                            </div>
+                                            <div class="bs btn-group " role="group" id="CFLMbtnDiv">
+                                                <button type="button" data-toggle="tooltip"  title="Copy all events from last month to this month" data-placement="bottom"   class="btn btn-default" onclick="CopyLastMonth();">Copy from Last Month</button>
+                                            </div>&nbsp;
+                                            <div class="bs btn-group " role="group" id="ConfirmbtnDiv" >
+                                                <button type="button"  data-toggle="tooltip"  title="Confirm all Plans in this Month" data-placement="bottom"  class="btn btn-default" onclick="ConfirmModal();">Confirm</button>
+                                            </div>&nbsp;
+                                            <!---- Cancel Button ------> 
+                                            <div class="bs btn-group " role="group" id="ResetbtnDiv" >
+                                                <button type="button" data-toggle="tooltip"  title="Reset Visitation Plan" data-placement="bottom" class="btn btn-default" onclick="ResetModal();">Reset</button>
+                                            </div>
+                                            
+                                            <div class="bs btn-group " role="group" id="BackDIV">
+                                                <button type="button" data-toggle="tooltip"  title="Back to Header" data-placement="bottom" class="btn btn-default" onclick="window.onload = window.setTimeout(redirect(headerId),5000);">Back</button>
+                                            </div>
+                                            
+                                        </div>
+                                        <br/>
+                                        <div id="calendar" class="bs col-xs-6  col-md-6 " ></div>   <!----col-md-offset-4   col-xs-offset-2  col-xs-4  col-md-4 ------>
+                                        <div  class="bs col-xs-4  col-md-4 " >
+                                            <br/>
+                                            <span><i class="fa fa-square-o" style="color: {!ColorMap['PlannedPlanBorder']}; font-size: 20px;"></i><font style="color: {!ColorMap['PlannedPlanColor']}; font-size: 20px;"></font>&nbsp;  Planned</span><br/>
+                                            <span><i class="fa fa-square" style="color: {!ColorMap['FinishedPlanColor']}; font-size: 20px;"></i><font style="color: {!ColorMap['FinishedPlanColor']}; font-size: 20px;"></font>&nbsp;  Achieved</span><br/>
+                                            <span><i class="fa fa-square" style="color: {!ColorMap['CancelledPlanColor']}; font-size: 20px;"></i><font style="color: {!ColorMap['CancelledPlanColor']}; font-size: 20px;"></font>&nbsp;  Cancelled</span><br/>
+                                            <span><i class="fa fa-square" style="color: {!ColorMap['holidayColor']}; font-size: 20px;"> </i><font style="color: {!ColorMap['holidayColor']}; font-size: 20px;"></font>&nbsp;  Holiday</span><br/>
+                                            <span><i class="fa fa-square" style="color: #5bc0de; font-size: 20px;"></i><font style="color: #5bc0de; font-size: 20px;"></font>&nbsp;  New Event</span><br/>
+                                            
+                                            <br/>
+                                            
+                                            <table style="border-collapse: collapse;background-color:white"  id="summarytable">
+                                                
+                                                <tr>
+                                                    <td class="pointTH" ></td>
+                                                    <td class="pointTH WSColumn" id="ASI_KOR_VF_ACCOUNT_WS"  >{!$Label.ASI_KOR_VF_ACCOUNT_WS}</td>
+                                                    <td class="pointTH  VenueColumn"  >{!$Label.ASI_KOR_VF_ACCOUNT_Venue}</td>
+                                                    <td class="pointTH  OffVenueColumn"  >Off Venue</td>
+                                                    <td class="pointTH"  >{!$Label.ASI_KOR_VF_VISIT_TotalPoint}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="pointTH pointTHLeft"   >{!$Label.ASI_KOR_VF_VISIT_RequiredPoint}</td>
+                                                    <td class="WSColumn" style="border: 1px solid black;padding: 5px;text-align: center;"  id="reqPt_WS"> </td>
+                                                    <td class="VenueColumn" style="border: 1px solid black;padding: 5px;text-align: center;"  id="reqPt_Venue"> </td>
+                                                    <td class="OffVenueColumn"  style="border: 1px solid black;padding: 5px;text-align: center;"  id="reqPt_OffVenue"> </td>
+                                                    <td style="border: 1px solid black;padding: 5px;text-align: center;"  id="reqPt_Total"> </td>
+                                                </tr>
+                                                <tr >
+                                                    <td   class="pointTH pointTHLeft">{!$Label.ASI_KOR_VF_VISIT_PlannedPoint}</td>
+                                                    <td  class="WSColumn"   style="border: 1px solid black;padding: 5px;text-align: center;"   id="planPt_WS"> </td>
+                                                    <td  class="VenueColumn"  style="border: 1px solid black;padding: 5px;text-align: center;"   id="planPt_Venue"> </td>
+                                                    <td class="OffVenueColumn" style="border: 1px solid black;padding: 5px;text-align: center;"   id="planPt_OffVenue"> </td>
+                                                    <td style="border: 1px solid black;padding: 5px;text-align: center;"   id="planPt_Total"> </td>
+                                                </tr>
+                                                
+                                                <tr >
+                                                    <td class="pointTH pointTHLeft">Balance</td>
+                                                    <td  class="WSColumn"  style="border: 1px solid black;"   id="balancePt_WS"> </td>
+                                                    <td  class="VenueColumn"  style="border: 1px solid black;"   id="balancePt_Venue"> </td>
+                                                    <td class="OffVenueColumn" style="border: 1px solid black;"   id="balancePt_OffVenue"> </td>
+                                                    <td style="border: 1px solid black;"   id="balancePt_Total"> </td><!--padding: 1em;------>
+                                                </tr>
+                                                
+                                            </table>
+                                        </div>
+                                    </div> <!--end of calendarPaneldiv div-->
+                                    
+                                    
+                                    <div id="repeatevent" title="Add New Event"  class="modal fade" role="dialog" >
+                                        <div class="modal-dialog  modal-sm">
+                                            <div class="modal-content">
+                                                
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    <h4 class="modal-title">Repeat: <div id="AccountName"></div> </h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    
+                                                    <table >
+                                                        <tr><td>&nbsp;</td><td>
+                                                            <div class="checkbox checkbox-primary">
+                                                                <input id="checkbox0" class="styled RepeatDay" type="checkbox"  order-Number="0"  name="repeat-freq" align="bottom" />
+                                                                <label for="checkbox0" style="font-weight:bold;" >Sunday </label>
+                                                            </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr><td>&nbsp;</td><td>
+                                                            <div class="checkbox checkbox-primary">
+                                                                <input id="checkbox1" class="styled RepeatDay" type="checkbox"  order-Number="1"  name="repeat-freq" align="bottom" />
+                                                                <label for="checkbox1" style="font-weight:bold;" >Monday </label>
+                                                            </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr><td>&nbsp;</td><td>
+                                                            <div class="checkbox checkbox-primary">
+                                                                <input id="checkbox2" class="styled RepeatDay" type="checkbox"  order-Number="2"  name="repeat-freq" align="bottom" />
+                                                                <label for="checkbox2" style="font-weight:bold;" >Tuesday </label>
+                                                            </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr><td>&nbsp;</td><td>
+                                                            <div class="checkbox checkbox-primary">
+                                                                <input id="checkbox3" class="styled RepeatDay" type="checkbox"  order-Number="3"  name="repeat-freq" align="bottom" />
+                                                                <label for="checkbox3" style="font-weight:bold;" >Wednesday </label>
+                                                            </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr><td>&nbsp;</td><td>
+                                                            <div class="checkbox checkbox-primary">
+                                                                <input id="checkbox4" class="styled RepeatDay" type="checkbox"  order-Number="4"  name="repeat-freq" align="bottom" />
+                                                                <label for="checkbox4" style="font-weight:bold;" >Thursday </label>
+                                                            </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr><td>&nbsp;</td><td>
+                                                            <div class="checkbox checkbox-primary">
+                                                                <input id="checkbox5" class="styled RepeatDay" type="checkbox"  order-Number="5"  name="repeat-freq" align="bottom" />
+                                                                <label for="checkbox5" style="font-weight:bold;" >Friday </label>
+                                                            </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr><td>&nbsp;</td><td>
+                                                            <div class="checkbox checkbox-primary">
+                                                                <input id="checkbox6" class="styled RepeatDay" type="checkbox"  order-Number="6"  name="repeat-freq" align="bottom" />
+                                                                <label for="checkbox6" style="font-weight:bold;"  >Saturday </label>
+                                                            </div>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                                
+                                                <div class="modal-footer">
+                                                    <div  style="display:none" ><div id="AccountNameId"></div></div>
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="Repeatfunction();" >Repeat </button>
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="modal fade" id="ConfirmPart" role="dialog">
+                                        <div class="modal-dialog "><!------modal-sm------>
+                                            
+                                            <!-- Modal content-->
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    <h4 class="modal-title" id="modalTitle" ></h4>
+                                                </div>
+                                                <div class="modal-body" id="modalBody" >
+                                                    
+                                                </div>
+                                                <div class="modal-footer">
+                                                    
+                                                    <button id="modalbutton" type="button" class="btn btn-default" data-dismiss="modal"  > <div id="modalbuttonContent" ></div> </button><!---<button type="button" class="btn btn-default" data-dismiss="modal" onclick="ConfirmFunction();" >Yes </button>--->
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    <div class="modal fade" id="CancelPlans" role="dialog">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    <h4 class="modal-title">Cancel Selected Plans</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            Cancel Type :
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <select  class="form-control" id='CancelType'  >
+                                                                <option value="Company Event">Company Event</option> 
+                                                                <option value="Company Holiday">Company Holiday</option>
+                                                                <option value="Personal Leave">Personal Leave</option>
+                                                                <option value="Others">Others</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            Cancel Reason :
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <textarea rows="4" cols="30" id="CancelReason" class="CancelReasonfield"/>
+                                                            <div id="CancelReasonError"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default"  onclick="CancelRecords();" >Confirm</button>
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                    
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                    
+                                </div> <!--- end of panel---> 
+                            </apex:outputPanel>    <!--- end of row--> 
+                            
+                            <div id="AccountTableDiv"> 
+                                
+                                <div id="Searchpart" >
+                                    <div  class="row col-xs-12"  style="padding-top: 1em"  >
+                                        <p style=" background:#2e6da4 " class="SearchpartHeaderCss"> Account</p>
+                                    </div>
+                                    <div  class="row col-xs-12" style="padding-top: 0.2em"  >
+                                        <div id="AccountMeg"></div>
+                                    </div>
+                                    
+                                    <div  class="row col-xs-12" style="padding-top: 0.3em"  >
+                                        Venue Code:&nbsp;&nbsp;<input type="text" id="AccName" name="AccName"  placeholder="Search Code" class="InputBS" />&nbsp;&nbsp;&nbsp;
+                                        Name:&nbsp;&nbsp;<input type="text" id="VenueCode" name="VenueCode" placeholder="Search Name" class="InputBS" />&nbsp;&nbsp;&nbsp;
+                                        Address Name:&nbsp;&nbsp;<input type="text" id="VenueName" name="VenueName" placeholder="Search Address" class="InputBS" />&nbsp;&nbsp;&nbsp;
+                                        
+                                    </div>
+                                    
+                                    <div  class="row col-xs-12" style="padding-top: 1em"  >
+                                        <button type="button" class="bs btn btn-info btn-xs" id="showAll">Show All</button>
+                                        Toogle Column:
+                                        <a class="toggle-vis" data-week="0" data-type="Normal" id="tc1">Venue Code  </a>-
+                                        <a class="toggle-vis"  data-week="1" data-type="Normal" id="tc1">Name  </a>-
+                                        <a class="toggle-vis" data-week="2"  data-type="Normal" id="tc1">Channel </a>-
+                                        <a class="toggle-vis"  data-week="3" data-type="Normal" id="tc1">Address</a>-
+                                        <a class="toggle-vis"  data-week="4" data-type="Normal" id="tc1">Type</a>-
+                                        <a class="toggle-vis" data-week="5" data-type="Normal" id="tc1">Grade</a>-
+                                        
+                                        <a class="toggle-vis"  data-week="1"  data-type="Week" id="tc1">Week 1 </a>-
+                                        <a class="toggle-vis" data-week="2" data-type="Week" id="tc1">Week 2 </a>-
+                                        <a class="toggle-vis" data-week="3" data-type="Week" id="tc1">Week 3</a>-
+                                        <a class="toggle-vis" data-week="4" data-type="Week" id="tc1">Week 4</a>
+                                        <span id="WeekFiveDiv">-<a class="toggle-vis" data-week="5"  data-type="Week"  id="tc1">Week 5</a></span> 
+                                        <span id="WeekSixDiv">-<a class="toggle-vis"  data-week="6"  data-type="Week" id="tc1">Week 6</a></span> 
+                                        
+                                    </div>
+                                </div>
+                                <br/>
+                                <div id="datatableDiv"  class="row col-xs-12" >
+                                    <div id="loadingpart" style="display:none;width: 100vw;"></div>
+                                    <table  id="krtable"  class="hover responsive stripe row-border order-column display compact nowrap" ></table>
+                                </div> <!---style="width: 1200px;"---> 
+                            </div> <!--- end of row---> 
+                        </div>
+                    </div>
+                </div>
+            </apex:outputPanel>
+        </apex:form>
+    </body>
+</apex:page>

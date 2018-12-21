@@ -1,0 +1,249 @@
+<apex:component controller="MMPJ_TOPG_LoadMileStoneController" allowDML="true">
+    <apex:attribute name="theProject" description="The project object" type="MMPJ_TOPG_Project__c" assignTo="{!project}"/>
+
+    <head>
+        <style>
+  #tblProjectFields td.Projectfields{
+                font-weight:bold;
+                text-align:right;
+        }
+  .headerRowMileStone{
+            text-align:center;
+            background-color: #gray !important;
+            color: white;
+        }
+   /*tr.headerRowMileStone th {
+    border-width: 0 0 1px 1px;
+    border-color: #e0e3e5;
+    color: white ;
+    font-size: .9em;
+    font-weight: bold;
+    padding: 5px 2px 4px 5px;
+    }*/
+  .pageBlockCss td {
+        border-width: 1px ;
+        border-style: solid;
+        border-color: rgb(153, 153, 153);
+        background-color:rgb(216, 216, 216);
+    }
+    td.agendafields{
+        font-weight:bold;
+        text-align:right;
+    }
+        </style>
+    </head>
+    <apex:actionStatus id="StatusLoading">
+        <apex:facet name="start">
+            <div class="popupBackground">
+                <div class="popupWindow">
+                    <img src="/img/loading.gif" alt="loading.."/>
+                </div>
+            </div>
+        </apex:facet>
+    </apex:actionStatus>
+    <apex:form >
+        <apex:actionFunction name="SaveMilestones" action="{!LeavingMilestones}" reRender="PBMilestone" oncomplete="changetab(newTab,{!saveComp});" status="StatusLoading">
+        </apex:actionFunction>
+        <apex:actionFunction name="ReloadMilestone" action="{!hideMilesStonePopup}" reRender="PBMilestone,TableMilesStonesSection,tblAgendaFields" status="StatusLoading">
+        </apex:actionFunction>
+        <apex:pageBlock title="" mode="edit" id="PBMilestone">
+            <apex:pageBlockButtons location="top">       
+                <apex:commandButton action="{!saveMilestones}" value=" Save " rerender="PBMilestone"/>
+            </apex:pageBlockButtons>    
+            <apex:pageMessage rendered="{!ShowSaveMessage}" strength="1" severity="confirm" title="Success" detail="The Milestone has been saved successfully!"/>   
+            <table id="tblAgendaFields" width="100%" cellpadding="8" cellspacing="0">
+                <tr>
+                    <td class="agendafields">Project Name:</td>
+                    <td>
+                        <apex:outputField value="{!project.name}"/>
+                    </td>
+                    <td class="agendafields">Start Date :</td>
+                    <td>
+                        <apex:outputField value="{!project.MMPJ_TOPG_StartDate__c}"/>
+                    </td>
+                    <td class="agendafields">
+                        <apex:outputLabel value="End Date :" for="Project_EndDate"/>
+                    </td>
+                    <td>
+                        <apex:outputField id="Project_EndDate" value="{!project.MMPJ_TOPG_EndDate__c}"/>
+                    </td>
+                </tr>
+            </table>
+            <br/>
+            <br/>
+            <apex:outputPanel id="TableMilesStonesSection" > 
+                <apex:actionFunction action="{!ChangeRACI}" reRender="TableMilesStonesSection" name="RACIChanged"/>
+                <apex:variable var="theCounter" value="{!0}"/>
+                <apex:pageBlockTable value="{!listMilesStones }" var="m" id="mileStonesTable" styleClass="headerRowMileStone">
+                    <apex:column width="25%">
+                        <apex:commandLink action="{!MoveUpMilesStones}" rendered="{!theCounter>0}" reRender="TableMilesStonesSection" status="StatusLoading" >
+                            <apex:param name="SelectedMileStone" assignTo="{!SelectedCounter}" value="{!theCounter}"/>
+                            <apex:image value="{!$Resource.MMPJ_TOPG_UPArrow}" alt="Up"/> 
+                        </apex:commandLink>
+
+                        <apex:commandLink value="Edit " style="color:#015ba7" action="{!EditMileStones}" rerender="TableMilesStonesSection" >
+                            <apex:param name="SelectedMileStone" assignTo="{!SelectedCounter}" value="{!theCounter}"/>
+                        </apex:commandLink>
+                        
+                        <apex:commandLink value=" Delete"   style="color:#015ba7" action="{!deletetMileStone}"  rerender="TableMilesStonesSection" immediate="true" >
+                            <!--<apex:param value="{!m.Id}" name="rowToEdit" assignTo="{!editMileStoneId}"/>-->
+                            <apex:param name="SelectedMileStone" assignTo="{!SelectedCounter}" value="{!theCounter}"/>
+                        </apex:commandLink>
+                        <!--{!theCounter}--> 
+
+                        
+                    </apex:column>  
+                    <apex:column headerValue="Milestones Title"  width="30%" >
+                        <table border="0"> 
+                            <tr>
+                                <td align="left">
+                                    <apex:image value="{!$Resource.MMPJ_TOPG_Inofrmative}"  rendered="{!m.MMPJ_TOPG_IsDefault__c==true}" width="20" height="20" title="Transmission of the technical information to the agent"/>
+                                </td>
+                                <td align="left">
+                                    <apex:inputField value="{!m.MMPJ_TOPG_MilestoneTitle__c}"  style="{!IF(SelectedCounter = theCounter,'','display:none;')}" />
+                                </td>
+                                <td align="left">
+                                    <apex:outputField value="{!m.MMPJ_TOPG_MilestoneTitle__c}"   rendered="{!SelectedCounter != theCounter}" />
+                                </td>
+                            </tr>
+                        </table>
+                        <apex:variable var="theCounter" value="{!theCounter+1}"/>
+                    </apex:column>
+                    <apex:column headerValue="Deliverable / Description">
+                        <apex:inputText value="{!m.MMPJ_TOPG_DeliverableDescription__c}"  />
+                    </apex:column> 
+                    <apex:column headerValue="R"> <!--rendered="{!OR(m.MMPJ_TOPG_R__c != null,AND(m.MMPJ_TOPG_A__c == null, m.MMPJ_TOPG_C__c == null , m.MMPJ_TOPG_I__c == null))}" onchange="RACIChanged()" -->
+                        <apex:inputField value="{!m.MMPJ_TOPG_R__c}"  />
+                    </apex:column>
+                    <apex:column headerValue="A"><!-- rendered="{!OR(m.MMPJ_TOPG_A__c != null,AND(m.MMPJ_TOPG_R__c == null, m.MMPJ_TOPG_C__c == null , m.MMPJ_TOPG_I__c == null))}" onchange="RACIChanged()" -->
+                        <apex:inputField value="{!m.MMPJ_TOPG_A__c}" />
+                    </apex:column>
+                    <apex:column headerValue="C"><!--rendered="{!OR(m.MMPJ_TOPG_C__c != null,AND(m.MMPJ_TOPG_R__c == null, m.MMPJ_TOPG_A__c == null , m.MMPJ_TOPG_I__c == null))}" onchange="RACIChanged()"  -->
+                        <apex:inputField value="{!m.MMPJ_TOPG_C__c}" />
+                    </apex:column>
+                    <apex:column headerValue="I"><!-- rendered="{!OR(m.MMPJ_TOPG_I__c != null,AND(m.MMPJ_TOPG_R__c == null, m.MMPJ_TOPG_C__c == null , m.MMPJ_TOPG_A__c == null))}" onchange="RACIChanged()"-->
+                        <apex:inputField value="{!m.MMPJ_TOPG_I__c}" />
+                    </apex:column>
+                    <apex:column headerValue="Date">
+                        <apex:inputField value="{!m.MMPJ_TOPG_Date__c}"/>
+                    </apex:column>
+                    <apex:column headerValue="Remaining Time">
+                        <apex:outputText value="{!m.MMPJ_TOPG_RemainingTime__c}  days left ">     
+                        </apex:outputText>
+                    </apex:column>
+                    <apex:column headerValue="Status">
+                        <apex:inputField value="{!m.MMPJ_TOPG_MMPJ_Status__c}" required="true" />
+                    </apex:column>
+                    <!--<apex:column value="{!m.MMPJ_TOPG_Flag__c}" headerValue="Flag"/>-->
+                    <apex:column headerValue="Flag"> 
+                        <apex:image value="{!IF((m.MMPJ_TOPG_Flag__c=="GreenFlag"), URLFOR($Resource.MMPJ_TOPG_GreenFlag),
+                            IF ((m.MMPJ_TOPG_Flag__c=="RedFlag"), URLFOR($Resource.MMPJ_TOPG_RedFlag),
+                            IF ((m.MMPJ_TOPG_Flag__c=="Greyflag"), URLFOR($Resource.MMPJ_TOPG_YellowFlag),'')))}" width="20" height="20"/>
+                    </apex:column>
+                </apex:pageBlockTable>
+            </apex:outputPanel>           
+        </apex:pageBlock>
+        <table width="100%">
+            <tr align="right">
+                <td>
+                    <apex:commandButton action="{!addMileStone}" value="Add Milestone"  rerender="TableMilesStonesSection"/>
+                </td>
+            </tr>
+        </table>
+        <!-- <apex:outputPanel id="EditMSpopup" style="text-align:initial;">
+        <apex:outputPanel styleClass="popupBackground" layout="block" rendered="{!displayMSPopUp}"/>
+        <apex:outputPanel styleClass="custPopup" style="width:auto;" layout="block" rendered="{!displayMSPopUp}">
+            <div class="PopupTilte" style="color:white;" >MileStone</div>                            
+    <apex:pageBlock >
+        <apex:pageMessages ></apex:pageMessages>
+ 
+        <apex:outputPanel rendered="{!NOT(NewMileStone)}" style="text-align:left;">
+            <table id="tblEditMileStone" width="100%" colspan="0" cellpadding="3" border="0">
+                <tr>
+                    <td>
+                    <Strong>
+                    <label class="fieldnameStyle">{!$ObjectType.MMPJ_TOPG_ProjectMilestone__c.fields.MMPJ_TOPG_MilestoneTitle__c.label} :</label>
+                    </Strong>
+                    </td>
+                    <td colspan="2">
+                        <apex:inputField required="true" id="mileStoneTitle" value="{!MilestonePopup.MMPJ_TOPG_MilestoneTitle__c}" />
+                    </td>
+                </tr>
+                 <tr>
+                    <td>
+                    <Strong>
+                    <label class="fieldnameStyle">{!$ObjectType.MMPJ_TOPG_ProjectMilestone__c.fields.MMPJ_TOPG_DeliverableDescription__c.label} :</label>
+                    </Strong>
+                    </td>
+                    <td colspan="2">
+                        <apex:inputTextarea id="mileStoneDesc" value="{!MilestonePopup.MMPJ_TOPG_DeliverableDescription__c}" style="margin: 0px; height: 113px; width: 309px;"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    <Strong>
+                    <label class="fieldnameStyle">{!$ObjectType.MMPJ_TOPG_ProjectMilestone__c.fields.MMPJ_TOPG_Date__c.label} :</label>
+                    </Strong>
+                    </td>
+                    <td>
+                        <apex:inputField id="mileStoneDate" value="{!MilestonePopup.MMPJ_TOPG_Date__c}" />
+                    </td>
+                    <td>
+                    <Strong>
+                    <label class="fieldnameStyle">{!$ObjectType.MMPJ_TOPG_ProjectMilestone__c.fields.MMPJ_TOPG_MMPJ_Status__c.label} :</label>
+                    </Strong>
+                    </td>
+                    <td>
+                        <apex:inputField id="mileStoneStatus" value="{!MilestonePopup.MMPJ_TOPG_MMPJ_Status__c}" required="true"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    <Strong>
+                    <label class="fieldnameStyle">{!$ObjectType.MMPJ_TOPG_ProjectMilestone__c.fields.MMPJ_TOPG_A__c.label} :</label>
+                    </Strong>
+                    </td>
+                    <td>
+                        <apex:inputField id="mileStoneA" value="{!MilestonePopup.MMPJ_TOPG_A__c}" />
+                    </td>
+                    <td>
+                    <Strong>
+                    <label class="fieldnameStyle">{!$ObjectType.MMPJ_TOPG_ProjectMilestone__c.fields.MMPJ_TOPG_R__c.label} :</label>
+                    </Strong>
+                    </td>
+                    
+                    <td>
+                        <apex:inputField id="mileStoneR" value="{!MilestonePopup.MMPJ_TOPG_R__c}" />
+                    </td>
+                    </tr>
+                    <tr>
+                    <td >
+                    <Strong>
+                    <label class="fieldnameStyle">{!$ObjectType.MMPJ_TOPG_ProjectMilestone__c.fields.MMPJ_TOPG_C__c.label} :</label>
+                    </Strong>
+                    </td>
+                    <td>
+                        <apex:inputField id="mileStoneC" value="{!MilestonePopup.MMPJ_TOPG_C__c}" />
+                    </td>
+                     <td>
+                     <Strong>
+                     <label class="fieldnameStyle">{!$ObjectType.MMPJ_TOPG_ProjectMilestone__c.fields.MMPJ_TOPG_I__c.label} :</label>
+                     </Strong>
+                     </td>
+                    <td>
+                        <apex:inputField id="mileStoneI" value="{!MilestonePopup.MMPJ_TOPG_I__c}" />
+                    </td>
+                </tr>
+            </table> 
+        </apex:outputPanel>
+ 
+    <apex:pageBlockButtons location="Bottom" style="text-align: -webkit-left;">
+        <apex:commandButton value="Save" status="width:100px" action="{!SaveEditMileStone}" reRender="EditMSpopup,TableMilesStonesSection" rendered="{!NOT(NewMileStone)}"/>
+        <apex:commandButton value="Cancel" action="{!hideMilesStonePopup}" status="width:100px" reRender="EditMSpopup" immediate="true"/>    
+    </apex:pageBlockButtons>
+</apex:pageBlock>
+</apex:outputPanel>
+</apex:outputPanel> -->
+
+    </apex:form>
+</apex:component>

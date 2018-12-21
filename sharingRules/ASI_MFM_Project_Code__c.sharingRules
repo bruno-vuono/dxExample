@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>ASI_MFM_KR_Project_Code_Sharing_Rule</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>ASI MFM KR Project Code Sharing Rule</description>
+        <label>ASI MFM KR Project Code Sharing Rule</label>
+        <sharedTo>
+            <group>ASI_KOR_All_Users</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>KR Project Code</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+</SharingRules>

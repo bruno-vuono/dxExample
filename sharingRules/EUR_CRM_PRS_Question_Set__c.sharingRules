@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>EUR_BE_Share_All_Off_Trade_PRS_Segmentation_Aspect_Read_only</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>EUR BE Share All Off Trade - PRS Segmentation Aspect Read only</label>
+        <sharedTo>
+            <roleAndSubordinates>EUR_BE_Sales_Director_Off_Trade</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>EUR BE PRS Question Set - Brand Building Potential</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>EUR_BE_Share_All_On_trade_PRS_Question_Set_Read_Only</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>EUR BE Share All On trade PRS Question Set Read Only</label>
+        <sharedTo>
+            <roleAndSubordinates>EUR_BE_Sales_Director_Horeca_Belux</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>EUR BE PRS Question Set - Image Level,EUR BE PRS Question Set - Volume Potential</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>EUR_BE_Share_all_PRS_Question_Set_RW</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>EUR BE Share all PRS Question Set Read&amp;Write</label>
+        <sharedTo>
+            <group>EUR_BE_Admin_Group</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>EUR BE PRS Question Set - Brand Building Potential,EUR BE PRS Question Set - Image Level,EUR BE PRS Question Set - Volume Potential</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>EUR_BG_Share_All_PRS_Question_Set_RW</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>EUR BG Share All PRS Question Set RW</label>
+        <sharedTo>
+            <roleAndSubordinates>EUR_BG</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>EUR BG PRS Question Set - Business Potential,EUR BG PRS Question Set - Brand Building Potential</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+</SharingRules>

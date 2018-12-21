@@ -1,0 +1,3 @@
+<apex:page sidebar="false" showHeader="false" standardStyleSheets="false" standardController="ESN_MB_NodePage__c" action="{!URLFOR('/apex/ESN_MB_NOP_HOMEPAGE', null, null)}">
+
+</apex:page>

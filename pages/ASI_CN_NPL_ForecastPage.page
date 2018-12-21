@@ -1,0 +1,488 @@
+<apex:page standardController="ASI_CN_NPL_NPL_Request__c" extensions="ASI_CN_NPL_ForecastController">
+    <head>
+        <style type="text/css">
+            .table {
+            text-align: center;
+            }
+            .sectionHeader {
+            font-family: Arial,Helvetica,sans-serif;
+            font-size:12px;
+            font-weight: bold;
+            color: #FFFFFF;
+            background-color: #99CCFF;
+            border-bottom: 1px solid #CCCCCC;
+            border-left: 1px solid #CCCCCC;
+            border-right: 1px solid #CCCCCC;
+            border-top: 1px solid #CCCCCC;
+            }
+            .tableHeader {
+            font-family: Arial,Helvetica,sans-serif;
+            font-size:12px;
+            font-weight: bold;
+            color: white;
+            background-color: #A4A4A4;
+            border-bottom: 1px solid #CCCCCC;
+            border-left: 1px solid #CCCCCC;
+            border-right: 1px solid #CCCCCC;
+            border-top: 1px solid #CCCCCC;
+            }
+            .tableLabel {
+            font-family: Arial,Helvetica,sans-serif;
+            font-size:11px;
+            font-weight: bold;
+            border-bottom: 1px solid #CCCCCC;
+            border-left: 1px solid #CCCCCC;
+            border-right: 1px solid #CCCCCC;
+            border-top: 1px solid #CCCCCC;
+            }
+            /* Here defining the content style */
+            .tableContent {
+            font-family: Arial,Helvetica,sans-serif;
+            font-size:11px;
+            border-bottom: 1px solid #CCCCCC;
+            border-left: 1px solid #CCCCCC;
+            border-right: 1px solid #CCCCCC;
+            border-top: 1px solid #CCCCCC;
+            }
+            .tableTotal {
+            font-family: Arial,Helvetica,sans-serif;
+            font-size:11px;
+            font-weight: bold;
+            border-bottom: 1px solid #CCCCCC;
+            border-left: 1px solid #CCCCCC;
+            border-right: 1px solid #CCCCCC;
+            border-top: 1px solid #CCCCCC;
+            }
+            .rowHeader {
+            font-family: Arial,Helvetica,sans-serif;
+            font-size:11px;
+            font-weight: bold;
+            border-bottom: 1px solid #CCCCCC;
+            border-left: 1px solid #CCCCCC;
+            border-right: 1px solid #CCCCCC;
+            border-top: 1px solid #CCCCCC;
+            }
+        </style>
+    </head>
+    <apex:form id="wholeForm">
+        <center>    
+            <table id="cssTable">
+                <tr><td>
+                    <apex:commandButton action="{!saveForecasts}" value="Save" id="saveButton"/>
+                    <apex:commandButton action="{!cancel}" value="Cancel" id="cancelButton"/>
+                    </td></tr>
+            </table>
+        </center>
+        <apex:pageBlock mode="detail">
+            <center>
+                <table width="100%" border="1" cellspacing="0" cellpadding="5" class="table">
+                    <tr class="sectionHeader">
+                        <td class="sectionHeader" colspan="7">Forecast Diagram</td>
+                    </tr>
+                    <tr>
+                        <td colspan="7"><apex:inputField value="{!nplHeader.ASI_CN_NPL_Sales_Vol_Forecast_Picture__c}" label="" rendered="{!isEditable}"/>
+                            <apex:outputText value="{0}" rendered="{!NOT(isEditable)}" escape="false">
+                                <apex:param value="{!nplHeader.ASI_CN_NPL_Sales_Vol_Forecast_Picture__c}"/>
+                            </apex:outputText></td>
+                    </tr>
+                </table>
+            </center>
+        </apex:pageBlock>
+        <apex:pageBlock mode="detail">
+            <center>
+                <table width="100%" border="1" cellspacing="0" cellpadding="5" class="table">
+                    
+                    <tr class="sectionHeader">
+                        <td class="sectionHeader" colspan="8">Sales Volume Forecast (9L case)</td>
+                    </tr>
+                    <tr class="tableHeader">
+                        <td class="tableContent"></td>
+                        <td class="tableContent"><apex:outputText value="{!SalesVolDomM1}"></apex:outputText></td>
+                        <td class="tableContent"><apex:outputText value="{!SalesVolDomM2}"></apex:outputText></td>
+                        <td class="tableContent"><apex:outputText value="{!SalesVolDomM3}"></apex:outputText></td>
+                        <td class="tableContent"><apex:outputText value="{!SalesVolDomM4}"></apex:outputText></td>
+                        <td class="tableContent"><apex:outputText value="{!SalesVolDomM5}"></apex:outputText></td>
+                        <td class="tableContent"><apex:outputText value="{!SalesVolDomM6}"></apex:outputText></td>
+                        <td class="tableContent">Sub-Total</td>
+                    </tr>
+                    <tr>
+                        <td class="tableContent">South</td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_South.ASI_CN_NPL_M1__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_South.ASI_CN_NPL_M1__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_South.ASI_CN_NPL_M2__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_South.ASI_CN_NPL_M2__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_South.ASI_CN_NPL_M3__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_South.ASI_CN_NPL_M3__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_South.ASI_CN_NPL_M4__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_South.ASI_CN_NPL_M4__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_South.ASI_CN_NPL_M5__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_South.ASI_CN_NPL_M5__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_South.ASI_CN_NPL_M6__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_South.ASI_CN_NPL_M6__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="totalRow tableContent"><apex:outputText value="{0,number,#,###,###,##0.00}"><apex:param value="{!if(SalesVolForecast_South.ASI_CN_NPL_M1__c != NULL, SalesVolForecast_South.ASI_CN_NPL_M1__c, 0) + if(SalesVolForecast_South.ASI_CN_NPL_M2__c != NULL, SalesVolForecast_South.ASI_CN_NPL_M2__c, 0) + if(SalesVolForecast_South.ASI_CN_NPL_M3__c != NULL, SalesVolForecast_South.ASI_CN_NPL_M3__c, 0) + if(SalesVolForecast_South.ASI_CN_NPL_M4__c != NULL, SalesVolForecast_South.ASI_CN_NPL_M4__c, 0) + if(SalesVolForecast_South.ASI_CN_NPL_M5__c != NULL, SalesVolForecast_South.ASI_CN_NPL_M5__c, 0) + if(SalesVolForecast_South.ASI_CN_NPL_M6__c != NULL, SalesVolForecast_South.ASI_CN_NPL_M6__c, 0)}"/></apex:outputText></td>
+                    </tr>
+                    <tr>
+                        <td class="tableContent">East</td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_East.ASI_CN_NPL_M1__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_East.ASI_CN_NPL_M1__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_East.ASI_CN_NPL_M2__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_East.ASI_CN_NPL_M2__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_East.ASI_CN_NPL_M3__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_East.ASI_CN_NPL_M3__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_East.ASI_CN_NPL_M4__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_East.ASI_CN_NPL_M4__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_East.ASI_CN_NPL_M5__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_East.ASI_CN_NPL_M5__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_East.ASI_CN_NPL_M6__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_East.ASI_CN_NPL_M6__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="totalRow tableContent"><apex:outputText value="{0,number,#,###,###,##0.00}"><apex:param value="{!if(SalesVolForecast_East.ASI_CN_NPL_M1__c != NULL, SalesVolForecast_East.ASI_CN_NPL_M1__c, 0) + if(SalesVolForecast_East.ASI_CN_NPL_M2__c != NULL, SalesVolForecast_East.ASI_CN_NPL_M2__c, 0) + if(SalesVolForecast_East.ASI_CN_NPL_M3__c != NULL, SalesVolForecast_East.ASI_CN_NPL_M3__c, 0) + if(SalesVolForecast_East.ASI_CN_NPL_M4__c != NULL, SalesVolForecast_East.ASI_CN_NPL_M4__c, 0) + if(SalesVolForecast_East.ASI_CN_NPL_M5__c != NULL, SalesVolForecast_East.ASI_CN_NPL_M5__c, 0) + if(SalesVolForecast_East.ASI_CN_NPL_M6__c != NULL, SalesVolForecast_East.ASI_CN_NPL_M6__c, 0)}"/></apex:outputText></td>
+                    </tr>
+                    <tr>
+                        <td class="tableContent">Central</td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_Central.ASI_CN_NPL_M1__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_Central.ASI_CN_NPL_M1__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_Central.ASI_CN_NPL_M2__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_Central.ASI_CN_NPL_M2__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_Central.ASI_CN_NPL_M3__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_Central.ASI_CN_NPL_M3__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_Central.ASI_CN_NPL_M4__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_Central.ASI_CN_NPL_M4__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_Central.ASI_CN_NPL_M5__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_Central.ASI_CN_NPL_M5__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_Central.ASI_CN_NPL_M6__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_Central.ASI_CN_NPL_M6__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="totalRow tableContent"><apex:outputText value="{0,number,#,###,###,##0.00}"><apex:param value="{!if(SalesVolForecast_Central.ASI_CN_NPL_M1__c != NULL, SalesVolForecast_Central.ASI_CN_NPL_M1__c, 0) + if(SalesVolForecast_Central.ASI_CN_NPL_M2__c != NULL, SalesVolForecast_Central.ASI_CN_NPL_M2__c, 0) + if(SalesVolForecast_Central.ASI_CN_NPL_M3__c != NULL, SalesVolForecast_Central.ASI_CN_NPL_M3__c, 0) + if(SalesVolForecast_Central.ASI_CN_NPL_M4__c != NULL, SalesVolForecast_Central.ASI_CN_NPL_M4__c, 0) + if(SalesVolForecast_Central.ASI_CN_NPL_M5__c != NULL, SalesVolForecast_Central.ASI_CN_NPL_M5__c, 0) + if(SalesVolForecast_Central.ASI_CN_NPL_M6__c != NULL, SalesVolForecast_Central.ASI_CN_NPL_M6__c, 0)}"/></apex:outputText></td>
+                    </tr>
+                    <tr>
+                        <td class="tableContent">North</td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_North.ASI_CN_NPL_M1__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_North.ASI_CN_NPL_M1__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_North.ASI_CN_NPL_M2__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_North.ASI_CN_NPL_M2__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_North.ASI_CN_NPL_M3__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_North.ASI_CN_NPL_M3__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_North.ASI_CN_NPL_M4__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_North.ASI_CN_NPL_M4__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_North.ASI_CN_NPL_M5__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_North.ASI_CN_NPL_M5__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_North.ASI_CN_NPL_M6__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_North.ASI_CN_NPL_M6__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="totalRow tableContent"><apex:outputText value="{0,number,#,###,###,##0.00}"><apex:param value="{!if(SalesVolForecast_North.ASI_CN_NPL_M1__c != NULL, SalesVolForecast_North.ASI_CN_NPL_M1__c, 0) + if(SalesVolForecast_North.ASI_CN_NPL_M2__c != NULL, SalesVolForecast_North.ASI_CN_NPL_M2__c, 0) + if(SalesVolForecast_North.ASI_CN_NPL_M3__c != NULL, SalesVolForecast_North.ASI_CN_NPL_M3__c, 0) + if(SalesVolForecast_North.ASI_CN_NPL_M4__c != NULL, SalesVolForecast_North.ASI_CN_NPL_M4__c, 0) + if(SalesVolForecast_North.ASI_CN_NPL_M5__c != NULL, SalesVolForecast_North.ASI_CN_NPL_M5__c, 0) + if(SalesVolForecast_North.ASI_CN_NPL_M6__c != NULL, SalesVolForecast_North.ASI_CN_NPL_M6__c, 0)}"/></apex:outputText></td>
+                    </tr>
+                    <tr>
+                        <td class="tableContent">North West</td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_NorthWest.ASI_CN_NPL_M1__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_NorthWest.ASI_CN_NPL_M1__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_NorthWest.ASI_CN_NPL_M2__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_NorthWest.ASI_CN_NPL_M2__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_NorthWest.ASI_CN_NPL_M3__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_NorthWest.ASI_CN_NPL_M3__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_NorthWest.ASI_CN_NPL_M4__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_NorthWest.ASI_CN_NPL_M4__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_NorthWest.ASI_CN_NPL_M5__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_NorthWest.ASI_CN_NPL_M5__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_NorthWest.ASI_CN_NPL_M6__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_NorthWest.ASI_CN_NPL_M6__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="totalRow tableContent"><apex:outputText value="{0,number,#,###,###,##0.00}"><apex:param value="{!if(SalesVolForecast_NorthWest.ASI_CN_NPL_M1__c != NULL, SalesVolForecast_NorthWest.ASI_CN_NPL_M1__c, 0) + if(SalesVolForecast_NorthWest.ASI_CN_NPL_M2__c != NULL, SalesVolForecast_NorthWest.ASI_CN_NPL_M2__c, 0) + if(SalesVolForecast_NorthWest.ASI_CN_NPL_M3__c != NULL, SalesVolForecast_NorthWest.ASI_CN_NPL_M3__c, 0) + if(SalesVolForecast_NorthWest.ASI_CN_NPL_M4__c != NULL, SalesVolForecast_NorthWest.ASI_CN_NPL_M4__c, 0) + if(SalesVolForecast_NorthWest.ASI_CN_NPL_M5__c != NULL, SalesVolForecast_NorthWest.ASI_CN_NPL_M5__c, 0) + if(SalesVolForecast_NorthWest.ASI_CN_NPL_M6__c != NULL, SalesVolForecast_NorthWest.ASI_CN_NPL_M6__c, 0)}"/></apex:outputText></td>
+                    </tr>
+                    <tr>
+                        <td class="tableContent">South West</td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_SouthWest.ASI_CN_NPL_M1__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_SouthWest.ASI_CN_NPL_M1__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_SouthWest.ASI_CN_NPL_M2__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_SouthWest.ASI_CN_NPL_M2__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_SouthWest.ASI_CN_NPL_M3__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_SouthWest.ASI_CN_NPL_M3__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_SouthWest.ASI_CN_NPL_M4__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_SouthWest.ASI_CN_NPL_M4__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_SouthWest.ASI_CN_NPL_M5__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_SouthWest.ASI_CN_NPL_M5__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_SouthWest.ASI_CN_NPL_M6__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_SouthWest.ASI_CN_NPL_M6__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="totalRow tableContent"><apex:outputText value="{0,number,#,###,###,##0.00}"><apex:param value="{!if(SalesVolForecast_SouthWest.ASI_CN_NPL_M1__c != NULL, SalesVolForecast_SouthWest.ASI_CN_NPL_M1__c, 0) + if(SalesVolForecast_SouthWest.ASI_CN_NPL_M2__c != NULL, SalesVolForecast_SouthWest.ASI_CN_NPL_M2__c, 0) + if(SalesVolForecast_SouthWest.ASI_CN_NPL_M3__c != NULL, SalesVolForecast_SouthWest.ASI_CN_NPL_M3__c, 0) + if(SalesVolForecast_SouthWest.ASI_CN_NPL_M4__c != NULL, SalesVolForecast_SouthWest.ASI_CN_NPL_M4__c, 0) + if(SalesVolForecast_SouthWest.ASI_CN_NPL_M5__c != NULL, SalesVolForecast_SouthWest.ASI_CN_NPL_M5__c, 0) + if(SalesVolForecast_SouthWest.ASI_CN_NPL_M6__c != NULL, SalesVolForecast_SouthWest.ASI_CN_NPL_M6__c, 0)}"/></apex:outputText></td>
+                    </tr>
+                    <tr>
+                        <td class="tableContent">Sub-Total</td>
+                        <td class="tableContent"><apex:outputText value="{0,number,#,###,###,##0.00}"><apex:param value="{!SalesVolM1DomSubTotal }"/></apex:outputText></td>
+                        <td class="tableContent"><apex:outputText value="{0,number,#,###,###,##0.00}"><apex:param value="{!SalesVolM2DomSubTotal }"/></apex:outputText></td>
+                        <td class="tableContent"><apex:outputText value="{0,number,#,###,###,##0.00}"><apex:param value="{!SalesVolM3DomSubTotal }"/></apex:outputText></td>
+                        <td class="tableContent"><apex:outputText value="{0,number,#,###,###,##0.00}"><apex:param value="{!SalesVolM4DomSubTotal }"/></apex:outputText></td>
+                        <td class="tableContent"><apex:outputText value="{0,number,#,###,###,##0.00}"><apex:param value="{!SalesVolM5DomSubTotal }"/></apex:outputText></td>
+                        <td class="tableContent"><apex:outputText value="{0,number,#,###,###,##0.00}"><apex:param value="{!SalesVolM6DomSubTotal }"/></apex:outputText></td>
+                        <td class="totalRow tableContent"><apex:outputText value="{0,number,#,###,###,##0.00}"><apex:param value="{!SalesVolM1DomSubTotal + SalesVolM2DomSubTotal + SalesVolM3DomSubTotal + SalesVolM4DomSubTotal + SalesVolM5DomSubTotal + SalesVolM6DomSubTotal}"/></apex:outputText></td>
+                    </tr>
+                    <tr class="tableHeader">
+                        <td class="tableContent"></td>
+                        <td class="tableContent"><apex:outputText value="{!SalesVolMMM1}"></apex:outputText></td>
+                        <td class="tableContent"><apex:outputText value="{!SalesVolMMM2}"></apex:outputText></td>
+                        <td class="tableContent"><apex:outputText value="{!SalesVolMMM3}"></apex:outputText></td>
+                        <td class="tableContent"><apex:outputText value="{!SalesVolMMM4}"></apex:outputText></td>
+                        <td class="tableContent"><apex:outputText value="{!SalesVolMMM5}"></apex:outputText></td>
+                        <td class="tableContent"><apex:outputText value="{!SalesVolMMM6}"></apex:outputText></td>
+                        <td class="tableContent">Sub-Total</td>
+                    </tr>
+                    <tr>
+                        <td class="tableContent">Macau</td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_Macau.ASI_CN_NPL_M1__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_Macau.ASI_CN_NPL_M1__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_Macau.ASI_CN_NPL_M2__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_Macau.ASI_CN_NPL_M2__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_Macau.ASI_CN_NPL_M3__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_Macau.ASI_CN_NPL_M3__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_Macau.ASI_CN_NPL_M4__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_Macau.ASI_CN_NPL_M4__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_Macau.ASI_CN_NPL_M5__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_Macau.ASI_CN_NPL_M5__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_Macau.ASI_CN_NPL_M6__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_Macau.ASI_CN_NPL_M6__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="totalRow tableContent"><apex:outputText value="{0,number,#,###,###,##0.00}"><apex:param value="{!if(SalesVolForecast_Macau.ASI_CN_NPL_M1__c != NULL, SalesVolForecast_Macau.ASI_CN_NPL_M1__c, 0) + if(SalesVolForecast_Macau.ASI_CN_NPL_M2__c != NULL, SalesVolForecast_Macau.ASI_CN_NPL_M2__c, 0) + if(SalesVolForecast_Macau.ASI_CN_NPL_M3__c != NULL, SalesVolForecast_Macau.ASI_CN_NPL_M3__c, 0) + if(SalesVolForecast_Macau.ASI_CN_NPL_M4__c != NULL, SalesVolForecast_Macau.ASI_CN_NPL_M4__c, 0) + if(SalesVolForecast_Macau.ASI_CN_NPL_M5__c != NULL, SalesVolForecast_Macau.ASI_CN_NPL_M5__c, 0) + if(SalesVolForecast_Macau.ASI_CN_NPL_M6__c != NULL, SalesVolForecast_Macau.ASI_CN_NPL_M6__c, 0)}"/></apex:outputText></td>
+                    </tr>
+                    <tr class="tableHeader">
+                        <td class="tableContent"></td>
+                        <td class="tableContent"><apex:outputText value="{!SalesVolMongo1}"></apex:outputText></td>
+                        <td class="tableContent"><apex:outputText value="{!SalesVolMongo2}"></apex:outputText></td>
+                        <td class="tableContent"><apex:outputText value="{!SalesVolMongo3}"></apex:outputText></td>
+                        <td class="tableContent"><apex:outputText value="{!SalesVolMongo4}"></apex:outputText></td>
+                        <td class="tableContent"><apex:outputText value="{!SalesVolMongo5}"></apex:outputText></td>
+                        <td class="tableContent"><apex:outputText value="{!SalesVolMongo6}"></apex:outputText></td>
+                        <td class="tableContent">Sub-Total</td>
+                    </tr>
+                    <tr>
+                        <td class="tableContent">Mongolia</td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_Mongolia.ASI_CN_NPL_M1__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_Mongolia.ASI_CN_NPL_M1__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_Mongolia.ASI_CN_NPL_M2__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_Mongolia.ASI_CN_NPL_M2__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_Mongolia.ASI_CN_NPL_M3__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_Mongolia.ASI_CN_NPL_M3__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_Mongolia.ASI_CN_NPL_M4__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_Mongolia.ASI_CN_NPL_M4__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_Mongolia.ASI_CN_NPL_M5__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_Mongolia.ASI_CN_NPL_M5__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_Mongolia.ASI_CN_NPL_M6__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_Mongolia.ASI_CN_NPL_M6__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="totalRow tableContent"><apex:outputText value="{0,number,#,###,###,##0.00}"><apex:param value="{!if(SalesVolForecast_Mongolia.ASI_CN_NPL_M1__c != NULL, SalesVolForecast_Mongolia.ASI_CN_NPL_M1__c, 0) + if(SalesVolForecast_Mongolia.ASI_CN_NPL_M2__c != NULL, SalesVolForecast_Mongolia.ASI_CN_NPL_M2__c, 0) + if(SalesVolForecast_Mongolia.ASI_CN_NPL_M3__c != NULL, SalesVolForecast_Mongolia.ASI_CN_NPL_M3__c, 0) + if(SalesVolForecast_Mongolia.ASI_CN_NPL_M4__c != NULL, SalesVolForecast_Mongolia.ASI_CN_NPL_M4__c, 0) + if(SalesVolForecast_Mongolia.ASI_CN_NPL_M5__c != NULL, SalesVolForecast_Mongolia.ASI_CN_NPL_M5__c, 0) + if(SalesVolForecast_Mongolia.ASI_CN_NPL_M6__c != NULL, SalesVolForecast_Mongolia.ASI_CN_NPL_M6__c, 0)}"/></apex:outputText></td>
+                    </tr>
+                    <tr>
+                        <td class="tableContent">Sub-Total</td>
+                        <td class="tableContent"><apex:outputText value="{0,number,#,###,###,##0.00}"><apex:param value="{!SalesVolM1MMSubTotal }"/></apex:outputText></td>
+                        <td class="tableContent"><apex:outputText value="{0,number,#,###,###,##0.00}"><apex:param value="{!SalesVolM2MMSubTotal }"/></apex:outputText></td>
+                        <td class="tableContent"><apex:outputText value="{0,number,#,###,###,##0.00}"><apex:param value="{!SalesVolM3MMSubTotal }"/></apex:outputText></td>
+                        <td class="tableContent"><apex:outputText value="{0,number,#,###,###,##0.00}"><apex:param value="{!SalesVolM4MMSubTotal }"/></apex:outputText></td>
+                        <td class="tableContent"><apex:outputText value="{0,number,#,###,###,##0.00}"><apex:param value="{!SalesVolM5MMSubTotal }"/></apex:outputText></td>
+                        <td class="tableContent"><apex:outputText value="{0,number,#,###,###,##0.00}"><apex:param value="{!SalesVolM6MMSubTotal }"/></apex:outputText></td>
+                        <td class="totalRow tableContent"><apex:outputText value="{0,number,#,###,###,##0.00}"><apex:param value="{!SalesVolM1MMSubTotal + SalesVolM2MMSubTotal + SalesVolM3MMSubTotal + SalesVolM4MMSubTotal + SalesVolM5MMSubTotal + SalesVolM6MMSubTotal}"/></apex:outputText></td>
+                    </tr>
+                    <tr class="tableHeader">
+                        <td class="tableContent"></td>
+                        <td class="tableContent"><apex:outputText value="{!SalesVolDomM1}"></apex:outputText></td>
+                        <td class="tableContent"><apex:outputText value="{!SalesVolDomM2}"></apex:outputText></td>
+                        <td class="tableContent"><apex:outputText value="{!SalesVolDomM3}"></apex:outputText></td>
+                        <td class="tableContent"><apex:outputText value="{!SalesVolDomM4}"></apex:outputText></td>
+                        <td class="tableContent"><apex:outputText value="{!SalesVolDomM5}"></apex:outputText></td>
+                        <td class="tableContent"><apex:outputText value="{!SalesVolDomM6}"></apex:outputText></td>
+                        <td class="tableContent">Total</td>
+                    </tr>
+                    <tr>
+                        <td class="tableContent">STK3</td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_STK3.ASI_CN_NPL_M1__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_STK3.ASI_CN_NPL_M1__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_STK3.ASI_CN_NPL_M2__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_STK3.ASI_CN_NPL_M2__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_STK3.ASI_CN_NPL_M3__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_STK3.ASI_CN_NPL_M3__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_STK3.ASI_CN_NPL_M4__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_STK3.ASI_CN_NPL_M4__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_STK3.ASI_CN_NPL_M5__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_STK3.ASI_CN_NPL_M5__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_STK3.ASI_CN_NPL_M6__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_STK3.ASI_CN_NPL_M6__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="totalRow tableContent"><apex:outputText value="{0,number,#,###,###,##0.00}"><apex:param value="{!if(SalesVolForecast_STK3.ASI_CN_NPL_M1__c != NULL, SalesVolForecast_STK3.ASI_CN_NPL_M1__c, 0) + if(SalesVolForecast_STK3.ASI_CN_NPL_M2__c != NULL, SalesVolForecast_STK3.ASI_CN_NPL_M2__c, 0) + if(SalesVolForecast_STK3.ASI_CN_NPL_M3__c != NULL, SalesVolForecast_STK3.ASI_CN_NPL_M3__c, 0) + if(SalesVolForecast_STK3.ASI_CN_NPL_M4__c != NULL, SalesVolForecast_STK3.ASI_CN_NPL_M4__c, 0) + if(SalesVolForecast_STK3.ASI_CN_NPL_M5__c != NULL, SalesVolForecast_STK3.ASI_CN_NPL_M5__c, 0) + if(SalesVolForecast_STK3.ASI_CN_NPL_M6__c != NULL, SalesVolForecast_STK3.ASI_CN_NPL_M6__c, 0)}"/></apex:outputText></td>
+                    </tr>
+                    <tr>
+                        <td class="tableContent">HQ</td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_HQ.ASI_CN_NPL_M1__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_HQ.ASI_CN_NPL_M1__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_HQ.ASI_CN_NPL_M2__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_HQ.ASI_CN_NPL_M2__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_HQ.ASI_CN_NPL_M3__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_HQ.ASI_CN_NPL_M3__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_HQ.ASI_CN_NPL_M4__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_HQ.ASI_CN_NPL_M4__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_HQ.ASI_CN_NPL_M5__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_HQ.ASI_CN_NPL_M5__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!SalesVolForecast_HQ.ASI_CN_NPL_M6__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!SalesVolForecast_HQ.ASI_CN_NPL_M6__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="totalRow tableContent"><apex:outputText value="{0,number,#,###,###,##0.00}"><apex:param value="{!if(SalesVolForecast_HQ.ASI_CN_NPL_M1__c != NULL, SalesVolForecast_HQ.ASI_CN_NPL_M1__c, 0) + if(SalesVolForecast_HQ.ASI_CN_NPL_M2__c != NULL, SalesVolForecast_HQ.ASI_CN_NPL_M2__c, 0) + if(SalesVolForecast_HQ.ASI_CN_NPL_M3__c != NULL, SalesVolForecast_HQ.ASI_CN_NPL_M3__c, 0) + if(SalesVolForecast_HQ.ASI_CN_NPL_M4__c != NULL, SalesVolForecast_HQ.ASI_CN_NPL_M4__c, 0) + if(SalesVolForecast_HQ.ASI_CN_NPL_M5__c != NULL, SalesVolForecast_HQ.ASI_CN_NPL_M5__c, 0) + if(SalesVolForecast_HQ.ASI_CN_NPL_M6__c != NULL, SalesVolForecast_HQ.ASI_CN_NPL_M6__c, 0)}"/></apex:outputText></td>
+                    </tr>
+                    <tr>
+                        <td class="tableContent">Sub-Total</td>
+                        <td class="tableContent"><apex:outputText value="{0,number,#,###,###,##0.00}"><apex:param value="{!SalesVolM1STK3DomSubTotal }"/></apex:outputText></td>
+                        <td class="tableContent"><apex:outputText value="{0,number,#,###,###,##0.00}"><apex:param value="{!SalesVolM2STK3DomSubTotal }"/></apex:outputText></td>
+                        <td class="tableContent"><apex:outputText value="{0,number,#,###,###,##0.00}"><apex:param value="{!SalesVolM3STK3DomSubTotal }"/></apex:outputText></td>
+                        <td class="tableContent"><apex:outputText value="{0,number,#,###,###,##0.00}"><apex:param value="{!SalesVolM4STK3DomSubTotal }"/></apex:outputText></td>
+                        <td class="tableContent"><apex:outputText value="{0,number,#,###,###,##0.00}"><apex:param value="{!SalesVolM5STK3DomSubTotal }"/></apex:outputText></td>
+                        <td class="tableContent"><apex:outputText value="{0,number,#,###,###,##0.00}"><apex:param value="{!SalesVolM6STK3DomSubTotal }"/></apex:outputText></td>
+                        <td class="totalRow tableContent"><apex:outputText value="{0,number,#,###,###,##0.00}"><apex:param value="{!SalesVolM1STK3DomSubTotal + SalesVolM2STK3DomSubTotal + SalesVolM3STK3DomSubTotal + SalesVolM4STK3DomSubTotal + SalesVolM5STK3DomSubTotal + SalesVolM6STK3DomSubTotal}"/></apex:outputText></td>
+                    </tr>
+                    <tr>
+                        <td class="tableContent">Total</td>
+                        <td class="tableContent"><apex:outputText value="{0,number,#,###,###,##0.00}"><apex:param value="{!SalesVolM1Total }"/></apex:outputText></td>
+                        <td class="tableContent"><apex:outputText value="{0,number,#,###,###,##0.00}"><apex:param value="{!SalesVolM2Total }"/></apex:outputText></td>
+                        <td class="tableContent"><apex:outputText value="{0,number,#,###,###,##0.00}"><apex:param value="{!SalesVolM3Total }"/></apex:outputText></td>
+                        <td class="tableContent"><apex:outputText value="{0,number,#,###,###,##0.00}"><apex:param value="{!SalesVolM4Total }"/></apex:outputText></td>
+                        <td class="tableContent"><apex:outputText value="{0,number,#,###,###,##0.00}"><apex:param value="{!SalesVolM5Total }"/></apex:outputText></td>
+                        <td class="tableContent"><apex:outputText value="{0,number,#,###,###,##0.00}"><apex:param value="{!SalesVolM6Total }"/></apex:outputText></td>
+                        <td class="totalRow tableContent"><apex:outputText value="{0,number,#,###,###,##0.00}"><apex:param value="{!SalesVolM1Total + SalesVolM2Total + SalesVolM3Total + SalesVolM4Total + SalesVolM5Total + SalesVolM6Total}"/></apex:outputText></td>
+                    </tr>
+                </table>
+            </center>
+        </apex:pageBlock>
+        <p></p>
+        <apex:pageBlock mode="detail">
+            <apex:pageBlockSection title="Old Stock Status">
+                <apex:inputField value="{!nplHeader.ASI_CN_NPL_Old_Stock_Start_Date__c}" rendered="{!isEditable}"/><apex:outputField value="{!nplHeader.ASI_CN_NPL_Old_Stock_Start_Date__c}" rendered="{!NOT(isEditable)}"/>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+        <p></p>
+        <apex:pageBlock mode="detail">
+            <center>
+                <table width="100%" border="1" cellspacing="0" cellpadding="5" class="table">
+                    <tr class="sectionHeader">
+                        <td class="sectionHeader" colspan="7">Old Stock Inventory Status (9L case)</td>
+                    </tr>
+                    <tr class="tableHeader">
+                        <td class="tableContent"></td>
+                        <td class="tableContent"><apex:outputText value="{!CreateDateM1}"></apex:outputText></td>
+                        <td class="tableContent"><apex:outputText value="{!CreateDateM2}"></apex:outputText></td>
+                        <td class="tableContent"><apex:outputText value="{!CreateDateM3}"></apex:outputText></td>
+                        <td class="tableContent"><apex:outputText value="{!CreateDateM4}"></apex:outputText></td>
+                        <td class="tableContent"><apex:outputText value="{!CreateDateM5}"></apex:outputText></td>
+                        <td class="tableContent"><apex:outputText value="{!CreateDateM6}"></apex:outputText></td>
+                    </tr>
+                    <tr>
+                        <td class="tableContent">South</td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockInvForecast_South.ASI_CN_NPL_M1__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockInvForecast_South.ASI_CN_NPL_M1__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockInvForecast_South.ASI_CN_NPL_M2__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockInvForecast_South.ASI_CN_NPL_M2__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockInvForecast_South.ASI_CN_NPL_M3__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockInvForecast_South.ASI_CN_NPL_M3__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockInvForecast_South.ASI_CN_NPL_M4__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockInvForecast_South.ASI_CN_NPL_M4__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockInvForecast_South.ASI_CN_NPL_M5__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockInvForecast_South.ASI_CN_NPL_M5__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockInvForecast_South.ASI_CN_NPL_M6__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockInvForecast_South.ASI_CN_NPL_M6__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                    </tr>
+                    <tr>
+                        <td class="tableContent">East</td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockInvForecast_East.ASI_CN_NPL_M1__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockInvForecast_East.ASI_CN_NPL_M1__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockInvForecast_East.ASI_CN_NPL_M2__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockInvForecast_East.ASI_CN_NPL_M2__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockInvForecast_East.ASI_CN_NPL_M3__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockInvForecast_East.ASI_CN_NPL_M3__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockInvForecast_East.ASI_CN_NPL_M4__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockInvForecast_East.ASI_CN_NPL_M4__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockInvForecast_East.ASI_CN_NPL_M5__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockInvForecast_East.ASI_CN_NPL_M5__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockInvForecast_East.ASI_CN_NPL_M6__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockInvForecast_East.ASI_CN_NPL_M6__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                    </tr>
+                    <tr>
+                        <td class="tableContent">Central</td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockInvForecast_Central.ASI_CN_NPL_M1__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockInvForecast_Central.ASI_CN_NPL_M1__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockInvForecast_Central.ASI_CN_NPL_M2__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockInvForecast_Central.ASI_CN_NPL_M2__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockInvForecast_Central.ASI_CN_NPL_M3__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockInvForecast_Central.ASI_CN_NPL_M3__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockInvForecast_Central.ASI_CN_NPL_M4__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockInvForecast_Central.ASI_CN_NPL_M4__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockInvForecast_Central.ASI_CN_NPL_M5__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockInvForecast_Central.ASI_CN_NPL_M5__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockInvForecast_Central.ASI_CN_NPL_M6__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockInvForecast_Central.ASI_CN_NPL_M6__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                    </tr>
+                    <tr>
+                        <td class="tableContent">North</td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockInvForecast_North.ASI_CN_NPL_M1__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockInvForecast_North.ASI_CN_NPL_M1__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockInvForecast_North.ASI_CN_NPL_M2__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockInvForecast_North.ASI_CN_NPL_M2__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockInvForecast_North.ASI_CN_NPL_M3__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockInvForecast_North.ASI_CN_NPL_M3__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockInvForecast_North.ASI_CN_NPL_M4__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockInvForecast_North.ASI_CN_NPL_M4__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockInvForecast_North.ASI_CN_NPL_M5__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockInvForecast_North.ASI_CN_NPL_M5__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockInvForecast_North.ASI_CN_NPL_M6__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockInvForecast_North.ASI_CN_NPL_M6__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                    </tr>
+                    <tr>
+                        <td class="tableContent">North West</td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockInvForecast_NorthWest.ASI_CN_NPL_M1__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockInvForecast_NorthWest.ASI_CN_NPL_M1__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockInvForecast_NorthWest.ASI_CN_NPL_M2__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockInvForecast_NorthWest.ASI_CN_NPL_M2__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockInvForecast_NorthWest.ASI_CN_NPL_M3__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockInvForecast_NorthWest.ASI_CN_NPL_M3__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockInvForecast_NorthWest.ASI_CN_NPL_M4__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockInvForecast_NorthWest.ASI_CN_NPL_M4__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockInvForecast_NorthWest.ASI_CN_NPL_M5__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockInvForecast_NorthWest.ASI_CN_NPL_M5__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockInvForecast_NorthWest.ASI_CN_NPL_M6__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockInvForecast_NorthWest.ASI_CN_NPL_M6__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                    </tr>
+                    <tr>
+                        <td class="tableContent">South West</td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockInvForecast_SouthWest.ASI_CN_NPL_M1__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockInvForecast_SouthWest.ASI_CN_NPL_M1__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockInvForecast_SouthWest.ASI_CN_NPL_M2__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockInvForecast_SouthWest.ASI_CN_NPL_M2__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockInvForecast_SouthWest.ASI_CN_NPL_M3__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockInvForecast_SouthWest.ASI_CN_NPL_M3__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockInvForecast_SouthWest.ASI_CN_NPL_M4__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockInvForecast_SouthWest.ASI_CN_NPL_M4__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockInvForecast_SouthWest.ASI_CN_NPL_M5__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockInvForecast_SouthWest.ASI_CN_NPL_M5__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockInvForecast_SouthWest.ASI_CN_NPL_M6__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockInvForecast_SouthWest.ASI_CN_NPL_M6__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                    </tr>
+                    <tr>
+                        <td class="tableContent">Macau</td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockInvForecast_Macau.ASI_CN_NPL_M1__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockInvForecast_Macau.ASI_CN_NPL_M1__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockInvForecast_Macau.ASI_CN_NPL_M2__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockInvForecast_Macau.ASI_CN_NPL_M2__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockInvForecast_Macau.ASI_CN_NPL_M3__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockInvForecast_Macau.ASI_CN_NPL_M3__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockInvForecast_Macau.ASI_CN_NPL_M4__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockInvForecast_Macau.ASI_CN_NPL_M4__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockInvForecast_Macau.ASI_CN_NPL_M5__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockInvForecast_Macau.ASI_CN_NPL_M5__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockInvForecast_Macau.ASI_CN_NPL_M6__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockInvForecast_Macau.ASI_CN_NPL_M6__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                    </tr>
+                    <tr>
+                        <td class="tableContent">Mongolia</td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockInvForecast_Mongolia.ASI_CN_NPL_M1__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockInvForecast_Mongolia.ASI_CN_NPL_M1__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockInvForecast_Mongolia.ASI_CN_NPL_M2__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockInvForecast_Mongolia.ASI_CN_NPL_M2__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockInvForecast_Mongolia.ASI_CN_NPL_M3__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockInvForecast_Mongolia.ASI_CN_NPL_M3__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockInvForecast_Mongolia.ASI_CN_NPL_M4__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockInvForecast_Mongolia.ASI_CN_NPL_M4__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockInvForecast_Mongolia.ASI_CN_NPL_M5__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockInvForecast_Mongolia.ASI_CN_NPL_M5__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockInvForecast_Mongolia.ASI_CN_NPL_M6__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockInvForecast_Mongolia.ASI_CN_NPL_M6__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                    </tr>
+                    <tr>
+                        <td class="tableContent">Total</td>
+                        <td class="tableContent"><apex:outputText value="{!OldStockInvM1Total }" label=""/></td>
+                        <td class="tableContent"><apex:outputText value="{!OldStockInvM2Total }" label=""/></td>
+                        <td class="tableContent"><apex:outputText value="{!OldStockInvM3Total }" label=""/></td>
+                        <td class="tableContent"><apex:outputText value="{!OldStockInvM4Total }" label=""/></td>
+                        <td class="tableContent"><apex:outputText value="{!OldStockInvM5Total }" label=""/></td>
+                        <td class="tableContent"><apex:outputText value="{!OldStockInvM6Total }" label=""/></td>
+                    </tr>
+                </table>
+            </center>
+        </apex:pageBlock>
+        <p></p>
+        <apex:pageBlock mode="detail">
+            <center>
+                <table width="100%" border="1" cellspacing="0" cellpadding="5" class="table">
+                    <tr class="sectionHeader">
+                        <td class="sectionHeader" colspan="7">Old Stock Depletion Plan (9L case)</td>
+                    </tr>
+                    <tr class="tableHeader">
+                        <td class="tableContent"></td>
+                        <td class="tableContent"><apex:outputText value="{!CreateDateM1}"></apex:outputText></td>
+                        <td class="tableContent"><apex:outputText value="{!CreateDateM2}"></apex:outputText></td>
+                        <td class="tableContent"><apex:outputText value="{!CreateDateM3}"></apex:outputText></td>
+                        <td class="tableContent"><apex:outputText value="{!CreateDateM4}"></apex:outputText></td>
+                        <td class="tableContent"><apex:outputText value="{!CreateDateM5}"></apex:outputText></td>
+                        <td class="tableContent"><apex:outputText value="{!CreateDateM6}"></apex:outputText></td>
+                    </tr>
+                    <tr>
+                        <td class="tableContent">South</td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockDepletForecast_South.ASI_CN_NPL_M1__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockDepletForecast_South.ASI_CN_NPL_M1__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockDepletForecast_South.ASI_CN_NPL_M2__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockDepletForecast_South.ASI_CN_NPL_M2__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockDepletForecast_South.ASI_CN_NPL_M3__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockDepletForecast_South.ASI_CN_NPL_M3__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockDepletForecast_South.ASI_CN_NPL_M4__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockDepletForecast_South.ASI_CN_NPL_M4__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockDepletForecast_South.ASI_CN_NPL_M5__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockDepletForecast_South.ASI_CN_NPL_M5__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockDepletForecast_South.ASI_CN_NPL_M6__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockDepletForecast_South.ASI_CN_NPL_M6__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                    </tr>
+                    <tr>
+                        <td class="tableContent">East</td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockDepletForecast_East.ASI_CN_NPL_M1__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockDepletForecast_East.ASI_CN_NPL_M1__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockDepletForecast_East.ASI_CN_NPL_M2__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockDepletForecast_East.ASI_CN_NPL_M2__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockDepletForecast_East.ASI_CN_NPL_M3__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockDepletForecast_East.ASI_CN_NPL_M3__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockDepletForecast_East.ASI_CN_NPL_M4__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockDepletForecast_East.ASI_CN_NPL_M4__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockDepletForecast_East.ASI_CN_NPL_M5__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockDepletForecast_East.ASI_CN_NPL_M5__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockDepletForecast_East.ASI_CN_NPL_M6__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockDepletForecast_East.ASI_CN_NPL_M6__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                    </tr>
+                    <tr>
+                        <td class="tableContent">Central</td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockDepletForecast_Central.ASI_CN_NPL_M1__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockDepletForecast_Central.ASI_CN_NPL_M1__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockDepletForecast_Central.ASI_CN_NPL_M2__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockDepletForecast_Central.ASI_CN_NPL_M2__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockDepletForecast_Central.ASI_CN_NPL_M3__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockDepletForecast_Central.ASI_CN_NPL_M3__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockDepletForecast_Central.ASI_CN_NPL_M4__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockDepletForecast_Central.ASI_CN_NPL_M4__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockDepletForecast_Central.ASI_CN_NPL_M5__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockDepletForecast_Central.ASI_CN_NPL_M5__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockDepletForecast_Central.ASI_CN_NPL_M6__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockDepletForecast_Central.ASI_CN_NPL_M6__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                    </tr>
+                    <tr>
+                        <td class="tableContent">North</td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockDepletForecast_North.ASI_CN_NPL_M1__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockDepletForecast_North.ASI_CN_NPL_M1__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockDepletForecast_North.ASI_CN_NPL_M2__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockDepletForecast_North.ASI_CN_NPL_M2__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockDepletForecast_North.ASI_CN_NPL_M3__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockDepletForecast_North.ASI_CN_NPL_M3__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockDepletForecast_North.ASI_CN_NPL_M4__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockDepletForecast_North.ASI_CN_NPL_M4__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockDepletForecast_North.ASI_CN_NPL_M5__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockDepletForecast_North.ASI_CN_NPL_M5__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockDepletForecast_North.ASI_CN_NPL_M6__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockDepletForecast_North.ASI_CN_NPL_M6__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                    </tr>
+                    <tr>
+                        <td class="tableContent">North West</td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockDepletForecast_NorthWest.ASI_CN_NPL_M1__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockDepletForecast_NorthWest.ASI_CN_NPL_M1__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockDepletForecast_NorthWest.ASI_CN_NPL_M2__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockDepletForecast_NorthWest.ASI_CN_NPL_M2__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockDepletForecast_NorthWest.ASI_CN_NPL_M3__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockDepletForecast_NorthWest.ASI_CN_NPL_M3__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockDepletForecast_NorthWest.ASI_CN_NPL_M4__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockDepletForecast_NorthWest.ASI_CN_NPL_M4__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockDepletForecast_NorthWest.ASI_CN_NPL_M5__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockDepletForecast_NorthWest.ASI_CN_NPL_M5__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockDepletForecast_NorthWest.ASI_CN_NPL_M6__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockDepletForecast_NorthWest.ASI_CN_NPL_M6__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                    </tr>
+                    <tr>
+                        <td class="tableContent">South West</td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockDepletForecast_SouthWest.ASI_CN_NPL_M1__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockDepletForecast_SouthWest.ASI_CN_NPL_M1__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockDepletForecast_SouthWest.ASI_CN_NPL_M2__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockDepletForecast_SouthWest.ASI_CN_NPL_M2__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockDepletForecast_SouthWest.ASI_CN_NPL_M3__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockDepletForecast_SouthWest.ASI_CN_NPL_M3__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockDepletForecast_SouthWest.ASI_CN_NPL_M4__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockDepletForecast_SouthWest.ASI_CN_NPL_M4__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockDepletForecast_SouthWest.ASI_CN_NPL_M5__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockDepletForecast_SouthWest.ASI_CN_NPL_M5__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockDepletForecast_SouthWest.ASI_CN_NPL_M6__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockDepletForecast_SouthWest.ASI_CN_NPL_M6__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                    </tr>
+                    <tr>
+                        <td class="tableContent">Macau</td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockDepletForecast_Macau.ASI_CN_NPL_M1__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockDepletForecast_Macau.ASI_CN_NPL_M1__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockDepletForecast_Macau.ASI_CN_NPL_M2__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockDepletForecast_Macau.ASI_CN_NPL_M2__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockDepletForecast_Macau.ASI_CN_NPL_M3__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockDepletForecast_Macau.ASI_CN_NPL_M3__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockDepletForecast_Macau.ASI_CN_NPL_M4__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockDepletForecast_Macau.ASI_CN_NPL_M4__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockDepletForecast_Macau.ASI_CN_NPL_M5__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockDepletForecast_Macau.ASI_CN_NPL_M5__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockDepletForecast_Macau.ASI_CN_NPL_M6__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockDepletForecast_Macau.ASI_CN_NPL_M6__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                    </tr>
+                    <tr>
+                        <td class="tableContent">Mongolia</td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockDepletForecast_Mongolia.ASI_CN_NPL_M1__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockDepletForecast_Mongolia.ASI_CN_NPL_M1__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockDepletForecast_Mongolia.ASI_CN_NPL_M2__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockDepletForecast_Mongolia.ASI_CN_NPL_M2__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockDepletForecast_Mongolia.ASI_CN_NPL_M3__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockDepletForecast_Mongolia.ASI_CN_NPL_M3__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockDepletForecast_Mongolia.ASI_CN_NPL_M4__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockDepletForecast_Mongolia.ASI_CN_NPL_M4__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockDepletForecast_Mongolia.ASI_CN_NPL_M5__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockDepletForecast_Mongolia.ASI_CN_NPL_M5__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                        <td class="tableContent"><apex:inputField value="{!OldStockDepletForecast_Mongolia.ASI_CN_NPL_M6__c}" label="" rendered="{!isEditable}"/><apex:outputField value="{!OldStockDepletForecast_Mongolia.ASI_CN_NPL_M6__c}" label="" rendered="{!NOT(isEditable)}"/></td>
+                    </tr>
+                    <tr>
+                        <td class="tableContent">Total</td>
+                        <td class="tableContent"><apex:outputText value="{!OldStockDepletM1Total }" label=""/></td>
+                        <td class="tableContent"><apex:outputText value="{!OldStockDepletM2Total }" label=""/></td>
+                        <td class="tableContent"><apex:outputText value="{!OldStockDepletM3Total }" label=""/></td>
+                        <td class="tableContent"><apex:outputText value="{!OldStockDepletM4Total }" label=""/></td>
+                        <td class="tableContent"><apex:outputText value="{!OldStockDepletM5Total }" label=""/></td>
+                        <td class="tableContent"><apex:outputText value="{!OldStockDepletM6Total }" label=""/></td>
+                    </tr>
+                </table>
+            </center>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

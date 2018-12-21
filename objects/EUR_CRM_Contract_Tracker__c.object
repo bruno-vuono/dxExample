@@ -1,0 +1,883 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>New Object to replace Competitor Contract Tracking (EU)</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>EUR_CRM_Account_Owners_Manager__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>It is a field newly created for PR UK. It will automatically populated as Account&apos;s Manager by trigger.</description>
+        <externalId>false</externalId>
+        <label>Account Owner&apos;s Manager</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Contracts_Tracker_EU</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Account (EU)</label>
+        <referenceTo>EUR_CRM_Account__c</referenceTo>
+        <relationshipLabel>Contract Tracker (EU)</relationshipLabel>
+        <relationshipName>Contract_Tracker_EU</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Active__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Active</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Category__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Category</label>
+        <referenceTo>EUR_CRM_Category__c</referenceTo>
+        <relationshipLabel>Contract Tracker (EU)</relationshipLabel>
+        <relationshipName>Contract_Tracker_EU</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Competitor__c</fullName>
+        <externalId>false</externalId>
+        <label>Competitor</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Diageo</fullName>
+                    <default>false</default>
+                    <label>Diageo</label>
+                </value>
+                <value>
+                    <fullName>Möet Hennessy</fullName>
+                    <default>false</default>
+                    <label>Möet Hennessy</label>
+                </value>
+                <value>
+                    <fullName>Bacardi</fullName>
+                    <default>false</default>
+                    <label>Bacardi</label>
+                </value>
+                <value>
+                    <fullName>Bourchanin</fullName>
+                    <default>false</default>
+                    <label>Bourchanin</label>
+                </value>
+                <value>
+                    <fullName>Ebertec</fullName>
+                    <default>false</default>
+                    <label>Ebertec</label>
+                </value>
+                <value>
+                    <fullName>Food &amp; Goods</fullName>
+                    <default>false</default>
+                    <label>Food &amp; Goods</label>
+                </value>
+                <value>
+                    <fullName>Grand Sud Import</fullName>
+                    <default>false</default>
+                    <label>Grand Sud Import</label>
+                </value>
+                <value>
+                    <fullName>Drinks</fullName>
+                    <default>false</default>
+                    <label>Drinks</label>
+                </value>
+                <value>
+                    <fullName>Bacardi-Martini</fullName>
+                    <default>false</default>
+                    <label>Bacardi-Martini</label>
+                </value>
+                <value>
+                    <fullName>Maxxium</fullName>
+                    <default>false</default>
+                    <label>Maxxium</label>
+                </value>
+                <value>
+                    <fullName>Brown-Forman</fullName>
+                    <default>false</default>
+                    <label>Brown-Forman</label>
+                </value>
+                <value>
+                    <fullName>LVMH</fullName>
+                    <default>false</default>
+                    <label>LVMH</label>
+                </value>
+                <value>
+                    <fullName>Roust</fullName>
+                    <default>false</default>
+                    <label>Roust</label>
+                </value>
+                <value>
+                    <fullName>Synergy</fullName>
+                    <default>false</default>
+                    <label>Synergy</label>
+                </value>
+                <value>
+                    <fullName>Luding</fullName>
+                    <default>false</default>
+                    <label>Luding</label>
+                </value>
+                <value>
+                    <fullName>Avendi</fullName>
+                    <default>false</default>
+                    <label>Avendi</label>
+                </value>
+                <value>
+                    <fullName>Transimport</fullName>
+                    <default>false</default>
+                    <label>Transimport</label>
+                </value>
+                <value>
+                    <fullName>Cuervo</fullName>
+                    <default>false</default>
+                    <label>Cuervo</label>
+                </value>
+                <value>
+                    <fullName>William Grant &amp; Sons</fullName>
+                    <default>false</default>
+                    <label>William Grant &amp; Sons</label>
+                </value>
+                <value>
+                    <fullName>SofStok</fullName>
+                    <default>false</default>
+                    <label>SofStok</label>
+                </value>
+                <value>
+                    <fullName>Campari</fullName>
+                    <default>false</default>
+                    <label>Campari</label>
+                </value>
+                <value>
+                    <fullName>Beam Suntory</fullName>
+                    <default>false</default>
+                    <label>Beam Suntory</label>
+                </value>
+                <value>
+                    <fullName>Edrington Group</fullName>
+                    <default>false</default>
+                    <label>Edrington Group</label>
+                </value>
+                <value>
+                    <fullName>HBCC</fullName>
+                    <default>false</default>
+                    <label>HBCC</label>
+                </value>
+                <value>
+                    <fullName>Marie Brizard</fullName>
+                    <default>false</default>
+                    <label>Marie Brizard</label>
+                </value>
+                <value>
+                    <fullName>Edrington</fullName>
+                    <default>false</default>
+                    <label>Edrington</label>
+                </value>
+                <value>
+                    <fullName>Conaxess</fullName>
+                    <default>false</default>
+                    <label>Conaxess</label>
+                </value>
+                <value>
+                    <fullName>Hans Just</fullName>
+                    <default>false</default>
+                    <label>Hans Just</label>
+                </value>
+                <value>
+                    <fullName>Just Drinks</fullName>
+                    <default>false</default>
+                    <label>Just Drinks</label>
+                </value>
+                <value>
+                    <fullName>Hela Wine</fullName>
+                    <default>false</default>
+                    <label>Hela Wine</label>
+                </value>
+                <value>
+                    <fullName>Sprit &amp; Co.</fullName>
+                    <default>false</default>
+                    <label>Sprit &amp; Co.</label>
+                </value>
+                <value>
+                    <fullName>Others</fullName>
+                    <default>false</default>
+                    <label>Others</label>
+                </value>
+                <value>
+                    <fullName>Coca-Cola</fullName>
+                    <default>false</default>
+                    <label>Coca-Cola</label>
+                </value>
+                <value>
+                    <fullName>Laurent Perrier</fullName>
+                    <default>false</default>
+                    <label>Laurent Perrier</label>
+                </value>
+                <value>
+                    <fullName>Moët</fullName>
+                    <default>false</default>
+                    <label>Moët</label>
+                </value>
+                <value>
+                    <fullName>Mumm</fullName>
+                    <default>false</default>
+                    <label>Mumm</label>
+                </value>
+                <value>
+                    <fullName>No deal</fullName>
+                    <default>false</default>
+                    <label>No deal</label>
+                </value>
+                <value>
+                    <fullName>PRB</fullName>
+                    <default>false</default>
+                    <label>PRB</label>
+                </value>
+                <value>
+                    <fullName>Perrier-Jouët</fullName>
+                    <default>false</default>
+                    <label>Perrier-Jouët</label>
+                </value>
+                <value>
+                    <fullName>Piper</fullName>
+                    <default>false</default>
+                    <label>Piper</label>
+                </value>
+                <value>
+                    <fullName>Pommery</fullName>
+                    <default>false</default>
+                    <label>Pommery</label>
+                </value>
+                <value>
+                    <fullName>Rémy-Cointreau</fullName>
+                    <default>false</default>
+                    <label>Rémy-Cointreau</label>
+                </value>
+                <value>
+                    <fullName>Taitinger</fullName>
+                    <default>false</default>
+                    <label>Taitinger</label>
+                </value>
+                <value>
+                    <fullName>Veuve Clicquot</fullName>
+                    <default>false</default>
+                    <label>Veuve Clicquot</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Contract_Description__c</fullName>
+        <externalId>false</externalId>
+        <label>Contract Description</label>
+        <length>20000</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Contract_End_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Contract End Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Contract_Size__c</fullName>
+        <description>This is newly created for BG.
+https://basecamp.com/2036369/projects/10425694/todos/247839489</description>
+        <externalId>false</externalId>
+        <label>Contract Size</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Note__c</fullName>
+        <description>Newly created for PR BG on 20160414</description>
+        <externalId>false</externalId>
+        <label>Note</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Type_of_contract__c</fullName>
+        <externalId>false</externalId>
+        <label>Type of contract</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Champagne contract</fullName>
+                    <default>false</default>
+                    <label>Champagne contract</label>
+                </value>
+                <value>
+                    <fullName>Spirits contract</fullName>
+                    <default>false</default>
+                    <label>Spirits contract</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Visit__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Initially for GB Phase 2</description>
+        <externalId>false</externalId>
+        <label>Visit (EU)</label>
+        <referenceTo>EUR_CRM_Visit__c</referenceTo>
+        <relationshipLabel>Contracts Tracker (EU)</relationshipLabel>
+        <relationshipName>Contracts_Tracker_EU</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <label>Contract Tracker (EU)</label>
+    <listViews>
+        <fullName>EUR_BG_Contract_Tracker</fullName>
+        <columns>RECORDTYPE</columns>
+        <columns>EUR_CRM_Category__c</columns>
+        <columns>NAME</columns>
+        <columns>EUR_CRM_Account__c</columns>
+        <columns>EUR_CRM_Contract_Description__c</columns>
+        <columns>EUR_CRM_Competitor__c</columns>
+        <columns>EUR_CRM_Contract_End_Date__c</columns>
+        <columns>EUR_CRM_Active__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_Contract_Tracker__c.EUR_BG_Competitor_Contract_Tracker</value>
+        </filters>
+        <label>EUR BG Contract Tracker</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>EUR_BG</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>EUR_DK_Contract_Tracker_1</fullName>
+        <columns>RECORDTYPE</columns>
+        <columns>EUR_CRM_Category__c</columns>
+        <columns>NAME</columns>
+        <columns>EUR_CRM_Account__c</columns>
+        <columns>EUR_CRM_Contract_Description__c</columns>
+        <columns>EUR_CRM_Competitor__c</columns>
+        <columns>EUR_CRM_Contract_End_Date__c</columns>
+        <columns>EUR_CRM_Active__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_Contract_Tracker__c.EUR_DK_Competitor_Contract_Tracker,EUR_CRM_Contract_Tracker__c.EUR_DK_PR_Contract_Tracker</value>
+        </filters>
+        <label>EUR DK Contract Tracker</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>EUR_DK</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>EUR_MA_Contract_Tracker</fullName>
+        <columns>RECORDTYPE</columns>
+        <columns>EUR_CRM_Category__c</columns>
+        <columns>NAME</columns>
+        <columns>EUR_CRM_Account__c</columns>
+        <columns>EUR_CRM_Contract_Description__c</columns>
+        <columns>EUR_CRM_Competitor__c</columns>
+        <columns>EUR_CRM_Contract_End_Date__c</columns>
+        <columns>EUR_CRM_Active__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_Contract_Tracker__c.EUR_MA_Competitor_Contract_Tracker</value>
+        </filters>
+        <label>EUR MA Contract Tracker</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>EUR_MA</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>EUR_RU_Contract_Tracker</fullName>
+        <columns>RECORDTYPE</columns>
+        <columns>EUR_CRM_Category__c</columns>
+        <columns>NAME</columns>
+        <columns>EUR_CRM_Account__c</columns>
+        <columns>EUR_CRM_Contract_Description__c</columns>
+        <columns>EUR_CRM_Competitor__c</columns>
+        <columns>EUR_CRM_Contract_End_Date__c</columns>
+        <columns>EUR_CRM_Active__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_Contract_Tracker__c.EUR_RU_Competitor_Contract_Tracker</value>
+        </filters>
+        <label>EUR RU Contract Tracker</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>EUR_RU</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <nameField>
+        <displayFormat>CTT-{0000000000}</displayFormat>
+        <label>Contract Tracker No.</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Contracts Tracker (EU)</pluralLabel>
+    <recordTypes>
+        <fullName>EUR_BE_Competitor_Contract_Tracker</fullName>
+        <active>true</active>
+        <label>EUR BE Competitor Contract Tracker</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Competitor__c</picklist>
+            <values>
+                <fullName>Bacardi-Martini</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Campari</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Coca-Cola</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Diageo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Laurent Perrier</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Moët</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mumm</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No deal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Others</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PRB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Perrier-Jouët</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Piper</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pommery</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rémy-Cointreau</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Taitinger</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Veuve Clicquot</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>EUR_CRM_Type_of_contract__c</picklist>
+            <values>
+                <fullName>Champagne contract</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spirits contract</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_BG_Competitor_Contract_Tracker</fullName>
+        <active>true</active>
+        <label>EUR BG Competitor Contract Tracker</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Competitor__c</picklist>
+            <values>
+                <fullName>Avendi</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bacardi</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bacardi-Martini</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Beam Suntory</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bourchanin</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brown-Forman</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Campari</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cuervo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Diageo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Drinks</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ebertec</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Edrington Group</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Food %26 Goods</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Grand Sud Import</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HBCC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LVMH</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Maxxium</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Möet Hennessy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Roust</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SofStok</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transimport</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>William Grant %26 Sons</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>EUR_CRM_Type_of_contract__c</picklist>
+            <values>
+                <fullName>Champagne contract</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spirits contract</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_DK_Competitor_Contract_Tracker</fullName>
+        <active>true</active>
+        <description>Record Type for DK Competitor Contract Tracker</description>
+        <label>EUR DK Competitor Contract Tracker</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Competitor__c</picklist>
+            <values>
+                <fullName>Conaxess</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Diageo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Edrington</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hans Just</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hela Wine</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Just Drinks</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marie Brizard</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Möet Hennessy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Others</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sprit %26 Co%2E</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>EUR_CRM_Type_of_contract__c</picklist>
+            <values>
+                <fullName>Champagne contract</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spirits contract</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_DK_PR_Contract_Tracker</fullName>
+        <active>true</active>
+        <description>Record Type for DK PR Contract Tracker</description>
+        <label>EUR DK PR Contract Tracker</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Competitor__c</picklist>
+            <values>
+                <fullName>Bacardi</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Diageo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Möet Hennessy</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>EUR_CRM_Type_of_contract__c</picklist>
+            <values>
+                <fullName>Champagne contract</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spirits contract</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_MA_Competitor_Contract_Tracker</fullName>
+        <active>true</active>
+        <label>EUR MA Competitor Contract Tracker</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Competitor__c</picklist>
+            <values>
+                <fullName>Bourchanin</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Drinks</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ebertec</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Food %26 Goods</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Grand Sud Import</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>EUR_CRM_Type_of_contract__c</picklist>
+            <values>
+                <fullName>Champagne contract</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spirits contract</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_RU_Competitor_Contract_Tracker</fullName>
+        <active>true</active>
+        <label>EUR RU Competitor Contract Tracker</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Competitor__c</picklist>
+            <values>
+                <fullName>Bacardi-Martini</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brown-Forman</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Diageo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LVMH</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Luding</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Maxxium</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Möet Hennessy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Roust</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Synergy</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>EUR_CRM_Type_of_contract__c</picklist>
+            <values>
+                <fullName>Champagne contract</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spirits contract</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts/>
+    <sharingModel>Private</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

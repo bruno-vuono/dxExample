@@ -1,0 +1,28 @@
+<apex:component >
+    <div id="menu-lat">
+        <div id="container-menu-lat">
+            <a href="ESN_MB_NOP_Homepage"><div class="logo logo-mybrands" ></div></a>
+            <nav>
+                <div class="brand-cats">
+			  <div class="cats" id="brandNameMenuLat">
+			  </div>
+                    <div id="arrowMenuLat">
+                        
+                    </div>
+                   <!-- <img src="{!urlfor($Resource.ESN_MB_Theme_Core)}/images/picto-menu-lat-cat-arrow-left.png" class="goleft noclick"/>
+                    <img src="{!urlfor($Resource.ESN_MB_Theme_Core)}/images/picto-menu-lat-cat-arrow-right.png" class="goright"/>-->
+			 </div>
+                <div class="brands" id="brandListMenuLat">
+                   
+                </div>
+                <div class="dots">
+			  		<div class="no-touch" id="dotMenuLatNoTouch">
+			  		</div>
+			  <div class="touch" id="dotMenuLatTouch">
+			  </div>
+			</div>
+            </nav>
+        </div>
+    </div><!--/#menu-lat-->
+    <div id="btn-menu-lat"></div>
+</apex:component>

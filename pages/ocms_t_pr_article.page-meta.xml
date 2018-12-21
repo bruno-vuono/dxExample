@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApexPage xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>27.0</apiVersion>
+    <availableInTouch>false</availableInTouch>
+    <confirmationTokenRequired>false</confirmationTokenRequired>
+    <description>This is the page template for article&apos;s list page</description>
+    <label>ocms_t_pr_article</label>
+    <packageVersions>
+        <majorNumber>5</majorNumber>
+        <minorNumber>178</minorNumber>
+        <namespace>cms</namespace>
+    </packageVersions>
+</ApexPage>

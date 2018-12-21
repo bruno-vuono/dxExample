@@ -1,0 +1,60 @@
+<apex:component >
+    <div id="footer-wrapper">
+        <footer>
+            <nav>
+                <div class="container-fluid product-menu current-menu"></div> 
+            </nav>
+        </footer>
+    </div>
+    <script>
+        if (currentCategory == leCercle) {
+            if (brandName == leCercle) {
+                $('.container-fluid.product-menu.current-menu').append(
+                    '<div id="footerProductName" style="visibility: hidden;"></div>' +
+                    '<div id="Strategy_LeCercle" class="item item1"><p class="item-label">{!$Label.ESN_MB_Strategy}</p><div id="Strategy_LeCercle_menu" class="menu clearfix"></div></div>' +
+                    '<div id="Global_Commercial_Agreements" class="item item2"><p class="item-label">{!$Label.ESN_MB_GlobalCommercialAgreements}</p><div id="Global_Commercial_Agreements_menu" class="menu clearfix"></div></div>' +
+                    '<div id="Assets_And_Activations" class="item item3"><p class="item-label">{!$Label.ESN_MB_AssetsAndActivation}</p><div id="Assets_And_Activations_menu" class="menu clearfix"></div></div>' +
+                    '<div id="Performance_And_Monitoring" class="item item4"><p class="item-label">{!$Label.ESN_MB_PerformanceMonitoring}</p><div id="Performance_And_Monitoring_menu" class="menu clearfix"></div></div>' +
+                    '<div id="Who\'s_Who_And_Organization" class="item item5"><p class="item-label">{!$Label.ESN_MB_WhosWhoOrganization}</p><div id="Whos_Who_And_Organization_menu" class="menu clearfix"></div></div>' +
+                    '<div id="Trainings" class="item item6"><p class="item-label">{!$Label.ESN_MB_Trainings}</p><div id="Trainings_menu" class="menu clearfix"></div></div>'
+                );
+            } else {
+                $('.container-fluid.product-menu.current-menu').append(
+                    '<div id="footerBrandName"></div>' +
+                    '<div id="Belief" class="item item1"><p class="item-label">{!$Label.ESN_MB_Belief}</p><div id="Belief_menu" class="menu clearfix"></div></div>' +
+                    '<div id="Mythtelling" class="item item2"><p class="item-label">{!$Label.ESN_MB_Mythtelling}</p><div id="Mythtelling_menu" class="menu clearfix"></div></div>' +
+                    '<div id="Parish" class="item item3"><p class="item-label">{!$Label.ESN_MB_Parish}</p><div id="Parish_menu" class="menu clearfix"></div></div>' +
+                    '<div id="Set_Of_Visual_Icons" class="item item4"><p class="item-label">{!$Label.ESN_MB_SetOfVisualIcons}</p><div id="Set_Of_Visual_Icons_menu" class="menu clearfix"></div></div>' +
+                    '<div id="Services_And_Rituals" class="item item5"><p class="item-label">{!$Label.ESN_MB_ServicesAndRituals}</p><div id="Services_And_Rituals_menu" class="menu clearfix"></div></div>' +
+                    '<div id="Temple" class="item item6"><p class="item-label">{!$Label.ESN_MB_Temple}</p><div id="Temple_menu" class="menu clearfix"></div></div>' +
+                    '<div id="Way_Of_Life" class="item item7"><p class="item-label">{!$Label.ESN_MB_WayOfLife}</p><div id="Way_Of_Life_menu" class="menu clearfix"></div></div>'
+                );
+            }
+        } else {
+            if (brandName == 'Pernod Ricard') {
+                $('.container-fluid.product-menu.current-menu').append(
+                    '<div id="footerProductName"></div>' +
+                    '<a id="News" class="item item2"><p class="item-label">News</p></a>' +
+                    '<div id="Strategy" class="item item1"><p class="item-label">{!$Label.ESN_MB_Strategy}</p><div id="Strategy_menu" class="menu clearfix"></div></div>' +
+                    '<div id="Guidelines" class="item item2"><p class="item-label">{!$Label.ESN_MB_Guidelines}</p><div id="Guidelines_menu" class="menu clearfix"></div></div>' +
+                    '<div id="Business_Activation_Library" class="item item3"><p class="item-label">{!$Label.ESN_MB_BusinessActivationLibrary}</p><div id="Business_Activation_Library_menu" class="menu clearfix"></div></div>' +
+                    '<div id="History_And_Education" class="item item4"><p class="item-label">{!$Label.ESN_MB_HistoryEducation}</p><div id="History_And_Education_Menu" class="menu clearfix"></div></div>' +
+                    '<a id="Assets" target="_blank" class="item item5" href="{!$Label.ESN_MB_NPPortalRedirectTokenized}"><p class="item-label">{!$Label.ESN_MB_BrandCloudAssetLibrary}</p></a>'
+                );
+            } else {
+                $('.container-fluid.product-menu.current-menu').append(
+                    '<div id="footerProductName"></div>' +
+                    '<a id="News" class="item item2"><p class="item-label">News</p></a>' +
+                    '<div id="Strategy" class="item item1"><p class="item-label">{!$Label.ESN_MB_Strategy}</p><div id="Strategy_menu" class="menu clearfix"></div></div>' +
+                    '<div id="Guidelines" class="item item2"><p class="item-label">{!$Label.ESN_MB_Guidelines}</p><div id="Guidelines_menu" class="menu clearfix"></div></div>' +
+                    '<div id="Brand_Activations_Library" class="item item3"><p class="item-label">{!$Label.ESN_MB_Toolkits_Library}</p><div id="Brand_Activations_Library_menu" class="menu clearfix"></div></div>' +
+                    '<div id="History_And_Education" class="item item4"><p class="item-label">{!$Label.ESN_MB_HistoryEducation}</p><div id="History_And_Education_Menu" class="menu clearfix"></div></div>' +
+                    '<a id="Assets" target="_blank" class="item item5" href="{!$Label.ESN_MB_NPPortalRedirectTokenized}"><p class="item-label">{!$Label.ESN_MB_BrandCloudAssetLibrary}</p></a>'
+                );
+            }
+        }
+
+
+
+    </script>
+</apex:component>

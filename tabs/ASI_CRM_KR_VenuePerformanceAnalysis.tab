@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
+    <frameHeight>1600</frameHeight>
+    <hasSidebar>false</hasSidebar>
+    <label>Venue Performance Analysis</label>
+    <mobileReady>false</mobileReady>
+    <motif>Custom36: Train</motif>
+    <url>https://obiee.pernod-ricard-asia.com:8626/analytics/saw.dll?PortalPages&amp;Action=Navigate&amp;PortalPath=%2Fshared%2FPRK%2F_portal%2FFinancial Investment - Venue Performance Analysis</url>
+    <urlEncodingKey>UTF-8</urlEncodingKey>
+</CustomTab>

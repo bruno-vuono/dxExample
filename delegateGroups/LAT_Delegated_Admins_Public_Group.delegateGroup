@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DelegateGroup xmlns="http://soap.sforce.com/2006/04/metadata">
+    <groups>LAT BR Equipe de vendas PRB</groups>
+    <groups>LAT BR COLETA DE SELL OUT</groups>
+    <groups>LAT BR Informações de Vendas</groups>
+    <groups>LAT BR Equipe Price Management</groups>
+    <groups>LAT BR Equipe On Trade</groups>
+    <groups>LAT_BR_Vendas_Restringido</groups>
+    <label>LAT Delegated Admins Public Group</label>
+    <loginAccess>true</loginAccess>
+    <profiles>LAT_AR2_CredYCob</profiles>
+    <profiles>LAT_AR2_Logistica</profiles>
+    <profiles>LAT_AR2_Tesoreria</profiles>
+    <profiles>LAT_AR2_Vendedor</profiles>
+    <profiles>LAT_BR2_Controladoria</profiles>
+    <profiles>LAT_BR2_CreditoECobranca</profiles>
+    <profiles>LAT_BR2_CustomerService</profiles>
+    <profiles>LAT_BR2_Fiscal</profiles>
+    <profiles>LAT_BR2_Juridico</profiles>
+    <profiles>LAT_BR2_Mixologista</profiles>
+    <profiles>LAT_BR2_PlanejamentoComercial</profiles>
+    <profiles>LAT_BR2_TradeCategoria</profiles>
+    <profiles>LAT_BR2_TradeMarketing</profiles>
+    <profiles>LAT_BR2_Vendas</profiles>
+    <profiles>LAT_MX2_AdministracionComercial</profiles>
+    <profiles>LAT_MX2_Coordinador_CRM</profiles>
+    <profiles>LAT_MX2_CreditosyCobranzas</profiles>
+    <profiles>LAT_MX2_Logistica</profiles>
+    <profiles>LAT_MX2_OnPremise</profiles>
+    <profiles>LAT_MX2_Vendedor</profiles>
+    <profiles>LAT_UY2_Vendedor</profiles>
+    <roles>Presidência</roles>
+</DelegateGroup>

@@ -1,0 +1,289 @@
+<apex:component controller="ESN_MB_NOP_Activation_Cx">
+     
+             <div class="content-wrapper container-fluid">
+              <!--div class="btn-close">
+                  <a href="#?page=accueil-market-activations&content=market-activation&mode=light" data-category="market-activation" data-cat-name="market-activation" data-page="accueil-market-activations" onclick="closeMA(); return false;">
+                      {!$Label.ESN_MB_Close}<div class="picto-close"></div>
+                  </a>
+              </div-->
+              <div class="btn-close">
+                  <a href="#?page=accueil-market-activations&content=market-activation&mode=light" data-category="market-activation" data-cat-name="market-activation" data-page="accueil-market-activations" onclick="closeMA(); return false;">
+                    <span class="glyphicon glyphicon-remove"></span>
+                  </a>
+              </div>
+              <div class="container-margin">
+                <div class="central-container">
+                  <form action="" id="form_local_activation"  method="POST">
+                    <!--h2 class="title-no-margin">{!$Label.ESN_MB_TitleMA}</h2-->
+                    
+                    <fieldset id="mainAssetMA">
+                      <label for="picture" class="label-icon-no-margin label-icon label-icon-picture">{!$Label.ESN_MB_Add_Photo}</label>
+                      <p>{!$Label.ESN_MB_Size}</p>
+                      <ul id="uploadPreviewMainAsset"></ul>
+                      <div class="upload-btn-container">
+                        <div id="addMarketActivationMainAsset" class="preview">
+                          <a data-page="activation" data-category="brand-cloud" data-target="#modal-searchAsset" href="/apex/ESN_MB_NOP_SearchAsset" data-toggle="modal">
+                            <div class="file-upload btn btn-upload">
+                              <span>{!$Label.ESN_MB_UploadFromDAM}</span>
+                            </div>
+                          </a>
+                          <div class="file-upload btn btn-upload">
+                            <span>{!$Label.ESN_MB_Uploadphoto}</span>
+                            <input type="file" class="input-upload" accept="image/*" id="addMainPhoto" />
+                          </div>
+                        </div>
+                      </div>
+                    </fieldset>
+                    <label for="title" class="label-medium" id="titleActivationMissingInfo">Title</label>
+                    <form>
+                            <input type="text" name="link"  id="titleMA"  value="Activation Name" onclick="if(this.value ==='Activation Name') {this.value='';}" style="font-weight: bold; width: 100%;" />                         
+                    </form>
+                    <!--<input type="text" name="activation_name" id="activation_name" value="" placeholder="Activation name" />-->
+                    <div class="select-container" id="containerMA1">
+                      {!$Label.ESN_MB_SelectBusinessPriority}<br />
+                      <select name="" id="fla-business_priority"></select><br />
+                      {!$Label.ESN_MB_SelectAffiliate}<br />
+                      <select name="" id="fla-affiliate"></select><br />
+                      {!$Label.ESN_MB_SelectMarketMaturity}<br />
+                      <select name="" id="fla-brand_maturity"></select><br />
+                      {!$Label.ESN_MB_SelectProduct}<br />
+                      <select name="" id="fla-product"></select><br />
+                      {!$Label.ESN_MB_Select_Market}<br />
+                      <select name="" id="fla-market"></select><br />
+                    </div>
+                     <!-- Activation type -->
+                    <div class="list-selector" id="activationTypeMissingInfo">
+                      <label for="" class="label-medium">{!$Label.ESN_MB_ActivationType}</label>
+                      
+                      <div class="selectbox-container">
+                        <div class="selectbox" ondragover="$.allowDrop(event)" ondrop="$.drop('left', event)">
+                          <div class="scrollbar-inner" id="marketActivationSelect1">
+                            <ul id="activationMA-left"></ul>
+                          </div>
+                        </div>
+                        <div class="selectbox border-dotted" ondragover="$.allowDrop(event)" ondrop="$.drop('right', event)">
+                          <div class="scrollbar-inner">
+                            <ul id="activationMA-right"></ul>
+                          </div>
+                          <!-- {!$Label.ESN_MB_DragHere} -->
+                          <div class="selectbox-info">{!$Label.ESN_MB_DragHere}</div>
+                        </div>
+                      </div><!-- selectbox-container -->
+                    </div>
+                    <!-- Pros -->
+                    <div class="list-selector">
+                      <label for="" class="label-medium">{!$Label.ESN_MB_Pros}</label>
+                      <div class="selectbox-container">
+                        <div class="selectbox" ondragover="$.allowDrop(event)" ondrop="$.drop('left', event)">
+                          <div class="scrollbar-inner" id="marketActivationSelectPros">
+                            <ul id="prosMA-left"></ul>
+                          </div>
+                        </div>
+                        <div class="selectbox border-dotted" ondragover="$.allowDrop(event)" ondrop="$.drop('right', event)">
+                          <div class="scrollbar-inner">
+                            <ul id="prosMA-right"></ul>
+                          </div>
+                          <!-- {!$Label.ESN_MB_DragHere} -->
+                          <div class="selectbox-info">{!$Label.ESN_MB_DragHere}</div>
+                        </div>
+                      </div><!-- selectbox-container -->
+                    </div>
+                    <!-- Target -->
+                    <div class="list-selector" id="targetMissingInfo">
+                      <label for="" class="label-medium">{!$Label.ESN_MB_Target}</label>
+                      <div class="selectbox-container">
+                        <div class="selectbox" ondragover="$.allowDrop(event)" ondrop="$.drop('left', event)">
+                          <div class="scrollbar-inner" id="marketActivationSelectTarget">
+                            <ul id="targetMA-left"></ul>
+                          </div>
+                        </div>
+                        <div class="selectbox border-dotted" ondragover="$.allowDrop(event)" ondrop="$.drop('right', event)">
+                          <div class="scrollbar-inner">
+                            <ul id="targetMA-right"></ul>
+                          </div>
+                          <!-- {!$Label.ESN_MB_DragHere} -->
+                          <div class="selectbox-info">{!$Label.ESN_MB_DragHere}</div>
+                        </div>
+                      </div><!-- selectbox-container -->
+                    </div>
+                    <div class="select-container" id="containerMA1">
+                      {!$Label.ESN_MB_SelectBudget}<br />
+                      <select name="" id="fla-budget"></select><br />
+                      {!$Label.ESN_MB_Select_LegalConstraints}<br />
+                      <select name="" id="fla-legal"></select><br />
+                    </div>
+                    <div class="date-input-container">
+                        <!--
+                      <span>{!$Label.ESN_MB_PickDates}</span>
+                      <input type="text" name="date_debut" id="date_debut_local_activation" class="small-input datepicker" value="" autocomplete="off" placeholder="mm/dd/yyyy" />
+                      <span class="label-date">to</span>
+                      <input type="text" name="date_fin" id="date_fin_local_activation" class="small-input datepicker" value="" autocomplete="off" placeholder="mm/dd/yyyy" />
+                        -->
+                    </div>
+                    <div class="select-container" id="containerMA1">
+                    <br/><br/>
+                        {!$Label.ESN_MB_LeCercleActivationText}
+                        <!--select name="" id="isLeCercleActivation">
+                            <option value="No">No</option>
+                            <option value="Yes">Yes</option>
+                        </select><br/-->
+                        <!--input style="float:right; position: relative;vertical-align: middle;bottom: 3px; zoom:2.0;" type="checkbox" id="isLeCercleActivation" name="isLeCercleActivation"/--> 
+                        <input id="isLeCercleActivation" name="isLeCercleActivation" type="checkbox" checked="false" data-toggle="toggle" data-onstyle="primary" data-on="Yes" data-off="No" style="float: right;"/>
+                    </div>
+                    <h2 id="bigIdeaMissingInfoMA">{!$Label.ESN_MB_BigIdea}</h2>
+                    <textarea name="bigIdea" id="BigIdeaEditMA" cols="30" rows="5"></textarea>
+
+                    <h2>{!$Label.ESN_MB_Description}</h2>
+                    <hr class="separator" />
+                    <!--<input type="text" name="concept" id="concept" class="input-concept" value="" placeholder="The concept" />-->
+                    <label for="why" class="label-medium" id="whyMissingInfo">{!$Label.ESN_MB_WHY}</label>
+                    <textarea name="Why" id="WhyEditMA" cols="30" rows="5"></textarea><br />
+                    <label for="what" class="label-medium" id="whatMissingInfo">{!$Label.ESN_MB_WHAT}</label>
+                    <textarea name="What" id="WhatEditMA" cols="30" rows="5"></textarea><br />
+                    <label for="toWhom" class="label-medium" id="toWhomMissingInfo">{!$Label.ESN_MB_TOWHOM}</label>
+                    <textarea name="toWhom" id="toWhomEditMA" cols="30" rows="5"></textarea><br />
+                    <label for="how" class="label-medium" id="howMissingInfo">{!$Label.ESN_MB_HOW}</label>
+                    <textarea name="How" id="HowEditMA" cols="30" rows="5"></textarea>
+                    
+                    <h2>{!$Label.ESN_MB_WhatResults}</h2>
+                    <hr class="separator" />
+                    <label for="kpis" class="label-medium" id="kpisMissingInfo">{!$Label.ESN_MB_Results_High}</label>
+                    <textarea name="kpis" id="kpisEditMA" cols="30" rows="5"></textarea><br />
+                    <label for="strategicFit" class="label-medium" id="strategicFitMissingInfoMA">{!$Label.ESN_MB_StrategicFit}</label>
+                    <textarea name="strategicFit" id="StrategicFitEditMA" cols="30" rows="5"></textarea><br />
+                    <label for="excellenceOfExecution" class="label-medium" id="excellenceOfExecutionMissingInfoMA">{!$Label.ESN_MB_ExcellenceOfExecution}</label>
+                    <textarea name="excellenceOfExecution" id="ExcellenceOfExecutionEditMA" cols="30" rows="5"></textarea><br />
+                    <label for="businessImpact" class="label-medium" id="businessImpactMissingInfoMA">{!$Label.ESN_MB_BusinessImpact}</label>
+                    <textarea name="businessImpact" id="BusinessImpactEditMA" cols="30" rows="5"></textarea><br />
+                    <label for="scalabilityAndReplicability" class="label-medium" id="scalabilityAndReplicabilityMissingInfoMA">{!$Label.ESN_MB_ScalabilityAndReplicability}</label>
+                    <textarea name="scalabilityAndReplicability" id="ScalabilityAndReplicabilityEditMA" cols="30" rows="5"></textarea>
+
+                    <h2>{!$Label.ESN_MB_PA}</h2>
+                    <fieldset>
+                      <label for="picture" class="label-icon label-icon-picture">{!$Label.ESN_MB_AddPictures}</label>
+                      <ul id="uploadPreviewImageAsset">
+                      </ul>
+                      <div class="upload-btn-container">
+                        <div id="addMarketActivationImageAsset" class="preview">
+                          <a data-page="activation" data-category="brand-cloud" data-target="#modal-searchAsset" href="/apex/ESN_MB_NOP_SearchAsset" data-toggle="modal">
+                            <div class="file-upload btn btn-upload">
+                              <span>{!$Label.ESN_MB_Add_Photos}</span>
+                            </div>
+                          </a>
+                          <div class="file-upload btn btn-upload">
+                            <span>{!$Label.ESN_MB_UploadPhoto}</span>
+                            <input type="file" class="input-upload" accept="image/*" id="addPhotos" />
+                          </div>
+                        </div>
+                      </div>
+                    </fieldset>
+                      
+                    <h2>{!$Label.ESN_MB_Videos}</h2>
+                    <fieldset>
+                      <label for="video" class="label-icon label-icon-video">{!$Label.ESN_MB_AddOneVideoMA}</label>
+                      <ul id="uploadPreviewVideoAsset"></ul>
+                      <div class="upload-btn-container">
+                        <div id="addMarketActivationVideoAsset" class="preview">
+                          <a data-page="activation" data-category="brand-cloud" data-target="#modal-searchAsset" href="/apex/ESN_MB_NOP_SearchAsset" data-toggle="modal">
+                            <div class="file-upload btn btn-upload">
+                              <span>{!$Label.ESN_MB_Add_Video}</span>
+                            </div>
+                          </a>
+                          <div class="file-upload btn btn-upload">
+                            <span>{!$Label.ESN_MB_UploadVideo}</span>
+                            <input type="file" class="input-upload" accept="video/*" id="addVideo" />
+                          </div>
+                        </div>
+                      </div>
+                    </fieldset>
+                      
+                    <h2>{!$Label.ESN_MB_Embedded_Video}</h2>
+                    <div id="embeddedVideoMA">
+                    <form>
+                       <input type="text" name="link"  id="embeddedVideoHTMLMA" style="font-weight: bold;width: 100%;"/>                         
+                    </form>
+                    </div>
+
+                    <h2>{!$Label.ESN_MB_Documents}</h2>
+                    <fieldset>
+                      <label for="picture" class="label-icon label-icon-presentation">{!$Label.ESN_MB_Add_Documents}</label>
+                      <ul id="uploadPreviewPresentationAsset"></ul>
+                      <div class="upload-btn-container">
+                        <div id="addMarketActivationPresentationAsset" class="preview">
+                          <a data-page="activation" data-category="brand-cloud" data-target="#modal-searchAsset" href="/apex/ESN_MB_NOP_SearchAsset" data-toggle="modal">
+                            <div class="file-upload btn btn-upload">
+                              <span>{!$Label.ESN_MB_Add_document}</span>
+                            </div>
+                          </a>
+                          <div class="file-upload btn btn-upload">
+                            <span>{!$Label.ESN_MB_Upload_Document}</span>
+                            <input type="file" class="input-upload" accept="application/vnd.ms-powerpoint,application/zip,application/rar,
+                                                                            application/vnd.openxmlformats-officedocument.presentationml.slideshow,
+                                                                            application/vnd.openxmlformats-officedocument.presentationml.presentation" id="addPresentations"/>
+                          </div>
+                        </div>
+                      </div>
+                    </fieldset> 
+                      
+                    <h2>{!$Label.ESN_MB_Links}</h2>
+                    <fieldset>
+                      <label for="picture" class="label-icon label-icon-link">{!$Label.ESN_MB_Add_Link}</label>
+                      <ul id="uploadPreviewLinkAsset"><!-- liste des fichiers --></ul>
+                      <div class="upload-btn-container">
+                        <!--<div class="file-upload btn btn-upload">-->
+                          <!--<span>Upload link</span>-->
+                            <form>
+                            {!$Label.ESN_MB_Link} <input type="text" name="link" value=""  id="linkValueMA" style="width: 100%;" /> {!$Label.ESN_MB_URL} <input type="text" name="url" value="" id="URLValueMA" style="width: 100%;" />
+                            <input type="submit" value="{!$Label.ESN_MB_Submit_Link}" id="addLinksMA" onclick="return false;"/>                          
+                            </form>
+                            <!--<input type="file" class="input-upload" id="addLinks" />-->
+                        <!--</div>-->
+                      </div>
+                    </fieldset>
+
+                      <h2>{!$Label.ESN_MB_KeyContacts}</h2>
+                      <fieldset>
+                          <label for="picture" class="label-icon label-icon-contact">{!$Label.ESN_MB_AddContacts}</label>
+
+                          <ul id="keyContactUlMA"></ul>
+                          <div class="upload-btn-container">
+                              <div id="addKeyContactMA" class="preview">
+                                  <a data-page="activation" data-category="brand-cloud" data-target="#modal-relatedArticles" href="/apex/ESN_MB_NOP_RelatedArticles" data-toggle="modal">
+                                      <div class="file-upload btn btn-upload">
+                                          <span>{!$Label.ESN_MB_TypeContact}</span>
+                                      </div>
+                                  </a>
+                              </div>
+                          </div>
+                      </fieldset>
+
+                    <h2>{!$Label.ESN_MB_Brand_Activation}</h2>
+                    <fieldset>
+                      <label for="picture" class="label-icon label-icon-link">{!$Label.ESN_MB_Add_Brand_Activation}</label>
+                      <ul id="linkToToolkitUl"></ul>
+                      <div class="upload-btn-container">
+                        <div id="addLinkedToolkit" class="preview">
+                              <a data-page="activation" data-category="brand-cloud" data-target="#modal-relatedArticles" href="/apex/ESN_MB_NOP_RelatedArticles" data-toggle="modal">
+                                  <div class="file-upload btn btn-upload">
+                                      <span>{!$Label.ESN_MB_Link_To_Activation}</span>
+                                  </div>
+                              </a>
+                          </div>
+                      </div>
+                    </fieldset> 
+
+                      
+                    <div class="row">
+                      <div class="col-xs-12 col-sm-6 bouton-container">
+                          <span class="bouton-container-preview"><input type="button" class="btn col-xs-12 col-sm-6 pull-right" value="{!$Label.ESN_MB_SaveAsDraft}" onclick="previewMarketActivation()" /></span>
+                      </div>    
+                      <div class="col-xs-12 col-sm-6 bouton-container">
+                        <div class="spinner spinner-ie8"></div>
+                          <input type="submit" value="Upload" onclick="updateMarketActivation(newActivationId, false, retrieveMarketActivationUploadedPreview)"/>
+                      </div>
+                    </div>
+                  </form>
+                </div> <!-- central-container -->
+              </div><!--/.container-margin-->
+            </div>
+</apex:component>

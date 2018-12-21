@@ -1,0 +1,2 @@
+<apex:page standardController="ASI_KOR_Promotion__c" extensions="ASI_KOR_PromotionShowCalendarController" action="{!initPage}">
+</apex:page>

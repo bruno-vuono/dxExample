@@ -1,0 +1,149 @@
+<apex:page standardController="ASI_FOC_Free_Goods_Request__c" extensions="ASI_CRM_MY_FOCItemMassEditCtl" recordSetVar="planLineItems" sideBar="true" id="aPage">
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>  
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+    
+    <apex:form id="aForm">
+        <apex:pageBlock id="aPageBlock">
+        <apex:pageMessages id="ErrorMessage"/>
+        <apex:pageBlockButtons >
+            <apex:commandButton value="Save" action="{!SAVE}" status="ActionStatus" oncomplete="gotoRecord('{!strPageID}')" reRender="Resultitem, ErrorMessage"/>
+            <apex:commandButton value="Quick Save" action="{!quicksave}" status="ActionStatus" reRender="Resultitem, ErrorMessage"/>
+            <apex:commandButton value="Cancel" action="{!cancel}"/>
+        </apex:pageBlockButtons>
+        
+        <apex:panelGrid columns="1" width="100%">         
+            <apex:pageBlockSection title="FIS Claim Detail">
+                <apex:outputField value="{!FOC.name}"/>    
+                <apex:pageBlockSectionItem ></apex:pageBlockSectionItem> 
+                <apex:outputField value="{!FOC.ASI_FOC_Date_of_Delivery__c}"/> 
+                <apex:pageBlockSectionItem ></apex:pageBlockSectionItem>
+                <apex:outputField value="{!FOC.ASI_CRM_Contract__c}"/> 
+                <apex:pageBlockSectionItem ></apex:pageBlockSectionItem>
+                <apex:outputField value="{!FOC.ASI_CRM_JDE_SO_Number__c}"/>                       
+            </apex:pageBlockSection>
+        </apex:panelGrid>
+        
+        <apex:panelGrid columns="1" width="100%">   
+            <apex:pageBlockSection title="FIS Claim Line Item">
+                <apex:pageBlockSectionItem >
+                    <apex:outputPanel layout="block">
+                        <apex:commandButton rendered="{!isEdit}" action="{!DELETESELECTED}" title="Delete Selected" status="ActionStatus" reRender="Resultitem, ErrorMessage" value="Delete Selected"/>
+                        <apex:commandButton rendered="{!isEdit}" action="{!CLONESELECTED}" title="Clone Selected" status="ActionStatus" reRender="Resultitem, ErrorMessage" value="Clone Selected"/>
+                        <apex:commandButton rendered="{!isEdit}" action="{!ADDNEW}" title="Add New Row" status="ActionStatus" reRender="Resultitem, ErrorMessage" value="Add New Row"/>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            
+            <apex:pageblocktable value="{!results}" var="itm" id="Resultitem">
+                <apex:column >                    
+                    <apex:facet name="header">
+                        <apex:inputCheckbox value="{!allSelected}" id="allInput" onchange="selectAllCheckboxes(this,'inputId')" />
+                    </apex:facet>
+
+                    <apex:inputCheckbox value="{!itm.selected}" id="inputId" />
+                </apex:column>
+                
+                <apex:column >
+                    <apex:facet name="header">SKU</apex:facet>
+                        <div class="requiredInput">
+                        	<div class="requiredBlock"></div>
+                        	<apex:inputfield value="{!itm.ppl.ASI_FOC_SKU__c}" rendered="{!IF(!isEdit, false, true)}" onchange="modiftyRecord()" style="width: 400px"/>
+                        </div>
+                    	<apex:outputfield value="{!itm.ppl.ASI_FOC_SKU__c}" rendered="{!IF(!isEdit, true, false)}" />
+                </apex:column>
+                
+                <apex:column >
+                    <apex:facet name="header">Issue Qty</apex:facet>
+                        <div class="requiredInput">
+                            <div class="requiredBlock"></div>
+                            <apex:inputfield value="{!itm.ppl.ASI_FOC_Issued_Qty__c}" rendered="{!IF(!isEdit, false, true)}" onchange="modiftyRecord()" style="width: 50px"/>
+                        </div>
+                    	<apex:outputfield value="{!itm.ppl.ASI_FOC_Issued_Qty__c}" rendered="{!IF(!isEdit, true, false)}" />
+                </apex:column>
+                
+                <apex:column >
+                    <apex:facet name="header">Setup Code</apex:facet>
+                        <div class="requiredInput">
+                            <div class="requiredBlock"></div>
+                            <apex:selectList rendered="{!IF(!isEdit, false, true)}"  value="{!itm.ppl.ASI_CRM_SetupCode__c}" size="1" onchange="modiftyRecord()">
+                                <apex:selectOptions value="{!ContractSetupCodeValue}"/>
+                            </apex:selectList>
+                        </div>
+                    	<apex:outputfield value="{!itm.ppl.ASI_CRM_SetupCode__c}" rendered="{!IF(!isEdit, true, false)}" />
+                </apex:column>
+                
+                <apex:column >
+                    <apex:facet name="header">GL Reason Code</apex:facet>
+                        <apex:outputField value="{!itm.ppl.ASI_CRM_GLReasonCode__c}" />
+                </apex:column>
+                
+                <apex:column >
+                    <apex:facet name="header">JDE COA</apex:facet>
+                        <apex:outputField value="{!itm.ppl.ASI_CRM_JDECOA__c}" />
+                </apex:column>
+                
+                <apex:column >
+                    <apex:facet name="header">Remarks</apex:facet>
+                        <apex:inputfield value="{!itm.ppl.ASI_FOC_Remark__c}" onchange="modiftyRecord()" />
+                </apex:column>
+            </apex:pageblocktable>
+            
+            <!-- Hidden field to store the variable of modifiedVF-->
+            <apex:inputHidden value="{!modifiedVF}" id="hiddenModifiedField"/>
+            
+        <apex:outputPanel layout="block" id="Pageing">                          
+            <apex:commandButton action="{!BEGINNING}" title="Beginning" value="<<" disabled="{!disablePrevious}" status="ActionStatus" reRender="Resultitem, ErrorMessage, Pageing"/>
+            <apex:commandButton action="{!PREVIOUS}" title="Previous" value="<" disabled="{!disablePrevious}" status="ActionStatus" reRender="Resultitem, ErrorMessage, Pageing"/>        
+            <apex:commandButton action="{!NEXT}" title="Next" value=">" disabled="{!disableNext}" status="ActionStatus" reRender="Resultitem, ErrorMessage, Pageing"/>
+            <apex:commandButton action="{!END}" title="End" value=">>" disabled="{!disableNext}" status="ActionStatus" reRender="Resultitem, ErrorMessage, Pageing"/>
+            <apex:outputText value="{!recordNumberDisplay}" id="recordNumberDisplay"/>                  
+        </apex:outputPanel>
+
+        </apex:panelGrid>
+           
+        </apex:pageBlock>
+    </apex:form>
+    
+    <!------------------------------------------------ FOR LOADING ANIMATION ------------------------------------------------>
+    <apex:actionstatus id="ActionStatus">
+        <apex:facet name="start">
+            <div class="waitingSearchDiv" id="el_loading" style="background-color: #fbfbfb;
+               height: 1000%; width:1000%; opacity:0.65;"> 
+                <div class="waitingHolder" id="loadtext" style="position: absolute;" align="left" valign="top">
+                    &nbsp;&nbsp;&nbsp;
+                    <img class="waitingImage" src="/img/loading.gif" title="Please Wait..." />
+                    <span class="waitingDescription">Please Wait...</span>
+                </div>
+            </div>
+        </apex:facet>
+    </apex:actionstatus>
+
+    <script>
+        $(document).on('mousemove', function(e){
+            $('#loadtext').css({
+               left:  e.pageX,
+               top:   e.pageY
+            });
+        });
+    
+        function selectAllCheckboxes(obj,receivedInputID){
+            var inputCheckBox = document.getElementsByTagName("input");                  
+            for(var i=0; i<inputCheckBox.length; i++){          
+                if(inputCheckBox[i].id.indexOf(receivedInputID)!=-1){                                     
+                    inputCheckBox[i].checked = obj.checked;
+                }
+            }
+        }
+        
+        function gotoRecord(pageID){  
+            //alert(pageID);
+            if(pageID != 'ERROR')
+                window.open("/" + pageID, '_self');
+        }
+        
+        function modiftyRecord(){
+            document.getElementById('aPage:aForm:aPageBlock:hiddenModifiedField').value = 'Y';
+        }
+    </script>
+</apex:page>

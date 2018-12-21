@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DelegateGroup xmlns="http://soap.sforce.com/2006/04/metadata">
+    <groups>ASI CN NPL Brand Director Approvers</groups>
+    <groups>ASI CN NPL Deputy Managing Director</groups>
+    <groups>ASI CN NPL Final Approved Email List</groups>
+    <groups>ASI CN NPL Finance Director</groups>
+    <groups>ASI CN NPL Marketing Director</groups>
+    <groups>ASI CN NPL National Sales Dev VP</groups>
+    <groups>ASI CN NPL Notify BA Users</groups>
+    <groups>ASI CN NPL Notify Logistics Users</groups>
+    <groups>ASI CN NPL Pre-Approved Email List</groups>
+    <groups>ASI CN NPL Trade Marketing Director</groups>
+    <groups>ASI CN NPL Item Master Logistics User</groups>
+    <groups>PRH PR China Commercial Director</groups>
+    <groups>PRH PR China Sales Rep</groups>
+    <groups>ASI_CN_MFM_User</groups>
+    <groups>ASI_MFM_CN_BA</groups>
+    <groups>ASI CN NPL Additional User Group</groups>
+    <groups>ASI CN NPL Pre-Approved Email List (Leg)</groups>
+    <groups>ASI CRM CN AD or Above</groups>
+    <groups>ASI CRM CN Admin</groups>
+    <groups>ASI CRM CN BA GC</groups>
+    <groups>ASI CRM CN BA N</groups>
+    <groups>ASI CRM CN BA GS</groups>
+    <groups>ASI CRM CN BA HQ</groups>
+    <groups>ASI CRM CN Finance GC</groups>
+    <groups>ASI CRM CN Finance N</groups>
+    <groups>ASI CRM CN Finance GS</groups>
+    <groups>ASI CRM CN Finance HQ</groups>
+    <groups>ASI CRM CN NTMK</groups>
+    <groups>ASI CRM CN PG</groups>
+    <groups>ASI CRM CN RTMK GC</groups>
+    <groups>ASI CRM CN RTMK GN</groups>
+    <groups>ASI CRM CN RTMK GS</groups>
+    <groups>ASI CRM CN Sales GC</groups>
+    <groups>ASI CRM CN Sales GN</groups>
+    <groups>ASI CRM CN Sales GS</groups>
+    <groups>ASI CRM CN Sales Manager</groups>
+    <groups>ASI CRM CN WS Manager GC</groups>
+    <groups>ASI CRM CN WS Manager N</groups>
+    <groups>ASI CRM CN WS Manager GS</groups>
+    <groups>ASI CRM CN IHBR Sales</groups>
+    <groups>ASI MFM CN PO Receipt Admin</groups>
+    <groups>ASI CRM CN BA SH</groups>
+    <groups>ASI CRM CN Channel Manager SH</groups>
+    <groups>ASI CRM CN Finance SH</groups>
+    <groups>ASI CRM CN TMKT SH</groups>
+    <groups>ASI CRM CN Anti-Bribery Officer</groups>
+    <groups>ASI CRM CN BA GE</groups>
+    <groups>ASI CRM CN Finance GE</groups>
+    <groups>ASI CRM CN IT Admin</groups>
+    <groups>ASI CRM CN RTMK GE</groups>
+    <groups>ASI CRM CN Sales GE</groups>
+    <groups>ASI CRM CN WS Manager GE</groups>
+    <groups>ASI MFM CN Regional User</groups>
+    <groups>ASI_MFM_CN_IT</groups>
+    <groups>ASI_MFM_CN_IT_Reg</groups>
+    <groups>ASI CN EOL Logistics email Group</groups>
+    <groups>ASI CRM CN OFF Channel</groups>
+    <groups>ASI CRM CN ON Channel</groups>
+    <groups>ASI CRM CN SalesOrder RTD Aprrover Group</groups>
+    <groups>ASI CRM CN SalesOrder VIP Approver Group</groups>
+    <groups>ASI CRM CN SalesOrder  eCommerceAprrover</groups>
+    <groups>ASI CRM CN Finance NW</groups>
+    <groups>ASI CRM CN RTMK N</groups>
+    <groups>ASI CRM CN RTMK NW</groups>
+    <groups>ASI CRM CN WS Manager NW</groups>
+    <groups>ASI_CRM_CN_Team_Leader</groups>
+    <groups>ASI CRM CN TOV Group</groups>
+    <groups>ASI MFM CN Procurement User</groups>
+    <groups>Logistic Customer Service</groups>
+    <groups>ASI_CRM_CN_BA_Premium</groups>
+    <groups>ASI_MFM_CN_SC_Admin_Group</groups>
+    <groups>ASI_MFM_CN_SC_Approver_Group</groups>
+    <groups>ASI_MFM_CN_SC_Finance_Group</groups>
+    <groups>ASI_MFM_CN_SC_RentalApprover_Group</groups>
+    <groups>ASI_FOC_CN_Logistic_Group</groups>
+    <groups>ASI_FOC_CN_POSM_Logistic_Group</groups>
+    <groups>ASI_FOC_CN_POSM_Viewer</groups>
+    <groups>ASI CRM CN DTF Approver Group</groups>
+    <groups>ASI_CN_RTMK_Group</groups>
+    <groups>ASI MFM CN Luxe Team</groups>
+    <groups>ASI_CRM_CN_Product_Warehouse_Admin_Group</groups>
+    <groups>ASI MFM CN Invoice Alert (Emarket)</groups>
+    <groups>ASI CRM CN Sales NW</groups>
+    <groups>ASI CRM CN Sales Premium</groups>
+    <groups>ASI CRM CN Sales Retail</groups>
+    <groups>ASI CRM CN BA NW</groups>
+    <groups>CN IT System Admin</groups>
+    <groups>ASI_CN_NPL_Group</groups>
+    <groups>ASI_CN_NPL_Item_Master_Alert_Type_A_Comp</groups>
+    <groups>ASI_CN_NPL_Item_Master_Alert_Type_B_Comp</groups>
+    <groups>ASI_CN_NPL_Item_Master_Alert_to_BA</groups>
+    <groups>ASI_CN_NPL_Item_Master_Alert_to_LOG</groups>
+    <groups>ASI_CN_NPL_Item_Master_AlerttoSales_Plan</groups>
+    <groups>ASI_CN_NPL_Item_Master_Complete_Existing</groups>
+    <groups>ASI_CN_NPL_Item_Master_Complete_NewBrand</groups>
+    <groups>ASI CN NPL Item Master Complete New I&amp;B</groups>
+    <groups>ASI_CN_NPL_Item_Master_Complete_New_Item</groups>
+    <groups>ASI CRM CN IHBR SC Central</groups>
+    <groups>ASI CRM CN IHBR SC North</groups>
+    <groups>ASI CRM CN IHBR SC South</groups>
+    <groups>CN Anti-Bribery VIP Group</groups>
+    <groups>Asia Approver</groups>
+    <groups>ASI CRM CN WS Evaluation Data</groups>
+    <groups>ASI_CRM_CN_TOVNotification_Group</groups>
+    <groups>ASI CRM CN Internal Complaint</groups>
+    <groups>ASI_CRM_CN_AR_Team_Group</groups>
+    <groups>CN Internal Complaint Completed Notify</groups>
+    <label>ASI FOC Delegated Admins</label>
+    <loginAccess>true</loginAccess>
+    <permissionSets>ASI CN POSM Submitter</permissionSets>
+    <permissionSets>ASI_CRM_CN_DTF_Approver</permissionSets>
+    <permissionSets>ASI_CRM_CN_DTF_User</permissionSets>
+    <permissionSets>PR SSO</permissionSets>
+    <permissionSets>Best Practices Viewer</permissionSets>
+    <permissionSets>PR ESN Platform</permissionSets>
+    <permissionSets>ASI_CN_IT_Admin</permissionSets>
+    <permissionSets>ASI CN NPL Approvers</permissionSets>
+    <permissionSets>ASI CN NPL BA User</permissionSets>
+    <permissionSets>ASI CN NPL Logistics User</permissionSets>
+    <permissionSets>ASI CN NPL Marketing User</permissionSets>
+    <permissionSets>ASI CN NPL TMKT and Sales User</permissionSets>
+    <permissionSets>ASI CN NPL Delegated Admin</permissionSets>
+    <permissionSets>ASI CN FOC Brand Director</permissionSets>
+    <permissionSets>ASI CN FOC Submitter</permissionSets>
+    <permissionSets>ESN Check-in permission_TODEL</permissionSets>
+    <permissionSets>ESN Chatter TV Viewer_TODEL</permissionSets>
+    <permissionSets>ASI CN NPL Read Only</permissionSets>
+    <permissionSets>ASI CN Item Master BA User</permissionSets>
+    <permissionSets>ASI CN Item Master Logistics User</permissionSets>
+    <permissionSets>ASI CN Item Master SP IT User</permissionSets>
+    <permissionSets>ASI CN MFM BA User</permissionSets>
+    <permissionSets>ASI CN MFM PMO User</permissionSets>
+    <permissionSets>ASI CN MFM Standard User</permissionSets>
+    <permissionSets>ASI CRM CN Issue Zone Admin User</permissionSets>
+    <permissionSets>ASI CRM CN Issue Zone User</permissionSets>
+    <permissionSets>ASI eForm CN Admin User</permissionSets>
+    <permissionSets>ASI eForm CN User</permissionSets>
+    <permissionSets>TrendGalaxy Client</permissionSets>
+    <permissionSets>ASI CRM CN AD User</permissionSets>
+    <permissionSets>ASI CRM CN Apex</permissionSets>
+    <permissionSets>ASI CRM CN General BA</permissionSets>
+    <permissionSets>ASI CRM CN HQ BA User</permissionSets>
+    <permissionSets>ASI CRM CN HQ Finance User</permissionSets>
+    <permissionSets>ASI CRM CN HQ TMKT User</permissionSets>
+    <permissionSets>ASI CRM CN MD User</permissionSets>
+    <permissionSets>ASI CRM CN Master Data</permissionSets>
+    <permissionSets>ASI CRM CN Master Data (Admin)</permissionSets>
+    <permissionSets>ASI CRM CN Merchandizer</permissionSets>
+    <permissionSets>ASI CRM CN PG Head</permissionSets>
+    <permissionSets>ASI CRM CN RVP User</permissionSets>
+    <permissionSets>ASI CRM CN Regional BA User</permissionSets>
+    <permissionSets>ASI CRM CN Regional Finance User</permissionSets>
+    <permissionSets>ASI CRM CN Regional TMKT User</permissionSets>
+    <permissionSets>ASI CRM CN Sales User</permissionSets>
+    <permissionSets>ASI CRM CN WS Manager User</permissionSets>
+    <permissionSets>ASI CRM CN City Offcial Mass Edit</permissionSets>
+    <permissionSets>ASI CRM CN EOL</permissionSets>
+    <permissionSets>ASI CRM CN Order Form Admin</permissionSets>
+    <permissionSets>ASI CRM CN Price And Discount CustomerPrice</permissionSets>
+    <permissionSets>ASI CRM CN Price And Discount NT1</permissionSets>
+    <permissionSets>ASI CRM CN Price And Discount Repack</permissionSets>
+    <permissionSets>ASI CRM CN Price And Discount T1Adjustment</permissionSets>
+    <permissionSets>ASI CRM CN Promotion Master Admin</permissionSets>
+    <permissionSets>ASI CRM CN Sales Order</permissionSets>
+    <permissionSets>ASI_MFM_CN_StructureCost_AdminUser</permissionSets>
+    <permissionSets>ASI_MFM_CN_StructureCost_NormalUser</permissionSets>
+    <permissionSets>ASI_MFM_CN_StructureCost_ProcurementUser</permissionSets>
+    <permissionSets>ASI CRM CN Product WareHouse Logistics User</permissionSets>
+    <permissionSets>ASI_MFM_CN_ScanToPay_Admin</permissionSets>
+    <permissionSets>ASI_MFM_CN_ScanToPay_User</permissionSets>
+    <permissionSets>ASI CRM CN Internal Complaint</permissionSets>
+    <permissionSets>ASI CRM CN Internal Complaint (Admin)</permissionSets>
+    <permissionSets>ASI CRM CN Legal User</permissionSets>
+    <profiles>ASI CN Standard User</profiles>
+    <profiles>ASI CN FOC User</profiles>
+    <profiles>ASI CN BA User</profiles>
+    <profiles>ASI CN Finance User</profiles>
+    <profiles>ASI CN PMO User</profiles>
+    <profiles>ASI CN CRM Standard User</profiles>
+    <profiles>ASI CN IT System Administrator</profiles>
+    <profiles>ASI_CRM_CN_Logistic_User</profiles>
+    <roles>ASI CN</roles>
+</DelegateGroup>

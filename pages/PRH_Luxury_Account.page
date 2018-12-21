@@ -1,0 +1,488 @@
+<apex:page standardController="PRH_Luxury_Accounts__c" tabStyle="PRH_Luxury_Accounts__c" extensions="PRH_Luxury_Account_Controller" sidebar="false;">
+
+<style type="text/css">
+    .tabPanelClass {
+        font-size: 12px;
+        font-weight: bold;
+    	background-color: #A7D490;
+    	background-image:none 
+    }
+    
+    .InactiveCollectTab {
+		font-size: 12px;
+        font-weight: bold;	
+		background-color: #e6e6e6; 
+    	background-image:none 
+	}
+	
+	.OngoingCollectTab {
+        font-size: 12px;
+        font-weight: bold;
+    	background-color: #A7D490;
+    	background-image:none 
+    }
+	
+	.activeTabOldCollect {
+		font-size: 12px;
+        font-weight: bold;	
+		background-color: #e6e6e6; 
+    	background-image:none 
+	}
+    
+    .inactiveTabOldCollect {
+		font-size: 12px;
+        font-weight: bold;	
+		background-color: #f2f2f2; 
+    	background-image:none 
+	}
+	
+	.activeTabOngoingCollect {
+		font-size: 12px;
+        font-weight: bold;	
+		background-color: #A7D490; 
+    	background-image:none 
+	}
+    
+    .inactiveTabOngoingCollect {
+		font-size: 12px;
+        font-weight: bold;	
+		background-color: #d3eac8; 
+    	background-image:none 
+	}
+    
+    #pageblockCollectActive {
+		font-size: 11px;
+        font-weight: bold;	
+	}
+	#pageblockCollectInactive {
+		font-size: 11px;
+        font-weight: bold;	
+	}
+	#pageblockCollect1 {
+		font-size: 11px;
+        font-weight: bold;	
+	}
+	#pageblockCollect2 {
+		font-size: 11px;
+        font-weight: bold;	
+	}
+	#pageblockCollect3 {
+		font-size: 11px;
+        font-weight: bold;	
+	}
+	#pageblockLeCercleActive {
+		font-size: 11px;
+        font-weight: bold;	
+	}
+	#pageblockLeCercleInactive {
+		font-size: 11px;
+        font-weight: bold;	
+	}
+	#pageblockLeCercle1 {
+		font-size: 11px;
+        font-weight: bold;	
+	}
+	#pageblockLeCercle2 {
+		font-size: 11px;
+        font-weight: bold;	
+	}
+	#pageblockLeCercle3 {
+		font-size: 11px;
+        font-weight: bold;	
+	}
+	#pageblockCompActive {
+		font-size: 11px;
+        font-weight: bold;	
+	}
+	#pageblockCompInactive {
+		font-size: 11px;
+        font-weight: bold;	
+	}
+	#pageblockCompetitor1 {
+		font-size: 11px;
+        font-weight: bold;	
+	}
+	#pageblockCompetitor2 {
+		font-size: 11px;
+        font-weight: bold;	
+	}
+	#pageblockCompetitor3 {
+		font-size: 11px;
+        font-weight: bold;	
+	}
+	
+</style>
+
+	<apex:form >
+		<apex:pageBlock >
+			<!-- ***************************************************** -->
+			<!-- ********* Collects panels (4 displayed max) ********* -->
+			<!-- ***************************************************** -->
+			<!--apex:tabPanel activeTabClass="activeTab" inactiveTabClass="inactiveTab" switchType="client" selectedTab="OngoingCollect"-->
+			<apex:tabPanel tabClass="tabPanelClass" switchType="client" selectedTab="OngoingCollect" >
+				<!-- ********************************************* -->
+				<!-- ********************************************* -->
+				<!-- ********* Previous collect Tab No 3 ********* -->
+				<!-- ********************************************* -->
+				<!-- ********************************************* -->			
+                <apex:tab label="{!PRH_Previous3CollectTitle}" name="PreviousCollect3" rendered="{!renderTab3}" id="Previous3CollectTab" styleClass="InactiveCollectTab">
+					<apex:pageBlock id="pageblockCollect3" title="{!PRH_Previous3CollectTitle}">
+						<apex:pageBlockSection columns="4">
+							<apex:pageBlockSectionItem id="fullActivePortfolioSection" dataStyle="width:10%" labelStyle="width:10%">
+								<apex:outputLabel value="{!$ObjectType.PRH_Collect__c.fields.PRH_Full_Active_Le_Cercle_Portfolio__c.Label}"/>
+								<apex:outputField value="{!PRH_Previous3Collect.PRH_Full_Active_Le_Cercle_Portfolio__c}"/>
+							</apex:pageBlockSectionItem>
+                            <apex:pageBlockSectionItem id="LCBPresence" dataStyle="width:10%" labelStyle="width:10%">
+								<apex:outputLabel value="{!$ObjectType.PRH_Collect__c.fields.PRH_Le_Cercle_Brand_Presence__c.Label}" style="font-size:11px;font-weight:bold;"/>
+								<apex:outputField value="{!PRH_Previous3Collect.PRH_Le_Cercle_Brand_Presence__c}" style="font-size:11px;font-weight:bold;"/>
+							</apex:pageBlockSectionItem>
+							<apex:pageBlockSectionItem id="nbPRProductsSection" dataStyle="width:10%" labelStyle="width:10%">
+								<apex:outputLabel value="{!$ObjectType.PRH_Collect__c.fields.PRH_Number_of_Pernod_Ricard_products__c.Label}"/>
+                                <apex:outputField value="{!PRH_Previous3Collect.PRH_Number_of_Pernod_Ricard_products__c}"/>
+							</apex:pageBlockSectionItem>
+                            <apex:pageBlockSectionItem id="CollectLastModified" dataStyle="width:10%" labelStyle="width:10%">
+								<apex:outputLabel value="{!$ObjectType.PRH_Collect__c.fields.PRH_Collect_Last_Modified_Date__c.Label}" style="font-size:11px;font-weight:bold;"/>
+								<apex:outputField value="{!PRH_Previous3Collect.PRH_Collect_Last_Modified_Date__c}" style="font-size:11px;font-weight:bold;"/>
+							</apex:pageBlockSectionItem>
+						</apex:pageBlockSection>
+						
+						<!-- ******************************************************** -->
+						<!-- ********* Brand criteria and Competitor panels ********* -->
+						<!-- ******************************************************** -->
+						<apex:tabPanel activeTabClass="activeTabOldCollect" inactiveTabClass="inactiveTabOldCollect" switchType="client" selectedTab="Brand_Criteria">
+							<apex:tab label="{!$ObjectType.PRH_Brand_Criteria__c.label}" name="Brand_Criteria" style="font-size:11px; font-weight:bold;">
+								<apex:pageBlock id="pageblockLeCercle3" title="{!$ObjectType.PRH_Brand_Criteria__c.label}" >
+									<apex:pageBlockTable value="{!LeCercleBrands3}" columns="8" var="brand3" >
+										<apex:column value="{!brand3.PRH_Brand__r.Name}"  />
+										<apex:column headerValue="{!$ObjectType.PRH_Brand_Criteria__c.fields.PRH_Presence__c.label}" >
+											<apex:outputField styleClass="checkbox {!brand3.PRH_Brand__r.RecordType.DeveloperName}" value="{!brand3.PRH_Presence__c}"/>
+										</apex:column>
+										<apex:column headerValue="{!$ObjectType.PRH_Brand_Criteria__c.fields.PRH_Visibility__c.label}" >
+										   <apex:outputField styleClass="checkbox {!brand3.PRH_Brand__r.RecordType.DeveloperName}" value="{!brand3.PRH_Visibility__c}"/>
+										</apex:column>
+										<apex:column headerValue="{!$ObjectType.PRH_Brand_Criteria__c.fields.PRH_Branded_Event__c.label}" >
+										   <apex:outputField styleClass="checkbox {!brand3.PRH_Brand__r.RecordType.DeveloperName}" value="{!brand3.PRH_Branded_Event__c}"/>
+										</apex:column>
+										<apex:column headerValue="{!FiscalYrNbActivation}" >
+										   <apex:outputField styleClass="checkbox {!brand3.PRH_Brand__r.RecordType.DeveloperName}" value="{!brand3.PRH_Number_of_Branded_Events__c}"/>
+										</apex:column>
+										<apex:column headerValue="{!FiscalYrLabel}" >
+										   <apex:outputField styleClass="checkbox {!brand3.PRH_Brand__r.RecordType.DeveloperName}" value="{!brand3.PRH_Volume__c}"/>
+										</apex:column>
+									</apex:pageBlockTable> 
+								</apex:pageBlock>
+							</apex:tab>
+							
+							<apex:tab label="{!$ObjectType.PRH_Competitor_Brands__c.labelplural}" name="Competitor_Brands">
+								<apex:pageBlock id="pageblockCompetitor3" title="{!$ObjectType.PRH_Competitor_Brands__c.labelplural}">
+									<!--COMPETITOR BRANDS TABLE-->
+									<apex:pageBlockTable value="{!competitorBrands3}" var="brand3" > 
+										<apex:column headerValue="{!$ObjectType.PRH_Brand_Luxury_Brand__c.fields.Name.label}" value="{!brand3.PRH_Iconic_Brand__r.Name}"/>
+										<apex:column headerValue="{!$ObjectType.PRH_Competitor_Brands__c.fields.PRH_Presence__c.label}">
+											<apex:outputField value="{!brand3.PRH_Presence__c}" />
+										</apex:column>
+										<apex:column headerValue="{!FiscalYrLabel}">
+											<apex:outputField value="{!brand3.PRH_Volume__c}" />
+										</apex:column>
+									</apex:pageBlockTable>
+								</apex:pageBlock>
+							</apex:tab>
+						</apex:tabPanel>
+					</apex:pageBlock>
+				</apex:tab>
+				<!-- ********************************************* -->
+				<!-- ********************************************* -->
+				<!-- ********* Previous collect Tab No 2 ********* -->
+				<!-- ********************************************* -->
+				<!-- ********************************************* -->
+				<apex:tab label="{!PRH_Previous2CollectTitle}" name="PreviousCollect2" rendered="{!renderTab2}" id="Previous2CollectTab" styleClass="InactiveCollectTab">
+					<apex:pageBlock id="pageblockCollect2" title="{!PRH_Previous2CollectTitle}">
+						<apex:pageBlockSection columns="4">
+							<apex:pageBlockSectionItem id="fullActivePortfolioSection" dataStyle="width:10%" labelStyle="width:10%">
+								<apex:outputLabel value="{!$ObjectType.PRH_Collect__c.fields.PRH_Full_Active_Le_Cercle_Portfolio__c.Label}"/>
+								<apex:outputField value="{!PRH_Previous2Collect.PRH_Full_Active_Le_Cercle_Portfolio__c}"/>
+							</apex:pageBlockSectionItem>
+                            <apex:pageBlockSectionItem id="LCBPresence" dataStyle="width:10%" labelStyle="width:10%">
+								<apex:outputLabel value="{!$ObjectType.PRH_Collect__c.fields.PRH_Le_Cercle_Brand_Presence__c.Label}" style="font-size:11px;font-weight:bold;"/>
+								<apex:outputField value="{!PRH_Previous2Collect.PRH_Le_Cercle_Brand_Presence__c}" style="font-size:11px;font-weight:bold;"/>
+							</apex:pageBlockSectionItem>
+							<apex:pageBlockSectionItem id="nbPRProductsSection" dataStyle="width:10%" labelStyle="width:10%">
+								<apex:outputLabel value="{!$ObjectType.PRH_Collect__c.fields.PRH_Number_of_Pernod_Ricard_products__c.Label}"/>
+                                <apex:outputField value="{!PRH_Previous2Collect.PRH_Number_of_Pernod_Ricard_products__c}"/>
+							</apex:pageBlockSectionItem>
+                            <apex:pageBlockSectionItem id="CollectLastModified" dataStyle="width:10%" labelStyle="width:10%">
+								<apex:outputLabel value="{!$ObjectType.PRH_Collect__c.fields.PRH_Collect_Last_Modified_Date__c.Label}" style="font-size:11px;font-weight:bold;"/>
+								<apex:outputField value="{!PRH_Previous2Collect.PRH_Collect_Last_Modified_Date__c}" style="font-size:11px;font-weight:bold;"/>
+							</apex:pageBlockSectionItem>
+						</apex:pageBlockSection>
+						
+						<!-- ******************************************************** -->
+						<!-- ********* Brand criteria and Competitor panels ********* -->
+						<!-- ******************************************************** -->
+						<apex:tabPanel activeTabClass="activeTabOldCollect" inactiveTabClass="inactiveTabOldCollect" switchType="client" selectedTab="Brand_Criteria">
+							<apex:tab label="{!$ObjectType.PRH_Brand_Criteria__c.label}" name="Brand_Criteria" style="font-size:11px; font-weight:bold;">
+								<apex:pageBlock id="pageblockLeCercle2" title="{!$ObjectType.PRH_Brand_Criteria__c.label}" >
+									<apex:pageBlockTable value="{!LeCercleBrands2}" columns="8" var="brand2" >
+										<apex:column value="{!brand2.PRH_Brand__r.Name}"  />
+										<apex:column headerValue="{!$ObjectType.PRH_Brand_Criteria__c.fields.PRH_Presence__c.label}" >
+											<apex:outputField styleClass="checkbox {!brand2.PRH_Brand__r.RecordType.DeveloperName}" value="{!brand2.PRH_Presence__c}"/>
+										</apex:column>
+										<apex:column headerValue="{!$ObjectType.PRH_Brand_Criteria__c.fields.PRH_Visibility__c.label}" >
+										   <apex:outputField styleClass="checkbox {!brand2.PRH_Brand__r.RecordType.DeveloperName}" value="{!brand2.PRH_Visibility__c}"/>
+										</apex:column>
+										<apex:column headerValue="{!$ObjectType.PRH_Brand_Criteria__c.fields.PRH_Branded_Event__c.label}" >
+										   <apex:outputField styleClass="checkbox {!brand2.PRH_Brand__r.RecordType.DeveloperName}" value="{!brand2.PRH_Branded_Event__c}"/>
+										</apex:column>
+										<apex:column headerValue="{!FiscalYrNbActivation}" >
+										   <apex:outputField styleClass="checkbox {!brand2.PRH_Brand__r.RecordType.DeveloperName}" value="{!brand2.PRH_Number_of_Branded_Events__c}"/>
+										</apex:column>
+										<apex:column headerValue="{!FiscalYrLabel}" >
+										   <apex:outputField styleClass="checkbox {!brand2.PRH_Brand__r.RecordType.DeveloperName}" value="{!brand2.PRH_Volume__c}"/>
+										</apex:column>
+									</apex:pageBlockTable> 
+								</apex:pageBlock>
+							</apex:tab>
+							
+							<apex:tab label="{!$ObjectType.PRH_Competitor_Brands__c.labelplural}" name="Competitor_Brands">
+								<apex:pageBlock id="pageblockCompetitor2" title="{!$ObjectType.PRH_Competitor_Brands__c.labelplural}">
+									<!--COMPETITOR BRANDS TABLE-->
+									<apex:pageBlockTable value="{!competitorBrands2}" var="brand2" > 
+										<apex:column headerValue="{!$ObjectType.PRH_Brand_Luxury_Brand__c.fields.Name.label}" value="{!brand2.PRH_Iconic_Brand__r.Name}"/>
+										<apex:column headerValue="{!$ObjectType.PRH_Competitor_Brands__c.fields.PRH_Presence__c.label}">
+											<apex:outputField value="{!brand2.PRH_Presence__c}" />
+										</apex:column>
+										<apex:column headerValue="{!FiscalYrLabel}">
+											<apex:outputField value="{!brand2.PRH_Volume__c}" />
+										</apex:column>
+									</apex:pageBlockTable>
+								</apex:pageBlock>
+							</apex:tab>
+						</apex:tabPanel>
+					</apex:pageBlock>
+				</apex:tab>
+				<!-- ********************************************* -->
+				<!-- ********************************************* -->
+				<!-- ********* Previous collect Tab No 1 ********* -->
+				<!-- ********************************************* -->
+				<!-- ********************************************* -->
+				<apex:tab label="{!PRH_Previous1CollectTitle}" name="PreviousCollect1" rendered="{!renderTab1}" id="Previous1CollectTab" styleClass="InactiveCollectTab">
+					<apex:pageBlock id="pageblockCollect1" title="{!PRH_Previous1CollectTitle}">
+						<apex:pageBlockSection columns="4">
+							<apex:pageBlockSectionItem id="fullActivePortfolioSection" dataStyle="width:10%" labelStyle="width:10%">
+								<apex:outputLabel value="{!$ObjectType.PRH_Collect__c.fields.PRH_Full_Active_Le_Cercle_Portfolio__c.Label}"/>
+								<apex:outputField value="{!PRH_Previous1Collect.PRH_Full_Active_Le_Cercle_Portfolio__c}"/>
+							</apex:pageBlockSectionItem>
+                            <apex:pageBlockSectionItem id="LCBPresence" dataStyle="width:10%" labelStyle="width:10%">
+								<apex:outputLabel value="{!$ObjectType.PRH_Collect__c.fields.PRH_Le_Cercle_Brand_Presence__c.Label}" style="font-size:11px;font-weight:bold;"/>
+								<apex:outputField value="{!PRH_Previous1Collect.PRH_Le_Cercle_Brand_Presence__c}" style="font-size:11px;font-weight:bold;"/>
+							</apex:pageBlockSectionItem>
+							<apex:pageBlockSectionItem id="nbPRProductsSection" dataStyle="width:10%" labelStyle="width:10%">
+								<apex:outputLabel value="{!$ObjectType.PRH_Collect__c.fields.PRH_Number_of_Pernod_Ricard_products__c.Label}"/>
+                                <apex:outputField value="{!PRH_Previous1Collect.PRH_Number_of_Pernod_Ricard_products__c}"/>
+							</apex:pageBlockSectionItem>
+                            <apex:pageBlockSectionItem id="CollectLastModified" dataStyle="width:10%" labelStyle="width:10%">
+								<apex:outputLabel value="{!$ObjectType.PRH_Collect__c.fields.PRH_Collect_Last_Modified_Date__c.Label}" style="font-size:11px;font-weight:bold;"/>
+								<apex:outputField value="{!PRH_Previous1Collect.PRH_Collect_Last_Modified_Date__c}" style="font-size:11px;font-weight:bold;"/>
+							</apex:pageBlockSectionItem>
+						</apex:pageBlockSection>
+                        
+						<!-- ******************************************************** -->
+						<!-- ********* Brand criteria and Competitor panels ********* -->
+						<!-- ******************************************************** -->
+						<apex:tabPanel activeTabClass="activeTabOldCollect" inactiveTabClass="inactiveTabOldCollect" switchType="client" selectedTab="Brand_Criteria">
+							<apex:tab label="{!$ObjectType.PRH_Brand_Criteria__c.label}" name="Brand_Criteria" style="font-size:11px; font-weight:bold;">
+								<apex:pageBlock id="pageblockLeCercle1" title="{!$ObjectType.PRH_Brand_Criteria__c.label}" >
+									<apex:pageBlockTable value="{!LeCercleBrands1}" columns="8" var="brand1" >
+										<apex:column value="{!brand1.PRH_Brand__r.Name}"  />
+										<apex:column headerValue="{!$ObjectType.PRH_Brand_Criteria__c.fields.PRH_Presence__c.label}" >
+											<apex:outputField styleClass="checkbox {!brand1.PRH_Brand__r.RecordType.DeveloperName}" value="{!brand1.PRH_Presence__c}"/>
+										</apex:column>
+										<apex:column headerValue="{!$ObjectType.PRH_Brand_Criteria__c.fields.PRH_Visibility__c.label}" >
+										   <apex:outputField styleClass="checkbox {!brand1.PRH_Brand__r.RecordType.DeveloperName}" value="{!brand1.PRH_Visibility__c}"/>
+										</apex:column>
+										<apex:column headerValue="{!$ObjectType.PRH_Brand_Criteria__c.fields.PRH_Branded_Event__c.label}" >
+										   <apex:outputField styleClass="checkbox {!brand1.PRH_Brand__r.RecordType.DeveloperName}" value="{!brand1.PRH_Branded_Event__c}"/>
+										</apex:column>
+										<apex:column headerValue="{!FiscalYrNbActivation}" >
+										   <apex:outputField styleClass="checkbox {!brand1.PRH_Brand__r.RecordType.DeveloperName}" value="{!brand1.PRH_Number_of_Branded_Events__c}"/>
+										</apex:column>
+										<apex:column headerValue="{!FiscalYrLabel}" >
+										   <apex:outputField styleClass="checkbox {!brand1.PRH_Brand__r.RecordType.DeveloperName}" value="{!brand1.PRH_Volume__c}"/>
+										</apex:column>
+									</apex:pageBlockTable> 
+								</apex:pageBlock>
+							</apex:tab>
+							
+							<apex:tab label="{!$ObjectType.PRH_Competitor_Brands__c.labelplural}" name="Competitor_Brands">
+								<apex:pageBlock id="pageblockCompetitor1" title="{!$ObjectType.PRH_Competitor_Brands__c.labelplural}">
+									<!--COMPETITOR BRANDS TABLE-->		
+									<apex:pageBlockTable value="{!competitorBrands1}" var="brand1"> 
+										<apex:column headerValue="{!$ObjectType.PRH_Brand_Luxury_Brand__c.fields.Name.label}" value="{!brand1.PRH_Iconic_Brand__r.Name}"/>
+										<apex:column headerValue="{!$ObjectType.PRH_Competitor_Brands__c.fields.PRH_Presence__c.label}">
+											<apex:outputField value="{!brand1.PRH_Presence__c}" />
+										</apex:column>
+										<apex:column headerValue="{!FiscalYrLabel}">
+											<apex:outputField value="{!brand1.PRH_Volume__c}" />
+										</apex:column>
+									</apex:pageBlockTable>
+								</apex:pageBlock>
+							</apex:tab>
+						</apex:tabPanel>
+					</apex:pageBlock>
+				</apex:tab>
+				<!-- ********************************************* -->
+				<!-- ********************************************* -->
+				<!-- ******* Ongoing inactive collect Tab ******** -->
+				<!-- ********************************************* -->
+				<!-- ********************************************* -->
+				<apex:tab label="{!PRH_OngoingCollectTitle}" name="OngoingInactiveCollect" rendered="{!renderTabInactiveOngoingCollect}" styleClass="InactiveCollectTab">
+					<apex:pageBlock id="pageblockCollectInactive" title="{!PRH_OngoingCollectTitle}" >
+						<apex:pageBlockSection columns="4" >
+							<apex:pageBlockSectionItem id="fullActivePortfolioSection" dataStyle="width:10%" labelStyle="width:10%">
+								<apex:outputLabel value="{!$ObjectType.PRH_Collect__c.fields.PRH_Full_Active_Le_Cercle_Portfolio__c.Label}" style="font-size:11px;font-weight:bold;"/>
+								<apex:outputField value="{!PRH_OngoingCollect.PRH_Full_Active_Le_Cercle_Portfolio__c}" style="font-size:11px;font-weight:bold;"/>
+							</apex:pageBlockSectionItem>
+                            <apex:pageBlockSectionItem id="LCBPresence" dataStyle="width:10%" labelStyle="width:10%">
+								<apex:outputLabel value="{!$ObjectType.PRH_Collect__c.fields.PRH_Le_Cercle_Brand_Presence__c.Label}" style="font-size:11px;font-weight:bold;"/>
+								<apex:outputField value="{!PRH_OngoingCollect.PRH_Le_Cercle_Brand_Presence__c}" style="font-size:11px;font-weight:bold;"/>
+							</apex:pageBlockSectionItem>                            
+							<apex:pageBlockSectionItem id="nbPRProductsSection" dataStyle="width:10%" labelStyle="width:10%">
+								<apex:outputLabel value="{!$ObjectType.PRH_Collect__c.fields.PRH_Number_of_Pernod_Ricard_products__c.Label}" style="font-size:11px;font-weight:bold;"/>
+                                <apex:outputField value="{!PRH_OngoingCollect.PRH_Number_of_Pernod_Ricard_products__c}" style="font-size:11px;font-weight:bold;"/>
+							</apex:pageBlockSectionItem>
+                            <apex:pageBlockSectionItem id="CollectLastModified" dataStyle="width:10%" labelStyle="width:10%">
+								<apex:outputLabel value="{!$ObjectType.PRH_Collect__c.fields.PRH_Collect_Last_Modified_Date__c.Label}" style="font-size:11px;font-weight:bold;"/>
+								<apex:outputField value="{!PRH_OngoingCollect.PRH_Collect_Last_Modified_Date__c}" style="font-size:11px;font-weight:bold;"/>
+							</apex:pageBlockSectionItem>                           
+						</apex:pageBlockSection>
+										
+						<!-- ******************************************************** -->
+						<!-- ********* Brand criteria and Competitor panels ********* -->
+						<!-- ******************************************************** -->
+						<apex:tabPanel activeTabClass="activeTabOldCollect" inactiveTabClass="inactiveTabOldCollect" switchType="client" selectedTab="Brand_Criteria">
+							<apex:tab label="{!$ObjectType.PRH_Brand_Criteria__c.label}" name="Brand_Criteria" style="font-size:11px; font-weight:bold;">
+								<apex:pageBlock id="pageblockLeCercleInactive" title="{!$ObjectType.PRH_Brand_Criteria__c.label}"  >
+									<apex:pageBlockTable value="{!LeCercleBrands}" columns="8" var="brand" style="font-size:11px; font-weight:bold;">
+										<apex:column value="{!brand.PRH_Brand__r.Name}"/>
+										<apex:column headerValue="{!$ObjectType.PRH_Brand_Criteria__c.fields.PRH_Presence__c.label}">
+											<apex:outputField style="font-size:11px; font-weight:bold;" value="{!brand.PRH_Presence__c}"/>
+										</apex:column>
+										<apex:column headerValue="{!$ObjectType.PRH_Brand_Criteria__c.fields.PRH_Visibility__c.label}">
+										   <apex:outputField style="font-size:11px; font-weight:bold;" value="{!brand.PRH_Visibility__c}"/>
+										</apex:column>
+										<apex:column headerValue="{!$ObjectType.PRH_Brand_Criteria__c.fields.PRH_Branded_Event__c.label}">
+										   <apex:outputField style="font-size:11px; font-weight:bold;" value="{!brand.PRH_Branded_Event__c}"/>
+										</apex:column>
+										<apex:column headerValue="{!FiscalYrNbActivation}">
+										   <apex:outputField style="font-size:11px; font-weight:bold;" value="{!brand.PRH_Number_of_Branded_Events__c}"/>
+										</apex:column>
+										<apex:column headerValue="{!FiscalYrLabel}">
+										   <apex:outputField style="font-size:11px; font-weight:bold;" value="{!brand.PRH_Volume__c}"/>
+										</apex:column>
+									</apex:pageBlockTable> 
+								</apex:pageBlock>
+							</apex:tab>
+							
+							<apex:tab label="{!$ObjectType.PRH_Competitor_Brands__c.labelplural}" name="Competitor_Brands">
+								<apex:pageBlock id="pageblockCompInactive" title="{!$ObjectType.PRH_Competitor_Brands__c.labelplural}" >
+									
+									<!--COMPETITOR BRANDS TABLE-->
+									<apex:pageBlockTable value="{!competitorBrands}" var="brand" style="font-size:11px; font-weight:bold;"> 						
+										<apex:column headerValue="{!$ObjectType.PRH_Brand_Luxury_Brand__c.fields.Name.label}" value="{!brand.PRH_Iconic_Brand__r.Name}" />
+										<apex:column headerValue="{!$ObjectType.PRH_Competitor_Brands__c.fields.PRH_Presence__c.label}">
+											<apex:outputField value="{!brand.PRH_Presence__c}" style="font-size:11px; font-weight:bold;"/>
+										</apex:column>
+										<apex:column headerValue="{!FiscalYrLabel}">
+											<apex:outputField value="{!brand.PRH_Volume__c}" style="font-size:11px; font-weight:bold;"/>
+										</apex:column>
+									</apex:pageBlockTable>
+								</apex:pageBlock>
+							</apex:tab>
+						</apex:tabPanel>
+					</apex:pageBlock>
+				</apex:tab>
+				<!-- ********************************************** -->
+				<!-- ********************************************** -->
+				<!-- ********* Ongoing active collect Tab ********* -->
+				<!-- ********************************************** -->
+				<!-- ********************************************** -->
+
+				<apex:tab label="{!PRH_OngoingCollectTitle}" name="OngoingCollect" rendered="{!renderTabActiveOngoingCollect}" style="font-size:12px;font-weight:bold;">
+					<apex:pageBlock id="pageblockCollectActive" title="{!PRH_OngoingCollectTitle}"  >
+						<apex:pageBlockSection columns="4" >
+                            <apex:pageBlockSectionItem id="fullActivePortfolioSection" dataStyle="width:10%" labelStyle="width:10%" >
+								<apex:outputLabel value="{!$ObjectType.PRH_Collect__c.fields.PRH_Full_Active_Le_Cercle_Portfolio__c.Label}" style="font-size:11px;font-weight:bold;"/>
+								<apex:outputField value="{!PRH_OngoingCollect.PRH_Full_Active_Le_Cercle_Portfolio__c}" style="font-size:11px;font-weight:bold;"/>
+							</apex:pageBlockSectionItem>
+                            
+                            <apex:pageBlockSectionItem id="LCBPresence" dataStyle="width:10%" labelStyle="width:10%" helpText="{!$ObjectType.PRH_Collect__c.Fields.PRH_Le_Cercle_Brand_Presence__c.InlineHelpText}">
+								<apex:outputLabel value="{!$ObjectType.PRH_Collect__c.fields.PRH_Le_Cercle_Brand_Presence__c.Label}" style="font-size:11px;font-weight:bold;"/>
+								<apex:outputField value="{!PRH_OngoingCollect.PRH_Le_Cercle_Brand_Presence__c}" style="font-size:11px;font-weight:bold;"/>
+							</apex:pageBlockSectionItem>
+                            
+							<apex:pageBlockSectionItem id="nbPRProductsSection" dataStyle="width:10%" labelStyle="width:10%">
+								<apex:outputLabel value="{!$ObjectType.PRH_Collect__c.fields.PRH_Number_of_Pernod_Ricard_products__c.Label}" style="font-size:11px;font-weight:bold;"/>
+                                <apex:outputField value="{!PRH_OngoingCollect.PRH_Number_of_Pernod_Ricard_products__c}" style="font-size:11px;font-weight:bold;"/>
+							</apex:pageBlockSectionItem>
+                            
+                            <apex:pageBlockSectionItem id="CollectLastModified" dataStyle="width:10%" labelStyle="width:10%" helpText="{!$ObjectType.PRH_Collect__c.Fields.PRH_Collect_Last_Modified_Date__c.InlineHelpText}">
+								<apex:outputLabel value="{!$ObjectType.PRH_Collect__c.fields.PRH_Collect_Last_Modified_Date__c.Label}" style="font-size:11px;font-weight:bold;"/>
+								<apex:outputField value="{!PRH_OngoingCollect.PRH_Collect_Last_Modified_Date__c}" style="font-size:11px;font-weight:bold;"/>
+							</apex:pageBlockSectionItem>
+                            	
+						</apex:pageBlockSection>
+						<apex:pageBlockButtons location="top" styleClass="buttonsBlock">
+							<apex:commandButton action="{!editAll}" value="Edit All" rendered="{!renderButton}"/>
+						</apex:pageBlockButtons>
+						<!-- ******************************************************** -->
+						<!-- ********* Brand criteria and Competitor panels ********* -->
+						<!-- ******************************************************** -->
+						<apex:tabPanel activeTabClass="activeTabOngoingCollect" inactiveTabClass="inactiveTabOngoingCollect" switchType="client" selectedTab="Brand_Criteria">
+							<apex:tab label="{!$ObjectType.PRH_Brand_Criteria__c.label}" name="Brand_Criteria" style="font-size:12px; font-weight:bold;">
+								<apex:pageBlock id="pageblockLeCercleActive" title="{!$ObjectType.PRH_Brand_Criteria__c.label}">
+									<apex:pageBlockTable value="{!LeCercleBrands}" columns="8" var="brand" style="font-size:11px; font-weight:bold;">
+										<apex:column value="{!brand.PRH_Brand__r.Name}"/>
+										<apex:column headerValue="{!$ObjectType.PRH_Brand_Criteria__c.fields.PRH_Presence__c.label}">
+											<apex:outputField style="font-size:11px; font-weight:bold;" value="{!brand.PRH_Presence__c}"/>
+										</apex:column>
+										<apex:column headerValue="{!$ObjectType.PRH_Brand_Criteria__c.fields.PRH_Visibility__c.label}">
+										   <apex:outputField style="font-size:11px; font-weight:bold;" value="{!brand.PRH_Visibility__c}"/>
+										</apex:column>
+										<apex:column headerValue="{!$ObjectType.PRH_Brand_Criteria__c.fields.PRH_Branded_Event__c.label}">
+										   <apex:outputField style="font-size:11px; font-weight:bold;" value="{!brand.PRH_Branded_Event__c}"/>
+										</apex:column>
+										<!-- LCS-83 -->
+										<apex:column headerValue="{!FiscalYrNbActivation}" >
+										<!--apex:column headerValue="{!$ObjectType.PRH_Brand_Criteria__c.fields.PRH_Number_of_Branded_Events__c.label}"-->
+										   <apex:outputField style="font-size:11px; font-weight:bold;" value="{!brand.PRH_Number_of_Branded_Events__c}"/>
+										</apex:column>
+										<apex:column headerValue="{!FiscalYrLabel}">
+										   <apex:outputField style="font-size:11px; font-weight:bold;" value="{!brand.PRH_Volume__c}"/>
+										</apex:column>
+									</apex:pageBlockTable> 
+								</apex:pageBlock>
+							</apex:tab>
+							
+							<apex:tab label="{!$ObjectType.PRH_Competitor_Brands__c.labelplural}" name="Competitor_Brands">
+								<apex:pageBlock id="pageblockCompActive" title="{!$ObjectType.PRH_Competitor_Brands__c.labelplural}" >
+									
+									<!--COMPETITOR BRANDS TABLE-->
+									<apex:pageBlockTable value="{!competitorBrands}" var="brand" style="font-size:11px; font-weight:bold;"> 						
+										<apex:column headerValue="{!$ObjectType.PRH_Brand_Luxury_Brand__c.fields.Name.label}" value="{!brand.PRH_Iconic_Brand__r.Name}" />
+										<apex:column headerValue="{!$ObjectType.PRH_Competitor_Brands__c.fields.PRH_Presence__c.label}">
+											<apex:outputField value="{!brand.PRH_Presence__c}" style="font-size:11px; font-weight:bold;"/>
+										</apex:column>
+										<apex:column headerValue="{!FiscalYrLabel}">
+											<apex:outputField value="{!brand.PRH_Volume__c}" style="font-size:11px; font-weight:bold;"/>
+										</apex:column>
+									</apex:pageBlockTable>
+								</apex:pageBlock>
+							</apex:tab>
+						</apex:tabPanel>
+					</apex:pageBlock>
+				</apex:tab>
+			</apex:tabPanel>
+		</apex:pageBlock>		
+	</apex:form>
+
+</apex:page>

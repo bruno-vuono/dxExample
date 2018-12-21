@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>FY__c</fullName>
+        <externalId>false</externalId>
+        <label>FY</label>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>LAT_Fiscal_Year</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>RegionalClientOnPremise__c</fullName>
+        <externalId>false</externalId>
+        <label>Regional Client On Premise</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>REG CO</fullName>
+                    <default>false</default>
+                    <label>REG CO</label>
+                </value>
+                <value>
+                    <fullName>REG NE</fullName>
+                    <default>false</default>
+                    <label>REG NE</label>
+                </value>
+                <value>
+                    <fullName>REG NO</fullName>
+                    <default>false</default>
+                    <label>REG NO</label>
+                </value>
+                <value>
+                    <fullName>REG SE</fullName>
+                    <default>false</default>
+                    <label>REG SE</label>
+                </value>
+                <value>
+                    <fullName>REG SPC</fullName>
+                    <default>false</default>
+                    <label>REG SPC</label>
+                </value>
+                <value>
+                    <fullName>REG SPI</fullName>
+                    <default>false</default>
+                    <label>REG SPI</label>
+                </value>
+                <value>
+                    <fullName>REG SUL</fullName>
+                    <default>false</default>
+                    <label>REG SUL</label>
+                </value>
+                <value>
+                    <fullName>REG DRINKS AND CO</fullName>
+                    <default>false</default>
+                    <label>REG DRINKS AND CO</label>
+                </value>
+                <value>
+                    <fullName>REG PRESTIGE</fullName>
+                    <default>false</default>
+                    <label>REG PRESTIGE</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>WF__c</fullName>
+        <externalId>false</externalId>
+        <label>Tipo WF</label>
+        <length>4</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>WorkflowNumber__c</fullName>
+        <externalId>false</externalId>
+        <label>Nr Atividade</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>Atividades IMM</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>RegionalClientOnPremise__c</columns>
+        <columns>FY__c</columns>
+        <columns>WorkflowNumber__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>pt_BR</language>
+    </listViews>
+    <nameField>
+        <displayFormat>ACTIMM-{000000}</displayFormat>
+        <label>ID Atividade</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Atividades IMM</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

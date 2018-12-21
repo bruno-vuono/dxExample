@@ -1,0 +1,270 @@
+<apex:page standardController="ASI_MFM_PO__c" extensions="ASI_MFM_HK_PO_PDF_PageController,ASI_MFM_PO_ApprHist_PDF_PageController" 
+renderAs="PDF" standardstylesheets="false" showHeader="false" sidebar="false">
+
+        
+        <head>
+        
+        <style>
+            .htitle{
+                font-weight:bold;   
+            }
+            h3{
+                font-weight:bold;
+            }
+            h1{
+                font-size:35px;     
+            }
+            
+            table {
+                -fs-table-paginate: paginate;
+            }
+            
+            @page {
+            
+            
+                size: landscape;
+                margin-top: 5.4cm;
+            
+            @PageBreak{
+                page-break:always;
+                page-break-inside:avoid;
+            }   
+                
+                
+            @top-center {
+
+            content: element(header);
+
+            }
+                
+                @bottom-center {
+                content: counter(page);
+                }               
+            }
+            div.header {
+            position: running(header);
+
+            }
+            
+            body{
+                font-family: Arial Unicode MS;
+                font-size: 11px;
+                line-height: 14px;
+            }
+                        
+            tbody {display:table-row-group;
+            }
+            
+            .nobreak{
+                page-break-inside: avoid;
+            }
+}           
+
+        </style>
+            <title>Purchase Order PDF</title>
+        </head>
+        
+        <div class="header">
+            <table width="100%">
+            <tr>
+                <td width="30%"></td>
+                <td width="40%" rowspans="3"><center><apex:image height="2cm" width="7cm" url="{!URLFOR($Resource.ASI_MFM_HK_Logo)}"/><br/><h2>Purchase Order</h2></center></td>
+                <td width="10%" valign="bottom">Status:</td>
+                <td width="20%" valign="bottom">{!ASI_MFM_PO__c.ASI_MFM_Status__c}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td ></td>
+                <td valign="bottom">PO#</td>
+                <td valign="bottom">{!ASI_MFM_PO__c.Name}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>Plan#</td>
+                <td>{!ASI_MFM_PO__c.ASI_MFM_Plan__r.Name}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>Plan Name:</td>
+                <td>{!ASI_MFM_PO__c.ASI_MFM_Plan__r.ASI_MFM_Plan_Name__c}</td>
+            </tr>
+            </table>
+        </div>
+        <body>
+            <table width="100%">
+            <tr>
+                <td height="5" width="10%" ><h3>Supplier Name</h3></td>      
+                <td height="5" width="55%" style="border-bottom: 1px solid black;">{!ASI_MFM_PO__c.ASI_MFM_Supplier_Name__r.Name}</td>          
+                <td height="5" width="15%"><h3>Payment Term:</h3></td>
+                <td height="5" width="20%" style="border-bottom: 1px solid black;">{!ASI_MFM_PO__c.ASI_MFM_Payment_Terms__c}</td>
+            </tr>
+            <tr>
+                <td width="10%"><h3>Supplier<br/> Address:</h3></td>
+                <td rowspan="" width="55%" style="border-bottom: 1px solid black;">{!ASI_MFM_PO__c.ASI_MFM_Supplier_Address_Line_1__c}<br/> {!ASI_MFM_PO__c.ASI_MFM_Supplier_Address_Line_2__c}<br/> 
+                    {!ASI_MFM_PO__c.ASI_MFM_Supplier_Address_Line_3__c}<br/> {!ASI_MFM_PO__c.ASI_MFM_Supplier_Address_Line_4__c}</td>
+                <td width="15%"><h3>Payment Date:</h3></td>
+                <td width="20%" style="border-bottom: 1px solid black;">
+                    <apex:outputText value="{0,date,MMM dd , yyyy}">
+                        <apex:param value="{!ASI_MFM_PO__c.ASI_MFM_Payment_Date__c}" />
+                    </apex:outputText>
+                </td>
+            </tr>
+            <tr>
+                <td height="5" width="10%" ><h3>Tel:</h3></td>      
+                <td height="5" width="55%" style="border-bottom: 1px solid black;">{!ASI_MFM_PO__c.ASI_MFM_Supplier_Phone_Number__c}</td>          
+                <td height="5" width="15%"><h3>Fax:</h3></td>
+                <td height="5" width="20%" style="border-bottom: 1px solid black;">{!ASI_MFM_PO__c.ASI_MFM_Supplier_Fax_Number__c}</td>
+            </tr>           
+                        
+            </table>
+            
+            <br/>
+            <table width="100%">
+                <tr>
+                    <td width="25%"><h3>PO Remarks:</h3></td>
+                    <td width="75%" style="border-bottom: 1px solid black;">{!ASI_MFM_PO__c.ASI_MFM_Remarks__c}</td>
+                </tr>
+                <tr>
+                    <td width="25%"><h3>PO Raised Date:</h3></td>
+                    <td width="75%" style="border-bottom: 1px solid black;">
+                        <apex:outputText value="{0,date,yyyy-MM-dd}">
+                            <apex:param value="{!ASI_MFM_PO__c.ASI_MFM_PO_Raised_Date__c}" />
+                        </apex:outputText>
+                    </td>
+                </tr>         
+                <tr>
+                    <td width="25%"><h3>Responsible By:</h3></td>
+                    <td width="75%" style="border-bottom: 1px solid black;">{!ASI_MFM_PO__c.Owner.Name}</td>
+                </tr> 
+                <tr>
+                    <td width="25%"><h3>Currency and Rate:</h3></td>
+                    <td width="75%" style="border-bottom: 1px solid black;">{!ASI_MFM_PO__c.ASI_MFM_Currency__c} {!ASI_MFM_PO__c.ASI_MFM_Exchange_Rate__c}</td>
+                </tr>               
+            </table>
+
+            
+            <table style="border-collapse: collapse;" width="100%" cellspacing="0">
+             <thead>
+                <tr>
+                    <th style="border: solid 1px black;" align="center"><h3>Activities &amp; List Item</h3></th>
+                    <th style="border: solid 1px black;" align="center"><h3>A &amp; P</h3></th>
+                    <th style="border: solid 1px black;" align="center"><h3>Brand</h3></th>
+                    <th style="border: solid 1px black;" align="center"><h3>Quantity</h3></th>
+                    <th style="border: solid 1px black;" align="center"><h3>Unit Price</h3></th>
+                    <th style="border: solid 1px black;" align="center"><h3>Amount</h3></th>
+                    <th style="border: solid 1px black;" align="center"><h3>GL Date</h3></th>
+                    <th style="border: solid 1px black;" align="center"><h3>Customer</h3></th>
+                    <th style="border: solid 1px black;" align="center"><h3>BU Location</h3></th>
+                </tr>
+            </thead>    
+            <tbody>
+                <apex:repeat value="{!lineItem}" var="line" id="lineRepeat">
+                <tr>
+                    <td width="20%" align="left" style="border: solid 1px black;">{!line.ASI_MFM_A_C_Code__r.Name}<br/>{!line.ASI_MFM_List_Item_Description__c}</td>
+                    <td width="15%" align="right" style="border: solid 1px black;">{!line.ASI_MFM_AP_Code__r.ASI_MFM_AP_Code__c}<br/>{!line.ASI_MFM_AP_Code__r.ASI_MFM_AP_Description__c}</td>
+                    <td width="10%" align="right" style="border: solid 1px black;">{!line.ASI_MFM_Sub_brand_Code__r.ASI_MFM_Sub_brand_Code__c}<br/>{!line.ASI_MFM_Sub_brand_Code__r.ASI_MFM_Sub_brand_Description__c}</td>
+                    <td width="10%" align="right" style="border: solid 1px black;">
+                        <apex:outputText value="{0, number, ###,###,###,###,##0}">
+                            <apex:param value="{!line.ASI_MFM_Quantity__c}" />
+                        </apex:outputText>
+                    </td>
+                    <td width="5%" align="right" style="border: solid 1px black;">
+                        <apex:outputText value="{0, number, ###,###,###,###,##0.0000}">
+                            <apex:param value="{!line.ASI_MFM_Unit_Price__c}" />
+                        </apex:outputText>
+                    </td>
+                    <td width="5%" align="right" style="border: solid 1px black;">
+                        <apex:outputText value="{0, number, ###,###,###,###,##0.00}">
+                            <apex:param value="{!line.ASI_MFM_Amount__c}" />
+                        </apex:outputText>
+                    
+                    </td>   
+                    <td width="5%" align="right" style="border: solid 1px black;">
+                        <apex:outputText value="{0,date,yyyy-MM-dd}">
+                            <apex:param value="{!line.ASI_MFM_G_L_Date__c}" />
+                        </apex:outputText>
+                    </td>
+                    <td width="20%" align="right" style="border: solid 1px black;">{!line.ASI_MFM_Customer_Name__r.Name}</td>
+                    <td width="10%" align="right" style="border: solid 1px black;">{!line.ASI_MFM_BU_Code__r.ASI_MFM_BU_Description__c}</td>
+                </tr>
+
+                </apex:repeat>
+                <tr>
+                    <td style="border: solid 1px black;"></td>  
+                    <td style="border: solid 1px black;"></td>
+                    <td style="border: solid 1px black;"></td>
+                    <td style="border: solid 1px black;"></td>
+                    <td height="20" style="border: solid 1px black;">PO Total:</td>
+                    <td align="right" style="border: solid 1px black;">
+                        <apex:outputText value="{0, number, ###,###,###,###,##0.00}">
+                            <apex:param value="{!ASI_MFM_PO__c.ASI_MFM_PO_Amount__c}" />
+                        </apex:outputText></td>
+                    <td style="border: solid 1px black;"></td>
+                    <td style="border: solid 1px black;"></td>
+                    <td style="border: solid 1px black;"></td>
+                </tr>
+            </tbody>
+            </table>
+            <br/>  
+            <!-- 
+            <table style="border-collapse: collapse;" width="100%" cellspacing="0">
+             <thead>
+                <tr>
+                    <th style="border: solid 1px black;" align="center"><h3>Date</h3></th>
+                    <th style="border: solid 1px black;" align="center"><h3>Status</h3></th>
+                    <th style="border: solid 1px black;" align="center"><h3>Approver</h3></th>
+                    <th style="border: solid 1px black;" align="center"><h3>Comments</h3></th>
+                </tr>
+            </thead>    
+            <tbody>
+            <apex:repeat value="{!stepList}" var="p" id="theRepeat">
+                <tr>
+                    <td width="20%" align="center" style="border: solid 1px black;">
+                        <apex:outputText value="{0,date,yyyy-MM-dd hh:mm:ss}">
+                            <apex:param value="{!p.SystemModstamp}" />
+                        </apex:outputText>
+                    </td>
+                    <td width="20%" align="center" style="border: solid 1px black;"><apex:outputText value="{!p.StepStatus}"/></td>
+                    <td width="20%" align="center" style="border: solid 1px black;"><apex:outputText value="{!p.Actor.Name}"/></td>
+                    <td width="40%" align="center" style="border: solid 1px black;"><apex:outputText value="{!p.Comments}"/></td>
+                </tr>
+            </apex:repeat>
+            </tbody>
+            </table>!-->
+             <apex:outputPanel rendered="{!hasHistroy}" >
+                <h3 style="page-break-after:avoid;">Approval History</h3>
+                <table style="border: 1px solid black;" width="100%" cellspacing="0" >
+                    <thead>
+                    <tr class="nobreak" style="border: 1px solid black;">
+                        <th style="border: 1px solid black;" align="center"><b>Date</b></th>
+                        <th style="border: 1px solid black;" align="center"><b>Status</b></th>
+                        <th style="border: 1px solid black;" align="center"><b>Assigned To</b></th>
+                        <th style="border: 1px solid black;" align="center"><b>Actual Approver</b></th>
+                        <th style="border: 1px solid black;" align="center"><b>Comments</b></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <apex:repeat value="{!appHistList }" var="AHL" id="AHL">
+                        <tr>
+                            <td style="border: 1px solid black;">
+                            <apex:outputText value="{0}">
+                                <apex:param value=" {!AHL.CreatedDateString}" /> 
+                            </apex:outputText></td>
+                            <td style="border: 1px solid black;">{!AHL.StepStatus}</td>
+                            <td style="border: 1px solid black;">{!AHL.oriActorName}</td>
+                            <td style="border: 1px solid black;">{!AHL.actActorName}</td>
+                            <td style="border: 1px solid black;">{!AHL.Comments}</td>
+                             
+                        </tr>
+                    </apex:repeat>  
+
+                    </tbody>                
+                </table>
+                <br/>
+            </apex:outputPanel>
+            <br />
+        </body>
+    
+ </apex:page>

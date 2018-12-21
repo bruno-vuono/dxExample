@@ -1,0 +1,171 @@
+<apex:page controller="MMPJ_TOPG_AgendaPDFcontroller" showHeader="false" sidebar="false"  applyBodyTag="false" renderas="PDF">
+    <head>
+        <style >
+            @page 
+            {
+                margin-top: 5cm;
+                margin-left: 0.3cm;
+                margin-right: 0.3cm;
+                margin-bottom: 2cm;
+                padding-left : 0px;  
+                @top-center {
+                    content: element(header);
+                }         
+            }
+            body {
+                font-family: Calibri;
+                
+            }
+            .PDFTitle {
+                text-align: center;
+                font-size: 17px;
+                margin-bottom: 27px;
+            }
+            .tg  {
+                border-collapse:collapse;
+                border-spacing:0;
+                margin:0px auto;
+                table-layout: fixed; 
+            }
+            .tg1 {
+                border-collapse:collapse;
+                border-spacing:0;
+                margin:0px auto; 
+                
+            }
+            .LeftCellTg1{
+                background: #5E88AD;
+                color: #fff;
+                border: 1px solid #5E88AD;
+                width: 24%;
+                height: 20px;
+                font-size: 13px;
+            }
+           
+            .middleCellTg1 {
+                border-width: 1px 0px 1px 0px;
+                border-style: solid;
+                border-color: #5E88AD;
+               white-space: normal;
+            	font-size: 15px;
+            }
+            .rightCellTg1{
+                border-width: 1px 1px 1px 0px;
+                border-style: solid;
+                border-color: #5E88AD;
+                width: 45%;
+                height: 25px;
+                white-space: nowrap;
+            	font-size: 15px;
+            }
+            .HeaderTg{
+                background: #5E88AD;
+                color: #fff;
+                height: 25px;
+            	width: 24%;                
+                white-space: nowrap;
+                font-size: 13px;
+            }
+            .CellTg{
+                border: 1px solid #5E88AD;
+                height: 25px;
+            	width: 24%; 
+                word-wrap: break-word;
+                white-space: normal;
+                font-size: 15px;
+            }            
+            
+        </style>
+    </head>
+    <body>
+    <div class="header" style="position: running(header);">
+        <div style="margin-bottom:35px;background: url({!$Resource.MMPJ_TOPG_LogoPDFheader}) no-repeat;background-position: center;width: 100%;height:100px;"></div>
+        <div class="PDFTitle" style=""><span style="border-bottom: 1px solid #000 !Important;padding-bottom: 9px;">MEETING AGENDA</span></div>
+    </div>
+    <table class="tg1" width="100%" cellpadding="5"  style="border:1px solid #5E88AD">
+        <tr>
+            <td class="LeftCellTg1">MEETING TITLE / ORGANIZER </td>
+            <td class="middleCellTg1">{!Agenda.subject}</td>
+            <td class="rightCellTg1"><apex:outputText value="{!theOrganizer}"/></td>  
+        </tr>
+        <tr>
+            <td class="LeftCellTg1">BEGIN &amp; END DATE TIME</td>
+            <td class="middleCellTg1">
+               <!-- <apex:outputText value="{0,date,dd/MM/yyyy 'at' HH:mm }"> <apex:param value="{!Agenda.StartDateTime}" /> </apex:outputText> -->
+                <apex:outputField value="{!Agenda.StartDateTime}"/>
+            </td>
+            <td class="rightCellTg1">
+                <apex:outputField value="{!Agenda.EndDateTime}"/>
+                <!--<apex:outputText value="{0,date,HH:mm}"> <apex:param value="{!Agenda.StartDateTime}" /></apex:outputText> 
+                <apex:outputText value="{0,date,dd/MM/yyyy 'at' HH:mm }"><apex:param value="{!Agenda.EndDateTime}" /></apex:outputText>--> 
+            </td>
+        </tr>
+       <!-- <tr>
+            <td class="LeftCellTg1"></td>
+            <td class="middleCellTg1"></td>
+            <td class="rightCellTg1"></td>
+        </tr> -->
+        <tr>
+            <td class="LeftCellTg1">LOCATION / MARKET</td>
+            <td class="middleCellTg1">{!Agenda.Location}</td>
+            <td class="rightCellTg1" >{!Meeting.MMPJ_TOPG_BMC__r.name}</td>
+        </tr>
+        <apex:variable var="cnt" value="{!0}" /> 
+        <apex:repeat value="{!ListInvitees}" var="ct">
+            <tr>    
+                <td  class="LeftCellTg1" style="border-bottom: none;border-top: none;"><apex:outputText value="{!IF(cnt == 0,"ATTENDEES / FUNCTION","")}"/></td>
+                <td cellpadding="0" class="middleCellTg1" style="{!IF(cnt == 0,"","border-top: 1px solid #fff !important")};border-bottom:  1px solid #5E88AD">{!ct.Name}</td>
+                <td cellpadding="0" class="rightCellTg1" style="{!IF(cnt == 0,""," border-top: 1px solid #fff !important")};border-bottom:  1px solid #5E88AD">{!ct.Title}</td>
+            </tr>
+            <apex:variable var="cnt" value="{!cnt+1}"/>
+        </apex:repeat>
+      <!--  <apex:repeat value="{!listInviteesUsers }" var="us">
+            <tr>        
+                <td class="LeftCellTg1" style="border-bottom: none;border-top: none;"><apex:outputText value="{!IF(cnt == 0,"Attendees / Function","")}"/></td>
+                <td class="middleCellTg1" style="{!IF(cnt == 0,"","border-top: 1px solid #fff !important")};border-bottom: 1px solid #5E88AD;">{!us.Name}</td>
+                <td class="rightCellTg1" style="{!IF(cnt == 0,"","border-top: 1px solid #fff !important")};border-bottom:  1px solid #5E88AD;">{!us.title}</td>
+            </tr>
+            <apex:variable var="cnt" value="{!cnt+1}"/>
+        </apex:repeat> -->
+    </table>    
+    <br/>  
+    <table class="tg" width = "100%" cellpadding="5" style="page-break-inside: avoid;">
+      <tr>
+        <th class="HeaderTg" style="width:39%;border-left: 1px solid #5E88AD;" colspan="1">TOPIC </th>
+        <th class="HeaderTg" style="width:61%;border-left: 1px solid #fff;border-right: 1px solid #5E88AD;" colspan="2">COMMENT </th>
+      </tr>
+      <apex:repeat value="{!ListWrapperTopic}" var="W">
+        <tr>
+            <!-- TGS-50 - TGS-46 -->
+            <td class="CellTg" style="width:39%;" colspan="1"> {!W.Topic}</td>
+            <!-- TGS-50 -->
+            <td class="CellTg"  style="width:61%;" colspan="2"><apex:outputtext escape="false" value="{!W.Comment}"  /></td>
+        </tr>
+      </apex:repeat>
+      <!--<apex:repeat value="{!listMarketPref}" var="Agen">
+           <tr>
+                <td class="CellTg" colspan="1"> {!Agen.MMPJ_TOPG_FileName__c}</td>
+                <td class="CellTg" colspan="2">{!Agen.MMPJ_TOPG_Comment__c}</td>
+            </tr>
+        </apex:repeat>
+       <apex:repeat value="{!listpValues}" var="Agen">
+           <tr>
+                <td class="CellTg" colspan="1"> {!Agen.name}</td>
+                <td class="CellTg" colspan="2">{!Agen.MMPJ_TOPG_Comment__c}</td>
+            </tr>
+        </apex:repeat>
+        <apex:repeat value="{!listProjects}" var="Agen">
+           <tr>
+                <td class="CellTg" colspan="1"> {!Agen.MMPJ_TOPG_Project__r.name}</td>
+                <td class="CellTg" colspan="2">{!Agen.MMPJ_TOPG_Comment__c}</td>
+            </tr>
+        </apex:repeat>
+       <apex:repeat value="{!listCompetitors}" var="Agen">
+           <tr>
+                <td class="CellTg" colspan="1"> {!Agen.MMPJ_TOPG_Competitor__r.name}</td>
+                <td class="CellTg" colspan="2">{!Agen.MMPJ_TOPG_Comment__c}</td>
+            </tr>
+        </apex:repeat>-->
+    </table>
+    </body>
+</apex:page>

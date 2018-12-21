@@ -1,0 +1,311 @@
+<!---------------------------------------------
+ * Name:ASI_CRM_SG_PromotionLetterPDF_Com
+ * Description: Page for for promotion letter PDF
+ *
+ * Version History
+ * Date             Developer               Comments
+ * ---------------  --------------------    --------------------------------------------------------------------------------
+ * 04/04/2018       Hugo Cheung             Created
+---------------------------------------------->
+<apex:component controller="ASI_CRM_SG_PromotionLetterPDF_Ctrl" access="global" allowDml="true" >
+    <apex:attribute name="promotionIdAttr" type="String" description="" assignTo="{!promotionId}"/>
+    <apex:attribute name="customerIdAttr" type="String" description="" assignTo="{!customerId}"/>
+    <apex:attribute name="contactNameAttr" type="String" description="" assignTo="{!contactName}"/>
+    <apex:attribute name="contactDesignationAttr" type="String" description="" assignTo="{!contactDesignation}"/>
+    <apex:attribute name="contactNumberAttr" type="String" description="" assignTo="{!contactNumber}"/>
+    
+    <div>
+        <!-- Call init attribute to init the page -->
+        <input type="hidden" value="{!isPageInit}"/>
+        
+       	<div class="header">
+        	<center><apex:image width="75%" height="75%" url="{!URLFOR($Resource.ASI_MFM_SG_Logo)}"/></center>
+        </div>
+        
+        <table width="100%" cellpadding="3">
+            <tr>
+                <td width="20%"></td>
+                <td width="50%"></td>
+                <td width="15%"></td>
+                <td width="15%"></td>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+                <td>Date : </td>
+                <td>
+                    <u>
+                        <apex:outputText value="{0,date,dd/MM/yyyy}">
+                            <apex:param value="{!TODAY()}" />
+                        </apex:outputText>
+                    </u>
+                </td>
+            </tr>
+            <tr>
+                <td><br /></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+            	<td colspan="2">{!customer.ASI_CRM_Legal_Outlet_Name__c}</td>
+                <td colspan="2"></td>
+            </tr>
+            <tr>
+            	<td colspan="2">{!customer.ASI_CRM_Business_Registration_Number__c}</td>
+                <td colspan="2"></td>
+            </tr>
+            <tr>
+            	<td colspan="2">{!customer.ASI_CRM_JP_City_Ward__c}</td>
+                <td colspan="2"></td>
+            </tr>
+            <tr>
+            	<td colspan="2">{!customer.ASI_CRM_JP_Town__c}</td>
+                <td colspan="2"></td>
+            </tr>
+            <tr>
+            	<td colspan="2">{!customer.ASI_CRM_Street_Number__c}</td>
+                <td colspan="2"></td>
+            </tr>
+            <tr>
+                <td><br /></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Subject : </td>
+                <td>Incentives in support of partnership</td>
+                <td colspan="2"></td>
+            </tr>
+            <tr>
+                <td><br /></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Dear Customer, </td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><br /></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="2" >
+                	Thank you for your partnership with Pernod Ricard Singapore.<br />
+                    We are pleased to issue an official confirmation that your Company is <br />
+                    eligible for incentives as detailed under Appendix A. <br />
+                    Kindly assist to fill in the following details of your Company's<br />
+                    representative who would acknowledge any redemption of future<br />
+                    incentives, and be our contact person for any updates on the program.
+                </td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><br /></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+			<tr>
+                <td colspan="4">
+                	<table width="100%" border="1" cellpadding="3" cellspacing="0">
+                        <tr>
+                            <td colspan="2"><center><b>Customer Representative of Incentive Program</b></center></td>
+                        </tr>
+                        <tr>
+                            <td width="30%"><b>Name : </b></td>
+                            <td width="70%">{!contactName}</td>
+                        </tr>
+                        <tr>
+                            <td width="30%"><b>Designation : </b></td>
+                            <td width="70%">{!contactDesignation}</td>
+                        </tr>
+                        <tr>
+                            <td width="30%"><b>Contact Number : </b></td>
+                            <td width="70%">{!contactNumber}</td>
+                        </tr>
+                        <tr>
+                            <td width="30%"><b>Signatory : </b></td>
+                            <td width="70%"></td>
+                        </tr>
+                        <tr>
+                            <td width="30%">
+                                <br /><br />
+                                <b>Company's Stamp : </b>
+                                <br /><br /><br /><br />
+                            </td>
+                            <td width="70%"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><br /></td>
+                        </tr>
+                    </table>
+                </td>
+			</tr>
+            <tr>
+                <td><br /></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="2">Thank you once again for your strong support.</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><br /></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Regards, </td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="2">Pernod Ricard Singapore Pte Ltd</td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+        
+        <br />
+        <br />
+        
+        <table width="100%" border="1" cellpadding="3" cellspacing="0">
+			<colgroup>
+				<col style="width:9%"/>
+				<col style="width:13%"/>
+				<col style="width:13%"/>
+				<col style="width:13%"/>
+				<col style="width:13%"/>
+				<col style="width:13%"/>
+				<col style="width:13%"/>
+				<col style="width:13%"/>
+			</colgroup>
+            <tr>
+                <td colspan="8"><center><b>Appendix A : Promotion Mechanism</b></center></td>
+            </tr>
+            <tr>
+                <td colspan="3"><b>Promotion Name</b></td>
+                <td colspan="5">{!promotion.ASI_CRM_Promotion_Plan__r.Name}</td>
+            </tr>
+            <tr>
+                <td colspan="3"><b>Promotion Start Date</b></td>
+                <td colspan="5">
+                    <apex:outputText value="{0,date,dd/MM/yyyy}">
+                        <apex:param value="{!promotion.ASI_CRM_Promotion_Plan__r.ASI_CRM_Start_Date__c}" />
+                    </apex:outputText>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3"><b>Promotion End Date</b></td>
+                <td colspan="5">
+                    <apex:outputText value="{0,date,dd/MM/yyyy}">
+                        <apex:param value="{!promotion.ASI_CRM_Promotion_Plan__r.ASI_CRM_End_Date__c}" />
+                    </apex:outputText>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><center><b>Target Qty</b></center></td>
+                <td><center><b>Criteria</b></center></td>
+                <td><center><b>Trade Deal</b></center></td>
+                <td><center><b>Additional Trade Deal</b></center></td>
+                <td><center><b>Ad-hoc Cash ($)</b></center></td>
+                <td><center><b>Gift Voucher</b></center></td>
+                <td><center><b>Other in Kind ($)</b></center></td>
+            </tr>
+            <apex:variable var="idx" value="{!1}" />
+            <apex:repeat value="{!promotionDetailList}" var="promotionMechanic">
+                <tr>
+                    <td><center>{!idx}</center></td>
+                    <td>
+                        {!promotionMechanic.ASI_CRM_Target_Qty_Bottle__c} bottles
+                    </td>
+                    <td>
+                        Every 
+                        {!promotionMechanic.ASI_CRM_Promotion_Mechanic__r.ASI_CRM_Buy_Qty__c}
+                        {!promotionMechanic.ASI_CRM_Promotion_Mechanic__r.ASI_CRM_Buy_Unit__c} of
+                        {!promotionMechanic.ASI_CRM_Promotion_Mechanic__r.ASI_CRM_Promotional_SKU__r.ASI_MFM_Sub_brand__r.ASI_MFM_Sub_brand_Description__c} 
+						{!promotionMechanic.ASI_CRM_Promotion_Mechanic__r.ASI_CRM_Promotional_SKU__r.ASI_HK_CRM_Packaging_Size__c} X 
+						{!promotionMechanic.ASI_CRM_Promotion_Mechanic__r.ASI_CRM_Promotional_SKU__r.ASI_HK_CRM_Std_Bottle_Size__c}CL
+                        sold
+                    </td>
+                    <td>
+                        {!promotionMechanic.ASI_CRM_Promotion_Mechanic__r.ASI_CRM_Trade_Deal_Bottle_Qty__c} bottles
+                    </td>
+                    <td>
+                        <apex:pageBlock rendered="{!promotionMechanic.ASI_CRM_Promotion_Mechanic__r.ASI_CRM_Additional_SKU_POSM__c != null && promotionMechanic.ASI_CRM_Promotion_Mechanic__r.ASI_CRM_Additional_SKU_POSM__r.ASI_HK_CRM_IsPOSProduct__c}">
+                            {!promotionMechanic.ASI_CRM_Promotion_Mechanic__r.ASI_CRM_Additional_SKU_Bottle_Qty__c} bottles of 
+                        	{!promotionMechanic.ASI_CRM_Promotion_Mechanic__r.ASI_CRM_Additional_SKU_POSM__r.ASI_CRM_Short_Description__c}
+                        </apex:pageBlock>
+                        <apex:pageBlock rendered="{!promotionMechanic.ASI_CRM_Promotion_Mechanic__r.ASI_CRM_Additional_SKU_POSM__c != null && !promotionMechanic.ASI_CRM_Promotion_Mechanic__r.ASI_CRM_Additional_SKU_POSM__r.ASI_HK_CRM_IsPOSProduct__c}">
+                            {!promotionMechanic.ASI_CRM_Promotion_Mechanic__r.ASI_CRM_Additional_SKU_Bottle_Qty__c} bottles of 
+                        	{!promotionMechanic.ASI_CRM_Promotion_Mechanic__r.ASI_CRM_Additional_SKU_POSM__r.ASI_MFM_Sub_brand__r.ASI_MFM_Sub_brand_Description__c} 
+							{!promotionMechanic.ASI_CRM_Promotion_Mechanic__r.ASI_CRM_Additional_SKU_POSM__r.ASI_HK_CRM_Packaging_Size__c} X 
+							{!promotionMechanic.ASI_CRM_Promotion_Mechanic__r.ASI_CRM_Additional_SKU_POSM__r.ASI_HK_CRM_Std_Bottle_Size__c}CL
+                        </apex:pageBlock>
+                    </td>
+                    <td>
+                        {!promotionMechanic.ASI_CRM_Promotion_Mechanic__r.ASI_CRM_Ad_hoc_Cash__c}
+                    </td>
+                    <td>
+                        <apex:pageBlock rendered="{!promotionMechanic.ASI_CRM_Promotion_Mechanic__r.ASI_CRM_Gift_Voucher__c != null}">
+                            1 piece of {!promotionMechanic.ASI_CRM_Promotion_Mechanic__r.ASI_CRM_Gift_Voucher__r.Name}
+                        </apex:pageBlock>
+                        
+                    </td>
+                    <td>
+                        {!promotionMechanic.ASI_CRM_Promotion_Mechanic__r.ASI_CRM_Other_in_Kind_Cash__c} {!promotionMechanic.ASI_CRM_Promotion_Mechanic__r.ASI_CRM_Remark__c}
+                    </td>
+                </tr>
+                <apex:variable var="idx" value="{!idx + 1}" />
+            </apex:repeat>
+        </table>
+        
+        <br />
+        <br />
+        
+        <table width="100%" border="1" cellpadding="3" cellspacing="0">
+            <tr>
+                <td>
+                    <br />
+                    <center><b>
+                	*Basis of bottle count from wholesalers' invoices and free bottles associated to contract's trade deals
+                   	</b></center>
+           		</td>
+            </tr>
+        </table>
+        
+        <br />
+        <br />
+        
+        <table width="100%">
+            <tr>
+                <td>
+                    <center>
+                        <b>Pernod Ricard Singapore Pte Ltd</b>
+                        <br />
+                        I Kim Seng Promenade #11-09/12 Great World City West Tower Singapore 237994
+                        <br />
+                        Tel : (65) 6235 5055 Fax : (65) 6235 9952
+                        <br />
+                        Co. Reg. No. 198903094W
+                    </center>
+                </td>
+            </tr>
+        </table>
+    </div>
+    
+</apex:component>

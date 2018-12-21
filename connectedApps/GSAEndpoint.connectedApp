@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConnectedApp xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contactEmail>juan.garciabueno@ti.eptisa.com</contactEmail>
+    <label>GSAEndpoint</label>
+    <oauthConfig>
+        <callbackUrl>https://</callbackUrl>
+        <consumerKey>3MVG9qQjGkWUbcrFTIsUBxAfZQuZCRHFggUk9zyO8jn86mQnfG7alHrF0Z6hFK4DtHho_VFg4X0zd8WIriUof</consumerKey>
+        <scopes>Api</scopes>
+        <scopes>Full</scopes>
+        <scopes>Chatter</scopes>
+        <scopes>RefreshToken</scopes>
+    </oauthConfig>
+</ConnectedApp>

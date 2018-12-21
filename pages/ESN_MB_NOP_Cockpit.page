@@ -1,0 +1,458 @@
+<apex:page sidebar="false" docType="html-5.0" showHeader="false" standardStyleSheets="false" cache="true" controller="ESN_MB_Cockpit_Cx">
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>{!$Label.ESN_MB_Cockpit_Title}</title>
+    <meta http-equiv="x-ua-compatible" content="IE=10"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <apex:stylesheet value="{!urlfor($Resource.ESN_MB_Theme_Core_Cockpit, '/CSS/bootstrap.min.css')}"/>  
+    <apex:stylesheet value="{!urlfor($Resource.ESN_MB_Theme_Core_Cockpit, '/CSS/font-awesome.min.css')}"/>  
+    <apex:stylesheet value="{!urlfor($Resource.ESN_MB_Theme_Core_Cockpit, '/CSS/pick-a-color-1.2.3.min.css')}"/>  
+    <apex:stylesheet value="{!urlfor($Resource.ESN_MB_Theme_Core_Cockpit, '/CSS/main.css')}"/>
+    <!--<apex:stylesheet value="https://dl.dropboxusercontent.com/u/51617866/DEV_PR_VAL/Custom%20MyBrands/CSS/main.css"/>-->
+    <apex:stylesheet value="{!urlfor($Resource.ESN_MB_Theme_Core_Cockpit, '/CSS/core.css')}"/>  
+    <apex:stylesheet value="{!urlfor($Resource.ESN_MB_Theme_Core_Cockpit, '/CSS/sweet-alert.css')}"/>  
+    
+    <apex:includeScript value="{!urlfor($Resource.ESN_MB_Theme_Core_Cockpit, '/js/jszip-utils-master/dist/jszip-utils.js')}"/>
+    <apex:includeScript value="{!urlfor($Resource.ESN_MB_Theme_Core_Cockpit, '/js/Stuk-jszip-bf7ec8c/dist/jszip.js')}"/>
+    <apex:includeScript value="{!urlfor($Resource.ESN_MB_Theme_Core_Cockpit, '/js/spin.js')}"/>
+    
+    <apex:includeScript value="{!urlfor($Resource.ESN_MB_Theme_Core_Cockpit, '/js/jquery-1.10.2.min.js')}"/>
+    <apex:includeScript value="{!urlfor($Resource.ESN_MB_Theme_Core_Cockpit, '/js/bootstrap.min.js')}"/>
+    <apex:includeScript value="{!urlfor($Resource.ESN_MB_Theme_Core_Cockpit, '/js/jquery-ui.js')}"/>
+    <apex:includeScript value="{!urlfor($Resource.ESN_MB_Theme_Core_Cockpit, '/js/jquery.ui.touch-punch.js')}"/>
+    <apex:includeScript value="{!urlfor($Resource.ESN_MB_Theme_Core_Cockpit, '/js/tinycolor.js')}"/>
+    <apex:includeScript value="{!urlfor($Resource.ESN_MB_Theme_Core_Cockpit, '/js/jquery.cookie.js')}"/>
+    <apex:includeScript value="{!urlfor($Resource.ESN_MB_Theme_Core_Cockpit, '/js/pickaColorv2.js')}"/>
+    <apex:includeScript value="{!urlfor($Resource.ESN_MB_Theme_Core_Cockpit, '/js/sweet-alert.min.js')}"/>
+   
+    
+</head>
+<body> 
+    
+    
+<div id="header" role="banner">
+        <header class="container-fluid">
+            
+            <div class="row">
+                <div class="hidden-xs col-sm-2 col-md-2 col-lg-2">      
+                    <img class="img-responsive" alt="Pernod Ricard" src="{!urlfor($Resource.ESN_MB_Theme_Core_Cockpit, '/Images/logo-pernod-ricard.png')}"/>
+
+                </div>
+
+                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8"> 
+                    <div class="page-header">
+                        <h2>{!$Label.ESN_MB_Cockpit_TitleBanner} <small> <br/>{!$Label.ESN_MB_Cockpit_TitleBannerSmall}</small></h2> 
+                    </div>
+                    
+                </div>
+                
+                <div class="hidden-xs col-sm-2 col-md-2 col-lg-2">  
+                    <a href="/apex/ESN_MB_NOP_Homepage"><img class="img-responsive" id="logoPR" alt="Pernod Ricard" src="{!urlfor($Resource.ESN_MB_Theme_Core_Cockpit, '/Images/logo-mybrands.png')}"/></a>
+                </div>
+
+            </div>
+        </header>
+    </div>
+    
+<div class="container">
+<!-- Steps Progress and Details - START -->
+<div class="container" style="margin-top: 10px; margin-bottom: 100px;">
+    <div class="row">
+        <div class="row step">
+            <div id="div1" class="col-md-3 activestep" onclick="javascript: resetActive(event, 0, 'step-1');">
+                <span class="fa fa-tint"></span>
+                <p>{!$Label.ESN_MB_Cockpit_StepOneText}</p>
+            </div>
+            <div id="div2" class="col-md-3" onclick="javascript: resetActive(event, 33, 'step-2');">
+                <span class="fa fa-pencil"></span>
+                <p>{!$Label.ESN_MB_Cockpit_StepTwoText}</p>
+            </div>
+            <div id="div3" class="col-md-3" onclick="javascript: resetActive(event, 66, 'step-3');">
+                <span class="fa fa-th-list"></span>
+                <p>{!$Label.ESN_MB_Cockpit_StepThreeText}</p>
+            </div>
+            <div id="div4" class="col-md-3" onclick="javascript: resetActive(event, 100, 'step-4');">
+                <span class="fa fa-thumbs-up"></span>
+                <p>{!$Label.ESN_MB_Cockpit_StepFourText}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-offset-3"> 
+        <br/><span class="label label-info">{!$Label.ESN_MB_Cockpit_Info}</span> {!$Label.ESN_MB_Cockpit_YouAreManaging} <strong id="brandNameStrong"></strong>{!$Label.ESN_MB_Cockpit_ReturnToOverView} <a href="/apex/ESN_MB_NOP_OverviewCockpit">{!$Label.ESN_MB_Cockpit_Here}</a>. 
+    </div>
+    <div class="row setup-content step activeStepInfo" id="step-1">
+        <div class="col-xs-12">
+            <div class="col-md-12 well text-center">
+                <h1>{!$Label.ESN_MB_Cockpit_StepOne}</h1>
+                <form class="form-horizontal">
+                <fieldset>
+                <div id ="warningPropertyFile" class="panel panel-warning hidden"><div class="panel-heading">{!$Label.ESN_MB_Cockpit_Warning}</div>{!$Label.ESN_MB_Cockpit_NoPropertyFileLoaded}</div>
+                <!-- Form Name -->
+                    <legend>{!$Label.ESN_MB_Cockpit_StepOneDescription}
+                        <br/> 
+                        <p class="help-block" style="text-align: center;font-size: 0.7em;">{!$Label.ESN_MB_Cockpit_RestorePreviousColors}  
+                            <a title="{!$Label.ESN_MB_Cockpit_RestorePreviousColors}" id="restorePreviousColors" style="cursor:pointer;">
+                                <span class="badge" style="margin-left:5px"><span class="glyphicon glyphicon-repeat"></span></span>
+                            </a>
+                        </p>
+                        
+                        
+                    </legend>
+                    <div class="col-sm-6 col-md-4 hidden-xs titlePreview">
+                        <i>{!$Label.ESN_MB_Cockpit_PreviewHP}</i>
+                    </div>
+                    <div class="col-sm-6 col-md-4 hidden-xs titlePreview">
+                        <i>{!$Label.ESN_MB_Cockpit_PreviewArticle}</i>
+                    </div>
+                     <div class="col-md-4 hidden-xs hidden-sm titlePreview">
+                        <i>{!$Label.ESN_MB_Cockpit_PreviewActivationEdit}</i>
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-lg-4 hidden-xs" id="blockPreview" style="border-left: medium none;">
+                    <div style="height: 15%;margin-left: 0px;width:100%;background-color:black;" class="mybrands-headerBackgroundColorPreview">
+                    <img class="img-responsive" src="{!urlfor($Resource.ESN_MB_Theme_Core_Cockpit, '/Preview/menuHamburger.png')}" style="float:left; height:100%"/>
+                    <img src="{!urlfor($Resource.ESN_MB_Theme_Core_Cockpit, '/Preview/Logo.png')}" class="filebuttonLogoPreview"/>
+                        <span  class="mybrands-headerLogoAndMenuColorPreview pictoCloud">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{!$Label.ESN_MB_Cockpit_Brand}<br/>{!$Label.ESN_MB_Cockpit_Cloud}</span>
+                        <span  class="mybrands-headerLogoAndMenuColorPreview pictoStar" style="margin-left:-3px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{!$Label.ESN_MB_Cockpit_Market}<br/>{!$Label.ESN_MB_Cockpit_Activation}</span>
+                        <span  class="mybrands-headerLogoAndMenuColorPreview pictoBulle" style="margin-left:-3px"><br/>{!$Label.ESN_MB_Cockpit_Forum}</span>
+                        <span  class="mybrands-headerLogoAndMenuColorPreview pictoCart" style="margin-left:-3px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{!$Label.ESN_MB_Cockpit_POS}<br/>{!$Label.ESN_MB_Cockpit_eMarket}</span>
+                        <span class="mybrands-headerLogoAndMenuColorPreview pictoMy"></span>
+                        <span class="mybrands-headerLogoAndMenuColorPreview pictoBrand"></span>
+                    
+                    </div>
+                    <div id="mybrands-backgroundColor2Preview" style="height: 65%;margin-left: 0px;width:100%;background-color:#17956B;">
+                        <div  class="bottlePreview">
+                            <img src="{!urlfor($Resource.ESN_MB_Theme_Core_Cockpit, '/Preview/bottleMasterbrand.png')}" style="margin-left:7px"/>
+                            <div class="mybrands-fontBackgroundColorPreview">{!$Label.ESN_MB_Cockpit_Masterbrand}</div>
+                        </div>
+                         <div  class="bottlePreview">
+                            <img src="{!urlfor($Resource.ESN_MB_Theme_Core_Cockpit, '/Preview/bottle2.png')}" />
+                            <div class="mybrands-fontBackgroundColorPreview">
+                                {!$Label.ESN_MB_Cockpit_Product}
+                            </div>
+                        </div>
+                        <div  class="bottlePreview">
+                            <img src="{!urlfor($Resource.ESN_MB_Theme_Core_Cockpit, '/Preview/bottle2.png')}" />
+                            <div class="mybrands-fontBackgroundColorPreview">
+                                {!$Label.ESN_MB_Cockpit_Product}
+                            </div>
+                        </div>
+                        <div  class="bottlePreview">
+                            <img src="{!urlfor($Resource.ESN_MB_Theme_Core_Cockpit, '/Preview/bottle2.png')}" />
+                            <div class="mybrands-fontBackgroundColorPreview">
+                                {!$Label.ESN_MB_Cockpit_Product}
+                            </div>
+                        </div>
+                        <div  class="bottlePreview">
+                            <img src="{!urlfor($Resource.ESN_MB_Theme_Core_Cockpit, '/Preview/bottle2.png')}" />
+                            <div class="mybrands-fontBackgroundColorPreview">
+                                {!$Label.ESN_MB_Cockpit_Product}
+                            </div>
+                        </div>
+                      
+                    </div>
+                   
+                        <div class="menuPreview" id="mybrands-menuBackgroundColor1Preview" style="background-color:#26a337;">
+                            <div class="mybrands-menuFontColorPreview">{!$Label.ESN_MB_Cockpit_Strategy} <br/><br/> {!$Label.ESN_MB_Cockpit_SeeMore} <br/>
+                                 <div class="glyphicon glyphicon-chevron-down mybrands-menuChevronColorPreview"></div>
+                            </div>
+                        </div>
+                        <div class="menuPreview" id="mybrands-menuBackgroundColor2Preview" style="background-color:#158235;">
+                            <div class="mybrands-menuFontColorPreview">{!$Label.ESN_MB_Cockpit_Guidelines} <br/><br/> {!$Label.ESN_MB_Cockpit_SeeMore} <br/>
+                                 <div class="glyphicon glyphicon-chevron-down mybrands-menuChevronColorPreview"></div>
+                            </div>
+                        </div>
+                        <div class="menuPreview" id="mybrands-menuBackgroundColor3Preview" style="background-color:#3fab34;">
+                            <div class="mybrands-menuFontColorPreview">{!$Label.ESN_MB_Cockpit_BrandActiLibrary} <br/> {!$Label.ESN_MB_Cockpit_Library}  <br/> {!$Label.ESN_MB_Cockpit_SeeMore} <br/>
+                                 <div class="glyphicon glyphicon-chevron-down mybrands-menuChevronColorPreview"></div>
+                            </div>
+                        </div>
+                        <div class="menuPreview" id="mybrands-menuBackgroundColor4Preview" style="background-color:#26a337;">
+                            <div class="mybrands-menuFontColorPreview">{!$Label.ESN_MB_Cockpit_Assets} <br/><br/> {!$Label.ESN_MB_Cockpit_SeeMore} <br/>
+                                 <div class="glyphicon glyphicon-chevron-down mybrands-menuChevronColorPreview"></div>
+                            </div>
+                        </div>
+                        <div class="menuPreview" id="mybrands-menuBackgroundColor5Preview" style="background-color:#158235;">
+                            <div class="mybrands-menuFontColorPreview">{!$Label.ESN_MB_Cockpit_HistoryAnd} <br/>{!$Label.ESN_MB_Cockpit_Education} <br/> {!$Label.ESN_MB_Cockpit_SeeMore} <br/>
+                                <div class="glyphicon glyphicon-chevron-down mybrands-menuChevronColorPreview"></div>
+                            </div>
+                        </div>
+                  
+                    </div>
+                   <div class="col-sm-6 col-md-6 col-lg-4 hidden-xs" id="blockPreview2">
+                    <div style="height: 15%;margin-left: 0px;width:100%;background-color:black;" class="mybrands-headerBackgroundColorPreview">
+                    <img class="img-responsive" src="{!urlfor($Resource.ESN_MB_Theme_Core_Cockpit, '/Preview/menuHamburger.png')}" style="float:left; height:100%"/>
+                    <img src="{!urlfor($Resource.ESN_MB_Theme_Core_Cockpit, '/Preview/Logo.png')}" class="filebuttonLogoPreview"/>
+                        <span  class="mybrands-headerLogoAndMenuColorPreview pictoCloud">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{!$Label.ESN_MB_Cockpit_Brand}<br/>{!$Label.ESN_MB_Cockpit_Cloud}</span>
+                        <span  class="mybrands-headerLogoAndMenuColorPreview pictoStar" style="margin-left:-3px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{!$Label.ESN_MB_Cockpit_Market}<br/>{!$Label.ESN_MB_Cockpit_Activation}</span>
+                        <span  class="mybrands-headerLogoAndMenuColorPreview pictoBulle" style="margin-left:-3px"><br/>{!$Label.ESN_MB_Cockpit_Forum}</span>
+                        <span  class="mybrands-headerLogoAndMenuColorPreview pictoCart" style="margin-left:-3px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{!$Label.ESN_MB_Cockpit_POS}<br/>{!$Label.ESN_MB_Cockpit_eMarket}</span>
+                        <span class="mybrands-headerLogoAndMenuColorPreview pictoMy"></span>
+                        <span class="mybrands-headerLogoAndMenuColorPreview pictoBrand"></span>
+                    
+                    </div>
+                       <div class="mybrands-textBackgroundColorPreview" style="height: 85%;margin-left: 0px;width:100%;background-color:#17956B;position: absolute;">
+                           <hr class="hrStyle"/>
+                       </div>
+                       <div id="colorTitleAndText">
+                           <div class="mybrands-textTitleFontColorPreview titleMargin pictoArrowRed">
+                                 {!$Label.ESN_MB_Cockpit_TitleColor}
+                           </div>
+                           <div class="mybrands-textFontColorPreview">
+                               <hr class="hrStyle"/>
+                                <p>
+                                    {!$Label.ESN_MB_Cockpit_TextColorPrev}
+                               </p> 
+                           </div>
+                            
+                       </div>
+                        <div id="mybrands-leftPushBackgroundColorPreview">
+                       </div>
+                       <div class="mybrands-leftPushNewsBackgroundColorPreview leftPushStyle"> 
+                           <img class="imageLeftPushUp img-responsive" src="{!urlfor($Resource.ESN_MB_Theme_Core_Cockpit, '/Preview/plan-du-site_small_2_0.jpg')}" />
+                           <div class="mybrands-leftPushFontColorPreview">
+                              {!$Label.ESN_MB_Cockpit_LeftPush} <br/> {!$Label.ESN_MB_Cockpit_Text} <br/> {!$Label.ESN_MB_Cockpit_Color}   
+                           </div>
+                       </div>
+                       <div id="mybrands-bottomPushBackgroundColorPreview">
+                           <img class="imageBottomPush" src="{!urlfor($Resource.ESN_MB_Theme_Core_Cockpit, '/Preview/plan-du-site_small_2_0.jpg')}" />
+                           <div class="mybrands-bottomPushFontColorPreview">
+                              {!$Label.ESN_MB_Cockpit_BottomPushColor}   
+                           </div>
+                       </div>
+                    </div>
+                    
+                    <div class="col-lg-4 hidden-xs hidden-sm hidden-md" id="blockPreview3">
+                        <div style="height: 15%;margin-left: 0px;width:100%;background-color:black;" class="mybrands-headerBackgroundColorPreview">
+                            <img class="img-responsive" src="{!urlfor($Resource.ESN_MB_Theme_Core_Cockpit, '/Preview/menuHamburger.png')}" style="float:left; height:100%"/>
+                            <img src="{!urlfor($Resource.ESN_MB_Theme_Core_Cockpit, '/Preview/Logo.png')}" class="filebuttonLogoPreview"/>
+                            <span  class="mybrands-headerLogoAndMenuColorPreview pictoCloud">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{!$Label.ESN_MB_Cockpit_Brand}<br/>{!$Label.ESN_MB_Cockpit_Cloud}</span>
+                            <span  class="mybrands-headerLogoAndMenuColorPreview pictoStar" style="margin-left:-3px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{!$Label.ESN_MB_Cockpit_Market}<br/>{!$Label.ESN_MB_Cockpit_Activation}</span>
+                            <span  class="mybrands-headerLogoAndMenuColorPreview pictoBulle" style="margin-left:-3px"><br/>{!$Label.ESN_MB_Cockpit_Forum}</span>
+                            <span  class="mybrands-headerLogoAndMenuColorPreview pictoCart" style="margin-left:-3px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{!$Label.ESN_MB_Cockpit_POS}<br/>{!$Label.ESN_MB_Cockpit_eMarket}</span>
+                            <span class="mybrands-headerLogoAndMenuColorPreview pictoMy"></span>
+                            <span class="mybrands-headerLogoAndMenuColorPreview pictoBrand"></span>
+                    
+                        </div>
+                        <div class="mybrands-textBackgroundColorPreview" style="height: 85%;margin-left: 0px;width:100%;background-color:#17956B;position: absolute;">
+                            <div class="mybrands-textTitleFontColorPreview">
+                                {!$Label.ESN_MB_Cockpit_MAtoolkit} <br/> {!$Label.ESN_MB_Cockpit_Card}
+                                <hr class="hrStyle" style="margin-left: 25%;margin-right: 25%; margin-top: 0;"/>
+                            </div>
+                            <div class="mybrands-textFontColorPreview addPhotoPreview">
+                                <div class="mybrands-textFontColorPreview pictoPicture"></div>
+                                <br/>
+                                <br/>
+                                {!$Label.ESN_MB_Cockpit_AddaPhoto}
+                                <div class="mybrands-leftPushNewsBackgroundColorPreview mybrands-leftPushFontColorPreview uploadPreview pictoUpload">
+                                    {!$Label.ESN_MB_Cockpit_UploadPhoto}                   
+                                </div>
+                            </div>
+                            <div class="mybrands-leftPushNewsBackgroundColorPreview mybrands-leftPushFontColorPreview picklistPreview">
+                                {!$Label.ESN_MB_Cockpit_SelectMM} <div class="glyphicon glyphicon-chevron-down picklistPreviewChevron"></div>
+                            </div>
+                             <div class="mybrands-leftPushNewsBackgroundColorPreview mybrands-leftPushFontColorPreview picklistPreview" style="margin-top: 1%;">
+                                {!$Label.ESN_MB_Cockpit_SelectProduct} <div class="glyphicon glyphicon-chevron-down picklistPreviewChevron"></div>
+                            </div>
+                           
+                       </div>
+                    </div>
+                    
+                 <div class="alert alert-warning col-sm-10 col-sm-offset-1 alert-dismissible hidden-xs titlePreview" role="alert">
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                     <span class="glyphicon glyphicon-warning-sign"></span> {!$Label.ESN_MB_Cockpit_AlertPreview}
+                </div>
+                <br/>
+                <div class="col-md-4 col-md-offset-4 rgbConverter" style="text-align: center;margin-bottom:1%;display:none;">{!$Label.ESN_MB_Cockpit_ConvertRGBtoHex}   
+                    <a type="button" style="cursor:pointer;" data-container="body" data-toggle="popover" data-placement="right" 
+                      data-content="R:<input type='text' class='inputRGB' id='red'> G:<input type='text' class='inputRGB' id='green'> B:<input type='text' class='inputRGB' id='blue'> <br/><button type='button' class='btn btn-primary convertBtn' id='convertRgbToHexBtn'>Convert</button> <span class='glyphicon glyphicon-refresh spanRefresh'></span><br/><input type='text' class='hexInput' id='hexResult'>" data-original-title="" title=""><span class="glyphicon glyphicon-info-sign" style="margin-top: 10px;"></span></a>
+                </div>
+                <div class="panel-group col-sm-offset-2 col-sm-8" id="accordion" role="tablist" aria-multiselectable="true"></div>  
+                
+            </fieldset>
+            </form>
+            
+            <button type="button" class="btn btn-default btn-lg btn-block" onclick="javascript: nextStep();">{!$Label.ESN_MB_Cockpit_NextStep} <span class="glyphicon glyphicon-chevron-right"></span></button>
+            
+            </div>
+        </div>
+    </div>
+    <div class="row setup-content step hiddenStepInfo" id="step-2">
+        <div class="col-xs-12">
+            <div class="col-md-12 well text-center">
+                <h1>{!$Label.ESN_MB_Cockpit_StepTwo}</h1>
+                <form class="form-horizontal">
+                <fieldset>
+
+                <!-- Form Name -->
+                <legend>{!$Label.ESN_MB_Cockpit_StepTwoDescription}</legend>
+                
+                <div class="form-group">
+                <label class="col-md-4 control-label" style="color: #aa0000;">{!$Label.ESN_MB_Cockpit_EnterNewProduct}  <a type="button" style="cursor:pointer;" data-container="body" data-toggle="popover" data-placement="top" data-content="{!$Label.ESN_MB_Cockpit_UCanAdd} &lt;br> {!$Label.ESN_MB_Cockpit_TooltipProductName}" data-original-title="" title=""><span class="glyphicon glyphicon-info-sign"></span></a>
+                    </label>  
+                    <div class="col-md-5">
+                        <input style="border: 1px solid #ffa385" name="textinput" id="productName" placeholder="Product name" class="form-control input-md" type="text"/>
+                    </div>
+                    <label class="col-md-4 control-label" style="color: #6687ff;">{!$Label.ESN_MB_Cockpit_DAMId} <a type="button" style="cursor:pointer;" data-container="body" data-toggle="popover" data-placement="bottom" data-content="{!$Label.ESN_MB_Cockpit_ToolTipDamBrandId}" data-original-title="" title=""><span class="glyphicon glyphicon-info-sign"></span></a>
+                    </label>
+                    <div class="col-md-5">
+                         <input style="border: 1px solid #6687ff; margin-top: 2px;" name="textinput" id="damId" placeholder="{!$Label.ESN_MB_Cockpit_TooltipDAMid}" class="form-control input-md" type="text"/>
+                    </div>
+                     <label class="col-md-4 control-label" for="productName" style="color: Black;">{!$Label.ESN_MB_Cockpit_UploadBottleImage}</label>
+                     <div class=" col-md-4">   
+                        <input id="filebuttonUploadProduct" name="filebuttonUploadProduct" class="input-file" type="file"/>
+                         <p class="help-block" style="text-align: left;">{!$Label.ESN_MB_Cockpit_ImageRequirement}  
+                         <a type="button" style="cursor:pointer;" data-container="body" data-toggle="popover" data-placement="right" data-content=" {!$Label.ESN_MB_Cockpit_ImageDescription} <u>{!$Label.ESN_MB_Cockpit_ImageSize1}</u> <br/>{!$Label.ESN_MB_Cockpit_ImageMargin} <u>{!$Label.ESN_MB_Cockpit_ImageSize2}</u><br/>{!$Label.ESN_MB_Cockpit_ImageSizeReflection} <u>{!$Label.ESN_MB_Cockpit_ImageSize3}</u> <br/>{!$Label.ESN_MB_Cockpit_ImageMargin2} <u>{!$Label.ESN_MB_Cockpit_ImageSize4}</u>" data-original-title="" title=""><span class="glyphicon glyphicon-info-sign" style="margin-top: 10px;"></span></a>
+                         </p>
+                             
+                         <button type="button" class="btn btn-primary btn-lg btn-block" id="uploadProduct" style="margin-top: 10px;">{!$Label.ESN_MB_Cockpit_UploadYourProduct}</button>
+                    </div>
+                </div>
+                <!-- File Button --> 
+                <div class="form-group">
+                <label class="col-md-4 control-label">{!$Label.ESN_MB_Cockpit_ProductOrder} <a type="button" style="cursor:pointer;" data-container="body" data-toggle="popover" data-placement="bottom" data-content="{!$Label.ESN_MB_Cockpit_TooltipBottleOrder}" data-original-title="" title=""><span class="glyphicon glyphicon-info-sign" style=" margin-top: 10px;"></span></a>
+                </label>
+                <div class="col-md-4" id="sortableElement">
+                    <div id="hideScrollbar">
+                    <ul id="sortable">
+                    </ul>
+                    </div>
+                </div>
+                </div>
+            </fieldset>
+            </form>
+            <button type="button" class="btn btn-default btn-lg btn-block" onclick="javascript: resetActive(event, 66, 'step-3', 3);">{!$Label.ESN_MB_Cockpit_NextStep} <span class="glyphicon glyphicon-chevron-right"></span></button>
+            </div>
+        </div>
+    </div>
+    <div class="row setup-content step hiddenStepInfo" id="step-3">
+        <div class="col-xs-12">
+            <div class="col-md-12 well text-center">
+                <h1>{!$Label.ESN_MB_Cockpit_StepThree}</h1>
+                <form class="form-horizontal">
+                <fieldset>
+
+                <!-- Form Name -->
+                <legend>{!$Label.ESN_MB_Cockpit_StepThreeDescription}</legend>
+                <div>
+                    <i>{!$Label.ESN_MB_Cockpit_IndicationSocialLinks}</i><br/><br/>            
+                </div>
+                <div class="form-group">
+                <label class="col-md-4 control-label" for="facebookLink">{!$Label.ESN_MB_Cockpit_FacebookLink}</label>  
+                    <div class="col-md-4">
+                        <input id="facebookLink" name="textinput" placeholder="Facebook Link" class="form-control input-md" type="text"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                <label class="col-md-4 control-label" for="twitterLink">{!$Label.ESN_MB_Cockpit_TwitterLink}</label>  
+                    <div class="col-md-4">
+                        <input id="twitterLink" name="textinput" placeholder="Twitter Link" class="form-control input-md" type="text"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                <label class="col-md-4 control-label" for="googlePlusLink">{!$Label.ESN_MB_Cockpit_GooglePlusLink}</label>  
+                    <div class="col-md-4">
+                        <input id="googlePlusLink" name="textinput" placeholder="Google Plus" class="form-control input-md" type="text"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                <label class="col-md-4 control-label" for="youtubeLink">{!$Label.ESN_MB_Cockpit_YoutubeLink}</label>  
+                    <div class="col-md-4">
+                        <input id="youtubeLink" name="textinput" placeholder="Youtube Link" class="form-control input-md" type="text"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                <label class="col-md-4 control-label" for="flickerLink">{!$Label.ESN_MB_Cockpit_FlickerLink}</label>  
+                    <div class="col-md-4">
+                        <input id="flickerLink" name="textinput" placeholder="Flicker Link" class="form-control input-md" type="text"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                <label class="col-md-4 control-label" for="instagramLink">{!$Label.ESN_MB_Cockpit_InstagramLink}</label>  
+                    <div class="col-md-4">
+                        <input id="instagramLink" name="textinput" placeholder="Instagram Link" class="form-control input-md" type="text"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                <label class="col-md-4 control-label" for="pinterestLink">{!$Label.ESN_MB_Cockpit_PinterestLink}</label>  
+                    <div class="col-md-4">
+                        <input id="pinterestLink" name="textinput" placeholder="Pinterest Link" class="form-control input-md" type="text"/>
+                    </div>
+                </div>
+            </fieldset>
+            </form> 
+            <button type="button" class="btn btn-default btn-lg btn-block nextStep" onclick="">{!$Label.ESN_MB_Cockpit_NextStep} <span class="glyphicon glyphicon-chevron-right"></span></button>
+            </div>
+        </div>
+    </div>
+    <div class="row setup-content step hiddenStepInfo" id="step-4">
+        <div class="col-xs-12">
+            <div class="col-md-12 well text-center">
+                <h1>{!$Label.ESN_MB_Cockpit_StepFour}</h1>
+                <legend>{!$Label.ESN_MB_Cockpit_StepFourDescription}</legend>
+                <div align="left">
+                    <i><u>{!$Label.ESN_MB_Cockpit_BeAwareOf}</u></i><br/>
+                    <i>&#8226; {!$Label.ESN_MB_Cockpit_IfYourBrandIs}<u>{!$Label.ESN_MB_Cockpit_Disable}</u>{!$Label.ESN_MB_Cockpit_ConfirmYourBrand} <a href="/apex/ESN_MB_NOP_OverviewCockpit" target="_blank">{!$Label.ESN_MB_Cockpit_ConfirmYourBrand3}</a></i> <br/>
+                    <i>&#8226; {!$Label.ESN_MB_Cockpit_IfYourBrandIs}<u>{!$Label.ESN_MB_Cockpit_Enable}</u>{!$Label.ESN_MB_Cockpit_ConfirmYourBrand2} </i><br/><br/>
+                </div>
+                <button id="btn-valid" type="button" class="btn btn-primary btn-lg btn-block">{!$Label.ESN_MB_Cockpit_SubmitYourBrand} <span class="glyphicon glyphicon-thumbs-up"></span></button>
+                    <div class="progress" id="progress1" style="margin-top: 50px;">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+                        </div>
+                        <span class="progress-type">{!$Label.ESN_MB_Cockpit_UploadProgress}</span>
+                        <span class="progress-completed">0%</span>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="spinner"></div>
+<script type="text/javascript">
+    Visualforce.remoting.timeout = 120000; // Set timeout at page level
+    var srUrl="{!currentBrandSRURL}";
+    var brandName = '{!brandName}';
+    var brandStatut = '{!brandStatut}';
+    var brandCategory = '{!brandCategory}';
+    var brandId = '{!brandId}'; 
+    var backgroundExist = '{!backgroundExist}';
+    var portfolioBackgroundExist = '{!portfolioBackgroundExist}';
+    console.log(brandId);
+    var customLabelCockpit ={confirmRestore : "{!$Label.ESN_MB_Cockpit_ConfirmRestore}",
+                             errorSocialLinks : "{!$Label.ESN_MB_Cockpit_ErrorSocialLinks}",
+                             errorSizeImage : "{!$Label.ESN_MB_Cockpit_ErrorSizeImage}",
+                             errorBottle : "{!$Label.ESN_MB_Cockpit_ErrorBottle}",
+                             errorDeleteBottle : "{!$Label.ESN_MB_Cockpit_ErrorDeleteBottle}",
+                             warningDeleteBottle : "{!$Label.ESN_MB_Cockpit_WarningDeleteBottle}",
+                             warningDeleteBottleEnable : "{!$Label.ESN_MB_Cockpit_WarningDeleteBottleEnable}",
+                             confirmDelete : "{!$Label.ESN_MB_Cockpit_ConfirmDelete}",
+                             confirmRestoreIt : "{!$Label.ESN_MB_Cockpit_RestoreIt}",
+                             confirmTitleRestore : "{!$Label.ESN_MB_Cockpit_RestoreTitle}",
+                             confirmTextRestore : "{!$Label.ESN_MB_Cockpit_RestoreComplete}",
+                             errorSubmitBrand : "{!$Label.ESN_MB_Cockpit_ErrorSubmitBrand}",
+                             errorSubmitBrand2 : "{!$Label.ESN_MB_Cockpit_ErrorSubmitBrand2}",
+                             confirmToComit : "{!$Label.ESN_MB_Cockpit_ConfirmToComit}",
+                             confirmYes : "{!$Label.ESN_MB_Cockpit_confirmYes}"};       
+    var leCercle = "{!$Label.ESN_MB_LeCercle}";
+    var step4 = "{!$Label.ESN_MB_Cockpit_StepFourText}";
+    var step2LeCercle = "{!$Label.ESN_MB_Cockpit_StepTwoTextLeCercle}";
+    
+    function nextStep() {
+        if (brandCategory == leCercle) {
+            resetActive(event, 100, 'step-4', 4);
+        } else {
+            resetActive(event, 33, 'step-2', 2);
+        }
+    } 
+</script>
+
+</div>
+<script src="{!urlfor($Resource.ESN_MB_Theme_Core_Cockpit, '/js/main.js')}"></script>
+<script src="{!urlfor($Resource.ESN_MB_Theme_Core_Cockpit, '/js/manageZip.js')}"></script>
+
+<!--<script src="https://drive.google.com/uc?export=download&id=0B1lJqto4fbXzZlpNNl9jcVRtdE0"/>-->
+<!--<script src="https://dl.dropboxusercontent.com/u/51617866/DEV_PR_VAL/Custom%20MyBrands/js/main.js"></script>
+<script src="https://dl.dropboxusercontent.com/u/51617866/DEV_PR_VAL/Custom%20MyBrands/js/manageZip.js"/>-->
+</body>
+</html>
+</apex:page>

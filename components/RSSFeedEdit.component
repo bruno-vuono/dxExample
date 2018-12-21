@@ -1,0 +1,109 @@
+<apex:component id="c44" controller="OCMS_RSSFeedTemplateController" allowDml="true">
+
+    <apex:attribute name="disabled" type="Boolean" description="The panel unique identifier" assignTo="{!layout_disabled}" />
+    <apex:attribute name="content" type="cms__Content__c" description="The panel unique identifier" assignTo="{!content}" />
+    <apex:attribute name="properties" type="cms__Attribute__c[]" description="The panel unique identifier" assignTo="{!content_properties}" />
+    <apex:attribute name="layout_instance" type="cms__Content_Layout_Instance__c" description="The panel unique identifier" assignTo="{!content_layout_instance}" />
+    <apex:attribute name="layout_instance_properties" type="cms__Attribute__c[]" description="The panel unique identifier" assignTo="{!content_layout_instance_properties}" />
+
+      <apex:outputPanel id="o1" rendered="{!layout_rendered}">
+          <script type="text/javascript" language="javascript">
+
+            function saveLookAndFeel(cb) {
+                var attributes = [
+                    {type: "Text",  name: "RSSFeedUrl",             value: $('#RSSFeedUrl').val()},
+                    {type: "Text",  name: "RSSFeedLimit",           value: $('#RSSFeedLimit').val()},
+                    {type: "Text",  name: "OpenLinksInNewWindow",   value: $('#OpenLinksInNewWindow').is(':checked') ? '1' : '0'}
+                ];
+                
+                $.ocms.saveContent({
+                    Name: "{!content.Name}",
+                    content_id: "{!content.Id}",
+                    content_type: "{!content.cms__Content_Type__r.cms__Name__c}",
+                    parent_id: null
+                    },
+                   attributes,
+                   "{!JSENCODE(Content.cms__Site_Name__c)}",
+                   cb
+                );                          
+            }
+            
+            function saveLookAndFeelClose(cb) {
+                saveLookAndFeel(cb); 
+                closeTab('{!JSENCODE(tab)}');
+            }
+
+
+            $(document).ready(function(){
+                $(document).data('sname', '{!SiteName}');
+            }); 
+          </script> 
+      </apex:outputPanel>
+
+
+    <apex:outputPanel >
+        <form>      
+            <table class="ocms-contentPropertiesEdit">
+              <tr>
+                <td><label for="RSSFeedUrl">RSS Feed URL</label></td>
+                <td>
+                    <apex:outputText escape="false" rendered="{!content.cms__Published__c}">
+                        <input type="text" name="RSSFeedUrl" id="RSSFeedUrl" value="{!RSSFeedUrl}" disabled="disabled" size="70" />
+                    </apex:outputText>
+                    <apex:outputText escape="false" rendered="{!!content.cms__Published__c}">           
+                        <input type="text" name="RSSFeedUrl" id="RSSFeedUrl" value="{!RSSFeedUrl}" size="70"/>
+                    </apex:outputText>                  
+                </td>
+              </tr>              
+              
+              <tr>
+                <td><label for="RSSFeedLimit">RSS Feed Limit</label></td>
+                <td>
+                    <apex:outputText escape="false" rendered="{!content.cms__Published__c}">
+                        <input type="text" name="RSSFeedLimit" id="RSSFeedLimit" value="{!RSSFeedLimit}" disabled="disabled" size="70" />
+                    </apex:outputText>
+                    <apex:outputText escape="false" rendered="{!!content.cms__Published__c}">           
+                        <input type="text" name="RSSFeedLimit" id="RSSFeedLimit" value="{!RSSFeedLimit}" size="70"/>
+                    </apex:outputText>                  
+                </td>
+              </tr>    
+              
+              <tr>
+                <td></td>
+                <td>
+                    <!-- elegent apex for checkboxes is an oxymoron -->
+                    <apex:outputText escape="false" rendered="{!content.cms__Published__c}">
+                        <apex:outputText escape="false" rendered="{!OpenLinksInNewWindow}">
+                           <input type="checkbox" id="OpenLinksInNewWindow" checked="checked" disabled="disabled" />
+                       </apex:outputText>
+                        <apex:outputText escape="false" rendered="{!!OpenLinksInNewWindow}">
+                           <input type="checkbox" id="OpenLinksInNewWindow" disabled="disabled" />
+                       </apex:outputText>
+                       <label for="OpenLinksInNewWindow" class="ocms-disabled"> Open RSS links in a new browser window</label>                  
+                    </apex:outputText>
+
+                    <apex:outputText escape="false" rendered="{!!content.cms__Published__c}">           
+                        <apex:outputText escape="false" rendered="{!OpenLinksInNewWindow}">
+                           <input type="checkbox" id="OpenLinksInNewWindow" checked="checked" />
+                       </apex:outputText>
+                        <apex:outputText escape="false" rendered="{!!OpenLinksInNewWindow}">
+                           <input type="checkbox" id="OpenLinksInNewWindow" />
+                       </apex:outputText>
+                       <label for="OpenLinksInNewWindow"> Open RSS links in a new browser window</label>                  
+                    </apex:outputText>
+                </td>
+              </tr>                
+
+              <tr class="ocms-techNote">
+                <td></td>
+                <td>
+                    <br />
+                    The RSS feed’s web domain must be in the list of Remote Sites that<br />
+                    your salesforce organization is permitted to invoke. 
+                </td>
+              </tr>
+            </table>    
+        </form>
+    </apex:outputPanel>
+
+</apex:component>

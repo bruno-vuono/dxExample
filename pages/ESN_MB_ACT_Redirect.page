@@ -1,0 +1,6 @@
+<apex:page sidebar="false" showHeader="false" standardStyleSheets="false" standardController="ESN_MB_Activation__c"
+           action="{!URLFOR('/apex/ESN_MB_NOP_Brand?brandId='+ESN_MB_Activation__c.ESN_MB_BrandId__c+'#?page=article-'+ESN_MB_Activation__c.ESN_MB_Activation_Scope__c+'-activation&content='+ESN_MB_Activation__c.id+'&mode=light', null, null)}">
+Brandid : {!ESN_MB_Activation__c.ESN_MB_BrandId__c} 
+Activation Scope : {!ESN_MB_Activation__c.ESN_MB_Activation_Scope__c}
+ 
+</apex:page>

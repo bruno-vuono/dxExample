@@ -1,0 +1,62 @@
+<apex:page sidebar="false" showHeader="false" standardStyleSheets="false" controller="ESN_MB_NOP_SearchAsset_Cx">
+    <!--div class="splash-close" id="btn-close-searchAsset" onclick="if($('#modal-searchAsset')){$('#modal-searchAsset').modal('hide');}$( '#searchAssetResult' ).empty();$( '#nbAssets' ).text('');$( '#keyword-asset' ).val('');">
+        {!$Label.ESN_MB_Close}<div src="" class="picto-close"></div>
+    </div--><!--/.splash-close-->
+    
+    
+    <div class="splash-close btn-close" id="btn-close-searchAsset">
+        <a data-cat-name="edit_mode" data-category="edit_mode" data-page="edit_mode" style="height:30px; width:30px;line-height:30px;" onclick="closeSplash(); if($('#modal-searchAsset')){$('#modal-searchAsset').modal('hide');}$( '#searchAssetResult' ).empty();$( '#nbAssets' ).text('');$( '#keyword-asset' ).val('');" class="on">
+            <span class="glyphicon glyphicon-remove" style="font-size: 1.7em;left:-2px; top:-0.5px;"></span>
+        </a>
+    </div>
+    
+    <div class="container-searchAsset container-fluid">
+        <form method="post" onsubmit="fillBrandContent();return false;" class="col-xs-12" name="searchAsset-form" id="searchAsset-form">
+            <input type="text" name="keyword" value="" class="col-xs-12" id="keyword-asset" />
+        </form>
+        <div class="clearfix"></div>
+        <div class="result">
+            
+            <!--.searchAsset-->
+            <div class="cln-result col-xs-12 searchAsset">
+                <!--div id="addSelectedAssets" class="more-functionalities-bloc" style="float:right">
+                    <a href ="#?page=new_mode&content=new_mode&mode=light" onclick="closeSplash();" data-page="article" data-category="brand-cloud">{!$Label.ESN_MB_Add_Selected_Assets}</a>
+                </div>
+                <div style="float:right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                <div id="syncLatestAssets" class="more-functionalities-bloc" style="float:right">
+                    <a href="#">{!$Label.ESN_MB_Assets_Import}</a>
+                </div-->
+                
+                <a id="addSelectedAssets" class="hp-link pull-right" style="margin-top: 12px;" href="#?page=new_mode&content=new_mode&mode=light" onclick="closeSplash();" data-page="article" data-category="brand-cloud">{!$Label.ESN_MB_Add_Selected_Assets}</a>
+                <a id="syncLatestAssets" class="hp-link pull-right" href="#" style="margin-top: 12px; margin-left: 30px;">{!$Label.ESN_MB_Assets_Import}</a>
+
+                <p class="nb-result pull-right" id="nbAssets"></p> 
+                <h1><b>{!$Label.ESN_MB_Assets}</b> {!$Label.ESN_MB_Results}</h1>
+                <hr class="white-line" />
+                <div class="container-list">
+                    <!-- Main container scrollbar-->
+                    <div class="scrollbar-inner">
+                        <div class="list-result">
+                            
+                            <!--Contenu à remplacer par Ajax-->
+                            <ul class="all-result" id="searchAssetResult">
+                                
+                            </ul>
+                            <!--Contenu à remplacer par Ajax-->
+                            
+                        </div><!-- /list-result -->
+                    </div><!-- /scrollbar-inner -->
+                </div><!--/.container-list-->
+                <hr class="white-line"/>
+            </div><!--/.searchAsset-->       
+            
+            <div class="clearfix"></div>
+        </div><!--/.result-->
+    </div><!--/.container-searchAsset-->
+    <apex:includeScript value="{!urlfor($Resource.ESN_MB_Theme_Core, '/js/pages/search_assets.js')}"/>
+    <script>
+    	if (brandCategory == leCercle) {
+    		$('.container-searchAsset').style('font-family', 'Georgia, sans-serif', 'important');
+    	}
+    </script>
+</apex:page>

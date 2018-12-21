@@ -1,0 +1,55 @@
+<apex:component controller="ESN_MB_NOP_Homepage_Cx">
+        <div class="container-webinars">
+            <hr class="separator" />
+            <div class="btn-close" style="margin-left:30px;">
+                <a href="#?page=page-hp&content=page-hp&mode=full" class="on">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </a>
+            </div>
+            <div class="block-title col-xs-offset-4 col-xs-7">
+                <a href="mailto:{!$Label.ESN_MB_SupportMail}" id="support-link">{!$Label.ESN_MB_SupportMail}
+                    <h1>
+                        <span class="icone-mail"/>
+                    </h1>
+                </a>
+                <h1 class="pernodricard" id="help-MyBrands">{!$Label.ESN_MB_MyBrandsHelp}<br /> </h1>
+                <h1 class="pernodricard" id="help-LeCercle">{!$Label.ESN_MB_LeCercleHelp}<br /> </h1>
+            </div><!--/.block-title-->
+            <div class="clearfix"></div>
+            
+            <hr class="separator" />
+            <div class="container-webinars-content">
+                
+                <div class="col-left col-xs-5">
+                    <div class="col-left-wrapper">
+                        <h2 class="title-text-bloc">{!$Label.ESN_MB_ChatterHelp}</h2>
+                        <div class="chat-container" id="chat-container-help">  
+                       
+                    </div><!--/.chat-container-->
+                    </div><!--/.col-left-wrapper-->
+                </div><!--/.col-left-->
+    
+                <div class="col-right col-xs-7">
+                    <div id="titleHelp">
+                    </div>
+                    <div id="pdfViewer">
+                    </div>  
+                </div><!--/.col-right-->
+                <div class="clearfix"></div>
+            </div><!--/.container-webinars-content-->
+            
+        </div><!--/.container-webinars-->
+        <script>
+            var leCercle = "{!$Label.ESN_MB_LeCercle}";
+            var brandCategory = "{!Category}";
+            
+            if(brandCategory == leCercle) {
+                $('#help-MyBrands').hide();
+                $('#help-LeCercle').show(); 
+            } else {
+                $('#help-MyBrands').show();
+                $('#help-LeCercle').hide();
+            }
+        
+        </script>
+</apex:component>

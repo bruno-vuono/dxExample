@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>This objects represents the different Iteractions between the user and MyBrand objects : like, rate, follow an activation, or be a key contact of an activation</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>ESN_MB_Activation__c</fullName>
+        <description>The activation rated/followed/liked by the user or in which the user is Key Contact</description>
+        <externalId>false</externalId>
+        <label>MyBrands Activation</label>
+        <referenceTo>ESN_MB_Activation__c</referenceTo>
+        <relationshipLabel>MyBrands User Interactions</relationshipLabel>
+        <relationshipName>MyBrands_User_Interactions</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Average_Rating__c</fullName>
+        <description>The average rating given by the user to the Activation</description>
+        <externalId>false</externalId>
+        <formula>( ESN_MB_Rating_Criteria_1__c +  ESN_MB_Rating_Criteria_2__c +  ESN_MB_Rating_Criteria_3__c +  ESN_MB_Rating_Criteria_4__c +  ESN_MB_Rating_Criteria_5__c ) / 5</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>The average rating given by the user to the Activation</inlineHelpText>
+        <label>MyBrands Average Rating</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_ExtId__c</fullName>
+        <description>Ext Id used for data migration</description>
+        <externalId>true</externalId>
+        <inlineHelpText>Ext Id used for data migration</inlineHelpText>
+        <label>ESN_MB_ExtId</label>
+        <length>18</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Follow__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Checked if the user follows the activation</description>
+        <externalId>false</externalId>
+        <label>MyBrands Follow</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_KeyContact__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Checked if the user is a Key Contact for the activation</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Checked if the user is a Key Contact for the activation</inlineHelpText>
+        <label>MyBrands KeyContact</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Like__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Checked if the user likes the activation</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Checked if the user likes the activation</inlineHelpText>
+        <label>MyBrands Like</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Rating_Criteria_1__c</fullName>
+        <description>First Criteria of activation Rating by the user (Brand positioning)</description>
+        <externalId>false</externalId>
+        <inlineHelpText>First Criteria of activation Rating by the user (Brand positioning)</inlineHelpText>
+        <label>MyBrands Rating Criteria 1</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Rating_Criteria_2__c</fullName>
+        <description>Second Criteria of activation Rating by the user (Results)</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Second Criteria of activation Rating by the user (Results)</inlineHelpText>
+        <label>MyBrands Rating Criteria 2</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Rating_Criteria_3__c</fullName>
+        <description>Third Criteria of activation Rating by the user (Strong concept)</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Third Criteria of activation Rating by the user (Strong concept)</inlineHelpText>
+        <label>MyBrands Rating Criteria 3</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Rating_Criteria_4__c</fullName>
+        <description>Fourth Criteria of activation Rating by the user (Details)</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Fourth Criteria of activation Rating by the user (Details)</inlineHelpText>
+        <label>MyBrands Rating Criteria 4</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Rating_Criteria_5__c</fullName>
+        <description>Fifth Criteria of activation Rating by the user (Best practices)</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Fifth Criteria of activation Rating by the user (Best practices)</inlineHelpText>
+        <label>MyBrands Rating Criteria 5</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_User__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>MyBrands User</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>MyBrands_User_Interactions</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <label>MyBrands User Interaction</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>UI-{00000}</displayFormat>
+        <label>ESN MB User Interaction Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>MyBrands User Interactions</pluralLabel>
+    <recordTypes>
+        <fullName>ESN_MB_Like</fullName>
+        <active>true</active>
+        <description>Represents the fact that a user likes an activation</description>
+        <label>ESN_MB_Like</label>
+    </recordTypes>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

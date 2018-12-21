@@ -1,0 +1,812 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>ASI_CRM_BC_Rate__c</fullName>
+        <externalId>false</externalId>
+        <label>BC Rate</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_Channel_Chi_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Channel Chi Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_Channel_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Channel Code</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_Channel_Eng_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>English Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_Channel_Group__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Channel Group</label>
+        <referenceTo>ASI_CRM_CN_Channel_Group__c</referenceTo>
+        <relationshipLabel>Channel</relationshipLabel>
+        <relationshipName>ASI_CRM_CN_ChannelToCG</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_On_Off__c</fullName>
+        <externalId>false</externalId>
+        <label>On/Off</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Off</fullName>
+                    <default>false</default>
+                    <label>Off</label>
+                </value>
+                <value>
+                    <fullName>On</fullName>
+                    <default>false</default>
+                    <label>On</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_Outlet_Class__c</fullName>
+        <externalId>false</externalId>
+        <label>Outlet Class</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_CN_Sequence__c</fullName>
+        <externalId>false</externalId>
+        <label>Sequence</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_Code_for_PAF__c</fullName>
+        <externalId>false</externalId>
+        <label>Code for PAF</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_External_ID__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <externalId>true</externalId>
+        <label>External ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_For_Contract__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>For Contract</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_For_Outlet__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>For Outlet</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_Group_Customers__c</fullName>
+        <externalId>false</externalId>
+        <label>Group Customers</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>DP Wholesalers</fullName>
+                    <default>false</default>
+                    <label>DP Wholesalers</label>
+                </value>
+                <value>
+                    <fullName>Corporate Accounts</fullName>
+                    <default>false</default>
+                    <label>Corporate Accounts</label>
+                </value>
+                <value>
+                    <fullName>Employee&apos;s Accounts</fullName>
+                    <default>false</default>
+                    <label>Employee&apos;s Accounts</label>
+                </value>
+                <value>
+                    <fullName>Inter-company</fullName>
+                    <default>false</default>
+                    <label>Inter-company</label>
+                </value>
+                <value>
+                    <fullName>Wholesalers</fullName>
+                    <default>false</default>
+                    <label>Wholesalers</label>
+                </value>
+                <value>
+                    <fullName>Retailer</fullName>
+                    <default>false</default>
+                    <label>Retailer</label>
+                </value>
+                <value>
+                    <fullName>DF Island</fullName>
+                    <default>false</default>
+                    <label>DF Island</label>
+                </value>
+                <value>
+                    <fullName>Direct Shipments</fullName>
+                    <default>false</default>
+                    <label>Direct Shipments</label>
+                </value>
+                <value>
+                    <fullName>Bond to Bond Sales</fullName>
+                    <default>false</default>
+                    <label>Bond to Bond Sales</label>
+                </value>
+                <value>
+                    <fullName>Concessionaires</fullName>
+                    <default>false</default>
+                    <label>Concessionaires</label>
+                </value>
+                <value>
+                    <fullName>Downtown / Shipchandlers</fullName>
+                    <default>false</default>
+                    <label>Downtown / Shipchandlers</label>
+                </value>
+                <value>
+                    <fullName>Domestic Airports</fullName>
+                    <default>false</default>
+                    <label>Domestic Airports</label>
+                </value>
+                <value>
+                    <fullName>Embassy</fullName>
+                    <default>false</default>
+                    <label>Embassy</label>
+                </value>
+                <value>
+                    <fullName>Inter Company</fullName>
+                    <default>false</default>
+                    <label>Inter Company</label>
+                </value>
+                <value>
+                    <fullName>Border Shops</fullName>
+                    <default>false</default>
+                    <label>Border Shops</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_Market_Responsibility__c</fullName>
+        <externalId>false</externalId>
+        <label>Market Responsibility</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Duty Paid</fullName>
+                    <default>false</default>
+                    <label>Duty Paid</label>
+                </value>
+                <value>
+                    <fullName>Duty Free</fullName>
+                    <default>false</default>
+                    <label>Duty Free</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_New_Channel_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>New Channel Code</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_TW_Achievement_for_Conditional__c</fullName>
+        <externalId>false</externalId>
+        <label>Achievement % for Conditional Investment</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_TW_Achievement_for_Variable__c</fullName>
+        <externalId>false</externalId>
+        <label>Achievement % for Variable Investment</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_TW_Incentives_for_Conditional__c</fullName>
+        <externalId>false</externalId>
+        <label>Incentives % for Conditional Investment</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_TW_Incentives_for_Variable__c</fullName>
+        <externalId>false</externalId>
+        <label>Incentives % for Variable Investment</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_TW_Outlet_Contract_Rebate__c</fullName>
+        <externalId>false</externalId>
+        <label>Outlet Contract Rebate %</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_TW_T1_Contract_Rebate__c</fullName>
+        <externalId>false</externalId>
+        <label>T1 Contract Rebate %</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>ASI_CRM_TW_T2_Contract_Rebate__c</fullName>
+        <externalId>false</externalId>
+        <label>T2 Contract Rebate %</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <label>Channel</label>
+    <listViews>
+        <fullName>ASI_CRM_CN_Channel</fullName>
+        <columns>NAME</columns>
+        <columns>ASI_CRM_CN_Channel_Chi_Name__c</columns>
+        <columns>ASI_CRM_CN_Channel_Eng_Name__c</columns>
+        <columns>ASI_CRM_CN_Channel_Code__c</columns>
+        <columns>ASI_CRM_CN_On_Off__c</columns>
+        <columns>ASI_CRM_CN_Outlet_Class__c</columns>
+        <columns>ASI_CRM_CN_Sequence__c</columns>
+        <columns>ASI_CRM_External_ID__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>ASI_CRM_CN_Channel__c.ASI_CRM_CN_Channel</value>
+        </filters>
+        <label>CN Channel</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>ASI_CN</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ASI_CRM_MY_Channel</fullName>
+        <columns>NAME</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>ASI_CRM_CN_Channel_Code__c</columns>
+        <columns>ASI_CRM_External_ID__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>ASI_CRM_CN_Channel__c.ASI_CRM_MY_Channel</value>
+        </filters>
+        <label>MY Channels</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>ASI_CRM_MY_PowerUser</group>
+            <group>ASI_CRM_MY_StandardUser</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ASI_CRM_MY_Segmentation_Channel</fullName>
+        <columns>NAME</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>ASI_CRM_CN_Channel_Code__c</columns>
+        <columns>ASI_CRM_CN_On_Off__c</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>ASI_CRM_CN_Channel__c.ASI_CRM_MY_Segmentation_Channel</value>
+        </filters>
+        <label>MY Segmentation Channel</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>ASI_MY</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ASI_CRM_TW_Channel</fullName>
+        <columns>ASI_CRM_CN_Channel_Code__c</columns>
+        <columns>ASI_CRM_External_ID__c</columns>
+        <columns>NAME</columns>
+        <columns>ASI_CRM_Code_for_PAF__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>ASI_CRM_CN_Channel_Chi_Name__c</columns>
+        <columns>ASI_CRM_TW_Achievement_for_Conditional__c</columns>
+        <columns>ASI_CRM_TW_Incentives_for_Conditional__c</columns>
+        <columns>ASI_CRM_TW_Achievement_for_Variable__c</columns>
+        <columns>ASI_CRM_TW_Incentives_for_Variable__c</columns>
+        <columns>ASI_CRM_TW_T1_Contract_Rebate__c</columns>
+        <columns>ASI_CRM_TW_T2_Contract_Rebate__c</columns>
+        <columns>ASI_CRM_TW_Outlet_Contract_Rebate__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>ASI_CRM_CN_Channel__c.ASI_CRM_TW_Channel</value>
+        </filters>
+        <label>TW Channels</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>ASI_CRM_TW_Users</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CN_New_Channel1</fullName>
+        <columns>NAME</columns>
+        <columns>ASI_CRM_CN_Channel_Chi_Name__c</columns>
+        <columns>ASI_CRM_CN_Channel_Eng_Name__c</columns>
+        <columns>ASI_CRM_BC_Rate__c</columns>
+        <columns>ASI_CRM_CN_Channel_Code__c</columns>
+        <columns>ASI_CRM_CN_Channel_Group__c</columns>
+        <columns>ASI_CRM_CN_On_Off__c</columns>
+        <columns>ASI_CRM_For_Contract__c</columns>
+        <columns>ASI_CRM_For_Outlet__c</columns>
+        <columns>ASI_CRM_CN_Outlet_Class__c</columns>
+        <columns>ASI_CRM_CN_Sequence__c</columns>
+        <columns>ASI_CRM_New_Channel_Code__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>ASI_CRM_CN_Channel__c.ASI_CRM_CN_New_Channel</value>
+        </filters>
+        <label>CN New Channel</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>ASI_CN</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <nameField>
+        <label>Channel Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Channel</pluralLabel>
+    <recordTypes>
+        <fullName>ASI_CRM_CN_Channel</fullName>
+        <active>true</active>
+        <label>CN Channel</label>
+        <picklistValues>
+            <picklist>ASI_CRM_CN_On_Off__c</picklist>
+            <values>
+                <fullName>Off</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>ASI_CRM_CN_New_Channel</fullName>
+        <active>true</active>
+        <label>CN New Channel</label>
+        <picklistValues>
+            <picklist>ASI_CRM_CN_On_Off__c</picklist>
+            <values>
+                <fullName>Off</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ASI_CRM_Group_Customers__c</picklist>
+            <values>
+                <fullName>Bond to Bond Sales</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Border Shops</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Concessionaires</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Corporate Accounts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DF Island</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DP Wholesalers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Direct Shipments</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Domestic Airports</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Downtown %2F Shipchandlers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Embassy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Employee%27s Accounts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inter Company</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inter-company</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Retailer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wholesalers</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ASI_CRM_Market_Responsibility__c</picklist>
+            <values>
+                <fullName>Duty Free</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Duty Paid</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>ASI_CRM_MY_Channel</fullName>
+        <active>true</active>
+        <label>MY Channel</label>
+        <picklistValues>
+            <picklist>ASI_CRM_CN_On_Off__c</picklist>
+            <values>
+                <fullName>Off</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ASI_CRM_Group_Customers__c</picklist>
+            <values>
+                <fullName>Bond to Bond Sales</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Border Shops</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Concessionaires</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Corporate Accounts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DF Island</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DP Wholesalers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Direct Shipments</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Domestic Airports</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Downtown %2F Shipchandlers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Embassy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Employee%27s Accounts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inter Company</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inter-company</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Retailer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wholesalers</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ASI_CRM_Market_Responsibility__c</picklist>
+            <values>
+                <fullName>Duty Free</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Duty Paid</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>ASI_CRM_MY_Segmentation_Channel</fullName>
+        <active>true</active>
+        <label>MY Segmentation Channel</label>
+        <picklistValues>
+            <picklist>ASI_CRM_CN_On_Off__c</picklist>
+            <values>
+                <fullName>Off</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ASI_CRM_Group_Customers__c</picklist>
+            <values>
+                <fullName>Bond to Bond Sales</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Border Shops</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Concessionaires</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Corporate Accounts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DF Island</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DP Wholesalers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Direct Shipments</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Domestic Airports</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Downtown %2F Shipchandlers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Embassy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Employee%27s Accounts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inter Company</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inter-company</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Retailer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wholesalers</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ASI_CRM_Market_Responsibility__c</picklist>
+            <values>
+                <fullName>Duty Free</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Duty Paid</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>ASI_CRM_TW_Channel</fullName>
+        <active>true</active>
+        <label>TW Channel</label>
+        <picklistValues>
+            <picklist>ASI_CRM_CN_On_Off__c</picklist>
+            <values>
+                <fullName>Off</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts>
+        <customTabListAdditionalFields>ASI_CRM_CN_Channel_Code__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>RECORDTYPE</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>ASI_CRM_CN_Channel_Code__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>RECORDTYPE</lookupDialogsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>Private</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

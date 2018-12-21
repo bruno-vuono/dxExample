@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingOwnerRules>
+        <fullName>ASI_CRM_CN_Share_to_CN_Admin</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>ASI CRM CN Share to CN Admin</label>
+        <sharedTo>
+            <group>ASI_CRM_CN_Admin</group>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>ASI_CN</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>ASI_CRM_CN_Share_to_Logistic_User</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>ASI_CRM_CN_Share_to_Logistic_User</label>
+        <sharedTo>
+            <group>ASI_FOC_CN_Logistic_Group</group>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinates>ASI_CN</roleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+</SharingRules>

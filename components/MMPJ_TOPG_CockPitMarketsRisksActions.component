@@ -1,0 +1,127 @@
+<apex:component controller="MMPJ_TOPG_CockPitRiskActionController" allowDML="true">
+<apex:attribute name="Brands" assignTo="{!listBrands}" description="Selected Brands" type="SelectOption[]" />
+<apex:attribute name="Markets" assignTo="{!listMarkets}" description="Selected Markets" type="SelectOption[]" />
+<!--<apex:attribute name="TotalBrands" assignTo="{!TotalBrand}" description="All Brands" type="SelectOption[]" />-->
+<apex:stylesheet value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<style>
+.ct{
+text-align:left;
+}
+td.dataCol.first.last {
+width: 150px;
+text-align: -webkit-left ;
+vertical-align: inherit;
+}
+.changecss
+{
+background-color:#daedf3;
+border: 10px inset  white;
+}
+.tdCenter{          
+vertical-align: middle;
+display: block;
+margin: auto;
+}    
+</style>
+<!-- loading box -->
+<c:MMPJ_TOPG_LoadingCMP displayMessage="Loading.."/>
+<apex:actionStatus id="status" onstart="componentLoading('#loadingDialog').dialog('open');" onstop="componentLoading('#loadingDialog').dialog('close');"/>
+<apex:pageBlock >     
+<apex:pageBlockSection title="Apply Filter" columns="5"  >
+    <apex:outputLabel ></apex:outputLabel>
+    <apex:inputField value="{!Raid.MMPJ_TOPG_TechStartDate__c}" required="true" style="width:100px;"/>
+    <apex:inputField value="{!Raid.MMPJ_TOPG_TechEndDate__c}" required="true" style="width:100px;"/>
+    <apex:outputLabel ></apex:outputLabel>
+    <apex:outputLabel ></apex:outputLabel>    
+</apex:pageBlockSection>    
+   <!--<apex:pageBlockSection columns="3">    
+   <c:MMPJ_TOPG_MultiselectPicklist leftLabel="Available Markets" leftOptions="{!AllMarkets}" rightLabel="Selected Markets" rightOptions="{!SelectedMarkets}" size="14"  width="150px"/>                                                                    
+   <apex:commandButton value="Apply Filters" action="{!applySearch}" reRender="RiskBlockSection,ActionsBlockSection,RiskedMeetingTable,ActionsTable,pageblocActionRaid" status="status"/>
+   </apex:pageBlockSection> -->
+     <table align="center">    
+        <tr width="100%"></tr>
+        <tr width="100%"></tr>
+       	<tr width="100%"></tr>
+  		<tr width="100%">      
+            <td ><c:MMPJ_TOPG_MultiselectPicklist leftLabel="Available Markets" leftOptions="{!AllMarkets}" rightLabel="Selected Markets" rightOptions="{!SelectedMarkets}" size="14"  width="200px"/> </td>
+            <td > <br/><br/><br/><br/><br/><br/><br/><br/>
+                 <span>&nbsp;&nbsp;&nbsp;</span>
+                <apex:commandButton value="Apply Filters" action="{!applySearch}" reRender="RiskBlockSection,ActionsBlockSection,RiskedMeetingTable,ActionsTable,pageblocActionRaid" status="status"/>
+    		 </td>  
+         </tr>
+ 	</table>
+    <apex:pageBlockSection title="All recorded Risks" columns="1" id="RiskBlockSection">
+		 <apex:pageBlock title="Risks"  rendered="{!ListRiskedmeetings.size==0 && actionDone=true}">
+        	 <apex:pageMessage summary="This Market didn't return any risk from RAID. Please update your filters and try again." severity="info" strength="3"/>
+  		</apex:pageBlock>         
+         <apex:pageBlock title="" rendered="{!ListRiskedmeetings.size>0}">
+   		   <apex:pageblockTable rowClasses="changecss" value="{!ListRiskedmeetings}" var="tbl" style="widht:100%"  rendered="{!ListRiskedmeetings.size>0}" id="RiskedMeetingTable" >           
+            <apex:column HeaderValue="Meeting Title" width="15%" headerClass="ct" styleClass="ct"> 
+            <apex:outputLink value="/{!tbl.MMPJ_TOPG_MinutesofMeeting__r.MMPJ_TOPG_Meeting__c}" target="_blank" rendered="{!tbl.MMPJ_TOPG_MinutesofMeeting__r.MMPJ_TOPG_Meeting__r.MMPJ_TOPG_NoAgenda__c==false}">
+            {!tbl.MMPJ_TOPG_MinutesofMeeting__r.MMPJ_TOPG_Meeting__r.MMPJ_TOPG_Title__c}
+            </apex:outputLink>
+            <apex:outputLink value="/{!tbl.MMPJ_TOPG_MinutesofMeeting__r.MMPJ_TOPG_Meeting__c}"  target="_blank" rendered="{!tbl.MMPJ_TOPG_MinutesofMeeting__r.MMPJ_TOPG_Meeting__r.MMPJ_TOPG_NoAgenda__c==true}">
+            {!tbl.MMPJ_TOPG_Title__c}
+            </apex:outputLink> 
+            </apex:column> 
+          	<apex:column HeaderValue="Meeting date" value="{!tbl.MMPJ_TOPG_When__c}" width="10%" headerClass="ct" styleClass="ct"> </apex:column>
+            <apex:column HeaderValue="Topic" value="{!tbl.MMPJ_TOPG_Detail_Line_Topic__c}" width="10%" headerClass="ct" styleClass="ct"> </apex:column> 
+        	<apex:column HeaderValue="Comment" value="{!tbl.MMPJ_TOPG_Comment__c}" width="45%" headerClass="ct" styleClass="ct"> </apex:column> 
+            <apex:column HeaderValue="Who" width="30%" headerClass="ct" styleClass="ct">
+            <apex:OutputField value="{!tbl.MMPJ_TOPG_WhoU__c}" rendered="{!tbl.MMPJ_TOPG_WhoU__c!=null}"/>
+            <apex:OutputField value="{!tbl.MMPJ_TOPG_WhoC__c}" rendered="{!tbl.MMPJ_TOPG_WhoC__c!=null}"/> 
+            </apex:column>           
+             <apex:column HeaderValue="When" width="10%" headerClass="ct" styleClass="ct">
+            <apex:outputText value="{0,date, dd/MM/yyyy}" ><apex:param value="{!tbl.MMPJ_TOPG_When__c}"></apex:param></apex:outputText>
+            </apex:column> 
+    </apex:pageblockTable>
+  </apex:pageBlock>    
+</apex:pageBlockSection> 
+
+<apex:pageBlockSection title="All Recorded Actions" columns="1" id="ActionsBlockSection"> 
+     <apex:pageBlock title=""  rendered="{!ListActionRaids.size==0 && actionDone=true}">
+         <apex:pageMessage summary="This Market didn't return any action from RAID. Please update your filters and try again." severity="info" strength="3"/>
+    </apex:pageBlock>     
+       <apex:pageBlock title="" id="pageblocActionRaid" rendered="{!ListActionRaids.size>0}">
+        <apex:pageblockTable rowClasses="changecss" value="{!ListActionRaids }" var="tbl" style="widht:100%"  rendered="{!ListActionRaids.size>0}" id="ActionsTable" >         
+           <apex:column HeaderValue="Meeting Title" width="15%" headerClass="ct" styleClass="ct"> 
+            <apex:outputLink value="/{!tbl.MMPJ_TOPG_LineItem__r.MMPJ_TOPG_MinutesofMeeting__r.MMPJ_TOPG_Meeting__c}" target="_blank" rendered="{!tbl.MMPJ_TOPG_LineItem__r.MMPJ_TOPG_MinutesofMeeting__r.MMPJ_TOPG_Meeting__r.MMPJ_TOPG_NoAgenda__c==false}">
+            {!tbl.MMPJ_TOPG_LineItem__r.MMPJ_TOPG_MinutesofMeeting__r.MMPJ_TOPG_Meeting__r.MMPJ_TOPG_Title__c}
+            </apex:outputLink>
+            <apex:outputLink value="/{!tbl.MMPJ_TOPG_LineItem__r.MMPJ_TOPG_MinutesofMeeting__c}"  target="_blank" rendered="{!tbl.MMPJ_TOPG_LineItem__r.MMPJ_TOPG_MinutesofMeeting__r.MMPJ_TOPG_Meeting__r.MMPJ_TOPG_NoAgenda__c==true}">
+            {!tbl.MMPJ_TOPG_LineItem__r.MMPJ_TOPG_MinutesofMeeting__r.MMPJ_TOPG_Title__c}
+            </apex:outputLink> 
+            </apex:column> 
+          	<apex:column HeaderValue="Meeting date" width="10%" headerClass="ct" styleClass="ct" > 
+                <apex:outputText value="{0,date, dd/MM/yyyy}" rendered="{!tbl.MMPJ_TOPG_LineItem__r.MMPJ_TOPG_MinutesofMeeting__r.MMPJ_TOPG_Meeting__r.MMPJ_TOPG_NoAgenda__c==true}"><apex:param value="{!tbl.MMPJ_TOPG_LineItem__r.MMPJ_TOPG_MinutesofMeeting__r.MMPJ_TOPG_End_Date__c}"></apex:param></apex:outputText>
+            <apex:outputText value="{0,date,dd/MM/yyyy}" rendered="{!tbl.MMPJ_TOPG_LineItem__r.MMPJ_TOPG_MinutesofMeeting__r.MMPJ_TOPG_Meeting__r.MMPJ_TOPG_NoAgenda__c==false}"><apex:param value="{!tbl.MMPJ_TOPG_LineItem__r.MMPJ_TOPG_MinutesofMeeting__r.MMPJ_TOPG_Meeting__r.MMPJ_TOPG_EndDate__c}"></apex:param></apex:outputText>
+            </apex:column> 
+            <apex:column HeaderValue="Topic" value="{!tbl.MMPJ_TOPG_LineItem__r.MMPJ_TOPG_Detail_Line_Topic__c}" width="10%" headerClass="ct" styleClass="ct"> </apex:column> 
+            <apex:column HeaderValue="Action title"  width="10%" headerClass="ct" styleClass="ct"> 
+               <apex:outputLink value="/{!tbl}" target="_blank">
+           		 {!tbl.MMPJ_TOPG_Title__c}
+              </apex:outputLink>
+            </apex:column> 
+        	<apex:column HeaderValue="Comment" value="{!tbl.MMPJ_TOPG_Description__c}" width="35%" headerClass="ct" styleClass="ct"> </apex:column> 
+            <apex:column HeaderValue="Who" width="15%" headerClass="ct" styleClass="ct">
+            <apex:OutputField value="{!tbl.MMPJ_TOPG_User__c}" rendered="{!tbl.MMPJ_TOPG_User__c!=null}"/>
+            <apex:OutputField value="{!tbl.MMPJ_TOPG_Contact__c}" rendered="{!tbl.MMPJ_TOPG_Contact__c!=null}"/> 
+            </apex:column>          
+           <apex:column HeaderValue="When" width="10%" headerClass="ct" styleClass="ct">
+            <apex:outputText value="{0,date, dd/MM/yyyy}" ><apex:param value="{!tbl.MMPJ_TOPG_ExpectedDate__c}"></apex:param></apex:outputText>
+            </apex:column>             
+            <apex:column headerValue="Status" value="{!tbl.MMPJ_TOPG_Status__c}" width="15%" headerClass="ct" styleClass="ct"> </apex:column> 
+             <apex:column headerValue="Flag" style="text-align:center;" width="10%" headerClass="ct" styleClass="ct">
+                <apex:image alt="{!tbl.MMPJ_TOPG_Flag__c}" width="25px" height="25px" value="{!URLFOR($Resource.MMPJ_TOPG_Smileys, 'done_smiley.png')}" rendered="{!tbl.MMPJ_TOPG_Status__c == 'Done'}" />
+                <apex:image alt="Late" width="25px" height="25px" value="{!URLFOR($Resource.MMPJ_TOPG_Smileys, 'late_smiley.png')}" rendered="{!tbl.MMPJ_TOPG_Status__c == 'Late'}" />
+                <apex:image alt="On Going" width="25px" height="25px" value="{!URLFOR($Resource.MMPJ_TOPG_Smileys, 'ongoing_smiley.png')}" rendered="{!tbl.MMPJ_TOPG_Status__c == 'On Going'}" />
+                <apex:image alt="Planned" width="25px" height="25px" value="{!URLFOR($Resource.MMPJ_TOPG_Smileys, 'planned_smiley.png')}" rendered="{!tbl.MMPJ_TOPG_Status__c == 'Planned'}" />                            
+           </apex:column> 
+        </apex:pageblockTable>
+ </apex:pageBlock> 
+
+</apex:pageBlockSection>
+</apex:pageBlock>     
+</apex:component>

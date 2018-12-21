@@ -1,0 +1,41 @@
+<apex:page sidebar="false" showHeader="false" standardStyleSheets="false" controller="ESN_MB_NOP_RelatedArticles_Cx">
+    
+    <div class="splash-close" id="btn-close-relatedArticles" onclick="if($('#modal-relatedArticles')){$('#modal-relatedArticles').modal('hide');}$( '#articlesResult' ).empty();$( '#nbArticles' ).text('');$( '#keyword-relatedArticles' ).val('');">
+        {!$Label.ESN_MB_Close}<div src="" class="picto-close"/>
+    </div><!--/.splash-close-->
+    
+    <div class="container-relatedArticles container-fluid">
+        <form method="post" onsubmit="fillArticles();return false;" class="col-xs-12" name="relatedArticles-form" id="relatedArticles-form">
+            <input type="text" name="keyword" class="col-xs-12" id="keyword-relatedArticles" />
+        </form>
+        <div class="clearfix"></div>
+        <div class="result">
+            
+            <!--.relatedArticles-->
+            <div class="cln-result col-xs-12 relatedArticles">
+                <div id="resultItem">
+                </div>
+                <hr class="white-line" />
+                <div class="container-list">
+                    <!-- Main container scrollbar-->
+                    <div class="scrollbar-inner">
+                        <div class="list-result">
+                            
+                            <!--Contenu à remplacer par Ajax-->
+                            <ul class="all-result" id="articlesResult">
+                                
+                            </ul>
+                            <!--Contenu à remplacer par Ajax-->
+                            
+                        </div><!-- /list-result -->
+                    </div><!-- /scrollbar-inner -->
+                </div><!--/.container-list-->
+                <hr class="white-line"/>
+            </div><!--/.relatedArticles-->       
+            
+            <div class="clearfix"></div>
+        </div><!--/.result-->
+    </div><!--/.container-relatedArticles-->
+    
+   <apex:includeScript value="{!urlfor($Resource.ESN_MB_Theme_Core, '/js/pages/related_articles.js')}"/>
+</apex:page>

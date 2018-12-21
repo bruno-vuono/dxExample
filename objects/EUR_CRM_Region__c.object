@@ -1,0 +1,745 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>PREU Data Model</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>EUR_CRM_Channel__c</fullName>
+        <externalId>false</externalId>
+        <label>Channel</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>ON TRADE</fullName>
+                    <default>false</default>
+                    <label>ON TRADE</label>
+                </value>
+                <value>
+                    <fullName>OFF TRADE</fullName>
+                    <default>false</default>
+                    <label>OFF TRADE</label>
+                </value>
+                <value>
+                    <fullName>ON Trade &amp; OFF Trade</fullName>
+                    <default>false</default>
+                    <label>ON Trade &amp; OFF Trade</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Country_Code__c</fullName>
+        <externalId>false</externalId>
+        <formula>RIGHT(LEFT(RecordType.DeveloperName,6),2)</formula>
+        <label>Country Code</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_External_ID__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <externalId>true</externalId>
+        <label>External ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Region_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Region Code</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Region_Name_English__c</fullName>
+        <externalId>false</externalId>
+        <label>Region Name (English)</label>
+        <length>80</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Region_Owner__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Region Owner</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Regions</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <label>Region (EU)</label>
+    <listViews>
+        <fullName>EUR_AO_Region</fullName>
+        <columns>NAME</columns>
+        <columns>EUR_CRM_Region_Code__c</columns>
+        <columns>EUR_CRM_Region_Owner__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_Region__c.EUR_AO_Region</value>
+        </filters>
+        <label>EUR AO Region</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>EUR_AO</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>EUR_All_DE_Region</fullName>
+        <columns>NAME</columns>
+        <columns>EUR_CRM_External_ID__c</columns>
+        <columns>EUR_CRM_Region_Code__c</columns>
+        <columns>EUR_CRM_Region_Owner__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>EUR_CRM_Region_Name_English__c</columns>
+        <columns>RECORDTYPE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_Region__c.EUR_DE_Region</value>
+        </filters>
+        <label>EUR DE Region</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>EUR_DE</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>EUR_BE_Region</fullName>
+        <columns>NAME</columns>
+        <columns>EUR_CRM_Region_Code__c</columns>
+        <columns>EUR_CRM_Region_Owner__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_Region__c.EUR_BE_Region</value>
+        </filters>
+        <label>EUR BE Region</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>EUR_BE</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>EUR_BG_All_Regions_View</fullName>
+        <columns>NAME</columns>
+        <columns>EUR_CRM_Region_Code__c</columns>
+        <columns>EUR_CRM_Channel__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>OWNER.LAST_NAME</columns>
+        <columns>EUR_CRM_Region_Owner__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>EUR_CRM_External_ID__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_Region__c.EUR_BG_Region</value>
+        </filters>
+        <label>EUR BG Regions</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>EUR_BG</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>EUR_CH_Region</fullName>
+        <columns>NAME</columns>
+        <columns>EUR_CRM_Region_Code__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>EUR_CRM_External_ID__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_Region__c.EUR_CH_Region</value>
+        </filters>
+        <label>EUR CH Region</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>EUR_CH</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>EUR_CRM_PT_All_Regions_View</fullName>
+        <columns>NAME</columns>
+        <columns>EUR_CRM_Region_Code__c</columns>
+        <columns>EUR_CRM_Channel__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>OWNER.LAST_NAME</columns>
+        <columns>EUR_CRM_Region_Owner__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>EUR_CRM_External_ID__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_Region__c.EUR_PT_Region</value>
+        </filters>
+        <label>EUR PT All Regions View</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>EUR_PT</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>EUR_DK_Region</fullName>
+        <columns>NAME</columns>
+        <columns>EUR_CRM_Region_Owner__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>EUR_CRM_Channel__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_Region__c.EUR_DK_Region</value>
+        </filters>
+        <label>EUR DK Region</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>EUR_DK</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>EUR_FI_Region</fullName>
+        <columns>NAME</columns>
+        <columns>EUR_CRM_Region_Code__c</columns>
+        <columns>EUR_CRM_Channel__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>EUR_CRM_Region_Owner__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>EUR_CRM_External_ID__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_Region__c.EUR_FI_Region</value>
+        </filters>
+        <label>EUR FI Region</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>EUR_FI</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>EUR_GB_Region</fullName>
+        <columns>NAME</columns>
+        <columns>EUR_CRM_Region_Code__c</columns>
+        <columns>EUR_CRM_Region_Owner__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_Region__c.EUR_GB_Region</value>
+        </filters>
+        <label>EUR GB Region</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>EUR_GB</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>EUR_KE_Region</fullName>
+        <columns>NAME</columns>
+        <columns>EUR_CRM_Region_Code__c</columns>
+        <columns>EUR_CRM_Region_Owner__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_Region__c.EUR_KE_Region</value>
+        </filters>
+        <label>EUR KE Region</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>EUR_KE</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>EUR_MA_Region</fullName>
+        <columns>NAME</columns>
+        <columns>EUR_CRM_Region_Code__c</columns>
+        <columns>EUR_CRM_Channel__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>EUR_CRM_Region_Owner__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>EUR_CRM_External_ID__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_Region__c.EUR_MA_Region</value>
+        </filters>
+        <label>EUR MA Region</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>EUR_MA</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>EUR_NG_Region</fullName>
+        <columns>NAME</columns>
+        <columns>EUR_CRM_Region_Code__c</columns>
+        <columns>EUR_CRM_Channel__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>EUR_CRM_Region_Owner__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>EUR_CRM_External_ID__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_Region__c.EUR_NG_Region</value>
+        </filters>
+        <label>EUR NG Region</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>EUR_NG</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>EUR_RU_Region</fullName>
+        <columns>NAME</columns>
+        <columns>EUR_CRM_External_ID__c</columns>
+        <columns>EUR_CRM_Region_Code__c</columns>
+        <columns>EUR_CRM_Region_Owner__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>EUR_CRM_Region_Name_English__c</columns>
+        <columns>RECORDTYPE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_Region__c.EUR_RU_Region</value>
+        </filters>
+        <label>EUR RU Region</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>EUR_RU</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <nameField>
+        <label>Region Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Regions (EU)</pluralLabel>
+    <recordTypes>
+        <fullName>EUR_AO_Region</fullName>
+        <active>true</active>
+        <description>EUR SSA Angola Region</description>
+        <label>AO Region</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Channel__c</picklist>
+            <values>
+                <fullName>OFF TRADE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ON TRADE</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_BE_Region</fullName>
+        <active>true</active>
+        <label>EUR BE Region</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Channel__c</picklist>
+            <values>
+                <fullName>OFF TRADE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ON TRADE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ON Trade %26 OFF Trade</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_BG_Region</fullName>
+        <active>true</active>
+        <label>EUR BG Region</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Channel__c</picklist>
+            <values>
+                <fullName>OFF TRADE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ON TRADE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ON Trade %26 OFF Trade</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_CH_Region</fullName>
+        <active>true</active>
+        <label>EUR CH Region</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Channel__c</picklist>
+            <values>
+                <fullName>OFF TRADE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ON TRADE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ON Trade %26 OFF Trade</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_CZ_Region</fullName>
+        <active>true</active>
+        <label>CZ Region</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Channel__c</picklist>
+            <values>
+                <fullName>OFF TRADE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ON TRADE</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_DE_Region</fullName>
+        <active>true</active>
+        <label>DE Region</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Channel__c</picklist>
+            <values>
+                <fullName>OFF TRADE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ON TRADE</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_DK_Region</fullName>
+        <active>true</active>
+        <description>Record Type for DK Regions</description>
+        <label>EUR DK Region</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Channel__c</picklist>
+            <values>
+                <fullName>OFF TRADE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ON TRADE</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_EE_Region</fullName>
+        <active>true</active>
+        <description>EUR EE Region</description>
+        <label>EE Region</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Channel__c</picklist>
+            <values>
+                <fullName>OFF TRADE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ON TRADE</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_FI_Region</fullName>
+        <active>true</active>
+        <label>FI Region</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Channel__c</picklist>
+            <values>
+                <fullName>OFF TRADE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ON TRADE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ON Trade %26 OFF Trade</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_GB_Region</fullName>
+        <active>true</active>
+        <label>GB Region</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Channel__c</picklist>
+            <values>
+                <fullName>OFF TRADE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ON TRADE</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_KE_Region</fullName>
+        <active>true</active>
+        <label>KE Region</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Channel__c</picklist>
+            <values>
+                <fullName>OFF TRADE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ON TRADE</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_LT_Region</fullName>
+        <active>true</active>
+        <description>EUR LT Region</description>
+        <label>LT Region</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Channel__c</picklist>
+            <values>
+                <fullName>OFF TRADE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ON TRADE</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_LV_Region</fullName>
+        <active>true</active>
+        <description>EUR LV Region</description>
+        <label>LV Region</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Channel__c</picklist>
+            <values>
+                <fullName>OFF TRADE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ON TRADE</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_MA_Region</fullName>
+        <active>true</active>
+        <label>EUR MA Region</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Channel__c</picklist>
+            <values>
+                <fullName>OFF TRADE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ON TRADE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ON Trade %26 OFF Trade</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_NG_Region</fullName>
+        <active>true</active>
+        <label>NG Region</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Channel__c</picklist>
+            <values>
+                <fullName>OFF TRADE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ON TRADE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ON Trade %26 OFF Trade</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_PT_Region</fullName>
+        <active>true</active>
+        <label>EUR PT Region</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Channel__c</picklist>
+            <values>
+                <fullName>OFF TRADE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ON TRADE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ON Trade %26 OFF Trade</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_RU_Region</fullName>
+        <active>true</active>
+        <label>EUR RU Region</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Channel__c</picklist>
+            <values>
+                <fullName>OFF TRADE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ON TRADE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ON Trade %26 OFF Trade</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_SK_Region</fullName>
+        <active>true</active>
+        <label>SK Region</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Channel__c</picklist>
+            <values>
+                <fullName>OFF TRADE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ON TRADE</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts>
+        <customTabListAdditionalFields>EUR_CRM_Region_Code__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>EUR_CRM_Region_Owner__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>EUR_CRM_Region_Code__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>EUR_CRM_Region_Owner__c</lookupDialogsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>Private</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

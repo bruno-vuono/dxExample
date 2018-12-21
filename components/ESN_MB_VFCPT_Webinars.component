@@ -1,0 +1,55 @@
+<apex:component controller="ESN_MB_NOP_SearchAsset_Cx">
+    <!--######################################################-->
+    <!--################ Page Webinar - Start ################-->
+        <div class="container-webinars">
+            
+            <ul class="fil-ariane">
+            </ul>
+            
+            <hr class="separator" />
+            
+            <div class="block-title col-xs-offset-5 col-xs-7">
+                <h1 class="pernodricard">{!$Label.ESN_MB_Jameson_Broadcast} <br /> </h1><div id="titleVideoWebinar"></div>
+            </div><!--/.block-title-->
+            <div class="clearfix"></div>
+            
+            <hr class="separator" />
+            
+            <div class="container-webinars-content">
+                
+                <div class="col-left col-xs-5">
+                    <div class="col-left-wrapper">
+                        <h2 class="title-text-bloc">{!$Label.ESN_MB_PreviousEpisodes}</h2>
+                        <div id="messageChangeOrder" style="display: none;">
+                            <h4>
+                                {!$Label.ESN_MB_Webinar_Choose_Order}
+                            </h4>
+                        </div>
+                        <hr class="separator" />
+                        <ul class="webinars-episodes"></ul>
+                    </div><!--/.col-left-wrapper-->
+                </div><!--/.col-left-->
+                
+                <div class="col-right col-xs-7">
+                    
+                    <div class="video">
+                        
+                        
+                    </div><!--/.video-->
+                    
+                    <div class="chat-container"> 
+                       
+                    </div><!--/.chat-container-->
+                    
+                    <div class="toTop">
+                        <!-- <a href="#" class="texgyreadventor" onclick="return false">{!$Label.ESN_MB_BackToTop}</a> -->
+                    </div>
+                    
+                </div><!--/.col-right-->
+                <div class="clearfix"></div>
+            </div><!--/.container-webinars-content-->
+            
+        </div><!--/.container-webinars-->
+    <!--################ Page Webinar - End ################-->
+    <!--####################################################-->
+</apex:component>

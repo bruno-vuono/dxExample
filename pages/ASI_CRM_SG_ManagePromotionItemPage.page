@@ -1,0 +1,973 @@
+<!--
+*********************************************************************************
+ * Name: ASI_CRM_SG_ManagePromotionItemPage
+ * Description: Manage all page for Promotion Plan Item
+ *
+ * Version History
+ * Date             Developer               Comments
+ * ---------------  --------------------    --------------------------------------------------------------------------------
+ * 22/03/2018       Hugo Cheung             Created    
+-->
+<apex:page standardController="ASI_CRM_Promotion_Plan__c" extensions="ASI_CRM_SG_ManagePromotionItemCtrl">
+	<!-- Import Library -->
+    <!-- CSS -->
+    <apex:stylesheet value="{!URLFOR($Resource.ASI_CRM_SG_Library, '/styles/main.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.ASI_CRM_SG_Library, '/styles/jquery-ui.min.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.ASI_CRM_SG_Library, '/styles/bootstrap.min.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.ASI_CRM_SG_Library, '/styles/datatables.min.css')}" />
+    <!-- JavaScript -->
+    <apex:includeScript value="{!URLFOR($Resource.ASI_CRM_SG_Library, '/lib/jquery.min.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.ASI_CRM_SG_Library, '/lib/bootstrap.min.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.ASI_CRM_SG_Library, '/lib/datatables.min.js')}" />
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
+    	<!-- Style -->
+    <style>
+        .link-button {
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        
+        .savingRecord .fullScreenLoading{
+            display : block;
+        }
+
+        .fullScreenLoading {
+            display    : none;
+            position   : fixed;
+            z-index    : 1000;
+            top        : 0;
+            left       : 0;
+            height     : 100%;
+            width      : 100%;
+            background : rgba( 255, 255, 255, .8 ) 
+                         url('{!URLFOR($Resource.ASI_CRM_SG_Library, '/images/loading.gif')}')  
+                         50% 50% 
+                         no-repeat;
+        }
+
+        .error {
+            border: 2px solid red;
+        }
+        
+        th, td {
+                padding-top    : 5px;
+                padding-bottom : 5px;
+                padding-right  : 7px;
+                padding-left   : 7px;
+            }
+            
+        table { 
+            
+        }
+        
+        <!-- Datatable Styling -->
+        table.dataTable td {
+            height : 30px;
+        }
+        
+        table.dataTable thead tr {
+            background-color : #cce6ff;
+        }
+    
+        table.dataTable tbody tr { 
+            background-color : #e6f3ff; 
+        }
+        
+        table.dataTable tbody tr:nth-child(even) {
+            background-color : white;  
+        }
+        
+        table.dataTable td { 
+            border-bottom : 2px solid #e0e0d1; 
+        }
+		
+		.inputField_short {
+			width: 50px;
+		}
+
+		.inputField_medium {
+			width: 75px;
+		}
+
+		.inputField_long {
+			width: 150px;
+		}
+        
+        .inputField_x_long {
+        	width: 200px;
+        }
+		
+		.alignRight {
+			text-align: right;
+		}
+    </style>
+
+    <!-- JavaScript -->
+    <script>
+        /****************
+        Define Variable
+        ****************/
+        const numFormater = new Intl.NumberFormat();
+        
+        const ACTION_LABEL                   = 'Action';
+        const NEW_PROMOTION_MECHANIC_PREFIX  = 'Promotion_Mechanic_';
+        const NEW_PROMOTION_PREFIX  = 'Promotion_';
+		const READ_ONLY = '{!isReadOnly}' == 'true';
+        
+        const CONST_DATA_TABLE_PROPERTIES    = {
+            "bDestroy":true,
+            "bStateSave":true,
+            "bSearch":false,
+            "bFilter" : false,
+            "iDisplayLength":1000,
+            "bSort" : false,
+            "bPaginate": false,
+            "bScrollCollapse": true,
+            "bJQueryUI": true
+        };
+        
+        const PROMOTION_PLAN_ID = '{!promotionPlan.Id}';
+        const PROMOTION_PLAN_Name = '{!promotionPlan.Name}';
+        const PROMOTION_MECHANIC_RECORD_TYPE_ID = '{!promotionMechanicRecordTypeId}';
+        const PROMOTION_RECORD_TYPE_ID = '{!promotionRecordTypeId}';
+		const PROMOTION_STATUS_DRAFT = 'Draft';
+		const FIELD_PROMOTIONALSKU = 'ASI_CRM_Promotional_SKU__c';
+		const FIELD_ADDITIONALSKU = 'ASI_CRM_Additional_SKU_POSM__c';
+		const FIELD_GIFTVOUCHER = 'ASI_CRM_Gift_Voucher__c';
+        
+        //Picklist Value
+        const BUY_UNIT_MAP = jQuery.parseJSON('{!JSENCODE(buyUnitMapJson)}');
+        
+        //Auto Complete Value
+        const SUB_BRAND_LIST       = jQuery.parseJSON('{!JSENCODE(subBrandListJson)}');
+        const PROMOTIONAL_SKU_LIST = jQuery.parseJSON('{!JSENCODE(promotionalSKUListJson)}');
+        const ADDITIONAL_SKU_LIST  = jQuery.parseJSON('{!JSENCODE(additionalSKUListJson)}');
+        const GIFT_VOUCHER_LIST    = jQuery.parseJSON('{!JSENCODE(giftVoucherSKUListJson)}');
+        const SALES_NAME_LIST      = jQuery.parseJSON('{!JSENCODE(salesNameListJson)}');
+		
+		var SUB_BRAND_LIST_NOSPACE = [];
+		var PROMOTIONAL_SKU_LIST_NOSPACE = [];
+		var ADDITIONAL_SKU_LIST_NOSPACE = [];
+		var GIFT_VOUCHER_LIST_NOSPACE = [];
+        
+        var NEW_PROMOTION_MECHANIC_INDEX = 1;
+        var deletePromotionMechanicIdList  = [];
+        var NEW_Promotion_INDEX = 1;
+        var deletePromotionIdList  = [];
+        
+        /*****************
+        Datatable Field Config
+        *****************/
+        const FIELD_CONFIG_MAPPING = {
+            "ACTION"                               : {"title"          : ACTION_LABEL, 
+                                                      "data"           : "",
+                                                      "render"         : function(data, type, full) {
+																			return "<a class='link-button' onClick='deletePromotionMechanicRow(this.parentNode.parentNode)'>Delete</a>";
+                                                                         }
+                                                     },
+            
+            "ASI_CRM_Promotional_SKU__c"           : {"title"          : "Promotional SKU", 
+                                                      "data"           : "",
+                                                      "render"         : function(data, type, full) {
+																			var fieldAPIName = 'ASI_CRM_Promotional_SKU__c';
+                                                                    		if(full.ASI_CRM_Promotional_SKU__c) {
+                                                                        		data = full.ASI_CRM_Promotional_SKU__r.Name;
+                                                                        	} else {
+                                                                        		data = "";
+                                                                        	}
+                                                     				
+                                                                       		if(READ_ONLY) return data;
+                                                     						return "<input class='" + fieldAPIName + " inputField_x_long form-control' type='text' value=\"" + data + "\" onChange='updatePromotionMechanicValue(this.parentNode.parentNode, \"" + fieldAPIName + "\", this.value)' required />";
+                                                                         }
+                                                     }, 
+             
+            "ASI_CRM_Additional_SKU_POSM__c"       : {"title"          : "Additional SKU <br /> / POSM", 
+                                                      "data"           : "",
+                                                      "render"         : function(data, type, full) {
+																			var fieldAPIName = 'ASI_CRM_Additional_SKU_POSM__c';
+                                                                    		if(full.ASI_CRM_Additional_SKU_POSM__c) {
+                                                                        		data = full.ASI_CRM_Additional_SKU_POSM__r.Name;
+                                                                        	} else {
+                                                                        		data = "";
+                                                                        	}
+                                                     			
+                                                                       		if(READ_ONLY) return data;
+                                                     						return "<input class='" + fieldAPIName + " inputField_x_long form-control' type='text' value=\"" + data + "\" onChange='updatePromotionMechanicValue(this.parentNode.parentNode, \"" + fieldAPIName + "\", this.value)'/>";
+                                                                         }
+                                                     }, 
+            
+            "ASI_CRM_Gift_Voucher__c"              : {"title"          : "Gift <br /> Voucher ($)", 
+                                                      "data"           : "",
+                                                      "render"         : function(data, type, full) {
+																			var fieldAPIName = 'ASI_CRM_Gift_Voucher__c';
+                                                                    		if(full.ASI_CRM_Gift_Voucher__c) {
+                                                                        		data = full.ASI_CRM_Gift_Voucher__r.Name;
+                                                                        	} else {
+                                                                        		data = "";
+                                                                        	}
+                                                     			
+                                                                       		if(READ_ONLY) return data;
+                                                     						return "<input class='" + fieldAPIName + " inputField_x_long form-control' type='text' value=\"" + data + "\" onChange='updatePromotionMechanicValue(this.parentNode.parentNode, \"" + fieldAPIName + "\", this.value)'/>";
+                                                                         }
+                                                     },
+            
+            "ASI_CRM_Promotional_Sub_brand__c"     : {"title"          : "Promotional Sub-brand", 
+                                                      "data"           : "",
+                                                      "render"         : function(data, type, full) {
+													 				 		var fieldAPIName = 'ASI_CRM_Promotional_Sub_brand__c';
+                                                                    		if(full.ASI_CRM_Promotional_Sub_brand__c) {
+                                                                        		data = full.ASI_CRM_Promotional_Sub_brand__r.Name;
+                                                                        	} else {
+                                                                        		data = "";
+                                                                        	}
+                                                     			
+                                                                       		if(READ_ONLY) return data;
+                                                     						return "<input class='" + fieldAPIName + " inputField_x_long form-control' type='text' value=\"" + data + "\" onChange='updatePromotionMechanicValue(this.parentNode.parentNode, \"" + fieldAPIName + "\", this.value)'/>";
+                                                                         }
+                                                     },
+            
+            "ASI_CRM_ROI__c"                       : {"title"          : "ROI %", 
+                                                      "data"           : "ASI_CRM_ROI__c",
+                                                      "render"         : function(data, type, full) {
+                                                     						var fieldAPIName = 'ASI_CRM_ROI__c';
+                                                     						var displayData = (!data && data != 0) ? "" : numFormater.format(data) + "%";
+																			return "<span class='" + fieldAPIName + "'>" + displayData + "</span>";
+                                                                         }
+                                                     },
+            
+            "ASI_CRM_Target_Qty_Bottle__c"         : {"title"          : "Target <br /> Qty (Bottle)", 
+                                                      "data"           : "ASI_CRM_Target_Qty_Bottle__c",
+                                                      "render"         : function(data, type, full) {
+                                                     						var fieldAPIName = 'ASI_CRM_Target_Qty_Bottle__c';
+                                                                        	if(!data) {
+                                                                            	data = "";
+                                                                        	}
+                                                                       		if(READ_ONLY) return data;
+        							   										return "<input class='" + fieldAPIName + " integerField form-control' type='number' min='0' value='" + data + "' onChange='updatePromotionMechanicValue(this.parentNode.parentNode, \"" + fieldAPIName + "\", this.value)'/>";
+                                                                         }
+                                                     },
+            
+            "ASI_CRM_Buy_Qty__c"                   : {"title"          : "Buy (Qty)", 
+                                                      "data"           : "ASI_CRM_Buy_Qty__c",
+                                                      "render"         : function(data, type, full) {
+                                                     						var fieldAPIName = 'ASI_CRM_Buy_Qty__c';
+                                                                        	if(!data) {
+                                                                            	data = "";
+                                                                        	}
+                                                                       		if(READ_ONLY) return data;
+        							   										return "<input class='" + fieldAPIName + " integerField form-control' type='number' min='0' value='" + data + "' onChange='updatePromotionMechanicValue(this.parentNode.parentNode, \"" + fieldAPIName + "\", this.value)'/>";
+                                                                         }
+                                                     },
+            
+            "ASI_CRM_Buy_Unit__c"                  : {"title"          : "Buy (Unit)", 
+                                                      "data"           : "",
+                                                      "render"         : function(data, type, full) {
+                                                                       		if(READ_ONLY) return full.ASI_CRM_Buy_Unit__c;
+                                                      						var fieldAPIName = 'ASI_CRM_Buy_Unit__c';
+                                                                        	var selectOptionTag = "<select class='selector " + fieldAPIName + " form-control' onChange='updatePromotionMechanicValue(this.parentNode.parentNode, \"" + fieldAPIName + "\", this.value);' style='width:90px;' required>"
+                                                                        	selectOptionTag += "<option value=''></option>";
+                                                                        	for(var label in BUY_UNIT_MAP) {
+                                                                            	if(BUY_UNIT_MAP[label] == full.ASI_CRM_Buy_Unit__c) {
+                                                                                	selectOptionTag += "<option value='" + BUY_UNIT_MAP[label] + "' selected>" + label + "</option>";
+                                                                            	} else {
+                                                                                	selectOptionTag += "<option value='" + BUY_UNIT_MAP[label] + "'>" + label + "</option>";
+                                                                            	}
+                                                                        	}
+                                                                        	selectOptionTag += "</select>";
+                                                                        	return selectOptionTag;
+                                                     		             }
+                                                     },
+            
+            "ASI_CRM_Trade_Deal_Bottle_Qty__c"     : {"title"          : "Trade Deal <br />(Bottle Qty)", 
+                                                      "data"           : "ASI_CRM_Trade_Deal_Bottle_Qty__c",
+                                                      "render"         : function(data, type, full) {
+                                                     						var fieldAPIName = 'ASI_CRM_Trade_Deal_Bottle_Qty__c';
+                                                                       		if(!data) {
+                                                                            	data = "";
+                                                                        	}
+                                                                       		if(READ_ONLY) return data;
+        							   										return "<input class='" + fieldAPIName + " decimalField form-control' min='0' value='" + data + "' onChange='updatePromotionMechanicValue(this.parentNode.parentNode, \"" + fieldAPIName + "\", this.value)'/>";
+                                                                         } 
+                                                     },
+            
+            "ASI_CRM_Additional_SKU_Bottle_Qty__c" : {"title"          : "Additional <br /> SKU <br />(Bottle Qty)", 
+                                                      "data"           : "ASI_CRM_Additional_SKU_Bottle_Qty__c",
+                                                      "render"         : function(data, type, full) {
+                                                     						var fieldAPIName = 'ASI_CRM_Additional_SKU_Bottle_Qty__c';
+                                                                        	if(!data) {
+                                                                            	data = "";
+                                                                        	}
+                                                                       		if(READ_ONLY) return data;
+        							   										return "<input class='" + fieldAPIName + " decimalField form-control' min='0' value='" + data + "' onChange='updatePromotionMechanicValue(this.parentNode.parentNode, \"" + fieldAPIName + "\", this.value)'/>";
+                                                                     	 }
+                                                     },
+            
+            "ASI_CRM_Ad_hoc_Cash__c"               : {"title"          : "Ad-hoc ($)", 
+                                                      "data"           : "ASI_CRM_Ad_hoc_Cash__c",
+                                                      "render"         : function(data, type, full) {
+                                                     						var fieldAPIName = 'ASI_CRM_Ad_hoc_Cash__c';
+                                                                        	if(!data) {
+                                                                            	data = "";
+                                                                        	}
+                                                                       		if(READ_ONLY) return data;
+        							   										return "<input class='" + fieldAPIName + " decimalField form-control' type='number' min='0' value='" + data + "' onChange='updatePromotionMechanicValue(this.parentNode.parentNode, \"" + fieldAPIName + "\", this.value)'/>";
+                                                                     	 }
+                                                     },
+            
+            "ASI_CRM_Other_in_Kind_Cash__c"        : {"title"          : "Other <br /> in Kind ($)", 
+                                                      "data"           : "ASI_CRM_Other_in_Kind_Cash__c",
+                                                      "render"         : function(data, type, full) {
+                                                     						var fieldAPIName = 'ASI_CRM_Other_in_Kind_Cash__c';
+                                                                        	if(!data) {
+                                                                            	data = "";
+                                                                        	}
+                                                                       		if(READ_ONLY) return data;
+        							   										return "<input class='" + fieldAPIName + " decimalField form-control' type='number' min='0' value='" + data + "' onChange='updatePromotionMechanicValue(this.parentNode.parentNode, \"" + fieldAPIName + "\", this.value)'/>";
+                                                                         }
+                                                     },
+            
+            "ASI_CRM_Remark__c"                    : {"title"          : "Other in Kind<br />Remark", 
+                                                      "data"           : "ASI_CRM_Remark__c",
+                                                      "render"         : function(data, type, full) {
+													 				 		var fieldAPIName = 'ASI_CRM_Remark__c';
+                                                                            if(!data) {
+                                                                            	data = "";
+                                                                        	}
+                                                                       		if(READ_ONLY) return data;
+                                                     						return "<input class='" + fieldAPIName + " inputField_long form-control' type='text' value=\"" + data + "\" onChange='updatePromotionMechanicValue(this.parentNode.parentNode, \"" + fieldAPIName + "\", this.value)'/>";
+                                                                         }
+                                                     },
+            
+            "ASI_CRM_Mechanic_Description__c"      : {"title"          : "Mechanic", 
+                                                      "data"           : "ASI_CRM_Mechanic_Description__c",
+                                                      "render"         : function(data, type, full) {
+													 				 		return data;
+                                                                         }
+                                                     },
+        };
+		
+        const FIELD_CONFIG_MAPPING_ENROLLMENT = {
+            "ACTION"                               : {"title"          : ACTION_LABEL, 
+                                                      "data"           : "",
+                                                      "render"         : function(data, type, full) {
+																			return "<a class='link-button' onClick='deletePromotionRow(this.parentNode.parentNode)'>Delete</a>";
+                                                                         }
+                                                     },
+            
+            "OwnerId"           : {"title"          : "Sales Rep.", 
+                                                      "data"           : "",
+                                                      "render"         : function(data, type, full) {
+																			var fieldAPIName = 'OwnerId';
+                                                                    		if(full.OwnerId) {
+                                                                        		data = full.Owner.Name;
+                                                                        	} else {
+                                                                        		data = "";
+                                                                        	}
+																			return data;
+                                                     						//return "<input class='" + fieldAPIName + " form-control' type='text' value=\"" + data + "\" onChange='updatePromotionValue(this.parentNode.parentNode, \"" + fieldAPIName + "\", this.value)'/>";
+                                                                         }
+                                                     },
+            
+            "Name"              : {"title"          : "Enrollment Detail", 
+                                                      "data"           : "Id",
+                                                      "render"         : function(data, type, full) {
+																			var fieldStr = ""; 
+																			var fieldAPIName = 'Id';
+                                                                    		if(full.Id) {
+                                                                        		fieldStr += "<span>"; 
+																				fieldStr += "<a href='/" + full.Id + "' class='link-button " + fieldAPIName + "' target='_blank'>Click here</a>";
+																				fieldStr += "</span>";
+                                                                        	}
+																			
+																			return fieldStr;
+                                                     						//return "<input class='" + fieldAPIName + " form-control' type='text' value=\"" + data + "\" onChange='updatePromotionValue(this.parentNode.parentNode, \"" + fieldAPIName + "\", this.value)'/>";
+                                                                         }
+                                                     }
+             
+        };
+		
+        /****************
+        Define Standard Function
+        ****************/
+        $(document).ready(
+        	function() {
+        		setTable('{!JSENCODE(promotionMechanicListJson)}');
+        		setTableEnrollment('{!JSENCODE(promotionListJson)}');
+            	initAutoComplete();
+                preventNegativeNumber();
+				buildListWithoutSpace();
+                
+                $("#warningPanel").hide();
+				
+				if(READ_ONLY) $('#addSalesRepName').hide();
+				if(READ_ONLY) $('.btn').hide(); 
+        	}
+        );
+        
+        //Set Data Table
+        function setTable(promotionMechanicListJson) {
+            var dataTableProperties = CONST_DATA_TABLE_PROPERTIES;
+            //Convert so detail list JSON to Object format
+            console.log('Data From Apex Controller : ');
+            console.log(jQuery.parseJSON(promotionMechanicListJson));
+            dataTableProperties["aaData"] = jQuery.parseJSON(promotionMechanicListJson);
+            //Set data table row id = detail id
+            dataTableProperties["rowId"] = "Id";
+
+            //Set the data table columns
+            var columns = [];
+            if(!READ_ONLY) columns.push(FIELD_CONFIG_MAPPING.ACTION);
+			if(READ_ONLY) columns.push(FIELD_CONFIG_MAPPING.ASI_CRM_Mechanic_Description__c);
+            columns.push(FIELD_CONFIG_MAPPING.ASI_CRM_ROI__c);
+			if(!READ_ONLY){
+				columns.push(FIELD_CONFIG_MAPPING.ASI_CRM_Promotional_SKU__c);
+				columns.push(FIELD_CONFIG_MAPPING.ASI_CRM_Promotional_Sub_brand__c);
+			}
+            columns.push(FIELD_CONFIG_MAPPING.ASI_CRM_Target_Qty_Bottle__c);
+			if(!READ_ONLY){
+				columns.push(FIELD_CONFIG_MAPPING.ASI_CRM_Buy_Qty__c);
+				columns.push(FIELD_CONFIG_MAPPING.ASI_CRM_Buy_Unit__c);
+				columns.push(FIELD_CONFIG_MAPPING.ASI_CRM_Trade_Deal_Bottle_Qty__c);
+				columns.push(FIELD_CONFIG_MAPPING.ASI_CRM_Additional_SKU_POSM__c);
+				columns.push(FIELD_CONFIG_MAPPING.ASI_CRM_Additional_SKU_Bottle_Qty__c);
+				columns.push(FIELD_CONFIG_MAPPING.ASI_CRM_Ad_hoc_Cash__c);
+				columns.push(FIELD_CONFIG_MAPPING.ASI_CRM_Gift_Voucher__c);
+				columns.push(FIELD_CONFIG_MAPPING.ASI_CRM_Other_in_Kind_Cash__c);
+				columns.push(FIELD_CONFIG_MAPPING.ASI_CRM_Remark__c);
+			}
+            
+            dataTableProperties["aoColumns"] = columns;
+            
+            $("#promotionMechanicTable").dataTable(dataTableProperties);
+            
+            initAutoComplete();
+			$('input').trigger('change');
+        }
+        
+        function addPromotionMechanicRow() {
+            var newPromotionMechanic = {};
+            newPromotionMechanic["Id"]                        = NEW_PROMOTION_MECHANIC_PREFIX + NEW_PROMOTION_MECHANIC_INDEX;
+            newPromotionMechanic["ASI_CRM_Promotion_Plan__c"] = PROMOTION_PLAN_ID;
+            newPromotionMechanic["RecordTypeId"]              = PROMOTION_MECHANIC_RECORD_TYPE_ID;
+            
+            $("#promotionMechanicTable").DataTable().row.add(newPromotionMechanic).draw();
+            $('#promotionMechanicTable').DataTable().page('last').draw('page');
+
+            NEW_PROMOTION_MECHANIC_INDEX ++;
+            
+            initAutoComplete();
+            preventNegativeNumber();
+        }
+        
+        function updatePromotionMechanicValue(row, fieldName, newValue) {
+            var promotionMechanicData = $("#promotionMechanicTable").DataTable().row(row).data();
+            promotionMechanicData[fieldName] = newValue;
+			recalculateRoiValue(row.id, promotionMechanicData);
+        }
+        
+        function deletePromotionMechanicRow(row) {
+            var rowId = row.id;
+            //Check if the promotion mechanic is existing in database
+            if(!rowId.startsWith(NEW_PROMOTION_MECHANIC_PREFIX)) {
+                //Add to delete list
+                deletePromotionMechanicIdList.push(rowId);
+            }
+            //Remove the row and redraw it
+            $("#promotionMechanicTable").DataTable().row(row).remove().draw();
+        }
+        
+        //Set Data Table
+        function setTableEnrollment(promotionListJson) {
+            var dataTableProperties = CONST_DATA_TABLE_PROPERTIES;
+            //Convert so detail list JSON to Object format
+            console.log('Data From Apex Controller : ');
+            console.log(jQuery.parseJSON(promotionListJson));
+            dataTableProperties["aaData"] = jQuery.parseJSON(promotionListJson);
+            //Set data table row id = detail id
+            dataTableProperties["rowId"] = "Id";
+
+            //Set the data table columns
+            var columns = [];
+            if(!READ_ONLY) columns.push(FIELD_CONFIG_MAPPING_ENROLLMENT.ACTION);
+            columns.push(FIELD_CONFIG_MAPPING_ENROLLMENT.OwnerId);
+            if(READ_ONLY) columns.push(FIELD_CONFIG_MAPPING_ENROLLMENT.Name);
+            
+            dataTableProperties["aoColumns"] = columns;
+            
+            $("#promotionTable").dataTable(dataTableProperties);
+            
+            initAutoComplete();
+        }
+        
+        function addPromotionRow(salesRepName) {
+            var newPromotion = {};
+            newPromotion["Id"]                        = NEW_PROMOTION_PREFIX + NEW_Promotion_INDEX;
+            newPromotion["Name"]                      = PROMOTION_PLAN_Name /*+ ' ' + salesRepName*/;
+            newPromotion["ASI_CRM_Promotion_Plan__c"] = PROMOTION_PLAN_ID;
+            newPromotion["RecordTypeId"]              = PROMOTION_RECORD_TYPE_ID;
+			newPromotion["ASI_HK_CRM_Status__c"]      = PROMOTION_STATUS_DRAFT;
+			newPromotion["OwnerId"]                   = salesRepName;
+			newPromotion["Owner"]                     = {"Name" : salesRepName};
+            
+            $("#promotionTable").DataTable().row.add(newPromotion).draw();
+            $('#promotionTable').DataTable().page('last').draw('page');
+
+            NEW_Promotion_INDEX ++;
+            
+            initAutoComplete();
+            preventNegativeNumber();
+        }
+        
+        function updatePromotionValue(row, fieldName, newValue) {
+            var promotionData = $("#promotionTable").DataTable().row(row).data();
+            promotionData[fieldName] = newValue;
+        }
+        
+        function deletePromotionRow(row) {
+            var rowId = row.id;
+            //Check if the promotion  is existing in database
+            if(!rowId.startsWith(NEW_PROMOTION_PREFIX)) {
+                //Add to delete list
+                deletePromotionIdList.push(rowId);
+            }
+            //Remove the row and redraw it
+            $("#promotionTable").DataTable().row(row).remove().draw();
+        }
+        
+        function validatePromotionMechanic(promotionMechanicList) {
+        	var errorMessage;
+            
+            //if(promotionMechanicList.length == 0) return "Please add promotion mechanic records";
+            
+            for(var index = 0 ; index < promotionMechanicList.length ; index++) {
+                var requiredFieldList = [];
+                var promotionMechanic = promotionMechanicList[index];
+                if(!promotionMechanic.ASI_CRM_Promotional_SKU__c) 
+                    requiredFieldList.push("Promotional SKU");
+				/*
+                if(!promotionMechanic.ASI_CRM_Promotional_Sub_brand__c)
+                    requiredFieldList.push("Promotional Sub-brand");
+				*/
+                if(!promotionMechanic.ASI_CRM_Buy_Qty__c || promotionMechanic.ASI_CRM_Buy_Qty__c == 0)
+                    requiredFieldList.push("Buy (Qty)");
+                if(!promotionMechanic.ASI_CRM_Buy_Unit__c)
+                    requiredFieldList.push("Buy (Unit)");
+                if(!promotionMechanic.ASI_CRM_Target_Qty_Bottle__c || promotionMechanic.ASI_CRM_Target_Qty_Bottle__c == 0)
+                    requiredFieldList.push("Target Qty (Bottle)");
+                if(promotionMechanic.ASI_CRM_Additional_SKU_POSM__c && !promotionMechanic.ASI_CRM_Additional_SKU_Bottle_Qty__c)
+                    requiredFieldList.push("Additional SKU (Bottle Qty)");
+                if(promotionMechanic.ASI_CRM_Other_in_Kind_Cash__c && !promotionMechanic.ASI_CRM_Remark__c)
+                    requiredFieldList.push("Other in Kind Remark");
+                
+                if(requiredFieldList.length != 0) {
+                	if(!errorMessage) errorMessage = "";
+                    errorMessage += "Line " + (index + 1) + " missing required field [";
+                    for(var requiredFieldIndex in requiredFieldList) {
+                        errorMessage += requiredFieldList[requiredFieldIndex] + ", ";
+                    }
+                    errorMessage = errorMessage.slice(0, -2);
+                    errorMessage += "]<br />";
+                } else {
+					
+					if(PROMOTIONAL_SKU_LIST_NOSPACE.includes(promotionMechanic.ASI_CRM_Promotional_SKU__c.replace(/\s+/g, '')) == false) {
+                        if(!errorMessage) errorMessage = "";
+                        errorMessage += "Line " + (index + 1) + " Promotional SKU [" + promotionMechanic.ASI_CRM_Promotional_SKU__c + "] is not found <br />";
+                    }
+					
+                    if(promotionMechanic.ASI_CRM_Additional_SKU_POSM__c && 
+						ADDITIONAL_SKU_LIST_NOSPACE.includes(promotionMechanic.ASI_CRM_Additional_SKU_POSM__c.replace(/\s+/g, '')) == false
+					) {
+                        if(!errorMessage) errorMessage = "";
+                        errorMessage += "Line " + (index + 1) + " Additional SKU / POSM [" + promotionMechanic.ASI_CRM_Additional_SKU_POSM__c + "] is not found <br />";
+                    }
+                    
+                    if(promotionMechanic.ASI_CRM_Gift_Voucher__c && 
+						GIFT_VOUCHER_LIST_NOSPACE.includes(promotionMechanic.ASI_CRM_Gift_Voucher__c.replace(/\s+/g, '')) == false
+					) {
+                        if(!errorMessage) errorMessage = "";
+                        errorMessage += "Line " + (index + 1) + " Gift Voucher [" + promotionMechanic.ASI_CRM_Gift_Voucher__c + "] is not found <br />";
+                    }
+                    
+                    if(promotionMechanic.ASI_CRM_Promotional_Sub_brand__c && 
+						SUB_BRAND_LIST_NOSPACE.includes(promotionMechanic.ASI_CRM_Promotional_Sub_brand__c.replace(/\s+/g, '')) == false
+					) {
+                        if(!errorMessage) errorMessage = "";
+                        errorMessage += "Line " + (index + 1) + " Promotional Sub-brand [" + promotionMechanic.ASI_CRM_Promotional_Sub_brand__c + "] is not found <br />";
+                    }
+                }
+            }
+            
+            return errorMessage;
+        }
+        
+        function saveRecord(isQuickSave) {
+        	var upsertPromotionMechanicList = [];
+            
+            var promotionMechanicList = $("#promotionMechanicTable").DataTable().rows().data();
+            
+            var errorMessage = validatePromotionMechanic(promotionMechanicList.data());
+            if(errorMessage) {
+                $("#warningPanel").show();
+                $("#warningMessage").html(errorMessage);
+            } else {
+                $("#warningPanel").hide();
+                for(var i = 0 ; i < promotionMechanicList.data().length ; i++) {
+                    var clonedPromotionMechanic = jQuery.extend({}, promotionMechanicList[i]);
+
+                    clonedPromotionMechanic["ASI_CRM_Promotional_SKU__r"] = null;
+                    clonedPromotionMechanic["ASI_CRM_Additional_SKU_POSM__r"] = null;
+                    clonedPromotionMechanic["ASI_CRM_Gift_Voucher__r"] = null;
+                    clonedPromotionMechanic["ASI_CRM_Promotional_Sub_brand__r"] = null;
+
+                    if(clonedPromotionMechanic.Id.startsWith(NEW_PROMOTION_MECHANIC_PREFIX)) {
+                        delete clonedPromotionMechanic["Id"];
+                    }
+
+                    upsertPromotionMechanicList.push(clonedPromotionMechanic);
+                }
+
+                var upsertpromotionList = [];
+
+                var promotionList = $("#promotionTable").DataTable().rows().data();
+                for(var i = 0 ; i < promotionList.data().length ; i++) {
+                    var clonedPromotion = jQuery.extend({}, promotionList[i]);
+                    clonedPromotion["Owner"] = null;
+                    if(clonedPromotion.Id.startsWith(NEW_PROMOTION_PREFIX)) {
+                        delete clonedPromotion["Id"];
+                    }
+
+                    upsertpromotionList.push(clonedPromotion);
+                }
+
+                $("body").addClass("savingRecord");
+                savePromotionMechanic(isQuickSave, 
+                                        JSON.stringify(upsertPromotionMechanicList), JSON.stringify(deletePromotionMechanicIdList),
+                                        JSON.stringify(upsertpromotionList), JSON.stringify(deletePromotionIdList)
+                                        );
+            }
+        }
+       
+        function saveRecordComplete(promotionMechanicListJson, promotionListJson) {
+            $("body").removeClass("savingRecord");
+			setTable(promotionMechanicListJson);
+			setTableEnrollment(promotionListJson);
+        }
+        
+        function getPriceCostComplete(fieldName, rowId, priceCostWrapperJson) {
+            $("body").removeClass("savingRecord");
+			
+			var priceCostWrapper   = jQuery.parseJSON(priceCostWrapperJson);
+			var skuPrice           = priceCostWrapper.skuPriceRecordTypeMap['ASI_CRM_SG_RTM_Wholesaler_Price_Per_Bottle'];
+            var skuCost            = priceCostWrapper.skuPriceRecordTypeMap['ASI_CRM_SG_IGC'];
+			var voucherValue       = priceCostWrapper.skuPriceRecordTypeMap['Standard Price'];
+			var packagingSize      = priceCostWrapper.sku['ASI_HK_CRM_Packaging_Size__c'];
+			var bottleSize         = priceCostWrapper.sku['ASI_HK_CRM_Std_Bottle_Size__c'];
+			var sku                = priceCostWrapper.sku;
+			
+			var promotionMechanicData = $("#promotionMechanicTable").DataTable().row($('#'+rowId)).data();
+			switch(fieldName){
+				case FIELD_PROMOTIONALSKU :
+					promotionMechanicData["ASI_CRM_RTM_WS_Price_Bottle_Promotional__c"] = skuPrice ? skuPrice.ASI_CRM_Price__c : 0;
+					promotionMechanicData["ASI_CRM_IGC_Cost_Case_Promotional__c"] = skuCost ? skuCost.ASI_CRM_Cost__c : 0;
+					promotionMechanicData["ASI_CRM_Packaging_Size_Promotional__c"] = packagingSize ? packagingSize : 0;
+					promotionMechanicData["ASI_CRM_Bottle_Size_Promotional__c"] = bottleSize ? bottleSize : 0;
+					promotionMechanicData["ASI_CRM_Promotional_SKU__r"] = sku;
+					break;
+				case FIELD_ADDITIONALSKU :
+					promotionMechanicData["ASI_CRM_RTM_WS_Price_Bottle_Additional__c"] = skuPrice ? skuPrice.ASI_CRM_Price__c : 0;
+					promotionMechanicData["ASI_CRM_Packaging_Size_Additional__c"] = packagingSize ? packagingSize : 0;
+					promotionMechanicData["ASI_CRM_Bottle_Size_Additional__c"] = bottleSize ? bottleSize : 0;
+					promotionMechanicData["ASI_CRM_Additional_SKU_POSM__r"] = sku;
+					break;
+				case FIELD_GIFTVOUCHER :
+					promotionMechanicData["ASI_CRM_Gift_Voucher_Value_Cash__c"] = voucherValue ? voucherValue.ASI_CRM_Price__c : 0;
+					promotionMechanicData["ASI_CRM_Gift_Voucher__r"] = sku;
+					break;
+			}
+			recalculateRoiValue(rowId, promotionMechanicData);
+			console.log(promotionMechanicData);
+        }
+		
+		function recalculateRoiValue(rowId, promotionMechanicData){
+			var totalIncentive = 
+				(parseFloat(promotionMechanicData["ASI_CRM_Trade_Deal_Bottle_Qty__c"] ? promotionMechanicData["ASI_CRM_Trade_Deal_Bottle_Qty__c"] : 0) *
+				 parseFloat(promotionMechanicData["ASI_CRM_RTM_WS_Price_Bottle_Promotional__c"] ? promotionMechanicData["ASI_CRM_RTM_WS_Price_Bottle_Promotional__c"] : 0)
+				 ) +
+				(parseFloat(promotionMechanicData["ASI_CRM_Additional_SKU_Bottle_Qty__c"] ? promotionMechanicData["ASI_CRM_Additional_SKU_Bottle_Qty__c"] : 0) *
+				 parseFloat(promotionMechanicData["ASI_CRM_RTM_WS_Price_Bottle_Additional__c"] ? promotionMechanicData["ASI_CRM_RTM_WS_Price_Bottle_Additional__c"] : 0)
+				 ) +
+				 parseFloat(promotionMechanicData["ASI_CRM_Ad_hoc_Cash__c"] ? promotionMechanicData["ASI_CRM_Ad_hoc_Cash__c"] : 0) +
+				 parseFloat(promotionMechanicData["ASI_CRM_Gift_Voucher_Value_Cash__c"] ? promotionMechanicData["ASI_CRM_Gift_Voucher_Value_Cash__c"] : 0) +
+				 parseFloat(promotionMechanicData["ASI_CRM_Other_in_Kind_Cash__c"] ? promotionMechanicData["ASI_CRM_Other_in_Kind_Cash__c"] : 0);
+				 
+			var totalCost = 
+				(parseFloat(promotionMechanicData["ASI_CRM_Buy_Qty__c"] ? promotionMechanicData["ASI_CRM_Buy_Qty__c"] : 0) *
+				 parseFloat(promotionMechanicData["ASI_CRM_IGC_Cost_Case_Promotional__c"] ? promotionMechanicData["ASI_CRM_IGC_Cost_Case_Promotional__c"] : 0)
+				) / (
+				 promotionMechanicData["ASI_CRM_Buy_Unit__c"] == "Bottle" ? 
+					parseFloat(promotionMechanicData["ASI_CRM_Packaging_Size_Promotional__c"] ? promotionMechanicData["ASI_CRM_Packaging_Size_Promotional__c"] : 1) : 1
+				);
+			
+			var roi = (1 - (totalIncentive / totalCost)) * 100;
+			roi = roi.toFixed(2);
+			
+			$("#" + rowId + " .ASI_CRM_ROI__c").html(roi + "%");
+		}
+        
+        function initAutoComplete() {
+            $(".ASI_CRM_Promotional_SKU__c").each(function(index) {
+                $(this).autocomplete({
+                    source    : PROMOTIONAL_SKU_LIST,
+                    minLength : 3,
+					response: function(event, ui) {
+						if (ui.content.length === 0) {
+							console.log("No result found");
+						}
+					},
+					change: function(event, ui) {
+						if (!ui.item && typeof ui.item !== 'undefined') {
+							console.log('remove  ' + this.value);
+							this.value = '';
+						}
+					},
+					select: function(event, ui) { //console.log('change ! '+ui.item.label);
+
+						$(this).val(ui.item.label);
+						event.preventDefault();	
+						
+						var rowId = $(this.parentNode.parentNode).attr('id');
+						var fieldName = FIELD_PROMOTIONALSKU;
+						var skuName = ui.item.value;
+						
+						$("body").addClass("savingRecord");
+						getPriceCost(fieldName, rowId, skuName);
+					}
+                });
+            });
+            
+            $(".ASI_CRM_Additional_SKU_POSM__c").each(function(index) {
+                $(this).autocomplete({
+                    source    : ADDITIONAL_SKU_LIST,
+                    minLength : 3,
+					response: function(event, ui) {
+						if (ui.content.length === 0) {
+							console.log("No result found");
+						}
+					},
+					change: function(event, ui) {
+						if (!ui.item && typeof ui.item !== 'undefined') {
+							console.log('remove  ' + this.value);
+							this.value = '';
+						}
+					},
+					select: function(event, ui) { //console.log('change ! '+ui.item.label);
+
+						$(this).val(ui.item.label);
+						event.preventDefault();	
+						
+						var rowId = $(this.parentNode.parentNode).attr('id');
+						var fieldName = FIELD_ADDITIONALSKU;
+						var skuName = ui.item.value;
+						
+						$("body").addClass("savingRecord");
+						getPriceCost(fieldName, rowId, skuName);
+					}
+                });
+            });
+            
+            $(".ASI_CRM_Gift_Voucher__c").each(function(index) {
+                $(this).autocomplete({
+                    source    : GIFT_VOUCHER_LIST,
+                    minLength : 1,
+					response: function(event, ui) {
+						if (ui.content.length === 0) {
+							console.log("No result found");
+						}
+					},
+					change: function(event, ui) {
+						if (!ui.item && typeof ui.item !== 'undefined') {
+							console.log('remove  ' + this.value);
+							this.value = '';
+						}
+					},
+					select: function(event, ui) { //console.log('change ! '+ui.item.label);
+
+						$(this).val(ui.item.label);
+						event.preventDefault();	
+						
+						var rowId = $(this.parentNode.parentNode).attr('id');
+						var fieldName = FIELD_GIFTVOUCHER;
+						var skuName = ui.item.value;
+						
+						$("body").addClass("savingRecord");
+						getPriceCost(fieldName, rowId, skuName);
+					},
+					focus: function(event, ui) {
+						$(this).val(ui.item.label);
+						event.preventDefault();
+					}
+                }).focus(function() {
+					$(this).autocomplete("search", "");
+				});
+            });
+            
+            $(".ASI_CRM_Promotional_Sub_brand__c").each(function(index) {
+                $(this).autocomplete({
+                    source    : SUB_BRAND_LIST,
+                    minLength : 3,
+					response: function(event, ui) {
+						if (ui.content.length === 0) {
+							console.log("No result found");
+						}
+					},
+					change: function(event, ui) {
+						if (!ui.item && typeof ui.item !== 'undefined') {
+							console.log('remove  ' + this.value);
+							this.value = '';
+						}
+					},
+					select: function(event, ui) { //console.log('change ! '+ui.item.label);
+
+						$(this).val(ui.item.label);
+						event.preventDefault();	
+					}
+                });
+            });
+			
+            $("#addSalesRepName").each(function(index) {
+                $(this).autocomplete({
+                    source    : SALES_NAME_LIST,
+                    minLength : 3,
+					response: function(event, ui) {
+						if (ui.content.length === 0) {
+							console.log("No result found");
+						}
+					},
+					change: function(event, ui) {
+						if (!ui.item && typeof ui.item !== 'undefined') {
+							console.log('remove  ' + this.value);
+							this.value = '';
+						}
+					},
+					select: function(event, ui) { //console.log('change ! '+ui.item.label);
+
+						$(this).val(ui.item.label);
+						event.preventDefault();	
+						var salesRepName = ui.item.value;
+						addPromotionRow(salesRepName);
+						$(this).val('');
+					}
+                });
+            });
+        }
+        
+        function preventNegativeNumber() {
+        	$(".integerField").keydown(function(e) {
+                if(!((e.which > 95 && e.which < 106)
+                  || (e.which > 47 && e.which < 58) 
+                  || e.which == 8 || e.which == 46)) {
+                    return false;
+                }
+            });
+        	$(".decimalField").keydown(function(e) {
+                if(!((e.which > 95 && e.which < 106)
+                  || (e.which > 47 && e.which < 58) 
+                  || e.which == 8 || e.which == 46 || e.which == 110 || e.which == 190)) {
+                    return false;
+                }
+            });
+        }
+		
+		function buildListWithoutSpace(){
+			$.each(SUB_BRAND_LIST, function(){
+				SUB_BRAND_LIST_NOSPACE.push(this.replace(/\s+/g, ''));
+			});
+			$.each(PROMOTIONAL_SKU_LIST, function(){
+				PROMOTIONAL_SKU_LIST_NOSPACE.push(this.replace(/\s+/g, ''));
+			});
+			$.each(ADDITIONAL_SKU_LIST, function(){
+				ADDITIONAL_SKU_LIST_NOSPACE.push(this.replace(/\s+/g, ''));
+			});
+			$.each(GIFT_VOUCHER_LIST, function(){
+				GIFT_VOUCHER_LIST_NOSPACE.push(this.replace(/\s+/g, ''));
+			});
+		}
+    </script>
+    
+    <body>
+        <div class="fullScreenLoading"></div>
+        
+        <div id="warningPanel" class="panel panel-danger" style="display:none">
+       		<div class="panel-heading">Warning!</div>
+        	<div id="warningMessage" class="panel-body"></div>
+        </div>
+        
+        <!-- Defind Action Function -->
+        <apex:form >
+            <apex:actionFunction name="savePromotionMechanic" action="{!savePromotionMechanic}" reRender="pageMsg" 
+                                 onComplete="saveRecordComplete('{!JSENCODE(promotionMechanicListJson)}','{!JSENCODE(promotionListJson)}');">
+                <apex:param name="isQuickSave" value="" />
+                <apex:param name="upsertPromotionMechanicListJson" value="" />
+                <apex:param name="deletePromotionMechanicIdListJson" value="" />
+                <apex:param name="upsertpromotionListJson" value="" />
+                <apex:param name="deletePromotionIdListJson" value="" />
+            </apex:actionFunction>
+            <apex:actionFunction name="cancel" action="{!cancel}"/>
+            <apex:actionFunction name="getPriceCost" action="{!getPriceCost}" reRender="pageMsg" 
+                                 onComplete="getPriceCostComplete('{!RETURN_FIELDNAME}','{!RETURN_ROWID}','{!JSENCODE(RETURN_PRICECOSTWRAPPER)}');">
+                <apex:param name="fieldName" value="" />
+                <apex:param name="rowId" value="" />
+                <apex:param name="skuName" value="" />
+            </apex:actionFunction>
+        </apex:form>
+        
+        <!-- Body -->
+        <apex:pageBlock id="detail_pageBlock">
+            <apex:pageblockButtons >
+                <input type="button" class="btn saveBtn" onclick="saveRecord(false)" value="Save" />
+                <input type="button" class="btn quickSaveBtn" onclick="saveRecord(true)" value="Quick Save" />
+                <input type="button" class="btn cancelBtn" onclick="cancel()" value="Cancel" />
+            </apex:pageblockButtons>
+            
+            <!-- Nav bar -->
+            <div class="row">
+                <div class="container-fluid">
+                    <div class="panel with-nav-tabs panel-primary">
+                        <!-- Nav bar header -->
+                        <div class="panel-heading">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#promotionMechanicPanel" data-toggle="tab">Promotion Mechanic</a></li>
+                                <li><a href="#promotionPanel" data-toggle="tab">Sales Rep. Enrollment</a></li>
+                            </ul>
+                        </div>
+    
+                        <!-- Nav bar body -->
+                        <div class="panel-body">
+                            <div class="tab-content">
+                                <!-- Promotion Mechanic Panel -->
+                                <div class="tab-pane fade in active" id="promotionMechanicPanel">
+                                    <form id="promotionMechanicForm">
+                                        <input type="button" class="btn newRowBtn" onclick="addPromotionMechanicRow()" value="Add Row" />
+                                        <table id="promotionMechanicTable" width="100%" />
+                                    </form>
+                                </div>
+                                <!-- Promotion  Panel -->
+                                <div class="tab-pane fade in" id="promotionPanel">
+                                    <form id="promotionForm">
+                                        <input type="text" id="addSalesRepName" class="form-control" placeholder="Input Sales Rep. name here" />
+                                        <!--
+										<input type="button" class="btn newRowBtn" onclick="addPromotionRow()" value="Add Row" />
+										-->
+                                        <table id="promotionTable" width="100%" />
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </apex:pageBlock>
+    </body>
+    
+</apex:page>

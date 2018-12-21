@@ -1,0 +1,7 @@
+<apex:page controller="cms.GenerateContent" standardStylesheets="false" showHeader="false" sidebar="false" id="g">
+    
+    {:Start:}
+       <c:RSSFeedView content="{!content}" properties="{!properties}" layout_instance="{!cli}" layout_instance_properties="{!cli_properties}" page_content_layout_instance="{!pcli}" page_content_layout_instance_properties="{!pcli_properties}" />  
+    {:Stop:}
+
+</apex:page>

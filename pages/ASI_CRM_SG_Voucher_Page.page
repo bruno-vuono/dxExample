@@ -1,0 +1,226 @@
+<!---------------------------------------------
+ * Name:ASI_CRM_SG_Voucher_Page
+ * Description: Page for printing promotion letter
+ *
+ * Version History
+ * Date             Developer               Comments
+ * ---------------  --------------------    --------------------------------------------------------------------------------
+ * 11/4/2018       Jeffrey Cheung             Created
+---------------------------------------------->
+
+<apex:page id="ASI_CRM_SG_Voucher_Page" controller="ASI_CRM_SG_Voucher_Page_Ctrl" renderAs="pdf" showHeader="false"
+           sidebar="false" standardStylesheets="false" applyBodyTag="false" applyHtmlTag="false">
+    <!-- renderAs="pdf" -->
+    <head>
+        <style>
+            .fill-in-the-blanks {
+                border-bottom: 1px solid black;
+            }
+
+            .detail-table {
+                width: 100%;
+                border: 1px solid black;
+            }
+
+            .customer-information-table {
+                text-align: right;
+                width: 100%;
+                margin: 50px 0;
+            }
+            #customer-input {
+                /*font-size: small;*/
+                border-collapse: separate;
+                /*-webkit-border-horizontal-spacing: 1em;*/
+                /*-webkit-border-vertical-spacing: 3em;*/
+                /*border-spacing: 1.1em;*/
+            }
+
+            td.last {
+                /* magic! */
+                width: 1px;
+                white-space: nowrap;
+                border-bottom: 1px solid black;
+            }
+
+            .signatory {
+                vertical-align: bottom;
+            }
+
+            .text-bold {
+                font-weight: bold;
+            }
+        </style>
+    </head>
+
+    <body>
+    <div class="header">
+        <center>
+            <apex:image width="75%" height="75%" url="{!URLFOR($Resource.ASI_MFM_SG_Logo)}"/>
+        </center>
+    </div>
+    <table class="customer-information-table">
+        <tr>
+            <td>Date :</td>
+            <td class="last">
+                <apex:outputText value="{0,date,dd/MM/yyyy}">
+                    <apex:param value="{!TODAY()}"/>
+                </apex:outputText>
+            </td>
+        </tr>
+    </table>
+
+    <p class="text-bold">
+        Dear Valued Customer,<br/>
+        Kindly acknowledge the receipt of the following gift incentives:
+    </p>
+<!--
+    <apex:dataTable value="{!voucherDetails}" var="detail" styleClass="detail-table" border="1" rendered="{!voucherDetails.size > 0}" cellpadding="3">
+        <apex:column >
+            <apex:facet name="header">Incentives</apex:facet>
+            <apex:outputText value="{!detail.ASI_CRM_SKU__r.Name}"/>
+        </apex:column>
+
+        <apex:column >
+            <apex:facet name="header">Total Pieces of Voucher</apex:facet>
+            <apex:outputText value="{!detail.ASI_CRM_Quantity__c}"/>
+        </apex:column>
+
+        <apex:column >
+            <apex:facet name="header">Effective period</apex:facet>
+            <apex:outputText value="{0,date,MMM yyyy}">
+                <apex:param value="{!voucher.ASI_CRM_GL_Date__c}"/>
+            </apex:outputText>
+            sell-out of offtake
+        </apex:column>
+    </apex:dataTable>
+-->
+    <apex:dataTable value="{!voucherDetailsAr}" var="detail" styleClass="detail-table" border="1" rendered="{!voucherDetails.size > 0}" cellpadding="3">
+        <apex:column >
+            <apex:facet name="header">Incentives</apex:facet>
+            <apex:outputText value="{!detail['voucherName']}"/>
+        </apex:column>
+
+        <apex:column >
+            <apex:facet name="header">Total Pieces of Voucher</apex:facet>
+            <apex:outputText value="{!Floor(detail['piece'])}"/>
+        </apex:column>
+
+        <apex:column >
+            <apex:facet name="header">Effective period</apex:facet>
+            <apex:outputText value="{0,date,MMM yyyy}">
+                <apex:param value="{!voucher.ASI_CRM_GL_Date__c}"/>
+            </apex:outputText>
+            sell-out of offtake
+        </apex:column>
+    </apex:dataTable>
+
+    <p class="text-bold">
+        Thank you.
+    </p>
+
+    <table id="customer-input" class="customer-information-table">
+        <tr>
+            <td>
+                Customer:
+            </td>
+            <td class="last">
+                {!voucher.ASI_CRM_Customer__r.Name}
+            </td>
+        </tr>
+        <tr>
+            <!--skip a row before sign-->
+            <td>
+                <br/>
+                <br/>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                Collected on:
+            </td>
+            <td class="fill-in-the-blanks">
+
+            </td>
+        </tr>
+        <tr>
+            <!--skip a row before sign-->
+            <td>
+                <br/>
+                <br/>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                Name of Customer's representative:
+            </td>
+            <td class="fill-in-the-blanks">
+            </td>
+        </tr>
+        <tr>
+            <!--skip a row before sign-->
+            <td>
+                <br/>
+                <br/>
+            </td>
+        </tr>
+
+        <tr class="signatory">
+            <td>
+                Signatory of Customer's representative:
+            </td>
+            <td class="fill-in-the-blanks">
+            </td>
+        </tr>
+
+        <tr>
+            <!--skip a row before sign-->
+            <td>
+                <br/>
+                <br/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Name of Pernod Ricard's representative:
+            </td>
+            <td class="fill-in-the-blanks">
+            </td>
+        </tr>
+        <tr>
+            <!--skip a row before sign-->
+            <td>
+                <br/>
+                <br/>
+            </td>
+        </tr>
+
+        <tr class="signatory">
+            <td>
+                Signatory of Pernod Ricard's representative:
+            </td>
+            <td class="fill-in-the-blanks">
+            </td>
+        </tr>
+    </table>
+
+    <table width="100%">
+        <tr>
+            <td>
+                <center>
+                    <b>Pernod Ricard Singapore Pte Ltd</b>
+                    <br/>
+                    I Kim Seng Promenade #11-09/12 Great World City West Tower Singapore 237994
+                    <br/>
+                    Tel : (65) 6235 5055 Fax : (65) 6235 9952
+                    <br/>
+                    Co. Reg. No. 198903094W
+                </center>
+            </td>
+        </tr>
+    </table>
+
+    </body>
+
+</apex:page>

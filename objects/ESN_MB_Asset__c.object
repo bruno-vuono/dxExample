@@ -1,0 +1,1230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>ESN_MB Asset : Object to handle DAM asset description and local Asset for MyBrands app</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableFeeds>true</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>ESN_MB_Brand_Scope_Text__c</fullName>
+        <description>Stores the Name of the Brand</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Stores the Name of the Brand</inlineHelpText>
+        <label>Brand Scope Text</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_DAMId__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <description>Hold External Id from DAM</description>
+        <externalId>true</externalId>
+        <label>DAMId</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_DocumentId__c</fullName>
+        <externalId>false</externalId>
+        <label>DocumentId</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_ExtId__c</fullName>
+        <description>Ext Id used for data migration</description>
+        <externalId>true</externalId>
+        <inlineHelpText>Ext Id used for data migration</inlineHelpText>
+        <label>ESN_MB_ExtId</label>
+        <length>18</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Flag__c</fullName>
+        <description>Contains the &quot;deletion&quot; flag of the Asset.</description>
+        <externalId>false</externalId>
+        <label>Flag</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Link_Text__c</fullName>
+        <description>Text on the Link used in Market Activations/Brand Activations</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Text on the Link used in Market Activations/Brand Activations</inlineHelpText>
+        <label>Link Text</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Link_URL__c</fullName>
+        <description>The URL of the link used in Market Activations/Brand Activations</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The URL of the link used in Market Activations/Brand Activations</inlineHelpText>
+        <label>Link URL</label>
+        <length>1000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>2</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_SizeMo__c</fullName>
+        <externalId>false</externalId>
+        <formula>left(text(ESN_MB_size__c  / 1000),5) &amp; &quot; Mo&quot;</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>SizeMo</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Storyboard_LargeURL__c</fullName>
+        <description>Large picture for slides</description>
+        <externalId>false</externalId>
+        <label>Storyboard Large URL</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Storyboard_Slide_Count__c</fullName>
+        <description>Number of slides in the storyboard</description>
+        <externalId>false</externalId>
+        <label>Storyboard Slide Count</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Storyboard_URL__c</fullName>
+        <description>For each slide, a specific URL exists but all slides have an specific index with the same URL.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>For each slide, a specific URL exists but all slides have an specific index with the same URL.</inlineHelpText>
+        <label>Storyboard URL</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Storyboard__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Storyboard</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_TECH_Webinar_Order__c</fullName>
+        <description>The order the webinars are displayed in MyBrands for a given brand.
+This field is automatically filled by MyBrands.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The order the webinars are displayed in MyBrands for a given brand.
+This field is automatically filled by MyBrands.</inlineHelpText>
+        <label>TECH Webinar Order</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_TECH_description__c</fullName>
+        <description>Field where is stored the &quot;Whereable&quot; value of the field ESN_MB_description, because this field is too large.
+Only the 255 first characters are stored</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Field where is stored the &quot;Whereable&quot; value of the field ESN_MB_description, because this field is too large.
+Only the 255 first characters are stored</inlineHelpText>
+        <label>TECH Description</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_TECH_keywords__c</fullName>
+        <description>Field where is stored the &quot;Whereable&quot; value of the field ESN_MB_keyword, because this field is too large.
+Only the 255 first characters are stored</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Field where is stored the &quot;Whereable&quot; value of the field ESN_MB_keyword, because this field is too large.
+Only the 255 first characters are stored</inlineHelpText>
+        <label>TECH Keywords</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Taxonomy_AssetType__c</fullName>
+        <externalId>false</externalId>
+        <label>Asset Type</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Taxonomy_BrandMaterials__c</fullName>
+        <externalId>false</externalId>
+        <label>Brand Materials</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Taxonomy_BrandVariant__c</fullName>
+        <externalId>false</externalId>
+        <label>Brand &amp; Variant</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Taxonomy_Brands__c</fullName>
+        <externalId>false</externalId>
+        <label>Brands</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Taxonomy_Category__c</fullName>
+        <externalId>false</externalId>
+        <label>Category</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Taxonomy_Language__c</fullName>
+        <externalId>false</externalId>
+        <label>Language</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Taxonomy_MarketInformation__c</fullName>
+        <externalId>false</externalId>
+        <label>Market Information</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Taxonomy_MarketSuitability__c</fullName>
+        <externalId>false</externalId>
+        <label>Market Suitability</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Taxonomy_MarketingActivity__c</fullName>
+        <externalId>false</externalId>
+        <label>Marketing Activity</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Taxonomy_Migration__c</fullName>
+        <externalId>false</externalId>
+        <label>Migration</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Taxonomy_Permissions__c</fullName>
+        <externalId>false</externalId>
+        <label>Permissions</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_Taxonomy__c</fullName>
+        <description>DAM Field : Taxonomy</description>
+        <externalId>false</externalId>
+        <label>Taxonomy</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_URL_bamArticleFull__c</fullName>
+        <description>DAM Field : URL_bamArticleFull</description>
+        <externalId>false</externalId>
+        <label>URL bamArticleFull</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_URL_bamArticleHalf__c</fullName>
+        <description>DAM Field : URL_bamArticleHalf</description>
+        <externalId>false</externalId>
+        <label>URL bamArticleHalf</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_URL_bamAssetPreview__c</fullName>
+        <description>DAM Field : bamAssetPreview</description>
+        <externalId>false</externalId>
+        <label>URL bamAssetPreview</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_URL_bamPresentationUse__c</fullName>
+        <externalId>false</externalId>
+        <label>URL bamPresentationUse</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_URL_bamThumbnail__c</fullName>
+        <description>DAM Field : bamThumbnail</description>
+        <externalId>false</externalId>
+        <label>URL bamThumbnail</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_URL_bamVideoPreview720__c</fullName>
+        <externalId>false</externalId>
+        <label>URL bamVideoPreview720</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_URL_bamVideoPreview__c</fullName>
+        <externalId>false</externalId>
+        <label>URL bamVideoPreview</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_URL_cwAnnotationPreview__c</fullName>
+        <description>DAM Field : cwAnnotationPreview</description>
+        <externalId>false</externalId>
+        <label>URL cwAnnotationPreview</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_URL_forsightLargePreview__c</fullName>
+        <description>DAM Field : forsightLargePreview</description>
+        <externalId>false</externalId>
+        <label>URL forsightLargePreview</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_URL_forsightPreview__c</fullName>
+        <description>DAM Field : forsightPreview</description>
+        <externalId>false</externalId>
+        <label>URL forsightPreview</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_URL_forsightThumbnail__c</fullName>
+        <description>DAM Field : forsightThumbnail</description>
+        <externalId>false</externalId>
+        <label>URL forsightThumbnail</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_URL_imagePreview__c</fullName>
+        <description>DAM Field : imagePreview</description>
+        <externalId>false</externalId>
+        <label>URL imagePreview</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_URL_originalFile__c</fullName>
+        <description>DAM Field : originalFile</description>
+        <externalId>false</externalId>
+        <label>URL originalFile</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_URL_thumbnail__c</fullName>
+        <description>DAM Field : thumbnail</description>
+        <externalId>false</externalId>
+        <label>URL thumbnail</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_UrlAsset__c</fullName>
+        <description>Url of the Asset.</description>
+        <externalId>false</externalId>
+        <label>URL Asset</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_average__c</fullName>
+        <description>DAM Field : average</description>
+        <externalId>false</externalId>
+        <label>average</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_client__c</fullName>
+        <description>DAM Field : client</description>
+        <externalId>false</externalId>
+        <label>client</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_collectionSchema__c</fullName>
+        <description>DAM Field : collectionSchema</description>
+        <externalId>false</externalId>
+        <label>collectionSchema</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_count__c</fullName>
+        <description>DAM Field : count</description>
+        <externalId>false</externalId>
+        <label>count</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_creationDate__c</fullName>
+        <description>DAM Field : creationDate</description>
+        <externalId>false</externalId>
+        <label>creationDate</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_description__c</fullName>
+        <description>DAM Field : description</description>
+        <externalId>false</externalId>
+        <label>description</label>
+        <length>131072</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_expiry_date__c</fullName>
+        <description>DAM Field : expiry_date</description>
+        <externalId>false</externalId>
+        <label>expiry_date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_expiry_date_required__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>DAM Field : expiry-date-required</description>
+        <externalId>false</externalId>
+        <label>expiry-date-required</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_fileName__c</fullName>
+        <description>DAM Field : fileName</description>
+        <externalId>false</externalId>
+        <label>fileName</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_height__c</fullName>
+        <description>DAM Field : height</description>
+        <externalId>false</externalId>
+        <label>height</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_isWebinar__c</fullName>
+        <description>Define weither is a webinar video or not</description>
+        <externalId>false</externalId>
+        <label>isWebinar</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_keywords__c</fullName>
+        <description>DAM Field : keywords</description>
+        <externalId>false</externalId>
+        <label>keywords</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>8</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_locale__c</fullName>
+        <description>DAM Field : locale</description>
+        <externalId>false</externalId>
+        <label>locale</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_md5__c</fullName>
+        <description>DAM Field : md5</description>
+        <externalId>false</externalId>
+        <label>md5</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_mimeType__c</fullName>
+        <description>DAM Field : mimeType</description>
+        <externalId>false</externalId>
+        <label>mimeType</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_modificationDate__c</fullName>
+        <description>DAM Field : modificationDate</description>
+        <externalId>false</externalId>
+        <label>modificationDate</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_originalFile_extension__c</fullName>
+        <description>DAM Field : originalFile_extension</description>
+        <externalId>false</externalId>
+        <label>originalFile extension</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_prettySize__c</fullName>
+        <description>DAM Field : prettySize</description>
+        <externalId>false</externalId>
+        <label>prettySize</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_size__c</fullName>
+        <description>DAM Field : size</description>
+        <externalId>false</externalId>
+        <label>size</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_sum__c</fullName>
+        <description>DAM Field : sum</description>
+        <externalId>false</externalId>
+        <label>sum</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_type__c</fullName>
+        <description>DAM Field : type</description>
+        <externalId>false</externalId>
+        <label>type</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_usage_rights__c</fullName>
+        <description>DAM Field : usage-rights</description>
+        <externalId>false</externalId>
+        <label>usage-rights</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_usage_rights_type__c</fullName>
+        <description>DAM Field : usage_rights_type</description>
+        <externalId>false</externalId>
+        <label>usage_rights_type</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_version__c</fullName>
+        <description>DAM Field : version</description>
+        <externalId>false</externalId>
+        <label>version</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_width__c</fullName>
+        <description>DAM Field : width</description>
+        <externalId>false</externalId>
+        <label>width</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_MB_workflow_status__c</fullName>
+        <description>DAM Field : workflow_status</description>
+        <externalId>false</externalId>
+        <label>workflow_status</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>MyBrands Asset</label>
+    <listViews>
+        <fullName>All_DAM_Asset_Chivas</fullName>
+        <columns>NAME</columns>
+        <columns>ESN_MB_DAMId__c</columns>
+        <columns>ESN_MB_description__c</columns>
+        <columns>ESN_MB_fileName__c</columns>
+        <columns>ESN_MB_originalFile_extension__c</columns>
+        <columns>ESN_MB_prettySize__c</columns>
+        <columns>ESN_MB_Taxonomy_BrandVariant__c</columns>
+        <columns>ESN_MB_Taxonomy_BrandMaterials__c</columns>
+        <columns>ESN_MB_Taxonomy_Category__c</columns>
+        <columns>ESN_MB_Taxonomy_AssetType__c</columns>
+        <columns>ESN_MB_Taxonomy_Language__c</columns>
+        <columns>ESN_MB_Taxonomy_MarketInformation__c</columns>
+        <columns>ESN_MB_Taxonomy_MarketSuitability__c</columns>
+        <columns>ESN_MB_Taxonomy_Permissions__c</columns>
+        <columns>ESN_MB_Taxonomy__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>ESN_MB_Asset__c.ESN_MB_DAM_Asset</value>
+        </filters>
+        <filters>
+            <field>ESN_MB_Brand_Scope_Text__c</field>
+            <operation>contains</operation>
+            <value>Chivas</value>
+        </filters>
+        <label>All DAM Asset Chivas</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>All_DAM_Asset_Jameson</fullName>
+        <columns>NAME</columns>
+        <columns>ESN_MB_DAMId__c</columns>
+        <columns>ESN_MB_description__c</columns>
+        <columns>ESN_MB_fileName__c</columns>
+        <columns>ESN_MB_originalFile_extension__c</columns>
+        <columns>ESN_MB_prettySize__c</columns>
+        <columns>ESN_MB_Taxonomy_BrandVariant__c</columns>
+        <columns>ESN_MB_Taxonomy_BrandMaterials__c</columns>
+        <columns>ESN_MB_Taxonomy_AssetType__c</columns>
+        <columns>ESN_MB_Taxonomy_MarketInformation__c</columns>
+        <columns>ESN_MB_Taxonomy_MarketSuitability__c</columns>
+        <columns>ESN_MB_Taxonomy_Permissions__c</columns>
+        <columns>ESN_MB_workflow_status__c</columns>
+        <columns>ESN_MB_Taxonomy_Category__c</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>ESN_MB_Asset__c.ESN_MB_DAM_Asset</value>
+        </filters>
+        <filters>
+            <field>ESN_MB_Brand_Scope_Text__c</field>
+            <operation>contains</operation>
+            <value>Jameson</value>
+        </filters>
+        <label>All DAM Asset Jameson</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Assets_Absolut</fullName>
+        <columns>NAME</columns>
+        <columns>ESN_MB_Taxonomy_AssetType__c</columns>
+        <columns>ESN_MB_Brand_Scope_Text__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ESN_MB_Brand_Scope_Text__c</field>
+            <operation>contains</operation>
+            <value>absolut</value>
+        </filters>
+        <label>Assets Absolut</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Assets_Ballantine_s_test</fullName>
+        <columns>NAME</columns>
+        <columns>ESN_MB_Taxonomy_AssetType__c</columns>
+        <columns>ESN_MB_Taxonomy_BrandVariant__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ESN_MB_Brand_Scope_Text__c</field>
+            <operation>contains</operation>
+            <value>Ballan</value>
+        </filters>
+        <label>Assets Ballantine&apos;s</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Assets_Beefeater</fullName>
+        <columns>NAME</columns>
+        <columns>ESN_MB_DAMId__c</columns>
+        <columns>ESN_MB_Taxonomy_AssetType__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>ESN_MB_Taxonomy_BrandVariant__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ESN_MB_Brand_Scope_Text__c</field>
+            <operation>contains</operation>
+            <value>beef</value>
+        </filters>
+        <label>Assets Beefeater</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Assets_G_H_Mumm</fullName>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <columns>ESN_MB_DAMId__c</columns>
+        <columns>NAME</columns>
+        <columns>ESN_MB_Taxonomy_AssetType__c</columns>
+        <columns>ESN_MB_Brand_Scope_Text__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ESN_MB_Brand_Scope_Text__c</field>
+            <operation>contains</operation>
+            <value>mum</value>
+        </filters>
+        <filters>
+            <field>NAME</field>
+            <operation>contains</operation>
+            <value>mum</value>
+        </filters>
+        <label>Assets G.H.Mumm</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Assets_Glenlivet</fullName>
+        <columns>NAME</columns>
+        <columns>ESN_MB_Taxonomy_AssetType__c</columns>
+        <columns>ESN_MB_Brand_Scope_Text__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ESN_MB_Brand_Scope_Text__c</field>
+            <operation>contains</operation>
+            <value>glenlivet</value>
+        </filters>
+        <label>Assets Glenlivet</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Assets_Havana_Club</fullName>
+        <columns>NAME</columns>
+        <columns>ESN_MB_DAMId__c</columns>
+        <columns>ESN_MB_Taxonomy_BrandVariant__c</columns>
+        <columns>ESN_MB_Brand_Scope_Text__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ESN_MB_Brand_Scope_Text__c</field>
+            <operation>contains</operation>
+            <value>havana</value>
+        </filters>
+        <label>Assets Havana Club</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Assets_Jacob_s_Creek</fullName>
+        <columns>NAME</columns>
+        <columns>ESN_MB_DAMId__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ESN_MB_Brand_Scope_Text__c</field>
+            <operation>contains</operation>
+            <value>Jacob</value>
+        </filters>
+        <label>Assets Jacob&apos;s Creek</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Assets_Kahlua</fullName>
+        <columns>NAME</columns>
+        <columns>ESN_MB_Taxonomy_BrandVariant__c</columns>
+        <columns>ESN_MB_Brand_Scope_Text__c</columns>
+        <columns>ESN_MB_DAMId__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ESN_MB_Brand_Scope_Text__c</field>
+            <operation>contains</operation>
+            <value>Kahl</value>
+        </filters>
+        <label>Assets Kahlua</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Assets_Perrier_Jou_t</fullName>
+        <columns>NAME</columns>
+        <columns>ESN_MB_Taxonomy_BrandVariant__c</columns>
+        <columns>ESN_MB_Brand_Scope_Text__c</columns>
+        <columns>ESN_MB_DAMId__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ESN_MB_Taxonomy_Brands__c</field>
+            <operation>contains</operation>
+            <value>perrier</value>
+        </filters>
+        <label>Assets Perrier-Jouët</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Assets_Stoneleigh</fullName>
+        <columns>NAME</columns>
+        <columns>ESN_MB_Brand_Scope_Text__c</columns>
+        <columns>ESN_MB_SizeMo__c</columns>
+        <columns>ESN_MB_Taxonomy__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ESN_MB_Brand_Scope_Text__c</field>
+            <operation>contains</operation>
+            <value>stoneleigh</value>
+        </filters>
+        <label>Assets Stoneleigh</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>ESN_MB_All_DAM_Asset</fullName>
+        <columns>NAME</columns>
+        <columns>ESN_MB_DAMId__c</columns>
+        <columns>ESN_MB_Taxonomy_Brands__c</columns>
+        <columns>ESN_MB_description__c</columns>
+        <columns>ESN_MB_fileName__c</columns>
+        <columns>ESN_MB_originalFile_extension__c</columns>
+        <columns>ESN_MB_prettySize__c</columns>
+        <columns>ESN_MB_Brand_Scope_Text__c</columns>
+        <columns>ESN_MB_Taxonomy_BrandVariant__c</columns>
+        <columns>ESN_MB_Taxonomy_Category__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>ESN_MB_Taxonomy_Permissions__c</columns>
+        <columns>ESN_MB_Taxonomy__c</columns>
+        <columns>ESN_MB_isWebinar__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>ESN_MB_Asset__c.ESN_MB_DAM_Asset</value>
+        </filters>
+        <label>All DAM Asset</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>ESN_MB_All_Internal_Asset</fullName>
+        <columns>NAME</columns>
+        <columns>ESN_MB_DAMId__c</columns>
+        <columns>ESN_MB_description__c</columns>
+        <columns>ESN_MB_fileName__c</columns>
+        <columns>ESN_MB_workflow_status__c</columns>
+        <columns>ESN_MB_DocumentId__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>ESN_MB_Asset__c.ESN_MB_Internal_Asset</value>
+        </filters>
+        <label>All Internal Asset</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>all_DAM_Asset_with_Storyboard</fullName>
+        <columns>NAME</columns>
+        <columns>ESN_MB_Taxonomy_BrandVariant__c</columns>
+        <columns>ESN_MB_Brand_Scope_Text__c</columns>
+        <columns>ESN_MB_DAMId__c</columns>
+        <columns>ESN_MB_Storyboard_URL__c</columns>
+        <columns>ESN_MB_Storyboard_Slide_Count__c</columns>
+        <columns>ESN_MB_mimeType__c</columns>
+        <columns>ESN_MB_prettySize__c</columns>
+        <columns>ESN_MB_originalFile_extension__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ESN_MB_Storyboard_URL__c</field>
+            <operation>notEqual</operation>
+        </filters>
+        <label>all DAM Asset with Storyboard</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <label>Asset Name</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>MyBrands Assets</pluralLabel>
+    <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
+    <recordTypes>
+        <fullName>ESN_MB_DAM_Asset</fullName>
+        <active>true</active>
+        <description>Asset that is stored into the DAM. Contains the reference of the media in the DAM.</description>
+        <label>DAM Asset</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>ESN_MB_Internal_Asset</fullName>
+        <active>true</active>
+        <description>Asset that is stored internally into Salesforce</description>
+        <label>Internal Asset</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>ESN_MB_Link_Asset</fullName>
+        <active>true</active>
+        <description>Record Type used to store links in Market Activations and in Global Activations</description>
+        <label>Link Asset</label>
+    </recordTypes>
+    <searchLayouts>
+        <listViewButtons>Update_DAM_Assets</listViewButtons>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+    <webLinks>
+        <fullName>Import_Last_DAM_Assets</fullName>
+        <availability>online</availability>
+        <description>Import DAM assets modified from yesterday</description>
+        <displayType>massActionButton</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Import Last DAM Assets</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <requireRowSelection>false</requireRowSelection>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/31.0/connection.js&quot;)}
+{!REQUIRESCRIPT(&quot;/soap/ajax/31.0/apex.js&quot;)}
+
+var startDate = Date.today().addDays(-1);
+var endDate = Date.today();
+
+alert(&quot;startDate:&quot; + startDate + &apos;, endDate:&apos; + endDate);
+
+var scr = &quot;ESN_MB_Rest_DAM_Batch c = new ESN_MB_Rest_DAM_Batch(startDate, endDate); &quot; +
+         &quot; Database.executeBatch(c, 5); &quot;;
+var result = sforce.apex.executeAnonymous(scr);
+ 
+alert(&quot;The Batch is Running. Please wait 5 minutes.&quot;);</url>
+    </webLinks>
+    <webLinks>
+        <fullName>TEST</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>TEST</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <requireRowSelection>false</requireRowSelection>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/31.0/connection.js&quot;)}
+{!REQUIRESCRIPT(&quot;/soap/ajax/31.0/apex.js&quot;)}
+
+var startDate = Date.today().addDays(-1);
+var endDate = Date.today();
+
+alert(&quot;startDate:&quot; + startDate + &apos;, endDate:&apos; + endDate);
+
+var scr = &quot;ESN_MB_Rest_DAM_Batch c = new ESN_MB_Rest_DAM_Batch(startDate, endDate); &quot; +
+&quot; Database.executeBatch(c, 5); &quot;;
+var result = sforce.apex.executeAnonymous(scr);
+
+alert(&quot;The Batch is Running. Please wait 5 minutes.&quot;);</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Update_DAM_Assets</fullName>
+        <availability>online</availability>
+        <description>Get All DAM Assets for all enabled brands with DAM Initialization checked starting from the latest import date</description>
+        <displayType>massActionButton</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Update DAM Assets</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <requireRowSelection>false</requireRowSelection>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/31.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/31.0/apex.js&quot;)} 
+
+var result = sforce.apex.execute(&quot;ESN_MB_Rest_DAM_Schedule&quot;,&quot;importLastModifiedAssets&quot;,{brandDamId:&quot;&quot;});
+
+alert(result);</url>
+    </webLinks>
+</CustomObject>

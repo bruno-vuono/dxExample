@@ -1,0 +1,174 @@
+<apex:page standardController="ESN_Video__c" extensions="ESN_VFC28_VideoDisplay" action="{!incrementCountViews}" tabStyle="ESN_ChatterTV__tab">
+    <head>
+        <link rel="stylesheet" href="{!URLFOR($Resource.JQuery_UI,'/jquery-ui-1.10.3/themes/base/jquery-ui.css')}" />
+        <link rel="stylesheet" href="{!URLFOR($Resource.ChatterTV_Resources,'/style/style_VFP28.css')}" />
+        <script type="text/javascript" src="{!URLFOR($Resource.JQuery_UI,'/jquery-ui-1.10.3/jquery-1.9.1.js')}" />
+        <script type="text/javascript" src="{!URLFOR($Resource.JQuery_UI,'/jquery-ui-1.10.3/ui/jquery-ui.js')}" />
+        <!-- JWPlayer -->
+        <!-- FTR Note : Mixed Active Content is now blocked by default in Firefox 23 -->
+        <!-- My workaround is to simply remove the protocol (src="//"). The browser will then use the protocol that the page was loaded with. -->
+        <script src="//jwpsrv.com/library/3UU0IKObEeOXXSIACrqE1A.js"></script>
+        <script>
+            var $ = jQuery.noConflict();
+            $(function() {
+                $( "#tabs" ).tabs().addClass( "ui-tabs-vertical ui-helper-clearfix" );
+                $( "#tabs li" ).removeClass( "ui-corner-top ui-tabs-active ui-state-active" ).addClass( "ui-corner-left" );
+                var videoCats = "{!ESN_Video__c.ESN_Categories__c}";
+                videoCats = videoCats.split(";");
+                for (var i=0; i<videoCats.length; i++) {
+                    var id = ".tabs-"+videoCats[i].replace(/ /g,'');
+                    $( id ).addClass( "ui-tabs-active ui-state-active" );
+                }
+            });
+        </script>
+        <style>
+            .fwplayer-td {
+                width: 520px;
+                height: 292px;
+                margin-right: 20px;
+                background-color: black;
+            }
+        </style>        
+        
+    </head>
+
+    <body>
+    <script>    
+        // Google Analytics
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', '{!ga_tokens}']);
+        _gaq.push(['_setDomainName', 'visual.force.com']);
+        _gaq.push(['_trackPageview']);
+        
+        (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+        // End of Google Analytics
+    </script>
+    
+    
+    <apex:outputLink title="Back to Chatter TV" value="/apex/ESN_VFP29_ChatterTV?core.apexpages.devmode.url=1" styleClass="backlink" > <img src="{!URLFOR($Resource.ChatterTV_Resources, '/img/Chatter_TV_Logo.PNG')}" class="chatterTV-logo" /></apex:outputLink>
+    
+    <table>
+        <tr>
+            <td>
+                <div id="tabs" class="gallery">
+                    <ul>
+                        <apex:repeat value="{!currVideoCats_lst}" var="cat">
+                            <li><a class="gallery-cat tabs-{!cat2CatWithoutSpaces_map[cat]}" href="#tabs-{!cat}">{!cat}</a></li>
+                        </apex:repeat>
+                    </ul>
+                    <div id="tabs-" class="gallery-list">
+                        <div>
+                            <table  class="video-display">
+                                <tr>
+                                    <td class="fwplayer-td">                            
+<!-- JWPlayer : HTML5 -->
+<div id='playertYbSnYUcCpvB'></div>
+<script type='text/javascript'>
+    jwplayer('playertYbSnYUcCpvB').setup({
+        primary: 'flash',
+        file: '{!ESN_Video__c.ESN_VideoURL__c}',
+        title: '{!ESN_Video__c.Name}',
+        width: '520',
+        height: '292',
+        autostart: 'true',
+        skin: "bekle",
+        ga: {}
+    });
+</script>
+<!-- End JWPlayer -->
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <table>                                                    
+                                            <tr>
+                                                <td class="gallery-list-video-thumbnail">
+                                                    <apex:outputLink value="/{!ESN_Video__c.OwnerId}"><apex:image styleClass="gallery-list-video-usrPhoto" url="{!ownerId2Owner_map[ESN_Video__c.OwnerId].SmallPhotoUrl}"/></apex:outputLink>    
+                                                </td>
+                                                <td>
+                                                    <table class="gallery-list-video-prop">
+                                                        <tr>
+                                                            <td>
+                                                                <a class="gallery-list-video-prop-title" href="/apex/ESN_VFP28_VideoDisplay?id={!ESN_Video__c.Id}&core.apexpages.devmode.url=1">{!ESN_Video__c.Name}</a>
+                                                                 - <span class="gallery-list-video-prop-views">{!ESN_Video__c.ESN_ViewsCount__c} views</span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <div class="gallery-list-video-prop-descr">
+                                                                    <apex:outputText value="{!ESN_Video__c.ESN_Description__c}" escape="false" />
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="video-posted">
+                                                                <!-- chatter:follow entityId="{!ESN_Video__c.Id}"/ -->
+                                                                <span class="gallery-list-video-prop-views">Posted by </span>
+                                                                <a class="gallery-list-video-usrName" href="/{!ESN_Video__c.OwnerId}">{!ownerId2Owner_map[ESN_Video__c.OwnerId].Name}</a> 
+                                                                -&nbsp;<apex:outputText value="{0,date,d' 'MMMM' 'yyyy}" styleClass="gallery-list-video-prop-date">
+                                                                    <apex:param value="{!ESN_Video__c.ESN_PublishedDate__c}" /> 
+                                                                </apex:outputText>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="gallery-menu">
+                    <div class="gallery-menu-popular">
+                        <div class="gallery-menu-popular-title"> Most Popular Video </div>
+                        <table>
+                            <apex:repeat value="{!topFiveVideos_lst}" var="video">                
+                                <tr>
+                                    <td class="gallery-menu-video">
+                                        <a class="gallery-menu-video-title" href="/apex/ESN_VFP28_VideoDisplay?id={!video.Id}&core.apexpages.devmode.url=1">{!video.Name}</a>
+                                        <br/>
+                                        <span class="gallery-menu-video-views">{!video.ESN_ViewsCount__c} views</span>
+                                        <br/>
+                                        <a class="gallery-menu-video-watch" href="/apex/ESN_VFP28_VideoDisplay?id={!video.Id}&core.apexpages.devmode.url=1"> <img class="gallery-menu-submit-contact-img" src="{!URLFOR($Resource.ChatterTV_Resources, '/img/add.png')}"/>  watch video</a>
+                                    </td>
+                                </tr>
+                            </apex:repeat>
+                        </table>
+                    </div>
+                    <div class="gallery-menu-submit">
+                        <div class="gallery-menu-submit-title"> Submit a video </div>
+                        <div class="gallery-menu-submit-content"> If you would like to share your video, feel free to contact us </div>
+                        <div class="gallery-menu-submit-contact">
+                            <a class="gallery-menu-submit-contact-mailto" href="mailto:{!videoAdmin}"> 
+                                <img class="gallery-menu-submit-contact-img" src="{!URLFOR($Resource.ChatterTV_Resources, '/img/email.png')}"/>
+                                 Contact 
+                            </a>
+                        </div>
+                    </div>                    
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="chatter-feed">
+                <div class="chatterfeedshell">
+                    <chatter:feed entityId="{!ESN_Video__c.Id}" showPublisher="true"/>
+                </div>
+            </td>
+            <td class="chatter-follow">
+                <chatter:follow entityId="{!ESN_Video__c.Id}"/>
+                <br/>
+                <chatter:followers entityId="{!ESN_Video__c.Id}" />
+            </td>
+        </tr>
+    </table>
+        <div style="display: none"> {!ESN_Video__c.ESN_VideoTags__c}{!ESN_Video__c.ESN_Categories__c} {!ESN_Video__c.ESN_ViewsCount__c} </div>
+</body>
+</apex:page>

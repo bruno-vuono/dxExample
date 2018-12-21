@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>true</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>ESN_Categories__c</fullName>
+        <externalId>false</externalId>
+        <label>Categories</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Chatter Best Practices</fullName>
+                    <default>false</default>
+                    <label>Chatter Best Practices</label>
+                </value>
+                <value>
+                    <fullName>Chatter Tutorials</fullName>
+                    <default>false</default>
+                    <label>Chatter Tutorials</label>
+                </value>
+                <value>
+                    <fullName>Connect Tutorials</fullName>
+                    <default>false</default>
+                    <label>Connect Tutorials</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ESN_Description__c</fullName>
+        <description>Description of the video.</description>
+        <externalId>false</externalId>
+        <label>Description</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ESN_OrderNumber__c</fullName>
+        <description>To order videos, attribute a number. 
+Videos with number &quot;1&quot; appears first.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>To order videos, attribute a number. 
+Videos with number &quot;1&quot; appears first.</inlineHelpText>
+        <label>Order Number</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_PublishedDate__c</fullName>
+        <description>Correspond to the date when the video was published.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Correspond to the date when the video was published.</inlineHelpText>
+        <label>Published Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>ESN_SmallDescription__c</fullName>
+        <description>Resume with one sentence the purpose of this video.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Resume with one sentence the purpose of this video.
+Used in the chatter TV.</inlineHelpText>
+        <label>Small Description</label>
+        <length>235</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_VideoTags__c</fullName>
+        <description>Enters a list of keywords about this video, separated by semi-colon.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enters a list of keywords about this video, separated by semi-colon.</inlineHelpText>
+        <label>Video Tags</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>ESN_VideoThumbnail__c</fullName>
+        <description>An image used as thumbnail for the video.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>An image used as thumbnail for the video.</inlineHelpText>
+        <label>Video Thumbnail</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ESN_VideoURL__c</fullName>
+        <description>URL of the video.
+Must be a streamed url.</description>
+        <externalId>false</externalId>
+        <label>Video URL</label>
+        <length>1000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>2</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ESN_ViewsCount__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>#Views</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ESN_dont_display_on_home__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Check this option if the video shall NOT be displayed on ChatterTV home page.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>If this option is checked, the video will NOT be displayed on ChatterTV home page.</inlineHelpText>
+        <label>Do not display on home</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>Video</label>
+    <nameField>
+        <label>Video Title</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Chatter TV Videos</pluralLabel>
+    <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>ESN_VideoStandard</fullName>
+        <active>true</active>
+        <label>Video Standard</label>
+        <picklistValues>
+            <picklist>ESN_Categories__c</picklist>
+            <values>
+                <fullName>Chatter Best Practices</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chatter Tutorials</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

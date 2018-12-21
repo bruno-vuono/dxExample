@@ -1,0 +1,14 @@
+<apex:page standardController="ASI_DFPM_Promotional_Project__c" extensions="ASI_DFPM_PromotionalProjectCloneCON">
+	<apex:form id="mainForm">
+		<apex:pageMessages />
+		<apex:pageBlock id="mainPageBlock">
+			<apex:pageBlockButtons id="mainPageBlockBtns" location="top">
+				<apex:commandButton action="{!startClone}" value="Clone"/>
+				<apex:commandButton action="{!URLFOR($Action.ASI_DFPM_Promotional_Project__c.View, pjId)}" value="Cancel" immediate="true"/>
+			</apex:pageBlockButtons>
+			<apex:outputLabel for="pjStartDateInput" value="Project Start Date" style="font-weight:bold" id="pjStartDateLabel" />
+			<apex:inputField value="{!pjForInput.ASI_DFPM_Start_Date__c}" style="margin-left:30px" id="pjStartDateInput" />
+			<br/><br/><br/>
+		</apex:pageBlock>
+	</apex:form>
+</apex:page>

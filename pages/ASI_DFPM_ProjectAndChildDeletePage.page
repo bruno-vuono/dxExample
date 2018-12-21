@@ -1,0 +1,4 @@
+<apex:page standardController="ASI_DFPM_Promotional_Project__c" extensions="ASI_DFPM_ProjectAndChildDeleteController" action="{!deleteProjectAndChilds}">
+	<apex:pageMessages />
+	<apex:outputLink value="/{!BLANKVALUE(pjId, 'home/home.jsp')}">Return</apex:outputLink>
+</apex:page>

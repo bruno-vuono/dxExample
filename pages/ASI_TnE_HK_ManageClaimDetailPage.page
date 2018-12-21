@@ -1,0 +1,1120 @@
+<!--
+*********************************************************************************
+ * Name: ASI_TnE_HK_ManageClaimDetailPage
+ * Description: VF Page for HK Managing T&E Claims(Javascript).
+ *
+ * Version History
+ * Date             Developer               Comments
+ * ---------------  --------------------    --------------------------------------------------------------------------------
+ * 19/12/2016       Hugo Cheung             Created
+ * 31/1/2017        William Keung           Added field           
+-->
+<apex:page standardController="ASI_TnE_ClaimHeader__c" extensions="ASI_TnE_HK_ManageClaimDetailController" sidebar="false">
+    <head>
+        <title>T&amp;E Manage All Page</title>
+    </head>
+
+    <!-- Import Library -->
+    <!-- CSS -->
+    <apex:stylesheet value="{!URLFOR($Resource.ASI_TnE_Library, '/styles/main.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.ASI_TnE_Library, '/styles/bootstrap.min.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.ASI_TnE_Library, '/styles/datatables.min.css')}" />
+    <!-- JavaScript -->
+    <apex:includeScript value="{!URLFOR($Resource.ASI_TnE_Library, '/lib/jquery.min.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.ASI_TnE_Library, '/lib/bootstrap.min.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.ASI_TnE_Library, '/lib/datatables.min.js')}" />
+
+    <!-- Style -->
+    <style>
+        .selector {
+            width: 150px;
+        }
+
+        .link-button {
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        
+        .savingRecord .fullScreenLoading{
+            display: block;
+        }
+
+        .fullScreenLoading {
+            display:    none;
+            position:   fixed;
+            z-index:    1000;
+            top:        0;
+            left:       0;
+            height:     100%;
+            width:      100%;
+            background: rgba( 255, 255, 255, .8 ) 
+                        url('{!URLFOR($Resource.ASI_TnE_Library, '/images/loading.gif')}')  
+                        50% 50% 
+                        no-repeat;
+        }
+
+        .error {
+            border: 2px solid red;
+        }
+
+        #tneClaimDetailTable {
+          zoom: 80%;
+        }
+
+        th, td {
+            padding-top: 5px;
+            padding-bottom: 5px;
+            padding-right: 10px;
+            padding-left: 10px;
+        }
+        
+        table.dataTable td {
+            height: 30px;
+        }
+        
+        table.dataTable thead tr {
+            background-color: #cce6ff;
+        }
+    
+        table.dataTable tbody tr { 
+            background-color: #e6f3ff; 
+        }
+        
+        table.dataTable tbody tr:nth-child(even) {
+            background-color: white;  
+        }
+        
+        table.dataTable td { 
+            border-bottom: 2px solid #e0e0d1; 
+        }
+        
+    </style>
+
+    <!-- JavaScript -->
+    <script>
+        /****************
+        Define Variable
+        ****************/
+        const NEW_CLAIM_DETAIL_PREFIX     = 'New-';
+        const CROSS_CHARGE_FIELD_PREFIX   = 'CrossChargeTo-';
+        const PO_FIELD_PREFIX             = 'Po-';
+        const PLAN_FIELD_PREFIX           = 'Plan-';
+        const BU_FIELD_PREFIX             = 'Bu-';
+        const PRE_TRIP_FIELD_PREFIX       = 'PreTrip-';
+        const AC_CODE_FIELD_PREFIX        = 'ACcode-';
+        const ACTION_LABEL                = 'Action';
+        const HK_CURRENCY                 = 'HKD'
+        const CONST_DATA_TABLE_PROPERTIES = {
+            "bDestroy":true,
+            "bStateSave":true,
+            "bSearch":false,
+            "bFilter" : false,
+            "iDisplayLength":1000,
+            "bSort" : false,
+            "bPaginate": false,
+            "bScrollCollapse": true,
+            "bJQueryUI": true
+        };
+        const TODAY_DATE = new Date();
+
+        //View Type
+        const NORMAL_VIEW             = 'normalView';
+        const NORMAL_VIEW_CORP_CARD   = 'normalViewCorpCard';
+        const EMPLOYEE_VIEW           = 'employeeView';
+        const EMPLOYEE_VIEW_CORP_CARD = 'employeeViewCorpCard';
+        const FINANCE_VIEW            = 'financeView';
+        const FINANCE_VIEW_CORP_CARD  = 'financeViewCorpCard';
+
+        //Lookup Field Parameter
+        const ACCOUNT_OBJECT_PREFIX      = "{!$ObjectType.Account.keyPrefix}";
+        const PO_OBJECT_PREFIX           = "{!$ObjectType.ASI_MFM_PO__c.keyPrefix}";
+        const PLAN_OBJECT_PREFIX         = "{!$ObjectType.ASI_MFM_Plan__c.keyPrefix}";
+        const BU_OBJECT_PREFIX           = "{!$ObjectType.ASI_MFM_BU__c.keyPrefix}";
+        const AC_CODE_OBJECT_PREFIX      = "{!$ObjectType.ASI_MFM_A_C_Code__c.keyPrefix}";
+        const CLAIM_DETAIL_OBJECT_PREFIX = "{!$ObjectType.ASI_TnE_ClaimDetail__c.keyPrefix}";
+        const PRE_TRIP_OBJECT_PREFIX     = "{!$ObjectType.ASI_eForm_Pre_Trip_Approval__c.keyPrefix}";
+
+        /*****************
+        Datatable Field Config
+        *****************/
+        const actionField           = {"title"  : ACTION_LABEL,
+                                       "data"   : "",
+                                       "render" : function(data, type, full) {
+                                                    return "<a class='link-button' onClick='cloneRow(this.parentNode.parentNode)'>Clone</a>" + 
+                                                           "</br>" + 
+                                                           "<a class='link-button' onClick='deleteRow(this.parentNode.parentNode)'>Delete</a>";
+                                               }
+                                      };
+        const expenseCategory       = {"title"  : "Expense Category", 
+                                       "data"   : "",
+                                       "render" : function(data, type, full) {
+                                                    var selectOptionTag = "<select class='selector ASI_TnE_Expense_Category' onChange='changeExpenseCategory(this.parentNode.parentNode, this.value)' required>";
+                                                    expenseCategoryList.forEach(function(expenseCategory) {
+                                                        if(expenseCategory.Id == full.ASI_TnE_Expense_Category__c) {
+                                                            selectOptionTag += "<option value='" + expenseCategory.Id + "' selected>" + expenseCategory.Name + "</option>";
+                                                        } else {
+                                                            selectOptionTag += "<option value='" + expenseCategory.Id + "'>" + expenseCategory.Name + "</option>";
+                                                        }
+                                                    }); 
+                                                    selectOptionTag += "</select>";
+                                                    return selectOptionTag;
+                                                  }
+                                      };
+        const expenseClassification = {"title"  : "Expense Classification",
+                                       "data"   : "",
+                                       "render" : function(data, type, full) {
+                                                    var selectOptionTag = "<select class='selector ASI_TnE_Expense_Classification' onChange='changeExpenseClassification(this.parentNode.parentNode, this.value)'> required";
+                                                    selectOptionTag += "<option value='' selected>--Please Select--</option>";
+                                                    expenseCategoryList.forEach(function(expenseCategory) {
+                                                        if(expenseCategory.Id == full.ASI_TnE_Expense_Category__c) {
+                                                            expenseCategory.TnE_JP_Expense_Classifications__r.records.forEach(function(expenseClassification) {
+                                                                if(expenseClassification.Id == full.ASI_TnE_Expense_Classification__c) {
+                                                                    selectOptionTag += "<option value='" + expenseClassification.Id + "' selected>" + expenseClassification.Name + "</option>";
+                                                                } else {
+                                                                    selectOptionTag += "<option value='" + expenseClassification.Id + "'>" + expenseClassification.Name + "</option>";
+                                                                }
+                                                            });
+                                                        }
+                                                    });
+                                                    selectOptionTag += "</select>";
+                                                    return selectOptionTag;
+                                                  }
+                                       };
+        const receiptDate           = {"title"          : "Receipt Date",
+                                       "data"           : "ASI_TnE_Receipt_Date__c",
+                                       "defaultContent" : "",
+                                       "render"         : function(data, type, full) {
+                                                            return "<input class='ASI_TnE_Receipt_Date' type='date' value='" + data + "' onChange='updateClaimDetailValue(this.parentNode.parentNode, \"ASI_TnE_Receipt_Date__c\", this.value)' required/>";
+                                                          }
+                                       };
+        const receiptAmount         = {"title"          : "Receipt Amount",
+                                       "data"           : "ASI_TnE_Receipt_Amount__c",
+                                       "defaultContent" : "", 
+                                       "render"         : function(data, type, full) {
+                                                            if(!data) {
+                                                                data = "";
+                                                            }
+                                                            return "<input class='ASI_TnE_Receipt_Amount' type='number' value='" + data + "' onChange='updateClaimDetailValue(this.parentNode.parentNode, \"ASI_TnE_Receipt_Amount__c\", this.value)' required/>";
+                                                          } 
+                                       };
+        const currency              = {"title"          : "Currency",
+                                       "data"           : "",
+                                       "render"         : function(data, type, full) {
+                                                            var selectOptionTag = "<select class='selector ASI_TnE_Currency' onChange='changeCurrency(this.parentNode.parentNode, this.value)' required>";
+                                                            for(var i = 0 ; i < currencyList.length ; i++) {
+                                                                if(currencyList[i] == full.ASI_TnE_Currency__c) {
+                                                                    selectOptionTag += "<option value='" + currencyList[i] + "' selected>" + currencyList[i] + "</option>";
+                                                                } else {
+                                                                    selectOptionTag += "<option value='" + currencyList[i] + "'>" + currencyList[i] + "</option>";
+                                                                }
+                                                            }
+                                                            selectOptionTag += "</select>";
+                                                            return selectOptionTag;
+                                                          }
+                                       };
+        const fxRate                = {"title"          : "FX Rate",
+                                       "data"           : "ASI_TnE_FX_Rate__c",
+                                       "defaultContent" : 1,
+                                       "render"         : function(data, type, full) {
+                                                            if(!data) {
+                                                                data = "";
+                                                            }
+                                                            return "<input class='ASI_TnE_FX_Rate' type='number' value='" + data + "' onChange='updateClaimDetailValue(this.parentNode.parentNode, \"ASI_TnE_FX_Rate__c\", this.value)'/>";
+                                                          } 
+                                       };
+        const destination           = {"title"          : "Destination",
+                                       "data"           : "ASI_TnE_Destination__c",
+                                       "defaultContent" : "",
+                                       "render"         : function(data, type, full) {
+                                                            return "<input class='ASI_TnE_Destination' type='text' value='" + (data ? data : '') + "' onChange='updateClaimDetailValue(this.parentNode.parentNode, \"ASI_TnE_Destination__c\", this.value)'/>";
+                                                          }
+                                      };
+        const invoiceIssuer         = {"title"          : "Invoice Issuer",
+                                       "data"           : "ASI_TnE_Invoice_Issuer__c",
+                                       "defaultContent" : "",
+                                       "render"         : function(data, type, full) {
+                                                            return "<input class='ASI_TnE_Invoice_Issuer' type='text' value='" + (data ? data : '') + "' onChange='updateClaimDetailValue(this.parentNode.parentNode, \"ASI_TnE_Invoice_Issuer__c\", this.value)'/>";
+                                                          }
+                                      };
+        const pax                   = {"title"          : "Pax",
+                                       "data"           : "ASI_TnE_Total_Number_Pax__c",
+                                       "defaultContent" : "",
+                                       "render"         : function(data, type, full) {
+                                                            if(!data) {
+                                                                data = "";
+                                                            }
+                                                            return "<input class='ASI_TnE_Total_Number_Pax' type='number' value='" + data + "' onChange='updateClaimDetailValue(this.parentNode.parentNode, \"ASI_TnE_Total_Number_Pax__c\", this.value)'/>";
+                                                          }
+                                      };
+        const nameAndCompany        = {"title"          : "Name & Company",
+                                       "data"           : "ASI_TnE_Name_Company__c",
+                                       "defaultContent" : "",
+                                       "render"         : function(data, type, full) {
+                                                            return "<textarea class='ASI_TnE_Name_Company' rows='2' cols='50' onChange='updateClaimDetailValue(this.parentNode.parentNode, \"ASI_TnE_Name_Company__c\", this.value)'>" + (data ? data : '') + "</textarea>";
+                                                          }
+                                      };
+        const detailsExpense        = {"title"          : "Details Expense",
+                                       "data"           : "ASI_TnE_Details_of_Expense__c",
+                                       "defaultContent" : "",
+                                       "render"         : function(data, type, full) {
+                                                            return "<textarea class='ASI_TnE_Details_of_Expense' rows='2' cols='50' onChange='updateClaimDetailValue(this.parentNode.parentNode, \"ASI_TnE_Details_of_Expense__c\", this.value)'>" + (data ? data : '') + "</textarea>";
+                                                          }
+                                      };
+        const poAndCapPlan          = {"title"          : "PO & CAP Plan",
+                                       "data"           : "",
+                                       "render" : function(data, type, full) {
+                                                    var poFieldId = PO_FIELD_PREFIX + poFieldIndex;
+                                                    var planFieldId = PLAN_FIELD_PREFIX + planFieldIndex;
+
+                                                    var poName = '';
+                                                    var planName = '';
+                                                    if(full.ASI_TnE_MFM_PO__c) poName = full.ASI_TnE_MFM_PO__r.Name;
+                                                    if(full.ASI_TnE_CAP_Plan__c) planName = full.ASI_TnE_CAP_Plan__r.Name;
+
+                                                    var fieldStr = "<span class='lookupInput'>"; 
+                                                    fieldStr += "<input class='ASI_TnE_MFM_PO' type='text' id='" + poFieldId + "' name='" + poFieldId + "' onChange='resetLookup(\"" + poFieldId + "\");updateClaimDetailValue(this.parentNode.parentNode, \"ASI_TnE_MFM_PO__c\", this.value);' value='" + poName + "' />";
+                                                    fieldStr += "<input type='hidden' id='" + poFieldId + "_lkid' name='" + poFieldId + "_lkid' value='' onChange='updateClaimDetailValue(this.parentNode.parentNode, \"ASI_TnE_MFM_PO__c\", this.value);'/>";
+                                                    fieldStr += "<input type='hidden' id='" + poFieldId + "_lkold' name='" + poFieldId + "_lkold' value=''/>";
+                                                    fieldStr += "<img src='/s.gif' class='lookupIcon ASI_TnE_MFM_PO' title='PO Lookup (New Window)'" + 
+                                                                "onblur='lookupButtonOnBlur(this)'" + 
+                                                                "onfocus='lookupButtonOnFocus(this)'" + 
+                                                                "onmouseout='lookupButtonOnBlur(this)'" + 
+                                                                "onmouseover='lookupButtonOnFocus(this)'" + 
+                                                                "onclick='javascript&colon;showLookup(\"" + poFieldId + "\", \"" + PO_OBJECT_PREFIX + "\", \"" + PO_FIELD_ID + "\", \"" + CLAIM_DETAIL_OBJECT_PREFIX + "\")' />";
+                                                    fieldStr += "</span>";
+
+                                                    fieldStr += "</br>";
+
+                                                    fieldStr += "<span class='lookupInput'>"; 
+                                                    fieldStr += "<input class='ASI_TnE_CAP_Plan' type='text' id='" + planFieldId + "' name='" + planFieldId + "' onChange='resetLookup(\"" + planFieldId + "\");updateClaimDetailValue(this.parentNode.parentNode, \"ASI_TnE_CAP_Plan__c\", this.value);' value='" + planName + "' />";
+                                                    fieldStr += "<input type='hidden' id='" + planFieldId + "_lkid' name='" + planFieldId + "_lkid' value='' onChange='updateClaimDetailValue(this.parentNode.parentNode, \"ASI_TnE_CAP_Plan__c\", this.value);'/>";
+                                                    fieldStr += "<input type='hidden' id='" + planFieldId + "_lkold' name='" + planFieldId + "_lkold' value=''/>";
+                                                    fieldStr += "<img src='/s.gif' class='lookupIcon ASI_TnE_CAP_Plan' title='CAP Plan Lookup (New Window)'" + 
+                                                                "onblur='lookupButtonOnBlur(this)'" + 
+                                                                "onfocus='lookupButtonOnFocus(this)'" + 
+                                                                "onmouseout='lookupButtonOnBlur(this)'" + 
+                                                                "onmouseover='lookupButtonOnFocus(this)'" + 
+                                                                "onclick='javascript&colon;showLookup(\"" + planFieldId + "\", \"" + PLAN_OBJECT_PREFIX + "\", \"" + CAP_FIELD_ID + "\", \"" + CLAIM_DETAIL_OBJECT_PREFIX + "\")' />";
+                                                    fieldStr += "</span>";
+
+                                                    poFieldIndex   += 1;
+                                                    planFieldIndex += 1;
+                                                    return fieldStr;
+                                                  }
+                                      };
+        const crossChargeTo         = {"title"  : "Cross Charge To",
+                                       "data"   : "",
+                                       "render" : function(data, type, full) {
+                                                    var crossChargeToFieldId = CROSS_CHARGE_FIELD_PREFIX + crossChargeToFieldIndex;
+
+                                                    var accountName = '';
+                                                    if(full.ASI_TnE_Charge_To_Acc__c) accountName = full.ASI_TnE_Charge_To_Acc__r.Name;
+
+                                                    var fieldStr = "<span class='lookupInput'>"; 
+                                                    fieldStr += "<input class='ASI_TnE_Charge_To_Acc' type='text' id='" + crossChargeToFieldId + "' name='" + crossChargeToFieldId + "' onChange='resetLookup(\"" + crossChargeToFieldId + "\");updateClaimDetailValue(this.parentNode.parentNode, \"ASI_TnE_Charge_To_Acc__c\", this.value);' value='" + accountName + "' />";
+                                                    fieldStr += "<input type='hidden' id='" + crossChargeToFieldId + "_lkid' name='" + crossChargeToFieldId + "_lkid' value='' onChange='updateClaimDetailValue(this.parentNode.parentNode, \"ASI_TnE_Charge_To_Acc__c\", this.value);' />";
+                                                    fieldStr += "<input type='hidden' id='" + crossChargeToFieldId + "_lkold' name='" + crossChargeToFieldId + "_lkold' value=''/>";
+                                                    fieldStr += "<img src='/s.gif' class='lookupIcon ASI_TnE_Charge_To_Acc' title='Charge To (Acc) Lookup (New Window)'" + 
+                                                                "onblur='lookupButtonOnBlur(this)'" + 
+                                                                "onfocus='lookupButtonOnFocus(this)'" + 
+                                                                "onmouseout='lookupButtonOnBlur(this)'" + 
+                                                                "onmouseover='lookupButtonOnFocus(this)'" + 
+                                                                "onclick='javascript&colon;showLookup(\"" + crossChargeToFieldId + "\", \"" + ACCOUNT_OBJECT_PREFIX + "\", \"" + CROSS_CHARGE_TO_FIELD_ID + "\", \"" + CLAIM_DETAIL_OBJECT_PREFIX + "\")' />";
+                                                    fieldStr += "</span>";
+                                                    crossChargeToFieldIndex += 1;
+                                                    return fieldStr;
+                                                  }
+                                       };
+                                       
+        const preTripApproval       = {"title"          : "Pre-Trip Approval",
+                                       "data"           : "",
+                                       "render" : function(data, type, full) {
+                                                    var preTripApprovalFieldId = PRE_TRIP_FIELD_PREFIX + preTripApprovalFieldIndex;
+
+                                                    var preTripName = '';
+                                                    if(full.ASI_TnE_Pre_Trip_Approval_Form__c) preTripName = full.ASI_TnE_Pre_Trip_Approval_Form__r.Name;
+
+                                                    var fieldStr = "<span class='lookupInput'>"; 
+                                                    fieldStr += "<input class='ASI_TnE_Pre_Trip_Approval_Form' type='text' id='" + preTripApprovalFieldId + "' name='" + preTripApprovalFieldId + "' onChange='resetLookup(\"" + preTripApprovalFieldId + "\");updateClaimDetailValue(this.parentNode.parentNode, \"ASI_TnE_Pre_Trip_Approval_Form__c\", this.value);' value='" + preTripName + "' />";
+                                                    fieldStr += "<input type='hidden' id='" + preTripApprovalFieldId + "_lkid' name='" + preTripApprovalFieldId + "_lkid' value='' onChange='updateClaimDetailValue(this.parentNode.parentNode, \"ASI_TnE_Pre_Trip_Approval_Form__c\", this.value);' />";
+                                                    fieldStr += "<input type='hidden' id='" + preTripApprovalFieldId + "_lkold' name='" + preTripApprovalFieldId + "_lkold' value=''/>";
+                                                    fieldStr += "<img src='/s.gif' class='lookupIcon ASI_TnE_Pre_Trip_Approval_Form' title='Pre-Trip Approval Lookup (New Window)'" + 
+                                                                "onblur='lookupButtonOnBlur(this)'" + 
+                                                                "onfocus='lookupButtonOnFocus(this)'" + 
+                                                                "onmouseout='lookupButtonOnBlur(this)'" + 
+                                                                "onmouseover='lookupButtonOnFocus(this)'" + 
+                                                                "onclick='javascript&colon;showLookup(\"" + preTripApprovalFieldId + "\", \"" + PRE_TRIP_OBJECT_PREFIX + "\", \"" + PRE_TRIP_FIELD_ID + "\", \"" + CLAIM_DETAIL_OBJECT_PREFIX + "\")' />";
+                                                    fieldStr += "</span>";
+                                                    preTripApprovalFieldIndex += 1;
+                                                    return fieldStr;
+                                                  }
+                                      };
+                                       
+        const excluded              = {"title"          : "Excluded", 
+                                       "data"           : "ASI_TnE_Dispute__c",
+                                       "defaultContent" : "",
+                                       "render"         : function(data, type, full) {
+                                                            var fieldStr = "<input class='ASI_TnE_Dispute' type='checkbox' ";
+                                                            if(data == true) {
+                                                                fieldStr += 'checked';
+                                                            }
+                                                            fieldStr += " onChange='updateClaimDetailValue(this.parentNode.parentNode, \"ASI_TnE_Dispute__c\", this.value)' />";
+                                                            return fieldStr;
+                                                          }
+                                       };
+        
+        const bu                    = {"title"          : "BU",
+                                       "data"           : "",
+                                       "render" : function(data, type, full) {
+                                                    var buFieldId = BU_FIELD_PREFIX + buFieldIndex;
+
+                                                    var buName = '';
+                                                    if(full.ASI_TnE_BU__c) buName = full.ASI_TnE_BU__r.Name;
+
+                                                    var fieldStr = "<span class='lookupInput'>"; 
+                                                    fieldStr += "<input class='ASI_TnE_BU' type='text' id='" + buFieldId + "' name='" + buFieldId + "' onChange='resetLookup(\"" + buFieldId + "\");updateClaimDetailValue(this.parentNode.parentNode, \"ASI_TnE_BU__c\", this.value);' value='" + buName + "' />";
+                                                    fieldStr += "<input type='hidden' id='" + buFieldId + "_lkid' name='" + buFieldId + "_lkid' value='' onChange='updateClaimDetailValue(this.parentNode.parentNode, \"ASI_TnE_BU__c\", this.value);'/>";
+                                                    fieldStr += "<input type='hidden' id='" + buFieldId + "_lkold' name='" + buFieldId + "_lkold' value=''/>";
+                                                    fieldStr += "<img src='/s.gif' class='lookupIcon ASI_TnE_BU' title='BU Lookup (New Window)'" + 
+                                                                "onblur='lookupButtonOnBlur(this)'" + 
+                                                                "onfocus='lookupButtonOnFocus(this)'" + 
+                                                                "onmouseout='lookupButtonOnBlur(this)'" + 
+                                                                "onmouseover='lookupButtonOnFocus(this)'" + 
+                                                                "onclick='javascript&colon;showLookup(\"" + buFieldId + "\", \"" + BU_OBJECT_PREFIX + "\", \"" + BU_FIELD_ID + "\", \"" + CLAIM_DETAIL_OBJECT_PREFIX + "\")' />";
+                                                    fieldStr += "</span>";
+                                                    buFieldIndex += 1;
+                                                    return fieldStr;
+                                                  }
+                                       };
+
+        const acCode                = {"title"          : "A/C Code",
+                                       "data"           : "",
+                                       "render" : function(data, type, full) {
+                                                    var acCodeFieldId = AC_CODE_FIELD_PREFIX + acCodeFieldIndex;
+
+                                                    var acCodeName = '';
+                                                    if(full.ASI_TnE_A_C_Code__c) acCodeName = full.ASI_TnE_A_C_Code__r.Name;
+
+                                                    var fieldStr = "<span class='lookupInput'>"; 
+                                                    fieldStr += "<input class='ASI_TnE_A_C_Code' type='text' id='" + acCodeFieldId + "' name='" + acCodeFieldId + "' onChange='resetLookup(\"" + acCodeFieldId + "\");updateClaimDetailValue(this.parentNode.parentNode, \"ASI_TnE_A_C_Code__c\", this.value);' value='" + acCodeName + "' />";
+                                                    fieldStr += "<input type='hidden' id='" + acCodeFieldId + "_lkid' name='" + acCodeFieldId + "_lkid' value='' onChange='updateClaimDetailValue(this.parentNode.parentNode, \"ASI_TnE_A_C_Code__c\", this.value);'/>";
+                                                    fieldStr += "<input type='hidden' id='" + acCodeFieldId + "_lkold' name='" + acCodeFieldId + "_lkold' value=''/>";
+                                                    fieldStr += "<img src='/s.gif' class='lookupIcon ASI_TnE_A_C_Code' title='A/C Code Lookup (New Window)'" + 
+                                                                "onblur='lookupButtonOnBlur(this)'" + 
+                                                                "onfocus='lookupButtonOnFocus(this)'" + 
+                                                                "onmouseout='lookupButtonOnBlur(this)'" + 
+                                                                "onmouseover='lookupButtonOnFocus(this)'" + 
+                                                                "onclick='javascript&colon;showLookup(\"" + acCodeFieldId + "\", \"" + AC_CODE_OBJECT_PREFIX + "\", \"" + AC_CODE_FIELD_ID + "\", \"" + CLAIM_DETAIL_OBJECT_PREFIX + "\")' />";
+                                                    fieldStr += "</span>";
+                                                    acCodeFieldIndex += 1;
+                                                    return fieldStr;
+                                                  }
+                                       };
+
+        /*****************
+        Datatable Read Only Field Config
+        *****************/
+        const expenseCategoryReadOnly       = {"title"          : "Expense Category", 
+                                               "data"           : "ASI_TnE_Expense_Category__r.Name",
+                                               "defaultContent" : ""
+                                              };
+        const expenseClassificationReadOnly = {"title"          : "Expense Classification",
+                                               "data"           : "ASI_TnE_Expense_Classification__r.Name",
+                                               "defaultContent" : ""
+                                              };
+        const receiptDateReadOnly           = {"title"          : "Receipt Date",
+                                               "data"           : "ASI_TnE_Receipt_Date__c",
+                                               "defaultContent" : ""
+                                              };
+        const receiptAmountReadOnly         = {"title"          : "Receipt Amount",
+                                               "data"           : "ASI_TnE_Receipt_Amount__c",
+                                               "defaultContent" : 0
+                                              };
+        const currencyReadOnly              = {"title"          : "Currency",
+                                               "data"           : "ASI_TnE_Currency__c",
+                                               "defaultContent" : ""
+                                              };
+        const fxRateReadOnly                = {"title"          : "FX Rate",
+                                               "data"           : "ASI_TnE_FX_Rate__c",
+                                               "defaultContent" : 1
+                                              };
+        const destinationReadOnly           = {"title"          : "Destination",
+                                               "data"           : "ASI_TnE_Destination__c",
+                                               "defaultContent" : "",
+                                              };
+        const invoiceIssuerReadOnly         = {"title"          : "Invoice Issuer",
+                                               "data"           : "ASI_TnE_Invoice_Issuer__c",
+                                               "defaultContent" : ""
+                                              };
+        const paxReadOnly                   = {"title"          : "Pax",
+                                               "data"           : "ASI_TnE_Total_Number_Pax__c",
+                                               "defaultContent" : 0
+                                              };
+        const nameAndCompanyReadOnly        = {"title"          : "Name & Company",
+                                               "data"           : "ASI_TnE_Name_Company__c",
+                                               "defaultContent" : ""
+                                              };
+        const detailsExpenseReadOnly        = {"title"          : "Details Expense",
+                                               "data"           : "ASI_TnE_Details_of_Expense__c",
+                                               "defaultContent" : ""
+                                              };
+        const poAndCapPlanReadOnly          = {"title"          : "PO & CAP Plan",
+                                               "data"           : "",
+                                               "render" : function(data, type, full) {
+                                                            var fieldStr = "";
+                                                            if(full.ASI_TnE_MFM_PO__c) {
+                                                                fieldStr += "<span>"; 
+                                                                fieldStr += "<a href='/" + full.ASI_TnE_MFM_PO__c + "' class='link-button'>" + full.ASI_TnE_MFM_PO__r.Name + "</a>";
+                                                                fieldStr += "</span>";
+                                                            }
+                                                            fieldStr += "</br>";
+                                                            if(full.ASI_TnE_CAP_Plan__c) {
+                                                                fieldStr += "<span>"; 
+                                                                fieldStr += "<a href='/" + full.ASI_TnE_CAP_Plan__c + "' class='link-button'>" + full.ASI_TnE_CAP_Plan__r.Name + "</a>";
+                                                                fieldStr += "</span>";
+                                                            }
+                                                            return fieldStr;
+                                                          }
+                                               };
+        const crossChargeToReadOnly         = {"title"  : "Cross Charge To",
+                                               "data"   : "",
+                                               "render" : function(data, type, full) {
+                                                            var fieldStr = "";
+                                                            if(full.ASI_TnE_Charge_To_Acc__c) {
+                                                                fieldStr += "<span>"; 
+                                                                fieldStr += "<a href='/" + full.ASI_TnE_Charge_To_Acc__c + "' class='link-button'>" + full.ASI_TnE_Charge_To_Acc__r.Name + "</a>";
+                                                                fieldStr += "</span>";
+                                                            }
+                                                            return fieldStr;
+                                                          }
+                                               };
+        const preTripApprovalReadOnly         = {"title"  : "Pre-Trip Approval",
+                                               "data"   : "",
+                                               "render" : function(data, type, full) {
+                                                            var fieldStr = "";
+                                                            if(full.ASI_TnE_Pre_Trip_Approval_Form__c) {
+                                                                fieldStr += "<span>"; 
+                                                                fieldStr += "<a href='/" + full.ASI_TnE_Pre_Trip_Approval_Form__c + "' class='link-button'>" + full.ASI_TnE_Pre_Trip_Approval_Form__r.Name + "</a>";
+                                                                fieldStr += "</span>";
+                                                            }
+                                                            return fieldStr;
+                                                          }
+                                               };
+        const excludedReadOnly              = {"title"          : "Excluded", 
+                                               "data"           : "ASI_TnE_Dispute__c",
+                                               "defaultContent" : "",
+                                               "render"         : function(data, type, full) {
+                                                                    var fieldStr = "<input class='ASI_TnE_Dispute' type='checkbox' ";
+                                                                    if(data == true) {
+                                                                        fieldStr += 'checked';
+                                                                    }
+                                                                    fieldStr += " disabled />";
+                                                                    return fieldStr;
+                                                                  }
+                                               };
+        const buReadOnly                    = {"title"          : "BU", 
+                                               "data"           : "ASI_TnE_BU__c",
+                                               "render" : function(data, type, full) {
+                                                            var fieldStr = "";
+                                                            if(full.ASI_TnE_BU__c) {
+                                                                fieldStr += "<span>"; 
+                                                                fieldStr += "<a href='/" + full.ASI_TnE_BU__c + "' class='link-button'>" + full.ASI_TnE_BU__r.Name + "</a>";
+                                                                fieldStr += "</span>";
+                                                            }
+                                                            return fieldStr;
+                                                          }
+                                              };
+        const paymentAmountReadOnly         = {"title"          : "Payment Amount",
+                                               "data"           : "ASI_TnE_HK_Payment_Amount__c",
+                                               "defaultContent" : ""
+                                              };
+        const accountNumberReadOnly         = {"title"          : "Account Number",
+                                               "data"           : "ASI_TnE_Account_Number__c",
+                                               "defaultContent" : ""
+                                              };
+        const subLedgerReadOnly             = {"title"          : "Sub-Ledger",
+                                               "data"           : "ASI_TnE_SG_Sub_Ledger__c",
+                                               "defaultContent" : ""
+                                              };                                      
+        const claimAmountReadOnly           = {"title"          : "Claim Amount",
+                                               "data"           : "ASI_TnE_Submitted_Payment_Amount__c",
+                                               "defaultContent" : ""
+                                              };                                      
+
+        //By pass column
+        //FX Rate column is controlled by currency field, when enable/disable all field, it should be by passed.
+        const byPassColumnForDisable  = ["ASI_TnE_FX_Rate"];
+
+        //Store all expense category and classification
+        var expenseCategoryList       = jQuery.parseJSON('{!JSENCODE(categoryListJson)}');
+
+        //Store all claim detail field name
+        var tneFieldNameList          = jQuery.parseJSON('{!JSENCODE(tneFieldNameListJson)}');
+
+        //Store all currency and exchange rate
+        var currencyList              = jQuery.parseJSON('{!JSENCODE(currencyListJson)}');
+        var exchangeRateMap           = jQuery.parseJSON('{!JSENCODE(exchangeRateMapJson)}');
+
+        //Store all field id for lookup field
+        var fieldIdMap                 = jQuery.parseJSON('{!JSENCODE(fieldIdMapJson)}');
+        const PO_FIELD_ID              = fieldIdMap["ASI_TnE_MFM_PO__c"];
+        const CAP_FIELD_ID             = fieldIdMap["ASI_TnE_CAP_Plan__c"];
+        const CROSS_CHARGE_TO_FIELD_ID = fieldIdMap["ASI_TnE_Charge_To_Acc__c"];
+        const BU_FIELD_ID              = fieldIdMap["ASI_TnE_BU__c"];
+        const AC_CODE_FIELD_ID         = fieldIdMap["ASI_TnE_A_C_Code__c"];
+        const PRE_TRIP_FIELD_ID        = fieldIdMap["ASI_TnE_Pre_Trip_Approval_Form__c"];
+
+        //Store the lookup input field id
+        var crossChargeToFieldIndex   = 1;
+        var poFieldIndex              = 1;
+        var planFieldIndex            = 1;
+        var buFieldIndex              = 1;
+        var acCodeFieldIndex          = 1;
+        var preTripApprovalFieldIndex = 1;
+
+        //Store the new claim detail temp id
+        var tempClaimDetailId = 1;
+
+        //Store the removed claim detail id
+        var deleteClaimDetailIdList = [];
+
+        var viewType = '';
+
+        var receiptNo = 1;
+        
+        //Store is claim header status is finalize
+        var isReadOnly = {!claimHeader.ASI_TnE_Status__c == 'Final'} ? true : false;
+
+        /****************
+        Define Standard Function
+        ****************/
+        $(document).ready(
+            function() {
+                if({!isFinanceView == true}) {
+                    if('{!claimHeader.ASI_TnE_Type__c}' == 'Corp Card') {
+                        viewType = FINANCE_VIEW_CORP_CARD;
+                    } else {
+                        viewType = FINANCE_VIEW;
+                    }
+                    isReadOnly = false;
+                } else if({!isEmployeeView == true}) {
+                    if('{!claimHeader.ASI_TnE_Type__c}' == 'Corp Card') {
+                        viewType = EMPLOYEE_VIEW_CORP_CARD;
+                    } else {
+                        viewType = EMPLOYEE_VIEW;
+                    }
+                    isReadOnly = true;
+                } else {
+                    if('{!claimHeader.ASI_TnE_Type__c}' == 'Corp Card') {
+                        viewType = NORMAL_VIEW_CORP_CARD;
+                    } else {
+                        viewType = NORMAL_VIEW;
+                    }
+                }
+
+                console.log('Current View : ' + viewType);
+
+                //Hide button if claim header is finalize
+                if(isReadOnly) {
+                    $(".saveBtn").hide();
+                    $(".quickSaveBtn").hide();
+                    $(".newRowBtn").hide();
+                }
+
+                if('{!claimHeader.ASI_TnE_Type__c}' == 'Corp Card') {
+                    $(".newRowBtn").hide();
+                }
+                
+                setTable('{!JSENCODE(claimDetailListJson)}');
+            }
+        );
+
+        //Lookup Popup Control Function (Start)
+        function showLookup(ctrlID, objKeyPrefix, lookupFieldId, currentObjectPrefix) {
+            openLookup("/_ui/common/data/LookupPage?lkfield=" + lookupFieldId + "&lkent=" + currentObjectPrefix + "&lknm=" + ctrlID + "&lktp=" + objKeyPrefix + "&lksrch=" + $("#" + ctrlID).val(), 500);
+        }
+
+        function lookupPick(formId, idInputId, nameFieldId, emptyField2, lookupId, lookupName, emtpyField3, emptyField4) {
+            closePopup();
+            $("#" + idInputId).val(lookupId);
+            $("#" + nameFieldId).val(lookupName);
+            $("#" + idInputId).trigger("change");
+        }
+
+        function resetLookup(ctrlID) {
+            $("#" + ctrlID + '_lkid').val(null);
+            $("#" + ctrlID + '_lkold').val(null);
+
+            $("#" + ctrlID + '_lkid').trigger('change');
+            $("#" + ctrlID + '_lkold').trigger('change');
+        }
+
+        function lookupButtonOnFocus(lookupButton) {
+            $(lookupButton).removeClass('lookupIcon').addClass('lookupIconOn');
+        }
+    
+        function lookupButtonOnBlur(lookupButton) {
+            $(lookupButton).removeClass('lookupIconOn').addClass('lookupIcon');
+        }
+        //Lookup Popup Control Function (End)
+
+        //Set Data Table
+        function setTable(claimDetailListJson) {
+            var dataTableProperties = CONST_DATA_TABLE_PROPERTIES;
+            //Convert claim detail list JSON to Object format
+            console.log('Data From Apex Controller : ');
+            console.log(jQuery.parseJSON(claimDetailListJson));
+            dataTableProperties["aaData"] = jQuery.parseJSON(claimDetailListJson);
+            //Set data table row id = claim detail id
+            dataTableProperties["rowId"] = "Id";
+
+            //Set the data table columns
+            var columns = [];
+            if(!isReadOnly) {
+                columns.push(actionField);
+            }
+            if(viewType == FINANCE_VIEW || viewType == FINANCE_VIEW_CORP_CARD) {
+                columns.push(accountNumberReadOnly);
+            }
+            columns.push(isReadOnly ? expenseCategoryReadOnly : expenseCategory);
+            columns.push(isReadOnly ? expenseClassificationReadOnly : expenseClassification);
+            if(viewType == EMPLOYEE_VIEW || viewType == EMPLOYEE_VIEW_CORP_CARD) {
+                columns.push(buReadOnly);
+            }
+            if(viewType == FINANCE_VIEW || viewType == FINANCE_VIEW_CORP_CARD) {
+                columns.push(bu);
+                columns.push(acCode);
+                columns.push(subLedgerReadOnly);
+            }
+            if(viewType == NORMAL_VIEW_CORP_CARD || viewType == EMPLOYEE_VIEW_CORP_CARD || viewType == FINANCE_VIEW_CORP_CARD) {
+                columns.push(isReadOnly ? excludedReadOnly : excluded);
+            }
+            columns.push(isReadOnly ? receiptDateReadOnly : receiptDate);
+            columns.push(isReadOnly ? receiptAmountReadOnly : receiptAmount);
+            columns.push(isReadOnly ? currencyReadOnly : currency);
+            columns.push(isReadOnly ? fxRateReadOnly : fxRate);
+            if(viewType == FINANCE_VIEW || viewType == FINANCE_VIEW_CORP_CARD) {
+                columns.push(claimAmountReadOnly);
+            }
+            if(viewType == EMPLOYEE_VIEW || viewType == EMPLOYEE_VIEW_CORP_CARD ||
+               viewType == FINANCE_VIEW || viewType == FINANCE_VIEW_CORP_CARD) {
+                columns.push(paymentAmountReadOnly);
+            }
+            columns.push(isReadOnly ? destinationReadOnly : destination);
+            columns.push(isReadOnly ? invoiceIssuerReadOnly : invoiceIssuer);
+            columns.push(isReadOnly ? paxReadOnly : pax);
+            if(viewType == NORMAL_VIEW || viewType == NORMAL_VIEW_CORP_CARD ||
+               viewType == EMPLOYEE_VIEW || viewType == EMPLOYEE_VIEW_CORP_CARD) {
+                columns.push(isReadOnly ? nameAndCompanyReadOnly : nameAndCompany);
+            }
+            columns.push(isReadOnly ? detailsExpenseReadOnly : detailsExpense);
+            columns.push(isReadOnly ? poAndCapPlanReadOnly : poAndCapPlan);
+            columns.push(isReadOnly ? preTripApprovalReadOnly : preTripApproval);
+            columns.push(isReadOnly ? crossChargeToReadOnly : crossChargeTo);
+            dataTableProperties["aoColumns"] = columns;
+
+            $("#tneClaimDetailTable").dataTable(dataTableProperties);
+
+
+            //trigger onchange method
+            $(document).find(".ASI_TnE_Expense_Classification").trigger("change");
+            $(document).find(".ASI_TnE_Currency").trigger("change");
+        }
+
+        //Data Table Row Event Handler(Start)
+        function updateClaimDetailValue(row, fieldName, newValue) {
+            //Get the claim detail data and update the field value
+            var claimDetailData        = $("#tneClaimDetailTable").DataTable().row(row).data();
+            claimDetailData[fieldName] = newValue;
+        }
+
+        function changeExpenseCategory(row, expenseCategoryId) {
+            //Get the claim detail data and update the expense category
+            var claimDetailData                         = $("#tneClaimDetailTable").DataTable().row(row).data();
+            claimDetailData.ASI_TnE_Expense_Category__c = expenseCategoryId;
+
+            //Get the expense classification selector and reset the select option
+            var rowId                         = row.id;
+            var expenseClassificationSelector = $("#" + rowId + " .ASI_TnE_Expense_Classification");
+            var selectOption                  = "<option value='' selected>--Please Select--</option>";
+            //Find out the expense classification that under selected expense category 
+            expenseCategoryList.forEach(function(expenseCategory) {
+                if(expenseCategory.Id == claimDetailData.ASI_TnE_Expense_Category__c) {
+                    expenseCategory.TnE_JP_Expense_Classifications__r.records.forEach(function(expenseClassification) {
+                        selectOption += "<option value='" + expenseClassification.Id + "'>" + expenseClassification.Name + "</option>";
+                    });
+                }
+            });
+
+            //Remove current select option and append new select option
+            expenseClassificationSelector.find('option').remove().end().append(selectOption);
+        }
+
+        function changeExpenseClassification(row, expenseClassificationId) {
+            //Get the claim detail data and update the expense classification
+            var claimDetailData                               = $("#tneClaimDetailTable").DataTable().row(row).data();
+            claimDetailData.ASI_TnE_Expense_Classification__c = expenseClassificationId;
+
+            setColumnFieldDisabled(row.id, false);
+            setColumnDisable(row.id, expenseClassificationId);
+        }
+
+        //The currency's exchange rate is depended on receipt date
+        function changeCurrency(row, currency) {
+            //Get the claim detail data and update the currency
+            var claimDetailData     = $("#tneClaimDetailTable").DataTable().row(row).data();
+            var exchangeRateElement = $("#" + row.id + " .ASI_TnE_FX_Rate");
+            if(claimDetailData.ASI_TnE_Currency__c == currency) {
+            	if(currency == HK_CURRENCY) {
+                	//Currency is HK, set exchange rate to 1.000000 and disable exchange rate column
+                	exchangeRateElement.prop('disabled', true);
+                	exchangeRateElement.val(Number(1).toFixed(6));
+            	}
+                return;
+            }
+            claimDetailData.ASI_TnE_Currency__c = currency;
+
+            //Reset exchange rate column
+            if(currency == HK_CURRENCY) {
+                //Currency is HK, set exchange rate to 1.000000 and disable exchange rate column
+                exchangeRateElement.prop('disabled', true);
+                exchangeRateElement.val(Number(1).toFixed(6));
+            } else {
+                //Enable exchange rate column
+                exchangeRateElement.prop('disabled', false);
+                //Currency is found in object, set exchange rate
+                //Otherwise, empty the exchange rate column
+                if(exchangeRateMap.hasOwnProperty(currency)) {
+                    //The exchange rate is depended on receipt date field
+                    var receiptDate = $("#" + row.id + " .ASI_TnE_Receipt_Date").val();
+                    var selectedDate;
+                    var selectedExchangeRate;
+                    //Loop through the exchange rate, get the effective date that closest to receipt date (must lower than receipt date)
+                    for(var i = 0 ; i < exchangeRateMap[currency].length ; i++) {
+                        var tempDate = exchangeRateMap[currency][i].ASI_MFM_Effective_Date__c;
+                        var tempExchangeRate = exchangeRateMap[currency][i].ASI_MFM_Exchange_Rate__c;
+                        if(!selectedDate && receiptDate > tempDate) {
+                            selectedDate = tempDate;
+                            selectedExchangeRate = tempExchangeRate;
+                        } else if(tempDate > selectedDate && receiptDate > tempDate) {
+                            selectedDate = tempDate;
+                            selectedExchangeRate = tempExchangeRate;
+                        }
+                    }
+
+                    //If don't find any records that fulfill the criteria, use the oldest one
+                    if(!selectedDate) {
+                        for(var i = 0 ; i < exchangeRateMap[currency].length ; i++) {
+                            var tempDate = exchangeRateMap[currency][i].ASI_MFM_Effective_Date__c;
+                            var tempExchangeRate = exchangeRateMap[currency][i].ASI_MFM_Exchange_Rate__c;
+                            if(!selectedDate) {
+                                selectedDate = tempDate;
+                                selectedExchangeRate = tempExchangeRate;
+                            } else if(selectedDate > tempDate) {
+                                selectedDate = tempDate;
+                                selectedExchangeRate = tempExchangeRate;
+                            }
+                        }
+                    }
+                    
+                    exchangeRateElement.val(parseFloat(selectedExchangeRate).toFixed(6));
+                } else {    
+                    exchangeRateElement.val('');
+                }
+            }
+            
+            $("#" + row.id + " .ASI_TnE_FX_Rate").trigger("change");
+        }
+        //Data Table Row Event Handler(End)
+
+        //Data Table Row Handler(Start)
+        function addRow() {
+            //Create new claim detail object
+            var newClaimDetailData                                  = {};
+            newClaimDetailData["Id"]                                = NEW_CLAIM_DETAIL_PREFIX + tempClaimDetailId;
+            newClaimDetailData["ASI_TnE_ClaimHeader__c"]            = "{!claimHeader.Id}";
+            newClaimDetailData["RecordTypeId"]                      = "{!claimDetailRecordTypeId}";
+            newClaimDetailData["ASI_TnE_With_Receipt__c"]           = true;
+            newClaimDetailData["ASI_TnE_Receipt_Date__c"]           = TODAY_DATE.toISOString().substring(0, 10);
+            newClaimDetailData["ASI_TnE_Expense_Category__c"]       = '';
+            newClaimDetailData["ASI_TnE_Expense_Classification__c"] = '';
+            newClaimDetailData["ASI_TnE_Currency__c"]               = 'HKD';
+            newClaimDetailData["ASI_TnE_FX_Rate__c"]                = 1.000000;
+
+            //Add new claim detail object to date table and redraw it
+            $("#tneClaimDetailTable").DataTable().row.add(newClaimDetailData).draw();
+            $('#tneClaimDetailTable').DataTable().page('last').draw('page');
+            
+            //trigger onchange method
+            $(document).find("#" + NEW_CLAIM_DETAIL_PREFIX + tempClaimDetailId + " .ASI_TnE_Expense_Classification").trigger("change");
+            $(document).find("#" + NEW_CLAIM_DETAIL_PREFIX + tempClaimDetailId + " .ASI_TnE_Currency").trigger("change");
+
+            //Update the temp claim detail id;
+            tempClaimDetailId++;
+
+            console.log('Add Action');
+            console.log($("#tneClaimDetailTable").DataTable().rows().data());
+        }
+
+        function cloneRow(sourceRow) {
+            //Get the source row claim detail data
+            var claimDetailData = $("#tneClaimDetailTable").DataTable().row(sourceRow).data();
+
+            //Create new claim detail object and assign the data from source
+            var newClaimDetailData = {};
+            jQuery.extend(true, newClaimDetailData, claimDetailData);
+            newClaimDetailData["Id"] = NEW_CLAIM_DETAIL_PREFIX + tempClaimDetailId;
+            newClaimDetailData["ASI_TnE_Sys_IsClone__c"] = true;
+            newClaimDetailData["isClone"] = true;
+
+            //Add new claim detail object to date table and redraw it
+            $("#tneClaimDetailTable").DataTable().row.add(newClaimDetailData).draw();
+            $('#tneClaimDetailTable').DataTable().page('last').draw('page');
+            
+            //trigger onchange method
+            $(document).find("#" + NEW_CLAIM_DETAIL_PREFIX + tempClaimDetailId + " .ASI_TnE_Expense_Classification").trigger("change");
+            $(document).find("#" + NEW_CLAIM_DETAIL_PREFIX + tempClaimDetailId + " .ASI_TnE_Currency").trigger("change");
+
+            //Update the temp claim detail id;
+            tempClaimDetailId++;
+
+            console.log('Clone Action');
+            console.log($("#tneClaimDetailTable").DataTable().rows().data());
+        }
+
+        function deleteRow(row) {
+            var rowId = row.id;
+            //Check if the claim detail is existing in database
+            if(!rowId.startsWith(NEW_CLAIM_DETAIL_PREFIX)) {
+                //Add to delete list
+                deleteClaimDetailIdList.push(rowId);
+            }
+            console.log('Delete Action');
+            console.log(deleteClaimDetailIdList);
+            //Remove the row and redraw it
+            $("#tneClaimDetailTable").DataTable().row(row).remove().draw();
+        }
+        //Data Table Row Handler(End)
+
+        //Save Claim Detail Handler
+        function saveRecord(isQuickSave) {
+            //Find out all claim detail records
+            var upsertClaimDetailList = [];
+            var totalAmount = 0;
+            
+            receiptNo = 1;
+            var claimDetailList = $("#tneClaimDetailTable").DataTable().rows().data();
+            for(var i = 0 ; i < claimDetailList.data().length ; i++) {
+              var cloneClaimDetail = jQuery.extend({}, claimDetailList[i]);
+				
+                if(cloneClaimDetail["isClone"] == false || "{!claimHeader.ASI_TnE_Type__c}" != "Corp Card") {
+                    cloneClaimDetail["ASI_TnE_Receipt_Number__c"] = receiptNo;
+                    receiptNo++;
+                }
+                
+                if(cloneClaimDetail.Id.startsWith(NEW_CLAIM_DETAIL_PREFIX)) {
+                    delete cloneClaimDetail["Id"];
+                }
+                upsertClaimDetailList.push(cloneClaimDetail);
+
+                totalAmount += (cloneClaimDetail["ASI_TnE_Receipt_Amount__c"] ? cloneClaimDetail["ASI_TnE_Receipt_Amount__c"] : 0)
+                             * (cloneClaimDetail["ASI_TnE_FX_Rate__c"] ? cloneClaimDetail["ASI_TnE_FX_Rate__c"] : 0);
+            }
+
+            console.log('Calculated Total Amount : ' + totalAmount);
+            console.log('Approved Total Amount : {!claimHeader.ASI_TnE_Total_Amount_Approved__c}');
+            
+            //Pass the data to Apex Controller to handle the save process
+            console.log('Upsert Claim Detail Id List');
+            console.log(upsertClaimDetailList);
+
+            console.log('Delete Claim Detail Id List');
+            console.log(deleteClaimDetailIdList);
+            
+           	//Show loading gif
+            $("body").addClass("savingRecord");
+            save(isQuickSave, JSON.stringify(upsertClaimDetailList), JSON.stringify(deleteClaimDetailIdList));
+        }
+
+        //Execute after the save action completed *even errors occur*
+        function saveRecordComplete(claimDetailListJson, hasError, exceptionListJson) {
+            //Clear and rerender the datatable if the claim data save to database successfully
+            if(!hasError) {
+                $('.saveErrorPanel').css("display","none");
+                $('#tneClaimDetailTable').DataTable().clear();
+                setTable(claimDetailListJson);
+
+                //Clear the delete claim detail id list
+                deleteClaimDetailIdList = []; 
+
+                //Reset the temp claim detail id to 1
+                tempClaimDetailId = 1;
+            }
+            //Update the record row which contain any error 
+            else {
+                showError(exceptionListJson);
+            }
+
+            //Hide the loading gif
+            $("body").removeClass("savingRecord");
+        }
+
+        //Display error when error occur in save process
+        function showError(exceptionListJson) {
+            //Clear the last error problem field
+            $('.error').removeClass('error');
+
+            //Display the error message and change the problem field to red
+            $('.saveErrorPanel').css("display","block");
+
+            var errorMessage = '';
+
+            var exceptionList = jQuery.parseJSON(exceptionListJson);
+            console.log(exceptionList);
+            //Retrieve all date table row
+            var recordRowList = $('tr', tneClaimDetailTable);
+            try {
+                //Loop all exception
+                for(var errorIndex = 0 ; errorIndex < exceptionList.length ; errorIndex++) {
+                    //Get the problem row index and find that row
+                    var problemRowIndex = parseInt(exceptionList[errorIndex]['lineNumber']);
+                    var recordRow = recordRowList[problemRowIndex + 1];
+                    //Loop all the problem fields and assign the error class to those fields
+                    for(var fieldIndex = 0 ; fieldIndex < exceptionList[errorIndex]['fieldAPINameList'].length ; fieldIndex++) {
+                        var fieldApiName = exceptionList[errorIndex]['fieldAPINameList'][fieldIndex];
+                        var fieldClassName = fieldApiName.substring(0, fieldApiName.length - 3);
+                        $('.' + fieldClassName, recordRow).addClass('error');
+                    }
+                    //Set the error message
+                    errorMessage += 'Row ' + (problemRowIndex + 1) + ' : ' + exceptionList[errorIndex]['errorMessage'] + '<br />';
+                }
+
+                //Assign the error message to page
+                $('.errorMessage').html(errorMessage);
+            } catch(e) {
+                $('.errorMessage').html(e);
+            }
+
+        }
+
+        /****************
+        Define View Handle Function
+        ****************/
+        //Disable the column depend on the classification
+        function setColumnDisable(rowId, classificationId) {
+            expenseCategoryList.forEach(function(expenseCategory) {
+                expenseCategory.TnE_JP_Expense_Classifications__r.records.forEach(function(expenseClassification) {
+                    if(expenseClassification.Id == classificationId) {
+                        if(expenseClassification.ASI_TnE_Read_Only_Fields__c) {
+                            var readOnlyFieldArray = expenseClassification.ASI_TnE_Read_Only_Fields__c.split(';');
+                            for(var i = 0 ; i < readOnlyFieldArray.length ; i++) {
+                                $("#" + rowId + " ." + readOnlyFieldArray[i]).prop('disabled', true);
+                                $("#" + rowId + " ." + readOnlyFieldArray[i]).val(null);
+                                $("#" + rowId + " ." + readOnlyFieldArray[i]).trigger('change');
+                                if($("#" + rowId + " img." + readOnlyFieldArray[i]).size() > 0) $("#" + rowId + " img." + readOnlyFieldArray[i]).hide();
+                            }                       
+                        }
+                    }
+                });
+            });
+        }
+
+        function setColumnFieldDisabled(rowId, isDisabled) {
+            for(var i = 0 ; i < tneFieldNameList.length ; i++) {
+                if(byPassColumnForDisable.indexOf(tneFieldNameList[i]) == -1) {
+                    //Normal Input Field
+                    $("#" + rowId + " ." + tneFieldNameList[i]).prop('disabled', isDisabled);
+                    //Lookup Image Field
+                    if(isDisabled && $("#" + rowId + " img." + tneFieldNameList[i]).size() > 0) {
+                        $("#" + rowId + " img." + tneFieldNameList[i]).hide();
+                    } else if($("#" + rowId + " img." + tneFieldNameList[i]).size() > 0){
+                        $("#" + rowId + " img." + tneFieldNameList[i]).show();
+                    }
+                }
+            }   
+        }
+    </script>
+
+    <body>
+        <div class="fullScreenLoading"></div>
+        <div class="saveErrorPanel alert alert-danger" style="display: none;">
+        <strong>Error</strong> 
+        <br />
+        <p class="errorMessage"></p>
+        </div>
+
+        <!-- Defind Action Function -->
+        <apex:form >
+            <apex:actionFunction name="save" action="{!save}" reRender="pageMsg" oncomplete="saveRecordComplete('{!JSENCODE(claimDetailListJson)}', {!hasError}, '{!JSENCODE(exceptionListJson)}')">
+                <apex:param name="IS_QUICK_SAVE" value="" />
+                <apex:param name="UPSERT_DATA_JSON" value="" />
+                <apex:param name="REMOVE_DATA_JSON" value="" />
+            </apex:actionFunction>
+            <apex:actionFunction name="cancel" action="{!cancel}"/>
+        </apex:form>
+
+        <!-- Header -->
+        <apex:pageBlock id="header_pageBlock">
+            <apex:panelGrid columns="1" width="1100px">
+                <apex:pageBlockSection title="Travel and Entertainment Claim">
+                    <apex:outputField value="{!ASI_TnE_ClaimHeader__c.Owner.Name}"/>
+                    <apex:outputField value="{!ASI_TnE_ClaimHeader__c.Name}"/>  
+                        
+                    <apex:outputField value="{!ASI_TnE_ClaimHeader__c.ASI_TnE_Payee_Employee__c}"/>
+                    <apex:outputField value="{!ASI_TnE_ClaimHeader__c.ASI_TnE_Status__c}"/>
+                        
+                    <apex:outputField value="{!ASI_TnE_ClaimHeader__c.ASI_TnE_Company__c}"/>                        
+                    <apex:outputField value="{!ASI_TnE_ClaimHeader__c.ASI_TnE_Start_Date__c}"/>
+                        
+                    <apex:outputField value="{!ASI_TnE_ClaimHeader__c.ASI_TnE_Department_Division__c}"/>
+                    <apex:outputField value="{!ASI_TnE_ClaimHeader__c.ASI_TnE_End_Date__c}"/>
+                        
+                    <apex:outputField value="{!ASI_TnE_ClaimHeader__c.ASI_TnE_Employee_Type__c}"/>
+                    <apex:outputField value="{!ASI_TnE_ClaimHeader__c.ASI_TnE_Currency__c}"/>
+                        
+                    <apex:outputField value="{!ASI_TnE_ClaimHeader__c.ASI_TnE_3rd_Party__c}"/>
+                    <apex:outputField value="{!ASI_TnE_ClaimHeader__c.ASI_TnE_Total_Amount_LCY__c}"/>
+                </apex:pageBlockSection>
+            </apex:panelGrid>  
+        </apex:pageBlock>
+
+        <!-- Body -->
+        <apex:pageBlock id="detail_pageBlock">
+            <apex:pageblockButtons >
+            <input type="button" class="btn saveBtn" onclick="saveRecord(false)" value="Save" />
+            <input type="button" class="btn quickSaveBtn" onclick="saveRecord(true)" value="Quick Save" />
+            <input type="button" class="btn cancelBtn" onclick="cancel()" value="Cancel" />
+            </apex:pageblockButtons>
+            
+            <!-- Nav bar -->
+            <div class="row">
+                <div class="container-fluid">
+                    <div class="panel with-nav-tabs panel-primary">
+                        <!-- Nav bar header -->
+                        <div class="panel-heading">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#tne" data-toggle="tab">T&amp;E Claim Detail</a></li>
+                            </ul>
+                        </div>
+    
+                        <!-- Nav bar body -->
+                        <div class="panel-body">
+                            <div class="tab-content">
+                                <!-- T&E Claim Detail Body -->
+                                <div class="tab-pane fade in active" id="tne">
+                                    <form id="tneForm">
+                                        <input type="button" class="btn newRowBtn" onclick="addRow()" value="Add new" />
+                                        <table id="tneClaimDetailTable" width="100%" />
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </apex:pageBlock>
+
+    </body>
+
+</apex:page>

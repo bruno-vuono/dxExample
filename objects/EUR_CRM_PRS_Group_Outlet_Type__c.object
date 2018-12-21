@@ -1,0 +1,649 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>This is created for the new approach for PROS and PROFS -  “PRS” (Pernod-Ricard Segmentation).
+
+PR BG is the first country to use it.</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>EUR_CRM_BrandBuildPotQuestionSet__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Brand Building Potential Question Set</label>
+        <referenceTo>EUR_CRM_PRS_Question_Set__c</referenceTo>
+        <relationshipLabel>PRS Group Outlet Types (EU) (Questions for Brand Building Potential)</relationshipLabel>
+        <relationshipName>PRS_Group_Outlet_Types_EU1</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_BusinessPotentialQuestionSet__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Business Potential Question Set</label>
+        <referenceTo>EUR_CRM_PRS_Question_Set__c</referenceTo>
+        <relationshipLabel>PRS Group Outlet Types (EU)</relationshipLabel>
+        <relationshipName>PRS_Group_Outlet_Types_EU</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Country_Code__c</fullName>
+        <externalId>false</externalId>
+        <formula>RIGHT(LEFT(RecordType.DeveloperName,6),2)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Country Code</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_External_ID__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <externalId>true</externalId>
+        <label>External ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Group_Outlet_Type_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Group Outlet Type Name</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Restaurant</fullName>
+                    <default>false</default>
+                    <label>Restaurant</label>
+                </value>
+                <value>
+                    <fullName>Night Club</fullName>
+                    <default>false</default>
+                    <label>Night Club</label>
+                </value>
+                <value>
+                    <fullName>Low Energy Bar</fullName>
+                    <default>false</default>
+                    <label>Low Energy Bar</label>
+                </value>
+                <value>
+                    <fullName>High Energy Bar</fullName>
+                    <default>false</default>
+                    <label>High Energy Bar</label>
+                </value>
+                <value>
+                    <fullName>Hyper/Supermarket</fullName>
+                    <default>false</default>
+                    <label>Hyper/Supermarket</label>
+                </value>
+                <value>
+                    <fullName>Convenience</fullName>
+                    <default>false</default>
+                    <label>Convenience</label>
+                </value>
+                <value>
+                    <fullName>Cash &amp; Carry</fullName>
+                    <default>false</default>
+                    <label>Cash &amp; Carry</label>
+                </value>
+                <value>
+                    <fullName>Discounters</fullName>
+                    <default>false</default>
+                    <label>Discounters</label>
+                </value>
+                <value>
+                    <fullName>Traditional Off Trade</fullName>
+                    <default>false</default>
+                    <label>Traditional Off Trade</label>
+                </value>
+                <value>
+                    <fullName>Liquor Specialists</fullName>
+                    <default>false</default>
+                    <label>Liquor Specialists</label>
+                </value>
+                <value>
+                    <fullName>Online</fullName>
+                    <default>false</default>
+                    <label>Online</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Image_Level_Question_Set__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Image Level Question Set</label>
+        <referenceTo>EUR_CRM_PRS_Question_Set__c</referenceTo>
+        <relationshipLabel>PRS Group Outlet Types (EU) (Image Level Question Set)</relationshipLabel>
+        <relationshipName>PRS_Group_Outlet_Types_EU3</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_PRS_Group_Outlet_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>PRS Group Outlet Type Name</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Restaurant</fullName>
+                    <default>false</default>
+                    <label>Restaurant</label>
+                </value>
+                <value>
+                    <fullName>Night Club</fullName>
+                    <default>false</default>
+                    <label>Night Club</label>
+                </value>
+                <value>
+                    <fullName>High Energy Bar</fullName>
+                    <default>false</default>
+                    <label>High Energy Bar</label>
+                </value>
+                <value>
+                    <fullName>Low Energy Bar</fullName>
+                    <default>false</default>
+                    <label>Low Energy Bar</label>
+                </value>
+                <value>
+                    <fullName>Hyper/Supermarket</fullName>
+                    <default>false</default>
+                    <label>Hyper/Supermarket</label>
+                </value>
+                <value>
+                    <fullName>Convenience</fullName>
+                    <default>false</default>
+                    <label>Convenience</label>
+                </value>
+                <value>
+                    <fullName>Cash &amp; Carry</fullName>
+                    <default>false</default>
+                    <label>Cash &amp; Carry</label>
+                </value>
+                <value>
+                    <fullName>Discounters</fullName>
+                    <default>false</default>
+                    <label>Discounters</label>
+                </value>
+                <value>
+                    <fullName>Online</fullName>
+                    <default>false</default>
+                    <label>Online</label>
+                </value>
+                <value>
+                    <fullName>Liquor Specialists</fullName>
+                    <default>false</default>
+                    <label>Liquor Specialists</label>
+                </value>
+                <value>
+                    <fullName>Traditional Off Trade</fullName>
+                    <default>false</default>
+                    <label>Traditional Off Trade</label>
+                </value>
+                <value>
+                    <fullName>Nightclub</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Nightclub</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Volume_Potential_Question_Set__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Volume Potential Question Set</label>
+        <referenceTo>EUR_CRM_PRS_Question_Set__c</referenceTo>
+        <relationshipLabel>PRS Group Outlet Types (EU) (Volume Potential Question Set)</relationshipLabel>
+        <relationshipName>PRS_Group_Outlet_Types_EU2</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <label>PRS Group Outlet Type (EU)</label>
+    <listViews>
+        <fullName>EUR_BE_PRS_OffTradeGroupOutletType_View</fullName>
+        <columns>NAME</columns>
+        <columns>OBJECT_ID</columns>
+        <columns>EUR_CRM_Country_Code__c</columns>
+        <columns>EUR_CRM_External_ID__c</columns>
+        <columns>EUR_CRM_Name__c</columns>
+        <columns>EUR_CRM_Group_Outlet_Type_Name__c</columns>
+        <columns>CURRENCY_ISO_CODE</columns>
+        <columns>EUR_CRM_PRS_Group_Outlet_Name__c</columns>
+        <columns>EUR_CRM_Image_Level_Question_Set__c</columns>
+        <columns>EUR_CRM_Volume_Potential_Question_Set__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_PRS_Group_Outlet_Type__c.EUR_BE_PRS_Off_Trade_Group_Outlet_Type</value>
+        </filters>
+        <label>EUR BE PRS OffTradeGroupOutletType View</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>EUR_BE</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>EUR_BE_PRS_OnTradeGroupOutletType_View</fullName>
+        <columns>NAME</columns>
+        <columns>OBJECT_ID</columns>
+        <columns>EUR_CRM_Country_Code__c</columns>
+        <columns>EUR_CRM_External_ID__c</columns>
+        <columns>EUR_CRM_Name__c</columns>
+        <columns>EUR_CRM_Group_Outlet_Type_Name__c</columns>
+        <columns>CURRENCY_ISO_CODE</columns>
+        <columns>EUR_CRM_PRS_Group_Outlet_Name__c</columns>
+        <columns>EUR_CRM_Image_Level_Question_Set__c</columns>
+        <columns>EUR_CRM_Volume_Potential_Question_Set__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_PRS_Group_Outlet_Type__c.EUR_BE_PRS_On_Trade_Group_Outlet_Type</value>
+        </filters>
+        <label>EUR BE PRS OnTradeGroupOutletType View</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>EUR_BE</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>EUR_BG_All_PRS_Group_Outlet_Types_View</fullName>
+        <columns>NAME</columns>
+        <columns>OBJECT_ID</columns>
+        <columns>EUR_CRM_Country_Code__c</columns>
+        <columns>EUR_CRM_External_ID__c</columns>
+        <columns>EUR_CRM_Name__c</columns>
+        <columns>EUR_CRM_Group_Outlet_Type_Name__c</columns>
+        <columns>EUR_CRM_BrandBuildPotQuestionSet__c</columns>
+        <columns>EUR_CRM_BusinessPotentialQuestionSet__c</columns>
+        <columns>CURRENCY_ISO_CODE</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_PRS_Group_Outlet_Type__c.EUR_BG_PRS_Off_Trade_Group_Outlet_Type</value>
+        </filters>
+        <label>EUR BG All PRS Group Outlet Types View</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>EUR_BG</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <nameField>
+        <displayFormat>PRS-GO-{00000}</displayFormat>
+        <label>PRS Group Outlet Type No.</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>PRS Group Outlet Types (EU)</pluralLabel>
+    <recordTypes>
+        <fullName>EUR_BE_PRS_Off_Trade_Group_Outlet_Type</fullName>
+        <active>true</active>
+        <label>EUR BE PRS Off Trade Group Outlet Type</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Group_Outlet_Type_Name__c</picklist>
+            <values>
+                <fullName>Cash %26 Carry</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Convenience</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Discounters</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hyper%2FSupermarket</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Liquor Specialists</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Online</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Traditional Off Trade</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>EUR_CRM_PRS_Group_Outlet_Name__c</picklist>
+            <values>
+                <fullName>Cash %26 Carry</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Convenience</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Discounters</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hyper%2FSupermarket</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Liquor Specialists</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Online</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Traditional Off Trade</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_BE_PRS_On_Trade_Group_Outlet_Type</fullName>
+        <active>true</active>
+        <label>EUR BE PRS On Trade Group Outlet Type</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Group_Outlet_Type_Name__c</picklist>
+            <values>
+                <fullName>High Energy Bar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low Energy Bar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Night Club</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Restaurant</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>EUR_CRM_PRS_Group_Outlet_Name__c</picklist>
+            <values>
+                <fullName>High Energy Bar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low Energy Bar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Night Club</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Restaurant</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_BG_PRS_Off_Trade_Group_Outlet_Type</fullName>
+        <active>true</active>
+        <label>EUR BG PRS Off Trade Group Outlet Type</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Group_Outlet_Type_Name__c</picklist>
+            <values>
+                <fullName>Cash %26 Carry</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Convenience</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Discounters</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hyper%2FSupermarket</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Liquor Specialists</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Online</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Traditional Off Trade</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>EUR_CRM_PRS_Group_Outlet_Name__c</picklist>
+            <values>
+                <fullName>Cash %26 Carry</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Convenience</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Discounters</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hyper%2FSupermarket</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Liquor Specialists</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Online</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Traditional Off Trade</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>PRS_Group_Outlet_Type</fullName>
+        <active>true</active>
+        <label>PRS Group Outlet Type</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Group_Outlet_Type_Name__c</picklist>
+            <values>
+                <fullName>Cash %26 Carry</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Convenience</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Discounters</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>High Energy Bar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hyper%2FSupermarket</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Liquor Specialists</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low Energy Bar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Night Club</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Online</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Restaurant</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Traditional Off Trade</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>EUR_CRM_PRS_Group_Outlet_Name__c</picklist>
+            <values>
+                <fullName>Cash %26 Carry</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Convenience</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Discounters</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>High Energy Bar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hyper%2FSupermarket</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Liquor Specialists</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low Energy Bar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Online</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Restaurant</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Traditional Off Trade</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts/>
+    <sharingModel>Private</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

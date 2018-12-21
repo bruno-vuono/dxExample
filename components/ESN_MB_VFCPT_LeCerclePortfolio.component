@@ -1,0 +1,46 @@
+<apex:component controller="ESN_MB_NOP_Brand_Cx">
+    
+    <div class="content-wrapper container-fluid">
+      <div class="leCercle-portfolio">
+        <p><h3>{!$Label.ESN_MB_LeCerclePortfolio}</h3><!--a href="#?page=page-hp&amp;content=page-hp&amp;mode=full"><img id="close" src="{!urlfor($Resource.ESN_MB_Theme_Core, '/images/close.png')}" alt="Close this page"/></a--></p>
+      </div>
+    </div>
+    <script>
+        var portfolioBackground = "{!portfolioBackground}";
+        $('.hp-brand #main-wrapper .leCercle-Portfolio').css("background",'url(/servlet/servlet.FileDownload?file='+ portfolioBackground + ') no-repeat fixed center');
+        
+        var brandNames = {!BrandNames};
+        var brandLogosIds = {!LogosIds};
+        var isLeCercleBroadcaster = {!isLeCercleBroadCaster};
+        var leCercle = "{!$Label.ESN_MB_LeCercle}";
+        
+        // Construct leCercle Portfolio
+        for (var i = 0; i < brandNames.length; i++) {
+            if (brandNames[i].ESN_MB_Brand_Category__c == leCercle && brandNames[i].Name != leCercle) {
+                if(brandNames[i].ESN_MB_Deployment_Status__c == 'Enable' || (isLeCercleBroadcaster && (brandNames[i].ESN_MB_Deployment_Status__c == 'Enable' || brandNames[i].ESN_MB_Deployment_Status__c == 'Work in progress'))){
+                    $('div.leCercle-portfolio').append(
+                        '<a target="_top" href="/apex/ESN_MB_NOP_Brand?brandId=' + brandNames[i].Id + '">' +
+                            '<figure>' +
+                                '<img src="/servlet/servlet.FileDownload?file=' + brandLogosIds[i] + '" alt=""/>' +
+                                '<figcaption>' + brandNames[i].ESN_MB_Title__c + '</figcaption>' +
+                            '</figure>' +
+                        '</a>'  
+                    );
+                }
+            }
+        }
+        $('div.leCercle-portfolio').append('<hr/>');
+        // Ajust all figcaption height
+        //var maxHeight = 0;
+        //$('.leCercle-portfolio figure figcaption').each(function(){
+            //if (maxHeight < $(this).height()) {
+                //maxHeight = $(this).height();
+            //}
+        //});
+        //console.log(maxHeight);
+        //$('.leCercle-portfolio figure figcaption').each(function(){
+        //    $(this).height(maxHeight);
+        //});
+    </script>
+    <apex:includeScript value="{!urlfor($Resource.ESN_MB_Theme_Core, '/js/pages/leCercle-Portfolio.js')}"/>
+</apex:component>

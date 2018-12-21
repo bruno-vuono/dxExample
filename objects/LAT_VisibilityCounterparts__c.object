@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSearch>false</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Comment__c</fullName>
+        <externalId>false</externalId>
+        <label>Comentário</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>8</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Contract__c</fullName>
+        <externalId>false</externalId>
+        <label>Número do contrato</label>
+        <referenceTo>LAT_Contract2__c</referenceTo>
+        <relationshipLabel>Contrapartidas de Visibilidades</relationshipLabel>
+        <relationshipName>Contrapartidas_de_Visibilidades</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>type__c</fullName>
+        <externalId>false</externalId>
+        <label>Tipo</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Ativação</fullName>
+                    <default>false</default>
+                    <label>Ativação</label>
+                </value>
+                <value>
+                    <fullName>Cardapio</fullName>
+                    <default>false</default>
+                    <label>Cardapio</label>
+                </value>
+                <value>
+                    <fullName>Comunicação</fullName>
+                    <default>false</default>
+                    <label>Comunicação</label>
+                </value>
+                <value>
+                    <fullName>Consultoria de Mixologistas</fullName>
+                    <default>false</default>
+                    <label>Consultoria de Mixologistas</label>
+                </value>
+                <value>
+                    <fullName>Divulgação Clube do Barman</fullName>
+                    <default>false</default>
+                    <label>Divulgação Clube do Barman</label>
+                </value>
+                <value>
+                    <fullName>Festas / Eventos</fullName>
+                    <default>false</default>
+                    <label>Festas / Eventos</label>
+                </value>
+                <value>
+                    <fullName>Incentivo da Brigada</fullName>
+                    <default>false</default>
+                    <label>Incentivo da Brigada</label>
+                </value>
+                <value>
+                    <fullName>Material Funcional</fullName>
+                    <default>false</default>
+                    <label>Material Funcional</label>
+                </value>
+                <value>
+                    <fullName>Mídia Social</fullName>
+                    <default>false</default>
+                    <label>Mídia Social</label>
+                </value>
+                <value>
+                    <fullName>Projetos Especiais</fullName>
+                    <default>false</default>
+                    <label>Projetos Especiais</label>
+                </value>
+                <value>
+                    <fullName>Tailor Made﻿</fullName>
+                    <default>false</default>
+                    <label>Tailor Made﻿</label>
+                </value>
+                <value>
+                    <fullName>Uniforme</fullName>
+                    <default>false</default>
+                    <label>Uniforme</label>
+                </value>
+                <value>
+                    <fullName>Venda de Garrafa</fullName>
+                    <default>false</default>
+                    <label>Venda de Garrafa</label>
+                </value>
+                <value>
+                    <fullName>Visibilidade do produto</fullName>
+                    <default>false</default>
+                    <label>Visibilidade do produto</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <label>Contrapartidas de Visibilidade</label>
+    <nameField>
+        <displayFormat>CV-{000000}</displayFormat>
+        <label>ID Contrapartidas de Visibilidade</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Contrapartidas de Visibilidade</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

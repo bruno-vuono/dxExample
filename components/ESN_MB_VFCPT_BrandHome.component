@@ -1,0 +1,94 @@
+<apex:component >
+    
+    <div src="" class="slideLeft" alt="">
+     
+    </div>
+    <div src="" class="slideRight" alt="" >
+     
+    </div>
+       
+    <!-- Brand carrouseil display all the bottles and their names -->
+    <div class="container-fluid unselectable" id="brand-carrousel"></div>
+
+    <div id="container-editorial">   
+        <div id="editorial-min">
+          <img src="{!urlfor($Resource.ESN_MB_Theme_Core, '/images/picture.png')}" alt="" width="40px" height="50px" />
+          <div id="open-editorial" title="Open Alexandre Ricard's Welcome">
+            <span class="icon-uniE612"></span>
+          </div>
+        </div>
+        <div id="editorial">
+          <div id="header">
+              <div id="close-editorial" title="Close Alexandre Ricard's Welcome"><span class="icon-uniE61E"></span></div>
+          </div>
+          <div id="content">
+            <img src="{!urlfor($Resource.ESN_MB_Theme_Core, '/images/double-quote.png')}" alt="" style="vertical-align: text-bottom;" />
+            <apex:outputText value="{!$Label.ESN_MB_WelcomeText_1}" escape="false" /><apex:outputText value="{!$Label.ESN_MB_WelcomeText_2}" escape="false" />
+            <img src="{!urlfor($Resource.ESN_MB_Theme_Core, '/images/double-quote-inverse.png')}" alt="" style="vertical-align: text-top; height:8px;" />
+          </div>
+          <div id="footer">
+              <img id="picture" src="{!urlfor($Resource.ESN_MB_Theme_Core, '/images/picture.png')}" alt="" height="100px" />
+              <img id="signature" src="{!urlfor($Resource.ESN_MB_Theme_Core, '/images/signature.png')}" alt="" height="35px" />
+          </div>
+        </div>
+    </div>   
+
+    <script>
+        var leCercle = "{!$Label.ESN_MB_LeCercle}";
+        if(currentCategory == leCercle) {
+            if(brandName == leCercle) {
+                $('div#brand-carrousel').hide();
+                $('div#container-editorial').show();
+            } else {
+                $('div#brand-carrousel').hide();
+                $('div#container-editorial').hide();
+            }
+        } else {
+            $('div#brand-carrousel').show();        
+            $('div#container-editorial').hide();
+        }
+        $(function() {
+  $.LeCercle_checkFirstVisit();
+  
+  var options = {};
+  $("#open-editorial").click(function() {
+    $("#editorial").effect("fade", options, 750, false);
+    $("#open-editorial").hide();
+    $("#editorial-min").effect("drop", options, 250, false);
+    //$("#footer-wrapper").hide();
+    $("#footer-wrapper").effect("fade", options, 500, false);
+    return false;
+  });
+  $("#close-editorial").click(function() {
+    $("#editorial").effect("fade", options, 500, false);
+    $("#open-editorial").show();
+    $("#editorial-min").effect("slide", options, 250, false);
+    //$("#footer-wrapper").show();    
+    $("#footer-wrapper").effect("fade", options, 750, false);  
+    return false;
+  });
+});
+  
+$.LeCercle_checkFirstVisit = function() {
+  if(currentCategory == leCercle) {
+	  if (localStorage["firstVisit"] != null) {
+	    localStorage["firstVisit"] = false;
+	  } else {
+	    localStorage["firstVisit"] = true;
+	  }
+	  
+	  if (localStorage["firstVisit"] == "true") {
+	    $("#editorial").show();
+	    $("#editorial-min").hide();
+	    $("#footer-wrapper").hide();
+	  } else {
+	    $("#editorial").hide();
+	    $("#editorial-min").show();
+	    $("#footer-wrapper").show();    
+	  }
+  }
+}
+    </script>
+    
+    
+</apex:component>

@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>ASI_HK_CRM_SO_Credit_Hold_Rejection_Email</fullName>
+        <description>SO Credit Hold Rejection Email</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>ASI_HK_CRM_SO_Email_Templates/ASI_HK_CRM_SO_Credit_Hold_Rejection_Notice_Notice</template>
+    </alerts>
+    <alerts>
+        <fullName>ASI_HK_CRM_SO_Entry_Rejection_Email</fullName>
+        <description>SO Entry Rejection Email</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>ASI_HK_CRM_SO_Email_Templates/ASI_HK_CRM_SO_Entry_Rejection_Notice_Notice</template>
+    </alerts>
+    <alerts>
+        <fullName>ASI_HK_CRM_SO_Resume_Email</fullName>
+        <description>ASI_HK_CRM_SO_Resume_Email</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>ASI_HK_CRM_SO_Email_Templates/ASI_HK_CRM_SO_Resume_email</template>
+    </alerts>
+    <alerts>
+        <fullName>ASI_HK_CRM_SO_Web_Service_Notification_Alert</fullName>
+        <ccEmails>hkcrm2support@pernod-ricard.com</ccEmails>
+        <description>ASI HK CRM SO Web Service Notification Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>cyrus.lo@pernod-ricard.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>ASI_HK_CRM_SO_Email_Templates/ASI_HK_CRM_SO_Web_Service_Error</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>ASI_CRM_HK_SO_ReadOnly</fullName>
+        <field>RecordTypeId</field>
+        <lookupValue>HK_CRM_Sales_Order_Normal_ReadOnly</lookupValue>
+        <lookupValueType>RecordType</lookupValueType>
+        <name>ASI_CRM_HK_SO_ReadOnly</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ASI_CRM_HK_SO_Rejected</fullName>
+        <field>ASI_CRM_HK_has_rejected__c</field>
+        <literalValue>1</literalValue>
+        <name>ASI CRM HK SO Rejected</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ASI_HK_CRM_Assign_SO_External_ID_Value</fullName>
+        <description>Copy SO Name + HK to field</description>
+        <field>ASI_HK_CRM_SO_External_ID__c</field>
+        <formula>&quot;HK&quot;+ Name</formula>
+        <name>ASI HK CRM Assign SO External ID Value</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ASI_HK_CRM_SO_FU_Order_Sts_Code_580</fullName>
+        <field>ASI_HK_CRM_Order_Status_Code__c</field>
+        <literalValue>580</literalValue>
+        <name>SO_FU_Order_Sts_Code_580</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ASI_HK_CRM_SO_FU_Order_Sts_Code_980</fullName>
+        <field>ASI_HK_CRM_Order_Status_Code__c</field>
+        <literalValue>980</literalValue>
+        <name>SO_FU_Order_Sts_Code_980</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ASI_HK_CRM_SO_FU_Order_Sts_Code_Draft</fullName>
+        <field>ASI_HK_CRM_Order_Status_Code__c</field>
+        <literalValue>DRAFT</literalValue>
+        <name>SO_FU_Order_Sts_Code_Draft</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ASI_HK_CRM_SO_FU_Order_Sts_Code_SAReview</fullName>
+        <field>ASI_HK_CRM_Order_Status_Code__c</field>
+        <literalValue>SA_APPROVED</literalValue>
+        <name>SO_FU_Order_Sts_Code_SAReview</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ASI_HK_CRM_SO_FU_Order_Sts_Name_ALMRej</fullName>
+        <field>ASI_HK_CRM_Order_Status_Name__c</field>
+        <literalValue>ALM Rejected</literalValue>
+        <name>SO_FU_Order_Sts_Name_ALMRej</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ASI_HK_CRM_SO_FU_Order_Sts_Name_ALM_Apv</fullName>
+        <field>ASI_HK_CRM_Order_Status_Name__c</field>
+        <literalValue>ALM Approved</literalValue>
+        <name>SO_FU_Order_Sts_Name_ALM_Apv</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ASI_HK_CRM_SO_FU_Order_Sts_Name_Approve</fullName>
+        <field>ASI_HK_CRM_Order_Status_Name__c</field>
+        <literalValue>Approved</literalValue>
+        <name>SO_FU_Order_Sts_Name_Approve</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ASI_HK_CRM_SO_FU_Order_Sts_Name_Draft</fullName>
+        <field>ASI_HK_CRM_Order_Status_Name__c</field>
+        <literalValue>Draft</literalValue>
+        <name>SO_FU_Order_Sts_Name_Draft</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ASI_HK_CRM_SO_FU_Order_Sts_Name_FD</fullName>
+        <field>ASI_HK_CRM_Order_Status_Name__c</field>
+        <literalValue>FD Approved</literalValue>
+        <name>SO_FU_Order_Sts_Name_FD</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ASI_HK_CRM_SO_FU_Order_Sts_Name_FD_Rej</fullName>
+        <field>ASI_HK_CRM_Order_Status_Name__c</field>
+        <literalValue>FD Rejected</literalValue>
+        <name>SO_FU_Order_Sts_Name_FD_Rej</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ASI_HK_CRM_SO_FU_Order_Sts_Name_HS_Rej</fullName>
+        <field>ASI_HK_CRM_Order_Status_Name__c</field>
+        <literalValue>HS Rejected</literalValue>
+        <name>SO_FU_Order_Sts_Name_HS_Rej</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ASI_HK_CRM_SO_FU_Order_Sts_Name_MD_Rej</fullName>
+        <field>ASI_HK_CRM_Order_Status_Name__c</field>
+        <literalValue>MD Rejected</literalValue>
+        <name>SO_FU_Order_Sts_Name_MD_Rej</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ASI_HK_CRM_SO_FU_Order_Sts_Name_SARej</fullName>
+        <field>ASI_HK_CRM_Order_Status_Name__c</field>
+        <literalValue>SA Rejected</literalValue>
+        <name>SO_FU_Order_Sts_Name_SARej</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ASI_HK_CRM_SO_FU_Order_Sts_Name_SAReview</fullName>
+        <field>ASI_HK_CRM_Order_Status_Name__c</field>
+        <literalValue>SA Approved</literalValue>
+        <name>SO_FU_Order_Sts_Name_SAReview</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ASI_HK_CRM_SO_FU_Order_Sts_Name_SMD_Apv</fullName>
+        <field>ASI_HK_CRM_Order_Status_Name__c</field>
+        <literalValue>HS Approved</literalValue>
+        <name>SO_FU_Order_Sts_Name_HS_Apv</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ASI_HK_CRM_SO_FU_Order_Sts_Name_SO_COMPR</fullName>
+        <description>Comment Provided</description>
+        <field>ASI_HK_CRM_Order_Status_Name__c</field>
+        <literalValue>Comment Provided</literalValue>
+        <name>SO_FU_Order_Sts_Name_SO_COMPR</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ASI_HK_CRM_SO_FU_Order_Sts_Name_SO_Rej</fullName>
+        <field>ASI_HK_CRM_Order_Status_Name__c</field>
+        <literalValue>SO Rejected</literalValue>
+        <name>SO_FU_Order_Sts_Name_SO_Rej</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ASI_HK_CRM_SO_FU_Order_Sts_Name_SSCAppr</fullName>
+        <field>ASI_HK_CRM_Order_Status_Name__c</field>
+        <literalValue>SSC Finance updated</literalValue>
+        <name>SO_FU_Order_Sts_Name_SSCAppr</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ASI_HK_CRM_SO_FU_Order_Sts_Name_SSC_Rej</fullName>
+        <field>ASI_HK_CRM_Order_Status_Name__c</field>
+        <literalValue>SSC Rejected</literalValue>
+        <name>SO_FU_Order_Sts_Name_SSC_Rej</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ASI_HK_CRM_SO_FU_Order_Sts_Name_SUVRej</fullName>
+        <field>ASI_HK_CRM_Order_Status_Name__c</field>
+        <literalValue>Supervisor Rejected</literalValue>
+        <name>SO_FU_Order_Sts_Name_SUVRej</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ASI_HK_CRM_SO_FU_Order_Sts_Name_Submit</fullName>
+        <field>ASI_HK_CRM_Order_Status_Name__c</field>
+        <literalValue>Submitted</literalValue>
+        <name>SO_FU_Order_Sts_Name_Submit</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ASI_HK_CRM_SO_FU_Order_Sts_Name_To_JDE</fullName>
+        <field>ASI_HK_CRM_Order_Status_Name__c</field>
+        <literalValue>Interfaced to JDE</literalValue>
+        <name>SO_FU_Order_Sts_Name_To_JDE</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ASI_HK_CRM_SO_FU_RT_H4H7</fullName>
+        <field>RecordTypeId</field>
+        <lookupValue>ASI_HK_CRM_Sales_Order_H4H7_SSM_Comment</lookupValue>
+        <lookupValueType>RecordType</lookupValueType>
+        <name>SO_FU_RT_H4H7</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ASI_HK_CRM_SO_FU_RT_Normal</fullName>
+        <field>RecordTypeId</field>
+        <lookupValue>ASI_HK_CRM_Sales_Order_Normal</lookupValue>
+        <lookupValueType>RecordType</lookupValueType>
+        <name>SO_FU_RT_Normal</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ASI_HK_CRM_SO_FU_RT_Paused</fullName>
+        <field>RecordTypeId</field>
+        <lookupValue>ASI_HK_CRM_Sales_Order_Paused</lookupValue>
+        <lookupValueType>RecordType</lookupValueType>
+        <name>SO_FU_RT_Paused</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ASI_HK_CRM_SO_FU_Request_Date_Time</fullName>
+        <field>ASI_HK_CRM_SYS_Request_Datetime__c</field>
+        <formula>NOW()</formula>
+        <name>SO_FU_Request_Date_Time</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ASI_HK_CRM_SO_Normal_Layout</fullName>
+        <field>RecordTypeId</field>
+        <lookupValue>ASI_HK_CRM_Sales_Order_Normal</lookupValue>
+        <lookupValueType>RecordType</lookupValueType>
+        <name>ASI HK CRM SO Normal Layout</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ASI_HK_CRM_Set_SO_FY_Value</fullName>
+        <field>ASI_HK_CRM_SYS_Fiscal_Year__c</field>
+        <formula>RIGHT(TEXT(IF(
+AND(MONTH( DATEVALUE(CreatedDate) ) &gt;= 7, MONTH( DATEVALUE(CreatedDate) ) &lt;= 12),
+YEAR(DATEVALUE(CreatedDate)),
+YEAR(DATEVALUE(CreatedDate))-1)),2)</formula>
+        <name>ASI HK CRM Set SO FY Value</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ASI_HK_CRM_Urgent_Order_Layout</fullName>
+        <field>RecordTypeId</field>
+        <lookupValue>ASI_HK_CRM_Urgent_Order_Confirmation</lookupValue>
+        <lookupValueType>RecordType</lookupValueType>
+        <name>ASI HK CRM Urgent Order Layout</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <rules>
+        <fullName>ASI HK CRM Assign SO External ID</fullName>
+        <actions>
+            <name>ASI_HK_CRM_Assign_SO_External_ID_Value</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 OR 2 OR 3</booleanFilter>
+        <criteriaItems>
+            <field>ASI_HK_CRM_Sales_Order__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>HK CRM Sales Order- Normal</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ASI_HK_CRM_Sales_Order__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>HK CRM Sales Order- Paused</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ASI_HK_CRM_Sales_Order__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>HK CRM Sales Order-H4H7_SSM_Comment</value>
+        </criteriaItems>
+        <description>Copy value from SO Name field and add Country prefix in format HKSO-12345678</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>ASI HK CRM SO Web Service Notification</fullName>
+        <actions>
+            <name>ASI_HK_CRM_SO_Web_Service_Notification_Alert</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <formula>ISPICKVAL (ASI_HK_CRM_Order_Status_Name__c,&apos;Web Service Error&apos;)</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>ASI HK CRM Set SO FY Number</fullName>
+        <actions>
+            <name>ASI_HK_CRM_Set_SO_FY_Value</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>ASI_HK_CRM_Sales_Order__c.CreatedDate</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>ASI_CRM_HK_SO_ReadOnly</fullName>
+        <actions>
+            <name>ASI_CRM_HK_SO_ReadOnly</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>ASI_HK_CRM_Sales_Order__c.ASI_HK_CRM_Order_Status_Name__c</field>
+            <operation>equals</operation>
+            <value>Interfaced to JDE,Waiting for Hold Code</value>
+        </criteriaItems>
+        <description>After submit for approval, change to read only for waiting JDE</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>ASI_HK_CRM_SO_H4H7_RT</fullName>
+        <actions>
+            <name>ASI_HK_CRM_SO_FU_RT_H4H7</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>and(ISCHANGED( ASI_HK_CRM_Credit_Hold_Reason__c ) ,  ISBLANK(  ASI_HK_CRM_Comment_SSM_HS__c ) ,or(ASI_HK_CRM_Credit_Hold_Reason__c=&quot;H4&quot;, ASI_HK_CRM_Credit_Hold_Reason__c=&quot;H7&quot;))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>ASI_HK_CRM_SO_H5_H8_Resume_notice</fullName>
+        <actions>
+            <name>ASI_HK_CRM_SO_Resume_Email</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND (2 or 3)</booleanFilter>
+        <criteriaItems>
+            <field>ASI_HK_CRM_Sales_Order__c.ASI_HK_CRM_Order_Status_Name__c</field>
+            <operation>equals</operation>
+            <value>SSC Finance updated</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ASI_HK_CRM_Sales_Order__c.ASI_HK_CRM_Credit_Hold_Reason__c</field>
+            <operation>equals</operation>
+            <value>H5</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ASI_HK_CRM_Sales_Order__c.ASI_HK_CRM_Credit_Hold_Reason__c</field>
+            <operation>equals</operation>
+            <value>H8</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>ASI_HK_CRM_SO_Normal_RT</fullName>
+        <actions>
+            <name>ASI_HK_CRM_SO_FU_RT_Normal</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>or( and(RecordType.Name =&quot;HK CRM Sales Order- Paused&quot;, not(isblank(ASI_HK_CRM_Comments_Salesman__c))), and(RecordType.Name =&quot;HK CRM Sales Order-H4H7_SSM_Comment&quot;, not(isblank(ASI_HK_CRM_Comment_SSM_HS__c))))</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>ASI_HK_CRM_SO_Pause_RT</fullName>
+        <actions>
+            <name>ASI_HK_CRM_SO_FU_RT_Paused</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>and(ISCHANGED( ASI_HK_CRM_Credit_Hold_Reason__c ) ,  ISBLANK( ASI_HK_CRM_Comments_Salesman__c) ,or(ASI_HK_CRM_Credit_Hold_Reason__c=&quot;H5&quot;, ASI_HK_CRM_Credit_Hold_Reason__c=&quot;H8&quot;))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

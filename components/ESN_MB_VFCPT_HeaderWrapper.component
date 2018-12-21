@@ -1,0 +1,151 @@
+<apex:component controller="ESN_MB_NOP_Homepage_Cx">
+  <div class="header-wrapper">
+    <!--SCH 24/04/2105 : Form added to achieve SSO to Proprocure-->
+    <form action="{!$Label.ESN_MB_Proprocure_URL}" method="post" id="proprocureForm" target="_blank">
+      <input name="UserEmail" type="hidden" value="{!$User.email}"/>
+      <input name="SharedKey" type="hidden" value="{!$Label.ESN_MB_Proprocure_SharedKey}"/>
+      <input type="submit" value="Go" style="display:none"/>
+    </form>
+    <header class="container-fluid clearfix splash-close"></header>
+  	</div>
+    <style>
+        
+    </style>
+  <script>
+        var newsRubricId = "{!LeCercleNewsId}";
+        var thisProductId ="{!LeCercleProductId}";
+        var leCercle = "{!$Label.ESN_MB_LeCercle}";
+        var brandName = "{!BrandName}";
+        var brands = {!BrandNames};
+        var leCercleBrandId;
+        for (var i = 0; i < brands.length; i++) {
+            if (brands[i].Name == leCercle) {
+                leCercleBrandId = brands[i].Id;
+            }
+        }
+        
+        if(currentCategory == leCercle) {
+            if(brandName == leCercle) {
+                //$('.header-wrapper header').append(
+                    //'<a id="brand-logo" href="#?page=page-hp&content=page-hp&mode=full" data-category="brand-cloud" data-page="page-hp"><div id="logo-brand-header-wrapper" class="logo"></div></a>' +
+                    //'<nav>' +
+                        //'<ul id="header_leCercle">' +
+                            //'<li class="leCercle-Portfolio" title="{!$Label.ESN_MB_HeaderLeCerclePortfolio_Title}"><a href="#?page=leCercle-Portfolio&content=leCercle-Portfolio&mode=light" data-category="leCercle-Portfolio" data-cat-name="leCercle-Portfolio" data-page="leCercle-Portfolio"><span>{!$Label.ESN_MB_HeaderLeCerclePortfolio}</span></a></li>' +
+                            //'<li class="menu-separator"></li>' +
+                            //'<li><a href="#?page=influencers&content=' + newsRubricId + '&content2=' + thisProductId + '&mode=medium" data-category="influencers" data-cat-name="influencers" data-page="influencers"><span>{!$Label.ESN_MB_FlashNews}</span></a>' +
+                            //'<li class="menu-separator"></li>' +
+                            //'<li><a href="#?page=forum&content=forum&mode=light" data-category="forum" data-cat-name="forum" data-page="forum"><span>{!$Label.ESN_MB_HeaderLeCercleForum}</span></a></li>' +
+                            //'<li class="menu-separator-white"></li>' +
+                            //'<li class="search-menu"><a id="searchMyBrands" data-category="search" data-cat-name="search" data-target="#modal-search" href="/apex/ESN_MB_NOP_Search" data-toggle="modal" onclick="if(content===\'help\'){document.location.href=\'#?page=page-hp&content=page-hp&mode=full\';}"><span>{!$Label.ESN_MB_HeaderLeCercleSearch}</span></a></li>' +
+                            //'<li class="menu-separator"></li>' +
+                            //'<li class="search-menu"><a href="#?page=help&content=help&mode=light" data-category="help" data-cat-name="help" data-page="help"><span>{!$Label.ESN_MB_HeaderLeCercleHelpFaq}</span></a></li>' +
+                            //'<li class="search-menu search-menu-my-brands"><a data-category="my" data-cat-name="my" data-target="#modal-my" href="/apex/ESN_MB_NOP_Homepage" data-toggle="my"><div class="picto-menu-my"></div></a></li>' +
+                            //'<li class="search-menu search-menu-my-brands"><a data-category="brands" data-cat-name="brands" data-target="#modal-brands" href="/apex/ESN_MB_NOP_Homepage" data-toggle="brands"><div class="picto-menu-brands"></div></a></li>' +
+                        //'</ul>' +
+                    //'</nav>'
+                //);
+                $('.header-wrapper header').after(
+                  '<nav class="navbar navbar-inverse navbar-static-top">' +
+                      '<div class="container-fluid">' +
+                          '<div class="navbar-header">' +
+                              '<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">' +
+                                  '<span class="sr-only">Toggle navigation</span>' +
+                                  '<span class="glyphicon glyphicon-chevron-down"></span>' +
+                              '</button>' +
+                              '<a href="#?page=page-hp&content=page-hp&mode=full" data-category="brand-cloud" data-page="page-hp"><div title="Home" id="logo-brand-header-wrapper" class="logo"></div></a>' +
+                          '</div>' +
+                          '<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">' +
+                              '<ul class="nav navbar-nav">' +
+                                  '<li title="{!$Label.ESN_MB_HeaderLeCerclePortfolio_Title}"><a href="#?page=leCercle-Portfolio&content=leCercle-Portfolio&mode=light" data-category="leCercle-Portfolio" data-cat-name="leCercle-Portfolio" data-page="leCercle-Portfolio">{!$Label.ESN_MB_HeaderLeCerclePortfolio}</a></li>' +
+                                  '<li role="separator" class="divider-vertical"></li>' +
+                                  '<li><a href="#?page=influencers&content=' + newsRubricId + '&content2=' + thisProductId + '&mode=medium" data-category="influencers" data-cat-name="influencers" data-page="influencers">{!$Label.ESN_MB_FlashNews}</a></li>' +
+                                  '<li role="separator" class="divider-vertical"></li>' +
+                                  '<li><a href="#?page=forum&content=forum&mode=light" data-category="forum" data-cat-name="forum" data-page="forum">{!$Label.ESN_MB_HeaderLeCercleForum}</a></li>' +
+                              '</ul>' +
+                              '<ul class="nav navbar-nav navbar-right">' +
+                                '<li><a id="searchMyBrands" data-category="search" data-cat-name="search" data-target="#modal-search" href="/apex/ESN_MB_NOP_Search" data-toggle="modal" onclick="if(content===\'help\'){document.location.href=\'#?page=page-hp&content=page-hp&mode=full\';}">{!$Label.ESN_MB_HeaderLeCercleSearch}</a></li>' +
+                                  '<li role="separator" class="divider-vertical"></li>' +
+                                  '<li><a href="#?page=help&content=help&mode=light" data-category="help" data-cat-name="help" data-page="help">{!$Label.ESN_MB_HeaderLeCercleHelpFaq}</a></li>' +
+                                  '<li><a class="link-MyBrands" href="/apex/ESN_MB_NOP_Homepage"><img class="img-MyBrands" alt="MyBrands" src="{!urlfor($Resource.ESN_MB_Theme_Core, '/images/MyBrands.png')}"/></a></li>' +
+                              '</ul>' +
+                          '</div>' +
+                      '</div>' +
+                  '</nav>'
+                );
+            } else {
+                //$('.header-wrapper header').append(
+                    //'<a id="brand-logo" href="/apex/ESN_MB_NOP_Brand?brandId=' + leCercleBrandId + '#?page=page-hp&content=page-hp&mode=full" data-category="brand-cloud" data-page="page-hp"><div id="logo-brand-header-wrapper" class="logo"></div></a>' +
+                    //'<nav>' +
+                        //'<ul id="header_leCercle">' +
+                            //'<li class="leCercle-Portfolio" title="{!$Label.ESN_MB_HeaderLeCerclePortfolio_Title}"><a href="/apex/ESN_MB_NOP_Brand?brandId=' + leCercleBrandId + '#?page=leCercle-Portfolio&content=leCercle-Portfolio&mode=light" data-category="leCercle-Portfolio" data-cat-name="leCercle-Portfolio" data-page="leCercle-Portfolio"><span>{!$Label.ESN_MB_HeaderLeCerclePortfolio}</span></a></li>' +
+                            //'<li class="menu-separator"></li>' +
+                            //'<li><a href="#?page=accueil-market-activations&content=market-activation&mode=light" data-category="market-activation" data-cat-name="market-activation" data-page="accueil-market-activations"><span>{!$Label.ESN_MB_HeaderLeCercleMarketActivation}</span></a></li>' +
+                            //'<li class="menu-separator"></li>' +
+                            //'<li><a href="#?page=forum&content=forum&mode=light" data-category="forum" data-cat-name="forum" data-page="forum"><span>Forum</span></a></li>' +
+                            //'<li class="menu-separator-white"></li>' +
+                            //'<li class="search-menu"><a id="searchMyBrands" data-category="search" data-cat-name="search" data-target="#modal-search" href="/apex/ESN_MB_NOP_Search" data-toggle="modal" onclick="if(content===\'help\'){document.location.href=\'#?page=page-hp&content=page-hp&mode=full\';}"><span>{!$Label.ESN_MB_HeaderLeCercleSearch}</span></a></li>' +
+                            //'<li class="menu-separator"></li>' +
+                            //'<li class="search-menu"><a href="#?page=help&content=help&mode=light" data-category="help" data-cat-name="help" data-page="help"><span>{!$Label.ESN_MB_HeaderLeCercleHelpFaq}</span></a></li>' +
+                            //'<li class="search-menu search-menu-my-brands"><a data-category="my" data-cat-name="my" data-target="#modal-my" href="/apex/ESN_MB_NOP_Homepage" data-toggle="my"><div class="picto-menu-my"></div></a></li>' +
+                            //'<li class="search-menu search-menu-my-brands"><a data-category="brands" data-cat-name="brands" data-target="#modal-brands" href="/apex/ESN_MB_NOP_Homepage" data-toggle="brands"><div class="picto-menu-brands"></div></a></li>' +
+                        //'</ul>' +
+                    //'</nav>'
+                //);
+                $('.header-wrapper header').after(
+                  '<nav class="navbar navbar-inverse navbar-static-top">' +
+                      '<div class="container-fluid">' +
+                          '<div class="navbar-header">' +
+                              '<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">' +
+                                  '<span class="sr-only">Toggle navigation</span>' +
+                                  '<span class="glyphicon glyphicon-chevron-down"></span>' +
+                              '</button>' +
+                              '<a href="/apex/ESN_MB_NOP_Brand?brandId=' + leCercleBrandId + '#?page=page-hp&content=page-hp&mode=full" data-category="brand-cloud" data-page="page-hp"><div title="Home" id="logo-brand-header-wrapper" class="logo"></div></a>' +
+                          '</div>' +
+                          '<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">' +
+                              '<ul class="nav navbar-nav">' +
+                                  '<li title="{!$Label.ESN_MB_HeaderLeCerclePortfolio_Title}"><a href="/apex/ESN_MB_NOP_Brand?brandId=' + leCercleBrandId + '#?page=leCercle-Portfolio&content=leCercle-Portfolio&mode=light" data-category="leCercle-Portfolio" data-cat-name="leCercle-Portfolio" data-page="leCercle-Portfolio">{!$Label.ESN_MB_HeaderLeCerclePortfolio}</a></li>' +
+                                  '<li role="separator" class="divider-vertical"></li>' +
+                                  '<li><a href="#?page=accueil-market-activations&content=market-activation&mode=light" data-category="market-activation" data-cat-name="market-activation" data-page="accueil-market-activations">{!$Label.ESN_MB_HeaderLeCercleMarketActivation}</a></li>' +
+                                  '<li role="separator" class="divider-vertical"></li>' +
+                                  '<li><a href="#?page=forum&content=forum&mode=light" data-category="forum" data-cat-name="forum" data-page="forum">{!$Label.ESN_MB_HeaderLeCercleForum}</a></li>' +
+                              '</ul>' +
+                              '<ul class="nav navbar-nav navbar-right">' +
+                                '<li><a id="searchMyBrands" data-category="search" data-cat-name="search" data-target="#modal-search" href="/apex/ESN_MB_NOP_Search" data-toggle="modal" onclick="if(content===\'help\'){document.location.href=\'#?page=page-hp&content=page-hp&mode=full\';}">{!$Label.ESN_MB_HeaderLeCercleSearch}</a></li>' +
+                                  '<li role="separator" class="divider-vertical"></li>' +
+                                  '<li><a href="#?page=help&content=help&mode=light" data-category="help" data-cat-name="help" data-page="help">{!$Label.ESN_MB_HeaderLeCercleHelpFaq}</a></li>' +
+                                  '<li><a class="link-MyBrands" href="/apex/ESN_MB_NOP_Homepage"><img class="img-MyBrands" alt="MyBrands" src="{!urlfor($Resource.ESN_MB_Theme_Core, '/images/MyBrands.png')}"/></a></li>' +
+                              '</ul>' +
+                          '</div>' +
+                      '</div>' +
+                  '</nav>'
+                );
+            }
+      
+    } else {
+        $('.header-wrapper header').append(
+        '<a id="brand-logo" href="#?page=page-hp&content=page-hp&mode=full" data-category="brand-cloud" data-page="page-hp"><div id="logo-brand-header-wrapper" class="logo"></div></a>' +
+        '<nav>' +
+          '<ul>' +
+            '<li>' +
+              '<dl class="dropdown" id="productsListHeader">' +
+                '<dt><a><span>{!$Label.ESN_MB_HeaderBrandProductsSelect}</span></a></dt>' +
+                '<dd><ul id="productsListHeaderSelect" class="select-content"></ul></dd>' +
+              '</dl>' +
+            '</li>' +
+            '<li>' +
+              '<a href="#?page=accueil-market-activations&content=market-activation&mode=light" class="picto-menu-star" data-category="market-activation" data-cat-name="market-activation" data-page="accueil-market-activations"><span>{!$Label.ESN_MB_Market_High}<br />{!$Label.ESN_MB_Activation_High}</span></a>' +
+            '</li>' +
+            '<li class="menu-separator"></li>' +
+            '<li> <a href="#?page=forum&content=forum&mode=light" class="picto-menu-bulle" data-category="forum" data-cat-name="forum" data-page="forum"><span>&nbsp;<br />{!$Label.ESN_MB_Forum_High}</span></a></li>' +
+            '<li class="menu-separator"></li>' + 
+            '<li><a href="#" target="_blank" class="picto-menu-cart" onclick="document.getElementById(\'proprocureForm\').submit();return false;"><span>{!$Label.ESN_MB_Pos_High}<br />{!$Label.ESN_MB_eMARKET_High}</span></a></li>' +
+            '<li class="search-menu"><a id="searchMyBrands" data-category="search" data-cat-name="search" data-target="#modal-search" href="/apex/ESN_MB_NOP_Search" data-toggle="modal" onclick="if(content===\'help\'){document.location.href=\'#?page=page-hp&content=page-hp&mode=full\';}"><div class="picto-menu-search"></div></a></li>' +
+            '<li class="search-menu"><a href="#?page=help&content=help&mode=light" data-category="help" data-cat-name="help" data-page="help"><div class="picto-menu-faq"></div></a> </li>' +
+            '<li class="search-menu search-menu-my-brands"><a data-category="my" data-cat-name="my" data-target="#modal-my" href="/apex/ESN_MB_NOP_Homepage" data-toggle="my"><div class="picto-menu-my"></div></a></li>' +
+            '<li class="search-menu search-menu-my-brands"><a data-category="brands" data-cat-name="brands" data-target="#modal-brands" href="/apex/ESN_MB_NOP_Homepage" data-toggle="brands"><div class="picto-menu-brands"></div></a></li>' +
+          '</ul>' +
+        '</nav>'
+        );
+    }
+  </script>
+</apex:component>

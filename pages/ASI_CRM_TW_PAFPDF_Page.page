@@ -1,0 +1,308 @@
+<apex:page renderAs="PDF"  standardController="ASI_HK_CRM_Pre_Approval_Form__c" extensions="ASI_CRM_TW_PAFPDF_Ctrl" standardStylesheets="false" applyBodyTag="false" applyHtmlTag="false" showheader="false">
+    
+    <head>
+        <!--<apex:stylesheet value="{!URLFOR($Resource.ASI_CRM_TW_PAFPDFStyle)}"/>-->
+        <style type="text/css">
+            border{
+                width: 100%;border: 1px solid #000000;          
+            }
+            
+             .bold{
+                 font-weight:bold;   
+             }   
+                     
+             h1{
+                 font-size:20px; 
+                 font-family: Arial Unicode MS;    
+             }
+             
+             h2{
+                font-weight:bold;
+             }
+             
+             table {
+                 -fs-table-paginate: paginate;
+             }
+             
+             body{
+                 font-family: Arial Unicode MS;
+                 font-size: 13px;
+                 line-height: 20px;
+             }
+                         
+             tbody {
+                display:table-row-group;
+             }            
+               
+            
+            @media print{
+                thead{
+                    display:table-header-group;
+                }
+            }
+            
+            @page {
+                    size: 21.0cm 29.7cm;
+                    margin-top: 3.5cm;
+                    margin-bottom: 1cm;
+                    margin-left: 0.9cm;
+                    margin-right: 0.9cm;
+                    padding: 0cm;
+            
+                @top-center {
+                    width:100%;
+                    
+                    content: element(header);
+                }
+            
+                @bottom-right {
+                    font-size: 80%; 
+                    content: counter(page) "/" counter(pages);
+                }
+            
+                @bottom-left {
+                    font-size: 80%; 
+                    content: "{!ASI_HK_CRM_Pre_Approval_Form__c.name}";
+                }
+            }
+            
+            div.header {
+                margin: 0cm;
+                padding: 0cm;
+                position: running(header);
+            }
+            
+            div.content {               
+                display: block;
+                margin: 0cm;
+                padding: 0cm;
+            }
+        </style>
+    </head>
+
+    <div align="center" id="headerPanel" class="header" style="padding 0px; margin-top:15px;" >
+        <apex:image height="28%" width="28%" url="{!URLFOR($Resource.ASI_CRM_TW_Logo)}"/> 
+        
+        <center>
+            <apex:outputText style="font-size:18px;" value="客戶【{!ASI_HK_CRM_Pre_Approval_Form__c.ASI_HK_CRM_PAF_Customer__r.name}】獎勵贊助合約書 " />
+            <apex:outputPanel rendered="{!ASI_HK_CRM_Pre_Approval_Form__c.ASI_HK_CRM_PAF_Status__c=='Final'}">
+                <apex:outputText style="font-size:18px;" value="-{!ASI_HK_CRM_Pre_Approval_Form__c.ASI_CRM_Commitment_No__r.name}" rendered="{!ASI_HK_CRM_Pre_Approval_Form__c.ASI_CRM_Commitment_Status__c =='Final'}"/>
+                <apex:outputText style="font-size:18px;  color:red;" value="({!ASI_HK_CRM_Pre_Approval_Form__c.ASI_CRM_Commitment_Status__c})" rendered="{!ASI_HK_CRM_Pre_Approval_Form__c.ASI_CRM_Commitment_Status__c!=null && ASI_HK_CRM_Pre_Approval_Form__c.ASI_CRM_Commitment_Status__c!='' && ASI_HK_CRM_Pre_Approval_Form__c.ASI_CRM_Commitment_Status__c !='Final'}"/>
+            </apex:outputPanel>
+            <apex:outputPanel rendered="{!ASI_HK_CRM_Pre_Approval_Form__c.ASI_HK_CRM_PAF_Status__c=='Draft'}">
+                <apex:outputText style="font-size:18px; color:red;" value="({!ASI_HK_CRM_Pre_Approval_Form__c.ASI_HK_CRM_PAF_Status__c})" rendered="{! ASI_HK_CRM_Pre_Approval_Form__c.ASI_CRM_Commitment_No__c == null || ASI_HK_CRM_Pre_Approval_Form__c.ASI_CRM_Commitment_Status__c=='Draft' }"/>
+            </apex:outputPanel>
+            <apex:outputPanel rendered="{!ASI_HK_CRM_Pre_Approval_Form__c.ASI_HK_CRM_PAF_Status__c=='Complete'}">
+                <apex:outputText style="font-size:18px; color:red;" value="({!ASI_HK_CRM_Pre_Approval_Form__c.ASI_CRM_Commitment_Status__c})" />
+            </apex:outputPanel>
+            <apex:outputPanel rendered="{!ASI_HK_CRM_Pre_Approval_Form__c.ASI_HK_CRM_PAF_Status__c=='Cancel'}">
+                <apex:outputText style="font-size:18px; color:red;" value="({!ASI_HK_CRM_Pre_Approval_Form__c.ASI_HK_CRM_PAF_Status__c})" />
+            </apex:outputPanel>
+        </center>
+    </div>
+    
+    <div id="contentPanel" class="content" style="padding 0px; margin:0px;">
+    
+    <apex:outputPanel rendered="{! (!hasLineRecord) ||(hasDataError) }">
+        <h3 style="color:red;">Data Error: {!errorMsg}</h3>
+    </apex:outputPanel>
+    
+    <apex:outputPanel rendered="{! hasLineRecord && (!hasDataError)}">    
+        <div >
+            <table  align="center" style="width:100%; border: 0px;">
+                <tr >
+                    <td style="width:100%;">
+                    本合約書係由[台灣保樂力加股份有限公司]（以下簡稱保樂力加）與由單數客戶或複數群體客戶組成之
+                    <br/>[{!ASI_HK_CRM_Pre_Approval_Form__c.ASI_HK_CRM_PAF_Customer__r.name}{!childOutletNames}]（以下簡稱客戶）間簽署訂定。 集團內各簽約主體如本合約署名頁所載。
+                    <br/>若有由供貨商開立發票申請活動獎勵之情況發生，請加註下方文字：
+                    <br/>【{!ASI_HK_CRM_Pre_Approval_Form__c.ASI_CRM_TW_Supplier__c} 為台灣保樂力加股份有限公司指定供貨商， 代為執行[{!ASI_HK_CRM_Pre_Approval_Form__c.ASI_HK_CRM_PAF_Customer__r.name}]店內促銷活動】
+                    <br/>鑒於客戶與保樂力加間友好合作關係，且客戶致力於提升保樂力加產品之銷售並推廣保樂力加品牌，保樂力加特提供以下
+                    <br/>獎勵，雙方同意如下條款：
+                    </td>
+                </tr>
+            </table>
+            
+            <table  align="center" style="width:100%; border: 0px;">
+                <tr >
+                    <td align="left" style="width:100%;">一. 期間</td>
+                </tr>
+                <tr >
+                    <td align="left" style="width:100%;">
+                    活動期間：自 {!Year(ASI_HK_CRM_Pre_Approval_Form__c.ASI_HK_CRM_PAF_Start_Date__c)-1911} 年 {!Month(ASI_HK_CRM_Pre_Approval_Form__c.ASI_HK_CRM_PAF_Start_Date__c)} 月 {!Day(ASI_HK_CRM_Pre_Approval_Form__c.ASI_HK_CRM_PAF_Start_Date__c)} 日 至 {!Year(ASI_HK_CRM_Pre_Approval_Form__c.ASI_HK_CRM_PAF_End_Date__c)-1911} 年 {!Month(ASI_HK_CRM_Pre_Approval_Form__c.ASI_HK_CRM_PAF_End_Date__c)} 月 {!Day(ASI_HK_CRM_Pre_Approval_Form__c.ASI_HK_CRM_PAF_End_Date__c)} 日
+                    </td>
+                </tr>
+            </table>
+            
+            <table  align="center" style="width:100%; border: 0px;" cellspacing="0">
+                <tr >
+                    <td align="left" style="width:100%;">二. 獎勵方案</td>
+                </tr>
+                <tr >
+                    <td align="left" style="width:100%;">1. 目標量和瓶費獎勵</td>
+                </tr>
+                <tr >
+                    <td align="left" style="width:100%;">
+                        <table  align="center" style="width:100%; border: 1px solid #6699CC;  page-break-inside:avoid;" cellspacing="0">
+                        <tr>
+                            <th rowspan="2" align="center" style="border: 1px solid #6699CC; background-color:#f6f7ff;" >品項</th>
+                            <th align="center" style="border: 1px solid #6699CC; background-color:#f6f7ff;" >期間</th>
+                            <th colspan="{!noOfMonthPeriod}" align="center" style="border: 1px solid #6699CC; background-color:#f6f7ff;" >進貨目標 (瓶)</th>
+                            <th rowspan="2" align="center" style="border: 1px solid #6699CC; background-color:#f6f7ff;" >總進貨目標 (瓶)</th>
+                            <th rowspan="2" align="center" style="border: 1px solid #6699CC; background-color:#f6f7ff;" >瓶費獎勵</th>
+                        </tr>
+                        <tr>
+                            <th align="center" style="border: 1px solid #6699CC; background-color:#f6f7ff;" >產品名稱</th>
+                            <apex:repeat value="{!map_QuarterPeriod}" var="period"> 
+                                <th align="center" style="border: 1px solid #6699CC; background-color:#f6f7ff;" >
+                                <apex:outputPanel rendered="{!map_QuarterPeriod[period].fromDateId!=map_QuarterPeriod[period].toDateId}">
+                                {!map_QuarterPeriod[period].fromMonth}月 - {!map_QuarterPeriod[period].toMonth}月
+                                </apex:outputPanel>
+                                
+                                <apex:outputPanel rendered="{!map_QuarterPeriod[period].fromDateId==map_QuarterPeriod[period].toDateId}">
+                                {!map_QuarterPeriod[period].fromMonth}月
+                                </apex:outputPanel>
+                                </th>
+                            </apex:repeat>
+                            
+                        </tr>
+                        
+                        <!--
+                        <tr>
+                            <th style="border: 1px solid #6699CC; background-color:#f6f7ff;" >品項</th>
+                            <th style="border: 1px solid #6699CC; background-color:#f6f7ff;" >產品名稱</th>
+                            <apex:repeat value="{!map_QuarterPeriod}" var="period"> 
+                                <th style="border: 1px solid #6699CC; background-color:#f6f7ff;" >
+                                <apex:outputPanel rendered="{!map_QuarterPeriod[period].fromDateId!=map_QuarterPeriod[period].toDateId}">
+                                {!map_QuarterPeriod[period].fromMonth}月 - {!map_QuarterPeriod[period].toMonth}月
+                                </apex:outputPanel>
+                                
+                                <apex:outputPanel rendered="{!map_QuarterPeriod[period].fromDateId==map_QuarterPeriod[period].toDateId}">
+                                {!map_QuarterPeriod[period].fromMonth}月
+                                </apex:outputPanel>
+                                </th>
+                            </apex:repeat>
+                            <th style="border: 1px solid #6699CC; background-color:#f6f7ff;" >總進貨目標 (瓶)</th>
+                            <th style="border: 1px solid #6699CC; background-color:#f6f7ff;" >瓶費獎勵</th>
+                        </tr>
+                        -->
+                        
+                        <apex:repeat value="{!Map_ProductCat_VariableItem}" var="mapKey">
+                            <tr>
+                                <td style="border: 1px solid #6699CC; background-color:#f6f7ff;" rowspan ="{!Map_ProductCat_VariableItem[mapKey].LineSize+1}">{!Map_ProductCat_VariableItem[mapKey].productCat}</td>
+                            </tr>
+                            <!--
+                            <apex:repeat value="{!Map_ProductCat_VariableItem[mapKey].var_itemlines}" var="itemLine">
+                                <tr>
+                                <td style="border: 1px solid #6699CC;" >{!itemLine.ASI_CRM_Contracted_Item__r.name} </td>
+                                <td style="border: 1px solid #6699CC;" >{!itemLine.ASI_HK_CRM_Target_Volume_Qty__c}</td>
+                                </tr>
+                            </apex:repeat>
+                            -->
+                            
+                            <apex:repeat value="{!Map_ProductCat_VariableItem[mapKey].variable_itemlines}" var="itemLine" >
+                                <tr>
+                                <td style="border: 1px solid #6699CC;" >{!itemLine.itemName} </td>
+                                <apex:repeat value="{!itemLine.qtyTargets}" var="columnQty">
+                                    <td style="border: 1px solid #6699CC;" align="right"><apex:outputText value="{0, number, ###,###}"><apex:param value="{!columnQty}"/></apex:outputText> </td>
+                                </apex:repeat>
+                                <td style="border: 1px solid #6699CC;" align="right"><apex:outputText value="{0, number, ###,###}"><apex:param value="{!itemLine.totalQty}"/></apex:outputText></td>
+                                <td style="border: 1px solid #6699CC;" >{!itemLine.reward}</td>
+                                </tr>
+                            </apex:repeat>
+                        </apex:repeat>
+                        </table>
+                    
+                    </td>
+                </tr>
+                <tr >
+                    <td align="left" style="width:100%;">2. 僅客戶向供貨商 {!ASI_HK_CRM_Pre_Approval_Form__c.ASI_CRM_TW_Supplier__c} 購進之產品數量，方計入獎勵之計算。</td>
+                </tr>
+                <tr>
+                    <td></td>
+                </tr>
+                <apex:repeat value="{!Map_Section_Terms}" var="termObj" >
+                    <tr >
+                        <td align="left" style="width:100%;">{!Map_Section_Terms[termObj].setionTitle}</td>
+                    </tr>
+                    
+                    <apex:repeat value="{!outputControl}" var="control" rendered="{! !Map_Section_Terms[termObj].noDetails}" >
+                        <tr >
+                            <td>
+                                 <table  align="center" style="width:100%;" cellspacing="0">
+                                     <apex:repeat value="{!Map_Section_Terms[termObj].subTerms}" var="subTerm" rendered="{! !Map_Section_Terms[termObj].noDetails}" >
+                                     <tr>
+                                         <td align="left" style="width:2%; "></td>
+                                         <td align="left" style="width:98%;">{!subTerm}</td>
+                                     </tr>
+                                     </apex:repeat>
+                                 </table>
+                            </td>
+                        </tr>
+                    </apex:repeat>
+                    
+                    <!-- If it is the fourth section, need to output the investment table: -->
+                    <apex:repeat value="{!outputControl}" var="control" rendered="{! (termObj==sponsorshipSection) && hasInvestLine}" >
+                        <tr >
+                            <td align="left" style="width:100%;">
+                                <table  align="center" style="width:100%; page-break-inside:avoid;" cellspacing="0" >
+                                     <apex:repeat value="{!Map_Class_InvestmentLine}" var="invIndex" >
+                                     <tr>
+                                         <td align="left" style="border: 1px solid #6699CC; background-color:#f6f7ff; padding-top:4px; padding-bottom:3px;">{!Map_Class_InvestmentLine[invIndex].categoryName}</td>
+                                         <td align="left" style="border: 1px solid #6699CC; background-color:#f6f7ff; padding-top:4px; padding-bottom:3px;">獎勵/贊助內容</td>
+                                         <td align="left" style="border: 1px solid #6699CC; background-color:#f6f7ff; padding-top:4px; padding-bottom:3px;">獎勵/贊助方式</td>
+                                         <td align="left" style="border: 1px solid #6699CC; background-color:#f6f7ff; padding-top:4px; padding-bottom:3px;">獎勵辦法</td>
+                                     </tr>
+    
+                                     <apex:repeat value="{!Map_Class_InvestmentLine[invIndex].Map_Seq_InvestmentItemLine}" var="rcdIndex" >
+                                         <tr>
+                                             <td align="left" style="border: 1px solid #6699CC;">{!Map_Class_InvestmentLine[invIndex].Map_Seq_InvestmentItemLine[rcdIndex].ASI_HK_CRM_Mechanic__r.ASI_CRM_Display_Name__c}</td>
+                                             <td align="left" style="border: 1px solid #6699CC;">{!Map_Class_InvestmentLine[invIndex].Map_Seq_InvestmentItemLine[rcdIndex].ASI_CRM_Mechanic_Detail__c}</td>
+                                             <td align="left" style="border: 1px solid #6699CC;"><apex:outputText value="{!Map_Class_InvestmentLine[invIndex].Map_Seq_InvestmentItemLine[rcdIndex].ASI_CRM_Cash_or_FOC__c}" escape="false" /></td>
+                                             <td align="left" style="border: 1px solid #6699CC;">{!Map_Class_InvestmentLine[invIndex].Map_Seq_InvestmentItemLine[rcdIndex].ASI_CRM_Reward_Method__c}</td>
+                                         </tr>
+                                     </apex:repeat>
+                                     </apex:repeat>
+                                 </table>
+                            </td>
+                        </tr>
+                    </apex:repeat>
+                    
+                    <tr>
+                        <td></td>
+                    </tr>
+                </apex:repeat>
+                
+             
+            </table>
+            
+            <apex:outputPanel rendered="{!ASI_HK_CRM_Pre_Approval_Form__c.ASI_HK_CRM_PAF_Status__c=='Final' && ASI_HK_CRM_Pre_Approval_Form__c.ASI_CRM_Commitment_No__r.ASI_MFM_Status__c!='Draft' && ASI_HK_CRM_Pre_Approval_Form__c.ASI_CRM_Commitment_No__r.ASI_MFM_Status__c!='Submitted' && ASI_HK_CRM_Pre_Approval_Form__c.ASI_CRM_Commitment_No__r.ASI_MFM_Status__c!='Rejected' && ASI_HK_CRM_Pre_Approval_Form__c.ASI_CRM_Commitment_No__r.ASI_MFM_Status__c!='Cancel'}">
+            <table  align="center" style="width:100%; border: 1px solid #6699CC; padding-top:110px;  padding-bottom:20px;">
+                <tr >
+                    <td align="center" style="width:30%; border-bottom:1px solid #6699CC; "></td>
+                    <td align="center" style="width:5%;"></td>
+                    <td align="center" style="width:30%; border-bottom:1px solid #6699CC;"></td>
+                    <td align="center" style="width:5%;"></td>
+                    <td align="center" style="width:30%; border-bottom:1px solid #6699CC;"></td>
+                </tr>
+                <tr>
+                    <td align="left" >客戶[{!ASI_HK_CRM_Pre_Approval_Form__c.ASI_HK_CRM_PAF_Customer__r.name}]簽名蓋章</td>
+                    <td></td>
+                    <td align="left" >供貨商簽名蓋章</td>
+                    <td></td>
+                    <td align="left" >台灣保樂力加(股)公司</td>
+                </tr>
+                <tr>
+                    <td align="left;" >簽約日:</td>
+                    <td></td>
+                    <td align="left;" >簽約日:</td>
+                    <td></td>
+                    <td align="left;" >簽約日:</td>
+                </tr>
+            </table>
+            </apex:outputPanel>
+        </div>
+    </apex:outputPanel>
+    
+    </div>
+    
+</apex:page>

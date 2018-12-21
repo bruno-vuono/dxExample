@@ -1,0 +1,898 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>EUR_CRM_Amount__c</fullName>
+        <externalId>false</externalId>
+        <label>Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Brand_Budget__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Brand Budget</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Contract_Activity_Total__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(OR(ISNULL(EUR_CRM_Amount__c), EUR_CRM_Amount__c==0), 
+		(IF(ISNULL(EUR_CRM_Lumpsum_Value__c ),0,EUR_CRM_Lumpsum_Value__c) + IF(ISNULL(EUR_CRM_Product_Items_Total__c),0,EUR_CRM_Product_Items_Total__c))
+			,EUR_CRM_Amount__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Contract__c</fullName>
+        <externalId>false</externalId>
+        <label>Contract</label>
+        <referenceTo>EUR_CRM_Contract__c</referenceTo>
+        <relationshipName>EUR_CRM_Contract_Activity_Items</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Description__c</fullName>
+        <description>For the following affiliates:
+1. EUR DE - Germany
+2. EUR PT - Portugal</description>
+        <externalId>false</externalId>
+        <label>Description</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_End_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>End Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Excl_From_Contract_Act_Amt_ref__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Exclude From Contract Actual Amount</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Exclude_Budget_Deduction__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Exclude Budget Deduction</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_External_ID__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <externalId>true</externalId>
+        <label>External ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Is_Event__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Is Event</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Is_Lumpsum__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Used to calculate Lumpsum Total field on the Contract Header which would in turn help in calculating Commercial Investment field on the contract for PR PT.</description>
+        <externalId>false</externalId>
+        <label>Is Lumpsum</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Is_POS_Material__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>PR ZA - Automatically updated Field by Workflow. Used for the criteria while sending email to Warehouse Manager.</description>
+        <externalId>false</externalId>
+        <label>Is POS Material</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Is_PR_Event__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Is PR Event</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Is_Trainings__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>PR ZA - Automatically updated Field by Workflow. Used for the criteria while sending email to Warehouse Manager.</description>
+        <externalId>false</externalId>
+        <label>Is Trainings</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Is_Uniforms__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>PR ZA - Automatically updated Field by Workflow. Used for the criteria while sending email to Warehouse Manager.</description>
+        <externalId>false</externalId>
+        <label>Is Uniforms</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Is_Volume_Targets_and_Rebates__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Is Volume Targets and Rebates</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Lumpsum_Value__c</fullName>
+        <externalId>false</externalId>
+        <label>Lumpsum Value</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Mechanic_Type__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Mechanic Type</label>
+        <referenceTo>EUR_CRM_Mechanic_Type__c</referenceTo>
+        <relationshipName>EUR_CRM_Contract_Activity_Items</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Mechanic__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Mechanic</label>
+        <referenceTo>EUR_CRM_Mechanic__c</referenceTo>
+        <relationshipLabel>Contract Activity Item (EU)</relationshipLabel>
+        <relationshipName>Contract_Activity_Item_EU</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Mktg_Package_Mechanic_Handling__c</fullName>
+        <externalId>false</externalId>
+        <label>Marketing Package Mechanic Handling</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Lump Sum</fullName>
+                    <default>false</default>
+                    <label>Lump Sum</label>
+                </value>
+                <value>
+                    <fullName>Per Brand-Quality</fullName>
+                    <default>false</default>
+                    <label>Per Brand-Quality</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_PR_DE_Flag__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>If true Vendor == PR Deutschland
+
+For the following affiliates:
+1. Germany (DE)</description>
+        <externalId>false</externalId>
+        <label>Is PR DE Item</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Payment_Term_By_SR__c</fullName>
+        <externalId>false</externalId>
+        <label>Payment Term By SR</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Payment_Term__c</fullName>
+        <externalId>false</externalId>
+        <label>Payment Term</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Beginning of contract</fullName>
+                    <default>false</default>
+                    <label>Beginning of contract</label>
+                </value>
+                <value>
+                    <fullName>End of contract</fullName>
+                    <default>false</default>
+                    <label>End of contract</label>
+                </value>
+                <value>
+                    <fullName>After implementation</fullName>
+                    <default>false</default>
+                    <label>After implementation</label>
+                </value>
+                <value>
+                    <fullName>After implementation (pro rata p.a.)</fullName>
+                    <default>false</default>
+                    <label>After implementation (pro rata p.a.)</label>
+                </value>
+                <value>
+                    <fullName>Yearly after implementation</fullName>
+                    <default>false</default>
+                    <label>Yearly after implementation</label>
+                </value>
+                <value>
+                    <fullName>Half-yearly after implementation</fullName>
+                    <default>false</default>
+                    <label>Half-yearly after implementation</label>
+                </value>
+                <value>
+                    <fullName>Pro rata p.a.</fullName>
+                    <default>false</default>
+                    <label>Pro rata p.a.</label>
+                </value>
+                <value>
+                    <fullName>Monthly</fullName>
+                    <default>false</default>
+                    <label>Monthly</label>
+                </value>
+                <value>
+                    <fullName>Quarterly</fullName>
+                    <default>false</default>
+                    <label>Quarterly</label>
+                </value>
+                <value>
+                    <fullName>Pre-Event</fullName>
+                    <default>false</default>
+                    <label>Pre-Event</label>
+                </value>
+                <value>
+                    <fullName>Post-Event</fullName>
+                    <default>false</default>
+                    <label>Post-Event</label>
+                </value>
+                <value>
+                    <fullName>50 Pre-Event / 50 Post-Event</fullName>
+                    <default>false</default>
+                    <label>50 Pre-Event / 50 Post-Event</label>
+                </value>
+                <value>
+                    <fullName>Once off</fullName>
+                    <default>false</default>
+                    <label>Once off</label>
+                </value>
+                <value>
+                    <fullName>Bi-Annually</fullName>
+                    <default>false</default>
+                    <label>Bi-Annually</label>
+                </value>
+                <value>
+                    <fullName>Annually</fullName>
+                    <default>false</default>
+                    <label>Annually</label>
+                </value>
+                <value>
+                    <fullName>Upfront</fullName>
+                    <default>false</default>
+                    <label>Upfront</label>
+                </value>
+                <value>
+                    <fullName>50% upfront / 50% at completion</fullName>
+                    <default>false</default>
+                    <label>50% upfront / 50% at completion</label>
+                </value>
+                <value>
+                    <fullName>At completion</fullName>
+                    <default>false</default>
+                    <label>At completion</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Payment_Term_in_Contract_PDF__c</fullName>
+        <externalId>false</externalId>
+        <label>Payment  Term in Contract PDF</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Performance_Index__c</fullName>
+        <externalId>false</externalId>
+        <label>Performance Index</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Pro_Rated_by_Month__c</fullName>
+        <externalId>false</externalId>
+        <formula>EUR_CRM_Mechanic_Type__r.EUR_CRM_Is_Pro_Rated_by_Month__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Pro-rated by Month</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Product_Item_Qty_Total__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Product Item Quantity</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Product_Items_Count__c</fullName>
+        <externalId>false</externalId>
+        <label>Product Items Count</label>
+        <summaryForeignKey>EUR_CRM_Contract_Product_Item__c.EUR_CRM_Contract_Activity_Item__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Product_Items_Total__c</fullName>
+        <externalId>false</externalId>
+        <label>Product Items Total</label>
+        <summarizedField>EUR_CRM_Contract_Product_Item__c.EUR_CRM_Amount_Spent__c</summarizedField>
+        <summaryForeignKey>EUR_CRM_Contract_Product_Item__c.EUR_CRM_Contract_Activity_Item__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Product_Qty_Total__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Quantity</label>
+        <summarizedField>EUR_CRM_Contract_Product_Item__c.EUR_CRM_Quantity__c</summarizedField>
+        <summaryForeignKey>EUR_CRM_Contract_Product_Item__c.EUR_CRM_Contract_Activity_Item__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Start_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Start Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Supplier_PR__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Supplier PR</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Total_Actual_Performance_bottles__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Actual Performance (Nb Bottles)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Vendor__c</fullName>
+        <externalId>false</externalId>
+        <label>Vendor</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Contract Activity Item (EU)</label>
+    <listViews>
+        <fullName>EUR_DK_Contract_Activity_Item</fullName>
+        <columns>RECORDTYPE</columns>
+        <columns>NAME</columns>
+        <columns>EUR_CRM_Mechanic_Type__c</columns>
+        <columns>EUR_CRM_Mechanic__c</columns>
+        <columns>EUR_CRM_Payment_Term__c</columns>
+        <columns>EUR_CRM_Description__c</columns>
+        <columns>EUR_CRM_Contract__c</columns>
+        <columns>EUR_CRM_Name__c</columns>
+        <columns>CURRENCY_ISO_CODE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_Contract_Activity_Item__c.EUR_DK_Contract_Activity_Item</value>
+        </filters>
+        <label>EUR DK Contract Activity Item</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>EUR_DK</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>EUR_PT_All_Contract_Activity_Item_View</fullName>
+        <columns>NAME</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>EUR_CRM_Contract__c</columns>
+        <columns>EUR_CRM_Mechanic_Type__c</columns>
+        <columns>EUR_CRM_Name__c</columns>
+        <columns>EUR_CRM_Amount__c</columns>
+        <columns>EUR_CRM_Lumpsum_Value__c</columns>
+        <columns>EUR_CRM_Is_PR_Event__c</columns>
+        <columns>EUR_CRM_Description__c</columns>
+        <columns>EUR_CRM_External_ID__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>EUR_CRM_Is_Lumpsum__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_Contract_Activity_Item__c.EUR_PT_Contract_Activity_Item</value>
+        </filters>
+        <label>EUR PT All Contract Activity Item View</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>EUR_PT</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>EUR_ZA_Contract_Activity_Item</fullName>
+        <columns>RECORDTYPE</columns>
+        <columns>NAME</columns>
+        <columns>EUR_CRM_Mechanic_Type__c</columns>
+        <columns>EUR_CRM_Mechanic__c</columns>
+        <columns>EUR_CRM_Payment_Term__c</columns>
+        <columns>EUR_CRM_Description__c</columns>
+        <columns>EUR_CRM_Contract__c</columns>
+        <columns>EUR_CRM_Name__c</columns>
+        <columns>CURRENCY_ISO_CODE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_Contract_Activity_Item__c.EUR_ZA_Contract_Activity_Item</value>
+        </filters>
+        <label>EUR ZA Contract Activity Item</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>EUR_ZA</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <nameField>
+        <displayFormat>CA - {0000000000}</displayFormat>
+        <label>Contract Activity Item Name</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Contract Activity Item (EU)</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>Contract_Activity_Item</fullName>
+        <active>true</active>
+        <label>Contract Activity Item</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Mktg_Package_Mechanic_Handling__c</picklist>
+            <values>
+                <fullName>Lump Sum</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Per Brand-Quality</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>EUR_CRM_Payment_Term__c</picklist>
+            <values>
+                <fullName>After implementation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>After implementation %28pro rata p%2Ea%2E%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Beginning of contract</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>End of contract</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Half-yearly after implementation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pro rata p%2Ea%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yearly after implementation</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_DK_Contract_Activity_Item</fullName>
+        <active>true</active>
+        <description>Record Type for DK Contract Activity Item</description>
+        <label>EUR DK Contract Activity Item</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Mktg_Package_Mechanic_Handling__c</picklist>
+            <values>
+                <fullName>Lump Sum</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Per Brand-Quality</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>EUR_CRM_Payment_Term__c</picklist>
+            <values>
+                <fullName>50 Pre-Event %2F 50 Post-Event</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>50%25 upfront %2F 50%25 at completion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>After implementation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>After implementation %28pro rata p%2Ea%2E%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Annually</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>At completion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Beginning of contract</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bi-Annually</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>End of contract</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Half-yearly after implementation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Monthly</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Once off</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Post-Event</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pre-Event</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pro rata p%2Ea%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quarterly</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Upfront</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yearly after implementation</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_PT_Contract_Activity_Item</fullName>
+        <active>true</active>
+        <label>EUR PT Contract Activity Item</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Mktg_Package_Mechanic_Handling__c</picklist>
+            <values>
+                <fullName>Lump Sum</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Per Brand-Quality</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>EUR_CRM_Payment_Term__c</picklist>
+            <values>
+                <fullName>50 Pre-Event %2F 50 Post-Event</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>After implementation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>After implementation %28pro rata p%2Ea%2E%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Annually</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>At completion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Beginning of contract</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bi-Annually</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>End of contract</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Half-yearly after implementation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Monthly</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Once off</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Post-Event</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pre-Event</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pro rata p%2Ea%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quarterly</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Upfront</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yearly after implementation</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_ZA_Contract_Activity_Item</fullName>
+        <active>true</active>
+        <label>EUR ZA Contract Activity Item</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Mktg_Package_Mechanic_Handling__c</picklist>
+            <values>
+                <fullName>Lump Sum</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Per Brand-Quality</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>EUR_CRM_Payment_Term__c</picklist>
+            <values>
+                <fullName>50%25 upfront %2F 50%25 at completion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Annually</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>At completion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bi-Annually</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Monthly</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quarterly</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Upfront</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

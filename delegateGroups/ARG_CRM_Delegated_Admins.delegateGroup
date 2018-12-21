@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DelegateGroup xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>ARG CRM Delegated Admins</label>
+    <loginAccess>true</loginAccess>
+    <profiles>ARG_Adm de Vtas</profiles>
+    <profiles>ARG_Cred y Cob</profiles>
+    <profiles>ARG_Int Comercial</profiles>
+    <profiles>ARG_Logística</profiles>
+    <profiles>ARG_Tesorería</profiles>
+    <profiles>AR_Vendedor</profiles>
+    <profiles>UY_Vendedor</profiles>
+    <profiles>AR_System Administrator</profiles>
+    <roles>ARG - Gerente General</roles>
+</DelegateGroup>

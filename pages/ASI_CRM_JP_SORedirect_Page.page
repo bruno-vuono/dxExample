@@ -1,0 +1,12 @@
+<!--
+*********************************************************************************
+ * Name: ASI_CRM_JP_SORedirect_Page
+ * Description: VF Page for JP Sales Order Creation redirect to standard page 
+ *
+ * Version History
+ * Date             Developer               Comments
+ * ---------------  --------------------    --------------------------------------------------------------------------------
+ * 27/03/2017       Hugo Cheung             Created      
+-->
+<apex:page controller="ASI_CRM_JP_SORedirect_Controller" action="{!redirectPage}">
+</apex:page>

@@ -1,0 +1,10 @@
+<apex:page controller="ASI_eForm_ToolingController">   
+<table>
+<apex:repeat value="{!customObjects}" var="customObject">
+<tr><td colspan="2"><b><apex:outputText value="{!customObject.DeveloperName}"/></b></td></tr>
+<apex:repeat value="{!customObject.customFields}" var="customField">
+<tr><td>{!customField.DeveloperName}</td><td>{!customField.Id}</td><td>&nbsp;&nbsp;&nbsp;&nbsp;CF{!LEFT(customField.Id,15)}</td></tr>
+</apex:repeat>
+</apex:repeat>
+</table>    
+</apex:page>

@@ -1,0 +1,180 @@
+<apex:page sidebar="false" standardController="MMPJ_TOPG_Project__c" extensions="MMPJ_TOPG_NewProjectExt">
+    <apex:stylesheet value="/sCSS/21.0/sprites/1297816277000/Theme3/default/gc/versioning.css" />
+    <script type="text/javascript" src="{!URLFOR($Resource.MMPJ_TOPG_jQuery,'')}" />
+
+     <style>        
+        .custPopup {
+            background-color: #gray;
+            border-width: 2px;
+            border-style: solid;
+            border-color: #919191;
+            z-index: 9999;
+            left: 50%;
+            position: fixed;
+            width: 700px;
+            margin-left: -350px;
+            margin-top: -250px;
+            top:50%;
+        }
+        .custPopup .bPageBlock {
+            border : 0px;
+        }
+        .popupBackground {
+            background-color: #919191;
+            opacity: 0.15;
+            filter: alpha(opacity = 20);
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 9998;
+        }
+        .PopupTilte{
+            color: #000000;
+            background-color: #919191;
+            padding: 8px;
+            font-weight: bold;
+        }
+        #datePicker.datePicker {
+            /*position:fixed;*/
+            z-index: 9999;
+        }
+    </style> 
+    <script type="text/javascript" language="javascript">
+        if(jQuery) {
+            jQuery.noConflict();
+        }
+        
+        var oldTab;
+        var newTab;
+        var saveComplete = 0;
+        var CounterOnChange =0;
+        
+        function CheckSave(tabdom){
+            if(oldTab == 'Attachements')
+            {
+                SetNewTab(newTab);
+                return true;
+            }
+            if(CounterOnChange == 0 )
+            {
+                SetNewTab(newTab);
+                return true;
+            }
+            resetCounter();
+            var confirmation = confirm('If you dont save before navigating, you may loose your data : would you like to save them before moving to the next tab');
+            if(confirmation){
+                if(oldTab == 'Description')
+                    SaveDescription();
+                if(oldTab == 'Milestones')
+                    SaveMilestones();
+                if(oldTab == 'TODO')
+                    SaveTODO();
+                return false;
+            }
+            SetNewTab(newTab);
+        }
+        
+        function changetab(newtab,saveComp){
+            
+            if(saveComplete < saveComp){
+                //saveComplete = saveComp;
+                SetNewTab(newTab);
+            }
+            else{
+                //alert("Please check the message");
+            }
+        }
+        
+        function resetCounter(){
+            CounterOnChange = 0;
+        }
+        function IncreaseCounter(){
+            CounterOnChange++;
+        }
+        jQuery(document.body).on('change', 'input, select' ,function(){IncreaseCounter();});
+    </script>
+    <apex:actionStatus id="StatusLoading">
+        <apex:facet name="start">
+            <div class="popupBackground">
+                <div class="popupWindow">
+                    <img src="/img/loading.gif" alt="loading.."/>
+                </div>
+            </div>
+        </apex:facet>
+    </apex:actionStatus>
+    <apex:form >
+        <apex:actionFunction name="SetNewTab" action="{!SetNewTabValue}" reRender="ProjectTabPanel,chatterBlock" status="StatusLoading" oncomplete="ReloadMilestone()">
+            <apex:param name="newTab"  assignTo="{!newtabTobe}" value=""/>
+        </apex:actionFunction>
+    </apex:form>
+   <!-- <apex:pageBlock >
+        <apex:pageBlockSection collapsible="true" title="Chatter">
+            <chatter:feed entityId="{!MMPJ_TOPG_Project__c.id}"  rendered="{! MMPJ_TOPG_Project__c.Id != null }"/>
+        </apex:pageBlockSection>
+    </apex:pageBlock>-->
+    <apex:pagemessages ></apex:pagemessages>
+    <apex:tabPanel id="ProjectTabPanel" switchType="client" selectedTab="{!newTab}" value="{!newTab}" styleClass="theTabPanel" tabClass="activeTab,theTabPanel" inactiveTabClass="inactiveTab">
+        <!--***************************************************-->
+        <!--***************************************************-->
+        <!--******************DESCRIPTION**********************-->
+        <!--***************************************************-->
+        <!--***************************************************-->
+        <apex:tab label="Description" name="Description" id="tabDescription" ontableave="oldTab='Description';" ontabenter="newTab='Description';return CheckSave(this);"> 
+            <c:MMPJ_TOPG_ProjectDescription theProject="{!theProject}"/>
+        </apex:tab>
+        <!--***************************************************-->
+        <!--***************************************************-->
+        <!--*******************MILESTONES**********************-->
+        <!--***************************************************-->
+        <!--***************************************************-->
+      <!--  <apex:tab label="Milestones" name="Milestones" id="tabMilestones" ontableave="oldTab='Milestones';" ontabenter="newTab='Milestones';return CheckSave(this);"> 
+            <c:MMPJ_TOPG_ProjectMileStone theProject="{!theProject}" /> 
+        </apex:tab> -->
+        <!--***************************************************-->
+        <!--***************************************************-->
+        <!--**********************TODO*************************-->
+        <!--***************************************************-->
+        <!--***************************************************-->
+        <apex:tab label="TODO" name="TODO" id="tabTODO" ontableave="oldTab='TODO';" ontabenter="newTab='TODO';return CheckSave(this);"> 
+            <c:MMPJ_TOPG_Projecttodo theProject="{!theProject}" />
+        </apex:tab>
+        <!--***************************************************-->
+        <!--***************************************************-->
+        <!--*******************ATTACHMENTS*********************-->
+        <!--***************************************************-->
+        <!--***************************************************-->
+        <apex:tab label="Attachments" name="Attachements" id="tabAttachements" ontableave="oldTab='Attachements';" ontabenter="newTab='Attachements';return CheckSave(this);"> 
+            <c:MMPJ_TOPG_ProjectAttachments theProject="{!theProject}" />
+        </apex:tab>
+    </apex:tabpanel>
+    <apex:pageBlock id="chatterBlock" >
+            <script type="text/javascript"> 
+                function toggle_visibility(id, theimg) {
+                   var e = document.getElementById(id);            
+                   if(e.style.display != 'none'){
+                      e.style.display = 'none';               
+                      theimg.className = 'showListButton';                
+                   }
+                   else{
+                        theimg.className = 'hideListButton';
+                      e.style.display = 'block';
+                  }
+                }
+                function toggle_visibility2(e) {           
+                   if(e.style.display != 'none')
+                      e.style.display = 'none';
+                   else
+                      e.style.display = 'block';
+                }           
+            </script>
+            <div class="pbSubheader brandTertiaryBgr tertiaryPalette" >
+                <img src="/s.gif" alt="Hide Section - Chatter" class="hideListButton" name="Chatter" onclick="toggle_visibility('divMMPJChatterSection', this);" onkeypress="if (event.keyCode=='13')toggle_visibility('divMMPJChatterSection', this);"  style="cursor:pointer;" tabindex="0" title="Hide Section - Chatter"/>
+                <h3>Chatter</h3>
+            </div>
+            <div id="divMMPJChatterSection" style="padding-left:10px; display: {!IF(theProject.id != null, 'initial' , 'none')};">                
+              <chatter:feed entityId="{!IF(theProject.id != null, theProject.id , $User.Id)}"  />
+            </div>
+        </apex:pageBlock>
+</apex:page>

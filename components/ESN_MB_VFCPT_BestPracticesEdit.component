@@ -1,0 +1,86 @@
+<apex:component controller="ESN_MB_BestPractices_Cx">
+    <apex:stylesheet value="{!urlfor($Resource.ESN_MB_Theme_Core, '/css/pages/bestPracticesEdit.css')}" />
+    
+    <!-- Modal MarketCoordinator-->
+    <form id='MarketCoordinator'>
+        <div class="modal fade" id="myBestPracticesModalMarketCoordinator" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <img src="{!urlfor($Resource.ESN_MB_Theme_Core, '/images/close-icon.png')}" alt="Close" />
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">{!$Label.ESN_MB_BP_TitleLabel}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <p>
+                                <label for="status">{!$Label.ESN_MB_BP_StatusLabel}</label>
+                                <select class="form-control" id="status" required="required"></select>
+                            </p>
+                            <p>
+                                <label for="status">{!$Label.ESN_MB_BP_BusinessPriorityLabel}</label>
+                                <select class="form-control" id="businessPriorities" required="required"></select>
+                            </p>
+                            <p>
+                                <label for="comment">{!$Label.ESN_MB_BP_CommentLabel}</label>
+                                <textarea class="form-control" rows="5" id="comment" placeholder="{!$Label.ESN_MB_BP_PlaceholderCommentLabel}" required="required"></textarea>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success btn-lg">{!$Label.ESN_MB_BP_SubmitLabel}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <!-- Modal RegionCoordinator-->
+    <form id='RegionCoordinator'>
+        <div class="modal fade" id="myBestPracticesModalRegionCoordinator" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <img src="{!urlfor($Resource.ESN_MB_Theme_Core, '/images/close-icon.png')}" alt="Close" />
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">{!$Label.ESN_MB_BP_TitleLabel}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <p>
+                                <label for="status">{!$Label.ESN_MB_BP_StatusLabel}</label>
+                                <select class="form-control" id="status" required="required"></select>
+                            </p>
+                            <p>
+                                <label for="status">{!$Label.ESN_MB_BP_BusinessPriorityLabel}</label>
+                                <select class="form-control" id="businessPriorities" required="required"></select>
+                            </p>
+                            <p>
+                                <label for="comment">{!$Label.ESN_MB_BP_CommentLabel}</label>
+                                <textarea class="form-control" rows="5" id="comment" placeholder="{!$Label.ESN_MB_BP_PlaceholderCommentLabel}" required="required"></textarea>
+                            </p>
+                            <p>
+                                <label for="previousComment">{!$Label.ESN_MB_BP_PreviousCommentLabel}</label>
+                                <textarea readonly="readonly" class="form-control" rows="5" id="previousComment"></textarea>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success btn-lg">{!$Label.ESN_MB_BP_SubmitLabel}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <script>
+        var coordinator = "{!Coordinator}";
+
+        var listStatus = {!ListStatus};
+        var listBusinessPriorities = {!ListBusinessPriorities};
+
+        var label_SelectStatus = "{!$Label.ESN_MB_BP_SelectStatusLabel}";
+        var label_SelectBusinessPriority = "{!$Label.ESN_MB_BP_SelectBusinessPriorityLabel}";
+    </script>
+    <script src="{!URLFOR($Resource.ESN_MB_Theme_Core,'/js/pages/bestPracticesEdit.js')}"></script>
+</apex:component>

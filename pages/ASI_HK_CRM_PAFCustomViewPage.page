@@ -1,0 +1,272 @@
+<!-- 20151218 Remove SKU. Add Pricing Item-->
+<apex:page standardController="ASI_HK_CRM_Pre_Approval_Form__c" extensions="ASI_HK_CRM_PAF_CustomView" sidebar="false">
+    <head>
+        <link href="/sCSS/29.0/sprites/1377901942000/Theme3/default/gc/zen-componentsCompatible.css" rel="stylesheet" type="text/css"/>
+        <link href="/sCSS/29.0/sprites/1377901942000/Theme3/default/gc/elements.css" rel="stylesheet" type="text/css"/>
+        <link href="/sCSS/29.0/sprites/1377901942000/Theme3/default/gc/common.css" rel="stylesheet" type="text/css"/>
+        <link href="/sCSS/29.0/sprites/1377901942000/Theme3/default/gc/rlHovers.css" rel="stylesheet" type="text/css"/>
+        <link href="/sCSS/29.0/sprites/1377823770000/Theme3/gc/dStandard.css" rel="stylesheet" type="text/css"/>
+        <link href="/sCSS/29.0/sprites/1377823770000/Theme3/00DM00000011xOo/005M0000004aw7O/gc/dCustom0.css" rel="stylesheet" type="text/css"/>
+        <link href="/sCSS/29.0/sprites/1377823770000/Theme3/00DM00000011xOo/005M0000004aw7O/gc/dCustom1.css" rel="stylesheet" type="text/css"/>
+        <link href="/sCSS/29.0/sprites/1377823770000/Theme3/00DM00000011xOo/005M0000004aw7O/gc/dCustom2.css" rel="stylesheet" type="text/css"/>
+        <link href="/sCSS/29.0/sprites/1377823770000/Theme3/00DM00000011xOo/005M0000004aw7O/gc/dCustom3.css" rel="stylesheet" type="text/css"/>
+        <link href="/sCSS/29.0/sprites/1377823770000/Theme3/00DM00000011xOo/005M0000004aw7O/gc/dCustom4.css" rel="stylesheet" type="text/css"/>
+        <link href="/sCSS/29.0/sprites/1377823770000/Theme3/00DM00000011xOo/005M0000004aw7O/gc/dCustom5.css" rel="stylesheet" type="text/css"/>
+        <link href="/sCSS/29.0/sprites/1377901942000/Theme3/default/gc/extended.css" rel="stylesheet" type="text/css"/>  
+        <style>
+            .scrolltable {
+            overflow:scroll;
+            overflow-x: hidden;
+            height:150px;
+            }  
+        </style>
+    </head>
+  <apex:detail relatedList="ASI_HK_CRM_Pre_Approval_Form__c" title="true"/>
+  <!-- <apex:relatedList list="Pre_Approval_Form_Items_Link_To_PAF_Form__r" /> -->
+  <!-- <apex:relatedList id="noteslist" list="NotesAndAttachments" subject="{!ASI_HK_CRM_Pre_Approval_Form__c}" /> -->
+    <div class="bPageBlock brandSecondaryBrd secondaryPalette">  
+        <div class="pbHeader">
+           <table class="list" border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+             <tr>
+              <td class="pbTitle">
+              <h3>Product Detail</h3>
+              </td>
+              <td class="pbButton">
+                <input class="btn" type="button" title="Edit/View Item Details" onclick="navigateToUrl('{!editViewURL}/apex/ASI_HK_CRM_PreApprovalFormDetailEditPage?scontrolCaching=1&id={!paf.Id}','RELATED_LIST');" 
+                    name="asi_hk_crm_manage_items" value="Edit/View Item Details" />
+              </td>             
+             </tr>
+
+            </tbody>
+           </table>
+        </div>
+          <table class="list" border="0" cellspacing="0" cellpadding="0">
+            <thead>
+             <tr class="headerRow" style="border: 1px solid black;">
+                <!--20180420 add Sub-Brand-->
+                <th class=" zen-deemphasize" scope="col"><h3>Sub-Brand</h3></th>
+                <!--20151218 Remove and add Pricing Item-->
+                <th class=" zen-deemphasize" scope="col"><h3>Pricing Item</h3></th>
+                <!--<th class=" zen-deemphasize" scope="col"><h3>Packaging Size</h3></th>--><!--20160309,edited by Leo-->
+                <th class=" zen-deemphasize" scope="col"><h3>Target Volume Btl</h3></th>                
+                <th class=" zen-deemphasize" scope="col"><h3>Price {!currencyDisplay}</h3></th>
+                <th class=" zen-deemphasize" scope="col"><h3>Pouring</h3></th>
+                <th class=" zen-deemphasize" scope="col"><h3>SKU Value</h3></th>
+             </tr>
+            </thead>
+            <tbody>
+               <apex:repeat value="{!proAndDetailList}" var="padList">
+               <tr> 
+  				<!--20180420-->
+                <td class=" zen-deemphasize">{!padList.paf_displayItem.ASI_HK_CRM_SKU_Lookup__r.ASI_MFM_Sub_brand__r.Name }</td> 
+                <!--20151218 Remove and add Pricing Item-->
+                <td class=" zen-deemphasize">{!padList.paf_displayItem.ASI_CRM_HK_Pricing_Item__c}</td>  
+                <!--<td class=" zen-deemphasize">{!padList.paf_displayItem.ASI_HK_CRM_SKU_Lookup__r.ASI_FOC_Packing_Description__c}</td>--><!--20160309,edited by Leo-->
+               
+                   <td class=" zen-deemphasize">
+                        <apex:outputText value="{0, number, ###,###,###,###,##0}">
+                            <apex:param value="{!padList.paf_displayItem.ASI_HK_CRM_Target_Volume_Qty__c}" />                
+                        </apex:outputText></td>      
+                <td class=" zen-deemphasize">
+                <apex:outputPanel >
+                        <apex:outputText value="{0, number, ###,###,###,###,##0.00}">
+                            <apex:param value="{!padList.paf_displayItem.ASI_HK_CRM_Price__c}" />                
+                        </apex:outputText>
+                </apex:outputPanel></td>
+                <apex:outputPanel rendered="{!padList.isPouring}">
+                 <td class=" zen-deemphasize">
+                   <img class="checkImg" width="21" height="16" title="Checked" alt="Checked" src="/img/checkbox_checked.gif" /></td>
+                </apex:outputPanel>
+                <apex:outputPanel rendered="{!not(padList.isPouring)}">
+                 <td class=" zen-deemphasize">
+                   <img class="checkImg" width="21" height="16" title="Not Checked" alt="Not Checked" src="/img/checkbox_unchecked.gif" /></td>
+                </apex:outputPanel>
+                 
+                <td class=" zen-deemphasize">
+                <apex:outputPanel rendered="{!padList.skuValueShowDollarSign}">
+                        <apex:outputText value="{0, number, ###,###,###,###,##0.00}">
+                            <apex:param value="{!padList.paf_displayItem.ASI_HK_CRM_SKU_Value__c}" />
+                        </apex:outputText>
+                </apex:outputPanel></td>
+               </tr>
+               </apex:repeat>
+            </tbody>
+          </table>               
+    </div>     
+          
+    <!-- subBrand with Details -->
+    <div class="bPageBlock brandSecondaryBrd secondaryPalette">
+        <div class="pbHeader">
+            <table class="list" border="0" cellspacing="0" cellpadding="0">
+                <tbody>
+                    <tr>
+                        <td class="pbTitle">
+                            <h3>Mechanics By Brand/SKU with details</h3>
+                        </td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+        <table class="list" border="0" cellspacing="0" cellpadding="0">
+            <thead>
+                <tr class="headerRow" style="border: 1px solid black;">
+                    <th class=" zen-deemphasize" scope="col"><h3>Mechanic</h3></th>
+                    <th class=" zen-deemphasize" scope="col"><h3>Adjustment Name</h3></th>
+                    <!--20151218 Remove and add Pricing Item-->
+                    <th class=" zen-deemphasize" scope="col"><h3>Pricing Item</h3></th>
+                    <th class=" zen-deemphasize" scope="col"><h3>BuyBottle</h3></th>
+                    <th class=" zen-deemphasize" scope="col"><h3>GetBottle</h3></th>
+                    <th class=" zen-deemphasize" scope="col"><h3>%</h3></th>
+                    <th class=" zen-deemphasize" scope="col"><h3>{!currencyDisplay} Per bt</h3></th>
+                    <th class=" zen-deemphasize" scope="col"><h3>Investment Value</h3></th>
+                </tr>
+            </thead>
+            <tbody>
+                <apex:repeat value="{!CustomSKUMechanicDetailsList}" var="sBList">
+                    <tr> 
+                        <td class=" zen-deemphasize">{!sBList.mechanic_name}</td> 
+                        <td class=" zen-deemphasize">{!sBList.Adj_Name}</td>
+                        <!--20151218 Remove and add Pricing Item-->
+                        <!--<td class=" zen-deemphasize">{!sBList.sku_code}</td>-->
+                        <td class=" zen-deemphasize">{!sBList.pricing_item}</td>
+                        <td class=" zen-deemphasize">
+                            <apex:outputText value="{0, number, ###,###,###,###,##0}">
+                                <apex:param value="{!sBList.buy_bottle}" />
+                            </apex:outputText></td>
+                        <td class=" zen-deemphasize">
+                            <apex:outputText value="{0, number, ###,###,###,###,##0}">
+                                <apex:param value="{!sBList.sell_bottle}" />
+                            </apex:outputText></td>
+                        <td class=" zen-deemphasize">{!sBList.paf_displaySKU.ASI_HK_CRM_Rebate_Disc_Percent__c}</td>
+                        <td class=" zen-deemphasize">
+                            <apex:outputPanel >
+                                <apex:outputText value="{0, number, ###,###,###,###,##0.00}">
+                                    <apex:param value="{!sBList.paf_displaySKU.ASI_HK_CRM_Rebate_Disc_Amt_Per_BT__c}" />                
+                                </apex:outputText>
+                            </apex:outputPanel></td>
+                        <td class=" zen-deemphasize">
+                            <apex:outputPanel rendered="{!sBList.investValueShowDollarSign}">{!sBList.paf_displaySKU.CurrencyIsoCode}
+                                <apex:outputText value="{0, number, ###,###,###,###,##0.00}">
+                                    <apex:param value="{!sBList.investmentValue}" />                
+                                </apex:outputText>
+                            </apex:outputPanel></td>
+                    </tr>
+                </apex:repeat>
+            </tbody>
+        </table>
+    </div> 
+
+    
+    
+    <!-- Summary of mechaics -->
+    <div class="bPageBlock brandSecondaryBrd secondaryPalette">
+        <div class="pbHeader">
+           <table class="list" border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+             <tr>
+              <td class="pbTitle">
+               <h3>Summary of Mechanics</h3>
+              </td>
+             </tr>
+
+            </tbody>
+           </table>
+        </div>
+          <table class="list" border="0" cellspacing="0" cellpadding="0">
+            <thead>
+             <tr class="headerRow" style="border: 1px solid black;">
+                <th class=" zen-deemphasize" scope="col"><h3>Mechanics</h3></th>
+                <th class=" zen-deemphasize" scope="col"><h3>Condition of Payments</h3></th>
+                <th class=" zen-deemphasize" scope="col"><h3>Total Investment Value</h3></th>
+                <!--<th class=" zen-deemphasize" scope="col"><h3>Free SKU</h3></th>--><!--20160406,edited by Leo-->
+                 
+             </tr>
+            </thead>
+            <tbody>
+               <apex:repeat value="{!summaryMap}" var="sL">
+               <tr> 
+                <td class=" zen-deemphasize">{!sL}</td>
+                <td class=" zen-deemphasize">{!summaryConditionMap[sL]}</td>
+                <td class=" zen-deemphasize">
+                    <apex:outputPanel >{!currencyDisplay}
+                    <apex:outputText value="{0, number, ###,###,###,###,##0}">
+                        <apex:param value="{!summaryMap[sL]}" />
+                    </apex:outputText>
+                    </apex:outputPanel></td>      
+                <!--<td class=" zen-deemphasize">{!summaryFreeSKU[sL]}</td>--><!--20160406,edited by Leo-->
+               </tr>
+               </apex:repeat>
+            </tbody>
+          </table>
+          <!-- <apex:relatedList subject="{!ASI_HK_CRM_Pre_Approval_Form__c}" list="NotesAndAttachments" /> -->
+        </div>
+    
+    <!-- Channel Customer -->
+    <apex:outputPanel rendered="{!showCustList}">
+        <div class="bPageBlock brandSecondaryBrd secondaryPalette">
+            <div class="pbHeader">
+                <table class="list" border="0" cellspacing="0" cellpadding="0">
+                    <tbody>
+                        <tr>
+                            <td class="pbTitle">
+                                <h3>Customer List</h3>
+                            </td>
+                            <td class="pbButton">
+                                <input class="btn" type="button" title="Edit/View Customer List" onclick="navigateToUrl('{!editViewURL}/apex/ASI_CRM_HK_PAFCustomerEditPage?id={!paf.Id}','RELATED_LIST');" 
+                                       name="ASI_CRM_HK_PAF_Customer_Edit" value="Edit/View Customer" />
+                            </td>             
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            </div> 
+            <table class="list" border="0" cellspacing="0" cellpadding="0">
+                <thead>
+                    <tr class="headerRow" style="border: 1px solid black;">
+                        <th class=" zen-deemphasize" scope="col" style="width:39%"><h3>Customer Name</h3></th>
+                        <th class=" zen-deemphasize" scope="col" style="width:10%"><h3>PA / DA</h3></th>
+                        <th class=" zen-deemphasize" scope="col" style="width:30%"><h3>Parent Account</h3></th>
+                        <th class=" zen-deemphasize" scope="col" style="width:21%"><h3>Generate Price Set?</h3></th>
+                    </tr>
+                </thead>
+            </table>
+            <div class="scrolltable"> 
+                 <table class="list" border="0" cellspacing="0" cellpadding="0">
+                    <tbody>
+                        <apex:repeat value="{!PAFCustomer}" var="PAFC">
+                            <tr>    
+                                <td class=" zen-deemphasize" style="width:40%">
+                                    <apex:outputLink value="{!LEFT($Api.Partner_Server_URL_140, FIND('.com/',$Api.Partner_Server_URL_140)+3)}/{!PAFC.ASI_CRM_HK_Customer__c}" target="_blank">
+                                        <apex:outputText value="{!PAFC.ASI_CRM_HK_Customer__r.Name}"></apex:outputText>
+                                    </apex:outputLink>
+                                </td>
+                                <td class=" zen-deemphasize" style="width:10%">
+                                    <apex:outputText value="{!PAFC.ASI_CRM_PA_DA__c}"></apex:outputText>
+                                </td>
+                                <td class=" zen-deemphasize" style="width:30%">
+                                    <apex:outputLink value="{!LEFT($Api.Partner_Server_URL_140, FIND('.com/',$Api.Partner_Server_URL_140)+3)}/{!PAFC.ASI_CRM_HK_Customer__r.ParentId}" target="_blank">
+                                        <apex:outputText value="{!PAFC.ASI_CRM_HK_Customer__r.Parent.Name}"></apex:outputText>
+                                    </apex:outputLink>
+                                </td>
+                                <td class=" zen-deemphasize" style="width:20%">
+                                    <apex:outputField value="{!PAFC.ASI_CRM_Generate_Price_Set__c}"></apex:outputField>
+                                </td>
+                            </tr>
+                        </apex:repeat>
+                    </tbody>
+                </table>
+            </div>
+            <!-- <apex:relatedList subject="{!ASI_HK_CRM_Pre_Approval_Form__c}" list="NotesAndAttachments" /> -->
+        </div> 
+    </apex:outputPanel>
+    
+    <apex:relatedList list="POs__r" />
+    
+    <apex:relatedList list="ProcessSteps" />
+    
+	<!-- 20180207 Introv-->
+    <apex:relatedList subject="{!ASI_HK_CRM_Pre_Approval_Form__c}" list="CombinedAttachments" />
+  
+</apex:page>

@@ -1,0 +1,116 @@
+<apex:page sidebar="false" showHeader="false" standardStyleSheets="false" controller="ESN_MB_NOP_Search_Cx">
+    <!--SCH 24/09 modified to hide the Forum results-->
+    <!--div class="splash-close" id="btn-close-search" onclick="if($('#modal-search')){$('#modal-search').modal('hide');}$( '#brandCloudResult' ).empty();$( '#mAResult' ).empty();$( '#forumResult' ).empty();$( '#nbBrandCloud' ).text('');$( '#nbMarketActivation' ).text('');$( '#nbForum' ).text('');$( '#keyword' ).val('');">
+        {!$Label.ESN_MB_Close}
+        <div class="picto-close"></div>
+    </div-->
+    
+    <div class="splash-close btn-close" id="btn-close-search">
+        <a data-cat-name="edit_mode" data-category="edit_mode" data-page="edit_mode" style="height:30px; width:30px;line-height:30px;" onclick="if($('#modal-search')){$('#modal-search').modal('hide');}$( '#brandCloudResult' ).empty();$( '#mAResult' ).empty();$( '#forumResult' ).empty();$( '#nbBrandCloud' ).text('');$( '#nbMarketActivation' ).text('');$( '#nbForum' ).text('');$( '#keyword' ).val('');">
+            <span class="glyphicon glyphicon-remove" style="font-size: 1.7em;left:-2px; top:-0.5px;"></span>
+        </a>
+    </div>
+    
+    <div class="container-search container-fluid">
+        <form method="post" onsubmit="fill();return false;" class="col-xs-12" name="search-form" id="search-form">
+            <input type="text" name="keyword" value="" class="col-xs-12" id="keyword" />
+        </form>
+        <div class="clearfix"></div>
+        <div class="result">
+            
+            <!--.brand-cloud-->
+            <!--SCH 24/09 class changed from col-xs-4 to col-xs-6 to hide the Forum results-->
+            <div class="cln-result col-xs-4 brand-cloud">
+                <p class="nb-result pull-right" id="nbBrandCloud"></p> 
+                <!--h1><b>{!$Label.ESN_MB_Brand}</b>&nbsp;{!$Label.ESN_MB_Cloud}</h1-->
+                <h1><b>{!$Label.ESN_MB_MyBrands}</b></h1>
+                <hr class="white-line" />
+                <div class="container-list">
+                    <!-- Main container scrollbar-->
+                    <div class="scrollbar-inner">
+                        <div class="list-result">
+                            
+                            <!--Contenu Ã  remplacer par Ajax-->
+                            <ul class="all-result" id="brandCloudResult">
+                                
+                            </ul>
+                            <!--Contenu Ã  remplacer par Ajax-->
+                            
+                        </div><!-- /list-result -->
+                    </div><!-- /scrollbar-inner -->
+                </div><!--/.container-list-->
+                <hr class="white-line" />
+            </div><!--/.brand-cloud-->
+            
+            <!--.market-activations-->
+            <!--SCH 24/09 class changed from col-xs-4 to col-xs-6 to hide the Forum results-->
+            <div class="cln-result col-xs-4 market-activations">
+                <p class="nb-result pull-right" id="nbMarketActivation"></p>
+                <h1><b>{!$Label.ESN_MB_Market}</b>&nbsp;{!$Label.ESN_MB_Activations}</h1>
+                <hr class="white-line" />
+                <div class="container-list">
+                    <!-- Main container scrollbar-->
+                    <div class="scrollbar-inner">
+                        <div class="list-result">
+                            
+                            <!--Contenu Ã  remplacer par Ajax-->
+                            <ul class="all-result" id="mAResult">
+                                
+                            </ul>
+                            <!--Contenu Ã  remplacer par Ajax-->
+                            
+                        </div><!-- /list-result -->
+                    </div><!-- /scrollbar-inner -->
+                </div><!--/.container-list-->
+                <hr class="white-line" />
+            </div><!--/.market-activations-->
+            
+            <!--.forum-->
+            <div class="cln-result col-xs-4 forum">
+                <p class="nb-result pull-right" id="nbForum"></p>
+                <h1><b>{!$Label.ESN_MB_Forum}</b></h1>
+                <hr class="white-line" />
+                <div class="container-list">
+        
+                    <!-- Main container scrollbar-->
+                    <div class="scrollbar-inner">
+                        <div class="list-result">
+        
+                            <!--Contenu Ã  remplacer par Ajax-->
+                            <ul class="all-result" id="forumResult">
+
+                            </ul>
+    
+                            <!--Contenu Ã  remplacer par Ajax-->
+
+                        </div>
+                    </div>
+                </div>
+                <hr class="white-line" />
+            </div>
+            
+            <div class="clearfix"></div>
+        </div><!--/.result-->
+    </div><!--/.container-search-->
+    <script>
+        if (brandCategory == leCercle) {
+            $('.container-search').style('font-family', 'Georgia, sans-serif', 'important');
+            $('div.result h1').css('background', 'none');
+            $('div.result h1 b').css('margin-left', '-40px');
+            if(brandName == leCercle) {
+                var transversalContent  = "{!$Label.ESN_MB_TransversalContent}";
+                $('div.market-activations').hide();
+                $('div.brand-cloud').removeClass('col-xs-4');
+                $('div.forum').removeClass('col-xs-4');
+                $('div.brand-cloud').addClass('col-xs-6');
+                $('div.forum').addClass('col-xs-6');
+                $('div.brand-cloud').find('b').text(transversalContent);
+            } else {
+                var sevenBs = "{!$Label.ESN_MB_7Bs}";
+                $('div.brand-cloud').find('b').text(sevenBs + ' ' + brandName.replace('LeCercle', '').replace('_', ''));
+            }
+        }
+    
+    </script>
+    <apex:includeScript value="{!urlfor($Resource.ESN_MB_Theme_Core, '/js/pages/search.js')}"/>
+</apex:page>

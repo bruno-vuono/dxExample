@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>ASI_CRM_SG_Pros_Benchmark_Share</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>ASI CRM SG Pros Benchmark Share</label>
+        <sharedTo>
+            <roleAndSubordinates>ASI_SG</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>ASI CRM SG Benchmark</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+</SharingRules>

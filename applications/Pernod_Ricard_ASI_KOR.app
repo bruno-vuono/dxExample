@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <defaultLandingTab>standard-home</defaultLandingTab>
+    <description>App created for ASI KOR</description>
+    <formFactors>Large</formFactors>
+    <label>Pernod Ricard ASI KOR</label>
+    <tabs>ASI_CRM_KR_ListedMenuPriceReports</tabs>
+    <tabs>ASI_CRM_KR_CallPlanReports</tabs>
+    <tabs>ASI_CRM_KR_Reports</tabs>
+    <tabs>ASI_CRM_KR_PVA_Report_Guideline</tabs>
+    <tabs>ASI_KOR_My_Calendar</tabs>
+    <tabs>standard-Account</tabs>
+    <tabs>standard-Contact</tabs>
+    <tabs>ASI_KOR_Sales_Order_Request__c</tabs>
+    <tabs>ASI_KOR_POSM_Order_Request__c</tabs>
+    <tabs>ASI_KOR_GMA__c</tabs>
+    <tabs>ASI_KOR_Visitation_Plan__c</tabs>
+    <tabs>Promotion_Calendar</tabs>
+    <tabs>ASI_KOR_Sub_Brand__c</tabs>
+    <tabs>ASI_KOR_POSM_Product__c</tabs>
+    <tabs>ASI_KOR_Promotion__c</tabs>
+    <tabs>ASI_KOR_KPI_Point_Target__c</tabs>
+    <tabs>standard-Dashboard</tabs>
+    <tabs>standard-report</tabs>
+    <tabs>standard-Document</tabs>
+    <tabs>standard-Workspace</tabs>
+    <tabs>ASI_KOR_Venue_Supplier__c</tabs>
+    <tabs>ASI_KOR_SR_Proposal_Header__c</tabs>
+    <tabs>ASI_KOR_BM_Proposal_Header__c</tabs>
+    <tabs>ASI_KOR_RSD_Proposal_Header__c</tabs>
+    <tabs>ASI_KOR_NSD_Proposal_Header__c</tabs>
+    <tabs>ASI_KOR_SR_Payment_Settlement_Header__c</tabs>
+    <tabs>ASI_KOR_BM_Payment_Settlement_Header__c</tabs>
+    <tabs>ASI_KOR_RSD_Payment_Settlement_Header__c</tabs>
+    <tabs>ASI_KOR_NSD_Payment_Settlement_Header__c</tabs>
+    <tabs>ASI_KOR_Incentive_Scheme__c</tabs>
+    <tabs>ASI_KOR_Trade_Marketing_Console</tabs>
+    <tabs>ASI_KOR_FR_Report__c</tabs>
+    <tabs>ASI_KOR_VMS_Interface_File__c</tabs>
+    <tabs>ASI_KOR_Mass_Upload</tabs>
+    <tabs>ASI_KOR_Stock_In_Trade__c</tabs>
+    <tabs>cms__Job_Item__c</tabs>
+    <tabs>ASI_KOR_Item_Group__c</tabs>
+    <tabs>BMCServiceDesk__SRM_FulfillmentInputs__c</tabs>
+    <tabs>ASI_TnE_Corp_Card_Employee_Mapping__c</tabs>
+    <tabs>ASI_CRM_KR_PVA__c</tabs>
+    <tabs>ASI_CRM_KR_PVA_Upload</tabs>
+    <tabs>ASI_CRM_KR_A_P_Guideline__c</tabs>
+    <tabs>ASI_CRM_KR_SIT_Item_Upload</tabs>
+    <tabs>ASI_CRM_KR_SIT_List_View</tabs>
+    <tabs>ASI_CRM_KR_ListedMenuPriceUpload</tabs>
+    <tabs>ASI_CRM_KR_Listed_Menu_Price__c</tabs>
+    <tabs>ASI_CRM_Holiday__c</tabs>
+    <tabs>ASI_KOR_Brand__c</tabs>
+    <tabs>ASI_KOR_Prepayment_Master__c</tabs>
+    <tabs>ASI_CRM_KR_Keyman_Allocation</tabs>
+</CustomApplication>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <defaultLandingTab>standard-home</defaultLandingTab>
+    <description>PR EMEA SFA - Finland</description>
+    <formFactors>Large</formFactors>
+    <label>PR EUR FI SFA</label>
+    <tabs>EUR_Data_Model</tabs>
+    <tabs>EUR_CRM_Account__c</tabs>
+    <tabs>standard-Contact</tabs>
+    <tabs>EUR_CRM_JB_Template__c</tabs>
+    <tabs>EUR_CRM_Visit_Frequency__c</tabs>
+    <tabs>EUR_CRM_Region__c</tabs>
+    <tabs>EUR_CRM_Territory__c</tabs>
+    <tabs>EUR_CRM_Customer_Taxonomy__c</tabs>
+    <tabs>EUR_CRM_Route_Template__c</tabs>
+    <tabs>EUR_CRM_Contract__c</tabs>
+    <tabs>EUR_CRM_Contract_Account_Mapping__c</tabs>
+    <tabs>EUR_CRM_ObjPromo__c</tabs>
+    <tabs>EUR_CRM_Finland_Admin_Console</tabs>
+    <tabs>standard-report</tabs>
+    <tabs>EUR_CRM_OP_Action_List_Template__c</tabs>
+    <tabs>EUR_CRM_ObjPromo_Action__c</tabs>
+    <tabs>EUR_CRM_Service_Pack__c</tabs>
+    <tabs>EUR_CRM_Survey_Header__c</tabs>
+    <tabs>EUR_CRM_Brand_Security_Infringement__c</tabs>
+    <tabs>EUR_CRM_Wine_Spirits__c</tabs>
+    <tabs>EUR_CRM_Category__c</tabs>
+    <tabs>EUR_CRM_Brand__c</tabs>
+    <tabs>EUR_CRM_Quality__c</tabs>
+    <tabs>EUR_CRM_Size__c</tabs>
+    <tabs>EUR_CRM_SKU__c</tabs>
+    <tabs>EUR_CRM_Pros_Segmentation__c</tabs>
+    <tabs>EUR_CRM_Group_Outlet_Type__c</tabs>
+    <tabs>EUR_CRM_Outlet_Type__c</tabs>
+    <tabs>EUR_CRM_Image_Level__c</tabs>
+    <tabs>EUR_CRM_Volume_Potential__c</tabs>
+    <tabs>EUR_CRM_Criteria_Set__c</tabs>
+    <tabs>EUR_CRM_Criteria_Threshold__c</tabs>
+    <tabs>EUR_CRM_Criteria_Answer__c</tabs>
+    <tabs>EUR_CRM_Image_Level_Threshold__c</tabs>
+    <tabs>EUR_CRM_Volume_Potential_Threshold__c</tabs>
+    <tabs>EUR_CRM_Product_Toolkit__c</tabs>
+    <tabs>EUR_CRM_ObjPromo_to_PROS_Segment_Mapping__c</tabs>
+    <tabs>EUR_CRM_Contract_Event__c</tabs>
+    <tabs>EUR_CRM_Contract_Event_To_Prod_Mapping__c</tabs>
+    <tabs>EUR_CRM_Volume_Tracker_Period__c</tabs>
+    <tabs>EUR_CRM_Weekly_Notes__c</tabs>
+    <tabs>BMCServiceDesk__SRM_FulfillmentInputs__c</tabs>
+</CustomApplication>

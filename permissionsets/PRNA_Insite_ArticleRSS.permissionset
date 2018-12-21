@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <classAccesses>
+        <apexClass>ArticleRSS</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <description>Used by PRNA Insite Service. Settings to add to a profile to allow access to the visual force page and apex class that will pull back the RSS feed to InSite article content.</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>PRNA Insite ArticleRSS</label>
+    <pageAccesses>
+        <apexPage>ocms_pr_articleFeed</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+</PermissionSet>

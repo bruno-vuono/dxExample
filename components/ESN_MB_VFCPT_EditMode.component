@@ -1,0 +1,180 @@
+<apex:component controller="ESN_MB_NOP_Article_Cx">
+    <div class="btn-close">
+		<a href="#" data-category="edit_mode" data-cat-name="edit_mode" data-page="edit_mode" onclick="return cancel();">
+			<!-- {!$Label.ESN_MB_Close}<div class="picto-close"></div> -->
+			<span class="glyphicon glyphicon-remove"></span>
+		</a>
+	</div>
+    <div class="content-wrapper container-fluid">
+        <section class="col-left col-xs-12 col-sm-3 col-sm-offset-1" role="complementary">
+            <!-- <h2 style="text-align: center;">{!$Label.ESN_MB_Add_Brand_Content}</h2> 
+            <hr /> -->
+            <fieldset>
+                <p> {!$Label.ESN_MB_Add_Brand_Content_Long}</p>
+                <div class="upload-btn-container">
+                    <div id="addBrandContent" class="preview">
+                        <a data-page="article" data-category="brand-cloud" data-target="#modal-searchAsset" href="/apex/ESN_MB_NOP_SearchAsset" data-toggle="modal">
+                            <div class="file-upload btn btn-upload">
+                                <span>{!$Label.ESN_MB_Add_Brand_Content}</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="preview" id="addFileArticleBtn" style="padding-top: 6px;">
+                        <div class="file-upload btn btn-upload">
+                            <span>{!$Label.ESN_MB_Upload_Local_File}</span>
+                            <input class="input-upload" id="addPhotoArticle" type="file"/>
+                        </div>
+                    </div> 
+                </div>
+                
+            </fieldset>
+
+            <div id="brandContent">
+            </div>
+        </section><!--/.col-left-->
+        
+        <section class="col-right col-xs-12 col-sm-7 col-sm-offset-1" role="main" id="formulaire-article">
+            <div id="help" style="font-size: 12px; color: #F34418;">
+                *The Main asset will be displayed as the splashscreen, please use a landscape format picture that is not too heavy to load (&lt; 1MB). Please note that the Objective text is the compelling and short title that will be displayed on the splashscreen.
+            </div><br />
+            <div id="isSplashScreen">
+                {!$Label.ESN_MB_LeCercleSplashScreen}
+                <input id="isSplashScreen" name="isSplashScreen" type="checkbox" data-toggle="toggle" data-on="Yes" data-off="No" data-onstyle="primary" style="float:right;"/>            
+            </div>
+            <h2 class="border-bottom" style="text-align: center;">Article</h2>
+            <h3>Title</h3>
+            <div class="resume" id="articleTitleEM" style="text-align: justify;padding-bottom: 10px;">
+                <form>
+                            <input type="text" name="link"  id="titleText"  value="Article Name" onclick="if(this.value ==='Article Name') {this.value='';}" 
+                                   style="width: 100%;"/>                         
+                    </form>
+                <!--<textarea id="titleText"></textarea>--> 
+            </div>
+            <!-- Article Products -->
+            <div class="list-selector" id="articleProductMissingInfo">
+              <h3>{!$Label.ESN_MB_TitreProductPicklist}</h3>
+              <div class="selectbox-container">
+                <div class="selectbox" ondragover="$.allowDrop(event)" ondrop="$.drop('left', event)">
+                  <div class="scrollbar-inner" id="articleProductSelect1">
+                    <ul id="articleProduct-left">
+                    </ul>
+                  </div>
+                </div>
+                <!-- <div class="boutton-container">
+                    <span class="arrow-add-element"><input type="button" class="add-element" data-element="articleProduct"/></span>
+                    <span class="arrow-remove-element hackMozillaArrow"><input type="button" class="remove-element" data-element="articleProduct"/></span>
+                </div> -->
+                <div class="selectbox border-dotted" ondragover="$.allowDrop(event)" ondrop="$.drop('right', event)">
+                  <div class="scrollbar-inner">
+                    <ul id="articleProduct-right">
+                    </ul>
+                  </div>
+                  <!-- {!$Label.ESN_MB_DragHere} -->
+                  <div class="selectbox-info">{!$Label.ESN_MB_DragHere}</div>
+                </div>
+              </div><!-- selectbox-container -->
+            </div>
+            <span id="articleMsgSplashscreen" class="hidden">
+                <h5>{!$Label.ESN_MB_MsgSplashscreen}</h5>
+            </span>
+            <h3>Objective</h3>
+            <div class="resume" id="articleAbstract" style="text-align: justify;">
+                <textarea id="abstractText"></textarea>
+            </div><!--/.resume-->
+            
+            <h3>Main Text</h3>
+            <div class="resume" id="articleTopTextEM" style="text-align: justify;">
+                <textarea id="topText"></textarea>
+            </div><!--/.text-->
+            <h2 style="text-align: center;">Photos</h2>
+            <fieldset>
+                <label for="picture" class="label-icon label-icon-picture">{!$Label.ESN_MB_AddPictures}</label>
+                <ul id="imageAssetUl">
+                </ul>
+                <div class="upload-btn-container">
+                    <div id="addImageAsset" class="preview">
+                        <a data-page="article" data-category="brand-cloud" data-target="#modal-searchAsset" href="/apex/ESN_MB_NOP_SearchAsset" data-toggle="modal">
+                            <div class="file-upload btn btn-upload">
+                                <span>{!$Label.ESN_MB_Add_Photos}</span>
+                            </div>
+                        </a>
+                        <div class="file-upload btn btn-upload">
+                          <span>{!$Label.ESN_MB_LocalFile}</span>
+                          <input accept="image/*" class="input-upload" id="addPhotosFromLocalFile" type="file"/>
+                        </div>
+                    </div> 
+                </div>
+            </fieldset>
+            
+            
+            <h2 style="text-align: center;">{!$Label.ESN_MB_Video}</h2>
+            <fieldset>
+                <label for="video" class="label-icon label-icon-video">{!$Label.ESN_MB_AddOneVideo}</label>
+                <ul id="videoAssetUl">
+                </ul>
+                <div class="upload-btn-container">
+                    <div id="addVideoAsset" class="preview">
+                        <a data-page="article" data-category="brand-cloud" data-target="#modal-searchAsset" href="/apex/ESN_MB_NOP_SearchAsset" data-toggle="modal">
+                            <div class="file-upload btn btn-upload">
+                                <span>{!$Label.ESN_MB_Add_Video}</span>
+                            </div>
+                        </a>
+                        <div class="file-upload btn btn-upload">
+                          <span>{!$Label.ESN_MB_LocalFile}</span>
+                          <input accept="video/*" class="input-upload" id="addVideoFromLocalFile" type="file"/>
+                        </div>
+                    </div> 
+                </div>
+            </fieldset> 
+            
+            <h2 class="border-bottom" style="text-align: center;padding-top: 56px;">Additional Content</h2>
+            <h3>Extra Content</h3>
+            <div class="resume" id="articleBotTextEM" style="text-align: justify;">
+                <textarea id="botText"></textarea>
+            </div><!--/.text-->
+            <h3>Embedded Video (enter Embed Code)</h3>
+            <div id="embeddedVideo">
+                <form>
+                       <input type="text" name="link"  id="embeddedVideoHTML" style="font-weight: bold;width: 100%;"/>                         
+                </form>
+                 <!--<textarea id="embeddedVideoHTML"></textarea> -->
+            </div>
+                 
+            <h3>Link to Related Assets in BrandCloud</h3>
+            <div id="linkRelatedAssets">
+                <form>
+                       <input type="text" name="link"  id="linkRelatedAssetsInput" style="font-weight: bold;width: 100%;"/>                         
+                </form>
+            </div>
+            <div class="block-related see-also">
+                <h2 style="text-align: center;">{!$Label.ESN_MB_RelatedArticles}</h2>
+                <fieldset>
+                    <label for="picture" class="label-icon label-icon-picture">{!$Label.ESN_MB_AddRelatedArticles}</label>
+                    <ul id="relatedArticlesUl">
+                    </ul>
+                    <div class="upload-btn-container">
+                        <div id="addRelatedArticles" class="preview">
+                            <a data-page="article" data-category="brand-cloud" data-target="#modal-relatedArticles" href="/apex/ESN_MB_NOP_RelatedArticles" data-toggle="modal">
+                                <div class="file-upload btn btn-upload">
+                                    <span>{!$Label.ESN_MB_AddArticles}</span>
+                                </div>
+                            </a>
+                        </div> 
+                    </div>
+                </fieldset>
+            </div><!--/.block-related.see-also--> 
+            
+            
+            <div class="row">
+                <div class="col-xs-12 col-sm-6">
+                    <span class="bouton-container-preview"><input type="button" class="btn col-xs-12 col-sm-6 pull-right" value="{!$Label.ESN_MB_SaveAsDraft}" onclick="return save();" /></span>
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    <input class="btn col-xs-12 col-sm-6" type="submit" value="Publish" onclick="return publish();"/>
+                </div>
+            </div>
+        <div class="clearfix"></div>
+        </section><!--/.col-right--> 
+        
+    </div>
+</apex:component>

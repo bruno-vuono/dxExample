@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
+    <frameHeight>500</frameHeight>
+    <hasSidebar>false</hasSidebar>
+    <label>Annual Leave Report</label>
+    <mobileReady>false</mobileReady>
+    <motif>Custom46: Postage</motif>
+    <url>https://hkazap05.pernod-ricard-asia.com:{!User.ASI_OBIEE_Domain__c}/analytics/saw.dll?PortalPages&amp;PortalPath=%2Fshared%2FeHR%2F_portal%2FAnnual%20Leave&amp;page=Annual%20Leave</url>
+    <urlEncodingKey>UTF-8</urlEncodingKey>
+</CustomTab>

@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Initially for GB Phase 2</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>EUR_CRM_Contract_Tracker__c</fullName>
+        <externalId>false</externalId>
+        <label>Contract Tracker (EU)</label>
+        <referenceTo>EUR_CRM_Contract_Tracker__c</referenceTo>
+        <relationshipLabel>Contract Tracker Line Items (EU)</relationshipLabel>
+        <relationshipName>Contract_Tracker_Line_Items_EU</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Contracted_Volume_9L__c</fullName>
+        <externalId>false</externalId>
+        <label>Contracted Volume (9L)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Product_Category__c</fullName>
+        <externalId>false</externalId>
+        <label>Product Category</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Gin</fullName>
+                    <default>false</default>
+                    <label>Gin</label>
+                </value>
+                <value>
+                    <fullName>Vodka</fullName>
+                    <default>false</default>
+                    <label>Vodka</label>
+                </value>
+                <value>
+                    <fullName>Anis</fullName>
+                    <default>false</default>
+                    <label>Anis</label>
+                </value>
+                <value>
+                    <fullName>Aperitif Wines</fullName>
+                    <default>false</default>
+                    <label>Aperitif Wines</label>
+                </value>
+                <value>
+                    <fullName>Bitters</fullName>
+                    <default>false</default>
+                    <label>Bitters</label>
+                </value>
+                <value>
+                    <fullName>Brandy</fullName>
+                    <default>false</default>
+                    <label>Brandy</label>
+                </value>
+                <value>
+                    <fullName>Liquors</fullName>
+                    <default>false</default>
+                    <label>Liquors</label>
+                </value>
+                <value>
+                    <fullName>Other Spirit</fullName>
+                    <default>false</default>
+                    <label>Other Spirit</label>
+                </value>
+                <value>
+                    <fullName>Rum</fullName>
+                    <default>false</default>
+                    <label>Rum</label>
+                </value>
+                <value>
+                    <fullName>Sparkling Wines</fullName>
+                    <default>false</default>
+                    <label>Sparkling Wines</label>
+                </value>
+                <value>
+                    <fullName>Still Wines</fullName>
+                    <default>false</default>
+                    <label>Still Wines</label>
+                </value>
+                <value>
+                    <fullName>Tequila</fullName>
+                    <default>false</default>
+                    <label>Tequila</label>
+                </value>
+                <value>
+                    <fullName>Whisky</fullName>
+                    <default>false</default>
+                    <label>Whisky</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <label>Contract Tracker Line Item (EU)</label>
+    <nameField>
+        <displayFormat>CTLI-{0000000000}</displayFormat>
+        <label>Contract Tracker Line Item (EU) Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Contract Tracker Line Items (EU)</pluralLabel>
+    <recordTypes>
+        <fullName>EUR_BE_Contract_Tracker_Line_Item</fullName>
+        <active>true</active>
+        <label>EUR BE Contract Tracker Line Item</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Product_Category__c</picklist>
+            <values>
+                <fullName>Anis</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Aperitif Wines</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bitters</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brandy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gin</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Liquors</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other Spirit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rum</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sparkling Wines</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Still Wines</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tequila</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vodka</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Whisky</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_RU_Contract_Tracker_Line_Item</fullName>
+        <active>true</active>
+        <label>EUR RU Contract Tracker Line Item</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Product_Category__c</picklist>
+            <values>
+                <fullName>Anis</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Aperitif Wines</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bitters</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brandy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gin</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Liquors</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other Spirit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rum</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sparkling Wines</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Still Wines</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tequila</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vodka</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Whisky</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

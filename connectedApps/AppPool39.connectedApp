@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConnectedApp xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contactEmail>laurent.bel@pernod-ricard.com</contactEmail>
+    <description>Application Pool #39. General purpose</description>
+    <label>AppPool39</label>
+    <oauthConfig>
+        <callbackUrl>oob</callbackUrl>
+        <consumerKey>3MVG9qQjGkWUbcrFTIsUBxAfZQpmzkySKKhsLw4xsryl6yY9o83bQdbvQnoqW8L8d7eioI8vpgC9mMidlWzPA</consumerKey>
+    </oauthConfig>
+</ConnectedApp>

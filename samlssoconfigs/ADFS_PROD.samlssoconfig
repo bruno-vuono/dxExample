@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SamlSsoConfig xmlns="http://soap.sforce.com/2006/04/metadata">
+    <identityLocation>SubjectNameId</identityLocation>
+    <identityMapping>Username</identityMapping>
+    <issuer>http://adfs.pernod-ricard.com/adfs/services/trust</issuer>
+    <loginUrl>https://adfs.pernod-ricard.com/adfs/ls/</loginUrl>
+    <name>SSO Sign in</name>
+    <oauthTokenEndpoint>https://pernod-ricard--GDTSB7DEV.cs106.my.salesforce.com/services/oauth2/token?so=00D0D0000008aTj</oauthTokenEndpoint>
+    <redirectBinding>true</redirectBinding>
+    <requestSignatureMethod>1</requestSignatureMethod>
+    <requestSigningCertId>0P1D0000000k9iY</requestSigningCertId>
+    <salesforceLoginUrl>https://pernod-ricard--GDTSB7DEV.cs106.my.salesforce.com?so=00D0D0000008aTj</salesforceLoginUrl>
+    <samlEntityId>https://pernod-ricard.my.salesforce.com</samlEntityId>
+    <samlVersion>SAML2_0</samlVersion>
+    <userProvisioning>false</userProvisioning>
+    <validationCert>MIIC6DCCAdCgAwIBAgIQFRMjgq7PHaFCSe24wnagOzANBgkqhkiG9w0BAQsFADAwMS4wLAYDVQQDEyVBREZTIFNpZ25pbmcgLSBhZGZzLnBlcm5vZC1yaWNhcmQuY29tMB4XDTE4MDExNDA2MzEzN1oXDTE5MDExNDA2MzEzN1owMDEuMCwGA1UEAxMlQURGUyBTaWduaW5nIC0gYWRmcy5wZXJub2QtcmljYXJkLmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAKdftBbaTM/lQA9YOb7pYcq3EocjDDCoUDV3ZV9GSTVho7NZHrjGYZ67a85D4O0dgUM0Hx+xTsVYo9Mr6io2RD6B++IBpy1c3Pv2Rj0B6l60i9iheWAspyC/HWvIgp/RYZ7FS9pbtEKO88HbnI/03oV+gC9EZ21XAM3clS3UhtRhpqugV6PMoB4jTJz4EW/k7MPa8aUodSgPiuGn9vm9SFQYqeNQ4pOUIS3ssHyxYsHph3lAfcyHgtLvF6ff0RY7bZbIAyOoRYfHorygTKxgyl0cG2X+Dd3KELORdGXixaVvmxDQzQjQmcMaKd+CYytGvrbaXc8oaqsrl10556wffaMCAwEAATANBgkqhkiG9w0BAQsFAAOCAQEAQrTS5ooPIp23ViIdRjALFgaXshqYRcSC3Xj9Y6Is659XFqw4uWMVcik/rk//sLZMGJjMQFyqdw1AmA4nPqHUl1vZCJaLmqkRysi7XkjYZOe98FI6CN5LIDYCHkPkg8aS1a6oTlnTnKmBJj0GHRMkJg8DdbF1xZCp1wMvBIIETFacjY+T9lM+TUz/avNyxdbxfzwFEdxMPlqMar47njEsZASfLwjlmPm5IQm8zGCu+voPS+eUMJbvVg/+Z1UsA7HZUtadSFjRUlZB6YMmI1jtbrTdN8zvIp+8QjI+MJ/eHUNNkl99GAYjeBXmuIRcFIqsCwp1pbFC4o9MYIfP4D8bRA==</validationCert>
+</SamlSsoConfig>

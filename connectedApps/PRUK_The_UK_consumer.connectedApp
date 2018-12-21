@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConnectedApp xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contactEmail>chatter@pernod-ricard.com</contactEmail>
+    <description>PRUK The UK consumer</description>
+    <label>PRUK The UK consumer</label>
+    <oauthConfig>
+        <callbackUrl>https://myportal.pernod-ricard.com/_layouts/PernodRicard/SalesForce/oAuthLoginPage.aspx</callbackUrl>
+        <consumerKey>3MVG9qQjGkWUbcrFTIsUBxAfZQuZCRHFggUk91ot1s2QNaUBnSmeBw1twmstZng1lJX9Ah6WELAvAD49UObaO</consumerKey>
+        <scopes>Chatter</scopes>
+    </oauthConfig>
+</ConnectedApp>

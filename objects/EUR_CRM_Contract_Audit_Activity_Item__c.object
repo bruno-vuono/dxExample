@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>EUR_CRM_Audit_Item_Previously_Completed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Audit Item Previously Completed</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Compliance_Complete_Check__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Compliance / Complete Check</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Contract_Audit_Activity__c</fullName>
+        <externalId>false</externalId>
+        <label>Contract Audit Activity</label>
+        <referenceTo>EUR_CRM_Contract_Audit_Activity__c</referenceTo>
+        <relationshipName>EUR_CRM_Contract_Audit_Activity_Items</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Contract_Product_Item_BQS__c</fullName>
+        <externalId>false</externalId>
+        <formula>EUR_CRM_Contract_Product_Item__r.EUR_CRM_Brand_Quality_Size__r.Name</formula>
+        <label>Contract Product Item - BQS</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Contract_Product_Item_BQ__c</fullName>
+        <externalId>false</externalId>
+        <formula>EUR_CRM_Contract_Product_Item__r.EUR_CRM_Brand_Quality__r.Name</formula>
+        <label>Contract Product Item - Brand-Quality</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Contract_Product_Item_Brand__c</fullName>
+        <externalId>false</externalId>
+        <formula>EUR_CRM_Contract_Product_Item__r.EUR_CRM_Brand__r.Name</formula>
+        <label>Contract Product Item - Brand</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Contract_Product_Item_SKU__c</fullName>
+        <externalId>false</externalId>
+        <formula>EUR_CRM_Contract_Product_Item__r.EUR_CRM_SKU__r.Name</formula>
+        <label>Contract Product Item - SKU</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Contract_Product_Item__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Contract Product Item</label>
+        <referenceTo>EUR_CRM_Contract_Product_Item__c</referenceTo>
+        <relationshipName>EUR_CRM_Contract_Audit_Activity_Items</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <label>Contract Audit Activity Item (EU)</label>
+    <listViews>
+        <fullName>EUR_PT_All_ContractAuditActivityI_View</fullName>
+        <columns>NAME</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>EUR_CRM_Compliance_Complete_Check__c</columns>
+        <columns>EUR_CRM_Audit_Item_Previously_Completed__c</columns>
+        <columns>EUR_CRM_Contract_Product_Item__c</columns>
+        <columns>EUR_CRM_Contract_Product_Item_Brand__c</columns>
+        <columns>EUR_CRM_Contract_Product_Item_BQ__c</columns>
+        <columns>EUR_CRM_Contract_Product_Item_BQS__c</columns>
+        <columns>EUR_CRM_Contract_Product_Item_SKU__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_Contract_Audit_Activity_Item__c.EUR_PT_Contract_Audit_Activity_Item_Type</value>
+        </filters>
+        <label>EUR PT All ContractAuditActivityI  View</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>EUR_PT</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <nameField>
+        <displayFormat>CAAI-{0000000000}</displayFormat>
+        <label>Contract Audit Activity Item Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Contract Audit Activity Item (EU)</pluralLabel>
+    <recordTypes>
+        <fullName>EUR_DK_Contract_Audit_Activity_Item_Type</fullName>
+        <active>true</active>
+        <description>Record Type for DK Contract Audit Activity Item Type</description>
+        <label>EUR DK Contract Audit Activity Item Type</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_FI_Contract_Audit_Activity_Item_Type</fullName>
+        <active>true</active>
+        <label>EUR FI Contract Audit Activity Item Type</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_PT_Contract_Audit_Activity_Item_Type</fullName>
+        <active>true</active>
+        <label>EUR PT Contract Audit Activity Item Type</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_ZA_Contract_Audit_Activity_Item_Type</fullName>
+        <active>true</active>
+        <label>EUR ZA Contract Audit Activity Item Type</label>
+    </recordTypes>
+    <searchLayouts>
+        <lookupDialogsAdditionalFields>EUR_CRM_Contract_Audit_Activity__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>EUR_CRM_Contract_Product_Item__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>EUR_CRM_Compliance_Complete_Check__c</lookupDialogsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ControlledByParent</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

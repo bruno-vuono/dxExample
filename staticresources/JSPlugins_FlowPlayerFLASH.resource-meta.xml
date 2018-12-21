@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StaticResource xmlns="http://soap.sforce.com/2006/04/metadata">
+    <cacheControl>Private</cacheControl>
+    <contentType>application/x-zip-compressed</contentType>
+    <description>Flowplayer is an Open Source video player for website. 
+This is the flash commercial version.
+The licence key is stored in the custom settings &quot; ESN_ChatterTVSettings__c &quot; and must be added to the page.</description>
+</StaticResource>

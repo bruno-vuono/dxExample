@@ -1,0 +1,150 @@
+<apex:page sidebar="false" standardController="MMPJ_TOPG_RAID__c" extensions="MMPJ_TOPG_MyTasksExt">
+      <style>
+        .todo_tableheader{
+            text-align:center;
+            background-color: #7f7f7f;
+            color: white;
+        }
+        .todo_tableheaderupcolumn{
+            background-color:white!important;
+        }
+        .popupBackground{
+            position:fixed; 
+            top:0px; 
+            left:0px; 
+            width:100%; 
+            bottom:0px; 
+            z-index:100; 
+            background-color: 
+            #000000; 
+            opacity: 0.15; 
+            filter: alpha(opacity = 20);
+        }
+        .popupWindow{
+            position:absolute;             
+            z-index:101;
+            top:-150px;
+            left:0;
+            right:0;
+            margin-left:auto;
+            margin-right:auto;                
+        }
+        .todo_popupHeader{
+            font-weight: bold;
+            text-align:right;
+        }
+        .RelatedMeetingTd img,.RelatedMeetingTd a{
+            display:none;
+        }
+    </style>
+    <apex:form >
+     <apex:pageBlock >
+        <!-- <apex:pageBlockButtons location="Top" >
+                <apex:commandButton value="Save" action="{!SaveTodos}" rerender="FormTODO" status="StatusLoading" oncomplete="resetCounter();"/>
+                <apex:commandButton value="Print PDF" action="{!PrintPdf}" status="StatusLoading"  onclick="window.open('{!DestURL}?projectId={!project.id}');return false;" rerender="FormTODO"/>
+               <apex:commandButton value="Graphic View" action="{!LiveView}" rerender="FormTODO"/> 
+            </apex:pageBlockButtons> -->
+           
+
+            <apex:outputPanel id="TableTodoSection"> 
+                
+                <apex:variable var="TodoCounter" value="{!0}"/>      
+                <div style="padding-left:30px;">  
+                    <apex:repeat value="{!listTodos}" var="todo" id="theRepeat">
+        				 <apex:outputText value="{!todo.MMPJ_TOPG_Title__c}" id="theValue"/> 
+         				<br/>
+     				</apex:repeat>
+                    <apex:pageBlockTable value="{!listTodos}" var="todo" headerClass="todo_tableheader" width="100%">                        
+                      <!--  <apex:column style="position:relative;" >                        
+                            <apex:commandLink action="{!MoveUpTodo}" rendered="{!TodoCounter>0}" reRender="TableTodoSection" status="StatusLoading" style="position:absolute; top:0px; left:-26px" >
+                                <apex:param name="SelectedTodo" assignTo="{!SelectedTodoCounter}" value="{!TodoCounter}"/>
+                                <apex:image value="{!$Resource.MMPJ_TOPG_UPArrow}" alt="Up"/> 
+                            </apex:commandLink>                        
+                            <apex:commandLink value="Edit" action="{!EditTodo}" reRender="TableTodoSection" status="StatusLoading">
+                                <apex:param name="SelectedTodo" assignTo="{!SelectedTodoCounter}" value="{!TodoCounter}"/>
+                            </apex:commandLink>
+                            <span style="color:grey;"> | </span>
+                            <apex:commandLink value="Del" action="{!DelTodo}" reRender="TableTodoSection" status="StatusLoading">
+                                <apex:param name="SelectedTodo" assignTo="{!SelectedTodoCounter}" value="{!TodoCounter}"/>
+                            </apex:commandLink>
+                            <apex:variable var="TodoCounter" value="{!TodoCounter+1}"/>                        
+                        </apex:column> -->
+                        <apex:column headerValue="Title" >
+                            <apex:outputfield value="{!todo.MMPJ_TOPG_Title__c}" />
+                        </apex:column>
+                        <apex:column headerValue="Responsible">
+                            <apex:outputField value="{!todo.MMPJ_TOPG_Contact__c}" rendered="{!todo.MMPJ_TOPG_Contact__c!=null}"/>
+                            <apex:outputField value="{!todo.MMPJ_TOPG_User__c}"  rendered="{!todo.MMPJ_TOPG_User__c!=null}"/>
+                        </apex:column>
+                        <apex:column headerValue="RAID" style="text-align:center;">
+                            <apex:inputField value="{!todo.MMPJ_TOPG_RAID__c}" />
+                        </apex:column>
+                        <apex:column headerValue="Highlight" style="text-align:center;">
+                            <apex:inputField value="{!todo.MMPJ_TOPG_Highlight__c}"/>
+                        </apex:column>
+                        <apex:column headerValue="Expected Date" >
+                            <apex:inputField required="true" value="{!todo.MMPJ_TOPG_ExpectedDate__c}"/>
+                        </apex:column>
+                        <apex:column headerValue="Status" >
+                            <apex:inputField required="true" value="{!todo.MMPJ_TOPG_Status__c}"/>
+                        </apex:column>
+                        <apex:column headerValue="Desc." value="{!todo.MMPJ_TOPG_Desc__c}" style="text-align:center;"/>
+                        <apex:column headerValue="Flag" style="text-align:center;">
+                            <apex:image alt="{!todo.MMPJ_TOPG_Flag__c}" width="25px" height="25px" value="{!URLFOR($Resource.MMPJ_TOPG_Smileys, 'done_smiley.png')}" rendered="{!todo.MMPJ_TOPG_Status__c == 'Done'}" />
+                            <apex:image alt="Late" width="25px" height="25px" value="{!URLFOR($Resource.MMPJ_TOPG_Smileys, 'late_smiley.png')}" rendered="{!todo.MMPJ_TOPG_Status__c == 'Late'}" />
+                            <apex:image alt="On Going" width="25px" height="25px" value="{!URLFOR($Resource.MMPJ_TOPG_Smileys, 'ongoing_smiley.png')}" rendered="{!todo.MMPJ_TOPG_Status__c == 'On Going'}" />
+                            <apex:image alt="Planned" width="25px" height="25px" value="{!URLFOR($Resource.MMPJ_TOPG_Smileys, 'planned_smiley.png')}" rendered="{!todo.MMPJ_TOPG_Status__c == 'Planned'}" />                            
+                        </apex:column>
+                    </apex:pageBlockTable>    
+                </div>
+               <!-- <div style="position:relative; display:block; width:100%; text-align:right; padding:10px;">
+                    <apex:commandButton value="Add ToDo Line" action="{!OpenNewToDo}" reRender="TableTodoSection" status="StatusLoading" immediate="true"/>
+                </div> -->
+               <!-- <apex:outputPanel rendered="{!ShowPopup}" >    
+                               
+                    <div class="popupBackground" />
+                    <div class="popupWindow" style="width:600px;">
+                        <apex:actionRegion >
+                            <apex:pageBlock title="ToDo Detail">
+                                <apex:pageMessages ></apex:pageMessages> 
+                                <table width="100%" cellpadding="10px" cellspacing="0" border="0">
+                                    <tr><td class="todo_popupHeader">Title: </td><td colspan="3"><apex:inputField value="{!SelectedTodo.MMPJ_TOPG_Title__c}" style="width:100%;"/></td></tr>
+                                    <tr>
+                                        <td class="todo_popupHeader">RAID: </td><td><apex:inputField value="{!SelectedTodo.MMPJ_TOPG_RAID__c}"/></td>
+                                        <td class="todo_popupHeader" style="vertical-align:middle;">HIGHLIGHT:<apex:inputField value="{!SelectedTodo.MMPJ_TOPG_Highlight__c}" style="position:relative; top:2px;"/></td></tr>
+                                    <tr>
+                                        <td class="todo_popupHeader">Description: </td><td colspan="3">
+                                            <apex:inputTextarea id="txtDescription" styleClass="richtextProject" value="{!SelectedTodo.MMPJ_TOPG_Description__c}" rows="10" style="width:100%;" richText="false" />
+                                        </td>                                        
+                                    </tr>
+                                    <tr>
+                                        <td class="todo_popupHeader">Expected date: </td><td><apex:inputField value="{!SelectedTodo.MMPJ_TOPG_ExpectedDate__c}"/></td>
+                                        <td class="todo_popupHeader">Status: </td><td><apex:inputField value="{!SelectedTodo.MMPJ_TOPG_Status__c}" required="true"/></td></tr>
+                                    <tr>
+                                        <td class="todo_popupHeader">Responsible: </td>
+                                        <td>
+                                            <div id="editformContact" style="display:{!IF(SelectTodo_Responsible='Contact','initial','none')};">
+                                                <apex:inputField id="editformContact" value="{!SelectedTodo.MMPJ_TOPG_Contact__c}"/>
+                                            </div>
+                                            <div id="editformUser" style="display:{!IF(SelectTodo_Responsible='User','initial','none')};">
+                                                <apex:inputField id="editformUser" value="{!SelectedTodo.MMPJ_TOPG_User__c}"/>
+                                            </div>
+                                        </td>
+                                       
+                                    </tr>
+                                    <tr>
+                                        <td class="todo_popupHeader">Related to Meeting: </td><td colspan="3" class="RelatedMeetingTd"><apex:inputField html-disabled="disabled" id="RelatedMeeting" value="{!SelectedTodo.MMPJ_TOPG_Meeting__c}"/></td></tr>                                
+                                </table>
+                                <apex:pageBlockButtons location="bottom">
+                                    <apex:commandButton value="Save" action="{!SaveSelectedTodo}" reRender="TableTodoSection" status="StatusLoading"/>
+                                    <apex:commandButton value="Cancel" action="{!CancelSelectedTodo}" immediate="true" reRender="TableTodoSection" status="StatusLoading"/>
+                                </apex:pageBlockButtons>
+                            </apex:pageBlock>  
+                        </apex:actionRegion>
+                    </div>                    
+                </apex:outputPanel> -->
+            </apex:outputPanel>        
+     </apex:pageBlock>
+    </apex:form>
+    
+</apex:page>

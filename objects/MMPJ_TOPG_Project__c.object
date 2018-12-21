@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <content>MMPJ_TOPG_NewProject</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <content>MMPJ_TOPG_NewProject</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <content>MMPJ_TOPG_NewProject</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Used for MMPJ TopGun app</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>true</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>MMPJ_TOPG_Actuals__c</fullName>
+        <description>Used for the TOP GUN Project</description>
+        <externalId>false</externalId>
+        <label>Actuals (€)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>MMPJ_TOPG_Brand__c</fullName>
+        <description>Used for the TOP GUN Project</description>
+        <externalId>false</externalId>
+        <label>Brand</label>
+        <length>30000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>MMPJ_TOPG_DelivAttachments__c</fullName>
+        <externalId>false</externalId>
+        <label>MMPJ_TOPG_DelivAttachments</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>MMPJ_TOPG_Description__c</fullName>
+        <description>Used for the TOP GUN Project</description>
+        <externalId>false</externalId>
+        <label>Description</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>MMPJ_TOPG_EndDate__c</fullName>
+        <externalId>false</externalId>
+        <label>End Date</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>MMPJ_TOPG_ForecastBudget__c</fullName>
+        <description>Used for the TOP GUN Project</description>
+        <externalId>false</externalId>
+        <label>Forecast Budget (€)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>MMPJ_TOPG_Market__c</fullName>
+        <description>Used for the TOP GUN Project</description>
+        <externalId>false</externalId>
+        <label>Market</label>
+        <length>30000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>MMPJ_TOPG_NewProjectType__c</fullName>
+        <description>The new project Type to use to create classical project or Product project</description>
+        <externalId>false</externalId>
+        <label>Project Type</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Classical Project</fullName>
+                    <default>true</default>
+                    <label>Classical Project</label>
+                </value>
+                <value>
+                    <fullName>Product Project</fullName>
+                    <default>false</default>
+                    <label>Product Project</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>MMPJ_TOPG_PickListBrand__c</fullName>
+        <externalId>false</externalId>
+        <label>Brand</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>true</sorted>
+                <value>
+                    <fullName>All brands</fullName>
+                    <default>false</default>
+                    <label>All brands</label>
+                </value>
+                <value>
+                    <fullName>Martell</fullName>
+                    <default>false</default>
+                    <label>Martell</label>
+                </value>
+                <value>
+                    <fullName>Mumm</fullName>
+                    <default>false</default>
+                    <label>Mumm</label>
+                </value>
+                <value>
+                    <fullName>Perrier-Jouët</fullName>
+                    <default>false</default>
+                    <label>Perrier-Jouët</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>MMPJ_TOPG_Product__c</fullName>
+        <description>Used for the TOP GUN project</description>
+        <externalId>false</externalId>
+        <label>Product</label>
+        <length>30000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>MMPJ_TOPG_ProjManagAttachments__c</fullName>
+        <externalId>false</externalId>
+        <label>MMPJ_TOPG_ProjManagAttachments</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>MMPJ_TOPG_ProjectOwner__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Project Owner</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>ProjectsiQCv</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>MMPJ_TOPG_ProjectTopic__c</fullName>
+        <description>Used for TOP GUN Project</description>
+        <externalId>false</externalId>
+        <label>Project Topic</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>MMPJ_TOPG_ProjectType__c</controllingField>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Product Launch</fullName>
+                    <default>false</default>
+                    <label>Product Launch</label>
+                </value>
+                <value>
+                    <fullName>Media Campaign</fullName>
+                    <default>false</default>
+                    <label>Media Campaign</label>
+                </value>
+                <value>
+                    <fullName>Research</fullName>
+                    <default>false</default>
+                    <label>Research</label>
+                </value>
+                <value>
+                    <fullName>Product</fullName>
+                    <default>false</default>
+                    <label>Product</label>
+                </value>
+                <value>
+                    <fullName>Price</fullName>
+                    <default>false</default>
+                    <label>Price</label>
+                </value>
+                <value>
+                    <fullName>Off-trade place</fullName>
+                    <default>false</default>
+                    <label>Off-trade place</label>
+                </value>
+                <value>
+                    <fullName>On-trade place</fullName>
+                    <default>false</default>
+                    <label>On-trade place</label>
+                </value>
+                <value>
+                    <fullName>Promotion</fullName>
+                    <default>false</default>
+                    <label>Promotion</label>
+                </value>
+                <value>
+                    <fullName>Pitch</fullName>
+                    <default>false</default>
+                    <label>Pitch</label>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>Central Development</controllingFieldValue>
+                <valueName>Product</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Central Development</controllingFieldValue>
+                <valueName>Price</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Central Development</controllingFieldValue>
+                <valueName>Off-trade place</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Central Development</controllingFieldValue>
+                <valueName>On-trade place</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Central Development</controllingFieldValue>
+                <valueName>Promotion</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Co-Development</controllingFieldValue>
+                <valueName>Product Launch</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Co-Development</controllingFieldValue>
+                <valueName>Media Campaign</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Co-Development</controllingFieldValue>
+                <valueName>Research</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Pitch</controllingFieldValue>
+                <valueName>Pitch</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>MMPJ_TOPG_ProjectType__c</fullName>
+        <description>Used for TOP GUN Project</description>
+        <externalId>false</externalId>
+        <label>Project Type</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Central Development</fullName>
+                    <default>false</default>
+                    <label>Central Development</label>
+                </value>
+                <value>
+                    <fullName>Co-Development</fullName>
+                    <default>false</default>
+                    <label>Co-Development</label>
+                </value>
+                <value>
+                    <fullName>Pitch</fullName>
+                    <default>false</default>
+                    <label>Pitch</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>MMPJ_TOPG_StartDate__c</fullName>
+        <externalId>false</externalId>
+        <label>Start Date</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <label>Project</label>
+    <listViews>
+        <fullName>MMPJ_TOPG_All_Projects</fullName>
+        <columns>NAME</columns>
+        <columns>MMPJ_TOPG_ProjectOwner__c</columns>
+        <columns>MMPJ_TOPG_NewProjectType__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>MMPJ_TOPG_StartDate__c</columns>
+        <columns>MMPJ_TOPG_EndDate__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>MMPJ_TOPG_Central_Development</fullName>
+        <columns>NAME</columns>
+        <columns>MMPJ_TOPG_ProjectTopic__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>MMPJ_TOPG_ProjectType__c</field>
+            <operation>equals</operation>
+            <value>Central Development</value>
+        </filters>
+        <label>Central Development</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>MMPJ_TOPG_Co_Development</fullName>
+        <columns>NAME</columns>
+        <columns>MMPJ_TOPG_ProjectTopic__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>MMPJ_TOPG_ProjectType__c</field>
+            <operation>equals</operation>
+            <value>Co-Development</value>
+        </filters>
+        <label>Co-Development</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>MMPJ_TOPG_Pitch</fullName>
+        <columns>NAME</columns>
+        <columns>MMPJ_TOPG_ProjectTopic__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>MMPJ_TOPG_ProjectType__c</field>
+            <operation>equals</operation>
+            <value>Pitch</value>
+        </filters>
+        <label>Pitch</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <label>Project Name</label>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Projects</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>MMPJ_TOPG_ProjectType__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>MMPJ_TOPG_ProjectTopic__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>MMPJ_TOPG_ProjectType__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>MMPJ_TOPG_ProjectTopic__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>MMPJ_TOPG_ProjectOwner__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>MMPJ_TOPG_StartDate__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>MMPJ_TOPG_EndDate__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>MMPJ_TOPG_ProjectType__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>MMPJ_TOPG_ProjectTopic__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>MMPJ_TOPG_ProjectOwner__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>MMPJ_TOPG_StartDate__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>MMPJ_TOPG_EndDate__c</lookupPhoneDialogsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

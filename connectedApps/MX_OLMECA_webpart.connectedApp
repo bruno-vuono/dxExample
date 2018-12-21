@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConnectedApp xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contactEmail>Ivan.Gutierrez@Pernod-Ricard.com</contactEmail>
+    <description>Chatter webpart in Olmeca external website</description>
+    <label>MX OLMECA webpart</label>
+    <oauthConfig>
+        <callbackUrl>https://www.olmecaconnect.com</callbackUrl>
+        <consumerKey>3MVG9qQjGkWUbcrFTIsUBxAfZQuZCRHFggUk9sXJRl620vHCYyclmhN3tuXOfACSFXJWOwvczXSjpNv9ua273</consumerKey>
+        <scopes>Basic</scopes>
+        <scopes>Web</scopes>
+        <scopes>Chatter</scopes>
+        <scopes>RefreshToken</scopes>
+    </oauthConfig>
+</ConnectedApp>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConnectedApp xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contactEmail>Irantzu.Basterretxea@pernod-ricard.com</contactEmail>
+    <description>Chatter integration in SharePoint for Spain</description>
+    <label>ES SharePoint WebPart</label>
+    <oauthConfig>
+        <callbackUrl>oob</callbackUrl>
+        <consumerKey>3MVG9qQjGkWUbcrFTIsUBxAfZQuZCRHFggUk9Ov1oe85wNvMqN_RzwklgdaxLCQIl3myMk07T0jUQzwB2Qgmw</consumerKey>
+        <scopes>Basic</scopes>
+        <scopes>Chatter</scopes>
+        <scopes>RefreshToken</scopes>
+    </oauthConfig>
+</ConnectedApp>

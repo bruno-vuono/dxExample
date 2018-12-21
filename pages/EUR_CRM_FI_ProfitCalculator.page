@@ -1,0 +1,75 @@
+<apex:page standardController="EUR_CRM_Contract__c" extensions="EUR_CRM_FI_ProfitCalculatorExt">
+<apex:sectionHeader title="{!$Label.EUR_CRM_Profit_Calculator}" subtitle="{!EUR_CRM_Contract__c.name}"/>
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageblockButtons >
+                <apex:commandButton value="{!$Label.EUR_CRM_Exit}" action="{!cancel}"/>
+            </apex:pageblockButtons>
+            <table width="100%" style="border:1px solid black;border-collapse:collapse;">
+                <tr>
+                    <th height="40" bgcolor="#93cede" style="width:15%;border:1px solid;text-align: center;">Source</th>
+                    <th height="40" bgcolor="#93cede" style="width:20%;border:1px solid;text-align: center;">Item</th>
+                    <th height="40" bgcolor="#93cede" style="width:6%;border:1px solid;text-align: center;">Volume in Btls</th>
+                    <th height="40" bgcolor="#93cede" style="width:6%;border:1px solid;text-align: center;">Margin/Btl</th>
+                    <!--<th height="40" bgcolor="#93cede" style="width:6%;border:1px solid;text-align: center;">&nbsp;</th>-->
+                    <th height="40" bgcolor="#93cede" style="width:6%;border:1px solid;text-align: center;">Retro/Btl</th>
+                    <th height="40" bgcolor="#93cede" style="width:6%;border:1px solid;text-align: center;">Profit/Btl</th>
+                    <th height="40" bgcolor="#93cede" style="width:6%;border:1px solid;text-align: center;">Profit &amp; Selection <br/>Brand Profit</th>
+                    <th height="40" bgcolor="#93cede" style="width:6%;border:1px solid;text-align: center;">Lump Sums</th>
+                    <th height="40" bgcolor="#93cede" style="width:6%;border:1px solid;text-align: center;">Total CM By row</th>
+                    <th height="40" bgcolor="#93cede" style="width:6%;border:1px solid;text-align: center;">Total Profit</th>
+                </tr>
+                <apex:variable value="{!0}" var="total">
+                <apex:variable value="{!0}" var="totalBottles"> 
+                <apex:variable value="{!0}" var="totalPSBP">
+                <apex:variable value="{!0}" var="totalLumpSum">   
+                    <apex:repeat value="{!profCalculatorWrapList2}" var="item">
+                        <apex:variable value="{!total+item.totalCMByRow}" var="total"></apex:variable>
+                        <tr>
+                            <td bgcolor="#e5eff5" style="width:15%;border:1px solid;">{!item.sourceName}</td>
+                            <td bgcolor="#e5eff5" style="width:20%;border:1px solid;">{!item.itemName}</td>
+                            <td style="width:6%;border:1px solid;" align="right"><apex:outputText value="{0, number,###,###,##0}"><apex:param value="{!item.volBottles}" /></apex:outputText></td>
+                            <td style="width:6%;border:1px solid;" align="right">{!item.cMargin}</td>
+                            <!--<td style="width:6%;border:1px solid;" align="right">{!item.totalVolperCMargin}</td>-->
+                            <td style="width:6%;border:1px solid;" align="right">{!item.retroBottles}</td>
+                            <td style="width:6%;border:1px solid;" align="right">{!item.totalRetroperCMargin}</td>
+                            <td style="width:6%;border:1px solid;" align="right"><apex:outputText value="{0, number,###,###,##0.00}"><apex:param value="{!item.totalCM}" /></apex:outputText></td>
+                            <td style="width:6%;border:1px solid;" align="right"><apex:outputText value="{0, number,###,###,##0.00}"><apex:param value="{!item.lumpsum}" /></apex:outputText></td>
+                            <td style="width:6%;border:1px solid;" align="right"><apex:outputText value="{0, number,###,###,##0.00}"><apex:param value="{!item.totalCMByRow}" /></apex:outputText></td>
+                            <!--<td style="width:6%;border:1px solid;" align="right">{!total}</td>-->
+                            <td style="width:6%;border:1px solid;" align="right"><apex:outputText value="{0, number,###,###,##0.00}"><apex:param value="{!total}" /></apex:outputText></td>
+                            
+                        </tr>
+
+                        <apex:variable value="{!IF((item.volBottles==null),0,item.volBottles)}" var="tempBottles"></apex:variable>
+                        <apex:variable value="{!totalBottles+tempBottles}" var="totalBottles"></apex:variable>
+                        <!--<apex:variable value="{!totalBottles+item.volBottles}" var="totalBottles"></apex:variable>-->
+
+                        <apex:variable value="{!IF((item.totalCM==null),0,item.totalCM)}" var="tempPSBP"></apex:variable>
+                        <apex:variable value="{!totalPSBP+tempPSBP}" var="totalPSBP"></apex:variable>
+
+                        <apex:variable value="{!IF((item.lumpsum==null),0,item.lumpsum)}" var="tempLumpSum"></apex:variable>
+                        <apex:variable value="{!totalLumpSum+tempLumpSum}" var="totalLumpSum"></apex:variable>
+
+                    </apex:repeat>
+                    <tr>
+                        <td bgcolor="#e5eff5" style="width:15%;border:1px solid;"><strong>Grand Total</strong></td>
+                        <td bgcolor="#e5eff5" style="width:20%;border:1px solid;"></td>
+                        <td style="width:6%;border:1px solid;" align="right"><strong><apex:outputText value="{0, number,###,###,##0}"><apex:param value="{!totalBottles}" /></apex:outputText></strong></td>
+                        <td style="width:6%;border:1px solid;" align="right"></td>
+                        <!--<td style="width:6%;border:1px solid;" align="right"></td>-->
+                        <td style="width:6%;border:1px solid;" align="right"></td>
+                        <td style="width:6%;border:1px solid;" align="right"></td>
+                        <td style="width:6%;border:1px solid;" align="right"><strong><apex:outputText value="{0, number,###,###,##0.00}"><apex:param value="{!totalPSBP}" /></apex:outputText></strong></td>
+                        <td style="width:6%;border:1px solid;" align="right"><strong><apex:outputText value="{0, number,###,###,##0.00}"><apex:param value="{!totalLumpSum}" /></apex:outputText></strong></td>
+                        <td style="width:6%;border:1px solid;" align="right"><strong><apex:outputText value="{0, number,###,###,##0.00}"><apex:param value="{!total}" /></apex:outputText></strong></td>
+                        <td style="width:6%;border:1px solid;" align="right"><strong><apex:outputText value="{0, number,###,###,##0.00}"><apex:param value="{!total}" /></apex:outputText></strong></td>
+                    </tr>
+                </apex:variable>
+                </apex:variable>
+                </apex:variable>
+                </apex:variable>
+            </table>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

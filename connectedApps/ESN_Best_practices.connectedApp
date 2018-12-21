@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConnectedApp xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contactEmail>thelab@pernod-ricard.com</contactEmail>
+    <description>Connected App used for authentication OAuth of The Lab Web Apps</description>
+    <label>ESN Best practices</label>
+    <oauthConfig>
+        <callbackUrl>https://pernod-ricard.secure.force.com/connect</callbackUrl>
+        <consumerKey>3MVG9qQjGkWUbcrFTIsUBxAfZQuZCRHFggUk9WNKvxHmxUuhk238dJQurMEJg_eZyTHdVw6coQAjbD1qVMrLM</consumerKey>
+        <scopes>Basic</scopes>
+        <scopes>Api</scopes>
+        <scopes>Web</scopes>
+        <scopes>Full</scopes>
+        <scopes>Chatter</scopes>
+        <scopes>CustomApplications</scopes>
+        <scopes>RefreshToken</scopes>
+    </oauthConfig>
+</ConnectedApp>

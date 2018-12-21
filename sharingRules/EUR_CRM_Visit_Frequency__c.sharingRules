@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>EUR_AO_Share_All_Visit_Frequency</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>EUR AO Share All Visit Frequency</label>
+        <sharedTo>
+            <roleAndSubordinates>EUR_AO</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>EUR AO Visit Frequency</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>EUR_AT_Share_Visit_Freq_To_All_AT</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>EUR AT Share Visit Freq To All AT</label>
+        <sharedTo>
+            <roleAndSubordinates>EUR_AT</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>EUR_AT_Visit_Frequency</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>EUR_BE_Share_All_Visit_Frequencies</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>EUR BE Share All Visit Frequencies</label>
+        <sharedTo>
+            <roleAndSubordinates>EUR_BE</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>EUR BE Visit Frequency</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>EUR_BE_Share_all_Visit_Frequencies_RW</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>EUR BE Share all Visit Frequencies Read&amp;Write</label>
+        <sharedTo>
+            <group>EUR_BE_Admin_Group</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>EUR BE Visit Frequency</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>EUR_BG_Share_All_Visit_Frequency</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Share ALL to Role and Subordinates: EUR BG &gt; Read Only</description>
+        <label>EUR BG Share All Visit Frequency</label>
+        <sharedTo>
+            <roleAndSubordinates>EUR_BG</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>EUR BG Visit Frequency</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>EUR_BG_Share_All_Visit_Frequency_RW</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Share ALL to Group: EUR BG Super User Group &gt; Read/Write</description>
+        <label>EUR BG Share All Visit Frequency RW</label>
+        <sharedTo>
+            <group>EUR_BG_Super_User_Group</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>EUR BG Visit Frequency</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>EUR_CH_Share_All_Visit_Frequency</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>EUR CH Share All Visit Frequency</label>
+        <sharedTo>
+            <roleAndSubordinates>EUR_CH</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>EUR CH Visit Frequency</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>EUR_DE_Share_Visit_Freq_To_All_DE</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>EUR DE Share Visit Freq To All DE</label>
+        <sharedTo>
+            <roleAndSubordinates>EUR_DE</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>EUR_DE_Visit_Frequency</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>EUR_DK_Share_All_Visit_Frequency</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>EUR DK Share All Visit Frequency</label>
+        <sharedTo>
+            <roleAndSubordinates>EUR_DK</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>EUR DK Visit Frequency</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>EUR_DK_Share_Visit_Frequency_to_EUR_DK_Admin_R_W</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>EUR DK Share Visit Frequency to EUR DK Admin R/W</label>
+        <sharedTo>
+            <group>EUR_DK_Admin_Group</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>EUR DK Visit Frequency</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>EUR_EE_Share_Visit_Freq_To_All_EE</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Shares EE Visit Freq To All EE Users</description>
+        <label>EUR EE Share Visit Freq To All EE</label>
+        <sharedTo>
+            <roleAndSubordinates>EUR_EE</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>EUR EE Visit Frequency</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>EUR_FI_Share_Visit_Frequency_To_All_FI</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>EUR FI Share Visit Frequency To All FI</label>
+        <sharedTo>
+            <roleAndSubordinates>EUR_FI</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>EUR FI Visit Frequency</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>EUR_FI_Share_Visit_Frequency_to_All_Marketing_Users_Read</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>EUR FI Share Visit Frequency to All Marketing Users - Read</label>
+        <sharedTo>
+            <roleAndSubordinates>EUR_FI_Marketing_Director</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>EUR FI Visit Frequency</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>EUR_GB_Share_All_Visit_Frequency</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>EUR GB Share All Visit Frequency</label>
+        <sharedTo>
+            <roleAndSubordinates>EUR_GB</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>GB Visit Frequency</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>EUR_GB_Visit_Frequency_Readonly_Share</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>EUR GB Visit Frequency Readonly Share</label>
+        <sharedTo>
+            <roleAndSubordinates>EUR_GB_Field_Sales_Controller</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>GB Visit Frequency</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>EUR_KE_Share_All_Visit_Frequency</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>EUR KE Share All Visit Frequency</label>
+        <sharedTo>
+            <roleAndSubordinates>EUR_KE</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>EUR KE Visit Frequency</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>EUR_LT_Share_Visit_Freq_To_All_LT</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Shares LT Visit Freq To All LT Users</description>
+        <label>EUR LT Share Visit Freq To All LT</label>
+        <sharedTo>
+            <roleAndSubordinates>EUR_LT</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>EUR LT Visit Frequency</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>EUR_LV_Share_Visit_Freq_To_All_LV</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>EUR LV Share all LV Visit Freq To All LV Users</description>
+        <label>EUR LV Share Visit Freq To All LV</label>
+        <sharedTo>
+            <roleAndSubordinates>EUR_LV</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>EUR LV Visit Frequency</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>EUR_MA_Share_All_Visit_Frequency_V2</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>EUR MA Share All Visit Frequency V2</label>
+        <sharedTo>
+            <roleAndSubordinates>EUR_MA</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>EUR MA Visit Frequency</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>EUR_NG_Share_All_Visit_Frequency</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>EUR NG Share All Visit Frequency</label>
+        <sharedTo>
+            <roleAndSubordinates>EUR_NG</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>EUR NG Visit Frequency</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>EUR_PT_Share_All_Visit_Frequency</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Share ALL to Role and Subordinates: EUR PT &gt; Read Only</description>
+        <label>EUR PT Share All Visit Frequency</label>
+        <sharedTo>
+            <roleAndSubordinates>EUR_PT</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>EUR PT Visit Frequency</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>EUR_PT_Share_All_Visit_Frequency_RW</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Share ALL to Group: EUR PT Super User Group &gt; Read/Write</description>
+        <label>EUR PT Share All Visit Frequency RW</label>
+        <sharedTo>
+            <group>EUR_PT_Super_User_Group</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>EUR PT Visit Frequency</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>EUR_RU_Share_All_Visit_Frequencies</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Share all RU Visit Frequencies with EUR RU Roles &amp; Subordinates.</description>
+        <label>EUR RU Share All Visit Frequencies</label>
+        <sharedTo>
+            <roleAndSubordinates>EUR_RU</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>EUR RU Visit Frequency</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>EUR_ZA_New_Share_All_Visit_Frequency</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Newly created on 20160407</description>
+        <label>EUR ZA New Share All Visit Frequency</label>
+        <sharedTo>
+            <roleAndSubordinates>EUR_ZA</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>EUR ZA Visit Frequency</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+</SharingRules>

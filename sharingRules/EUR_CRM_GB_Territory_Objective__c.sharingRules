@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingOwnerRules>
+        <fullName>EUR_GB_London_East_Region_KPI_Share</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>EUR GB London East Region KPI Share</label>
+        <sharedTo>
+            <roleAndSubordinates>EUR_GB_FSM_London_East</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <role>EUR_GB_FSM_London_East</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>EUR_GB_North_Region_KPI_Share</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>EUR GB North Region KPI Share</label>
+        <sharedTo>
+            <roleAndSubordinates>EUR_GB_FSM_North</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <role>EUR_GB_FSM_North</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>EUR_GB_Prestige_Region_KPI_Share</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>EUR GB Prestige Region KPI Share</label>
+        <sharedTo>
+            <roleAndSubordinates>EUR_GB_FSM_Prestige</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <role>EUR_GB_FSM_Prestige</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>EUR_GB_South_Region_KPI_Share</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>EUR GB South Region KPI Share</label>
+        <sharedTo>
+            <roleAndSubordinates>EUR_GB_FSM_South</roleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <role>EUR_GB_FSM_South</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+</SharingRules>

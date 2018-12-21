@@ -1,0 +1,13 @@
+<apex:page title="event" contentType="text/calendar#MMPJ Meeting.ics" cache="false" showHeader="false" sidebar="false">
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID::-//hacksw/handcal//NONSGML v1.0//EN
+BEGIN:VEVENT
+DTSTART:<apex:outputText value="{!$CurrentPage.parameters.start}"/>
+DTEND:<apex:outputText value="{!$CurrentPage.parameters.end}"/>
+SUMMARY:<apex:outputText value="{!$CurrentPage.parameters.subject}"/>
+DESCRIPTION:<apex:outputText value="{!$CurrentPage.parameters.description}"/>
+LOCATION:<apex:outputText value="{!$CurrentPage.parameters.location}"/>
+END:VEVENT
+END:VCALENDAR
+</apex:page>

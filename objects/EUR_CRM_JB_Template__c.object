@@ -1,0 +1,5196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>PREU JB Data Model</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>EUR_CRM_Customer_Taxonomy__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Customer Taxonomy</label>
+        <referenceTo>EUR_CRM_Customer_Taxonomy__c</referenceTo>
+        <relationshipName>Templates_Customer_Taxonomy</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Default__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Default</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Module__c</fullName>
+        <externalId>false</externalId>
+        <label>Module</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Module 2 x 1m</fullName>
+                    <default>false</default>
+                    <label>Module 2 x 1m</label>
+                </value>
+                <value>
+                    <fullName>Module 2 x 1,25m</fullName>
+                    <default>false</default>
+                    <label>Module 2 x 1,25m</label>
+                </value>
+                <value>
+                    <fullName>Module 3 x 1m</fullName>
+                    <default>false</default>
+                    <label>Module 3 x 1m</label>
+                </value>
+                <value>
+                    <fullName>Module 3 x 1,25m</fullName>
+                    <default>false</default>
+                    <label>Module 3 x 1,25m</label>
+                </value>
+                <value>
+                    <fullName>Module 4 x 1m</fullName>
+                    <default>false</default>
+                    <label>Module 4 x 1m</label>
+                </value>
+                <value>
+                    <fullName>Module 4 x 1,25m</fullName>
+                    <default>false</default>
+                    <label>Module 4 x 1,25m</label>
+                </value>
+                <value>
+                    <fullName>Module 5 x 1m</fullName>
+                    <default>false</default>
+                    <label>Module 5 x 1m</label>
+                </value>
+                <value>
+                    <fullName>Module 5 x 1,25m</fullName>
+                    <default>false</default>
+                    <label>Module 5 x 1,25m</label>
+                </value>
+                <value>
+                    <fullName>Module 6 x 1m</fullName>
+                    <default>false</default>
+                    <label>Module 6 x 1m</label>
+                </value>
+                <value>
+                    <fullName>Typ 1</fullName>
+                    <default>false</default>
+                    <label>Typ 1</label>
+                </value>
+                <value>
+                    <fullName>Typ 2</fullName>
+                    <default>false</default>
+                    <label>Typ 2</label>
+                </value>
+                <value>
+                    <fullName>Typ 3</fullName>
+                    <default>false</default>
+                    <label>Typ 3</label>
+                </value>
+                <value>
+                    <fullName>Typ 4</fullName>
+                    <default>false</default>
+                    <label>Typ 4</label>
+                </value>
+                <value>
+                    <fullName>Typ 5</fullName>
+                    <default>false</default>
+                    <label>Typ 5</label>
+                </value>
+                <value>
+                    <fullName>Module A</fullName>
+                    <default>false</default>
+                    <label>Module A</label>
+                </value>
+                <value>
+                    <fullName>Module B</fullName>
+                    <default>false</default>
+                    <label>Module B</label>
+                </value>
+                <value>
+                    <fullName>Module C</fullName>
+                    <default>false</default>
+                    <label>Module C</label>
+                </value>
+                <value>
+                    <fullName>N1</fullName>
+                    <default>false</default>
+                    <label>N1</label>
+                </value>
+                <value>
+                    <fullName>N2</fullName>
+                    <default>false</default>
+                    <label>N2</label>
+                </value>
+                <value>
+                    <fullName>N3</fullName>
+                    <default>false</default>
+                    <label>N3</label>
+                </value>
+                <value>
+                    <fullName>N4</fullName>
+                    <default>false</default>
+                    <label>N4</label>
+                </value>
+                <value>
+                    <fullName>N5</fullName>
+                    <default>false</default>
+                    <label>N5</label>
+                </value>
+                <value>
+                    <fullName>N6</fullName>
+                    <default>false</default>
+                    <label>N6</label>
+                </value>
+                <value>
+                    <fullName>O1</fullName>
+                    <default>false</default>
+                    <label>O1</label>
+                </value>
+                <value>
+                    <fullName>O2</fullName>
+                    <default>false</default>
+                    <label>O2</label>
+                </value>
+                <value>
+                    <fullName>O3</fullName>
+                    <default>false</default>
+                    <label>O3</label>
+                </value>
+                <value>
+                    <fullName>O4</fullName>
+                    <default>false</default>
+                    <label>O4</label>
+                </value>
+                <value>
+                    <fullName>O5</fullName>
+                    <default>false</default>
+                    <label>O5</label>
+                </value>
+                <value>
+                    <fullName>O6</fullName>
+                    <default>false</default>
+                    <label>O6</label>
+                </value>
+                <value>
+                    <fullName>W1</fullName>
+                    <default>false</default>
+                    <label>W1</label>
+                </value>
+                <value>
+                    <fullName>W2</fullName>
+                    <default>false</default>
+                    <label>W2</label>
+                </value>
+                <value>
+                    <fullName>W3</fullName>
+                    <default>false</default>
+                    <label>W3</label>
+                </value>
+                <value>
+                    <fullName>W4</fullName>
+                    <default>false</default>
+                    <label>W4</label>
+                </value>
+                <value>
+                    <fullName>W5</fullName>
+                    <default>false</default>
+                    <label>W5</label>
+                </value>
+                <value>
+                    <fullName>W6</fullName>
+                    <default>false</default>
+                    <label>W6</label>
+                </value>
+                <value>
+                    <fullName>L</fullName>
+                    <default>false</default>
+                    <label>L</label>
+                </value>
+                <value>
+                    <fullName>M</fullName>
+                    <default>false</default>
+                    <label>M</label>
+                </value>
+                <value>
+                    <fullName>S</fullName>
+                    <default>false</default>
+                    <label>S</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>EUR_CRM_Record_Type_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>RecordType.DeveloperName</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Record Type Name</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>EUR_JB_Description__c</fullName>
+        <externalId>false</externalId>
+        <label>Description</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>EUR_JB_External_ID__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <externalId>true</externalId>
+        <label>External ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <label>Template (EU)</label>
+    <listViews>
+        <fullName>EUR_AO_Template</fullName>
+        <columns>NAME</columns>
+        <columns>EUR_CRM_Customer_Taxonomy__c</columns>
+        <columns>EUR_JB_External_ID__c</columns>
+        <columns>EUR_CRM_Module__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>CREATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_JB_Template__c.EUR_AO_Off_Trade_Template,EUR_CRM_JB_Template__c.EUR_AO_On_Trade_Template</value>
+        </filters>
+        <label>EUR AO Template</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>EMEA</role>
+            <roleAndSubordinates>EUR_AO</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>EUR_AT_Template</fullName>
+        <columns>NAME</columns>
+        <columns>EUR_JB_External_ID__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>CURRENCY_ISO_CODE</columns>
+        <columns>CREATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_JB_Template__c.EUR_AT_Template</value>
+        </filters>
+        <label>EUR AT Template</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>EUR_AT</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>EUR_CH_Template</fullName>
+        <columns>RECORDTYPE</columns>
+        <columns>NAME</columns>
+        <columns>CURRENCY_ISO_CODE</columns>
+        <columns>EUR_JB_Description__c</columns>
+        <columns>EUR_JB_External_ID__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_JB_Template__c.EUR_CH_On_Trade_Template</value>
+        </filters>
+        <label>EUR CH Template</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>EUR_CH</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>EUR_CRM_BE_On_Trade_Template_View</fullName>
+        <columns>NAME</columns>
+        <columns>EUR_JB_External_ID__c</columns>
+        <columns>EUR_CRM_Record_Type_Name__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>OWNER.LAST_NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_JB_Template__c.EUR_BE_On_Trade_Template</value>
+        </filters>
+        <label>EUR BE  On Template View</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>EUR_BE</roleAndSubordinates>
+            <roleAndSubordinates>EUR_BE_Sales_Director_Horeca_Belux</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>EUR_CRM_BE_Trade_Template_View</fullName>
+        <booleanFilter>1 OR 2 OR 3</booleanFilter>
+        <columns>NAME</columns>
+        <columns>OBJECT_ID</columns>
+        <columns>EUR_CRM_Customer_Taxonomy__c</columns>
+        <columns>EUR_CRM_Default__c</columns>
+        <columns>EUR_JB_Description__c</columns>
+        <columns>EUR_JB_External_ID__c</columns>
+        <columns>EUR_CRM_Record_Type_Name__c</columns>
+        <columns>CURRENCY_ISO_CODE</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>OWNER.LAST_NAME</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_JB_Template__c.EUR_BE_Off_Trade_Template</value>
+        </filters>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_JB_Template__c.EUR_BE_Wholesaler_Template</value>
+        </filters>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_JB_Template__c.EUR_BE_On_Trade_Template</value>
+        </filters>
+        <label>EUR BE  Template View</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>EUR_BE</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>EUR_CRM_BG_ALL_Template_View</fullName>
+        <booleanFilter>1 or 2 or 3</booleanFilter>
+        <columns>NAME</columns>
+        <columns>OBJECT_ID</columns>
+        <columns>EUR_CRM_Customer_Taxonomy__c</columns>
+        <columns>EUR_JB_Description__c</columns>
+        <columns>EUR_JB_External_ID__c</columns>
+        <columns>EUR_CRM_Record_Type_Name__c</columns>
+        <columns>CURRENCY_ISO_CODE</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>OWNER.LAST_NAME</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_JB_Template__c.EUR_BG_On_Trade_Template</value>
+        </filters>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_JB_Template__c.EUR_BG_Off_Trade_Template</value>
+        </filters>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_JB_Template__c.EUR_BG_Wholesaler_Template</value>
+        </filters>
+        <label>EUR BG Template</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>EUR_BG</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>EUR_CRM_BG_OFF_Trade_Template_View</fullName>
+        <columns>NAME</columns>
+        <columns>OBJECT_ID</columns>
+        <columns>EUR_CRM_Customer_Taxonomy__c</columns>
+        <columns>EUR_CRM_Default__c</columns>
+        <columns>EUR_JB_Description__c</columns>
+        <columns>EUR_JB_External_ID__c</columns>
+        <columns>EUR_CRM_Record_Type_Name__c</columns>
+        <columns>CURRENCY_ISO_CODE</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>OWNER.LAST_NAME</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_JB_Template__c.EUR_BG_Off_Trade_Template</value>
+        </filters>
+        <label>EUR BG OFF Trade Template View</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>EUR_BG</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>EUR_CRM_BG_ON_Trade_Template_View</fullName>
+        <columns>NAME</columns>
+        <columns>OBJECT_ID</columns>
+        <columns>EUR_JB_Description__c</columns>
+        <columns>EUR_JB_External_ID__c</columns>
+        <columns>EUR_CRM_Record_Type_Name__c</columns>
+        <columns>CURRENCY_ISO_CODE</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>OWNER.LAST_NAME</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_JB_Template__c.EUR_BG_On_Trade_Template</value>
+        </filters>
+        <label>EUR BG ON Trade Template View</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>EUR_BG</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>EUR_CRM_BG_Wholesalers_Template_View</fullName>
+        <columns>NAME</columns>
+        <columns>OBJECT_ID</columns>
+        <columns>EUR_CRM_Customer_Taxonomy__c</columns>
+        <columns>EUR_CRM_Default__c</columns>
+        <columns>EUR_JB_Description__c</columns>
+        <columns>EUR_JB_External_ID__c</columns>
+        <columns>EUR_CRM_Record_Type_Name__c</columns>
+        <columns>CURRENCY_ISO_CODE</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>OWNER.LAST_NAME</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_JB_Template__c.EUR_BG_Wholesaler_Template</value>
+        </filters>
+        <label>EUR BG Wholesalers Template View</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>EUR_BG</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>EUR_CRM_PT_ALL_Template_View</fullName>
+        <booleanFilter>1 or 2</booleanFilter>
+        <columns>NAME</columns>
+        <columns>OBJECT_ID</columns>
+        <columns>EUR_CRM_Customer_Taxonomy__c</columns>
+        <columns>EUR_CRM_Default__c</columns>
+        <columns>EUR_JB_Description__c</columns>
+        <columns>EUR_JB_External_ID__c</columns>
+        <columns>EUR_CRM_Record_Type_Name__c</columns>
+        <columns>CURRENCY_ISO_CODE</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>OWNER.LAST_NAME</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_JB_Template__c.EUR_PT_On_Trade_Template</value>
+        </filters>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_JB_Template__c.EUR_PT_Off_Trade_Template</value>
+        </filters>
+        <label>EUR PT ALL Template</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>EUR_PT</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>EUR_CRM_PT_OFF_Trade_Template_View</fullName>
+        <columns>NAME</columns>
+        <columns>OBJECT_ID</columns>
+        <columns>EUR_CRM_Customer_Taxonomy__c</columns>
+        <columns>EUR_CRM_Default__c</columns>
+        <columns>EUR_JB_Description__c</columns>
+        <columns>EUR_JB_External_ID__c</columns>
+        <columns>EUR_CRM_Record_Type_Name__c</columns>
+        <columns>CURRENCY_ISO_CODE</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>OWNER.LAST_NAME</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_JB_Template__c.EUR_PT_Off_Trade_Template</value>
+        </filters>
+        <label>EUR PT OFF Trade Template View</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>EUR_PT</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>EUR_CRM_PT_ON_Trade_Template_View</fullName>
+        <columns>NAME</columns>
+        <columns>OBJECT_ID</columns>
+        <columns>EUR_CRM_Customer_Taxonomy__c</columns>
+        <columns>EUR_CRM_Default__c</columns>
+        <columns>EUR_JB_Description__c</columns>
+        <columns>EUR_JB_External_ID__c</columns>
+        <columns>EUR_CRM_Record_Type_Name__c</columns>
+        <columns>CURRENCY_ISO_CODE</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>OWNER.LAST_NAME</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_JB_Template__c.EUR_PT_On_Trade_Template</value>
+        </filters>
+        <label>EUR PT ON Trade Template View</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>EUR_PT</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>EUR_DE_Template_OFF</fullName>
+        <columns>NAME</columns>
+        <columns>EUR_JB_External_ID__c</columns>
+        <columns>EUR_CRM_Customer_Taxonomy__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>CREATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_JB_Template__c.EUR_DE_OFF_Trade_Template</value>
+        </filters>
+        <label>EUR DE Template OFF</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>EMEA</role>
+            <role>EUR_DE</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>EUR_DE_Template_ON</fullName>
+        <columns>NAME</columns>
+        <columns>EUR_CRM_Customer_Taxonomy__c</columns>
+        <columns>EUR_JB_External_ID__c</columns>
+        <columns>EUR_CRM_Module__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>CREATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_JB_Template__c.EUR_DE_ON_TRADE_Template</value>
+        </filters>
+        <label>EUR DE Template ON</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>EMEA</role>
+            <role>EUR_DE</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>EUR_DK_Template</fullName>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <columns>RECORDTYPE</columns>
+        <columns>NAME</columns>
+        <columns>EUR_CRM_Customer_Taxonomy__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_JB_Template__c.EUR_DK_ON_Trade_Template</value>
+        </filters>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_JB_Template__c.EUR_DK_OFF_Trade_Template</value>
+        </filters>
+        <label>EUR DK Template</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>EUR_DK</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>EUR_FI_Template</fullName>
+        <columns>NAME</columns>
+        <columns>EUR_JB_Description__c</columns>
+        <columns>EUR_JB_External_ID__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>EUR_CRM_Default__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_JB_Template__c.EUR_FI_ON_Trade_Template</value>
+        </filters>
+        <label>EUR FI Template</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>EUR_FI</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>EUR_KE_Template</fullName>
+        <columns>NAME</columns>
+        <columns>EUR_CRM_Customer_Taxonomy__c</columns>
+        <columns>EUR_JB_External_ID__c</columns>
+        <columns>EUR_CRM_Module__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>CREATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_JB_Template__c.EUR_KE_Off_Trade_Template,EUR_CRM_JB_Template__c.EUR_KE_On_Trade_Template</value>
+        </filters>
+        <label>EUR KE Template</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>EMEA</role>
+            <roleAndSubordinates>EUR_KE</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>EUR_MA_Template</fullName>
+        <columns>RECORDTYPE</columns>
+        <columns>NAME</columns>
+        <columns>EUR_JB_Description__c</columns>
+        <columns>EUR_CRM_Customer_Taxonomy__c</columns>
+        <columns>EUR_JB_External_ID__c</columns>
+        <columns>CURRENCY_ISO_CODE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_JB_Template__c.EUR_MA_Off_Trade_Template,EUR_CRM_JB_Template__c.EUR_MA_On_Trade_Template</value>
+        </filters>
+        <label>EUR MA Template</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>EUR_MA</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>EUR_NG_Template</fullName>
+        <columns>NAME</columns>
+        <columns>EUR_JB_External_ID__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>CURRENCY_ISO_CODE</columns>
+        <columns>CREATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_JB_Template__c.EUR_NG_Off_Trade_Template,EUR_CRM_JB_Template__c.EUR_NG_On_Trade_Template</value>
+        </filters>
+        <label>EUR NG Template</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>EUR_NG</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>EUR_RU_OFF_Template</fullName>
+        <columns>NAME</columns>
+        <columns>EUR_JB_External_ID__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>OWNER.LAST_NAME</columns>
+        <columns>EUR_CRM_Record_Type_Name__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_JB_Template__c.EUR_RU_OFF_Trade_Template</value>
+        </filters>
+        <label>EUR RU OFF Template</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>EMEA</role>
+            <roleAndSubordinates>EUR_RU</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>EUR_RU_ON_Template</fullName>
+        <columns>NAME</columns>
+        <columns>EUR_JB_External_ID__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>OWNER.LAST_NAME</columns>
+        <columns>EUR_CRM_Record_Type_Name__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_JB_Template__c.EUR_RU_ON_Trade_Template</value>
+        </filters>
+        <label>EUR RU ON Template</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>EMEA</role>
+            <roleAndSubordinates>EUR_RU</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>EUR_ZA_Template</fullName>
+        <columns>OBJECT_ID</columns>
+        <columns>EUR_JB_External_ID__c</columns>
+        <columns>NAME</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>OWNER.LAST_NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>EUR_CRM_JB_Template__c.EUR_ZA_Off_Trade_Template,EUR_CRM_JB_Template__c.EUR_ZA_On_Trade_Template</value>
+        </filters>
+        <label>EUR ZA Template</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>EUR_ZA</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <nameField>
+        <label>Template Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Template (EU)</pluralLabel>
+    <recordTypes>
+        <fullName>EUR_AO_Off_Trade_Template</fullName>
+        <active>true</active>
+        <label>EUR AO Off Trade Template</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Module__c</picklist>
+            <values>
+                <fullName>L</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>M</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 2 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 2 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 3 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 3 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 4 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 4 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 5 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 5 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 6 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>S</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W6</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_AO_On_Trade_Template</fullName>
+        <active>true</active>
+        <label>EUR AO On Trade Template</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Module__c</picklist>
+            <values>
+                <fullName>L</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>M</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 2 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 2 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 3 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 3 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 4 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 4 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 5 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 5 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 6 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>S</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W6</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_AT_Template</fullName>
+        <active>true</active>
+        <label>AT Template</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_BE_Off_Trade_Template</fullName>
+        <active>true</active>
+        <label>EUR BE Off Trade Template</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Module__c</picklist>
+            <values>
+                <fullName>L</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>M</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 2 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 2 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 3 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 3 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 4 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 4 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 5 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 5 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 6 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>S</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W6</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_BE_On_Trade_Template</fullName>
+        <active>true</active>
+        <label>EUR BE On Trade Template</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Module__c</picklist>
+            <values>
+                <fullName>L</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>M</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 2 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 2 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 3 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 3 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 4 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 4 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 5 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 5 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 6 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>S</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W6</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_BE_Wholesaler_Template</fullName>
+        <active>true</active>
+        <label>EUR BE Wholesaler Template</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Module__c</picklist>
+            <values>
+                <fullName>L</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>M</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 2 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 2 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 3 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 3 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 4 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 4 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 5 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 5 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 6 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>S</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W6</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_BG_Off_Trade_Template</fullName>
+        <active>true</active>
+        <label>EUR BG Off Trade Template</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Module__c</picklist>
+            <values>
+                <fullName>L</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>M</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 2 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 2 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 3 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 3 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 4 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 4 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 5 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 5 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 6 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>S</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W6</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_BG_On_Trade_Template</fullName>
+        <active>true</active>
+        <label>EUR BG On Trade Template</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Module__c</picklist>
+            <values>
+                <fullName>L</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>M</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 2 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 2 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 3 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 3 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 4 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 4 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 5 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 5 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 6 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>S</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W6</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_BG_Wholesaler_Template</fullName>
+        <active>true</active>
+        <label>EUR BG Wholesaler Template</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Module__c</picklist>
+            <values>
+                <fullName>L</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>M</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 2 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 2 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 3 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 3 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 4 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 4 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 5 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 5 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 6 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>S</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W6</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_CH_On_Trade_Template</fullName>
+        <active>true</active>
+        <label>EUR CH On Trade Template</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Module__c</picklist>
+            <values>
+                <fullName>L</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>M</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 2 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 2 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 3 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 3 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 4 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 4 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 5 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 5 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 6 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>S</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W6</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_DE_OFF_Trade_Template</fullName>
+        <active>true</active>
+        <label>DE OFF-Trade Template</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Module__c</picklist>
+            <values>
+                <fullName>L</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>M</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 2 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 2 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 3 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 3 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 4 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 4 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 5 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 5 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 6 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>S</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W6</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_DE_ON_TRADE_Template</fullName>
+        <active>true</active>
+        <label>DE ON-Trade Template</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Module__c</picklist>
+            <values>
+                <fullName>L</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>M</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 2 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 2 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 3 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 3 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 4 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 4 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 5 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 5 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 6 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>S</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W6</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_DE_WS_Template</fullName>
+        <active>true</active>
+        <label>DE WS Template</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Module__c</picklist>
+            <values>
+                <fullName>L</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>M</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 2 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 2 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 3 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 3 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 4 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 4 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 5 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 5 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 6 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>S</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W6</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_DK_OFF_Trade_Template</fullName>
+        <active>true</active>
+        <description>Record Type for DK OFF Trade Listing Templates</description>
+        <label>EUR DK OFF Trade Template</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Module__c</picklist>
+            <values>
+                <fullName>L</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>M</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 2 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 2 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 3 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 3 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 4 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 4 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 5 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 5 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 6 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>S</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W6</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_DK_ON_Trade_Template</fullName>
+        <active>true</active>
+        <description>Record Type for ON Trace Accounts&apos; Templates</description>
+        <label>EUR DK ON Trade Template</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Module__c</picklist>
+            <values>
+                <fullName>L</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>M</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 2 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 2 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 3 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 3 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 4 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 4 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 5 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 5 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 6 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>S</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W6</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_FI_ON_Trade_Template</fullName>
+        <active>true</active>
+        <label>EUR FI ON Trade Template</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Module__c</picklist>
+            <values>
+                <fullName>L</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>M</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 2 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 2 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 3 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 3 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 4 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 4 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 5 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 5 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 6 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>S</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W6</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_GB_Template</fullName>
+        <active>true</active>
+        <label>GB Template</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_KE_Off_Trade_Template</fullName>
+        <active>true</active>
+        <label>EUR KE Off Trade Template</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Module__c</picklist>
+            <values>
+                <fullName>L</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>M</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 2 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 2 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 3 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 3 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 4 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 4 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 5 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 5 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 6 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>S</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W6</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_KE_On_Trade_Template</fullName>
+        <active>true</active>
+        <label>EUR KE On Trade Template</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Module__c</picklist>
+            <values>
+                <fullName>L</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>M</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 2 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 2 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 3 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 3 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 4 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 4 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 5 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 5 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 6 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>S</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W6</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_MA_Off_Trade_Template</fullName>
+        <active>true</active>
+        <label>EUR MA Off Trade Template</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Module__c</picklist>
+            <values>
+                <fullName>L</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>M</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 2 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 2 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 3 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 3 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 4 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 4 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 5 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 5 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 6 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>S</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W6</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_MA_On_Trade_Template</fullName>
+        <active>true</active>
+        <label>EUR MA On Trade Template</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Module__c</picklist>
+            <values>
+                <fullName>L</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>M</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 2 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 2 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 3 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 3 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 4 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 4 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 5 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 5 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 6 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>S</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W6</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_NG_Off_Trade_Template</fullName>
+        <active>true</active>
+        <label>EUR NG Off Trade Template</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Module__c</picklist>
+            <values>
+                <fullName>L</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>M</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 2 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 2 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 3 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 3 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 4 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 4 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 5 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 5 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 6 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>S</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W6</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_NG_On_Trade_Template</fullName>
+        <active>true</active>
+        <label>EUR NG On Trade Template</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Module__c</picklist>
+            <values>
+                <fullName>L</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>M</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 2 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 2 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 3 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 3 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 4 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 4 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 5 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 5 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 6 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>S</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W6</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_PT_Off_Trade_Template</fullName>
+        <active>true</active>
+        <label>EUR PT Off Trade Template</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Module__c</picklist>
+            <values>
+                <fullName>L</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>M</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 2 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 2 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 3 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 3 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 4 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 4 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 5 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 5 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 6 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>S</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W6</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_PT_On_Trade_Template</fullName>
+        <active>true</active>
+        <label>EUR PT On Trade Template</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Module__c</picklist>
+            <values>
+                <fullName>L</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>M</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 2 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 2 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 3 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 3 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 4 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 4 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 5 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 5 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 6 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>S</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W6</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_RU_OFF_Trade_Template</fullName>
+        <active>true</active>
+        <description>RU OFF Trade</description>
+        <label>EUR RU OFF Trade Template</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Module__c</picklist>
+            <values>
+                <fullName>L</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>M</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 2 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 2 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 3 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 3 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 4 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 4 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 5 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 5 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 6 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>S</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W6</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_RU_ON_Trade_Template</fullName>
+        <active>true</active>
+        <description>RU ON Trade</description>
+        <label>EUR RU ON Trade Template</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Module__c</picklist>
+            <values>
+                <fullName>L</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>M</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 2 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 2 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 3 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 3 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 4 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 4 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 5 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 5 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 6 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>S</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W6</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_ZA_Off_Trade_Template</fullName>
+        <active>true</active>
+        <label>EUR ZA Off Trade Template</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Module__c</picklist>
+            <values>
+                <fullName>L</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>M</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 2 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 2 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 3 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 3 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 4 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 4 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 5 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 5 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 6 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>S</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W6</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>EUR_ZA_On_Trade_Template</fullName>
+        <active>true</active>
+        <label>EUR ZA On Trade Template</label>
+        <picklistValues>
+            <picklist>EUR_CRM_Module__c</picklist>
+            <values>
+                <fullName>L</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>M</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 2 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 2 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 3 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 3 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 4 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 4 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 5 x 1%2C25m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 5 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module 6 x 1m</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Module C</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>S</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Typ 5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W6</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts/>
+    <sharingModel>Private</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

@@ -1,0 +1,1491 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <content>GDT_ManageActivity_EditActivity</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <content>GDT_ManageActivity_NewActivity</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <content>GDT_ManageActivity_ViewActivity</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Activity_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Activity Name</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Affiliate_Group__c</fullName>
+        <externalId>false</externalId>
+        <label>Affiliate Group</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>PR Asia</fullName>
+                    <default>false</default>
+                    <label>PR Asia</label>
+                </value>
+                <value>
+                    <fullName>PR Chatter</fullName>
+                    <default>false</default>
+                    <label>PR Chatter</label>
+                </value>
+                <value>
+                    <fullName>PR Europe</fullName>
+                    <default>false</default>
+                    <label>PR Europe</label>
+                </value>
+                <value>
+                    <fullName>PR Holding</fullName>
+                    <default>false</default>
+                    <label>PR Holding</label>
+                </value>
+                <value>
+                    <fullName>PR Americas</fullName>
+                    <default>false</default>
+                    <label>PR Americas</label>
+                </value>
+                <value>
+                    <fullName>PR Latin America</fullName>
+                    <default>false</default>
+                    <label>PR Latin America</label>
+                </value>
+                <value>
+                    <fullName>PR North America</fullName>
+                    <default>false</default>
+                    <label>PR North America</label>
+                </value>
+                <value>
+                    <fullName>PR Group</fullName>
+                    <default>false</default>
+                    <label>PR Group</label>
+                </value>
+                <value>
+                    <fullName>RICARD</fullName>
+                    <default>false</default>
+                    <label>RICARD</label>
+                </value>
+                <value>
+                    <fullName>MMPJ</fullName>
+                    <default>false</default>
+                    <label>MMPJ</label>
+                </value>
+                <value>
+                    <fullName>GDT_Admin</fullName>
+                    <default>false</default>
+                    <label>GDT_Admin</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Affiliate__c</fullName>
+        <externalId>false</externalId>
+        <label>Affiliate</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>true</sorted>
+                <value>
+                    <fullName>GDT_Admin</fullName>
+                    <default>false</default>
+                    <label>GDT_Admin</label>
+                </value>
+                <value>
+                    <fullName>MMPJ-G.H MUMM</fullName>
+                    <default>false</default>
+                    <label>MMPJ-G.H MUMM</label>
+                </value>
+                <value>
+                    <fullName>MMPJ-MARTELL</fullName>
+                    <default>false</default>
+                    <label>MMPJ-MARTELL</label>
+                </value>
+                <value>
+                    <fullName>MMPJ-PIERRIER JOUET</fullName>
+                    <default>false</default>
+                    <label>MMPJ-PIERRIER JOUET</label>
+                </value>
+                <value>
+                    <fullName>PERNOD-PERNOD</fullName>
+                    <default>false</default>
+                    <label>PERNOD-PERNOD</label>
+                </value>
+                <value>
+                    <fullName>PR Americas</fullName>
+                    <default>false</default>
+                    <label>PR Americas</label>
+                </value>
+                <value>
+                    <fullName>PR Asia-PR Asia Regional Marketing (RM)</fullName>
+                    <default>false</default>
+                    <label>PR Asia-PR Asia Regional Marketing (RM)</label>
+                </value>
+                <value>
+                    <fullName>PR Asia-PR Asia Support</fullName>
+                    <default>false</default>
+                    <label>PR Asia-PR Asia Support</label>
+                </value>
+                <value>
+                    <fullName>PR Asia-PR Asia Travel Retail (TR)</fullName>
+                    <default>false</default>
+                    <label>PR Asia-PR Asia Travel Retail (TR)</label>
+                </value>
+                <value>
+                    <fullName>PR Asia-PR Cambodia (KH)</fullName>
+                    <default>false</default>
+                    <label>PR Asia-PR Cambodia (KH)</label>
+                </value>
+                <value>
+                    <fullName>PR Asia-PR China (CN)</fullName>
+                    <default>false</default>
+                    <label>PR Asia-PR China (CN)</label>
+                </value>
+                <value>
+                    <fullName>PR Asia-PR Gulf (GF)</fullName>
+                    <default>false</default>
+                    <label>PR Asia-PR Gulf (GF)</label>
+                </value>
+                <value>
+                    <fullName>PR Asia-PR Hong Kong (HK)</fullName>
+                    <default>false</default>
+                    <label>PR Asia-PR Hong Kong (HK)</label>
+                </value>
+                <value>
+                    <fullName>PR Asia-PR Indonesia (ID)</fullName>
+                    <default>false</default>
+                    <label>PR Asia-PR Indonesia (ID)</label>
+                </value>
+                <value>
+                    <fullName>PR Asia-PR Japan (JP)</fullName>
+                    <default>false</default>
+                    <label>PR Asia-PR Japan (JP)</label>
+                </value>
+                <value>
+                    <fullName>PR Asia-PR Korea (KR)</fullName>
+                    <default>false</default>
+                    <label>PR Asia-PR Korea (KR)</label>
+                </value>
+                <value>
+                    <fullName>PR Asia-PR Macau (MO)</fullName>
+                    <default>false</default>
+                    <label>PR Asia-PR Macau (MO)</label>
+                </value>
+                <value>
+                    <fullName>PR Asia-PR Malaysia (MY)</fullName>
+                    <default>false</default>
+                    <label>PR Asia-PR Malaysia (MY)</label>
+                </value>
+                <value>
+                    <fullName>PR Asia-PR Philippines (PH)</fullName>
+                    <default>false</default>
+                    <label>PR Asia-PR Philippines (PH)</label>
+                </value>
+                <value>
+                    <fullName>PR Asia-PR Singapore (SG)</fullName>
+                    <default>false</default>
+                    <label>PR Asia-PR Singapore (SG)</label>
+                </value>
+                <value>
+                    <fullName>PR Asia-PR Taiwan (TW)</fullName>
+                    <default>false</default>
+                    <label>PR Asia-PR Taiwan (TW)</label>
+                </value>
+                <value>
+                    <fullName>PR Asia-PR Thailand (TH)</fullName>
+                    <default>false</default>
+                    <label>PR Asia-PR Thailand (TH)</label>
+                </value>
+                <value>
+                    <fullName>PR Asia-PR Vietnam (VN)</fullName>
+                    <default>false</default>
+                    <label>PR Asia-PR Vietnam (VN)</label>
+                </value>
+                <value>
+                    <fullName>PR Chatter-PR Chatter</fullName>
+                    <default>false</default>
+                    <label>PR Chatter-PR Chatter</label>
+                </value>
+                <value>
+                    <fullName>PR Europe-Jan Becher (JB)</fullName>
+                    <default>false</default>
+                    <label>PR Europe-Jan Becher (JB)</label>
+                </value>
+                <value>
+                    <fullName>PR Europe-PR Austria (AT)</fullName>
+                    <default>false</default>
+                    <label>PR Europe-PR Austria (AT)</label>
+                </value>
+                <value>
+                    <fullName>PR Europe-PR Baltics</fullName>
+                    <default>false</default>
+                    <label>PR Europe-PR Baltics</label>
+                </value>
+                <value>
+                    <fullName>PR Europe-PR Baltics-Estonia (EE)</fullName>
+                    <default>false</default>
+                    <label>PR Europe-PR Baltics-Estonia (EE)</label>
+                </value>
+                <value>
+                    <fullName>PR Europe-PR Baltics-Latvia (LT)</fullName>
+                    <default>false</default>
+                    <label>PR Europe-PR Baltics-Latvia (LT)</label>
+                </value>
+                <value>
+                    <fullName>PR Europe-PR Baltics-Lithuania (LT)</fullName>
+                    <default>false</default>
+                    <label>PR Europe-PR Baltics-Lithuania (LT)</label>
+                </value>
+                <value>
+                    <fullName>PR Europe-PR Belgium (BE)</fullName>
+                    <default>false</default>
+                    <label>PR Europe-PR Belgium (BE)</label>
+                </value>
+                <value>
+                    <fullName>PR Europe-PR Bulgaria (BG)</fullName>
+                    <default>false</default>
+                    <label>PR Europe-PR Bulgaria (BG)</label>
+                </value>
+                <value>
+                    <fullName>PR Europe-PR Denmark(DK)</fullName>
+                    <default>false</default>
+                    <label>PR Europe-PR Denmark(DK)</label>
+                </value>
+                <value>
+                    <fullName>PR Europe-PR EMEA</fullName>
+                    <default>false</default>
+                    <label>PR Europe-PR EMEA</label>
+                </value>
+                <value>
+                    <fullName>PR Europe-PR Finland (FI)</fullName>
+                    <default>false</default>
+                    <label>PR Europe-PR Finland (FI)</label>
+                </value>
+                <value>
+                    <fullName>PR Europe-PR Germany (DE)</fullName>
+                    <default>false</default>
+                    <label>PR Europe-PR Germany (DE)</label>
+                </value>
+                <value>
+                    <fullName>PR Europe-PR Italy (IT)</fullName>
+                    <default>false</default>
+                    <label>PR Europe-PR Italy (IT)</label>
+                </value>
+                <value>
+                    <fullName>PR Europe-PR Maroc (MA)</fullName>
+                    <default>false</default>
+                    <label>PR Europe-PR Maroc (MA)</label>
+                </value>
+                <value>
+                    <fullName>PR Europe-PR Portugal (PRT)</fullName>
+                    <default>false</default>
+                    <label>PR Europe-PR Portugal (PRT)</label>
+                </value>
+                <value>
+                    <fullName>PR Europe-PR Russia (RU)</fullName>
+                    <default>false</default>
+                    <label>PR Europe-PR Russia (RU)</label>
+                </value>
+                <value>
+                    <fullName>PR Europe-PR SSA</fullName>
+                    <default>false</default>
+                    <label>PR Europe-PR SSA</label>
+                </value>
+                <value>
+                    <fullName>PR Europe-PR SSA-Angola (AO)</fullName>
+                    <default>false</default>
+                    <label>PR Europe-PR SSA-Angola (AO)</label>
+                </value>
+                <value>
+                    <fullName>PR Europe-PR SSA-Kenya (KE)</fullName>
+                    <default>false</default>
+                    <label>PR Europe-PR SSA-Kenya (KE)</label>
+                </value>
+                <value>
+                    <fullName>PR Europe-PR SSA-Nigeria(NG)</fullName>
+                    <default>false</default>
+                    <label>PR Europe-PR SSA-Nigeria(NG)</label>
+                </value>
+                <value>
+                    <fullName>PR Europe-PR SSA-PR South Africa (ZA)</fullName>
+                    <default>false</default>
+                    <label>PR Europe-PR SSA-PR South Africa (ZA)</label>
+                </value>
+                <value>
+                    <fullName>PR Europe-PR Switzerland (CH)</fullName>
+                    <default>false</default>
+                    <label>PR Europe-PR Switzerland (CH)</label>
+                </value>
+                <value>
+                    <fullName>PR Europe-PR United Kingdom (UK)</fullName>
+                    <default>false</default>
+                    <label>PR Europe-PR United Kingdom (UK)</label>
+                </value>
+                <value>
+                    <fullName>PR Group</fullName>
+                    <default>false</default>
+                    <label>PR Group</label>
+                </value>
+                <value>
+                    <fullName>PR Holding-PR Holding</fullName>
+                    <default>false</default>
+                    <label>PR Holding-PR Holding</label>
+                </value>
+                <value>
+                    <fullName>PR Latin America-PR Argentina (AR)</fullName>
+                    <default>false</default>
+                    <label>PR Latin America-PR Argentina (AR)</label>
+                </value>
+                <value>
+                    <fullName>PR Latin America-PR Brazil (BR)</fullName>
+                    <default>false</default>
+                    <label>PR Latin America-PR Brazil (BR)</label>
+                </value>
+                <value>
+                    <fullName>PR Latin America-PR Latam Support</fullName>
+                    <default>false</default>
+                    <label>PR Latin America-PR Latam Support</label>
+                </value>
+                <value>
+                    <fullName>PR Latin America-PR Mexico (MX)</fullName>
+                    <default>false</default>
+                    <label>PR Latin America-PR Mexico (MX)</label>
+                </value>
+                <value>
+                    <fullName>PR Latin America-PR Uruguay (UY)</fullName>
+                    <default>false</default>
+                    <label>PR Latin America-PR Uruguay (UY)</label>
+                </value>
+                <value>
+                    <fullName>PR North America-CORBY</fullName>
+                    <default>false</default>
+                    <label>PR North America-CORBY</label>
+                </value>
+                <value>
+                    <fullName>PR North America-PR Canada</fullName>
+                    <default>false</default>
+                    <label>PR North America-PR Canada</label>
+                </value>
+                <value>
+                    <fullName>PR North America-PR USA</fullName>
+                    <default>false</default>
+                    <label>PR North America-PR USA</label>
+                </value>
+                <value>
+                    <fullName>RICARD-RICARD (RIC)</fullName>
+                    <default>false</default>
+                    <label>RICARD-RICARD (RIC)</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>6</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Allowed_Licences__c</fullName>
+        <externalId>false</externalId>
+        <label>Allowed Licences</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Application_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Application Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Available_Elements_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Date available elements</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Commentary__c</fullName>
+        <externalId>false</externalId>
+        <label>Commentary</label>
+        <length>2048</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>8</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Date_Backup__c</fullName>
+        <externalId>false</externalId>
+        <label>Date of the backup</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_Delivery__c</fullName>
+        <externalId>false</externalId>
+        <label>Date delivery</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_Expected__c</fullName>
+        <externalId>false</externalId>
+        <label>Date expected</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_Expiration__c</fullName>
+        <externalId>false</externalId>
+        <label>Expiration Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_Request__c</fullName>
+        <externalId>false</externalId>
+        <label>Date of request</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_Restore__c</fullName>
+        <externalId>false</externalId>
+        <label>Date of the restore</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Environment_Destination__c</fullName>
+        <externalId>false</externalId>
+        <label>Environment Destination</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Environment_Source__c</fullName>
+        <externalId>false</externalId>
+        <label>Environment Source</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Environment__c</fullName>
+        <externalId>false</externalId>
+        <label>Environment</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>PRODUCTION</fullName>
+                    <default>false</default>
+                    <label>PRODUCTION</label>
+                </value>
+                <value>
+                    <fullName>STAGING</fullName>
+                    <default>false</default>
+                    <label>STAGING</label>
+                </value>
+                <value>
+                    <fullName>Sandbox NAME</fullName>
+                    <default>false</default>
+                    <label>Sandbox NAME</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Full_description_of_the_incident__c</fullName>
+        <externalId>false</externalId>
+        <label>Full description of the incident</label>
+        <length>2048</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>2</visibleLines>
+    </fields>
+    <fields>
+        <fullName>GDT_Services__c</fullName>
+        <deleteConstraint>Restrict</deleteConstraint>
+        <externalId>false</externalId>
+        <label>GDT Services</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>GDT_Services__c.Name</field>
+                <operation>contains</operation>
+                <value>SFDC</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>GDT_Services__c</referenceTo>
+        <relationshipLabel>GDT Activities</relationshipLabel>
+        <relationshipName>GDT_Activities</relationshipName>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>GDT_Template_of_services__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>GDT Template of services</label>
+        <referenceTo>GDT_Template__c</referenceTo>
+        <relationshipLabel>GDT Activities</relationshipLabel>
+        <relationshipName>GDT_Activities</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Incident__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Incident</label>
+        <referenceTo>BMCServiceDesk__Incident__c</referenceTo>
+        <relationshipLabel>GDT Activities</relationshipLabel>
+        <relationshipName>GDT_Activities</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Language__c</fullName>
+        <externalId>false</externalId>
+        <label>Language</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>English</fullName>
+                    <default>false</default>
+                    <label>English</label>
+                </value>
+                <value>
+                    <fullName>Français</fullName>
+                    <default>false</default>
+                    <label>Français</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Level_of_Priority__c</fullName>
+        <externalId>false</externalId>
+        <label>Level of priority</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Priority 1 ( within 4 Hours)</fullName>
+                    <default>false</default>
+                    <label>Priority 1 ( within 4 Hours)</label>
+                </value>
+                <value>
+                    <fullName>Priority 2 ( within 1 Business day)</fullName>
+                    <default>false</default>
+                    <label>Priority 2 ( within 1 Business day)</label>
+                </value>
+                <value>
+                    <fullName>Priority 3 ( within 3 business day)</fullName>
+                    <default>false</default>
+                    <label>Priority 3 ( within 3 business day)</label>
+                </value>
+                <value>
+                    <fullName>Priority 4 ( within 5 business day)</fullName>
+                    <default>false</default>
+                    <label>Priority 4 ( within 5 business day)</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Namespace_Prefix__c</fullName>
+        <externalId>false</externalId>
+        <label>Namespace Prefix</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Objects_to_backup__c</fullName>
+        <externalId>false</externalId>
+        <label>Objects to backup</label>
+        <length>2048</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Objects_to_restore__c</fullName>
+        <externalId>false</externalId>
+        <label>Objects to restore</label>
+        <length>2048</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Other_Requester_Email__c</fullName>
+        <externalId>false</externalId>
+        <label>Other Requester Email</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>2</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Other_Requester_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Other Requester Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>PR_Requester_Name__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>PR Requester Name</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>GDT_Activities1</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Package_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Package Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Package_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Package Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Managed</fullName>
+                    <default>false</default>
+                    <label>Managed</label>
+                </value>
+                <value>
+                    <fullName>Unmanaged</fullName>
+                    <default>false</default>
+                    <label>Unmanaged</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Performed_By__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Performed By</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>GDT_Activities</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Project_Description__c</fullName>
+        <externalId>false</externalId>
+        <label>Project Description</label>
+        <length>2048</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>2</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Project_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Project Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>true</sorted>
+                <value>
+                    <fullName>GDT_Admin</fullName>
+                    <default>false</default>
+                    <label>GDT_Admin</label>
+                </value>
+                <value>
+                    <fullName>MMPJ-Extranet Vigneron</fullName>
+                    <default>false</default>
+                    <label>MMPJ-Extranet Vigneron</label>
+                </value>
+                <value>
+                    <fullName>MMPJ-MOOC</fullName>
+                    <default>false</default>
+                    <label>MMPJ-MOOC</label>
+                </value>
+                <value>
+                    <fullName>MMPJ-PJ-By&amp;For</fullName>
+                    <default>false</default>
+                    <label>MMPJ-PJ-By&amp;For</label>
+                </value>
+                <value>
+                    <fullName>MMPJ-TopGun</fullName>
+                    <default>false</default>
+                    <label>MMPJ-TopGun</label>
+                </value>
+                <value>
+                    <fullName>PERNOD-</fullName>
+                    <default>false</default>
+                    <label>PERNOD-</label>
+                </value>
+                <value>
+                    <fullName>PR Americas-BI</fullName>
+                    <default>false</default>
+                    <label>PR Americas-BI</label>
+                </value>
+                <value>
+                    <fullName>PR Asia-Asia Combined system</fullName>
+                    <default>false</default>
+                    <label>PR Asia-Asia Combined system</label>
+                </value>
+                <value>
+                    <fullName>PR Asia-CAPEX</fullName>
+                    <default>false</default>
+                    <label>PR Asia-CAPEX</label>
+                </value>
+                <value>
+                    <fullName>PR Asia-Concur (Cloud service solution)</fullName>
+                    <default>false</default>
+                    <label>PR Asia-Concur (Cloud service solution)</label>
+                </value>
+                <value>
+                    <fullName>PR Asia-CRM</fullName>
+                    <default>false</default>
+                    <label>PR Asia-CRM</label>
+                </value>
+                <value>
+                    <fullName>PR Asia-CRM Mobile App</fullName>
+                    <default>false</default>
+                    <label>PR Asia-CRM Mobile App</label>
+                </value>
+                <value>
+                    <fullName>PR Asia-eForm</fullName>
+                    <default>false</default>
+                    <label>PR Asia-eForm</label>
+                </value>
+                <value>
+                    <fullName>PR Asia-e-HR</fullName>
+                    <default>false</default>
+                    <label>PR Asia-e-HR</label>
+                </value>
+                <value>
+                    <fullName>PR Asia-FOC (Free of Charge system)</fullName>
+                    <default>false</default>
+                    <label>PR Asia-FOC (Free of Charge system)</label>
+                </value>
+                <value>
+                    <fullName>PR Asia-G&amp;H (Gift &amp; Hospitality)</fullName>
+                    <default>false</default>
+                    <label>PR Asia-G&amp;H (Gift &amp; Hospitality)</label>
+                </value>
+                <value>
+                    <fullName>PR Asia-Generic Brand</fullName>
+                    <default>false</default>
+                    <label>PR Asia-Generic Brand</label>
+                </value>
+                <value>
+                    <fullName>PR Asia-Gift Box</fullName>
+                    <default>false</default>
+                    <label>PR Asia-Gift Box</label>
+                </value>
+                <value>
+                    <fullName>PR Asia-LUX (Luxury CRM system)</fullName>
+                    <default>false</default>
+                    <label>PR Asia-LUX (Luxury CRM system)</label>
+                </value>
+                <value>
+                    <fullName>PR Asia-MARKETO</fullName>
+                    <default>false</default>
+                    <label>PR Asia-MARKETO</label>
+                </value>
+                <value>
+                    <fullName>PR Asia-MFM (Marketing Fund Management system)</fullName>
+                    <default>false</default>
+                    <label>PR Asia-MFM (Marketing Fund Management system)</label>
+                </value>
+                <value>
+                    <fullName>PR Asia-NPL (New Product Launch system)</fullName>
+                    <default>false</default>
+                    <label>PR Asia-NPL (New Product Launch system)</label>
+                </value>
+                <value>
+                    <fullName>PR Asia-Promoter Apps</fullName>
+                    <default>false</default>
+                    <label>PR Asia-Promoter Apps</label>
+                </value>
+                <value>
+                    <fullName>PR Asia-TnE (Travel &amp; Entertainment Claim system)</fullName>
+                    <default>false</default>
+                    <label>PR Asia-TnE (Travel &amp; Entertainment Claim system)</label>
+                </value>
+                <value>
+                    <fullName>PR Chatter-Chatter</fullName>
+                    <default>false</default>
+                    <label>PR Chatter-Chatter</label>
+                </value>
+                <value>
+                    <fullName>PR Chatter-DAM</fullName>
+                    <default>false</default>
+                    <label>PR Chatter-DAM</label>
+                </value>
+                <value>
+                    <fullName>PR Chatter-ESN Best Practices</fullName>
+                    <default>false</default>
+                    <label>PR Chatter-ESN Best Practices</label>
+                </value>
+                <value>
+                    <fullName>PR Chatter-I DID IT</fullName>
+                    <default>false</default>
+                    <label>PR Chatter-I DID IT</label>
+                </value>
+                <value>
+                    <fullName>PR Chatter-MOOC</fullName>
+                    <default>false</default>
+                    <label>PR Chatter-MOOC</label>
+                </value>
+                <value>
+                    <fullName>PR Chatter-MyBrands</fullName>
+                    <default>false</default>
+                    <label>PR Chatter-MyBrands</label>
+                </value>
+                <value>
+                    <fullName>PR Chatter-MyPortal2</fullName>
+                    <default>false</default>
+                    <label>PR Chatter-MyPortal2</label>
+                </value>
+                <value>
+                    <fullName>PR Chatter-Project TAB</fullName>
+                    <default>false</default>
+                    <label>PR Chatter-Project TAB</label>
+                </value>
+                <value>
+                    <fullName>PR Chatter-Social TV</fullName>
+                    <default>false</default>
+                    <label>PR Chatter-Social TV</label>
+                </value>
+                <value>
+                    <fullName>PR Chatter-The LAB</fullName>
+                    <default>false</default>
+                    <label>PR Chatter-The LAB</label>
+                </value>
+                <value>
+                    <fullName>PR Chatter-TrendGalaxy</fullName>
+                    <default>false</default>
+                    <label>PR Chatter-TrendGalaxy</label>
+                </value>
+                <value>
+                    <fullName>PR Europe-CRM</fullName>
+                    <default>false</default>
+                    <label>PR Europe-CRM</label>
+                </value>
+                <value>
+                    <fullName>PR Europe-WKZ (Werbekostenzuschuss = subvention for advertising expenses)</fullName>
+                    <default>false</default>
+                    <label>PR Europe-WKZ (Werbekostenzuschuss = subvention for advertising expenses)</label>
+                </value>
+                <value>
+                    <fullName>PR Europe-WKZ-ISpend</fullName>
+                    <default>false</default>
+                    <label>PR Europe-WKZ-ISpend</label>
+                </value>
+                <value>
+                    <fullName>PR Group-Connected Customers</fullName>
+                    <default>false</default>
+                    <label>PR Group-Connected Customers</label>
+                </value>
+                <value>
+                    <fullName>PR Group-MOOC Crisis Management</fullName>
+                    <default>false</default>
+                    <label>PR Group-MOOC Crisis Management</label>
+                </value>
+                <value>
+                    <fullName>PR Group-MOOC Internal Control</fullName>
+                    <default>false</default>
+                    <label>PR Group-MOOC Internal Control</label>
+                </value>
+                <value>
+                    <fullName>PR Group-REMEDY</fullName>
+                    <default>false</default>
+                    <label>PR Group-REMEDY</label>
+                </value>
+                <value>
+                    <fullName>PR Group-Taleo</fullName>
+                    <default>false</default>
+                    <label>PR Group-Taleo</label>
+                </value>
+                <value>
+                    <fullName>PR Holding-Iconic (Le cercle)</fullName>
+                    <default>false</default>
+                    <label>PR Holding-Iconic (Le cercle)</label>
+                </value>
+                <value>
+                    <fullName>PR Latin America-Chatter WebPart</fullName>
+                    <default>false</default>
+                    <label>PR Latin America-Chatter WebPart</label>
+                </value>
+                <value>
+                    <fullName>PR Latin America-CRM</fullName>
+                    <default>false</default>
+                    <label>PR Latin America-CRM</label>
+                </value>
+                <value>
+                    <fullName>PR Latin America-GREATVINES</fullName>
+                    <default>false</default>
+                    <label>PR Latin America-GREATVINES</label>
+                </value>
+                <value>
+                    <fullName>PR North America-BRIEFCASE</fullName>
+                    <default>false</default>
+                    <label>PR North America-BRIEFCASE</label>
+                </value>
+                <value>
+                    <fullName>PR North America-CLOUDCOACH</fullName>
+                    <default>false</default>
+                    <label>PR North America-CLOUDCOACH</label>
+                </value>
+                <value>
+                    <fullName>PR North America-GREATVINES</fullName>
+                    <default>false</default>
+                    <label>PR North America-GREATVINES</label>
+                </value>
+                <value>
+                    <fullName>PR North America-INSITE</fullName>
+                    <default>false</default>
+                    <label>PR North America-INSITE</label>
+                </value>
+                <value>
+                    <fullName>PR North America-ORCHESTRA CMS</fullName>
+                    <default>false</default>
+                    <label>PR North America-ORCHESTRA CMS</label>
+                </value>
+                <value>
+                    <fullName>PR North America-PRATR Intranet</fullName>
+                    <default>false</default>
+                    <label>PR North America-PRATR Intranet</label>
+                </value>
+                <value>
+                    <fullName>PR North America-REMEDY</fullName>
+                    <default>false</default>
+                    <label>PR North America-REMEDY</label>
+                </value>
+                <value>
+                    <fullName>PR North America-THANKS</fullName>
+                    <default>false</default>
+                    <label>PR North America-THANKS</label>
+                </value>
+                <value>
+                    <fullName>RICARD-Ambassador</fullName>
+                    <default>false</default>
+                    <label>RICARD-Ambassador</label>
+                </value>
+                <value>
+                    <fullName>RICARD-Plann R</fullName>
+                    <default>false</default>
+                    <label>RICARD-Plann R</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Project_Version__c</fullName>
+        <externalId>false</externalId>
+        <label>Project Version</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Publisher__c</fullName>
+        <externalId>false</externalId>
+        <label>Publisher</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Release_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Release Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>New Application</fullName>
+                    <default>false</default>
+                    <label>New Application</label>
+                </value>
+                <value>
+                    <fullName>Major</fullName>
+                    <default>false</default>
+                    <label>Major</label>
+                </value>
+                <value>
+                    <fullName>Minor</fullName>
+                    <default>false</default>
+                    <label>Minor</label>
+                </value>
+                <value>
+                    <fullName>Fix</fullName>
+                    <default>false</default>
+                    <label>Fix</label>
+                </value>
+                <value>
+                    <fullName>Hotfix</fullName>
+                    <default>false</default>
+                    <label>Hotfix</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Requester_Email__c</fullName>
+        <externalId>false</externalId>
+        <label>Requester email address</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SFDC_Requested_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>SFDC Requested Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>SLA__c</fullName>
+        <externalId>false</externalId>
+        <formula>GDT_Services__r.Service_Levels_commitments__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>SLA</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Sandbox_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Sandbox Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Sandbox_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Sandbox Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Developer</fullName>
+                    <default>false</default>
+                    <label>Developer</label>
+                </value>
+                <value>
+                    <fullName>Developer Pro</fullName>
+                    <default>false</default>
+                    <label>Developer Pro</label>
+                </value>
+                <value>
+                    <fullName>Partial Copy</fullName>
+                    <default>false</default>
+                    <label>Partial Copy</label>
+                </value>
+                <value>
+                    <fullName>Full</fullName>
+                    <default>false</default>
+                    <label>Full</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Services__c</fullName>
+        <externalId>false</externalId>
+        <label>Services</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>SFDC - S01 New SandBox</fullName>
+                    <default>false</default>
+                    <label>SFDC - S01 New SandBox</label>
+                </value>
+                <value>
+                    <fullName>SFDC - S02 Request of release</fullName>
+                    <default>false</default>
+                    <label>SFDC - S02 Request of release</label>
+                </value>
+                <value>
+                    <fullName>SFDC - S03 Sandbox Refresh</fullName>
+                    <default>false</default>
+                    <label>SFDC - S03 Sandbox Refresh</label>
+                </value>
+                <value>
+                    <fullName>SFDC - S04 Standard object custom fields request</fullName>
+                    <default>false</default>
+                    <label>SFDC - S04 Standard object custom fields request</label>
+                </value>
+                <value>
+                    <fullName>SFDC - S05 Appexchange install and setup</fullName>
+                    <default>false</default>
+                    <label>SFDC - S05 Appexchange install and setup</label>
+                </value>
+                <value>
+                    <fullName>SFDC - S06 Incident Resolution</fullName>
+                    <default>false</default>
+                    <label>SFDC - S06 Incident Resolution</label>
+                </value>
+                <value>
+                    <fullName>SFDC - S07 Creation of power delegation</fullName>
+                    <default>false</default>
+                    <label>SFDC - S07 Creation of power delegation</label>
+                </value>
+                <value>
+                    <fullName>SFDC - S08 Creation of new role and profile</fullName>
+                    <default>false</default>
+                    <label>SFDC - S08 Creation of new role and profile</label>
+                </value>
+                <value>
+                    <fullName>SFDC - S09 Data Backup</fullName>
+                    <default>false</default>
+                    <label>SFDC - S09 Data Backup</label>
+                </value>
+                <value>
+                    <fullName>SFDC - S10 Data Restore</fullName>
+                    <default>false</default>
+                    <label>SFDC - S10 Data Restore</label>
+                </value>
+                <value>
+                    <fullName>SFDC - S11 Training on development standard</fullName>
+                    <default>false</default>
+                    <label>SFDC - S11 Training on development standard</label>
+                </value>
+                <value>
+                    <fullName>SFDC - S12 User Assignments</fullName>
+                    <default>false</default>
+                    <label>SFDC - S12 User Assignments</label>
+                </value>
+                <value>
+                    <fullName>SFDC - S13 Data Update</fullName>
+                    <default>false</default>
+                    <label>SFDC - S13 Data Update</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>In Progress</fullName>
+                    <default>true</default>
+                    <label>In Progress</label>
+                </value>
+                <value>
+                    <fullName>Waiting for user</fullName>
+                    <default>false</default>
+                    <label>Waiting for user</label>
+                </value>
+                <value>
+                    <fullName>Resolved</fullName>
+                    <default>false</default>
+                    <label>Resolved</label>
+                </value>
+                <value>
+                    <fullName>Closed</fullName>
+                    <default>false</default>
+                    <label>Closed</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Template_Code__c</fullName>
+        <externalId>false</externalId>
+        <formula>GDT_Services__r.Code__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Template code</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Type</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Version_Number__c</fullName>
+        <externalId>false</externalId>
+        <label>Version Number</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>GDT Activity</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>CREATED_DATE</columns>
+        <columns>Activity_Name__c</columns>
+        <columns>Affiliate_Group__c</columns>
+        <columns>Status__c</columns>
+        <columns>Project_Name__c</columns>
+        <columns>Project_Description__c</columns>
+        <columns>Environment_Source__c</columns>
+        <columns>Environment_Destination__c</columns>
+        <columns>Date_Request__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>GDT</fullName>
+        <columns>CREATED_DATE</columns>
+        <columns>Activity_Name__c</columns>
+        <columns>Affiliate_Group__c</columns>
+        <columns>Status__c</columns>
+        <columns>Project_Name__c</columns>
+        <columns>Project_Description__c</columns>
+        <columns>Environment_Source__c</columns>
+        <columns>Environment_Destination__c</columns>
+        <columns>Date_Request__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>GDT</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>GDT_Group</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>GDT_NOT_CLOSED</fullName>
+        <columns>CREATED_DATE</columns>
+        <columns>Activity_Name__c</columns>
+        <columns>Affiliate_Group__c</columns>
+        <columns>Status__c</columns>
+        <columns>Project_Name__c</columns>
+        <columns>Project_Description__c</columns>
+        <columns>Environment_Source__c</columns>
+        <columns>Environment_Destination__c</columns>
+        <columns>Date_Request__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>notEqual</operation>
+            <value>Closed</value>
+        </filters>
+        <filters>
+            <field>Environment_Destination__c</field>
+            <operation>equals</operation>
+            <value>Production</value>
+        </filters>
+        <filters>
+            <field>CREATED_DATE</field>
+            <operation>greaterThan</operation>
+            <value>1/1/2018 12:00 AM</value>
+        </filters>
+        <label>GDT NOT CLOSED</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>GDT_Group</group>
+        </sharedTo>
+    </listViews>
+    <nameField>
+        <displayFormat>{YYYY}{MM}{DD}-{000}</displayFormat>
+        <label>GDT Activity Name</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>GDT Activities Admin</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

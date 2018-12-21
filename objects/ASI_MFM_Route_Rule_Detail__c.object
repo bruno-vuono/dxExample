@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableChangeDataCapture>false</enableChangeDataCapture>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>ASI_MFM_Approver__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Approver</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>ASI_MFM_Route_Rule_Details</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ASI_MFM_HKD__c</fullName>
+        <externalId>false</externalId>
+        <formula>ASI_MFM_Route_Type__r.ASI_MFM_EUR_rate__c * ASI_MFM_Minimum_Amount__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>HKD</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_MFM_Minimum_Amount__c</fullName>
+        <externalId>false</externalId>
+        <label>Minimum Amount</label>
+        <precision>18</precision>
+        <required>true</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_MFM_Region__c</fullName>
+        <externalId>false</externalId>
+        <label>Region</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>GBKK Inner</fullName>
+                    <default>false</default>
+                    <label>GBKK Inner</label>
+                </value>
+                <value>
+                    <fullName>GBKK Outer</fullName>
+                    <default>false</default>
+                    <label>GBKK Outer</label>
+                </value>
+                <value>
+                    <fullName>UPC</fullName>
+                    <default>false</default>
+                    <label>UPC</label>
+                </value>
+                <value>
+                    <fullName>STH</fullName>
+                    <default>false</default>
+                    <label>STH</label>
+                </value>
+                <value>
+                    <fullName>WS</fullName>
+                    <default>false</default>
+                    <label>WS</label>
+                </value>
+                <value>
+                    <fullName>Lead BMC</fullName>
+                    <default>false</default>
+                    <label>Lead BMC</label>
+                </value>
+                <value>
+                    <fullName>Classic BMC</fullName>
+                    <default>false</default>
+                    <label>Classic BMC</label>
+                </value>
+                <value>
+                    <fullName>Digital</fullName>
+                    <default>false</default>
+                    <label>Digital</label>
+                </value>
+                <value>
+                    <fullName>GBKK Prestige</fullName>
+                    <default>false</default>
+                    <label>GBKK Prestige</label>
+                </value>
+                <value>
+                    <fullName>CA</fullName>
+                    <default>false</default>
+                    <label>CA</label>
+                </value>
+                <value>
+                    <fullName>Wine/PP</fullName>
+                    <default>false</default>
+                    <label>Wine/PP</label>
+                </value>
+                <value>
+                    <fullName>North Asia (TR APAC)</fullName>
+                    <default>false</default>
+                    <label>North Asia (TR APAC)</label>
+                </value>
+                <value>
+                    <fullName>South East Asia (TR APAC)</fullName>
+                    <default>false</default>
+                    <label>South East Asia (TR APAC)</label>
+                </value>
+                <value>
+                    <fullName>India (TR APAC)</fullName>
+                    <default>false</default>
+                    <label>India (TR APAC)</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>ASI_MFM_Route_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Route Type</label>
+        <referenceTo>ASI_MFM_Route_Type__c</referenceTo>
+        <relationshipLabel>ASI MFM Route Rule Details</relationshipLabel>
+        <relationshipName>ASI_MFM_Route_Rule_Details</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>true</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>ASI_MFM_Sequence__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>control sequence of approver if minimum amount is identical</inlineHelpText>
+        <label>Sequence</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ASI_MFM_TR_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Type (TR use only)</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Finance</fullName>
+                    <default>false</default>
+                    <label>Finance</label>
+                </value>
+                <value>
+                    <fullName>Bracket</fullName>
+                    <default>false</default>
+                    <label>Bracket</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <label>ASI MFM Route Rule Detail</label>
+    <nameField>
+        <displayFormat>RRD{0000}</displayFormat>
+        <label>Rule Detail ID</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>ASI MFM Route Rule Details</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>ASI_MFM_Minimum_Amount__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>ASI_MFM_Approver__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>ASI_MFM_Minimum_Amount__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>ASI_MFM_Approver__c</lookupDialogsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ControlledByParent</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

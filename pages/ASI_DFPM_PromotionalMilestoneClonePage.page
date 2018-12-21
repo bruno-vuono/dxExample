@@ -1,0 +1,4 @@
+<apex:page standardController="ASI_DFPM_Project_Milestone__c" extensions="ASI_DFPM_PromotionalMilestoneCloneCON" action="{!startClone}">
+	<apex:pageMessages />
+	<apex:outputLink value="{!'/' & mstId}">Back to record</apex:outputLink>
+</apex:page>

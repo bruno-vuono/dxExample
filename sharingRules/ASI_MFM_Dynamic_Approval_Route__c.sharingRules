@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>ASI_MFM_CN_Share_To_CN_User</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>ASI MFM CN Share To CN User</label>
+        <sharedTo>
+            <roleAndSubordinates>ASI_CN</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>CN Dynamic Approval Route</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>ASI_MFM_KR_DAR_Share_To_KR_User</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>ASI MFM KR DAR Share To KR User</label>
+        <sharedTo>
+            <group>ASI_MFM_KR_Standard_User</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>KR Dynamic Approval Route</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+</SharingRules>
